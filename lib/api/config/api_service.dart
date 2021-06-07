@@ -1,7 +1,4 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:code_magic_ex/utilities/user_session.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -17,21 +14,21 @@ part 'api_service.g.dart';
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
   static ApiService _instance = ApiService(Dio());
-  static String proxy = Platform.isAndroid ? '<YOUR_LOCAL_IP>:8888' : 'localhost:8888';
+  // static String proxy = Platform.isAndroid ? '<YOUR_LOCAL_IP>:8888' : 'localhost:8888';
 
   static ApiService init() {
     final Dio dio = Dio();
     // Tap into the onHttpClientCreate callback
     // to configure the proxy just as we did earlier.
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) { 
-      // Hook into the findProxy callback to set the client's proxy.
-      client.findProxy = (url) {
-        return 'PROXY $proxy';
-      };
-      // This is a workaround to allow Charles to receive
-      // SSL payloads when your app is running on Android.
-      client.badCertificateCallback = (X509Certificate cert, String host, int port) => Platform.isAndroid;
-    };
+    // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) { 
+    //   // Hook into the findProxy callback to set the client's proxy.
+    //   client.findProxy = (url) {
+    //     return 'PROXY $proxy';
+    //   };
+    //   // This is a workaround to allow Charles to receive
+    //   // SSL payloads when your app is running on Android.
+    //   client.badCertificateCallback = (X509Certificate cert, String host, int port) => Platform.isAndroid;
+    // };
     // dio.interceptors.add(
     //     InterceptorsWrapper(onRequest: (request, requestInterceptorHandler) {
     //   debugPrint("${request.method} | ${request.path}");
@@ -47,20 +44,21 @@ abstract class ApiService {
     final Dio dio = Dio();
     // Tap into the onHttpClientCreate callback
     // to configure the proxy just as we did earlier.
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) { 
-      // Hook into the findProxy callback to set the client's proxy.
-      client.findProxy = (url) {
-        return 'PROXY $proxy';
-      };
-        // This is a workaround to allow Charles to receive
-      // SSL payloads when your app is running on Android.
-      client.badCertificateCallback = (X509Certificate cert, String host, int port) => Platform.isAndroid;
-    };
+    // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) { 
+    //   // Hook into the findProxy callback to set the client's proxy.
+    //   client.findProxy = (url) {
+    //     return 'PROXY $proxy';
+    //   };
+    //     // This is a workaround to allow Charles to receive
+    //   // SSL payloads when your app is running on Android.
+    //   client.badCertificateCallback = (X509Certificate cert, String host, int port) => Platform.isAndroid;
+    // };
+    // dio.interceptors.add(
+    //     InterceptorsWrapper(onRequest: (request, requestInterceptorHandler) {
+    //   return;
+    // }));
     dio.options.headers['authorization'] = "Bearer 60d09e95-eeb5-4d05-8210-2b39149a59bc";
-    dio.interceptors.add(
-        InterceptorsWrapper(onRequest: (request, requestInterceptorHandler) {
-      return;
-    }));
+    // dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
     _instance = ApiService(dio);
 

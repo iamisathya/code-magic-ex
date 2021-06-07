@@ -132,6 +132,7 @@ class HumanName {
   String firstName;
   String lastName;
   String fullName;
+  @JsonKey(name: "fullName@th")
   String fullNameTh;
 
   HumanName(
@@ -147,8 +148,28 @@ class HumanName {
 }
 
 @JsonSerializable()
+class HumanNameEn {
+  String firstName;
+  String lastName;
+  String fullName;
+  @JsonKey(name: "fullName@en")
+  String fullNameEn;
+
+  HumanNameEn(
+      {required this.firstName,
+      required this.lastName,
+      required this.fullName,
+      required this.fullNameEn});
+
+  factory HumanNameEn.fromJson(Map<String, dynamic> json) =>
+      _$HumanNameEnFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HumanNameEnToJson(this);
+}
+
+@JsonSerializable()
 class Coapplicant {
-  final String details;
+  final CoapplicantDetails details;
 
   Coapplicant({required this.details});
 
@@ -159,8 +180,37 @@ class Coapplicant {
 }
 
 @JsonSerializable()
+class CoapplicantDetails {
+  final SortHumanName humanName;
+
+  CoapplicantDetails({required this.humanName});
+
+  factory CoapplicantDetails.fromJson(Map<String, dynamic> json) =>
+      _$CoapplicantDetailsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CoapplicantDetailsToJson(this);
+}
+
+@JsonSerializable()
+class SortHumanName {
+  String firstName;
+  String lastName;
+  String fullName;
+
+  SortHumanName(
+      {required this.firstName,
+      required this.lastName,
+      required this.fullName});
+
+  factory SortHumanName.fromJson(Map<String, dynamic> json) =>
+      _$SortHumanNameFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SortHumanNameToJson(this);
+}
+
+@JsonSerializable()
 class Id {
-  final String unicity;
+  final dynamic unicity;
 
   Id({required this.unicity});
 
@@ -174,7 +224,7 @@ class Id {
 class EnrollerOrSponser {
   String href;
   Id id;
-  HumanName humanName;
+  HumanNameEn humanName;
 
   EnrollerOrSponser(
       {required this.href, required this.id, required this.humanName});

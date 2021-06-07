@@ -118,7 +118,7 @@ HumanName _$HumanNameFromJson(Map<String, dynamic> json) {
     firstName: json['firstName'] as String,
     lastName: json['lastName'] as String,
     fullName: json['fullName'] as String,
-    fullNameTh: json['fullNameTh'] as String,
+    fullNameTh: json['fullName@th'] as String,
   );
 }
 
@@ -126,12 +126,30 @@ Map<String, dynamic> _$HumanNameToJson(HumanName instance) => <String, dynamic>{
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'fullName': instance.fullName,
-      'fullNameTh': instance.fullNameTh,
+      'fullName@th': instance.fullNameTh,
+    };
+
+HumanNameEn _$HumanNameEnFromJson(Map<String, dynamic> json) {
+  return HumanNameEn(
+    firstName: json['firstName'] as String,
+    lastName: json['lastName'] as String,
+    fullName: json['fullName'] as String,
+    fullNameEn: json['fullName@en'] as String,
+  );
+}
+
+Map<String, dynamic> _$HumanNameEnToJson(HumanNameEn instance) =>
+    <String, dynamic>{
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'fullName': instance.fullName,
+      'fullName@en': instance.fullNameEn,
     };
 
 Coapplicant _$CoapplicantFromJson(Map<String, dynamic> json) {
   return Coapplicant(
-    details: json['details'] as String,
+    details:
+        CoapplicantDetails.fromJson(json['details'] as Map<String, dynamic>),
   );
 }
 
@@ -140,9 +158,36 @@ Map<String, dynamic> _$CoapplicantToJson(Coapplicant instance) =>
       'details': instance.details,
     };
 
+CoapplicantDetails _$CoapplicantDetailsFromJson(Map<String, dynamic> json) {
+  return CoapplicantDetails(
+    humanName:
+        SortHumanName.fromJson(json['humanName'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$CoapplicantDetailsToJson(CoapplicantDetails instance) =>
+    <String, dynamic>{
+      'humanName': instance.humanName,
+    };
+
+SortHumanName _$SortHumanNameFromJson(Map<String, dynamic> json) {
+  return SortHumanName(
+    firstName: json['firstName'] as String,
+    lastName: json['lastName'] as String,
+    fullName: json['fullName'] as String,
+  );
+}
+
+Map<String, dynamic> _$SortHumanNameToJson(SortHumanName instance) =>
+    <String, dynamic>{
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'fullName': instance.fullName,
+    };
+
 Id _$IdFromJson(Map<String, dynamic> json) {
   return Id(
-    unicity: json['unicity'] as String,
+    unicity: json['unicity'],
   );
 }
 
@@ -154,7 +199,7 @@ EnrollerOrSponser _$EnrollerOrSponserFromJson(Map<String, dynamic> json) {
   return EnrollerOrSponser(
     href: json['href'] as String,
     id: Id.fromJson(json['id'] as Map<String, dynamic>),
-    humanName: HumanName.fromJson(json['humanName'] as Map<String, dynamic>),
+    humanName: HumanNameEn.fromJson(json['humanName'] as Map<String, dynamic>),
   );
 }
 
