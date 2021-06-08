@@ -8,26 +8,40 @@ part of 'inventory_records.dart';
 
 InventoryRecords _$InventoryRecordsFromJson(Map<String, dynamic> json) {
   return InventoryRecords(
-    item: CustomerData.fromJson(json['item'] as Map<String, dynamic>),
-    catalogSlideContent: CatalogSlideContent.fromJson(
-        json['catalogSlide'] as Map<String, dynamic>),
-    quantityOnHand: json['quantityOnHand'] as String,
-    terms: Terms.fromJson(json['Terms'] as Map<String, dynamic>),
+    items: (json['items'] as List<dynamic>)
+        .map((e) => InventoryRecordItems.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
 Map<String, dynamic> _$InventoryRecordsToJson(InventoryRecords instance) =>
     <String, dynamic>{
+      'items': instance.items,
+    };
+
+InventoryRecordItems _$InventoryRecordItemsFromJson(Map<String, dynamic> json) {
+  return InventoryRecordItems(
+    catalogSlideContent: CatalogSlideContent.fromJson(
+        json['catalogSlide'] as Map<String, dynamic>),
+    item: CustomerData.fromJson(json['item'] as Map<String, dynamic>),
+    quantityOnHand: json['quantityOnHand'] as String,
+    terms: Terms.fromJson(json['terms'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$InventoryRecordItemsToJson(
+        InventoryRecordItems instance) =>
+    <String, dynamic>{
       'catalogSlide': instance.catalogSlideContent,
       'item': instance.item,
       'quantityOnHand': instance.quantityOnHand,
-      'Terms': instance.terms,
+      'terms': instance.terms,
     };
 
 CustomerData _$CustomerDataFromJson(Map<String, dynamic> json) {
   return CustomerData(
     href: json['href'] as String,
-    id: CommonUserIdString.fromJson(json['id'] as Map<String, dynamic>),
+    id: CommonIdTypeString.fromJson(json['id'] as Map<String, dynamic>),
   );
 }
 
@@ -64,7 +78,7 @@ Map<String, dynamic> _$ContentDescriptionToJson(ContentDescription instance) =>
 Terms _$TermsFromJson(Map<String, dynamic> json) {
   return Terms(
     pvEach: json['pvEach'] as int,
-    priceEach: json['priceEach'] as int,
+    priceEach: (json['priceEach'] as num).toDouble(),
   );
 }
 

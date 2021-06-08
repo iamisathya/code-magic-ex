@@ -6,20 +6,11 @@ part 'inventory_records.g.dart';
 
 @JsonSerializable()
 class InventoryRecords {
-  @JsonKey(name: "catalogSlide")
-  CatalogSlideContent catalogSlideContent;
-  @JsonKey(name: "item")
-  CustomerData item;
-  @JsonKey(name: "quantityOnHand")
-  String quantityOnHand;
-  @JsonKey(name: "Terms")
-  Terms terms;
+  @JsonKey(name: "items")
+  List<InventoryRecordItems> items;
 
   InventoryRecords({
-    required this.item,
-    required this.catalogSlideContent,
-    required this.quantityOnHand,
-    required this.terms,
+    required this.items,
   });
 
   factory InventoryRecords.fromJson(Map<String, dynamic> json) =>
@@ -29,11 +20,35 @@ class InventoryRecords {
 }
 
 @JsonSerializable()
+class InventoryRecordItems {
+  @JsonKey(name: "catalogSlide")
+  CatalogSlideContent catalogSlideContent;
+  @JsonKey(name: "item")
+  CustomerData item;
+  @JsonKey(name: "quantityOnHand")
+  String quantityOnHand;
+  @JsonKey(name: "terms")
+  Terms terms;
+
+  InventoryRecordItems({
+    required this.catalogSlideContent,
+    required this.item,
+    required this.quantityOnHand,
+    required this.terms,
+  });
+
+  factory InventoryRecordItems.fromJson(Map<String, dynamic> json) =>
+      _$InventoryRecordItemsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$InventoryRecordItemsToJson(this);
+}
+
+@JsonSerializable()
 class CustomerData {
   @JsonKey(name: "href")
   String href;
   @JsonKey(name: "id")
-  CommonUserIdString id;
+  CommonIdTypeString id;
 
   CustomerData({
     required this.href,
@@ -77,7 +92,7 @@ class ContentDescription {
 @JsonSerializable()
 class Terms {
   @JsonKey(name: "priceEach")
-  int priceEach;
+  double priceEach;
   @JsonKey(name: "pvEach")
   int pvEach;
 

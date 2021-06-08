@@ -16,12 +16,16 @@ class FindCustomer {
       _$FindCustomerFromJson(json);
 
   Map<String, dynamic> toJson() => _$FindCustomerToJson(this);
+
+  Map<String, dynamic> toMap() => {
+        'items': items,
+      };
 }
 
 @JsonSerializable()
 class CustomerData {
   @JsonKey(name: "unicity")
-  String unicity;
+  int unicity;
   @JsonKey(name: "humanName")
   CommonHumanNameFull humanName;
   @JsonKey(name: "href")
@@ -44,7 +48,7 @@ class CustomerData {
   String entryPeriod;
   @JsonKey(name: "subscriptions")
   List<Subscription> subscriptions;
-  
+
   CustomerData({
     required this.unicity,
     required this.humanName,
@@ -70,7 +74,7 @@ class CustomerData {
 class BusinessEntity {
   @JsonKey(name: "legalType")
   String legalType;
-  
+
   BusinessEntity({
     required this.legalType,
   });

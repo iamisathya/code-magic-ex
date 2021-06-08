@@ -1,6 +1,11 @@
 import 'dart:async';
 import 'package:code_magic_ex/api/request/request_calculate_order.dart';
 import 'package:code_magic_ex/api/request/request_place_order.dart';
+import 'package:code_magic_ex/models/find_customer.dart';
+import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/models/managed_warehouse.dart';
+import 'package:code_magic_ex/models/order_list_rmas.dart';
+import 'package:code_magic_ex/models/search_customer.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -76,23 +81,23 @@ abstract class ApiService {
   @GET('/customers/{id}')
   Future<UserInfo> getCustomerData(@Path('id') String id);
   
-  @GET('/me/managedwarehouses')
-  Future<UserInfo> getManagedWarehouses();
+  @GET('/customers/me/managedwarehouses')
+  Future<ManagedWarehouses> getManagedWarehouses();
   
   @GET('/warehouses/{id}/inventoryRecords')
-  Future<UserInfo> getInventoryRecords();
+  Future<InventoryRecords> getInventoryRecords(@Path('id') String id, @Query("expand") String expand);
   
   @GET('/warehouses/{id}/inventoryMovementRecords')
-  Future<UserInfo> getInventoryMovementRecords();
+  Future<UserInfo> getInventoryMovementRecords(@Path('id') String id, @Query("dateMoved") String dateMoved, @Query("expand") String expand);
   
   @GET('/warehouses/{id}/ordersAndRmas')
-  Future<UserInfo> getOrdersAndRmas();
+  Future<OrdersAndRmas> getOrdersAndRmas(@Path('id') String id, @Query("dateCreated") String dateCreated, @Query("expand") String expand);
   
   @GET('/customers')
-  Future<UserInfo> findCustomer();
+  Future<FindCustomer> findCustomer(@Query("unicity") int id, @Query("expand") String expand);
     
   @GET('/customers')
-  Future<UserInfo> searchCustomer();
+  Future<SearchCustomer> searchCustomer(@Query('fulltext') String searchKey, @Query('sponsor.id.unicity') int userId);
   
   @POST('/orderTerms')
   Future<CustomerToken> getOrderTerms(@Body() RequestPostCaclulateOrder request);

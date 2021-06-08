@@ -21,7 +21,7 @@ Map<String, dynamic> _$FindCustomerToJson(FindCustomer instance) =>
 
 CustomerData _$CustomerDataFromJson(Map<String, dynamic> json) {
   return CustomerData(
-    unicity: json['unicity'] as String,
+    unicity: json['unicity'] as int,
     humanName:
         CommonHumanNameFull.fromJson(json['humanName'] as Map<String, dynamic>),
     href: json['href'] as String,

@@ -47,45 +47,48 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<UserInfo> getManagedWarehouses() async {
+  Future<ManagedWarehouses> getManagedWarehouses() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserInfo>(
+        _setStreamType<ManagedWarehouses>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/me/managedwarehouses',
+                .compose(_dio.options, '/customers/me/managedwarehouses',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserInfo.fromJson(_result.data!);
+    final value = ManagedWarehouses.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<UserInfo> getInventoryRecords() async {
+  Future<InventoryRecords> getInventoryRecords(id, expand) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'expand': expand};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserInfo>(
+        _setStreamType<InventoryRecords>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/warehouses/{id}/inventoryRecords',
+                .compose(_dio.options, '/warehouses/$id/inventoryRecords',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserInfo.fromJson(_result.data!);
+    final value = InventoryRecords.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<UserInfo> getInventoryMovementRecords() async {
+  Future<UserInfo> getInventoryMovementRecords(id, dateMoved, expand) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'dateMoved': dateMoved,
+      r'expand': expand
+    };
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<UserInfo>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(
-                    _dio.options, '/warehouses/{id}/inventoryMovementRecords',
+                    _dio.options, '/warehouses/$id/inventoryMovementRecords',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = UserInfo.fromJson(_result.data!);
@@ -93,47 +96,56 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<UserInfo> getOrdersAndRmas() async {
+  Future<OrdersAndRmas> getOrdersAndRmas(id, dateCreated, expand) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'dateCreated': dateCreated,
+      r'expand': expand
+    };
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserInfo>(
+        _setStreamType<OrdersAndRmas>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/warehouses/{id}/ordersAndRmas',
+                .compose(_dio.options, '/warehouses/$id/ordersAndRmas',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserInfo.fromJson(_result.data!);
+    final value = OrdersAndRmas.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<UserInfo> findCustomer() async {
+  Future<FindCustomer> findCustomer(id, expand) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'unicity': id,
+      r'expand': expand
+    };
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserInfo>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/customers',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserInfo.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<UserInfo> searchCustomer() async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserInfo>(
+        _setStreamType<FindCustomer>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/customers',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserInfo.fromJson(_result.data!);
+    final value = FindCustomer.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SearchCustomer> searchCustomer(searchKey, userId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'fulltext': searchKey,
+      r'sponsor.id.unicity': userId
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SearchCustomer>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/customers',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SearchCustomer.fromJson(_result.data!);
     return value;
   }
 
