@@ -9,7 +9,7 @@ class InventoryMovementRecords {
   @JsonKey(name: "item")
   CustomerData item;
   @JsonKey(name: "catalogSlide")
-  CatalogSlide catalogSlide;
+  CatalogSlideContent catalogSlide;
   @JsonKey(name: "terms")
   Terms terms;
   @JsonKey(name: "quantity")
@@ -34,7 +34,7 @@ class CustomerData {
   @JsonKey(name: "href")
   String href;
   @JsonKey(name: "id")
-  CommonUserIdString id;
+  CommonIdTypeString id;
   
   CustomerData({
     required this.href,
@@ -46,20 +46,6 @@ class CustomerData {
       _$CustomerDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$CustomerDataToJson(this);
-}
-
-@JsonSerializable()
-class CatalogSlide {
-  @JsonKey(name: "catalogSlide")
-  CatalogSlideContent catalogSlide;
-
-  CatalogSlide({required this.catalogSlide});
-
-
-  factory CatalogSlide.fromJson(Map<String, dynamic> json) =>
-      _$CatalogSlideFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CatalogSlideToJson(this);
 }
 
 @JsonSerializable()

@@ -77,21 +77,25 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<UserInfo> getInventoryMovementRecords(id, dateMoved, expand) async {
+  Future<List<InventoryMovementRecords>> getInventoryMovementRecords(
+      id, dateMoved, expand) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'dateMoved': dateMoved,
       r'expand': expand
     };
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserInfo>(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<InventoryMovementRecords>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(
                     _dio.options, '/warehouses/$id/inventoryMovementRecords',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserInfo.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) =>
+            InventoryMovementRecords.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

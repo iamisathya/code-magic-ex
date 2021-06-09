@@ -39,7 +39,7 @@ void main() async {
 
  Future fetchAPI() async {
     try {
-      await ApiService.shared().getInventoryRecords("9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c", "item");
+      await ApiService.shared().getOrdersAndRmas("9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c", "[2019-01-01;2021-06-01]", "order,rma");
       // await ApiService.shared().getOrdersAndRmas("9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c", "[2019-01-01;2019-06-01]", "order,rma");
       // await ApiService.shared().findCustomer(108357166, "customer");
       // final customerData = await ApiService.shared().searchCustomer("Test", 1);

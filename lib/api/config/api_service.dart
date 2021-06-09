@@ -3,6 +3,7 @@ import 'package:code_magic_ex/api/request/request_calculate_order.dart';
 import 'package:code_magic_ex/api/request/request_place_order.dart';
 import 'package:code_magic_ex/models/find_customer.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/models/inventory_movement_records.dart';
 import 'package:code_magic_ex/models/managed_warehouse.dart';
 import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:code_magic_ex/models/search_customer.dart';
@@ -88,7 +89,7 @@ abstract class ApiService {
   Future<InventoryRecords> getInventoryRecords(@Path('id') String id, @Query("expand") String expand);
   
   @GET('/warehouses/{id}/inventoryMovementRecords')
-  Future<UserInfo> getInventoryMovementRecords(@Path('id') String id, @Query("dateMoved") String dateMoved, @Query("expand") String expand);
+  Future<List<InventoryMovementRecords>> getInventoryMovementRecords(@Path('id') String id, @Query("dateMoved") String dateMoved, @Query("expand") String expand);
   
   @GET('/warehouses/{id}/ordersAndRmas')
   Future<OrdersAndRmas> getOrdersAndRmas(@Path('id') String id, @Query("dateCreated") String dateCreated, @Query("expand") String expand);
