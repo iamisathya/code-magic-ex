@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/request/request_calculate_order.dart';
 import 'package:code_magic_ex/api/request/request_place_order.dart';
 import 'package:code_magic_ex/models/find_customer.dart';
@@ -18,7 +19,7 @@ import 'package:code_magic_ex/models/user_token.dart';
 
 part 'api_service.g.dart';
 
-@RestApi(baseUrl: 'https://hydra.unicity.net/v5a/')
+@RestApi(baseUrl: Address.baseUrl)
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
   static ApiService _instance = ApiService(Dio());
@@ -75,35 +76,35 @@ abstract class ApiService {
 
   //Common apis
 
-  @POST('/loginTokens')
+  @POST(Address.loginTokens)
   Future<CustomerToken> getLoginTokens(
       @Body() RequestPostCustomerToken request);
 
-  @GET('/customers/{id}')
+  @GET(Address.customerData)
   Future<UserInfo> getCustomerData(@Path('id') String id);
   
-  @GET('/customers/me/managedwarehouses')
+  @GET(Address.managedWarehouse)
   Future<ManagedWarehouses> getManagedWarehouses();
   
-  @GET('/warehouses/{id}/inventoryRecords')
+  @GET(Address.inventoryRecords)
   Future<InventoryRecords> getInventoryRecords(@Path('id') String id, @Query("expand") String expand);
   
-  @GET('/warehouses/{id}/inventoryMovementRecords')
+  @GET(Address.inventoryMovementRecords)
   Future<List<InventoryMovementRecords>> getInventoryMovementRecords(@Path('id') String id, @Query("dateMoved") String dateMoved, @Query("expand") String expand);
   
-  @GET('/warehouses/{id}/ordersAndRmas')
+  @GET(Address.ordersAndRmas)
   Future<OrdersAndRmas> getOrdersAndRmas(@Path('id') String id, @Query("dateCreated") String dateCreated, @Query("expand") String expand);
   
-  @GET('/customers')
+  @GET(Address.customers)
   Future<FindCustomer> findCustomer(@Query("unicity") int id, @Query("expand") String expand);
     
-  @GET('/customers')
+  @GET(Address.customers)
   Future<SearchCustomer> searchCustomer(@Query('fulltext') String searchKey, @Query('sponsor.id.unicity') int userId);
   
-  @POST('/orderTerms')
+  @POST(Address.orderTerms)
   Future<CustomerToken> getOrderTerms(@Body() RequestPostCaclulateOrder request);
 
-  @GET('/warehouses/{id}/orders')
+  @GET(Address.orders)
   Future<UserInfo> getPlaceOrders(@Body() RequestPostPlaceOrder request);
   
 }

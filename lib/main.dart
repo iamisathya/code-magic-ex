@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ void main() async {
 
   /// Local Key Value DB
   // await KeyValueStorageManager.setStorage();
-  fetchAPI();
+  // fetchAPI();
   // getLoginTokens();
 
   runApp(MyApp());
@@ -56,7 +57,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const LoginScreen(key: Key("login")),
     );
   }
 }
