@@ -1,13 +1,11 @@
-import 'dart:io';
-
-import 'package:code_magic_ex/ui/screens/login/login.dart';
+import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
+import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/request/request_customer_token.dart';
-import 'package:code_magic_ex/models/user_token.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 
 // ignore: avoid_void_async
@@ -52,60 +50,19 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: const LoginScreen(key: Key("login")),
+    return StreamBuilder<ThemeTypes>(
+      stream: themeBloc.appThemeStream,
+      builder: (context, snapshot) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+           theme:  AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: themeBloc.getThemeMode,
+          // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+          home: const LoginScreen(key: Key("login")),
+        );
+      }
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}

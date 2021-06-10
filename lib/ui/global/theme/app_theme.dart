@@ -1,19 +1,69 @@
-// ignore: constant_identifier_names
-
 import 'package:flutter/material.dart';
 
-enum AppTheme {
-  light,  
-  dark
-}
+class AppTheme {
+  //
+  AppTheme._();
 
-final appThemeData = {
-  AppTheme.light: ThemeData(
-    brightness: Brightness.light,
-    primaryColor: Colors.blue
-  ),
-  AppTheme.dark: ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: Colors.blue[700]
-  ),
-};
+  static final ThemeData lightTheme = ThemeData(
+    scaffoldBackgroundColor: Colors.teal,
+    appBarTheme: const AppBarTheme(
+      color: Colors.teal,
+      iconTheme: IconThemeData(
+        color: Colors.white,
+      ),
+    ),
+    colorScheme: const ColorScheme.light(
+      primary: Colors.white,
+      primaryVariant: Colors.white38,
+      secondary: Colors.red,
+    ),
+    cardTheme: const CardTheme(
+      color: Colors.teal,
+    ),
+    iconTheme: const IconThemeData(
+      color: Colors.white54,
+    ),
+    textTheme: const TextTheme(
+      headline6: TextStyle(
+        color: Colors.white,
+        fontSize: 20.0,
+      ),
+      subtitle2: TextStyle(
+        color: Colors.white70,
+        fontSize: 18.0,
+      ),
+    ),
+  );
+
+  static final ThemeData darkTheme = ThemeData(
+    scaffoldBackgroundColor: Colors.black,
+    appBarTheme: const AppBarTheme(
+      color: Colors.black,
+      iconTheme: IconThemeData(
+        color: Colors.white,
+      ),
+    ),
+    colorScheme: const ColorScheme.light(
+      primary: Colors.black,
+      onPrimary: Colors.black,
+      primaryVariant: Colors.black,
+      secondary: Colors.red,
+    ),
+    cardTheme: const CardTheme(
+      color: Colors.black,
+    ),
+    iconTheme: const IconThemeData(
+      color: Colors.white54,
+    ),
+    textTheme: const TextTheme(
+      headline6: TextStyle(
+        color: Colors.white,
+        fontSize: 20.0,
+      ),
+      subtitle2: TextStyle(
+        color: Colors.white70,
+        fontSize: 18.0,
+      ),
+    ),
+  );
+}

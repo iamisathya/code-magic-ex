@@ -1,7 +1,8 @@
 import 'package:code_magic_ex/bloc/login_bloc.dart';
+import 'package:flutter/material.dart';
+
 import 'package:code_magic_ex/models/user_token.dart';
 import 'package:code_magic_ex/ui/global/widgets/activity_indicators.dart';
-import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/loginHomePage';

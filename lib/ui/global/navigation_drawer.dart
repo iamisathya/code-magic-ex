@@ -27,13 +27,13 @@ class NavigationDrawer extends StatelessWidget {
             onTap: () =>
                 Navigator.pushReplacementNamed(context, PageRoutes.enroll),
           ),
-          const Divider(),
           _createDrawerBodyItem(
             icon: Icons.shopping_cart_outlined,
             text: 'Order Entry',
             onTap: () =>
                 Navigator.pushReplacementNamed(context, PageRoutes.orderEntry),
           ),
+          const Divider(thickness: 1),
           _createDrawerBodyItem(
             icon: Icons.inventory_2,
             text: 'Inventory',
@@ -74,7 +74,6 @@ class NavigationDrawer extends StatelessWidget {
   }
 }
 
-
 Widget _createDrawerHeader() {
   return DrawerHeader(
       margin: EdgeInsets.zero,
@@ -83,12 +82,12 @@ Widget _createDrawerHeader() {
           image: DecorationImage(
               fit: BoxFit.fill, image: AssetImage('images/bg_header.jpeg'))),
       child: Stack(children: <Widget>[
-        Positioned(
+        const Positioned(
             bottom: 12.0,
             left: 16.0,
-            child: Text("Welcome to Flutter",
-                style: const TextStyle(
-                    color: Colors.white,
+            child: Text("Welcome to user",
+                style: TextStyle(
+                    color: Colors.black,
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500))),
       ]));
