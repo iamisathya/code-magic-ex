@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
+import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
@@ -11,21 +12,9 @@ class MainHomeScreen extends StatefulWidget {
 }
 
 class _MainHomeScreenState extends State<MainHomeScreen> {
-  bool isDarkMode = true;
-
   @override
   void initState() {
     super.initState();
-  }
-
-  Future<void> toggleTheme() async {
-    print("hi");
-    final ThemeTypes type = !isDarkMode ? ThemeTypes.light : ThemeTypes.dark;
-    // await UserSessionManager.shared.setCurrentTheme(type);
-    themeBloc.setappThemeStream(type);
-    setState(() {
-      isDarkMode = !isDarkMode;
-    });
   }
 
   @override
@@ -39,7 +28,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 Icons.mode_night_outlined,
               ),
               tooltip: 'Theme selector',
-              onPressed: toggleTheme,
+              onPressed: () => themeBloc.toggleThemeMode,
             ),
           ],
         ),

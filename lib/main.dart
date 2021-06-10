@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
       builder: (context, snapshot) {
         return MaterialApp(
           title: 'Flutter Demo',
-           theme:  AppTheme.lightTheme,
+          theme:  AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: themeBloc.getThemeMode,
           // home: const MyHomePage(title: 'Flutter Demo Home Page'),
