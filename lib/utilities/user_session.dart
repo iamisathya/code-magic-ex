@@ -51,6 +51,19 @@ class UserSessionManager {
     return false;
   }
 
+  Future<bool> setTranslation(ThemeTypes theme) async {
+    try {
+      await KeyValueStorageManager.setString(KeyValueStorageKeys.translation, theme.toString());
+
+      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.currentTheme)}");
+      currentTheme = ThemeTypes.light;
+      return true;
+    } catch (error) {
+      debugPrint('Session - Set User Info into DB - Error : ${error.toString()}');
+    }
+    return false;
+  }
+
   void setUserInfoFromDB() {
     try {
       final data = KeyValueStorageManager.getString(KeyValueStorageKeys.userAccountData);

@@ -1,7 +1,6 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:popover/popover.dart';
 
 class MainHomeScreen extends StatefulWidget {
   static const String routeName = '/mainHomePage';
@@ -16,29 +15,33 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     super.initState();
   }
 
+  void _changeLanguage(String lang) {
+  
+  }
+
   Future<void> _showPopupMenu(BuildContext context) async {
     await showMenu(
       context: context,
       position: const RelativeRect.fromLTRB(100, 100, 0, 100),
       items: [
-        const PopupMenuItem<Widget>(
+        PopupMenuItem<Widget>(
           child: ListTile(
-            leading: IconButton(
+            leading: const IconButton(
               onPressed: null,
               icon: Icon(Icons.language_outlined),
             ),
-            title: Text("English"),
-            // onTap: showPopup,
+            title: const Text("English"),
+            onTap: () => _changeLanguage("EN"),
           ),
         ),
-        const PopupMenuItem<Widget>(
+        PopupMenuItem<Widget>(
           child: ListTile(
-            leading: IconButton(
+            leading: const IconButton(
               onPressed: null,
               icon: Icon(Icons.language_outlined),
             ),
-            title: Text("Thai"),
-            // onTap: showPopup,
+            title: const Text("Thai"),
+            onTap: () => _changeLanguage("TH"),
           ),
         )
       ],
@@ -48,16 +51,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final tile = new ListTile(
-      title: new Text('Doge or lion?'),
-      trailing: GestureDetector(
-        onTapDown: (TapDownDetails details) {
-          _showPopupMenu(context);
-        },
-        child: Container(child: Text("Press Me")),
-      ),
-    );
-
     return Scaffold(
         appBar: AppBar(
           title: const Text("Home"),
