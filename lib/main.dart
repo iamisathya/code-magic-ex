@@ -1,3 +1,5 @@
+import 'package:code_magic_ex/bloc/main_bloc.dart';
+import 'package:code_magic_ex/translations/bloc.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
@@ -20,7 +22,7 @@ void main() async {
   /// Local Key Value DB
   // await KeyValueStorageManager.setStorage();
   // fetchAPI();
-  getTranslations();
+  // getTranslations();
 
   runApp(MyApp());
 }
@@ -61,12 +63,31 @@ Future fetchAPI() async {
   }
 }
 
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<ThemeTypes>(
+//         stream: themeBloc.appThemeStream,
+//         builder: (context, snapshot) {
+//           return MaterialApp(
+//             title: 'Flutter Demo',
+//             theme: AppTheme.lightTheme,
+//             darkTheme: AppTheme.darkTheme,
+//             themeMode: themeBloc.getThemeMode,
+//             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+//             home: const LoginScreen(key: Key("login")),
+//           );
+//         });
+//   }
+// }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<ThemeTypes>(
-        stream: themeBloc.appThemeStream,
-        builder: (context, snapshot) {
+    return  MainStreamBuilder(
+        themeBloc: themeBloc.appThemeStream,
+        translationBloc: translationBloc.appLanguageStream,
+        builder: (context) {
           return MaterialApp(
             title: 'Flutter Demo',
             theme: AppTheme.lightTheme,
