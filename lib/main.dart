@@ -64,24 +64,6 @@ Future fetchAPI() async {
   }
 }
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return StreamBuilder<ThemeTypes>(
-//         stream: themeBloc.appThemeStream,
-//         builder: (context, snapshot) {
-//           return MaterialApp(
-//             title: 'Flutter Demo',
-//             theme: AppTheme.lightTheme,
-//             darkTheme: AppTheme.darkTheme,
-//             themeMode: themeBloc.getThemeMode,
-//             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-//             home: const LoginScreen(key: Key("login")),
-//           );
-//         });
-//   }
-// }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
