@@ -38,6 +38,7 @@ dependencies:
   json_annotation: ^4.0.1
   lint: ^1.5.3
   logger: ^1.0.0
+  popover: ^0.2.6+1
   pretty_dio_logger: ^1.1.1
   retrofit: ^2.0.0
   retrofit_generator: ^2.0.0

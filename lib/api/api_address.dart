@@ -10,4 +10,6 @@ class Address {
   static const String orderTerms =  "/orderTerms";
   static const String orders =  "/warehouses/{id}/orders";
   static const String customersPath =  "customers";
+  static const String memberCallsBase = "https://member-calls2.unicity.com/";
+  static const String dictionary = "dictionary/publish";
 }

@@ -198,3 +198,41 @@ class _ApiService implements ApiService {
     return requestOptions;
   }
 }
+
+class _MemberService implements MemberService {
+  _MemberService(this._dio, {this.baseUrl}) {
+    baseUrl ??= 'https://member-calls2.unicity.com/';
+  }
+
+  final Dio _dio;
+
+  String? baseUrl;
+
+  @override
+  Future<CustomerToken> getTranslations(lang) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'lang': lang};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CustomerToken>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'dictionary/publish',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CustomerToken.fromJson(_result.data!);
+    return value;
+  }
+
+  RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
+    if (T != dynamic &&
+        !(requestOptions.responseType == ResponseType.bytes ||
+            requestOptions.responseType == ResponseType.stream)) {
+      if (T == String) {
+        requestOptions.responseType = ResponseType.plain;
+      } else {
+        requestOptions.responseType = ResponseType.json;
+      }
+    }
+    return requestOptions;
+  }
+}
