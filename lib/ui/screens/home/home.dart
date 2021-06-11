@@ -1,7 +1,5 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
-import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 
 class MainHomeScreen extends StatefulWidget {

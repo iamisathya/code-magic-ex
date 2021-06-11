@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:code_magic_ex/resources/font_weights.dart';
 import 'package:flutter/material.dart';
 
 class RectangleButtonWidget extends StatelessWidget {
@@ -29,7 +30,9 @@ class RectangleButtonWidget extends StatelessWidget {
     this.boxConstraints = const BoxConstraints(),
     this.materialTapTargetSize = MaterialTapTargetSize.shrinkWrap,
     this.leadingIcon = const CircularProgressIndicator(),
-    this.trailingIcon = null,
+    this.trailingIcon = const Icon(
+      Icons.mode_night_outlined,
+    ),
     this.disableRipple = false,
   });
 
@@ -65,7 +68,7 @@ class RectangleButtonWidget extends StatelessWidget {
                         title,
                         textAlign: TextAlign.center,
                         style: textStyle ??
-                            TextStyle(
+                            const TextStyle(
                                 color: Colors.white,
                                 fontSize: 17,
                                 fontWeight: AppFontWeight.semiBold),

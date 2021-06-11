@@ -20,7 +20,7 @@ abstract class RestApiNepBaseService {
     );
 
     dio = Dio(options);
-    dio.interceptors.add(PrettyDioLogger(requestBody: true, request: true));
+    dio.interceptors.add(PrettyDioLogger(requestBody: true));
   }
 
   /// Helper Method - [setToken]

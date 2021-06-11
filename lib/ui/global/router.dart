@@ -1,4 +1,3 @@
-import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/ui/screens/barcode/barcode.dart';
 import 'package:code_magic_ex/ui/screens/easy_ship_reports/easy_ship_reports.dart';
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';

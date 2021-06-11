@@ -30,7 +30,7 @@ class ConnectivityManager {
     try {
       result = await _connectivity.checkConnectivity();
     } on PlatformException catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
       return;
     }
     return _setConnectivityStatus(result);

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:code_magic_ex/models/user_token.dart';
-import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:code_magic_ex/models/user_info.dart';
