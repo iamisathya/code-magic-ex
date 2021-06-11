@@ -1,8 +1,12 @@
+import 'package:code_magic_ex/utilities/user_session.dart';
+import 'package:flutter/material.dart';
+
 import 'package:code_magic_ex/resources/colors.dart';
 import 'package:code_magic_ex/translations/bloc.dart';
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
-import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainHomeScreen extends StatefulWidget {
   static const String routeName = '/mainHomePage';
@@ -17,10 +21,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     super.initState();
   }
 
-  void _changeLanguage(String lang) {
+  Future<void> _changeLanguage(String lang) async{
     translationBloc.setappLanguageStream(lang);
-    print(translationBloc.getLanguageMode);
     Navigator.pop(context, lang);
+    await UserSessionManager.shared.setCurrentLanguage(lang);
   }
 
   Future<void> _showPopupMenu(BuildContext context) async {
@@ -33,13 +37,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           value: "EN",
           child: ListTile(
             selectedTileColor: AppColor.COLOR_399000,
-            selected: translationBloc.getLanguageMode == "EN",
+            selected: translationBloc.getCurrentLanguage == "en",
             leading: const IconButton(
               onPressed: null,
               icon: Icon(Icons.language_outlined),
             ),
             title: const Text("English"),
-            onTap: () => _changeLanguage("EN"),
+            onTap: () => _changeLanguage("en"),
           ),
         ),
         PopupMenuItem<String>(
@@ -47,13 +51,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           value: "TH",
           child: ListTile(
             selectedTileColor: AppColor.COLOR_399000,
-            selected: translationBloc.getLanguageMode == "TH",
+            selected: translationBloc.getCurrentLanguage == "th",
             leading: const IconButton(
               onPressed: null,
               icon: Icon(Icons.language_outlined),
             ),
             title: const Text("Thai"),
-            onTap: () => _changeLanguage("TH"),
+            onTap: () => _changeLanguage("th"),
           ),
         )
       ],
@@ -65,7 +69,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Home"),
+          title: Text(AppLocalizations.of(context)!.comment),
           actions: <Widget>[
             IconButton(
               icon: const Icon(
@@ -84,7 +88,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           ],
         ),
         drawer: NavigationDrawer(),
-        body: Center());
+        body: Center(child: Text(AppLocalizations.of(context)!.zip),));
   }
 }
 

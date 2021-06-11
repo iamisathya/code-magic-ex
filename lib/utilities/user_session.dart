@@ -19,6 +19,7 @@ class UserSessionManager {
   static CustomerToken _emptyCustomerTokenData() => CustomerToken.fromJson({});
   static ThemeTypes resetThemeData() => ThemeTypes.light;
   ThemeTypes currentTheme = resetThemeData();
+  String currentLanguage = 'en';
 
   int? selectedId;
   CustomerToken customerToken = _emptyCustomerTokenData();
@@ -51,12 +52,10 @@ class UserSessionManager {
     return false;
   }
 
-  Future<bool> setTranslation(ThemeTypes theme) async {
+  Future<bool> setCurrentLanguage(String language) async {
     try {
-      await KeyValueStorageManager.setString(KeyValueStorageKeys.translation, theme.toString());
-
-      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.currentTheme)}");
-      currentTheme = ThemeTypes.light;
+      await KeyValueStorageManager.setString(KeyValueStorageKeys.currentLanguage, language);
+      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.currentLanguage)}");      
       return true;
     } catch (error) {
       debugPrint('Session - Set User Info into DB - Error : ${error.toString()}');

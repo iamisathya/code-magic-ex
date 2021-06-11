@@ -87,5 +87,5 @@ class KeyValueStorageKeys {
   static const String userAccountData = "user_account_data";
   static const String rememberMeThings = "user_remember_me_things";
   static const String currentTheme = "light";
-  static const String translation = "translation";
+  static const String currentLanguage = "en";
 }

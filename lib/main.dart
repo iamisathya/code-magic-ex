@@ -1,8 +1,6 @@
 import 'package:code_magic_ex/bloc/main_bloc.dart';
 import 'package:code_magic_ex/translations/bloc.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
@@ -10,6 +8,9 @@ import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/request/request_customer_token.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: avoid_void_async
 void main() async {
@@ -84,7 +85,7 @@ Future fetchAPI() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  MainStreamBuilder(
+    return MainStreamBuilder(
         themeBloc: themeBloc.appThemeStream,
         translationBloc: translationBloc.appLanguageStream,
         builder: (context) {
@@ -93,6 +94,9 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: themeBloc.getThemeMode,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: Locale(translationBloc.getCurrentLanguage,''),
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
             home: const LoginScreen(key: Key("login")),
           );

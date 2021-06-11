@@ -9,6 +9,6 @@ class TranslationBloc {
 
   Function(String) get setappLanguageStream => _appLanguageStreamController.sink.add;
 
-  String get getLanguageMode => _appLanguageStreamController.value;
+  String get getCurrentLanguage => _appLanguageStreamController.value;
 }
 final translationBloc = TranslationBloc();
