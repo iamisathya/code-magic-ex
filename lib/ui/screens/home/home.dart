@@ -29,6 +29,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       position: const RelativeRect.fromLTRB(100, 100, 0, 100),
       items: [
         PopupMenuItem<String>(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "EN",
           child: ListTile(
             selectedTileColor: AppColor.COLOR_399000,
@@ -42,6 +43,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           ),
         ),
         PopupMenuItem<String>(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "TH",
           child: ListTile(
             selectedTileColor: AppColor.COLOR_399000,
@@ -84,4 +86,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         drawer: NavigationDrawer(),
         body: Center());
   }
+}
+
+extension PopupMenuItemExtension on PopupMenuItem {
+  
 }
