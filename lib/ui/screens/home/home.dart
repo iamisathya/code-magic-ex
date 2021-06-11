@@ -1,3 +1,5 @@
+import 'package:code_magic_ex/resources/colors.dart';
+import 'package:code_magic_ex/translations/bloc.dart';
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,9 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   }
 
   void _changeLanguage(String lang) {
-  
+    translationBloc.setappLanguageStream(lang);
+    print(translationBloc.getLanguageMode);
+    Navigator.pop(context, lang);
   }
 
   Future<void> _showPopupMenu(BuildContext context) async {
@@ -24,8 +28,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       context: context,
       position: const RelativeRect.fromLTRB(100, 100, 0, 100),
       items: [
-        PopupMenuItem<Widget>(
+        PopupMenuItem<String>(
+          value: "EN",
           child: ListTile(
+            selectedTileColor: AppColor.COLOR_399000,
+            selected: translationBloc.getLanguageMode == "EN",
             leading: const IconButton(
               onPressed: null,
               icon: Icon(Icons.language_outlined),
@@ -34,8 +41,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             onTap: () => _changeLanguage("EN"),
           ),
         ),
-        PopupMenuItem<Widget>(
+        PopupMenuItem<String>(
+          value: "TH",
           child: ListTile(
+            selectedTileColor: AppColor.COLOR_399000,
+            selected: translationBloc.getLanguageMode == "TH",
             leading: const IconButton(
               onPressed: null,
               icon: Icon(Icons.language_outlined),
