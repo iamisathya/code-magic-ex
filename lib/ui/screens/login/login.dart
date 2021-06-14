@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/bloc/login_bloc.dart';
+import 'package:code_magic_ex/ui/screens/login/login_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/models/user_token.dart';
