@@ -13,6 +13,8 @@ class InventoryBLoc {
   Stream<bool> get activityIndicatorStream =>
       _activityIndicatorStreamController.stream;
 
+  bool get isLoading => _activityIndicatorStreamController.value;
+
   Function(bool) get _setActivityIndicatorStream =>
       _activityIndicatorStreamController.sink.add;
 

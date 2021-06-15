@@ -1,12 +1,7 @@
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/ui/global/widgets/activity_indicators.dart';
-import 'package:code_magic_ex/ui/global/widgets/empty_result_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/search_error_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/search_intro_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/search_loading_widget.dart';
+import 'package:code_magic_ex/ui/screens/github/search_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/inventory/bloc.dart';
-import 'package:code_magic_ex/ui/screens/inventory/search_bloc.dart';
-import 'package:code_magic_ex/ui/screens/inventory/search_state.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +16,12 @@ class Example extends StatefulWidget {
 }
 
 class _ExampleState extends State<Example> {
+  @override
+  void initState() {
+    super.initState();
+    inventoryBLoc.getInventoryRecords(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,37 +44,27 @@ class MyStatelessWidget extends StatefulWidget {
 
 class _MyStatelessWidgetState extends State<MyStatelessWidget> {
   bool sort = false;
-  late SearchBloc bloc;
-
-  @override
-  void initState() {
-    super.initState();
-    bloc = SearchBloc();
-    bloc.onViewLaunch.add(true);
-    // inventoryBLoc.getInventoryRecords(context);
-  }
-
-  @override
-  void dispose() {
-    bloc.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<SearchState>(
-        stream: bloc.state,
-        initialData: SearchNoTerm(),
-        builder: (BuildContext context, AsyncSnapshot<SearchState> snapshot) {
-          final state = snapshot.data;
-          return SingleChildScrollView(
-            child: _buildChild(state!),
-          );
+    return StreamBuilder<InventoryRecords>(
+        stream: inventoryBLoc.appInventoryStream,
+        builder: (context, snapshot) {
+          if (inventoryBLoc.isLoading) {
+            return ActivityIndicator(
+                loadingStream: inventoryBLoc.activityIndicatorStream);
+          } else if (snapshot.hasData) {
+            return _renderInventoryTable(snapshot, context);
+          } else {
+            return const SearchErrorWidget();
+          }
         });
   }
 
-  SingleChildScrollView _renderInventoryTable(InventoryRecords snapshot,
-      BuildContext context, String totalPrice, String totalPv) {
+  SingleChildScrollView _renderInventoryTable(
+      AsyncSnapshot<InventoryRecords> snapshot, BuildContext context) {
+    final String totalPrice = _calculateTotalPrice(snapshot.data!, 'price');
+    final String totalPv = _calculateTotalPrice(snapshot.data!, 'pv');
     return SingleChildScrollView(
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -96,7 +87,7 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
                 "Total Accumulated Price $totalPrice", snapshot, context),
             _renderDataColomn("Total PV $totalPv", snapshot, context),
           ],
-          rows: snapshot
+          rows: snapshot.data!
               .items // Loops through dataColumnText, each iteration assigning the value to element
               .map(
                 (element) => DataRow(
@@ -124,35 +115,15 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
     );
   }
 
-  Widget _buildChild(SearchState state) {
-    if (state is SearchNoTerm) {
-      return const SearchIntro();
-    } else if (state is SearchEmpty) {
-      return const EmptyWidget();
-    } else if (state is SearchLoading) {
-      return const LoadingWidget();
-    } else if (state is SearchError) {
-      return const SearchErrorWidget();
-    } else if (state is SearchPopulated) {
-      final String totalPrice =
-          _calculateTotalPrice(state.inventoryRecords, 'price');
-      final String totalPv = _calculateTotalPrice(state.inventoryRecords, 'pv');
-      return _renderInventoryTable(
-          state.inventoryRecords, context, totalPrice, totalPv);
-    }
-
-    throw Exception('${state.runtimeType} is not supported');
-  }
-
-  DataColumn _renderDataColomn(
-      String title, InventoryRecords snapshot, BuildContext context) {
+  DataColumn _renderDataColomn(String title,
+      AsyncSnapshot<InventoryRecords> snapshot, BuildContext context) {
     return DataColumn(
       numeric: title != "Item Code" && title != "Item Name",
       onSort: (columnIndex, ascending) {
         setState(() {
           sort = !sort;
         });
-        _onSortColum(snapshot.items, columnIndex, !sort);
+        _onSortColum(snapshot.data!.items, columnIndex, !sort);
       },
       label: Center(
         child: Text(
