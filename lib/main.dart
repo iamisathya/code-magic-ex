@@ -1,6 +1,7 @@
 import 'package:code_magic_ex/bloc/main_bloc.dart';
 import 'package:code_magic_ex/translations/bloc.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
+import 'package:code_magic_ex/ui/screens/inventory/example.dart';
 import 'package:code_magic_ex/ui/screens/inventory/inventory.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/sales_reports.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(translationBloc.getCurrentLanguage,''),
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-            home: InventoryHomeScreen(),
+            home: Example(),
           );
         });
   }
