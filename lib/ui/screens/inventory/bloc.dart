@@ -10,6 +10,24 @@ class InventoryBLoc {
 
   final _activityIndicatorStreamController = BehaviorSubject<bool>.seeded(true);
 
+  final _searchStreamController = BehaviorSubject<String>.seeded("");
+
+  final _inventoryStreamController =
+      BehaviorSubject<InventoryRecords>.seeded(InventoryRecords(items: []));
+
+  Stream<String> get getSearchTextStream => _searchStreamController.stream;
+
+  void onTextSearchChange(String searchText) {
+    final InventoryRecords filteredRecords = _inventoryStreamController.value;
+    filteredRecords.items.where((item) => item.catalogSlideContent.content.description.toLowerCase().contains(searchText.toLowerCase()));
+    print(filteredRecords.items.length);
+    _inventoryStreamController.sink.add(filteredRecords);
+    setInventoryStream(filteredRecords);
+    setSearchTextStream(searchText);
+  }
+
+  Function(String) get setSearchTextStream => _searchStreamController.sink.add;
+
   Stream<bool> get activityIndicatorStream =>
       _activityIndicatorStreamController.stream;
 
@@ -17,9 +35,6 @@ class InventoryBLoc {
 
   Function(bool) get _setActivityIndicatorStream =>
       _activityIndicatorStreamController.sink.add;
-
-  final _inventoryStreamController =
-      BehaviorSubject<InventoryRecords>.seeded(InventoryRecords(items: []));
 
   Stream<InventoryRecords> get appInventoryStream =>
       _inventoryStreamController.stream;
@@ -40,6 +55,7 @@ class InventoryBLoc {
 
   void dispose() {
     _subject.close();
+    _searchStreamController.close();
   }
 
   BehaviorSubject<InventoryRecords> get subject => _subject;
