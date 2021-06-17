@@ -1,23 +1,23 @@
 
-import 'package:code_magic_ex/ui/screens/demo/model.dart';
+import 'package:code_magic_ex/models/order_lines.dart';
 
-class SalesReportPageState {
-  List<Contacts> contacts;
+class EasyShipState {
+  OrderLines orderLines;
   final bool hasError;
   final bool isLoading;
 
-  SalesReportPageState({
-    required this.contacts,
+  EasyShipState({
+    required this.orderLines,
     this.hasError = false,
     this.isLoading = false,
   });
 
-  factory SalesReportPageState.initial() => SalesReportPageState(
-      contacts: <Contacts>[]);
-  factory SalesReportPageState.loading() => SalesReportPageState(
-      contacts: [],
+  factory EasyShipState.initial() => EasyShipState(
+      orderLines: OrderLines(items: []));
+  factory EasyShipState.loading() => EasyShipState(
+      orderLines: OrderLines(items: []),
       isLoading: true);
-  factory SalesReportPageState.error() => SalesReportPageState(
-      contacts: [],
+  factory EasyShipState.error() => EasyShipState(
+      orderLines: OrderLines(items: []),
       hasError: true,);
 }

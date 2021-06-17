@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/ui/screens/demo/screen.dart';
+import 'package:code_magic_ex/ui/screens/easy_ship_reports/easy_ship_reports.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/bloc/main_bloc.dart';
@@ -80,7 +81,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(translationBloc.getCurrentLanguage,''),
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-            home: DemoPage(),
+            home: EasyShipHomeScreen(),
           );
         });
   }

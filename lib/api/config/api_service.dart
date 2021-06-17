@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -82,7 +83,7 @@ abstract class ApiService {
 
   //? Example: https://hydra.unicity.net/v5a/orderlines?order.customer.id.unicity=3011266&order.dateCreated=[2020-11;2021-06]&criteria=easyship&expand=catalogSlide,order,order.customer&order.market=TH
   @GET(Address.orderLines)
-  Future<CustomerToken> getOrderLines(@Query('order.customer.id.unicity') String userId, @Query('order.dateCreated') String dateCreated, @Query('criteria') String criteria, @Query('expand') String expand, @Query('order.market') String market);
+  Future<OrderLines> getOrderLines(@Query('order.customer.id.unicity') String userId, @Query('order.dateCreated') String dateCreated, @Query('criteria') String criteria, @Query('expand') String expand, @Query('order.market') String market);
 
   //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/orders
   //? Body

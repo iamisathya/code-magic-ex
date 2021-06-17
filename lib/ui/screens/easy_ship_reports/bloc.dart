@@ -1,34 +1,40 @@
-
-import 'package:code_magic_ex/ui/screens/demo/model.dart';
-import 'package:code_magic_ex/ui/screens/demo/state.dart';
-import 'package:code_magic_ex/ui/screens/demo/service.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ContactBloc {
-  final Stream<ContactsPageState> state;
-  final ContactService repository;
-  final Subject<ContactsPageState> _stateSubject;
+import 'package:code_magic_ex/api/config/api_service.dart';
+import 'package:code_magic_ex/models/order_lines.dart';
+import 'package:code_magic_ex/ui/screens/easy_ship_reports/state.dart';
 
-  factory ContactBloc(ContactService respository) {
-    final subject = BehaviorSubject<ContactsPageState>();
+class ContactBloc {
+  final Stream<EasyShipState> state;
+
+  final Subject<EasyShipState> _stateSubject;
+
+  factory ContactBloc() {
+    final subject = BehaviorSubject<EasyShipState>();
     return ContactBloc._(
-        repository: respository,
         stateSubject: subject,
         state: subject.asBroadcastStream());
   }
 
-  ContactBloc._({required this.state, required Subject<ContactsPageState> stateSubject, required this.repository})
+  ContactBloc._({required this.state, required Subject<EasyShipState> stateSubject})
       : _stateSubject = stateSubject;
 
-  Future<void> loadEvents() async {
-    _stateSubject.add(ContactsPageState.loading());
+  Future<void> loadOrderlines({String userId = "108357166"}) async {
+    _stateSubject.add(EasyShipState.loading());
+    final String localUserId = userId;
+    const String dateCreated = "[2020-11;2021-06]";
+    const String criteria = "easyship";
+    const String expand = "catalogSlide,order,order.customer";
+    const String market = "TH";
 
     try {
-      final List<Contacts> contacts = await ContactService.browse();
-      _stateSubject.add(ContactsPageState(contacts: contacts));
+      final OrderLines orderLines = await ApiService.shared().getOrderLines(localUserId, dateCreated, criteria, expand, market);
+      _stateSubject.add(EasyShipState(orderLines: orderLines));
     } catch (err) {
-      _stateSubject.add(ContactsPageState.error());
+      _stateSubject.add(EasyShipState.error());
       _stateSubject.addError(err);
     }
   }
 }
+
+final inventoryBLoc = ContactBloc();

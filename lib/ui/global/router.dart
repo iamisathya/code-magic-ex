@@ -14,6 +14,6 @@ class PageRoutes {
  static const String orderEntry = OrderEntryHomeScreen.routeName;
  static const String inventory = InventoryHomeScreen.routeName;
  static const String salesReport = SalesReportsHomeScreen.routeName;
- static const String easyShipReport = EasyShipReportsHomeScreen.routeName;
+ static const String easyShipReport = EasyShipHomeScreen.routeName;
  static const String barcode = BarcodeHomeScreen.routeName;
 }

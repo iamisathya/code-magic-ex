@@ -170,7 +170,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<CustomerToken> getOrderLines(
+  Future<OrderLines> getOrderLines(
       userId, dateCreated, criteria, expand, market) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -182,12 +182,12 @@ class _ApiService implements ApiService {
     };
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<CustomerToken>(
+        _setStreamType<OrderLines>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/orderlines',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = CustomerToken.fromJson(_result.data!);
+    final value = OrderLines.fromJson(_result.data!);
     return value;
   }
 
