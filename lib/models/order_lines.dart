@@ -50,7 +50,7 @@ class OrderLineItem {
 @JsonSerializable()
 class Orderitem {
   @JsonKey(name: "id")
-  CommonUserIdCountry index;
+  CommonIdWithCountryCode id;
   @JsonKey(name: "terms")
   TermsPeriod terms;
   @JsonKey(name: "customer")
@@ -59,7 +59,7 @@ class Orderitem {
   String href;
 
   Orderitem({
-    required this.index,
+    required this.id,
     required this.terms,
     required this.customer,
     required this.href,

@@ -41,7 +41,7 @@ Map<String, dynamic> _$OrderLineItemToJson(OrderLineItem instance) =>
 
 Orderitem _$OrderitemFromJson(Map<String, dynamic> json) {
   return Orderitem(
-    index: CommonUserIdCountry.fromJson(json['id'] as Map<String, dynamic>),
+    id: CommonIdWithCountryCode.fromJson(json['id'] as Map<String, dynamic>),
     terms: TermsPeriod.fromJson(json['terms'] as Map<String, dynamic>),
     customer: CommonUserIdIntObject.fromJson(
         json['customer'] as Map<String, dynamic>),
@@ -50,7 +50,7 @@ Orderitem _$OrderitemFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$OrderitemToJson(Orderitem instance) => <String, dynamic>{
-      'id': instance.index,
+      'id': instance.id,
       'terms': instance.terms,
       'customer': instance.customer,
       'href': instance.href,

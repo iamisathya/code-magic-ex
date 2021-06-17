@@ -72,7 +72,7 @@ class CommonUserIdCountry {
 @JsonSerializable()
 class CommonIdWithCountryCode {
   @JsonKey(name: "unicity")
-  CommonIdTypeString unicity;
+  String unicity;
 
   CommonIdWithCountryCode({
     required this.unicity,

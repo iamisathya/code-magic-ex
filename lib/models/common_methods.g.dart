@@ -50,8 +50,7 @@ Map<String, dynamic> _$CommonUserIdCountryToJson(
 CommonIdWithCountryCode _$CommonIdWithCountryCodeFromJson(
     Map<String, dynamic> json) {
   return CommonIdWithCountryCode(
-    unicity:
-        CommonIdTypeString.fromJson(json['unicity'] as Map<String, dynamic>),
+    unicity: json['unicity'] as String,
   );
 }
 

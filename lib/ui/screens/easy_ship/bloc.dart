@@ -4,19 +4,19 @@ import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:code_magic_ex/ui/screens/easy_ship/state.dart';
 
-class ContactBloc {
+class EasyShipBloc {
   final Stream<EasyShipState> state;
 
   final Subject<EasyShipState> _stateSubject;
 
-  factory ContactBloc() {
+  factory EasyShipBloc() {
     final subject = BehaviorSubject<EasyShipState>();
-    return ContactBloc._(
+    return EasyShipBloc._(
         stateSubject: subject,
         state: subject.asBroadcastStream());
   }
 
-  ContactBloc._({required this.state, required Subject<EasyShipState> stateSubject})
+  EasyShipBloc._({required this.state, required Subject<EasyShipState> stateSubject})
       : _stateSubject = stateSubject;
 
   Future<void> loadOrderlines({String userId = "108357166"}) async {
@@ -37,4 +37,4 @@ class ContactBloc {
   }
 }
 
-final inventoryBLoc = ContactBloc();
+final easyShipBloc = EasyShipBloc();
