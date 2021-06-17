@@ -14,7 +14,7 @@ class SearchViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color color = controller.text.isNotEmpty ? Colors.blue : Colors.grey;
     return Container(
-        margin: const EdgeInsets.all(8),
+        margin: const EdgeInsets.only(right: 16),
         decoration: BoxDecoration(
             border: Border.all(),
             borderRadius: const BorderRadius.all(Radius.circular(8.0))),

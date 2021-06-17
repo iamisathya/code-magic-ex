@@ -19,7 +19,7 @@ class EasyShipHomeScreen extends StatefulWidget {
 }
 
 class _EasyShipHomeScreenState extends State<EasyShipHomeScreen> {
-  var searchConntroller = TextEditingController();
+  TextEditingController searchConntroller = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -42,10 +42,10 @@ class _EasyShipHomeScreenState extends State<EasyShipHomeScreen> {
           ],
         ),
         drawer: NavigationDrawer(),
-        body: Center(
-          child: SingleChildScrollView(
-              child: Column(children: [
-            _buildSeachConntainer(),
+        body: SingleChildScrollView(
+            child: Column(
+          children: [
+            _buildSearchContainer(),
             SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: StreamBuilder<Object>(
@@ -57,9 +57,9 @@ class _EasyShipHomeScreenState extends State<EasyShipHomeScreen> {
                         return _buildChild(state);
                       }
                       return const Text("No data yet");
-                    }))
-          ])),
-        ));
+                    })),
+          ],
+        )));
   }
 
   Widget _buildChild(EasyShipState state) {
@@ -75,17 +75,28 @@ class _EasyShipHomeScreenState extends State<EasyShipHomeScreen> {
     // throw Exception('${state.runtimeType} is not supported');
   }
 
-  Widget _buildSeachConntainer() {
-    return Row(
-      children: [
-        Flexible(child: SearchViewWidget(controller: searchConntroller)),
-        MaterialButton(
-          padding: const EdgeInsets.all(8),
-          color: Colors.yellow,
-            onPressed: () {},
+  Widget _buildSearchContainer() {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      child: Row(
+        children: [
+          Flexible(child: SearchViewWidget(controller: searchConntroller)),
+          MaterialButton(
+            shape: RoundedRectangleBorder(
+                side: const BorderSide(),
+                borderRadius: BorderRadius.circular(8)),
+            disabledColor: Colors.grey,
+            color: Colors.yellow,
+            onPressed: () {
+              if (searchConntroller.text.isNotEmpty) {
+                easyShipBloc.loadOrderlines(userId: searchConntroller.text);
+              }
+            },
+            height: 55,
             child: const Text('Search'),
           ),
-      ],
+        ],
+      ),
     );
   }
 
