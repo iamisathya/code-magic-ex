@@ -1,5 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/request/request_calculate_order.dart';
 import 'package:code_magic_ex/api/request/request_place_order.dart';
@@ -9,9 +12,6 @@ import 'package:code_magic_ex/models/inventory_movement_records.dart';
 import 'package:code_magic_ex/models/managed_warehouse.dart';
 import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:code_magic_ex/models/search_customer.dart';
-import 'package:dio/dio.dart';
-import 'package:retrofit/retrofit.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'package:code_magic_ex/api/request/request_customer_token.dart';
 import 'package:code_magic_ex/models/user_info.dart';
@@ -26,22 +26,6 @@ abstract class ApiService {
 
   static ApiService init() {
     final Dio dio = Dio();
-    // Tap into the onHttpClientCreate callback
-    // to configure the proxy just as we did earlier.
-    // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) { 
-    //   // Hook into the findProxy callback to set the client's proxy.
-    //   client.findProxy = (url) {
-    //     return 'PROXY $proxy';
-    //   };
-    //   // This is a workaround to allow Charles to receive
-    //   // SSL payloads when your app is running on Android.
-    //   client.badCertificateCallback = (X509Certificate cert, String host, int port) => Platform.isAndroid;
-    // };
-    // dio.interceptors.add(
-    //     InterceptorsWrapper(onRequest: (request, requestInterceptorHandler) {
-    //   debugPrint("${request.method} | ${request.path}");
-    //   return;
-    // }));
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
     _instance = ApiService(dio);
 
@@ -58,37 +42,55 @@ abstract class ApiService {
     return _instance;
   }
 
-
-  //Common apis
+  //? Example: https://hydra.unicity.net/v5a/loginTokens
+  //? body
+  //? {"type": "base64", "value": "Mjk3MDQ2NjoxMjM0", "namespace": "https://hydra.unicity.net/v5a/customers"}
   @POST(Address.loginTokens)
   Future<CustomerToken> getLoginTokens(
       @Body() RequestPostCustomerToken request);
 
+  //? Example: https://hydra.unicity.net/v5a/customers/3d9104cc2fa45dbd0bdd1a4261f6969e
   @GET(Address.customerData)
   Future<UserInfo> getCustomerData(@Path('id') String id);
   
+  //? Example: https://hydra.unicity.net/v5a/customers/me/managedwarehouses
   @GET(Address.managedWarehouse)
   Future<ManagedWarehouses> getManagedWarehouses();
   
+  //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/inventoryRecords?expand=item
   @GET(Address.inventoryRecords)
   Future<InventoryRecords> getInventoryRecords(@Path('id') String id, @Query("expand") String expand);
   
+  //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/inventoryMovementRecords?dateMoved=[2019-01-01;2021-06-01]&expand=catalogSlide,terms
   @GET(Address.inventoryMovementRecords)
   Future<List<InventoryMovementRecords>> getInventoryMovementRecords(@Path('id') String id, @Query("dateMoved") String dateMoved, @Query("expand") String expand);
   
+  //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/ordersAndRmas?dateCreated=[2019-01-01;2019-06-01]&expand=order,rma 
   @GET(Address.ordersAndRmas)
   Future<OrdersAndRmas> getOrdersAndRmas(@Path('id') String id, @Query("dateCreated") String dateCreated, @Query("expand") String expand);
   
+  //? Example: https://hydra.unicity.net/v5a/customers?unicity=108357166&expand=customer
   @GET(Address.customers)
   Future<FindCustomer> findCustomer(@Query("unicity") int id, @Query("expand") String expand);
-    
+  
+  //? Example: https://hydra.unicity.net/v5a/customers?fulltext=Test&sponsor.id.unicity=1
   @GET(Address.customers)
   Future<SearchCustomer> searchCustomer(@Query('fulltext') String searchKey, @Query('sponsor.id.unicity') int userId);
   
   @POST(Address.orderTerms)
   Future<CustomerToken> getOrderTerms(@Body() RequestPostCaclulateOrder request);
 
-  @GET(Address.orders)
+  //? Example: https://hydra.unicity.net/v5a/orderlines?order.customer.id.unicity=3011266&order.dateCreated=[2020-11;2021-06]&criteria=easyship&expand=catalogSlide,order,order.customer&order.market=TH
+  @GET(Address.orderLines)
+  Future<CustomerToken> getOrderLines(@Query('order.customer.id.unicity') String userId, @Query('order.dateCreated') String dateCreated, @Query('criteria') String criteria, @Query('expand') String expand, @Query('order.market') String market);
+
+  //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/orders
+  //? Body
+  //? { "customer": { "href": "https://hydra.unicity.net/v5a/customers?unicity=108357166" }, "lines": { "items": [ { "item": { "href": "https://hydra.unicity.net/v5a/items?id.unicity=17532"}, "quantity": "1"}, {"item": {"href": "https://hydra.unicity.net/v5a/items?id.unicity=17532"},"quantity": "2"}]},
+  //?  "shipToName": {"firstName": "First","lastName": "Last"},"shipToPhone": "555-555-5555","shipToEmail": "test@test.com","shipToAddress": {"city": "Bangkok","country": "TH","state": "","address1": "Rotenarmeestrasse 1", "zip": "90109"},
+  //?  "shippingMethod": { "href": "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"},
+  //? "notes": "batch XXYY by First Last", "transactions": {"items": [{"amount": "this.terms.total","type": "record","method": "Cash"}]}}
+  @POST(Address.orders)
   Future<UserInfo> getPlaceOrders(@Body() RequestPostPlaceOrder request);
   
 }
