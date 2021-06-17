@@ -1,5 +1,5 @@
 import 'package:code_magic_ex/ui/screens/barcode/barcode.dart';
-import 'package:code_magic_ex/ui/screens/easy_ship_reports/easy_ship_reports.dart';
+import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
 import 'package:code_magic_ex/ui/screens/home/home.dart';
 import 'package:code_magic_ex/ui/screens/inventory/inventory.dart';
