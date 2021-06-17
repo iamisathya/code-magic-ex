@@ -4,18 +4,20 @@ import 'package:code_magic_ex/ui/screens/demo/state.dart';
 import 'package:code_magic_ex/ui/screens/demo/service.dart';
 import 'package:rxdart/rxdart.dart';
 
-class EasyShipBloc {
+class ContactBloc {
   final Stream<ContactsPageState> state;
+  final ContactService repository;
   final Subject<ContactsPageState> _stateSubject;
 
-  factory EasyShipBloc() {
+  factory ContactBloc(ContactService respository) {
     final subject = BehaviorSubject<ContactsPageState>();
-    return EasyShipBloc._(
+    return ContactBloc._(
+        repository: respository,
         stateSubject: subject,
         state: subject.asBroadcastStream());
   }
 
-  EasyShipBloc._({required this.state, required Subject<ContactsPageState> stateSubject})
+  ContactBloc._({required this.state, required Subject<ContactsPageState> stateSubject, required this.repository})
       : _stateSubject = stateSubject;
 
   Future<void> loadEvents() async {

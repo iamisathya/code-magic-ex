@@ -1,18 +1,14 @@
+import 'package:code_magic_ex/ui/screens/demo/screen.dart';
+import 'package:flutter/material.dart';
+
 import 'package:code_magic_ex/bloc/main_bloc.dart';
 import 'package:code_magic_ex/translations/bloc.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 import 'package:code_magic_ex/ui/screens/inventory/example.dart';
-import 'package:code_magic_ex/ui/screens/inventory/inventory.dart';
-import 'package:code_magic_ex/ui/screens/sales_reports/sales_reports.dart';
-import 'package:code_magic_ex/ui/screens/webview/webview.dart';
-import 'package:flutter/material.dart';
-
 import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
-import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/request/request_customer_token.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -84,7 +80,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(translationBloc.getCurrentLanguage,''),
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-            home: WebivewHomeScreen(),
+            home: DemoPage(),
           );
         });
   }
