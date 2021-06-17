@@ -35,6 +35,32 @@ Map<String, dynamic> _$CommonHumanNameFullToJson(
       'fullName@th': instance.fullNameTh,
     };
 
+CommonUserIdCountry _$CommonUserIdCountryFromJson(Map<String, dynamic> json) {
+  return CommonUserIdCountry(
+    id: CommonIdWithCountryCode.fromJson(json['id'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$CommonUserIdCountryToJson(
+        CommonUserIdCountry instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+CommonIdWithCountryCode _$CommonIdWithCountryCodeFromJson(
+    Map<String, dynamic> json) {
+  return CommonIdWithCountryCode(
+    unicity:
+        CommonIdTypeString.fromJson(json['unicity'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$CommonIdWithCountryCodeToJson(
+        CommonIdWithCountryCode instance) =>
+    <String, dynamic>{
+      'unicity': instance.unicity,
+    };
+
 CommonUserIdString _$CommonUserIdStringFromJson(Map<String, dynamic> json) {
   return CommonUserIdString(
     id: CommonIdTypeString.fromJson(json['id'] as Map<String, dynamic>),
@@ -130,4 +156,91 @@ Map<String, dynamic> _$CommonShipToNameFullToJson(
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'fullName': instance.fullName,
+    };
+
+CommonCatalogSlideContent _$CommonCatalogSlideContentFromJson(
+    Map<String, dynamic> json) {
+  return CommonCatalogSlideContent(
+    content: CommonContentDescription.fromJson(
+        json['content'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$CommonCatalogSlideContentToJson(
+        CommonCatalogSlideContent instance) =>
+    <String, dynamic>{
+      'content': instance.content,
+    };
+
+CommonContentDescription _$CommonContentDescriptionFromJson(
+    Map<String, dynamic> json) {
+  return CommonContentDescription(
+    description: json['description'] as String,
+  );
+}
+
+Map<String, dynamic> _$CommonContentDescriptionToJson(
+        CommonContentDescription instance) =>
+    <String, dynamic>{
+      'description': instance.description,
+    };
+
+CommonTermsEach _$CommonTermsEachFromJson(Map<String, dynamic> json) {
+  return CommonTermsEach(
+    pvEach: json['pvEach'] as int,
+    priceEach: (json['priceEach'] as num).toDouble(),
+  );
+}
+
+Map<String, dynamic> _$CommonTermsEachToJson(CommonTermsEach instance) =>
+    <String, dynamic>{
+      'priceEach': instance.priceEach,
+      'pvEach': instance.pvEach,
+    };
+
+TermsPeriod _$TermsPeriodFromJson(Map<String, dynamic> json) {
+  return TermsPeriod(
+    period: json['period'] as String,
+  );
+}
+
+Map<String, dynamic> _$TermsPeriodToJson(TermsPeriod instance) =>
+    <String, dynamic>{
+      'period': instance.period,
+    };
+
+CommonCustomerIdHref _$CommonCustomerIdHrefFromJson(Map<String, dynamic> json) {
+  return CommonCustomerIdHref(
+    href: json['href'] as String,
+  );
+}
+
+Map<String, dynamic> _$CommonCustomerIdHrefToJson(
+        CommonCustomerIdHref instance) =>
+    <String, dynamic>{
+      'href': instance.href,
+    };
+
+CommonUserIdIntObject _$CommonUserIdIntObjectFromJson(
+    Map<String, dynamic> json) {
+  return CommonUserIdIntObject(
+    id: CommonIdTypeInt.fromJson(json['id'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$CommonUserIdIntObjectToJson(
+        CommonUserIdIntObject instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };
+
+CommonIdTypeInt _$CommonIdTypeIntFromJson(Map<String, dynamic> json) {
+  return CommonIdTypeInt(
+    unicity: json['unicity'] as int,
+  );
+}
+
+Map<String, dynamic> _$CommonIdTypeIntToJson(CommonIdTypeInt instance) =>
+    <String, dynamic>{
+      'unicity': instance.unicity,
     };

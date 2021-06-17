@@ -6,7 +6,6 @@ part 'common_methods.g.dart';
 //*  "profilePicture": {
 //*    "href": "https://hydra.unicity.net/v5a/customers/blah-blah"
 //*   },
-
 @JsonSerializable()
 class CommonGenericHref {
   @JsonKey(name: "href")
@@ -30,7 +29,6 @@ class CommonGenericHref {
 //*    "fullName": "Lord Voldemort",
 //*    "fullName@th": "ซื้อ 1000 ครั้ง ปลดล๊อกสกินเขียว"
 //*  },
-
 @JsonSerializable()
 class CommonHumanNameFull {
   String firstName;
@@ -105,7 +103,7 @@ class CommonUserIdString {
   Map<String, dynamic> toJson() => _$CommonUserIdStringToJson(this);
 }
 
-//*    "unicity": "123456",
+//* "unicity": "123456",
 @JsonSerializable()
 class CommonIdTypeString {
   @JsonKey(name: "unicity")
@@ -248,7 +246,7 @@ class CommonShipToNameFull {
 @JsonSerializable()
 class CommonCatalogSlideContent {
   @JsonKey(name: "content")
-  ContentDescription content;
+  CommonContentDescription content;
 
   CommonCatalogSlideContent({required this.content});
 
@@ -325,13 +323,13 @@ class CommonCustomerIdHref {
   @JsonKey(name: "href")
   String href;
 
-  TermsPeriod({
-    required this.period,
+  CommonCustomerIdHref({
+    required this.href,
   });
 
-  factory TermsPeriod.fromJson(Map<String, dynamic> json) => _$TermsPeriodFromJson(json);
+  factory CommonCustomerIdHref.fromJson(Map<String, dynamic> json) => _$CommonCustomerIdHrefFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TermsPeriodToJson(this);
+  Map<String, dynamic> toJson() => _$CommonCustomerIdHrefToJson(this);
 }
 
 

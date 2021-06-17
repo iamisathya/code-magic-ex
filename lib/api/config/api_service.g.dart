@@ -170,6 +170,28 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<CustomerToken> getOrderLines(
+      userId, dateCreated, criteria, expand, market) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'order.customer.id.unicity': userId,
+      r'order.dateCreated': dateCreated,
+      r'criteria': criteria,
+      r'expand': expand,
+      r'order.market': market
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CustomerToken>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/orderlines',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CustomerToken.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<UserInfo> getPlaceOrders(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -177,7 +199,7 @@ class _ApiService implements ApiService {
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<UserInfo>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/warehouses/{id}/orders',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
