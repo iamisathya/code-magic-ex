@@ -10,9 +10,9 @@ class SearchViewWidget extends StatelessWidget {
     this.hintText = "",
   });
 
-
   @override
   Widget build(BuildContext context) {
+    final Color color = controller.text.isNotEmpty ? Colors.blue : Colors.grey;
     return Container(
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
@@ -22,9 +22,14 @@ class SearchViewWidget extends StatelessWidget {
           cursorColor: Colors.grey[300],
           controller: controller,
           decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(16),
             hintText: hintText,
             focusedBorder: InputBorder.none,
-            prefixIcon: const Icon(Icons.search, color: Colors.grey),
+            // prefixIcon: const Icon(Icons.search, color: Colors.grey),
+            suffixIcon: IconButton(
+                onPressed: controller.text.isNotEmpty ? controller.clear : null,
+                color: color,
+                icon: const Icon(Icons.clear)),
             hintStyle: TextStyle(color: Colors.grey[300]),
           ),
         ));

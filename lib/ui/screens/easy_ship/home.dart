@@ -45,7 +45,7 @@ class _EasyShipHomeScreenState extends State<EasyShipHomeScreen> {
         body: Center(
           child: SingleChildScrollView(
               child: Column(children: [
-            SearchViewWidget(controller: searchConntroller),
+            _buildSeachConntainer(),
             SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: StreamBuilder<Object>(
@@ -73,6 +73,20 @@ class _EasyShipHomeScreenState extends State<EasyShipHomeScreen> {
       return _renderEasyShipTable(state.orderLines);
     }
     // throw Exception('${state.runtimeType} is not supported');
+  }
+
+  Widget _buildSeachConntainer() {
+    return Row(
+      children: [
+        Flexible(child: SearchViewWidget(controller: searchConntroller)),
+        MaterialButton(
+          padding: const EdgeInsets.all(8),
+          color: Colors.yellow,
+            onPressed: () {},
+            child: const Text('Search'),
+          ),
+      ],
+    );
   }
 
   DataTable _renderEasyShipTable(OrderLines orderLines) {
