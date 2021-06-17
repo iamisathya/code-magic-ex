@@ -25,9 +25,6 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
           title: const Text("Home"),
         ),
         drawer: NavigationDrawer(),
-        body: SingleChildScrollView(
-            child: SearchViewWidget(
-                getSearchTextStream: inventoryBLoc.getSearchTextStream,
-                searchviewController: _searchview)));
+        body: SingleChildScrollView(child: Text("Hi")));
   }
 }

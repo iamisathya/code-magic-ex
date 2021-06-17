@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/utilities/core/parsing.dart';
+import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:code_magic_ex/ui/screens/easy_ship/state.dart';
@@ -19,6 +19,7 @@ class EasyShipHomeScreen extends StatefulWidget {
 }
 
 class _EasyShipHomeScreenState extends State<EasyShipHomeScreen> {
+  var searchConntroller = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -44,6 +45,7 @@ class _EasyShipHomeScreenState extends State<EasyShipHomeScreen> {
         body: Center(
           child: SingleChildScrollView(
               child: Column(children: [
+            SearchViewWidget(controller: searchConntroller),
             SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: StreamBuilder<Object>(
