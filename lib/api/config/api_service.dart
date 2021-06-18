@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:html';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -39,6 +38,15 @@ abstract class ApiService {
     dio.options.headers['authorization'] = "Bearer 60d09e95-eeb5-4d05-8210-2b39149a59bc";
     // dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    _instance = ApiService(dio);
+
+    return _instance;
+  }
+
+  static ApiService clientNoLogger() {
+    final Dio dio = Dio();
+    dio.options.headers['authorization'] = "Bearer 60d09e95-eeb5-4d05-8210-2b39149a59bc";
+    // dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
     _instance = ApiService(dio);
 
     return _instance;

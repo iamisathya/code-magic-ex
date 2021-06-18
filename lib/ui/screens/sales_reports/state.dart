@@ -1,6 +1,5 @@
 
 import 'package:code_magic_ex/models/order_list_rmas.dart';
-import 'package:code_magic_ex/ui/screens/demo/model.dart';
 
 class SalesReportPageState {
   OrdersAndRmas ordersAndRMAs;
@@ -14,11 +13,11 @@ class SalesReportPageState {
   });
 
   factory SalesReportPageState.initial() => SalesReportPageState(
-      ordersAndRMAs: OrdersAndRmas(items: []));
+      ordersAndRMAs: OrdersAndRmas(orders: [], rmas: []));
   factory SalesReportPageState.loading() => SalesReportPageState(
-      ordersAndRMAs: OrdersAndRmas(items: []),
+      ordersAndRMAs: OrdersAndRmas(orders: [], rmas: []),
       isLoading: true);
   factory SalesReportPageState.error() => SalesReportPageState(
-      ordersAndRMAs: OrdersAndRmas(items: []),
+      ordersAndRMAs: OrdersAndRmas(orders: [], rmas: []),
       hasError: true,);
 }

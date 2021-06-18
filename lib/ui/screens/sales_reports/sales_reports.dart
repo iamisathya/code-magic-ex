@@ -107,6 +107,7 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
             StreamBuilder<SalesReportPageState>(
                 stream: salesReportBloc.state,
                 builder: (context, snapshot) {
+                  print(snapshot.hasData);
                   if (snapshot.hasData) {
                     return Container(child: _buildChild(snapshot.data!));
                   }
@@ -121,10 +122,10 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
       return const LoadingWidget();
     } else if (state.hasError) {
       return const SearchErrorWidget();
-    } else if (state.ordersAndRMAs.items.isEmpty) {
+    } else if (state.ordersAndRMAs.orders.isEmpty) {
       return const EmptyWidget();
     } else {
-      return _renderInventoryTable(state.ordersAndRMAs);
+      return _renderInventoryTable(state.ordersAndRMAs.orders[0]);
     }
     // throw Exception('${state.runtimeType} is not supported');
   }
@@ -188,7 +189,7 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
   }
 
   SingleChildScrollView _renderInventoryTable(
-      OrdersAndRmas orders) {
+      AllOrders orders) {
     final String totalPrice = _calculateTotalPrice(orders, 'price');
     final String totalPv = _calculateTotalPrice(orders, 'pv');
     return SingleChildScrollView(
@@ -289,7 +290,7 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
   }
 
   DataColumn _renderDataColomn(String title,
-      OrdersAndRmas orders) {
+      AllOrders orders) {
     return DataColumn(
       numeric: title != "Item Code" && title != "Item Name",
       onSort: (columnIndex, ascending) {
@@ -306,7 +307,7 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
     );
   }
 
-  String _calculateTotalPrice(OrdersAndRmas orders, String type) {
+  String _calculateTotalPrice(AllOrders orders, String type) {
     final num total = orders.items.map((e) => type == "pv" ? e.terms.pv : e.terms.total).reduce((value, element) => value + element);
     return total.toString();
     // return orders.items.reduce((value, element) => value + element.terms.total).toString();
