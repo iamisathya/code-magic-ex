@@ -126,6 +126,36 @@ class CommonIdTypeString {
 //*  }
 
 @JsonSerializable()
+class CommonHumanNameObject {
+  @JsonKey(name: "humanName")
+  CommonFullName humanName;
+
+  CommonHumanNameObject({
+    required this.humanName,
+  });
+
+  factory CommonHumanNameObject.fromJson(Map<String, dynamic> json) =>
+      _$CommonHumanNameObjectFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommonHumanNameObjectToJson(this);
+}
+
+@JsonSerializable()
+class CommonFullName {
+  @JsonKey(name: "fullName")
+  String fullName;
+
+  CommonFullName({
+    required this.fullName,
+  });
+
+  factory CommonFullName.fromJson(Map<String, dynamic> json) =>
+      _$CommonFullNameFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommonFullNameToJson(this);
+}
+
+@JsonSerializable()
 class CommonHumanFullName {
   @JsonKey(name: "fullName")
   CommonFullNameOnly fullName;

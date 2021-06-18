@@ -82,6 +82,31 @@ Map<String, dynamic> _$CommonIdTypeStringToJson(CommonIdTypeString instance) =>
       'unicity': instance.unicity,
     };
 
+CommonHumanNameObject _$CommonHumanNameObjectFromJson(
+    Map<String, dynamic> json) {
+  return CommonHumanNameObject(
+    humanName:
+        CommonFullName.fromJson(json['humanName'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$CommonHumanNameObjectToJson(
+        CommonHumanNameObject instance) =>
+    <String, dynamic>{
+      'humanName': instance.humanName,
+    };
+
+CommonFullName _$CommonFullNameFromJson(Map<String, dynamic> json) {
+  return CommonFullName(
+    fullName: json['fullName'] as String,
+  );
+}
+
+Map<String, dynamic> _$CommonFullNameToJson(CommonFullName instance) =>
+    <String, dynamic>{
+      'fullName': instance.fullName,
+    };
+
 CommonHumanFullName _$CommonHumanFullNameFromJson(Map<String, dynamic> json) {
   return CommonHumanFullName(
     fullName:

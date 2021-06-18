@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:code_magic_ex/resources/colors.dart';
 import 'package:code_magic_ex/ui/screens/github/empty_result_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/search_error_widget.dart';
@@ -13,6 +14,8 @@ import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
 import 'package:code_magic_ex/ui/screens/inventory/bloc.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:intl/intl.dart';
+
+import 'package:code_magic_ex/utilities/extensions.dart';
 
 class SalesReportsHomeScreen extends StatefulWidget {
   static const String routeName = '/salesReportsHomePage';
@@ -30,6 +33,7 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
   @override
   void initState() {
     super.initState();
+    salesReportBloc.loadSalesReports();
   }
 
   @override
@@ -120,7 +124,7 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
     } else if (state.ordersAndRMAs.items.isEmpty) {
       return const EmptyWidget();
     } else {
-      return Text("hi");
+      return _renderInventoryTable(state.ordersAndRMAs);
     }
     // throw Exception('${state.runtimeType} is not supported');
   }
@@ -184,9 +188,9 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
   }
 
   SingleChildScrollView _renderInventoryTable(
-      AsyncSnapshot<InventoryRecords> snapshot) {
-    final String totalPrice = _calculateTotalPrice(snapshot.data!, 'price');
-    final String totalPv = _calculateTotalPrice(snapshot.data!, 'pv');
+      OrdersAndRmas orders) {
+    final String totalPrice = _calculateTotalPrice(orders, 'price');
+    final String totalPv = _calculateTotalPrice(orders, 'pv');
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -203,34 +207,34 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
               sortAscending: sort,
               sortColumnIndex: 0,
               columns: <DataColumn>[
-                _renderDataColomn("Item Code", snapshot, context),
-                _renderDataColomn("Item Name", snapshot, context),
-                _renderDataColomn("PV", snapshot, context),
-                _renderDataColomn("Price", snapshot, context),
-                _renderDataColomn("Quantity on hand", snapshot, context),
-                _renderDataColomn(
-                    "Total Accumulated Price $totalPrice", snapshot, context),
-                _renderDataColomn("Total PV $totalPv", snapshot, context),
+                _renderDataColomn("Record", orders),
+                _renderDataColomn("BA Number", orders),
+                _renderDataColomn("Name", orders),
+                _renderDataColomn("Order ID", orders),
+                _renderDataColomn("Date", orders),
+                _renderDataColomn("Time", orders),
+                _renderDataColomn("Total Price $totalPrice", orders),
+                _renderDataColomn("Total PV $totalPv", orders),
+                _renderDataColomn("Barcode", orders),
               ],
-              rows: snapshot.data!
+              rows: orders
                   .items // Loops through dataColumnText, each iteration assigning the value to element
                   .map(
                     (element) => DataRow(
                       cells: <DataCell>[
-                        _renderDataCell(element.item.id.unicity.toString()),
+                        _renderDataCell(element.creator.humanName.fullName),
                         DataCell(Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                              element.catalogSlideContent.content.description),
+                              Parsing.stringFrom(element.customer.id.unicity)),
                         )),
-                        _renderDataCell(element.terms.pvEach.toString()),
-                        _renderDataCell(Parsing.intFrom(element.terms.priceEach)
-                            .toString()),
-                        _renderDataCell(element.quantityOnHand.toString()),
-                        _renderDataCell(_calculateEachTotal(
-                            element.quantityOnHand, element.terms.priceEach)),
-                        _renderDataCell(_calculateTotalPv(
-                            element.quantityOnHand, element.terms.pvEach)),
+                        _renderDataCell(element.customer.humanName.fullName),
+                        _renderDataCell(element.id.unicity.retrieveOrderId()),
+                        _renderDataCell(element.dateCreated.asDDMMYYYY),
+                        _renderDataCell(element.dateCreated.asHHMMA),
+                        _renderDataCell(Parsing.stringFrom(element.terms.total)),
+                        _renderDataCell(Parsing.stringFrom(element.terms.pv)),
+                        _renderDataCell(""),
                       ],
                     ),
                   )
@@ -285,14 +289,14 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
   }
 
   DataColumn _renderDataColomn(String title,
-      AsyncSnapshot<InventoryRecords> snapshot, BuildContext context) {
+      OrdersAndRmas orders) {
     return DataColumn(
       numeric: title != "Item Code" && title != "Item Name",
       onSort: (columnIndex, ascending) {
         setState(() {
           sort = !sort;
         });
-        _onSortColum(snapshot.data!.items, columnIndex, !sort);
+        _onSortColum(orders.items, columnIndex, !sort);
       },
       label: Center(
         child: Text(
@@ -302,53 +306,55 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
     );
   }
 
-  String _calculateTotalPrice(InventoryRecords inventoryRecords, String type) {
-    double total = 0.0;
-    // looping over data array
-    for (final item in inventoryRecords.items) {
-      total += Parsing.intFrom(item.quantityOnHand)! *
-          (type == "pv" ? item.terms.pvEach : item.terms.priceEach);
-    }
-    return total.toInt().toString();
+  String _calculateTotalPrice(OrdersAndRmas orders, String type) {
+    final num total = orders.items.map((e) => type == "pv" ? e.terms.pv : e.terms.total).reduce((value, element) => value + element);
+    return total.toString();
+    // return orders.items.reduce((value, element) => value + element.terms.total).toString();
+    // double total = 0.0;
+    // // looping over data array
+    // for (final item in orders.items) {
+    //   total += type == "pv" ? item.terms.pv : item.terms.total ;
+    // }
+    // return total.toInt().toString();
   }
 
   DataCell _renderDataCell(String value) => DataCell(Text(value));
 
-  void _onSortColum(List<InventoryRecordItems> inventoryRecordItems,
+  void _onSortColum(List<OrderItem> inventoryRecordItems,
       int columnIndex, bool ascending) {
     if (columnIndex == 0) {
       if (ascending) {
         inventoryRecordItems
-            .sort((a, b) => a.item.id.unicity.compareTo(b.item.id.unicity));
+            .sort((a, b) => a.creator.humanName.fullName.compareTo(b.creator.humanName.fullName));
       } else {
         inventoryRecordItems
-            .sort((a, b) => b.item.id.unicity.compareTo(a.item.id.unicity));
+            .sort((a, b) => b.creator.humanName.fullName.compareTo(a.creator.humanName.fullName));
       }
     } else if (columnIndex == 1) {
       if (ascending) {
         inventoryRecordItems.sort((a, b) => a
-            .catalogSlideContent.content.description
-            .compareTo(b.catalogSlideContent.content.description));
+            .customer.id.unicity
+            .compareTo(b.customer.id.unicity));
       } else {
         inventoryRecordItems.sort((a, b) => b
-            .catalogSlideContent.content.description
-            .compareTo(a.catalogSlideContent.content.description));
+            .customer.id.unicity
+            .compareTo(a.customer.id.unicity));
       }
     } else if (columnIndex == 2) {
       if (ascending) {
         inventoryRecordItems
-            .sort((a, b) => a.terms.pvEach.compareTo(b.terms.pvEach));
+            .sort((a, b) => a.customer.humanName.fullName.compareTo(b.customer.humanName.fullName));
       } else {
         inventoryRecordItems
-            .sort((a, b) => b.terms.pvEach.compareTo(a.terms.pvEach));
+            .sort((a, b) => b.customer.humanName.fullName.compareTo(a.customer.humanName.fullName));
       }
     } else if (columnIndex == 3) {
       if (ascending) {
         inventoryRecordItems
-            .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
+            .sort((a, b) => a.id.unicity.retrieveOrderId().compareTo(b.id.unicity.retrieveOrderId()));
       } else {
         inventoryRecordItems
-            .sort((a, b) => b.terms.priceEach.compareTo(a.terms.priceEach));
+            .sort((a, b) => b.id.unicity.retrieveOrderId().compareTo(a.id.unicity.retrieveOrderId()));
       }
     }
   }

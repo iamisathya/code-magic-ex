@@ -20,7 +20,7 @@ class SalesReportBloc {
   SalesReportBloc._({required this.state, required Subject<SalesReportPageState> stateSubject})
       : _stateSubject = stateSubject;
 
-  Future<void> loadEvents() async {
+  Future<void> loadSalesReports() async {
     _stateSubject.add(SalesReportPageState.loading());
 
     try {

@@ -16,6 +16,28 @@ extension OrderId on String {
   }
 }
 
+extension DateFormater on String {
+  String get asDDMMYYYY {
+    try {
+      final DateTime currentDateTime = DateTime.parse(this);
+      final DateFormat formatter = DateFormat('DD/MM/YYYY');
+      return formatter.format(currentDateTime);
+    } catch (e) {
+      return '';
+    }
+  }
+
+    String get asHHMMA {
+    try {
+      final DateTime currentDateTime = DateTime.parse(this);
+      final DateFormat formatter = DateFormat('HH:MM a');
+      return formatter.format(currentDateTime);
+    } catch (e) {
+      return '';
+    }
+  }
+}
+
 extension DoubleExtension on double {
    String get asReadableString => toInt().toString();
 }

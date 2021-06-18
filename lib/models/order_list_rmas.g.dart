@@ -22,7 +22,7 @@ Map<String, dynamic> _$OrdersAndRmasToJson(OrdersAndRmas instance) =>
 OrderItem _$OrderItemFromJson(Map<String, dynamic> json) {
   return OrderItem(
     creator:
-        CommonHumanFullName.fromJson(json['creator'] as Map<String, dynamic>),
+        CommonHumanNameObject.fromJson(json['creator'] as Map<String, dynamic>),
     currency: json['currency'] as String,
     customer:
         CustomerDetails.fromJson(json['customer'] as Map<String, dynamic>),

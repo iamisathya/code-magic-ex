@@ -22,7 +22,7 @@ class OrdersAndRmas {
 @JsonSerializable()
 class OrderItem {
   @JsonKey(name: "creator")
-  CommonHumanFullName creator;
+  CommonHumanNameObject creator;
   @JsonKey(name: "currency")
   String currency;
   @JsonKey(name: "customer")
