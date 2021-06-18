@@ -7,6 +7,12 @@ import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 
 class WebivewHomeScreen extends StatefulWidget {
   static const String routeName = '/mainHomePage';
+  final String url;
+
+  const WebivewHomeScreen({
+    Key? key,
+    required this.url,
+  }) : super(key: key);
 
   @override
   _WebivewHomeScreenState createState() => _WebivewHomeScreenState();

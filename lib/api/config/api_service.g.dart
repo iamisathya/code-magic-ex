@@ -221,9 +221,56 @@ class _ApiService implements ApiService {
   }
 }
 
-class _MemberService implements MemberService {
-  _MemberService(this._dio, {this.baseUrl}) {
+class _MemberCalls2Service implements MemberCalls2Service {
+  _MemberCalls2Service(this._dio, {this.baseUrl}) {
     baseUrl ??= 'https://member-calls2.unicity.com/';
+  }
+
+  final Dio _dio;
+
+  String? baseUrl;
+
+  @override
+  Future<List<String>> getValidOrders(
+      type, datepicker1, datepicker2, token, lang, id, action) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'type': type,
+      r'datepicker1': datepicker1,
+      r'datepicker2': datepicker2,
+      r'token': token,
+      r'lang': lang,
+      r'id': id,
+      r'action': action
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<String>>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!.cast<String>();
+    return value;
+  }
+
+  RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
+    if (T != dynamic &&
+        !(requestOptions.responseType == ResponseType.bytes ||
+            requestOptions.responseType == ResponseType.stream)) {
+      if (T == String) {
+        requestOptions.responseType = ResponseType.plain;
+      } else {
+        requestOptions.responseType = ResponseType.json;
+      }
+    }
+    return requestOptions;
+  }
+}
+
+class _MemberCallsService implements MemberCallsService {
+  _MemberCallsService(this._dio, {this.baseUrl}) {
+    baseUrl ??= 'https://member-calls.unicity.com/';
   }
 
   final Dio _dio;

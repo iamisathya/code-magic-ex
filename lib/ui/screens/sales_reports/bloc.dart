@@ -1,32 +1,37 @@
-
-import 'package:code_magic_ex/ui/screens/demo/model.dart';
-import 'package:code_magic_ex/ui/screens/demo/state.dart';
-import 'package:code_magic_ex/ui/screens/demo/service.dart';
+import 'package:code_magic_ex/api/config/api_service.dart';
+import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:rxdart/rxdart.dart';
 
-class EasyShipBloc {
-  final Stream<ContactsPageState> state;
-  final Subject<ContactsPageState> _stateSubject;
+import 'package:code_magic_ex/ui/screens/demo/model.dart';
+import 'package:code_magic_ex/ui/screens/demo/service.dart';
+import 'package:code_magic_ex/ui/screens/sales_reports/state.dart';
 
-  factory EasyShipBloc() {
-    final subject = BehaviorSubject<ContactsPageState>();
-    return EasyShipBloc._(
+class SalesReportBloc {
+  final Stream<SalesReportPageState> state;
+  final Subject<SalesReportPageState> _stateSubject;
+
+  factory SalesReportBloc() {
+    final subject = BehaviorSubject<SalesReportPageState>();
+    return SalesReportBloc._(
         stateSubject: subject,
         state: subject.asBroadcastStream());
   }
 
-  EasyShipBloc._({required this.state, required Subject<ContactsPageState> stateSubject})
+  SalesReportBloc._({required this.state, required Subject<SalesReportPageState> stateSubject})
       : _stateSubject = stateSubject;
 
   Future<void> loadEvents() async {
-    _stateSubject.add(ContactsPageState.loading());
+    _stateSubject.add(SalesReportPageState.loading());
 
     try {
-      final List<Contacts> contacts = await ContactService.browse();
-      _stateSubject.add(ContactsPageState(contacts: contacts));
+      final OrdersAndRmas ordersAndRMAs = await ApiService.shared().getOrdersAndRmas("9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c", "[2021-05-01;2021-06-01]", "expand=order,rma");
+      final List<String> validOrders = await MemberCalls2Service.init().getValidOrders("barcode", "2021-05-01", "2021-06-01", "85905f08-b320-4e20-a6d1-2d96ebec6481", "en", "2970466", "1");
+      _stateSubject.add(SalesReportPageState(ordersAndRMAs: ordersAndRMAs));
     } catch (err) {
-      _stateSubject.add(ContactsPageState.error());
+      _stateSubject.add(SalesReportPageState.error());
       _stateSubject.addError(err);
     }
   }
 }
+
+final salesReportBloc = SalesReportBloc();

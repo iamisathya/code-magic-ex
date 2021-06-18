@@ -11,6 +11,8 @@ class Address {
   static const String orderLines =  "/orderlines";
   static const String orders =  "/warehouses/{id}/orders";
   static const String customersPath =  "customers";
-  static const String memberCallsBase = "https://member-calls2.unicity.com/";
+  static const String memberCalls2Base = "https://member-calls2.unicity.com/";
+  static const String memberCallsBase = "https://member-calls.unicity.com/";
+  static const String validOrders = "ALL/DSC/getdata.php";
   static const String dictionary = "dictionary/publish";
 }

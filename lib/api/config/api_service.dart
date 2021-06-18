@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -93,24 +94,36 @@ abstract class ApiService {
   //? "notes": "batch XXYY by First Last", "transactions": {"items": [{"amount": "this.terms.total","type": "record","method": "Cash"}]}}
   @POST(Address.orders)
   Future<UserInfo> getPlaceOrders(@Body() RequestPostPlaceOrder request);
-  
 }
 
+@RestApi(baseUrl: Address.memberCalls2Base)
+abstract class MemberCalls2Service {
+  factory MemberCalls2Service(Dio dio, {String baseUrl}) = _MemberCalls2Service;
 
-
-@RestApi(baseUrl: Address.memberCallsBase)
-abstract class MemberService {
-  factory MemberService(Dio dio, {String baseUrl}) = _MemberService;
-
-  static MemberService init() {
+  static MemberCalls2Service init() {
     final Dio dio = Dio();
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
-    return MemberService(dio);
+    return MemberCalls2Service(dio);
+  }
+
+  //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
+  @GET(Address.validOrders)
+  Future<List<String>> getValidOrders(@Query('type') String type, @Query('datepicker1') String datepicker1, @Query('datepicker2') String datepicker2, @Query('token') String token, @Query('lang') String lang, @Query('id') String id, @Query('action') String action);
+}
+
+@RestApi(baseUrl: Address.memberCallsBase)
+abstract class MemberCallsService {
+  factory MemberCallsService(Dio dio, {String baseUrl}) = _MemberCallsService;
+
+  static MemberCallsService init() {
+    final Dio dio = Dio();
+    dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    return MemberCallsService(dio);
   }
 
   //Common apis
   //? url=https://member-calls2.unicity.com/dictionary/publish?lang=TH%2CEN
-    @GET(Address.dictionary)
+  @GET(Address.dictionary)
   Future<CustomerToken> getTranslations(@Query("lang") String lang);
 }
 

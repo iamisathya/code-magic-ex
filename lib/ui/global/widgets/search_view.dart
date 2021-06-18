@@ -19,6 +19,7 @@ class SearchViewWidget extends StatelessWidget {
             border: Border.all(),
             borderRadius: const BorderRadius.all(Radius.circular(8.0))),
         child: TextField(
+          keyboardType: TextInputType.number,
           cursorColor: Colors.grey[300],
           controller: controller,
           decoration: InputDecoration(
