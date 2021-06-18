@@ -6,7 +6,6 @@ import 'package:code_magic_ex/ui/global/widgets/activity_indicators.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/loginHomePage';
-  const LoginScreen({required Key key}) : super(key: key);
 
   @override
   _LoginScreenState createState() => _LoginScreenState();

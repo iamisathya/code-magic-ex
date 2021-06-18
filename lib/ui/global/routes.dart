@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/ui/global/router.dart';
@@ -12,6 +13,7 @@ import 'package:code_magic_ex/ui/screens/sales_reports/sales_reports.dart';
 
 Map<String, WidgetBuilder> get routes {
   return {
+    ScreenPaths.loginHome: (context) => LoginScreen(),
     ScreenPaths.mainHome: (context) => MainHomeScreen(),
     ScreenPaths.openPO: (context) => OpenPOHomeScreen(),
     ScreenPaths.enroll: (context) => EnrollHomeScreen(),
