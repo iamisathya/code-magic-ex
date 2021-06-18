@@ -7,7 +7,7 @@ import 'package:code_magic_ex/ui/screens/open_po/open_po.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/sales_reports.dart';
 
-class PageRoutes {
+class ScreenPaths {
  static const String mainHome = MainHomeScreen.routeName;
  static const String openPO = OpenPOHomeScreen.routeName;
  static const String enroll = EnrollHomeScreen.routeName;

@@ -1,19 +1,16 @@
-import 'package:code_magic_ex/ui/screens/barcode/barcode.dart';
-import 'package:code_magic_ex/ui/screens/demo/screen.dart';
-import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
-import 'package:code_magic_ex/ui/screens/sales_reports/sales_reports.dart';
+import 'package:code_magic_ex/ui/global/routes.dart';
+import 'package:code_magic_ex/ui/screens/open_po/open_po.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:code_magic_ex/bloc/main_bloc.dart';
 import 'package:code_magic_ex/translations/bloc.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
-import 'package:code_magic_ex/ui/screens/inventory/example.dart';
 import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/request/request_customer_token.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: avoid_void_async
 void main() async {
@@ -83,7 +80,8 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(translationBloc.getCurrentLanguage,''),
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-            home: SalesReportsHomeScreen(),
+            routes: routes,
+            home: OpenPOHomeScreen(),
           );
         });
   }

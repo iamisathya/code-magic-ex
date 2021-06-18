@@ -13,56 +13,56 @@ class NavigationDrawer extends StatelessWidget {
             icon: Icons.home_outlined,
             text: 'Home',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.mainHome),
+                Navigator.pushNamed(context, ScreenPaths.mainHome),
           ),
           _createDrawerBodyItem(
             icon: Icons.trending_up_sharp,
             text: 'Open PO',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.openPO),
+                Navigator.pushNamed(context, ScreenPaths.openPO),
           ),
           _createDrawerBodyItem(
             icon: Icons.mode_edit_sharp,
             text: 'Enroll',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.enroll),
+                Navigator.pushNamed(context, ScreenPaths.enroll),
           ),
           _createDrawerBodyItem(
             icon: Icons.shopping_cart_outlined,
             text: 'Order Entry',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.orderEntry),
+                Navigator.pushNamed(context, ScreenPaths.orderEntry),
           ),
           const Divider(thickness: 1),
           _createDrawerBodyItem(
             icon: Icons.inventory_2,
             text: 'Inventory',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.inventory),
+                Navigator.pushNamed(context, ScreenPaths.inventory),
           ),
           _createDrawerBodyItem(
             icon: Icons.receipt_outlined,
             text: 'Sales Report',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.salesReport),
+                Navigator.pushNamed(context, ScreenPaths.salesReport),
           ),
           _createDrawerBodyItem(
             icon: Icons.share_outlined,
             text: 'Easyship Report',
-            onTap: () => Navigator.pushReplacementNamed(
-                context, PageRoutes.easyShipReport),
+            onTap: () => Navigator.pushNamed(
+                context, ScreenPaths.easyShipReport),
           ),
           _createDrawerBodyItem(
             icon: Icons.qr_code_2_outlined,
             text: 'Barcode',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.barcode),
+                Navigator.pushNamed(context, ScreenPaths.barcode),
           ),
           _createDrawerBodyItem(
             icon: Icons.logout_outlined,
             text: 'Signout',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.barcode),
+                Navigator.pushNamed(context, ScreenPaths.barcode),
           ),
           ListTile(
             title: const Text('App version 1.0.0'),
@@ -78,14 +78,29 @@ Widget _createDrawerHeader() {
   return DrawerHeader(
       margin: EdgeInsets.zero,
       padding: EdgeInsets.zero,
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill, image: AssetImage('images/bg_header.jpeg'))),
-      child: Stack(children: <Widget>[
-        const Positioned(
+      decoration: const BoxDecoration(color: Colors.white),
+      child: Stack(children: const <Widget>[
+        Padding(
+          padding: EdgeInsets.only(left: 12.0),
+          child: CircleAvatar(
+            radius: 50.0,
+            backgroundColor: Color(0xFF778899),
+            backgroundImage: NetworkImage(
+                "http://d27zzi0gwko92h.cloudfront.net/media/image/customers/421adf11-eb44-44de-acd9-56d746304c37_original.jpeg"), // for Network image
+          ),
+        ),
+        Positioned(
+            bottom: 38.0,
+            left: 16.0,
+            child: Text("122345455",
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.w500))),
+        Positioned(
             bottom: 12.0,
             left: 16.0,
-            child: Text("Welcome to user",
+            child: Text("Kim Jung Un",
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 20.0,

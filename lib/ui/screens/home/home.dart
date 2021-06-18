@@ -69,7 +69,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.comment),
+          title: const Text("Home"),
           actions: <Widget>[
             IconButton(
               icon: const Icon(
