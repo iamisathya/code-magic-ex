@@ -24,7 +24,7 @@ class LoginBLoc {
           
 
   Future<void> getLoginToken(BuildContext context) async{
-    final RequestPostCustomerToken request = RequestPostCustomerToken(namespace: '${Address.baseUrl}${Address.customersPath}', type: Constants.encodetype, value: Constants.encodeValue);
+    final RequestPostCustomerToken request = RequestPostCustomerToken(namespace: '${Address.baseUrl}${Address.customersPath}', type: encodetype, value: encodeValue);
     _setActivityIndicatorStream!(true);
     final CustomerToken customerToken = await ApiService.init().getLoginTokens(request);
      Navigator.of(context).pushAndRemoveUntil(

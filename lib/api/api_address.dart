@@ -1,3 +1,7 @@
+
+
+const encodetype = "base64";
+const encodeValue = "Mjk3MDQ2NjoxMjM0";
 class Address {
   static const String baseUrl =  "https://hydra.unicity.net/v5a/";
   static const String loginTokens =  "/loginTokens";
