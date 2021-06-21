@@ -1,40 +1,15 @@
-import 'package:code_magic_ex/ui/screens/login/login_bloc.dart';
+import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/models/user_token.dart';
-import 'package:code_magic_ex/ui/global/widgets/activity_indicators.dart';
+import 'components/body.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const String routeName = '/loginHomePage';
-
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  @override
-  void initState() {
-    super.initState();
-    // loginBloc.getLoginToken();
-  }
-
+class LoginScreen extends StatelessWidget {
+  static const String routeName = '/loginPage';
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Login"),
-        ),
-        body: Center(
-          child: StreamBuilder<CustomerToken>(
-              stream: loginBloc.subject.stream,
-              builder: (context, AsyncSnapshot<CustomerToken> snapshot) {
-                return ElevatedButton(
-                  onPressed: () => loginBloc.getLoginToken(context),
-                  child: const Text("Rock & Roll"),
-                );
-                ActivityIndicator(
-                    loadingStream: loginBloc.activityIndicatorStream);
-              }),
-        ));
+      body: Body(),
+    );
   }
 }

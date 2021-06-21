@@ -1,6 +1,5 @@
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/ui/screens/home/home.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/subjects.dart';
 

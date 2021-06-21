@@ -1,7 +1,5 @@
 import 'package:code_magic_ex/ui/global/routes.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
-import 'package:code_magic_ex/ui/screens/login/sign_in_screen.dart';
-import 'package:code_magic_ex/ui/screens/open_po/open_po.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -83,7 +81,7 @@ class MyApp extends StatelessWidget {
             locale: Locale(translationBloc.getCurrentLanguage,''),
             // home: const MyHomePage(title: 'Flutter Demo Home Page'),
             routes: routes,
-            home: SignInScreen(),
+            home: LoginScreen(),
           );
         });
   }
