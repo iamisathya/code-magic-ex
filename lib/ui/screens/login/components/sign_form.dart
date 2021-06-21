@@ -115,6 +115,7 @@ class _SignFormState extends State<SignForm> {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueAccent),
         ),
+        labelStyle: TextStyle(color: Colors.grey),
         labelText: "Password",
         hintText: "Enter your password",
         // If  you are using latest version of flutter then lable text and hint text shown like this
@@ -154,6 +155,7 @@ class _SignFormState extends State<SignForm> {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueAccent),
         ),
+        labelStyle: TextStyle(color: Colors.grey),
         labelText: "User ID",
         hintText: "Enter your user id",
         // If  you are using latest version of flutter then lable text and hint text shown like this
