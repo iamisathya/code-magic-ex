@@ -1,8 +1,10 @@
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/request/request_customer_token.dart';
+import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_token.dart';
 import 'package:code_magic_ex/ui/screens/home/home.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
@@ -30,11 +32,29 @@ class LoginBLoc {
           namespace: '${Address.baseUrl}customers',
           type: kEncodeType,
           value: kEncodeValue);
+
+      //*  getLoginTokens from api
       final CustomerToken customerToken =
           await ApiService.init().getLoginTokens(request);
-      _stateSubject.add(LoginPageState(customerToken: customerToken));
-      Navigator.pushNamedAndRemoveUntil(context, MainHomeScreen.routeName, (route) => false);
-      //  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MainHomeScreen()),(_) => false);
+      await UserSessionManager.shared.setLoginTokenIntoDB(customerToken);
+
+      //* getting loginToken by fetching string after last slash /
+      final String loginToken = customerToken.customer.href.substring(
+          customerToken.customer.href.lastIndexOf("/") + 1,
+          customerToken.customer.href.length);
+
+      //*  getCustomerData from api
+      final UserInfo responseUserInfo =
+          await ApiService.init().getCustomerData(loginToken);
+      
+      //*  Storing user info to db
+      await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
+      _stateSubject.add(LoginPageState(
+          customerToken: customerToken, userInfo: responseUserInfo));
+          
+      //*  navigate to home page
+      Navigator.pushNamedAndRemoveUntil(
+          context, MainHomeScreen.routeName, (route) => false);
     } catch (err) {
       _stateSubject.add(LoginPageState.error());
       _stateSubject.addError(err);

@@ -34,39 +34,91 @@ class UserInfo {
   final String type;
   final int unicity;
 
-  UserInfo(
-      {required this.achievementsHistory,
-      required this.businessEntity,
-      required this.coapplicant,
-      required this.cumulativeMetricsProfile,
-      required this.customerSite,
-      required this.draftBankAccounts,
-      required this.email,
-      required this.enroller,
-      required this.entryPeriod,
-      required this.homePhone,
-      required this.href,
-      required this.humanName,
-      required this.id,
-      required this.joinDate,
-      required this.loginAssociations,
-      required this.mainAddress,
-      required this.metricsProfile,
-      required this.metricsProfileHistory,
-      required this.orders,
-      required this.profilePicture,
-      required this.rights,
-      required this.sponsor,
-      required this.sponsoredCustomers,
-      required this.statements,
-      required this.status,
-      required this.subscriptions,
-      required this.taxTerms,
-      required this.type,
-      required this.unicity});
+  // UserInfo(
+  //     {required this.achievementsHistory,
+  //     required this.businessEntity,
+  //     required this.coapplicant,
+  //     required this.cumulativeMetricsProfile,
+  //     required this.customerSite,
+  //     required this.draftBankAccounts,
+  //     required this.email,
+  //     required this.enroller,
+  //     required this.entryPeriod,
+  //     required this.homePhone,
+  //     required this.href,
+  //     required this.humanName,
+  //     required this.id,
+  //     required this.joinDate,
+  //     required this.loginAssociations,
+  //     required this.mainAddress,
+  //     required this.metricsProfile,
+  //     required this.metricsProfileHistory,
+  //     required this.orders,
+  //     required this.profilePicture,
+  //     required this.rights,
+  //     required this.sponsor,
+  //     required this.sponsoredCustomers,
+  //     required this.statements,
+  //     required this.status,
+  //     required this.subscriptions,
+  //     required this.taxTerms,
+  //     required this.type,
+  //     required this.unicity});
+
+  UserInfo()
+      : achievementsHistory = CollectHrefFromMap(href: ""),
+        businessEntity = BusinessEntity(legalType: ""),
+        coapplicant = Coapplicant(
+            details: CoapplicantDetails(
+                humanName:
+                    SortHumanName(firstName: "", fullName: "", lastName: ""))),
+        cumulativeMetricsProfile = CollectHrefFromMap(href: ""),
+        customerSite = CollectHrefFromMap(href: ""),
+        draftBankAccounts = CollectHrefFromMap(href: ""),
+        email = "",
+        enroller = EnrollerOrSponser(
+            href: "",
+            humanName: HumanNameEn(
+                firstName: "", lastName: "", fullName: "", fullNameEn: ""),
+            id: Id(unicity: "")),
+        entryPeriod = "",
+        homePhone = "",
+        href = "",
+        humanName = HumanName(
+            fullName: "", lastName: "", firstName: "", fullNameTh: ""),
+        id = Id(unicity: ""),
+        joinDate = "",
+        loginAssociations = CollectHrefFromMap(href: ""),
+        mainAddress = MainAddress(
+            address1: "",
+            address2: "",
+            city: "",
+            country: "",
+            state: "",
+            zip: ""),
+        metricsProfile = CollectHrefFromMap(href: ""),
+        metricsProfileHistory = CollectHrefFromMap(href: ""),
+        orders = CollectHrefFromMap(href: ""),
+        profilePicture = CollectHrefFromMap(href: ""),
+        rights = [],
+        sponsor = EnrollerOrSponser(
+            href: "",
+            humanName: HumanNameEn(
+                firstName: "", fullName: "", fullNameEn: "", lastName: ""),
+            id: Id(unicity: "")),
+        statements = CollectHrefFromMap(href: ""),
+        status = "",
+        subscriptions = [],
+        taxTerms = TaxTerms(taxId: ""),
+        type = "",
+        unicity = 0,
+        sponsoredCustomers = CollectHrefFromMap(href: "");
 
   factory UserInfo.fromJson(Map<String, dynamic> json) =>
       _$UserInfoFromJson(json);
+
+  // ignore: sort_unnamed_constructors_first
+  // UserInfo(this.achievementsHistory, this.businessEntity, this.coapplicant, this.cumulativeMetricsProfile, this.customerSite, this.draftBankAccounts, this.email, this.enroller, this.entryPeriod, this.homePhone, this.href, this.humanName, this.id, this.joinDate, this.loginAssociations, this.mainAddress, this.metricsProfile, this.metricsProfileHistory, this.orders, this.profilePicture, this.sponsor, this.sponsoredCustomers, this.statements, this.status, this.taxTerms, this.type, this.unicity, this.subscriptions, this.rights);
 
   Map<String, dynamic> toJson() => _$UserInfoToJson(this);
 

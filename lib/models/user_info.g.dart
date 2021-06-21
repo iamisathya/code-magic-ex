@@ -7,88 +7,18 @@ part of 'user_info.dart';
 // **************************************************************************
 
 UserInfo _$UserInfoFromJson(Map<String, dynamic> json) {
-  return UserInfo(
-    achievementsHistory: CollectHrefFromMap.fromJson(
-        json['achievementsHistory'] as Map<String, dynamic>),
-    businessEntity:
-        BusinessEntity.fromJson(json['businessEntity'] as Map<String, dynamic>),
-    coapplicant:
-        Coapplicant.fromJson(json['coapplicant'] as Map<String, dynamic>),
-    cumulativeMetricsProfile: CollectHrefFromMap.fromJson(
-        json['cumulativeMetricsProfile'] as Map<String, dynamic>),
-    customerSite: CollectHrefFromMap.fromJson(
-        json['customerSite'] as Map<String, dynamic>),
-    draftBankAccounts: CollectHrefFromMap.fromJson(
-        json['draftBankAccounts'] as Map<String, dynamic>),
-    email: json['email'] as String,
-    enroller:
-        EnrollerOrSponser.fromJson(json['enroller'] as Map<String, dynamic>),
-    entryPeriod: json['entryPeriod'] as String,
-    homePhone: json['homePhone'] as String,
-    href: json['href'] as String,
-    humanName: HumanName.fromJson(json['humanName'] as Map<String, dynamic>),
-    id: Id.fromJson(json['id'] as Map<String, dynamic>),
-    joinDate: json['joinDate'] as String,
-    loginAssociations: CollectHrefFromMap.fromJson(
-        json['loginAssociations'] as Map<String, dynamic>),
-    mainAddress:
-        MainAddress.fromJson(json['mainAddress'] as Map<String, dynamic>),
-    metricsProfile: CollectHrefFromMap.fromJson(
-        json['metricsProfile'] as Map<String, dynamic>),
-    metricsProfileHistory: CollectHrefFromMap.fromJson(
-        json['metricsProfileHistory'] as Map<String, dynamic>),
-    orders: CollectHrefFromMap.fromJson(json['orders'] as Map<String, dynamic>),
-    profilePicture: CollectHrefFromMap.fromJson(
-        json['profilePicture'] as Map<String, dynamic>),
-    rights: (json['rights'] as List<dynamic>)
+  return UserInfo()
+    ..rights = (json['rights'] as List<dynamic>)
         .map((e) => Rights.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    sponsor:
-        EnrollerOrSponser.fromJson(json['sponsor'] as Map<String, dynamic>),
-    sponsoredCustomers: CollectHrefFromMap.fromJson(
-        json['sponsoredCustomers'] as Map<String, dynamic>),
-    statements:
-        CollectHrefFromMap.fromJson(json['statements'] as Map<String, dynamic>),
-    status: json['status'] as String,
-    subscriptions: (json['subscriptions'] as List<dynamic>)
+        .toList()
+    ..subscriptions = (json['subscriptions'] as List<dynamic>)
         .map((e) => Subscriptions.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    taxTerms: TaxTerms.fromJson(json['taxTerms'] as Map<String, dynamic>),
-    type: json['type'] as String,
-    unicity: json['unicity'] as int,
-  );
+        .toList();
 }
 
 Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
-      'achievementsHistory': instance.achievementsHistory,
-      'businessEntity': instance.businessEntity,
-      'coapplicant': instance.coapplicant,
-      'cumulativeMetricsProfile': instance.cumulativeMetricsProfile,
-      'customerSite': instance.customerSite,
-      'draftBankAccounts': instance.draftBankAccounts,
-      'email': instance.email,
-      'enroller': instance.enroller,
-      'entryPeriod': instance.entryPeriod,
-      'homePhone': instance.homePhone,
-      'href': instance.href,
-      'humanName': instance.humanName,
-      'id': instance.id,
-      'joinDate': instance.joinDate,
-      'loginAssociations': instance.loginAssociations,
-      'mainAddress': instance.mainAddress,
-      'metricsProfile': instance.metricsProfile,
-      'metricsProfileHistory': instance.metricsProfileHistory,
-      'orders': instance.orders,
-      'profilePicture': instance.profilePicture,
       'rights': instance.rights,
-      'sponsor': instance.sponsor,
-      'sponsoredCustomers': instance.sponsoredCustomers,
-      'statements': instance.statements,
-      'status': instance.status,
       'subscriptions': instance.subscriptions,
-      'taxTerms': instance.taxTerms,
-      'type': instance.type,
-      'unicity': instance.unicity,
     };
 
 CollectHrefFromMap _$CollectHrefFromMapFromJson(Map<String, dynamic> json) {

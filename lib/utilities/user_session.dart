@@ -16,7 +16,7 @@ class UserSessionManager {
   static UserSessionManager shared = UserSessionManager._internal();
 
   static UserInfo _emptyUserInfo() => UserInfo.fromJson({});
-  static CustomerToken _emptyCustomerTokenData() => CustomerToken.fromJson({});
+  static CustomerToken _emptyCustomerTokenData() => CustomerToken();
   static ThemeTypes resetThemeData() => ThemeTypes.light;
   ThemeTypes currentTheme = resetThemeData();
   String currentLanguage = 'en';
@@ -25,13 +25,25 @@ class UserSessionManager {
   CustomerToken customerToken = _emptyCustomerTokenData();
   UserInfo userInfo = _emptyUserInfo();
 
-  
-  Future<bool> setUserInfoIntoDB(CustomerToken token) async {
+  Future<bool> setLoginTokenIntoDB(CustomerToken token) async {
     try {
-      await KeyValueStorageManager.setString(KeyValueStorageKeys.loginTokens, json.encode(token.toMap()));
+      await KeyValueStorageManager.setString(KeyValueStorageKeys.loginTokens, token.toString());
 
-      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.userAccountData)}");
+      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.loginTokens)}");
       customerToken = token;
+      return true;
+    } catch (error) {
+      debugPrint('Session - Set User Info into DB - Error : ${error.toString()}');
+    }
+    return false;
+  }
+  
+  Future<bool> setUserInfoIntoDB(UserInfo info) async {
+    try {
+      await KeyValueStorageManager.setString(KeyValueStorageKeys.userInfo, json.encode(info.toMap()));
+
+      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.userInfo)}");
+      userInfo = info;
       return true;
     } catch (error) {
       debugPrint('Session - Set User Info into DB - Error : ${error.toString()}');
@@ -65,7 +77,7 @@ class UserSessionManager {
 
   void setUserInfoFromDB() {
     try {
-      final data = KeyValueStorageManager.getString(KeyValueStorageKeys.userAccountData);
+      final data = KeyValueStorageManager.getString(KeyValueStorageKeys.userInfo);
       if (null == data || data.isEmpty) throw Exception('No data available in DB');
       final Map<String, dynamic> jsonData = json.decode(data) as Map<String, dynamic>;
       if (jsonData.isEmpty) throw Exception('No data available after JSON convert');
@@ -78,7 +90,7 @@ class UserSessionManager {
 
 
   Future<void> removeUserInfoFromDB() async {
-    await KeyValueStorageManager.remove(KeyValueStorageKeys.userAccountData);
+    await KeyValueStorageManager.remove(KeyValueStorageKeys.userInfo);
     userInfo = _emptyUserInfo();
   }
 

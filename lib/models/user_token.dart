@@ -9,7 +9,7 @@ class CustomerToken {
   final String token;
   final WhoMeHref whoami;
 
-  CustomerToken({required this.customer, required this.href, required this.token, required this.whoami});
+  CustomerToken(): customer = CustomerHref(), href = "", token  = "", whoami = WhoMeHref();
 
   factory CustomerToken.fromJson(Map<String, dynamic> json) => _$CustomerTokenFromJson(json);
   
@@ -29,7 +29,7 @@ class CustomerToken {
 class CustomerHref {
   final String href;
 
-  CustomerHref({required this.href});
+  CustomerHref({this.href = ""});
 
   factory CustomerHref.fromJson(Map<String, dynamic> json) => _$CustomerHrefFromJson(json);
 
@@ -40,7 +40,7 @@ class CustomerHref {
 class WhoMeHref {
   final String href;
 
-  WhoMeHref({required this.href});
+  WhoMeHref({this.href = ""});
 
   factory WhoMeHref.fromJson(Map<String, dynamic> json) => _$WhoMeHrefFromJson(json);
 
