@@ -1,11 +1,14 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:code_magic_ex/ui/global/router.dart';
-import 'package:code_magic_ex/ui/screens/home/home.dart';
+import 'package:code_magic_ex/ui/screens/login/bloc.dart';
+import 'package:code_magic_ex/ui/screens/login/state.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/ui/global/widgets/custom_surfix_icon.dart';
 import 'package:code_magic_ex/ui/global/widgets/default_button.dart';
 import 'package:code_magic_ex/utilities/keyboard.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
-import 'package:flutter/material.dart';
 
 class SignForm extends StatefulWidget {
   @override
@@ -13,60 +16,77 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  final TextEditingController _userIdController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  late String email;
-  late String password;
+  late String email = kReleaseMode ? "" : "2970466";
+  late String password = kReleaseMode ? "" : "1234";
   bool remember = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   void _onPressContinue() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      // if all are valid then go to success screen
+      loginBloc.getLoginTokens(context);
       KeyboardUtil.hideKeyboard(context);
-      Navigator.pushNamed(context, MainHomeScreen.routeName);
+      // Navigator.pushNamed(context, MainHomeScreen.routeName);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          buildUserIdFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          buildPasswordFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          Row(
-            children: [
-              Checkbox(
-                value: remember,
-                activeColor: Colors.blueAccent,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value!;
-                  });
-                },
-              ),
-              const Text("Remember me"),
-              const Spacer(),
-              GestureDetector(
-                onTap: () => Navigator.pushNamed(context, ScreenPaths.mainHome),
-                child: const Text(
-                  "Forgot Password",
-                  style: TextStyle(decoration: TextDecoration.underline),
+    if (!kReleaseMode) {
+      _userIdController.text = "2970466";
+      _passwordController.text = "1234";
+    }
+    return StreamBuilder<LoginPageState>(
+        stream: loginBloc.state,
+        builder: (context, snapshot) {
+          return Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                buildUserIdFormField(),
+                SizedBox(height: getProportionateScreenHeight(30)),
+                buildPasswordFormField(),
+                SizedBox(height: getProportionateScreenHeight(30)),
+                Row(
+                  children: [
+                    Checkbox(
+                      value: remember,
+                      activeColor: Colors.blueAccent,
+                      onChanged: (value) {
+                        setState(() {
+                          remember = value!;
+                        });
+                      },
+                    ),
+                    const Text("Remember me"),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, ScreenPaths.mainHome),
+                      child: const Text(
+                        "Forgot Password",
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-          SizedBox(height: getProportionateScreenHeight(20)),
-          DefaultButton(
-            text: "Continue",
-            press: () => _onPressContinue(),
-          ),
-        ],
-      ),
-    );
+                SizedBox(height: getProportionateScreenHeight(20)),
+                DefaultButton(
+                  text: "Continue",
+                  press: () => _onPressContinue(),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   TextFormField buildPasswordFormField() {
@@ -76,9 +96,10 @@ class _SignFormState extends State<SignForm> {
       validator: (value) {
         if (value!.isEmpty) {
           return kPassNullError;
-        } 
+        }
         return null;
       },
+      controller: _passwordController,
       decoration: const InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueGrey),
@@ -106,6 +127,7 @@ class _SignFormState extends State<SignForm> {
           return kUserIdNullError;
         }
       },
+      controller: _userIdController,
       decoration: const InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueGrey),

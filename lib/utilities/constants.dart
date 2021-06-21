@@ -22,6 +22,9 @@ final headingStyle = TextStyle(
 
 const defaultDuration = Duration(milliseconds: 250);
 
+const String kEncodeType = "base64";
+const String kEncodeValue = "Mjk3MDQ2NjoxMjM0";
+
 // Form Error
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
