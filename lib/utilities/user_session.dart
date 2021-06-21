@@ -97,7 +97,10 @@ class UserSessionManager {
   void getLoginStatusFromDB() {
     try {
       final data = KeyValueStorageManager.getBool(KeyValueStorageKeys.loginStatus);
-      if (data == null) throw Exception('No data available in DB');
+      if (data == null) {
+        isUserLoggedIn = false;
+        return;
+      }
       isUserLoggedIn = data;
     } catch (error) {
       isUserLoggedIn = false;

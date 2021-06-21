@@ -80,6 +80,7 @@ class _SignFormState extends State<SignForm> {
                 ),
                 SizedBox(height: getProportionateScreenHeight(20)),
                 DefaultButton(
+                  loading: snapshot.hasData && snapshot.data!.isLoading,
                   text: "Continue",
                   press: () => _onPressContinue(),
                 ),
