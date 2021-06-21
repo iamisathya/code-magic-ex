@@ -48,3 +48,10 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: const BorderSide(color: kTextColor),
   );
 }
+
+MaterialStateProperty<RoundedRectangleBorder> elevatedShape() {
+  return MaterialStateProperty.all<RoundedRectangleBorder>(
+      RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(18.0),
+          side: const BorderSide(color: Colors.blueAccent)));
+}

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilities/constants.dart';
-import '../../../utilities/size_config.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/size_config.dart';
+
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
@@ -17,11 +18,12 @@ class DefaultButton extends StatelessWidget {
       width: double.infinity,
       height: getProportionateScreenHeight(56),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
+        style: ButtonStyle(shape: elevatedShape()),
         onPressed: () => press,
         child: Text(
           text,
           style: TextStyle(
+            color: Colors.blueAccent,
             fontSize: getProportionateScreenWidth(14),
           ),
         ),
