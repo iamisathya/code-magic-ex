@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
+
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/request/request_customer_token.dart';
 import 'package:code_magic_ex/models/user_info.dart';
@@ -6,9 +9,6 @@ import 'package:code_magic_ex/ui/screens/home/home.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
-import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/ui/screens/login/state.dart';
 
@@ -47,7 +47,7 @@ class LoginBLoc {
 
       //*  getCustomerData from api
       final UserInfo responseUserInfo =
-          await ApiService.init().getCustomerData(loginToken);
+          await ApiService.shared().getCustomerData(loginToken);
 
       //*  Storing user info to db
       await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);

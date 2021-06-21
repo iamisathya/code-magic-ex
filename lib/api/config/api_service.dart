@@ -24,32 +24,30 @@ part 'api_service.g.dart';
 @RestApi(baseUrl: Address.baseUrl)
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
-  static ApiService _instance = ApiService(Dio());
+  static final ApiService _instance = ApiService(Dio());
 
-  static ApiService init() {
+  factory ApiService.init() {
     final Dio dio = Dio();
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
-    _instance = ApiService(dio);
+    return ApiService(dio);
 
-    return _instance;
+    // return _instance;
   }
 
-  static ApiService shared() {
+  factory ApiService.shared() {
     final Dio dio = Dio();
     dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
-    _instance = ApiService(dio);
-
-    return _instance;
+    return ApiService(dio);
   }
 
-  static ApiService clientNoLogger() {
+  factory ApiService.clientNoLogger() {
     final Dio dio = Dio();
     dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
-    _instance = ApiService(dio);
-
-    return _instance;
+    return ApiService(dio);
   }
+
+  static ApiService get instance => _instance;
 
   //? Example: https://hydra.unicity.net/v5a/loginTokens
   //? body
