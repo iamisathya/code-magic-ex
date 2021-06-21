@@ -1,7 +1,25 @@
-import 'package:code_magic_ex/ui/global/router.dart';
 import 'package:flutter/material.dart';
 
+import 'package:code_magic_ex/ui/global/router.dart';
+import 'package:code_magic_ex/ui/global/widgets/confirmation_dialog.dart';
+import 'package:code_magic_ex/ui/screens/login/login.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
+
 class NavigationDrawer extends StatelessWidget {
+  Future<void> _didMenuPressed(BuildContext context) async {
+    // Navigator.of(context).pop();
+    final isConfirmed = await ConfirmationDialog.show(
+        context: context,
+        message: 'Are you sure you want to log out?',
+        okText: 'Yes',
+        cancelText: 'No');
+    if (isConfirmed == false) return;
+    UserSessionManager.shared.removeUserInfoFromDB();
+    final route = MaterialPageRoute(builder: (context) => LoginScreen());
+    Navigator.of(context).pushAndRemoveUntil(route, (_) => false);
+    return;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -12,57 +30,49 @@ class NavigationDrawer extends StatelessWidget {
           _createDrawerBodyItem(
             icon: Icons.home_outlined,
             text: 'Home',
-            onTap: () =>
-                Navigator.pushNamed(context, ScreenPaths.mainHome),
+            onTap: () => Navigator.pushNamed(context, ScreenPaths.mainHome),
           ),
           _createDrawerBodyItem(
             icon: Icons.trending_up_sharp,
             text: 'Open PO',
-            onTap: () =>
-                Navigator.pushNamed(context, ScreenPaths.openPO),
+            onTap: () => Navigator.pushNamed(context, ScreenPaths.openPO),
           ),
           _createDrawerBodyItem(
             icon: Icons.mode_edit_sharp,
             text: 'Enroll',
-            onTap: () =>
-                Navigator.pushNamed(context, ScreenPaths.enroll),
+            onTap: () => Navigator.pushNamed(context, ScreenPaths.enroll),
           ),
           _createDrawerBodyItem(
             icon: Icons.shopping_cart_outlined,
             text: 'Order Entry',
-            onTap: () =>
-                Navigator.pushNamed(context, ScreenPaths.orderEntry),
+            onTap: () => Navigator.pushNamed(context, ScreenPaths.orderEntry),
           ),
           const Divider(thickness: 1),
           _createDrawerBodyItem(
             icon: Icons.inventory_2,
             text: 'Inventory',
-            onTap: () =>
-                Navigator.pushNamed(context, ScreenPaths.inventory),
+            onTap: () => Navigator.pushNamed(context, ScreenPaths.inventory),
           ),
           _createDrawerBodyItem(
             icon: Icons.receipt_outlined,
             text: 'Sales Report',
-            onTap: () =>
-                Navigator.pushNamed(context, ScreenPaths.salesReport),
+            onTap: () => Navigator.pushNamed(context, ScreenPaths.salesReport),
           ),
           _createDrawerBodyItem(
             icon: Icons.share_outlined,
             text: 'Easyship Report',
-            onTap: () => Navigator.pushNamed(
-                context, ScreenPaths.easyShipReport),
+            onTap: () =>
+                Navigator.pushNamed(context, ScreenPaths.easyShipReport),
           ),
           _createDrawerBodyItem(
             icon: Icons.qr_code_2_outlined,
             text: 'Barcode',
-            onTap: () =>
-                Navigator.pushNamed(context, ScreenPaths.barcode),
+            onTap: () => Navigator.pushNamed(context, ScreenPaths.barcode),
           ),
           _createDrawerBodyItem(
             icon: Icons.logout_outlined,
             text: 'Signout',
-            onTap: () =>
-                Navigator.pushNamed(context, ScreenPaths.barcode),
+            onTap: () => _didMenuPressed(context),
           ),
           ListTile(
             title: const Text('App version 1.0.0'),

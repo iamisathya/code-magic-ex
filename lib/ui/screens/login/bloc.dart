@@ -51,6 +51,7 @@ class LoginBLoc {
 
       //*  Storing user info to db
       await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
+      await UserSessionManager.shared.setLoginStatusIntoDB(true);
       _stateSubject.add(LoginPageState(
           customerToken: customerToken, userInfo: responseUserInfo));
 

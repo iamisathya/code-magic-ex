@@ -84,6 +84,7 @@ class KeyValueStorageManager {
 
 class KeyValueStorageKeys {
   static const String loginTokens = "login_tokens";
+  static const String loginStatus = "login_status";
   static const String userInfo = "user_info";
   static const String rememberMeThings = "user_remember_me_things";
   static const String currentTheme = "light";

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:code_magic_ex/models/user_token.dart';
-import 'package:flutter/foundation.dart';
+import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/utilities/key_value_storage.dart';
@@ -24,16 +24,27 @@ class UserSessionManager {
   int? selectedId;
   CustomerToken customerToken = _emptyCustomerTokenData();
   UserInfo userInfo = _emptyUserInfo();
+  bool isUserLoggedIn = false;
+
+  // ignore: avoid_positional_boolean_parameters
+  Future<bool> setLoginStatusIntoDB(bool status) async {
+    try {
+      await KeyValueStorageManager.setBool(KeyValueStorageKeys.loginStatus, status.toString());
+      isUserLoggedIn = status;
+      return true;
+    } catch (error) {
+      LoggerService.instance.e('Session - Set Login Status into DB - Error : ${error.toString()}');
+    }
+    return false;
+  }
 
   Future<bool> setLoginTokenIntoDB(CustomerToken token) async {
     try {
       await KeyValueStorageManager.setString(KeyValueStorageKeys.loginTokens, json.encode(token.toMap()));
-
-      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.loginTokens)}");
       customerToken = token;
       return true;
     } catch (error) {
-      debugPrint('Session - Set User Info into DB - Error : ${error.toString()}');
+      LoggerService.instance.e('Session - Set User Info into DB - Error : ${error.toString()}');
     }
     return false;
   }
@@ -41,12 +52,10 @@ class UserSessionManager {
   Future<bool> setUserInfoIntoDB(UserInfo info) async {
     try {
       await KeyValueStorageManager.setString(KeyValueStorageKeys.userInfo, json.encode(info.toMap()));
-
-      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.userInfo)}");
       userInfo = info;
       return true;
     } catch (error) {
-      debugPrint('Session - Set User Info into DB - Error : ${error.toString()}');
+      LoggerService.instance.e('Session - Set User Info into DB - Error : ${error.toString()}');
     }
     return false;
   }
@@ -54,12 +63,10 @@ class UserSessionManager {
    Future<bool> setCurrentTheme(ThemeTypes theme) async {
     try {
       await KeyValueStorageManager.setString(KeyValueStorageKeys.currentTheme, theme.toString());
-
-      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.currentTheme)}");
       currentTheme = ThemeTypes.light;
       return true;
     } catch (error) {
-      debugPrint('Session - Set User Info into DB - Error : ${error.toString()}');
+      LoggerService.instance.e('Session - Set User Info into DB - Error : ${error.toString()}');
     }
     return false;
   }
@@ -67,10 +74,9 @@ class UserSessionManager {
   Future<bool> setCurrentLanguage(String language) async {
     try {
       await KeyValueStorageManager.setString(KeyValueStorageKeys.currentLanguage, language);
-      debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.currentLanguage)}");      
       return true;
     } catch (error) {
-      debugPrint('Session - Set User Info into DB - Error : ${error.toString()}');
+      LoggerService.instance.e('Session - Set User Info into DB - Error : ${error.toString()}');
     }
     return false;
   }
@@ -83,15 +89,30 @@ class UserSessionManager {
       if (jsonData.isEmpty) throw Exception('No data available after JSON convert');
       userInfo = UserInfo.fromJson(jsonData);
     } catch (error) {
-      debugPrint('Session - Set User Info from DB - Error : ${error.toString()}');
+      LoggerService.instance.e('Session - Set User Info from DB - Error : ${error.toString()}');
       userInfo = _emptyUserInfo();
+    }
+  }
+
+  void getLoginStatusFromDB() {
+    try {
+      final data = KeyValueStorageManager.getBool(KeyValueStorageKeys.loginStatus);
+      if (data == null) throw Exception('No data available in DB');
+      isUserLoggedIn = data;
+    } catch (error) {
+      isUserLoggedIn = false;
+      LoggerService.instance.e('Session - Set User Info from DB - Error : ${error.toString()}');
     }
   }
 
 
   Future<void> removeUserInfoFromDB() async {
+    await KeyValueStorageManager.remove(KeyValueStorageKeys.loginTokens);
     await KeyValueStorageManager.remove(KeyValueStorageKeys.userInfo);
+    await KeyValueStorageManager.remove(KeyValueStorageKeys.loginStatus);
     userInfo = _emptyUserInfo();
+    customerToken = _emptyCustomerTokenData();
+    isUserLoggedIn = false;
   }
 
 
@@ -102,7 +123,7 @@ class UserSessionManager {
           json.encode({'mail': mail, 'phone': phone, 'password': password, 'roleId': roleId}));
       return true;
     } catch (error) {
-      debugPrint('Session - Set Remember Me into DB - Error : ${error.toString()}');
+      LoggerService.instance.e('Session - Set Remember Me into DB - Error : ${error.toString()}');
     }
     return false;
   }

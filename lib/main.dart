@@ -1,4 +1,6 @@
+import 'package:code_magic_ex/ui/screens/home/home.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/ui/global/routes.dart';
@@ -27,8 +29,15 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+
+  Widget _nextScreen() {
+    UserSessionManager.shared.getLoginStatusFromDB();
+    final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
+    return isLoggedIn ? MainHomeScreen() : LoginScreen();
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return MainStreamBuilder(
         themeBloc: themeBloc.appThemeStream,
         translationBloc: translationBloc.appLanguageStream,
@@ -42,7 +51,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(translationBloc.getCurrentLanguage,''),
             routes: routes,
-            home: LoginScreen(),
+            home: _nextScreen(),
           );
         });
   }
