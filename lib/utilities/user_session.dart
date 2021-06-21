@@ -15,8 +15,8 @@ class UserSessionManager {
 
   static UserSessionManager shared = UserSessionManager._internal();
 
-  static UserInfo _emptyUserInfo() => UserInfo.fromJson({});
-  static CustomerToken _emptyCustomerTokenData() => CustomerToken();
+  static UserInfo _emptyUserInfo() => UserInfo();
+  static CustomerToken _emptyCustomerTokenData() => CustomerToken(href: "", whoami: WhoMeHref(href: ""), token: "", customer: CustomerHref(href: ""));
   static ThemeTypes resetThemeData() => ThemeTypes.light;
   ThemeTypes currentTheme = resetThemeData();
   String currentLanguage = 'en';
@@ -27,7 +27,7 @@ class UserSessionManager {
 
   Future<bool> setLoginTokenIntoDB(CustomerToken token) async {
     try {
-      await KeyValueStorageManager.setString(KeyValueStorageKeys.loginTokens, token.toString());
+      await KeyValueStorageManager.setString(KeyValueStorageKeys.loginTokens, json.encode(token.toMap()));
 
       debugPrint(" USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.loginTokens)}");
       customerToken = token;

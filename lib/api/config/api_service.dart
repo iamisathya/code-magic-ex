@@ -35,7 +35,6 @@ abstract class ApiService {
   }
 
   static ApiService shared() {
-    print(UserSessionManager.shared.customerToken.token);
     final Dio dio = Dio();
     dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.interceptors.add(PrettyDioLogger(requestBody: true));

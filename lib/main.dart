@@ -1,5 +1,6 @@
 import 'package:code_magic_ex/ui/global/routes.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
+import 'package:code_magic_ex/utilities/key_value_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -21,7 +22,7 @@ void main() async {
   ConnectivityManager.shared.doInitialCheck();
 
   /// Local Key Value DB
-  // await KeyValueStorageManager.setStorage();
+  await KeyValueStorageManager.setStorage();
   // fetchAPI();
   // getTranslations();
 

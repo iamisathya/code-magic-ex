@@ -7,11 +7,21 @@ part of 'user_token.dart';
 // **************************************************************************
 
 CustomerToken _$CustomerTokenFromJson(Map<String, dynamic> json) {
-  return CustomerToken();
+  return CustomerToken(
+    customer: CustomerHref.fromJson(json['customer'] as Map<String, dynamic>),
+    href: json['href'] as String,
+    token: json['token'] as String,
+    whoami: WhoMeHref.fromJson(json['whoami'] as Map<String, dynamic>),
+  );
 }
 
 Map<String, dynamic> _$CustomerTokenToJson(CustomerToken instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'customer': instance.customer,
+      'href': instance.href,
+      'token': instance.token,
+      'whoami': instance.whoami,
+    };
 
 CustomerHref _$CustomerHrefFromJson(Map<String, dynamic> json) {
   return CustomerHref(
