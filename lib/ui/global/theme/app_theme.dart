@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -7,7 +8,7 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
-      color: Color(0xff003366),
+      color: kPrimaryColor,
       iconTheme: IconThemeData(
         color: Colors.white,
       ),
@@ -30,7 +31,11 @@ class AppTheme {
       ),
       subtitle2: TextStyle(
         color: Colors.white70,
-        fontSize: 18.0,
+        fontSize: 16.0,
+      ),
+      headline4: TextStyle(
+        color: Colors.white,
+        fontSize: 16.0,
       ),
     ),
   );
@@ -64,6 +69,17 @@ class AppTheme {
         color: Colors.white70,
         fontSize: 18.0,
       ),
+      headline4: TextStyle(
+        color: Colors.white,
+        fontSize: 16.0,
+      )
     ),
+  );
+}
+
+TextTheme textTheme() {
+  return const TextTheme(
+    headline4: TextStyle(color: Colors.white, fontSize: 16),
+    headline5: TextStyle(color: Colors.white, fontSize: 14),
   );
 }

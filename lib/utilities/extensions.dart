@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 
 extension BoolParsing on String {
   bool parseBool() {
@@ -16,7 +17,7 @@ extension OrderId on String {
   }
 
   String retrieveAttachementName() {
-    //* Example: 4_201907101007524248.jpg_0 
+    //* Example: 4_201907101007524248.jpg_0
     try {
       return split("_")[1];
     } catch (e) {
@@ -49,4 +50,18 @@ extension DateFormater on String {
 
 extension DoubleExtension on double {
   String get asReadableString => toInt().toString();
+}
+
+extension AppStyles on TextTheme {
+  TextStyle get error => const TextStyle(
+      decoration: TextDecoration.lineThrough,
+      fontSize: 20.0,
+      color: Colors.blue,
+      fontWeight: FontWeight.bold);
+
+  TextStyle get tableHeader =>
+      const TextStyle(fontSize: 16.0, color: Colors.white);
+
+  TextStyle get tableData =>
+      const TextStyle(fontSize: 14.0, color: Colors.black);
 }

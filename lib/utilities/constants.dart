@@ -1,14 +1,23 @@
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 
-const kPrimaryColor = Color(0xff6769f6);
-const kPrimaryLightColor = Color(0xFFFFECDF);
+const kPrimaryColor = Color(0xFF1D3557);
+const kPrimaryLightColor = Color(0xFF457B9D);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
-  colors: [Color(0xFFFFA53E), Color(0xFFFF7643)],
+  colors: [Color(0xFF1D3557), Color(0xFF457B9D)],
 );
-const kSecondaryColor = Color(0xFF979797);
+const kSecondaryColor = Color(0xFFA8DADC);
+const kSecondaryLightColor = Color(0xFFF1FAEE);
+const kSecondaryGradientColor = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [Color(0xFFA8DADC), Color(0xFFF1FAEE)],
+);
+
+const kTernaryLightColor = Color(0xFFE63946);
+
 const kTextColor = Color(0xFF757575);
 
 const kAnimationDuration = Duration(milliseconds: 200);
