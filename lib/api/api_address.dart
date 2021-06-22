@@ -19,4 +19,5 @@ class Address {
   static const String memberCallsBase = "https://member-calls.unicity.com/";
   static const String validOrders = "ALL/DSC/getdata.php";
   static const String dictionary = "dictionary/publish";
+  static const String resource = "https://dsc-th.unicity.com/data/";
 }

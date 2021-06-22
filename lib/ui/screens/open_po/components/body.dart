@@ -1,10 +1,15 @@
+import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/models/open_po.dart';
 import 'package:code_magic_ex/ui/screens/github/empty_result_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/search_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/search_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/open_po/bloc.dart';
 import 'package:code_magic_ex/ui/screens/open_po/state.dart';
+import 'package:code_magic_ex/ui/screens/webview/webview.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:code_magic_ex/utilities/extensions.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -25,78 +30,88 @@ class _BodyState extends State<Body> {
       (index) => InkWell(
         child: Container(
           alignment: Alignment.center,
-          width: 160.0,
+          width: 180.0,
           height: 60.0,
           decoration: BoxDecoration(
-              border: Border.all(),
-              color: index == 0 ? Colors.lightBlue[700] : Colors.white),
-          margin: const EdgeInsets.all(1.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text("Item Code",
-                  style: index == 0
-                      ? Theme.of(context).textTheme.subtitle2
-                      : Theme.of(context).textTheme.subtitle1),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(Icons.arrow_drop_up),
-                  Icon(Icons.arrow_drop_down),
-                ],
-              ),
-            ],
+            color: index == 0 ? kPrimaryColor : Colors.white,
+            border: Border.all(width: 0.5),
           ),
+          child: Text(items[index].orderOpid,
+              style: index == 0
+                  ? Theme.of(context).textTheme.button
+                  : Theme.of(context).textTheme.bodyText2),
         ),
       ),
     );
   }
 
-  List<Widget> _buildCells(int mainIdex, List<OpenPO> items, String type,
-      double totalPrice, double totalPv, BuildContext context) {
-    final int totalLength = items.length + 1;
-    final List<Map<String, dynamic>> mainHeaders = [
-      {"name": "Item Name", "width": 360.0},
-      {"name": "PV", "width": 120.0},
-      {"name": "Price", "width": 120.0},
-      {"name": "Quantity on hand", "width": 240.0},
-      {"name": "Total Accumulated Price $totalPrice", "width": 360.0},
-      {"name": "Total PV $totalPv", "width": 240.0},
-    ];
-    return List.generate(
-      type == "main" ? totalLength : 6,
-      (index) => Container(
+  List<Widget> _buildCells(
+      int mainIndex, List<OpenPO> items, BuildContext context) {
+    return List.generate(6, (index) {
+      final OpenPO currentItem = items[mainIndex];
+      return Container(
         alignment: Alignment.center,
-        width: double.parse(mainHeaders[index]["width"].toString()),
+        width: 160,
         height: 60.0,
-        margin: const EdgeInsets.all(1.0),
         decoration: BoxDecoration(
-            border: Border.all(),
-            color: mainIdex == 0 ? Colors.lightBlue[700] : Colors.white),
-        child: Text("name",
-            style: mainIdex == 0
-                ? Theme.of(context).textTheme.subtitle2
-                : Theme.of(context).textTheme.subtitle1),
-      ),
-    );
+          color: mainIndex == 0 ? kPrimaryColor : Colors.white,
+          border: Border.all(width: 0.5),
+        ),
+        child: index == 5
+            ? mainIndex == 0
+                ? (Text(
+                    index == 0
+                        ? currentItem.orderDscid
+                        : index == 1
+                            ? currentItem.orderDate
+                            : index == 2
+                                ? currentItem.orderTime
+                                : index == 3
+                                    ? currentItem.orderTotalPrice
+                                    : index == 4
+                                        ? currentItem.orderTotalPv
+                                        : currentItem.iconAttachment,
+                    style: mainIndex == 0
+                        ? Theme.of(context).textTheme.button
+                        : Theme.of(context).textTheme.bodyText2))
+                : (currentItem.iconAttachment != "1_0_0"
+                    ? IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WebivewHomeScreen(
+                                  url: "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
+                                ),
+                              ));
+                        },
+                        icon:
+                            const Icon(Icons.attach_file, color: kPrimaryColor))
+                    : const SizedBox())
+            : Text(
+                index == 0
+                    ? currentItem.orderDscid
+                    : index == 1
+                        ? currentItem.orderDate
+                        : index == 2
+                            ? currentItem.orderTime
+                            : index == 3
+                                ? currentItem.orderTotalPrice
+                                : index == 4
+                                    ? currentItem.orderTotalPv
+                                    : currentItem.iconAttachment,
+                style: mainIndex == 0
+                    ? Theme.of(context).textTheme.button
+                    : Theme.of(context).textTheme.bodyText2),
+      );
+    });
   }
 
   List<Widget> _buildRows(List<OpenPO> items, BuildContext context) {
-    double totalPrice = 0.0;
-    // looping over data array
-    for (final item in items) {
-      totalPrice += int.parse(item.orderTotalPrice);
-    }
-    double totalPv = 0.0;
-    // looping over data array
-    for (final item in items) {
-      totalPv += int.parse(item.orderTotalPv);
-    }
     return List.generate(
       items.length,
       (index) => Row(
-        children:
-            _buildCells(index, items, "sub", totalPrice, totalPv, context),
+        children: _buildCells(index, items, context),
       ),
     );
   }
@@ -107,7 +122,7 @@ class _BodyState extends State<Body> {
         child: StreamBuilder<OpenPoState>(
             stream: openPoBloc.state,
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.hasData && snapshot.hasError == false) {
                 return _buildChild(snapshot.data!, context);
               } else {
                 return const SearchErrorWidget();

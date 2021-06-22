@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/ui/global/router.dart';
@@ -22,5 +23,6 @@ Map<String, WidgetBuilder> get routes {
     ScreenPaths.salesReport: (context) => SalesReportsHomeScreen(),
     ScreenPaths.easyShipReport: (context) => EasyShipHomeScreen(),
     ScreenPaths.barcode: (context) => BarcodeHomeScreen(),
+    ScreenPaths.webview: (context) => const WebivewHomeScreen(),
   };
 }

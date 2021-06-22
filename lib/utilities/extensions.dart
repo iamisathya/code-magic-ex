@@ -14,6 +14,15 @@ extension OrderId on String {
       return this;
     }
   }
+
+  String retrieveAttachementName() {
+    //* Example: 4_201907101007524248.jpg_0 
+    try {
+      return split("_")[1];
+    } catch (e) {
+      return this;
+    }
+  }
 }
 
 extension DateFormater on String {

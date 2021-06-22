@@ -8,14 +8,14 @@ part of 'open_po.dart';
 
 OpenPO _$OpenPOFromJson(Map<String, dynamic> json) {
   return OpenPO(
-    iconAttachment: json['icon_attachment'] as String,
-    orderDate: json['order_date'] as String,
     orderDscid: json['order_dscid'] as String,
     orderOpid: json['order_opid'] as String,
-    orderStatus: json['order_status'] as String,
-    orderTime: json['order_time'] as String,
-    orderTotalPrice: json['order_total_price'] as String,
     orderTotalPv: json['order_total_pv'] as String,
+    orderTotalPrice: json['order_total_price'] as String,
+    orderDate: json['order_date'] as String,
+    orderTime: json['order_time'] as String,
+    orderStatus: json['order_status'] as String,
+    iconAttachment: json['icon_attachment'] as String,
   );
 }
 

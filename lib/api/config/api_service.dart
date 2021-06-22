@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:code_magic_ex/models/open_po.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
+import 'package:code_magic_ex/ui/screens/open_po/components/OPenPoOne.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -157,4 +158,8 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/ALL/DSC/getdata.php?type=106&mode=12&dscid=2970466
   @GET(Address.validOrders)
   Future<List<OpenPO>> getAllOpenPo(@Query("type") String type, @Query("mode") String mode, @Query("dscid") String dscid);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/getdata.php?type=106&mode=12&dscid=2970466
+  @GET(Address.validOrders)
+  Future<OpenPoOne> getAllOpenPoOne(@Query("type") String type, @Query("mode") String mode, @Query("dscid") String dscid);
 }

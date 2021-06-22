@@ -6,12 +6,12 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 
 class WebivewHomeScreen extends StatefulWidget {
-  static const String routeName = '/mainHomePage';
+  static const String routeName = '/webviewHomePage';
   final String url;
 
   const WebivewHomeScreen({
+    this.url = "",
     Key? key,
-    required this.url,
   }) : super(key: key);
 
   @override
@@ -53,6 +53,7 @@ class _WebivewHomeScreenState extends State<WebivewHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.url);
     return WebviewScaffold(
         appBar: AppBar(
           title: const Text("Webview"),
@@ -68,8 +69,7 @@ class _WebivewHomeScreenState extends State<WebivewHomeScreen> {
         ),
         withZoom: true,
         useWideViewPort: true,
-        url: 'https://facebook.com'
-        // 'https://dsc-th.unicity.com/invoice.php?link=https://hydra.unicity.net/v5a/orders/31512d2a1d4a2a5860bc785d27d1f7520ff03edcb153eeed5e2d6ab775a39f01&token=fce3ca65-b961-4961-bfce-cd8ffe7e5134',
+        url: widget.url, 
         );
   }
 }
