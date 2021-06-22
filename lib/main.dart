@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/ui/screens/home/home.dart';
+import 'package:code_magic_ex/ui/screens/open_po/open_po.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget _nextScreen() {
     UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
-    return isLoggedIn ? MainHomeScreen() : LoginScreen();
+    return isLoggedIn ? OpenPOHomeScreen() : LoginScreen();
   }
 
   @override
