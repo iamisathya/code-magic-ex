@@ -6,7 +6,6 @@ import 'package:code_magic_ex/models/open_po.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
-import 'package:code_magic_ex/ui/screens/github/search_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/open_po/bloc.dart';
 import 'package:code_magic_ex/ui/screens/open_po/state.dart';
 import 'package:code_magic_ex/ui/screens/webview/webview.dart';
@@ -30,7 +29,8 @@ class _BodyState extends State<Body> {
     final int totalLength = items.length;
     return List.generate(
       totalLength,
-      (index) => InkWell(
+      (index) => GestureDetector(
+        onTap: () {},
         child: Container(
           alignment: Alignment.center,
           width: 180.0,
@@ -54,33 +54,36 @@ class _BodyState extends State<Body> {
       int mainIndex, List<OpenPO> items, BuildContext context) {
     return List.generate(6, (index) {
       final OpenPO currentItem = items[mainIndex];
-      return Container(
-        alignment: Alignment.center,
-        width: 160,
-        height: 60.0,
-        decoration: BoxDecoration(
-          color: mainIndex == 0 ? kPrimaryLightColor : mainIndex.isEven ?  kWhiteSmokeColor : Colors.white,
-          border: Border.all(width: 0.5),
+      return GestureDetector(
+        onTap: () {},
+        child: Container(
+          alignment: Alignment.center,
+          width: 160,
+          height: 60.0,
+          decoration: BoxDecoration(
+            color: mainIndex == 0 ? kPrimaryLightColor : mainIndex.isEven ?  kWhiteSmokeColor : Colors.white,
+            border: Border.all(width: 0.5),
+          ),
+          child: index == 5
+              ? mainIndex == 0
+                  ? _renderTableHeader(index, currentItem, mainIndex, context)
+                  : (currentItem.iconAttachment != "1_0_0"
+                      ? IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => WebivewHomeScreen(
+                                    url:
+                                        "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
+                                  ),
+                                ));
+                          },
+                          icon: const Icon(Icons.attach_file,
+                              color: kPrimaryLightColor))
+                      : const SizedBox())
+              : _renderTableHeader(index, currentItem, mainIndex, context),
         ),
-        child: index == 5
-            ? mainIndex == 0
-                ? _renderTableHeader(index, currentItem, mainIndex, context)
-                : (currentItem.iconAttachment != "1_0_0"
-                    ? IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => WebivewHomeScreen(
-                                  url:
-                                      "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
-                                ),
-                              ));
-                        },
-                        icon: const Icon(Icons.attach_file,
-                            color: kPrimaryLightColor))
-                    : const SizedBox())
-            : _renderTableHeader(index, currentItem, mainIndex, context),
       );
     });
   }
