@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:code_magic_ex/models/open_po.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
@@ -152,4 +153,8 @@ abstract class MemberCallsService {
   //? url=https://member-calls2.unicity.com/dictionary/publish?lang=TH%2CEN
   @GET(Address.dictionary)
   Future<CustomerToken> getTranslations(@Query("lang") String lang);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/getdata.php?type=106&mode=12&dscid=2970466
+  @GET(Address.validOrders)
+  Future<List<OpenPO>> getAllOpenPo(@Query("type") String type, @Query("mode") String mode, @Query("dscid") String dscid);
 }

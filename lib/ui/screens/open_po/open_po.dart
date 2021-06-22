@@ -1,4 +1,6 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
+import 'package:code_magic_ex/ui/screens/open_po/components/body.dart';
+
 import 'package:flutter/material.dart';
 
 class OpenPOHomeScreen extends StatelessWidget {
@@ -11,6 +13,6 @@ class OpenPOHomeScreen extends StatelessWidget {
           title: const Text("OpenPO"),
         ),
         drawer: NavigationDrawer(),
-        body: const Center(child: Text("This is OpenPO page")));
+        body: Body());
   }
 }
