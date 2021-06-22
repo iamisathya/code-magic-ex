@@ -12,6 +12,7 @@ import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/images.dart';
 import 'package:code_magic_ex/utilities/extensions.dart';
+import 'package:lottie/lottie.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -36,7 +37,11 @@ class _BodyState extends State<Body> {
           width: 180.0,
           height: 60.0,
           decoration: BoxDecoration(
-            color: index == 0 ? kPrimaryLightColor : index.isEven ?  kWhiteSmokeColor : Colors.white,
+            color: index == 0
+                ? kPrimaryLightColor
+                : index.isEven
+                    ? kWhiteSmokeColor
+                    : Colors.white,
             border: Border.all(width: 0.5),
           ),
           child: Text(
@@ -61,7 +66,11 @@ class _BodyState extends State<Body> {
           width: 160,
           height: 60.0,
           decoration: BoxDecoration(
-            color: mainIndex == 0 ? kPrimaryLightColor : mainIndex.isEven ?  kWhiteSmokeColor : Colors.white,
+            color: mainIndex == 0
+                ? kPrimaryLightColor
+                : mainIndex.isEven
+                    ? kWhiteSmokeColor
+                    : Colors.white,
             border: Border.all(width: 0.5),
           ),
           child: index == 5

@@ -43,6 +43,7 @@ dependencies:
   json_annotation: ^4.0.1
   lint: ^1.5.3
   logger: ^1.0.0
+  lottie: ^1.0.1
   popover: ^0.2.6+1
   pretty_dio_logger: ^1.1.1
   retrofit: ^2.0.0
@@ -74,6 +75,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/lottie/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
