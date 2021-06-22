@@ -1,5 +1,6 @@
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/models/open_po.dart';
+import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/empty_result_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/search_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/search_loading_widget.dart';
@@ -132,7 +133,7 @@ class _BodyState extends State<Body> {
 
   Widget _buildChild(OpenPoState state, BuildContext context) {
     if (state.isLoading) {
-      return const LoadingWidget();
+      return const CustomLoadingWidget(svgIcon: 'assets/images/completed_tasks.svg',);
     } else if (state.hasError) {
       return const SearchErrorWidget();
     } else if (state.openPO.isEmpty) {

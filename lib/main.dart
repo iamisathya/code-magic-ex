@@ -1,6 +1,7 @@
 import 'package:code_magic_ex/ui/screens/home/home.dart';
 import 'package:code_magic_ex/ui/screens/open_po/open_po.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
+import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // ignore: avoid_void_async
 void main() async {
   //* Ensure initialization of Widgets.
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();  
 
   //* Connectivity
   ConnectivityManager.shared.doInitialCheck();
