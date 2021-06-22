@@ -14,7 +14,8 @@ class InternetConnectivityException extends AppException {
   final int errStatus;
 
   const InternetConnectivityException({
-    this.errMessage = 'There is no internet connection. Please connect to an active internet connection.',
+    this.errMessage =
+        'There is no internet connection. Please connect to an active internet connection.',
     this.errStatus = 0,
   }) : super(errMessage, errStatus);
 }
@@ -35,7 +36,8 @@ class ApiResponseException extends AppException {
   final String errMessage;
   final int errStatus;
 
-  const ApiResponseException({this.errMessage = '', this.errStatus = 0}) : super(errMessage, errStatus);
+  const ApiResponseException({this.errMessage = '', this.errStatus = 0})
+      : super(errMessage, errStatus);
 }
 
 /// General
@@ -43,12 +45,11 @@ class GeneralException extends AppException {
   final String errMessage;
   final int errStatus;
 
-  const GeneralException({this.errMessage = '', this.errStatus = 0}) : super(errMessage, errStatus);
+  const GeneralException({this.errMessage = '', this.errStatus = 0})
+      : super(errMessage, errStatus);
 
   @override
   String toString() => (errMessage.isEmpty)
       ? 'Something went wrong. Please try again or contact administrator'
       : message;
 }
-
-

@@ -10,7 +10,6 @@ class SearchBloc {
   final Stream<SearchState> state;
 
   factory SearchBloc() {
-    
     final onViewLaunch = PublishSubject<bool>();
 
     final state = onViewLaunch
@@ -35,10 +34,10 @@ class SearchBloc {
     onViewLaunch.close();
   }
 
-  static Stream<SearchState> _fetchInvenotryData() => Rx.fromCallable(() => ApiService.shared()
-        .getInventoryRecords(
-            "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c",
-            "item"))
+  static Stream<SearchState> _fetchInvenotryData() =>
+      Rx.fromCallable(() => ApiService.shared().getInventoryRecords(
+              "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c",
+              "item"))
           .map((result) =>
               result.items.isEmpty ? SearchEmpty() : SearchPopulated(result))
           .startWith(SearchLoading())

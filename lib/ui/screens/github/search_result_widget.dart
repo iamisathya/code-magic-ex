@@ -48,7 +48,7 @@ class SearchResultWidget extends StatelessWidget {
                           item.fullName,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style:const  TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -58,7 +58,7 @@ class SearchResultWidget extends StatelessWidget {
                       Container(
                         child: Text(
                           item.url,
-                          style: const  TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Hind',
                           ),
                           maxLines: 1,

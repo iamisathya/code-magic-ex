@@ -54,4 +54,3 @@
 // }
 
 // final contactBLoc = ContactManager();
-

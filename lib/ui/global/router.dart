@@ -9,13 +9,13 @@ import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/sales_reports.dart';
 
 class ScreenPaths {
- static const String loginHome = LoginScreen.routeName;
- static const String mainHome = MainHomeScreen.routeName;
- static const String openPO = OpenPOHomeScreen.routeName;
- static const String enroll = EnrollHomeScreen.routeName;
- static const String orderEntry = OrderEntryHomeScreen.routeName;
- static const String inventory = InventoryHomeScreen.routeName;
- static const String salesReport = SalesReportsHomeScreen.routeName;
- static const String easyShipReport = EasyShipHomeScreen.routeName;
- static const String barcode = BarcodeHomeScreen.routeName;
+  static const String loginHome = LoginScreen.routeName;
+  static const String mainHome = MainHomeScreen.routeName;
+  static const String openPO = OpenPOHomeScreen.routeName;
+  static const String enroll = EnrollHomeScreen.routeName;
+  static const String orderEntry = OrderEntryHomeScreen.routeName;
+  static const String inventory = InventoryHomeScreen.routeName;
+  static const String salesReport = SalesReportsHomeScreen.routeName;
+  static const String easyShipReport = EasyShipHomeScreen.routeName;
+  static const String barcode = BarcodeHomeScreen.routeName;
 }

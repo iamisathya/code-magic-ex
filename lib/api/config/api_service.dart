@@ -36,14 +36,16 @@ abstract class ApiService {
 
   factory ApiService.shared() {
     final Dio dio = Dio();
-    dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
+    dio.options.headers['authorization'] =
+        "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
     return ApiService(dio);
   }
 
   factory ApiService.clientNoLogger() {
     final Dio dio = Dio();
-    dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
+    dio.options.headers['authorization'] =
+        "Bearer ${UserSessionManager.shared.customerToken.token}";
     return ApiService(dio);
   }
 
@@ -59,37 +61,50 @@ abstract class ApiService {
   //? Example: https://hydra.unicity.net/v5a/customers/3d9104cc2fa45dbd0bdd1a4261f6969e
   @GET(Address.customerData)
   Future<UserInfo> getCustomerData(@Path('id') String id);
-  
+
   //? Example: https://hydra.unicity.net/v5a/customers/me/managedwarehouses
   @GET(Address.managedWarehouse)
   Future<ManagedWarehouses> getManagedWarehouses();
-  
+
   //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/inventoryRecords?expand=item
   @GET(Address.inventoryRecords)
-  Future<InventoryRecords> getInventoryRecords(@Path('id') String id, @Query("expand") String expand);
-  
+  Future<InventoryRecords> getInventoryRecords(
+      @Path('id') String id, @Query("expand") String expand);
+
   //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/inventoryMovementRecords?dateMoved=[2019-01-01;2021-06-01]&expand=catalogSlide,terms
   @GET(Address.inventoryMovementRecords)
-  Future<List<InventoryMovementRecords>> getInventoryMovementRecords(@Path('id') String id, @Query("dateMoved") String dateMoved, @Query("expand") String expand);
-  
-  //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/ordersAndRmas?dateCreated=[2019-01-01;2019-06-01]&expand=order,rma 
+  Future<List<InventoryMovementRecords>> getInventoryMovementRecords(
+      @Path('id') String id,
+      @Query("dateMoved") String dateMoved,
+      @Query("expand") String expand);
+
+  //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/ordersAndRmas?dateCreated=[2019-01-01;2019-06-01]&expand=order,rma
   @GET(Address.ordersAndRmas)
-  Future<OrdersAndRmas> getOrdersAndRmas(@Path('id') String id, @Query("dateCreated") String dateCreated, @Query("expand") String expand);
-  
+  Future<OrdersAndRmas> getOrdersAndRmas(@Path('id') String id,
+      @Query("dateCreated") String dateCreated, @Query("expand") String expand);
+
   //? Example: https://hydra.unicity.net/v5a/customers?unicity=108357166&expand=customer
   @GET(Address.customers)
-  Future<FindCustomer> findCustomer(@Query("unicity") int id, @Query("expand") String expand);
-  
+  Future<FindCustomer> findCustomer(
+      @Query("unicity") int id, @Query("expand") String expand);
+
   //? Example: https://hydra.unicity.net/v5a/customers?fulltext=Test&sponsor.id.unicity=1
   @GET(Address.customers)
-  Future<SearchCustomer> searchCustomer(@Query('fulltext') String searchKey, @Query('sponsor.id.unicity') int userId);
-  
+  Future<SearchCustomer> searchCustomer(@Query('fulltext') String searchKey,
+      @Query('sponsor.id.unicity') int userId);
+
   @POST(Address.orderTerms)
-  Future<CustomerToken> getOrderTerms(@Body() RequestPostCaclulateOrder request);
+  Future<CustomerToken> getOrderTerms(
+      @Body() RequestPostCaclulateOrder request);
 
   //? Example: https://hydra.unicity.net/v5a/orderlines?order.customer.id.unicity=3011266&order.dateCreated=[2020-11;2021-06]&criteria=easyship&expand=catalogSlide,order,order.customer&order.market=TH
   @GET(Address.orderLines)
-  Future<OrderLines> getOrderLines(@Query('order.customer.id.unicity') String userId, @Query('order.dateCreated') String dateCreated, @Query('criteria') String criteria, @Query('expand') String expand, @Query('order.market') String market);
+  Future<OrderLines> getOrderLines(
+      @Query('order.customer.id.unicity') String userId,
+      @Query('order.dateCreated') String dateCreated,
+      @Query('criteria') String criteria,
+      @Query('expand') String expand,
+      @Query('order.market') String market);
 
   //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/orders
   //? Body
@@ -113,7 +128,14 @@ abstract class MemberCalls2Service {
 
   //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
   @GET(Address.validOrders)
-  Future<List<String>> getValidOrders(@Query('type') String type, @Query('datepicker1') String datepicker1, @Query('datepicker2') String datepicker2, @Query('token') String token, @Query('lang') String lang, @Query('id') String id, @Query('action') String action);
+  Future<List<String>> getValidOrders(
+      @Query('type') String type,
+      @Query('datepicker1') String datepicker1,
+      @Query('datepicker2') String datepicker2,
+      @Query('token') String token,
+      @Query('lang') String lang,
+      @Query('id') String id,
+      @Query('action') String action);
 }
 
 @RestApi(baseUrl: Address.memberCallsBase)
@@ -131,4 +153,3 @@ abstract class MemberCallsService {
   @GET(Address.dictionary)
   Future<CustomerToken> getTranslations(@Query("lang") String lang);
 }
-

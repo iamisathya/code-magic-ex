@@ -22,12 +22,21 @@ class RequestPostPlaceOrder {
   @JsonKey(name: 'transactions')
   Transactions transactions;
 
-  RequestPostPlaceOrder({ required this.customer, required  this.lines, required this.shipToName, required this.shipToPhone, required this.shipToEmail, required this.shipToAddress, required this.shippingMethod, required this.notes, required this.transactions});
+  RequestPostPlaceOrder(
+      {required this.customer,
+      required this.lines,
+      required this.shipToName,
+      required this.shipToPhone,
+      required this.shipToEmail,
+      required this.shipToAddress,
+      required this.shippingMethod,
+      required this.notes,
+      required this.transactions});
 
-  factory RequestPostPlaceOrder.fromJson(Map<String, dynamic> json) => _$RequestPostPlaceOrderFromJson(json);
+  factory RequestPostPlaceOrder.fromJson(Map<String, dynamic> json) =>
+      _$RequestPostPlaceOrderFromJson(json);
 
   Map<String, dynamic> toJson() => _$RequestPostPlaceOrderToJson(this);
-
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -35,12 +44,12 @@ class Customer {
   @JsonKey(name: 'href')
   String href;
 
-  Customer({ required this.href});
+  Customer({required this.href});
 
-  factory Customer.fromJson(Map<String, dynamic> json) => _$CustomerFromJson(json);
+  factory Customer.fromJson(Map<String, dynamic> json) =>
+      _$CustomerFromJson(json);
 
   Map<String, dynamic> toJson() => _$CustomerToJson(this);
-
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -48,7 +57,7 @@ class Lines {
   @JsonKey(name: 'items')
   List<Items> items;
 
-  Lines({ required this.items});
+  Lines({required this.items});
 
   factory Lines.fromJson(Map<String, dynamic> json) => _$LinesFromJson(json);
 
@@ -62,8 +71,7 @@ class Items {
   @JsonKey(name: 'quantity')
   String quantity;
 
-
-  Items({ required this.item, required this.quantity });
+  Items({required this.item, required this.quantity});
 
   factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
 
@@ -77,9 +85,10 @@ class ShipToName {
   @JsonKey(name: 'lastName')
   String lastName;
 
-  ShipToName({ required this.firstName, required this.lastName });
+  ShipToName({required this.firstName, required this.lastName});
 
-  factory ShipToName.fromJson(Map<String, dynamic> json) => _$ShipToNameFromJson(json);
+  factory ShipToName.fromJson(Map<String, dynamic> json) =>
+      _$ShipToNameFromJson(json);
 
   Map<String, dynamic> toJson() => _$ShipToNameToJson(this);
 }
@@ -97,22 +106,28 @@ class ShipToAddress {
   @JsonKey(name: 'zip')
   String zip;
 
-  ShipToAddress({ required this.city, required this.country, required this.state, required this.address1, required this.zip });
+  ShipToAddress(
+      {required this.city,
+      required this.country,
+      required this.state,
+      required this.address1,
+      required this.zip});
 
-  factory ShipToAddress.fromJson(Map<String, dynamic> json) => _$ShipToAddressFromJson(json);
+  factory ShipToAddress.fromJson(Map<String, dynamic> json) =>
+      _$ShipToAddressFromJson(json);
 
   Map<String, dynamic> toJson() => _$ShipToAddressToJson(this);
 }
-
 
 @JsonSerializable(explicitToJson: true)
 class Transactions {
   @JsonKey(name: 'items')
   List<TransactionItem> items;
 
-  Transactions({ required this.items });
+  Transactions({required this.items});
 
-  factory Transactions.fromJson(Map<String, dynamic> json) => _$TransactionsFromJson(json);
+  factory Transactions.fromJson(Map<String, dynamic> json) =>
+      _$TransactionsFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransactionsToJson(this);
 }
@@ -126,9 +141,11 @@ class TransactionItem {
   @JsonKey(name: 'method')
   String method;
 
-  TransactionItem({ required this.amount, required this.type, required this.method });
+  TransactionItem(
+      {required this.amount, required this.type, required this.method});
 
-  factory TransactionItem.fromJson(Map<String, dynamic> json) => _$TransactionItemFromJson(json);
+  factory TransactionItem.fromJson(Map<String, dynamic> json) =>
+      _$TransactionItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransactionItemToJson(this);
 }

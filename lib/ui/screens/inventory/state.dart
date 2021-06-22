@@ -26,7 +26,6 @@
 // //       isLoading: false);
 // // }
 
-
 // class InventoryState {
 //   InventoryRecords inventoryRecords;
 //   final bool hasError;

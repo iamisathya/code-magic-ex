@@ -23,13 +23,12 @@ void main() async {
 
   //* Local Key Value DB
   await KeyValueStorageManager.setStorage();
-  
+
   // * Run app normally
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   Widget _nextScreen() {
     UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return MainStreamBuilder(
         themeBloc: themeBloc.appThemeStream,
         translationBloc: translationBloc.appLanguageStream,
@@ -49,7 +48,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeBloc.getThemeMode,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale(translationBloc.getCurrentLanguage,''),
+            locale: Locale(translationBloc.getCurrentLanguage, ''),
             routes: routes,
             home: _nextScreen(),
           );

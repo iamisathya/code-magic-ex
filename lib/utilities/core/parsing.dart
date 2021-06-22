@@ -19,7 +19,8 @@ class Parsing {
     if (null == data) return defaultValue;
     if (data is double) return data;
     if (data is int) return data.toDouble();
-    if (data is String) return _doubleFromString(data, defaultValue: defaultValue);
+    if (data is String)
+      return _doubleFromString(data, defaultValue: defaultValue);
     return defaultValue;
   }
 
@@ -38,7 +39,9 @@ class Parsing {
     if (data is bool) return data;
     if (data is int || data is double) return data == 1;
     if (data is String) {
-      return !!(data == "1" || data.toLowerCase() == "true" || data.toLowerCase() == "yes");
+      return !!(data == "1" ||
+          data.toLowerCase() == "true" ||
+          data.toLowerCase() == "yes");
     }
     return defaultValue;
   }
@@ -61,11 +64,13 @@ class Parsing {
   /// Get Map from Dynamic Data
   static Map<String, dynamic>? mapFrom(dynamic data, {bool makeNull = false}) {
     if (null == data) return makeNull ? null : {};
-    if (data is Map) return data.map((key, value) => MapEntry(key.toString(), value));
+    if (data is Map)
+      return data.map((key, value) => MapEntry(key.toString(), value));
     if (data is String) {
       try {
         final newData = convert.jsonDecode(data);
-        if (newData is Map) return newData.map((key, value) => MapEntry(key.toString(), value));
+        if (newData is Map)
+          return newData.map((key, value) => MapEntry(key.toString(), value));
       } catch (e) {
         debugPrint(e.toString());
       }
@@ -74,12 +79,14 @@ class Parsing {
   }
 
   /// Get Map from Dynamic Data
-  static Map<String, dynamic>? cloneMap(Map<String, dynamic> data, {bool makeNull = false}) {
+  static Map<String, dynamic>? cloneMap(Map<String, dynamic> data,
+      {bool makeNull = false}) {
     if (null == data) return makeNull ? null : {};
     try {
       final stringData = convert.jsonEncode(data);
       final newData = convert.jsonDecode(stringData);
-      if (newData is Map) return newData.map((key, value) => MapEntry(key.toString(), value));
+      if (newData is Map)
+        return newData.map((key, value) => MapEntry(key.toString(), value));
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -87,11 +94,15 @@ class Parsing {
   }
 
   static int? _intFromString(String data, {int defaultValue = 0}) {
-    return int.tryParse(data) ?? double.tryParse(data)?.toInt() ?? defaultValue.toDouble().toInt();
+    return int.tryParse(data) ??
+        double.tryParse(data)?.toInt() ??
+        defaultValue.toDouble().toInt();
   }
 
   static double? _doubleFromString(String data, {double defaultValue = 0}) {
-    return double.tryParse(data) ?? int.tryParse(data)?.toDouble() ?? defaultValue.toInt().toDouble();
+    return double.tryParse(data) ??
+        int.tryParse(data)?.toDouble() ??
+        defaultValue.toInt().toDouble();
   }
 
   /// Helper Method - [containValues]

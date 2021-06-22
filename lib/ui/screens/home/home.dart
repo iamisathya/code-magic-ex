@@ -21,7 +21,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     super.initState();
   }
 
-  Future<void> _changeLanguage(String lang) async{
+  Future<void> _changeLanguage(String lang) async {
     translationBloc.setappLanguageStream(lang);
     Navigator.pop(context, lang);
     await UserSessionManager.shared.setCurrentLanguage(lang);
@@ -88,10 +88,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           ],
         ),
         drawer: NavigationDrawer(),
-        body: Center(child: Text(AppLocalizations.of(context)!.zip),));
+        body: Center(
+          child: Text(AppLocalizations.of(context)!.zip),
+        ));
   }
 }
 
-extension PopupMenuItemExtension on PopupMenuItem {
-  
-}
+extension PopupMenuItemExtension on PopupMenuItem {}

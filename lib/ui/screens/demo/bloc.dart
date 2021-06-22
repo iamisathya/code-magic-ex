@@ -1,4 +1,3 @@
-
 import 'package:code_magic_ex/ui/screens/demo/model.dart';
 import 'package:code_magic_ex/ui/screens/demo/state.dart';
 import 'package:code_magic_ex/ui/screens/demo/service.dart';
@@ -17,7 +16,10 @@ class ContactBloc {
         state: subject.asBroadcastStream());
   }
 
-  ContactBloc._({required this.state, required Subject<ContactsPageState> stateSubject, required this.repository})
+  ContactBloc._(
+      {required this.state,
+      required Subject<ContactsPageState> stateSubject,
+      required this.repository})
       : _stateSubject = stateSubject;
 
   Future<void> loadEvents() async {

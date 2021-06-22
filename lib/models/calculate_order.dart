@@ -114,7 +114,10 @@ class ProductLineItems {
   String currency;
 
   ProductLineItems(
-      {required this.lines, required this.addedLines, required this.terms, required this.currency});
+      {required this.lines,
+      required this.addedLines,
+      required this.terms,
+      required this.currency});
 
   factory ProductLineItems.fromJson(Map<String, dynamic> json) =>
       _$ProductLineItemsFromJson(json);

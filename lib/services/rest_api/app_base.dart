@@ -13,7 +13,9 @@ abstract class RestApiNepBaseService {
 
   RestApiNepBaseService() {
     final BaseOptions options = BaseOptions(
-      baseUrl: "https://hydra.unicity.net/v5a",///production
+      baseUrl: "https://hydra.unicity.net/v5a",
+
+      ///production
       // baseUrl: "https://eduflip.herokuapp.com/",///develop
       connectTimeout: 30000,
       receiveTimeout: 30000,
@@ -32,22 +34,21 @@ abstract class RestApiNepBaseService {
       'token': token,
       'Content-Type': "application/json"
     };
+
     /// Request Interceptors;
-    dio.interceptors.add(InterceptorsWrapper(
-        onError: (error, errorInterceptorHandler ){
-          debugPrint(error.message);
-        },
-        onRequest: (request, requestInterceptorHandler){
-          request.contentType = Headers.jsonContentType;
-          if (headers.isNotEmpty) {
-            headers.forEach((key, value) => request.headers[key] = value);
-          }
-          return;
-        },
-        onResponse: (response, responseInterceptorHandler) {
-          debugPrint('${response.statusCode} ${response.statusCode} ${response.data}');
-        }
-    ));
+    dio.interceptors
+        .add(InterceptorsWrapper(onError: (error, errorInterceptorHandler) {
+      debugPrint(error.message);
+    }, onRequest: (request, requestInterceptorHandler) {
+      request.contentType = Headers.jsonContentType;
+      if (headers.isNotEmpty) {
+        headers.forEach((key, value) => request.headers[key] = value);
+      }
+      return;
+    }, onResponse: (response, responseInterceptorHandler) {
+      debugPrint(
+          '${response.statusCode} ${response.statusCode} ${response.data}');
+    }));
   }
 
   /// Helper Method - [_setProxy]

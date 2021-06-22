@@ -9,20 +9,21 @@ class CustomerToken {
   final String token;
   final WhoMeHref whoami;
 
-  CustomerToken({required this.customer, required this.href, required this.token, required this.whoami});
+  CustomerToken(
+      {required this.customer,
+      required this.href,
+      required this.token,
+      required this.whoami});
 
-  factory CustomerToken.fromJson(Map<String, dynamic> json) => _$CustomerTokenFromJson(json);
-  
+  factory CustomerToken.fromJson(Map<String, dynamic> json) =>
+      _$CustomerTokenFromJson(json);
+
   Map<String, dynamic> toJson() => _$CustomerTokenToJson(this);
 
   String get getCustomerToken => token;
 
-  Map<String, dynamic> toMap() => {
-        'customer': customer,
-        'href': href,
-        'token': token,
-        'whoami': whoami
-      };
+  Map<String, dynamic> toMap() =>
+      {'customer': customer, 'href': href, 'token': token, 'whoami': whoami};
 }
 
 @JsonSerializable()
@@ -31,7 +32,8 @@ class CustomerHref {
 
   CustomerHref({required this.href});
 
-  factory CustomerHref.fromJson(Map<String, dynamic> json) => _$CustomerHrefFromJson(json);
+  factory CustomerHref.fromJson(Map<String, dynamic> json) =>
+      _$CustomerHrefFromJson(json);
 
   Map<String, dynamic> toJson() => _$CustomerHrefToJson(this);
 }
@@ -42,10 +44,8 @@ class WhoMeHref {
 
   WhoMeHref({required this.href});
 
-  factory WhoMeHref.fromJson(Map<String, dynamic> json) => _$WhoMeHrefFromJson(json);
+  factory WhoMeHref.fromJson(Map<String, dynamic> json) =>
+      _$WhoMeHrefFromJson(json);
 
   Map<String, dynamic> toJson() => _$WhoMeHrefToJson(this);
 }
-
-
-

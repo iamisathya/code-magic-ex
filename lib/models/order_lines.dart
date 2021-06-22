@@ -46,7 +46,6 @@ class OrderLineItem {
   Map<String, dynamic> toJson() => _$OrderLineItemToJson(this);
 }
 
-
 @JsonSerializable()
 class Orderitem {
   @JsonKey(name: "id")
@@ -70,4 +69,3 @@ class Orderitem {
 
   Map<String, dynamic> toJson() => _$OrderitemToJson(this);
 }
-

@@ -19,7 +19,9 @@ class _BarcodeHomeScreenState extends State<BarcodeHomeScreen> {
           title: const Text("BarCode"),
         ),
         drawer: NavigationDrawer(),
-        body: Container(child: _buildSearchContainer(),));
+        body: Container(
+          child: _buildSearchContainer(),
+        ));
   }
 
   Widget _buildSearchContainer() {

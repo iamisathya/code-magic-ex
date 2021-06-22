@@ -14,13 +14,12 @@ class CommonGenericHref {
   CommonGenericHref({
     required this.href,
   });
-  
+
   factory CommonGenericHref.fromJson(Map<String, dynamic> json) =>
       _$CommonGenericHrefFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommonGenericHrefToJson(this);
 }
-
 
 //*  HumanNameFull example
 //*  "humanName": {
@@ -48,7 +47,6 @@ class CommonHumanNameFull {
 
   Map<String, dynamic> toJson() => _$CommonHumanNameFullToJson(this);
 }
-
 
 //*  "id": {
 //*    "unicity": "XX-123456",
@@ -84,7 +82,6 @@ class CommonIdWithCountryCode {
   Map<String, dynamic> toJson() => _$CommonIdWithCountryCodeToJson(this);
 }
 
-
 //*  "id": {
 //*    "unicity": "123456",
 //*  },
@@ -118,7 +115,6 @@ class CommonIdTypeString {
 
   Map<String, dynamic> toJson() => _$CommonIdTypeStringToJson(this);
 }
-
 
 //*  HumanNameFull example
 //*  "humanName": {
@@ -261,7 +257,10 @@ class CommonShipToNameFull {
   @JsonKey(name: "fullName")
   String fullName;
 
-  CommonShipToNameFull({required this.firstName, required this.lastName, required this.fullName});
+  CommonShipToNameFull(
+      {required this.firstName,
+      required this.lastName,
+      required this.fullName});
 
   factory CommonShipToNameFull.fromJson(Map<String, dynamic> json) =>
       _$CommonShipToNameFullFromJson(json);
@@ -280,7 +279,6 @@ class CommonCatalogSlideContent {
 
   CommonCatalogSlideContent({required this.content});
 
-
   factory CommonCatalogSlideContent.fromJson(Map<String, dynamic> json) =>
       _$CommonCatalogSlideContentFromJson(json);
 
@@ -296,7 +294,6 @@ class CommonContentDescription {
   CommonContentDescription({
     required this.description,
   });
-
 
   factory CommonContentDescription.fromJson(Map<String, dynamic> json) =>
       _$CommonContentDescriptionFromJson(json);
@@ -320,7 +317,8 @@ class CommonTermsEach {
     required this.priceEach,
   });
 
-  factory CommonTermsEach.fromJson(Map<String, dynamic> json) => _$CommonTermsEachFromJson(json);
+  factory CommonTermsEach.fromJson(Map<String, dynamic> json) =>
+      _$CommonTermsEachFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommonTermsEachToJson(this);
 }
@@ -337,7 +335,8 @@ class TermsPeriod {
     required this.period,
   });
 
-  factory TermsPeriod.fromJson(Map<String, dynamic> json) => _$TermsPeriodFromJson(json);
+  factory TermsPeriod.fromJson(Map<String, dynamic> json) =>
+      _$TermsPeriodFromJson(json);
 
   Map<String, dynamic> toJson() => _$TermsPeriodToJson(this);
 }
@@ -357,12 +356,11 @@ class CommonCustomerIdHref {
     required this.href,
   });
 
-  factory CommonCustomerIdHref.fromJson(Map<String, dynamic> json) => _$CommonCustomerIdHrefFromJson(json);
+  factory CommonCustomerIdHref.fromJson(Map<String, dynamic> json) =>
+      _$CommonCustomerIdHrefFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommonCustomerIdHrefToJson(this);
 }
-
-
 
 //*  "id": {
 //*    "unicity": 123456,
@@ -397,5 +395,3 @@ class CommonIdTypeInt {
 
   Map<String, dynamic> toJson() => _$CommonIdTypeIntToJson(this);
 }
-
-

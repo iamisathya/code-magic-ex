@@ -84,23 +84,23 @@ class _MyStatelessWidgetState extends State<MyStatelessWidget> {
           border: Border.all(),
           borderRadius: const BorderRadius.all(Radius.circular(8.0))),
       child: StreamBuilder<Object>(
-        stream: inventoryBLoc.getSearchTextStream,
-        builder: (context, snapshot) {
-          _searchview.text = snapshot.data.toString();
-          _searchview.selection = TextSelection.fromPosition(TextPosition(offset: _searchview.text.length));
-          return TextField(
-            onChanged: (value) => inventoryBLoc.onTextSearchChange(value),
-            cursorColor: Colors.grey[300],
-            controller: _searchview,
-            decoration: InputDecoration(
-              hintText: "Search",
-              focusedBorder: InputBorder.none,
-              prefixIcon: const Icon(Icons.search, color: Colors.grey),
-              hintStyle: TextStyle(color: Colors.grey[300]),
-            ),
-          );
-        }
-      ),
+          stream: inventoryBLoc.getSearchTextStream,
+          builder: (context, snapshot) {
+            _searchview.text = snapshot.data.toString();
+            _searchview.selection = TextSelection.fromPosition(
+                TextPosition(offset: _searchview.text.length));
+            return TextField(
+              onChanged: (value) => inventoryBLoc.onTextSearchChange(value),
+              cursorColor: Colors.grey[300],
+              controller: _searchview,
+              decoration: InputDecoration(
+                hintText: "Search",
+                focusedBorder: InputBorder.none,
+                prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                hintStyle: TextStyle(color: Colors.grey[300]),
+              ),
+            );
+          }),
     );
   }
 

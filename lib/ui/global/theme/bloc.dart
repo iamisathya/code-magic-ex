@@ -4,16 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ThemeBloc {
-   final _appThemeStreamController =
+  final _appThemeStreamController =
       BehaviorSubject<ThemeTypes>.seeded(ThemeTypes.light);
 
-  Stream<ThemeTypes> get appThemeStream =>
-      _appThemeStreamController.stream;
+  Stream<ThemeTypes> get appThemeStream => _appThemeStreamController.stream;
 
-  Function(ThemeTypes) get _setappThemeStream => _appThemeStreamController.sink.add;
+  Function(ThemeTypes) get _setappThemeStream =>
+      _appThemeStreamController.sink.add;
 
-  ThemeMode get getThemeMode => describeEnum(_appThemeStreamController.value) == "light" ? ThemeMode.light : ThemeMode.dark;
+  ThemeMode get getThemeMode =>
+      describeEnum(_appThemeStreamController.value) == "light"
+          ? ThemeMode.light
+          : ThemeMode.dark;
 
-  void get toggleThemeMode => themeBloc.getThemeMode == ThemeMode.dark ? _setappThemeStream(ThemeTypes.light) : _setappThemeStream(ThemeTypes.dark);
+  void get toggleThemeMode => themeBloc.getThemeMode == ThemeMode.dark
+      ? _setappThemeStream(ThemeTypes.light)
+      : _setappThemeStream(ThemeTypes.dark);
 }
+
 final themeBloc = ThemeBloc();

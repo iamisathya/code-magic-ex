@@ -1,4 +1,3 @@
-
 import 'package:code_magic_ex/ui/screens/demo/model.dart';
 
 class ContactsPageState {
@@ -12,12 +11,12 @@ class ContactsPageState {
     this.isLoading = false,
   });
 
-  factory ContactsPageState.initial() => ContactsPageState(
-      contacts: <Contacts>[]);
-  factory ContactsPageState.loading() => ContactsPageState(
-      contacts: [],
-      isLoading: true);
+  factory ContactsPageState.initial() =>
+      ContactsPageState(contacts: <Contacts>[]);
+  factory ContactsPageState.loading() =>
+      ContactsPageState(contacts: [], isLoading: true);
   factory ContactsPageState.error() => ContactsPageState(
-      contacts: [],
-      hasError: true,);
+        contacts: [],
+        hasError: true,
+      );
 }

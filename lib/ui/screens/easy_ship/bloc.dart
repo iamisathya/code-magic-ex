@@ -12,11 +12,11 @@ class EasyShipBloc {
   factory EasyShipBloc() {
     final subject = BehaviorSubject<EasyShipState>();
     return EasyShipBloc._(
-        stateSubject: subject,
-        state: subject.asBroadcastStream());
+        stateSubject: subject, state: subject.asBroadcastStream());
   }
 
-  EasyShipBloc._({required this.state, required Subject<EasyShipState> stateSubject})
+  EasyShipBloc._(
+      {required this.state, required Subject<EasyShipState> stateSubject})
       : _stateSubject = stateSubject;
 
   Future<void> loadOrderlines({String userId = "108357166"}) async {
@@ -28,7 +28,8 @@ class EasyShipBloc {
     const String market = "TH";
 
     try {
-      final OrderLines orderLines = await ApiService.shared().getOrderLines(localUserId, dateCreated, criteria, expand, market);
+      final OrderLines orderLines = await ApiService.shared()
+          .getOrderLines(localUserId, dateCreated, criteria, expand, market);
       _stateSubject.add(EasyShipState(orderLines: orderLines));
     } catch (err) {
       _stateSubject.add(EasyShipState.error());

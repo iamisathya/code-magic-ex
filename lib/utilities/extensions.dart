@@ -7,7 +7,7 @@ extension BoolParsing on String {
 }
 
 extension OrderId on String {
-   String retrieveOrderId() {
+  String retrieveOrderId() {
     try {
       return split("-")[1];
     } catch (e) {
@@ -27,7 +27,7 @@ extension DateFormater on String {
     }
   }
 
-    String get asHHMMA {
+  String get asHHMMA {
     try {
       final DateTime currentDateTime = DateTime.parse(this);
       final DateFormat formatter = DateFormat('HH:MM a');
@@ -39,5 +39,5 @@ extension DateFormater on String {
 }
 
 extension DoubleExtension on double {
-   String get asReadableString => toInt().toString();
+  String get asReadableString => toInt().toString();
 }

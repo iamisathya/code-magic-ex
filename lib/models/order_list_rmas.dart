@@ -82,7 +82,6 @@ class OrderData {
   Map<String, dynamic> toJson() => _$OrderDataToJson(this);
 }
 
-
 @JsonSerializable()
 class AllOrders {
   @JsonKey(name: "items")
@@ -98,7 +97,6 @@ class AllOrders {
   Map<String, dynamic> toJson() => _$AllOrdersToJson(this);
 }
 
-
 @JsonSerializable()
 class AllRma {
   @JsonKey(name: "items")
@@ -108,8 +106,7 @@ class AllRma {
     required this.items,
   });
 
-  factory AllRma.fromJson(Map<String, dynamic> json) =>
-      _$AllRmaFromJson(json);
+  factory AllRma.fromJson(Map<String, dynamic> json) => _$AllRmaFromJson(json);
 
   Map<String, dynamic> toJson() => _$AllRmaToJson(this);
 }

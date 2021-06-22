@@ -5,7 +5,7 @@ class KeyValueStorageManager {
   KeyValueStorageManager._();
 
   static SharedPreferences? _sharedPreferences;
-  
+
   static const String _prefix = "dsctools.nonpersist.";
 
   static String _keyWithPrefix(String key) => _prefix + key;
@@ -17,7 +17,7 @@ class KeyValueStorageManager {
   static String _actualKey(String key, bool persist) =>
       persist ? _keyWithPersistPrefix(key) : _keyWithPrefix(key);
 
-  static SharedPreferences? _getStorage() {    
+  static SharedPreferences? _getStorage() {
     return _sharedPreferences;
   }
 
@@ -43,12 +43,11 @@ class KeyValueStorageManager {
   static bool containsKey(String key, {bool persist = false}) =>
       _getStorage()!.containsKey(_actualKey(key, persist));
 
-  static Set<String> getKeys({bool persist = false}) =>
-      (_getStorage()!.getKeys())
-          .where((key) => key.startsWith(persist ? _persistPrefix : _prefix))
-          .map(
-              (key) => key.replaceFirst(persist ? _persistPrefix : _prefix, ""))
-          .toSet();
+  static Set<String> getKeys({bool persist = false}) => (_getStorage()!
+          .getKeys())
+      .where((key) => key.startsWith(persist ? _persistPrefix : _prefix))
+      .map((key) => key.replaceFirst(persist ? _persistPrefix : _prefix, ""))
+      .toSet();
 
   /// Get Value for the Key
   static dynamic get(String key, {bool persist = false}) =>
@@ -67,7 +66,8 @@ class KeyValueStorageManager {
       _getStorage()!.getString(_actualKey(key, persist));
 
   /// Set Value for the Key
-  static Future<bool> setBool(String key, String value, {bool persist = false}) =>
+  static Future<bool> setBool(String key, String value,
+          {bool persist = false}) =>
       _getStorage()!.setBool(_actualKey(key, persist), value == 'true');
 
   static Future<bool> setDouble(String key, double value,

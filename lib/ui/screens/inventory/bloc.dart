@@ -19,7 +19,10 @@ class InventoryBLoc {
 
   void onTextSearchChange(String searchText) {
     final InventoryRecords filteredRecords = _inventoryStreamController.value;
-    filteredRecords.items.where((item) => item.catalogSlideContent.content.description.toLowerCase().contains(searchText.toLowerCase()));
+    filteredRecords.items.where((item) => item
+        .catalogSlideContent.content.description
+        .toLowerCase()
+        .contains(searchText.toLowerCase()));
     print(filteredRecords.items.length);
     _inventoryStreamController.sink.add(filteredRecords);
     setInventoryStream(filteredRecords);

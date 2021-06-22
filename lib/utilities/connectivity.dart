@@ -12,14 +12,16 @@ class ConnectivityManager {
 
   /// Stream Controller
   // ignore: close_sinks
-  final _streamController = BehaviorSubject<ConnectivityStatus>.seeded(ConnectivityStatus.unknown);
+  final _streamController =
+      BehaviorSubject<ConnectivityStatus>.seeded(ConnectivityStatus.unknown);
   Stream<ConnectivityStatus> get connectionStatus => _streamController.stream;
 
   final Connectivity _connectivity = Connectivity();
 
   /// Private Constructor
   ConnectivityManager._() {
-    _connectivity.onConnectivityChanged.listen((ConnectivityResult result) => _setConnectivityStatus(result));
+    _connectivity.onConnectivityChanged
+        .listen((ConnectivityResult result) => _setConnectivityStatus(result));
   }
 
   /// Helper Method - [doInitialCheck]
@@ -36,7 +38,6 @@ class ConnectivityManager {
     return _setConnectivityStatus(result);
   }
 
-
   /// Helper Method - [_setConnectivityStatus]
   void _setConnectivityStatus(ConnectivityResult result) {
     final status = _getStatusFromResult(result);
@@ -46,12 +47,14 @@ class ConnectivityManager {
 
   /// Helper Method - [getRawStatus]
   /// Return the Connectivity Status in Raw String format
-  String getRawStatus() => _streamController.value.toString().split('.').last.toLowerCase();
+  String getRawStatus() =>
+      _streamController.value.toString().split('.').last.toLowerCase();
 
   /// Helper Method - [isAvailable]
   /// Return true if network is available, Otherwise false.
   bool isAvailable() =>
-      _streamController.value == ConnectivityStatus.wiFi || _streamController.value == ConnectivityStatus.cellular;
+      _streamController.value == ConnectivityStatus.wiFi ||
+      _streamController.value == ConnectivityStatus.cellular;
 
   /// Helper Method - [isNotAvailable]
   /// Return true if network is not available. Otherwise false.

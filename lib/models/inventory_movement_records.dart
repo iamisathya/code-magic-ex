@@ -22,7 +22,6 @@ class InventoryMovementRecords {
     required this.quantity,
   });
 
-
   factory InventoryMovementRecords.fromJson(Map<String, dynamic> json) =>
       _$InventoryMovementRecordsFromJson(json);
 
@@ -35,12 +34,11 @@ class CustomerData {
   String href;
   @JsonKey(name: "id")
   CommonIdTypeString id;
-  
+
   CustomerData({
     required this.href,
     required this.id,
   });
-
 
   factory CustomerData.fromJson(Map<String, dynamic> json) =>
       _$CustomerDataFromJson(json);
@@ -54,7 +52,6 @@ class CatalogSlideContent {
   ContentDescription content;
 
   CatalogSlideContent({required this.content});
-
 
   factory CatalogSlideContent.fromJson(Map<String, dynamic> json) =>
       _$CatalogSlideContentFromJson(json);
@@ -71,7 +68,6 @@ class ContentDescription {
     required this.description,
   });
 
-
   factory ContentDescription.fromJson(Map<String, dynamic> json) =>
       _$ContentDescriptionFromJson(json);
 
@@ -87,9 +83,7 @@ class Terms {
     required this.pvEach,
   });
 
-
-  factory Terms.fromJson(Map<String, dynamic> json) =>
-      _$TermsFromJson(json);
+  factory Terms.fromJson(Map<String, dynamic> json) => _$TermsFromJson(json);
 
   Map<String, dynamic> toJson() => _$TermsToJson(this);
 }

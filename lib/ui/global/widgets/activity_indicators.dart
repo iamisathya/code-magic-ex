@@ -4,7 +4,8 @@ class ActivityIndicator extends StatelessWidget {
   final Stream<bool> loadingStream;
   final bool showBackDrop;
 
-  const ActivityIndicator({required this.loadingStream, this.showBackDrop = false});
+  const ActivityIndicator(
+      {required this.loadingStream, this.showBackDrop = false});
 
   @override
   Widget build(BuildContext context) {

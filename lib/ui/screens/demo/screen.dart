@@ -72,7 +72,7 @@ class _DemoPageState extends State<DemoPage> {
       return const LoadingWidget();
     } else if (state.hasError) {
       return const SearchErrorWidget();
-    } else if(state.contacts.isEmpty){
+    } else if (state.contacts.isEmpty) {
       return const EmptyWidget();
     } else {
       return ListView.builder(

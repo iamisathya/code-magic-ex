@@ -18,12 +18,19 @@ class RequestPostCaclulateOrder {
   @JsonKey(name: 'shippingMethod')
   Customer shippingMethod;
 
-  RequestPostCaclulateOrder({ required this.customer, required  this.lines, required this.shipToName, required this.shipToPhone, required this.shipToEmail, required this.shipToAddress, required this.shippingMethod});
+  RequestPostCaclulateOrder(
+      {required this.customer,
+      required this.lines,
+      required this.shipToName,
+      required this.shipToPhone,
+      required this.shipToEmail,
+      required this.shipToAddress,
+      required this.shippingMethod});
 
-  factory RequestPostCaclulateOrder.fromJson(Map<String, dynamic> json) => _$RequestPostCaclulateOrderFromJson(json);
+  factory RequestPostCaclulateOrder.fromJson(Map<String, dynamic> json) =>
+      _$RequestPostCaclulateOrderFromJson(json);
 
   Map<String, dynamic> toJson() => _$RequestPostCaclulateOrderToJson(this);
-
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -31,12 +38,12 @@ class Customer {
   @JsonKey(name: 'href')
   String href;
 
-  Customer({ required this.href});
+  Customer({required this.href});
 
-  factory Customer.fromJson(Map<String, dynamic> json) => _$CustomerFromJson(json);
+  factory Customer.fromJson(Map<String, dynamic> json) =>
+      _$CustomerFromJson(json);
 
   Map<String, dynamic> toJson() => _$CustomerToJson(this);
-
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -44,7 +51,7 @@ class Lines {
   @JsonKey(name: 'items')
   List<Items> items;
 
-  Lines({ required this.items});
+  Lines({required this.items});
 
   factory Lines.fromJson(Map<String, dynamic> json) => _$LinesFromJson(json);
 
@@ -58,8 +65,7 @@ class Items {
   @JsonKey(name: 'quantity')
   String quantity;
 
-
-  Items({ required this.item, required this.quantity });
+  Items({required this.item, required this.quantity});
 
   factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
 
@@ -73,9 +79,10 @@ class ShipToName {
   @JsonKey(name: 'lastName')
   String lastName;
 
-  ShipToName({ required this.firstName, required this.lastName });
+  ShipToName({required this.firstName, required this.lastName});
 
-  factory ShipToName.fromJson(Map<String, dynamic> json) => _$ShipToNameFromJson(json);
+  factory ShipToName.fromJson(Map<String, dynamic> json) =>
+      _$ShipToNameFromJson(json);
 
   Map<String, dynamic> toJson() => _$ShipToNameToJson(this);
 }
@@ -93,9 +100,15 @@ class ShipToAddress {
   @JsonKey(name: 'zip')
   String zip;
 
-  ShipToAddress({ required this.city, required this.country, required this.state, required this.address1, required this.zip });
+  ShipToAddress(
+      {required this.city,
+      required this.country,
+      required this.state,
+      required this.address1,
+      required this.zip});
 
-  factory ShipToAddress.fromJson(Map<String, dynamic> json) => _$ShipToAddressFromJson(json);
+  factory ShipToAddress.fromJson(Map<String, dynamic> json) =>
+      _$ShipToAddressFromJson(json);
 
   Map<String, dynamic> toJson() => _$ShipToAddressToJson(this);
 }

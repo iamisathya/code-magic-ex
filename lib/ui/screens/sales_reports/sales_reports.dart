@@ -188,8 +188,7 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
     );
   }
 
-  SingleChildScrollView _renderInventoryTable(
-      AllOrders orders) {
+  SingleChildScrollView _renderInventoryTable(AllOrders orders) {
     final String totalPrice = _calculateTotalPrice(orders, 'price');
     final String totalPv = _calculateTotalPrice(orders, 'pv');
     return SingleChildScrollView(
@@ -233,7 +232,8 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
                         _renderDataCell(element.id.unicity.retrieveOrderId()),
                         _renderDataCell(element.dateCreated.asDDMMYYYY),
                         _renderDataCell(element.dateCreated.asHHMMA),
-                        _renderDataCell(Parsing.stringFrom(element.terms.total)),
+                        _renderDataCell(
+                            Parsing.stringFrom(element.terms.total)),
                         _renderDataCell(Parsing.stringFrom(element.terms.pv)),
                         _renderDataCell(""),
                       ],
@@ -289,8 +289,7 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
     );
   }
 
-  DataColumn _renderDataColomn(String title,
-      AllOrders orders) {
+  DataColumn _renderDataColomn(String title, AllOrders orders) {
     return DataColumn(
       numeric: title != "Item Code" && title != "Item Name",
       onSort: (columnIndex, ascending) {
@@ -308,7 +307,9 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
   }
 
   String _calculateTotalPrice(AllOrders orders, String type) {
-    final num total = orders.items.map((e) => type == "pv" ? e.terms.pv : e.terms.total).reduce((value, element) => value + element);
+    final num total = orders.items
+        .map((e) => type == "pv" ? e.terms.pv : e.terms.total)
+        .reduce((value, element) => value + element);
     return total.toString();
     // return orders.items.reduce((value, element) => value + element.terms.total).toString();
     // double total = 0.0;
@@ -321,41 +322,41 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
 
   DataCell _renderDataCell(String value) => DataCell(Text(value));
 
-  void _onSortColum(List<OrderItem> inventoryRecordItems,
-      int columnIndex, bool ascending) {
+  void _onSortColum(
+      List<OrderItem> inventoryRecordItems, int columnIndex, bool ascending) {
     if (columnIndex == 0) {
       if (ascending) {
-        inventoryRecordItems
-            .sort((a, b) => a.creator.humanName.fullName.compareTo(b.creator.humanName.fullName));
+        inventoryRecordItems.sort((a, b) => a.creator.humanName.fullName
+            .compareTo(b.creator.humanName.fullName));
       } else {
-        inventoryRecordItems
-            .sort((a, b) => b.creator.humanName.fullName.compareTo(a.creator.humanName.fullName));
+        inventoryRecordItems.sort((a, b) => b.creator.humanName.fullName
+            .compareTo(a.creator.humanName.fullName));
       }
     } else if (columnIndex == 1) {
       if (ascending) {
-        inventoryRecordItems.sort((a, b) => a
-            .customer.id.unicity
-            .compareTo(b.customer.id.unicity));
+        inventoryRecordItems.sort(
+            (a, b) => a.customer.id.unicity.compareTo(b.customer.id.unicity));
       } else {
-        inventoryRecordItems.sort((a, b) => b
-            .customer.id.unicity
-            .compareTo(a.customer.id.unicity));
+        inventoryRecordItems.sort(
+            (a, b) => b.customer.id.unicity.compareTo(a.customer.id.unicity));
       }
     } else if (columnIndex == 2) {
       if (ascending) {
-        inventoryRecordItems
-            .sort((a, b) => a.customer.humanName.fullName.compareTo(b.customer.humanName.fullName));
+        inventoryRecordItems.sort((a, b) => a.customer.humanName.fullName
+            .compareTo(b.customer.humanName.fullName));
       } else {
-        inventoryRecordItems
-            .sort((a, b) => b.customer.humanName.fullName.compareTo(a.customer.humanName.fullName));
+        inventoryRecordItems.sort((a, b) => b.customer.humanName.fullName
+            .compareTo(a.customer.humanName.fullName));
       }
     } else if (columnIndex == 3) {
       if (ascending) {
-        inventoryRecordItems
-            .sort((a, b) => a.id.unicity.retrieveOrderId().compareTo(b.id.unicity.retrieveOrderId()));
+        inventoryRecordItems.sort((a, b) => a.id.unicity
+            .retrieveOrderId()
+            .compareTo(b.id.unicity.retrieveOrderId()));
       } else {
-        inventoryRecordItems
-            .sort((a, b) => b.id.unicity.retrieveOrderId().compareTo(a.id.unicity.retrieveOrderId()));
+        inventoryRecordItems.sort((a, b) => b.id.unicity
+            .retrieveOrderId()
+            .compareTo(a.id.unicity.retrieveOrderId()));
       }
     }
   }

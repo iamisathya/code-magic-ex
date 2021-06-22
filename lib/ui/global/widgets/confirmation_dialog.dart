@@ -24,12 +24,15 @@ class ConfirmationDialog {
             actions: <Widget>[
               ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: Text(cancelText, 
-                    style: const TextStyle(fontSize: 14, color: Colors.black),),
+                child: Text(
+                  cancelText,
+                  style: const TextStyle(fontSize: 14, color: Colors.black),
+                ),
               ),
               ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(true),
-                child: Text(okText, style: const TextStyle(fontSize: 14, color: Colors.black)),
+                child: Text(okText,
+                    style: const TextStyle(fontSize: 14, color: Colors.black)),
               )
             ],
           ),

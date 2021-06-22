@@ -10,10 +10,11 @@ class RequestPostCustomerToken {
   @JsonKey(name: 'value')
   String value;
 
-  RequestPostCustomerToken({ required this.namespace, required  this.type, required this.value});
+  RequestPostCustomerToken(
+      {required this.namespace, required this.type, required this.value});
 
-  factory RequestPostCustomerToken.fromJson(Map<String, dynamic> json) => _$RequestPostCustomerTokenFromJson(json);
+  factory RequestPostCustomerToken.fromJson(Map<String, dynamic> json) =>
+      _$RequestPostCustomerTokenFromJson(json);
 
   Map<String, dynamic> toJson() => _$RequestPostCustomerTokenToJson(this);
-
 }
