@@ -17,6 +17,7 @@ const kSecondaryGradientColor = LinearGradient(
 );
 
 const kTernaryLightColor = Color(0xFFE63946);
+const kWhiteSmokeColor = Color(0xfff5f5f5);
 
 const kTextColor = Color(0xFF757575);
 

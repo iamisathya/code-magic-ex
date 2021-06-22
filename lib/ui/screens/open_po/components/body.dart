@@ -36,7 +36,7 @@ class _BodyState extends State<Body> {
           width: 180.0,
           height: 60.0,
           decoration: BoxDecoration(
-            color: index == 0 ? kPrimaryLightColor : Colors.white,
+            color: index == 0 ? kPrimaryLightColor : index.isEven ?  kWhiteSmokeColor : Colors.white,
             border: Border.all(width: 0.5),
           ),
           child: Text(
@@ -59,7 +59,7 @@ class _BodyState extends State<Body> {
         width: 160,
         height: 60.0,
         decoration: BoxDecoration(
-          color: mainIndex == 0 ? kPrimaryLightColor : Colors.white,
+          color: mainIndex == 0 ? kPrimaryLightColor : mainIndex.isEven ?  kWhiteSmokeColor : Colors.white,
           border: Border.all(width: 0.5),
         ),
         child: index == 5
@@ -122,7 +122,9 @@ class _BodyState extends State<Body> {
               if (snapshot.hasData && snapshot.hasError == false) {
                 return _buildChild(snapshot.data!, context);
               } else {
-                return const SearchErrorWidget();
+                return const CustomErrorWidget(
+                  svgIcon: kImageServerDown,
+                );
               }
             }));
   }
