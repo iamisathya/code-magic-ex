@@ -1,14 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/models/open_po.dart';
+import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
+import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
-import 'package:code_magic_ex/ui/screens/github/empty_result_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/search_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/open_po/bloc.dart';
 import 'package:code_magic_ex/ui/screens/open_po/state.dart';
 import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:code_magic_ex/utilities/images.dart';
 import 'package:code_magic_ex/utilities/extensions.dart';
 
 class Body extends StatefulWidget {
@@ -49,7 +52,7 @@ class _BodyState extends State<Body> {
 
   List<Widget> _buildCells(
       int mainIndex, List<OpenPO> items, BuildContext context) {
-    return List.generate(7, (index) {
+    return List.generate(6, (index) {
       final OpenPO currentItem = items[mainIndex];
       return Container(
         alignment: Alignment.center,
@@ -59,25 +62,9 @@ class _BodyState extends State<Body> {
           color: mainIndex == 0 ? kPrimaryLightColor : Colors.white,
           border: Border.all(width: 0.5),
         ),
-        child: index == 6
+        child: index == 5
             ? mainIndex == 0
-                ? (Text(
-                    index == 0
-                        ? currentItem.orderDscid
-                        : index == 1
-                            ? currentItem.orderDate
-                            : index == 2
-                                ? currentItem.orderTime
-                                : index == 3
-                                    ? currentItem.orderTotalPrice
-                                    : index == 4
-                                        ? currentItem.orderTotalPv
-                                        : index == 5
-                                            ? currentItem.orderStatus
-                                            : currentItem.iconAttachment,
-                    style: mainIndex != 0
-                        ? Theme.of(context).textTheme.tableData
-                        : Theme.of(context).textTheme.tableHeader))
+                ? _renderTableHeader(index, currentItem, mainIndex, context)
                 : (currentItem.iconAttachment != "1_0_0"
                     ? IconButton(
                         onPressed: () {
@@ -93,26 +80,28 @@ class _BodyState extends State<Body> {
                         icon: const Icon(Icons.attach_file,
                             color: kPrimaryLightColor))
                     : const SizedBox())
-            : Text(
-                index == 0
-                    ? currentItem.orderDscid
-                    : index == 1
-                        ? currentItem.orderDate
-                        : index == 2
-                            ? currentItem.orderTime
-                            : index == 3
-                                ? currentItem.orderTotalPrice
-                                : index == 4
-                                    ? currentItem.orderTotalPv
-                                    : index == 5
-                                        ? currentItem.orderStatus
-                                        : currentItem.iconAttachment,
-                style: mainIndex != 0
-                    ? Theme.of(context).textTheme.tableData
-                    : Theme.of(context).textTheme.tableHeader,
-              ),
+            : _renderTableHeader(index, currentItem, mainIndex, context),
       );
     });
+  }
+
+  Text _renderTableHeader(
+      int index, OpenPO currentItem, int mainIndex, BuildContext context) {
+    final String _headerText = index == 0
+        ? currentItem.orderDate
+        : index == 1
+            ? currentItem.orderTime
+            : index == 2
+                ? currentItem.orderTotalPrice
+                : index == 3
+                    ? currentItem.orderTotalPv
+                    : index == 4
+                        ? currentItem.orderStatus
+                        : currentItem.iconAttachment;
+    return Text(_headerText,
+        style: mainIndex != 0
+            ? Theme.of(context).textTheme.tableData
+            : Theme.of(context).textTheme.tableHeader);
   }
 
   List<Widget> _buildRows(List<OpenPO> items, BuildContext context) {
@@ -141,12 +130,16 @@ class _BodyState extends State<Body> {
   Widget _buildChild(OpenPoState state, BuildContext context) {
     if (state.isLoading) {
       return const CustomLoadingWidget(
-        svgIcon: 'assets/images/completed_tasks.svg',
+        svgIcon: kImageCompletedTask,
       );
     } else if (state.hasError) {
-      return const SearchErrorWidget();
+      return const CustomErrorWidget(
+        svgIcon: kImageServerDown,
+      );
     } else if (state.openPO.isEmpty) {
-      return const EmptyWidget();
+      return const CustomEmptyWidget(
+        svgIcon: kImageEmptyBox,
+      );
     } else {
       return _renderDataTable(state.openPO, context);
     }
