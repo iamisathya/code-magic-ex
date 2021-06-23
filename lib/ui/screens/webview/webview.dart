@@ -1,9 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-import 'package:code_magic_ex/ui/global/theme/bloc.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 
 class WebivewHomeScreen extends StatefulWidget {
   static const String routeName = '/webviewHomePage';
@@ -20,56 +18,45 @@ class WebivewHomeScreen extends StatefulWidget {
 
 class _WebivewHomeScreenState extends State<WebivewHomeScreen> {
   // Instance of WebView plugin
-  final flutterWebViewPlugin = FlutterWebviewPlugin();
-  late StreamSubscription<double> _onProgressChanged;
   double currentProgress = 0.0;
   bool canHideWebview = true;
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _onProgressChanged =
-        flutterWebViewPlugin.onProgressChanged.listen((double progress) {
-      if (mounted) {
-        if (progress == 1.0) {
-          setState(() {
-            canHideWebview = false;
-          });
-        }
-        setState(() {
-          currentProgress = progress;
-        });
-      }
-    });
   }
 
   @override
   void dispose() {
-    // Every listener should be canceled, the same should be done with this stream.
-    _onProgressChanged.cancel();
-    flutterWebViewPlugin.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    print(widget.url);
-    return WebviewScaffold(
-        appBar: AppBar(
-          title: const Text("Webview"),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.close,
-              ),
-              tooltip: 'Close webview',
-              onPressed: () => themeBloc.toggleThemeMode,
-            ),
-          ],
-        ),
-        withZoom: true,
-        useWideViewPort: true,
-        url: widget.url, 
-        );
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Webview"),
+      ),
+      body: Stack(
+        children: <Widget>[
+          WebView(
+            initialUrl: widget.url,
+            javascriptMode: JavascriptMode.unrestricted,
+            onPageFinished: (finish) {
+              setState(() {
+                isLoading = false;
+              });
+            },
+          ),
+          if (!isLoading)
+            const LinearProgressIndicator(
+              color: kPrimaryColor,
+            )
+          else
+            Stack(),
+        ],
+      ),
+    );
   }
 }
