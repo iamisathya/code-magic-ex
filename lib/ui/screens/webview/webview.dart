@@ -49,7 +49,7 @@ class _WebivewHomeScreenState extends State<WebivewHomeScreen> {
               });
             },
           ),
-          if (!isLoading)
+          if (isLoading)
             const LinearProgressIndicator(
               color: kPrimaryColor,
             )

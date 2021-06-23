@@ -12,7 +12,6 @@ import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/images.dart';
 import 'package:code_magic_ex/utilities/extensions.dart';
-import 'package:lottie/lottie.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -31,7 +30,9 @@ class _BodyState extends State<Body> {
     return List.generate(
       totalLength,
       (index) => GestureDetector(
-        onTap: () {},
+        onTap: () {
+          print(items[index].orderOpid);
+        },
         child: Container(
           alignment: Alignment.center,
           width: 180.0,
@@ -60,7 +61,9 @@ class _BodyState extends State<Body> {
     return List.generate(6, (index) {
       final OpenPO currentItem = items[mainIndex];
       return GestureDetector(
-        onTap: () {},
+        onTap: () {
+          print(items[mainIndex].orderOpid);
+        },
         child: Container(
           alignment: Alignment.center,
           width: 160,
