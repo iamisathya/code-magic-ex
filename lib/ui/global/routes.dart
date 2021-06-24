@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/screens/open_po/getx/partner_order_details.dart';
 import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:flutter/material.dart';
 
@@ -24,5 +25,6 @@ Map<String, WidgetBuilder> get routes {
     ScreenPaths.easyShipReport: (context) => EasyShipHomeScreen(),
     ScreenPaths.barcode: (context) => BarcodeHomeScreen(),
     ScreenPaths.webview: (context) => const WebivewHomeScreen(),
+    ScreenPaths.purchaseOrderDetails: (context) => PurchaseOrderDetailsPage(),
   };
 }

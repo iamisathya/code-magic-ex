@@ -64,4 +64,8 @@ extension AppStyles on TextTheme {
 
   TextStyle get tableData =>
       const TextStyle(fontSize: 14.0, color: Colors.black);
+
+
+  TextStyle get backButton =>
+      const TextStyle(fontSize: 14.0, color: Colors.black);
 }

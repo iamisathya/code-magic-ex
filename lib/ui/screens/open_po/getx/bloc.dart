@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:code_magic_ex/api/config/member_class.dart';
@@ -7,17 +8,31 @@ import 'package:code_magic_ex/models/open_po_details.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class SampleController extends GetxController {
+  RxInt count = 0.obs;
+  RxInt increment() => count++;
+
   RxString errorMessage = "".obs;
   RxString detailsErrorMessage = "".obs;
 
   RxBool loading = false.obs;
+  
+  RxBool loadingDetails = false.obs;
+  RxBool showDetails = false.obs;
+   // swap true/false & save it to observable
+  void toggle(){
+    showDetails.value = !showDetails.value;
+    update();
+  } 
+
   RxList<OpenPO> allOpenPlaceOrders = List<OpenPO>.filled(0, OpenPO()).obs;
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
-      List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
+      List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;  
 
-  Future<void> getOpenPlaceOrderDetails(String ponumber) async {
-    loading(true);
+  Future<void> getOpenPlaceOrderDetails(String ponumber, BuildContext context) async {
+    showDetails(true);
+    loadingDetails(true);
     detailsErrorMessage("");
+    update();
     try {
       // * Getting order id from getOpenOrderId API - 203
       final OpenPlaceOrderId openPlaceOrderId =
@@ -28,12 +43,13 @@ class SampleController extends GetxController {
           await MemberCallsService.init()
               .getOpenOrderDetails("204", openPlaceOrderId.orderId);
       openPlaceOrderDetails = detailsResponse.obs;
+      // Navigator.pushNamed(context, '/poOrderDetailsPage');
 
-      loading(false);
+      loadingDetails(false);
       detailsErrorMessage("");
       update();
     } catch (err) {
-      loading(false);
+      loadingDetails(false);
       detailsErrorMessage(err.toString());
       LoggerService.instance.e(err.toString());
       update();

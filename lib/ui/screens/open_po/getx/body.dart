@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/ui/screens/open_po/getx/bloc.dart';
+import 'package:code_magic_ex/ui/screens/open_po/getx/partner_order_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -25,9 +26,22 @@ class Body extends StatelessWidget {
             controller.getAllOpenPo();
           },
           builder: (_) {
+            if(controller.showDetails.value) {
+              return _buildDetailsContainer(context);
+            }
             return _buildChild(context);
           }),
     );
+  }
+
+  Widget _buildDetailsContainer(BuildContext context) {
+    print("loadingDetails: ${controller.loadingDetails.value}");
+    if (controller.loadingDetails.value) {
+      return const CustomLoadingWidget(
+        svgIcon: kImageApproveTask,
+      );
+    }
+    return PurchaseOrderDetailsPage();    
   }
 
   Widget _buildChild(BuildContext context) {
@@ -54,7 +68,7 @@ class Body extends StatelessWidget {
       totalLength,
       (index) => GestureDetector(
         onTap: () {
-          controller.getOpenPlaceOrderDetails(items[index].orderOpid);
+          controller.getOpenPlaceOrderDetails(items[index].orderOpid, context);
         },
         child: Container(
           alignment: Alignment.center,
@@ -85,7 +99,8 @@ class Body extends StatelessWidget {
       final OpenPO currentItem = items[mainIndex];
       return GestureDetector(
         onTap: () {
-          controller.getOpenPlaceOrderDetails(items[mainIndex].orderOpid);
+          controller.getOpenPlaceOrderDetails(
+              items[mainIndex].orderOpid, context);
         },
         child: Container(
           alignment: Alignment.center,
