@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:code_magic_ex/models/open_order_id.dart';
 import 'package:code_magic_ex/models/open_po.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:code_magic_ex/ui/screens/open_po/components/OPenPoOne.dart';
@@ -39,7 +40,7 @@ abstract class ApiService {
   factory ApiService.shared() {
     final Dio dio = Dio();
     dio.options.headers['authorization'] =
-        "Bearer ${UserSessionManager.shared.customerToken.token}";
+        "Bearer a30be6a4-d6d5-4119-9e3a-84bfb90f71e2";
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
     return ApiService(dio);
   }
@@ -144,9 +145,11 @@ abstract class MemberCalls2Service {
 abstract class MemberCallsService {
   factory MemberCallsService(Dio dio, {String baseUrl}) = _MemberCallsService;
 
-  static MemberCallsService init() {
+  factory MemberCallsService.init() {
     final Dio dio = Dio();
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    dio.options.headers['authorization'] =
+        "Bearer a30be6a4-d6d5-4119-9e3a-84bfb90f71e2";
     return MemberCallsService(dio);
   }
 
@@ -162,4 +165,8 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/ALL/DSC/getdata.php?type=106&mode=12&dscid=2970466
   @GET(Address.validOrders)
   Future<OpenPoOne> getAllOpenPoOne(@Query("type") String type, @Query("mode") String mode, @Query("dscid") String dscid);
+
+  //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=203&ponumber=BKM%202021-06-W003
+  @GET("${Address.allDscPath}/THA/getdata.php")
+  Future<OpenPlaceOrderId> getOpenOrderId(@Query("type") String type, @Query("ponumber") String ponumber);
 }

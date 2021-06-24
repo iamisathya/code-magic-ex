@@ -22,14 +22,14 @@ class OpenPO {
   String orderTotalPv;
 
   OpenPO(
-      {required this.orderDscid,
-      required this.orderOpid,
-      required this.orderTotalPv,
-      required this.orderTotalPrice,
-      required this.orderDate,
-      required this.orderTime,
-      required this.orderStatus,
-      required this.iconAttachment});
+      {this.orderDscid = "",
+      this.orderOpid = "",
+      this.orderTotalPv = "",
+      this.orderTotalPrice = "",
+      this.orderDate = "",
+      this.orderTime = "",
+      this.orderStatus = "",
+      this.iconAttachment = ""});
 
   Map<String, dynamic> toMap() => {
         'iconAttachment': iconAttachment,
