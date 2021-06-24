@@ -9,7 +9,7 @@ part of 'open_po_details.dart';
 OpenPlaceOrderDetails _$OpenPlaceOrderDetailsFromJson(
     Map<String, dynamic> json) {
   return OpenPlaceOrderDetails(
-    comment: json['comment'] as String,
+    comment: json['comment'],
     productId: json['pro_id'] as String,
     productName: json['pro_name'] as String,
     productPrice: json['pro_price'] as String,
@@ -18,7 +18,7 @@ OpenPlaceOrderDetails _$OpenPlaceOrderDetailsFromJson(
     total: json['total'] as String,
     total2: json['total2'] as String,
     totalPrice: json['totalprice'] as String,
-    totalPv: json['totalpv'] as String,
+    totalPv: json['totalpv'] as int,
   );
 }
 

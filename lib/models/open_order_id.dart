@@ -1,52 +1,28 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'open_order_id.g.dart';
-
-@JsonSerializable(explicitToJson: true)
 class OpenPlaceOrderId {
-  @JsonKey(name: "order_id")
-  String orderId;
-  @JsonKey(name: "order_dscid")
-  String orderDscId;
-  @JsonKey(name: "order_opid")
-  String orderOpId;
-  @JsonKey(name: "order_total_pv")
-  String orderTotalPv;
-  @JsonKey(name: "order_total_price")
-  String orderTotalPrice;
-  @JsonKey(name: "order_date")
-  String orderDate;
-  @JsonKey(name: "order_status")
-  String orderStatus;
-  @JsonKey(name: "create_by")
-  String createBy;
-  @JsonKey(name: "create_date")
-  String createDate;
-  @JsonKey(name: "update_by")
-  String updateBy;
-  @JsonKey(name: "update_date")
-  String updateDate;
-  @JsonKey(name: "delete_by")
-  String deleteBy;
-  @JsonKey(name: "delete_date")
-  String deleteDate;
-  @JsonKey(name: "cus_id")
-  String customerId;
-  @JsonKey(name: "so_id")
-  String soId;
-  @JsonKey(name: "comment")
-  String comment;
-  @JsonKey(name: "is_print")
-  String isPrint;
-  @JsonKey(name: "printed_by")
-  String printedBy;
-  @JsonKey(name: "last_update")
-  String lastUpdate;
+  String orderId = "";
+  String orderDscid = "";
+  String orderOpid = "";
+  String orderTotalPv = "";
+  String orderTotalPrice = "";
+  String orderDate = "";
+  String orderStatus = "";
+  String createBy = "";
+  String createDate = "";
+  String updateBy = "";
+  String updateDate = "";
+  String deleteBy = "";
+  String deleteDate = "";
+  String cusId = "";
+  String soId = "";
+  String comment = "";
+  String isPrint = "";
+  String printedBy = "";
+  String lastUpdate = "";
 
   OpenPlaceOrderId(
       {this.orderId = "",
-      this.orderDscId = "",
-      this.orderOpId = "",
+      this.orderDscid = "",
+      this.orderOpid = "",
       this.orderTotalPv = "",
       this.orderTotalPrice = "",
       this.orderDate = "",
@@ -57,37 +33,56 @@ class OpenPlaceOrderId {
       this.updateDate = "",
       this.deleteBy = "",
       this.deleteDate = "",
-      this.customerId = "",
+      this.cusId = "",
       this.soId = "",
       this.comment = "",
       this.isPrint = "",
       this.printedBy = "",
       this.lastUpdate = ""});
 
-  factory OpenPlaceOrderId.fromJson(Map<String, dynamic> json) =>
-      _$OpenPlaceOrderIdFromJson(json);
+  OpenPlaceOrderId.fromJson(Map<String, dynamic> json) {
+    orderId = json['order_id'] as String;
+    orderDscid = json['order_dscid'] as String;
+    orderOpid = json['order_opid'] as String;
+    orderTotalPv = json['order_total_pv'] as String;
+    orderTotalPrice = json['order_total_price'] as String;
+    orderDate = json['order_date'] as String;
+    orderStatus = json['order_status'] as String;
+    createBy = json['create_by'] as String;
+    createDate = json['create_date'] as String;
+    updateBy = json['update_by'] as String;
+    updateDate = json['update_date'] as String;
+    deleteBy = json['delete_by'] as String;
+    deleteDate = json['delete_date'] as String;
+    cusId = json['cus_id'] as String;
+    soId = json['so_id'] as String;
+    comment = json['comment'] as String;
+    isPrint = json['is_print'] as String;
+    printedBy = json['printed_by'] as String;
+    lastUpdate = json['last_update'] as String;
+  }
 
-  Map<String, dynamic> toJson() => _$OpenPlaceOrderIdToJson(this);
-
-  Map<String, dynamic> toMap() => {
-        'orderId': orderId,
-        'orderDscId': orderDscId,
-        'orderOpId': orderOpId,
-        'orderTotalPv': orderTotalPv,
-        'orderTotalPrice': orderTotalPrice,
-        'orderDate': orderDate,
-        'orderStatus': orderStatus,
-        'createBy': createBy,
-        'createDate': createDate,
-        'updateBy': updateBy,
-        'updateDate': updateDate,
-        'deleteBy': deleteBy,
-        'deleteDate': deleteDate,
-        'customerId': customerId,
-        'soId': soId,
-        'comment': comment,
-        'isPrint': isPrint,
-        'printedBy': printedBy,
-        'lastUpdate': lastUpdate,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['order_id'] = orderId;
+    data['order_dscid'] = orderDscid;
+    data['order_opid'] = orderOpid;
+    data['order_total_pv'] = orderTotalPv;
+    data['order_total_price'] = orderTotalPrice;
+    data['order_date'] = orderDate;
+    data['order_status'] = orderStatus;
+    data['create_by'] = createBy;
+    data['create_date'] = createDate;
+    data['update_by'] = updateBy;
+    data['update_date'] = updateDate;
+    data['delete_by'] = deleteBy;
+    data['delete_date'] = deleteDate;
+    data['cus_id'] = cusId;
+    data['so_id'] = soId;
+    data['comment'] = comment;
+    data['is_print'] = isPrint;
+    data['printed_by'] = printedBy;
+    data['last_update'] = lastUpdate;
+    return data;
+  }
 }

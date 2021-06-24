@@ -247,7 +247,7 @@ class _MemberCalls2Service implements MemberCalls2Service {
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<String>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, 'ALL/DSC/getdata.php',
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!.cast<String>();

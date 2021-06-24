@@ -5,7 +5,7 @@ part 'open_po_details.g.dart';
 @JsonSerializable(explicitToJson: true)
 class OpenPlaceOrderDetails {
   @JsonKey(name: "comment")
-  String comment;
+  dynamic comment;
   @JsonKey(name: "pro_id")
   String productId;
   @JsonKey(name: "pro_name")
@@ -23,7 +23,7 @@ class OpenPlaceOrderDetails {
   @JsonKey(name: "totalprice")
   String totalPrice;
   @JsonKey(name: "totalpv")
-  String totalPv;
+  int totalPv;
 
   OpenPlaceOrderDetails(
       {this.comment = "",
@@ -35,7 +35,7 @@ class OpenPlaceOrderDetails {
       this.total = "",
       this.total2 = "",
       this.totalPrice = "",
-      this.totalPv = ""});
+      this.totalPv = 0});
 
   factory OpenPlaceOrderDetails.fromJson(Map<String, dynamic> json) =>
       _$OpenPlaceOrderDetailsFromJson(json);

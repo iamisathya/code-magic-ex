@@ -42,31 +42,12 @@ class _MemberCallsService implements MemberCallsService {
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<OpenPO>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, 'ALL/DSC/getdata.php',
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
         .map((dynamic i) => OpenPO.fromJson(i as Map<String, dynamic>))
         .toList();
-    return value;
-  }
-
-  @override
-  Future<OpenPoOne> getAllOpenPoOne(type, mode, dscid) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'type': type,
-      r'mode': mode,
-      r'dscid': dscid
-    };
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<OpenPoOne>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, 'ALL/DSC/getdata.php',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = OpenPoOne.fromJson(_result.data!);
     return value;
   }
 
@@ -85,6 +66,27 @@ class _MemberCallsService implements MemberCallsService {
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = OpenPlaceOrderId.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<List<OpenPlaceOrderDetails>> getOpenOrderDetails(type, orderId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'type': type,
+      r'order_id': orderId
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<OpenPlaceOrderDetails>>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) =>
+            OpenPlaceOrderDetails.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
