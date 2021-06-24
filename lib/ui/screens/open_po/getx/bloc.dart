@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:code_magic_ex/api/config/api_service.dart';
+import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/models/open_order_id.dart';
 import 'package:code_magic_ex/models/open_po.dart';

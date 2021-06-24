@@ -140,33 +140,3 @@ abstract class MemberCalls2Service {
       @Query('id') String id,
       @Query('action') String action);
 }
-
-@RestApi(baseUrl: Address.memberCallsBase)
-abstract class MemberCallsService {
-  factory MemberCallsService(Dio dio, {String baseUrl}) = _MemberCallsService;
-
-  factory MemberCallsService.init() {
-    final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true));
-    dio.options.headers['authorization'] =
-        "Bearer a30be6a4-d6d5-4119-9e3a-84bfb90f71e2";
-    return MemberCallsService(dio);
-  }
-
-  //Common apis
-  //? url=https://member-calls2.unicity.com/dictionary/publish?lang=TH%2CEN
-  @GET(Address.dictionary)
-  Future<CustomerToken> getTranslations(@Query("lang") String lang);
-
-  //? url=https://member-calls.unicity.com/ALL/DSC/getdata.php?type=106&mode=12&dscid=2970466
-  @GET(Address.validOrders)
-  Future<List<OpenPO>> getAllOpenPo(@Query("type") String type, @Query("mode") String mode, @Query("dscid") String dscid);
-
-  //? url=https://member-calls.unicity.com/ALL/DSC/getdata.php?type=106&mode=12&dscid=2970466
-  @GET(Address.validOrders)
-  Future<OpenPoOne> getAllOpenPoOne(@Query("type") String type, @Query("mode") String mode, @Query("dscid") String dscid);
-
-  //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=203&ponumber=BKM%202021-06-W003
-  @GET("${Address.allDscPath}/THA/getdata.php")
-  Future<OpenPlaceOrderId> getOpenOrderId(@Query("type") String type, @Query("ponumber") String ponumber);
-}
