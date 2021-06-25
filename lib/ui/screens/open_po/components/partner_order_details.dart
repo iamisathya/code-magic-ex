@@ -1,6 +1,6 @@
 import 'package:code_magic_ex/models/open_po_details.dart';
 import 'package:code_magic_ex/ui/global/widgets/back_buttonn.dart';
-import 'package:code_magic_ex/ui/screens/open_po/getx/bloc.dart';
+import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,6 @@
-import 'package:code_magic_ex/ui/screens/open_po/getx/partner_order_details.dart';
-import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:flutter/material.dart';
 
+import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/ui/global/router.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/ui/screens/barcode/barcode.dart';
@@ -9,7 +8,7 @@ import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
 import 'package:code_magic_ex/ui/screens/home/home.dart';
 import 'package:code_magic_ex/ui/screens/inventory/inventory.dart';
-import 'package:code_magic_ex/ui/screens/open_po/open_po.dart';
+import 'package:code_magic_ex/ui/screens/open_po/home.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/sales_reports.dart';
 
@@ -25,6 +24,5 @@ Map<String, WidgetBuilder> get routes {
     ScreenPaths.easyShipReport: (context) => EasyShipHomeScreen(),
     ScreenPaths.barcode: (context) => BarcodeHomeScreen(),
     ScreenPaths.webview: (context) => const WebivewHomeScreen(),
-    ScreenPaths.purchaseOrderDetails: (context) => PurchaseOrderDetailsPage(),
   };
 }

@@ -1,28 +1,64 @@
+import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
+import 'package:code_magic_ex/ui/screens/open_po/components/partner_order_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/models/open_po.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
-import 'package:code_magic_ex/ui/screens/open_po/bloc.dart';
-import 'package:code_magic_ex/ui/screens/open_po/state.dart';
 import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/images.dart';
 import 'package:code_magic_ex/utilities/extensions.dart';
 
-class Body extends StatefulWidget {
-  @override
-  _BodyState createState() => _BodyState();
-}
+class Body extends StatelessWidget {
+  final SampleController controller = Get.put(SampleController());
 
-class _BodyState extends State<Body> {
   @override
-  void initState() {
-    super.initState();
-    openPoBloc.getAllOpenPo();
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: GetBuilder<SampleController>(
+          init: SampleController(),
+          initState: (state) {
+            controller.getAllOpenPo();
+          },
+          builder: (_) {
+            if (controller.showDetails.value) {
+              return _buildDetailsContainer(context);
+            }
+            return _buildChild(context);
+          }),
+    );
+  }
+
+  Widget _buildDetailsContainer(BuildContext context) {
+    if (controller.loadingDetails.value) {
+      return const CustomLoadingWidget(
+        svgIcon: kImageApproveTask,
+      );
+    }
+    return PurchaseOrderDetailsPage();
+  }
+
+  Widget _buildChild(BuildContext context) {
+    if (controller.loading.value) {
+      return const CustomLoadingWidget(
+        svgIcon: kImageCompletedTask,
+      );
+    } else if (controller.errorMessage.value.isNotEmpty) {
+      return const CustomErrorWidget(
+        svgIcon: kImageServerDown,
+      );
+    } else if (controller.allOpenPlaceOrders.isEmpty) {
+      return const CustomEmptyWidget(
+        svgIcon: kImageEmptyBox,
+      );
+    } else {
+      return _renderDataTable(controller.allOpenPlaceOrders, context);
+    }
   }
 
   List<Widget> _buildMainCells(List<OpenPO> items, BuildContext context) {
@@ -31,7 +67,7 @@ class _BodyState extends State<Body> {
       totalLength,
       (index) => GestureDetector(
         onTap: () {
-          print(items[index].orderOpid);
+          controller.getOpenPlaceOrderDetails(items[index].orderOpid, context);
         },
         child: Container(
           alignment: Alignment.center,
@@ -62,7 +98,8 @@ class _BodyState extends State<Body> {
       final OpenPO currentItem = items[mainIndex];
       return GestureDetector(
         onTap: () {
-          print(items[mainIndex].orderOpid);
+          controller.getOpenPlaceOrderDetails(
+              items[mainIndex].orderOpid, context);
         },
         child: Container(
           alignment: Alignment.center,
@@ -76,28 +113,57 @@ class _BodyState extends State<Body> {
                     : Colors.white,
             border: Border.all(width: 0.5),
           ),
-          child: index == 5
+          child: index == 4
               ? mainIndex == 0
                   ? _renderTableHeader(index, currentItem, mainIndex, context)
-                  : (currentItem.iconAttachment != "1_0_0"
-                      ? IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => WebivewHomeScreen(
-                                    url:
-                                        "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
-                                  ),
-                                ));
-                          },
-                          icon: const Icon(Icons.attach_file,
-                              color: kPrimaryLightColor))
-                      : const SizedBox())
-              : _renderTableHeader(index, currentItem, mainIndex, context),
+                  : _renderStatusButton(
+                      context, currentItem.orderStatus.retrieveOrderStatus())
+              : index == 5
+                  ? mainIndex == 0
+                      ? _renderTableHeader(
+                          index, currentItem, mainIndex, context)
+                      : (currentItem.iconAttachment != "1_0_0"
+                          ? IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WebivewHomeScreen(
+                                        url:
+                                            "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
+                                      ),
+                                    ));
+                              },
+                              icon: const Icon(Icons.attach_file,
+                                  color: kPrimaryLightColor))
+                          : const SizedBox())
+                  : _renderTableHeader(index, currentItem, mainIndex, context),
         ),
       );
     });
+  }
+
+  Container _renderStatusButton(BuildContext context, String status) {
+    if (status == "0") {
+      _renderEachStatusButton(context, "Pending", kTernaryLightColor);
+    } else if (status == "4") {
+      return _renderEachStatusButton(context, "Approved", kPrimaryColor);
+    } else if (status == "2") {
+      return _renderEachStatusButton(context, "Unknown", kSecondaryColor);
+    }
+    return _renderEachStatusButton(context, "Deleted", Colors.red);
+  }
+
+  Container _renderEachStatusButton(
+      BuildContext context, String text, Color color) {
+    return Container(
+      alignment: Alignment.center,
+      height: 45,
+      width: 100,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(8), color: color),
+      child: Text(text, style: Theme.of(context).textTheme.whiteButtonText),
+    );
   }
 
   Text _renderTableHeader(
@@ -126,40 +192,6 @@ class _BodyState extends State<Body> {
         children: _buildCells(index, items, context),
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        child: StreamBuilder<OpenPoState>(
-            stream: openPoBloc.state,
-            builder: (context, snapshot) {
-              if (snapshot.hasData && snapshot.hasError == false) {
-                return _buildChild(snapshot.data!, context);
-              } else {
-                return const CustomErrorWidget(
-                  svgIcon: kImageServerDown,
-                );
-              }
-            }));
-  }
-
-  Widget _buildChild(OpenPoState state, BuildContext context) {
-    if (state.isLoading) {
-      return const CustomLoadingWidget(
-        svgIcon: kImageCompletedTask,
-      );
-    } else if (state.hasError) {
-      return const CustomErrorWidget(
-        svgIcon: kImageServerDown,
-      );
-    } else if (state.openPO.isEmpty) {
-      return const CustomEmptyWidget(
-        svgIcon: kImageEmptyBox,
-      );
-    } else {
-      return _renderDataTable(state.openPO, context);
-    }
   }
 
   SingleChildScrollView _renderDataTable(

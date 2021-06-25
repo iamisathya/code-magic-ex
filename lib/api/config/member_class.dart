@@ -1,17 +1,12 @@
-
-
-
-import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:retrofit/retrofit.dart';
 
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/models/open_order_id.dart';
 import 'package:code_magic_ex/models/open_po.dart';
 import 'package:code_magic_ex/models/open_po_details.dart';
 import 'package:code_magic_ex/models/user_token.dart';
-import 'package:code_magic_ex/ui/screens/open_po/components/OPenPoOne.dart';
-import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:retrofit/retrofit.dart';
 
 part 'member_class.g.dart';
 
