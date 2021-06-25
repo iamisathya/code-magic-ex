@@ -8,7 +8,6 @@ final CustomerToken _emptyToken = CustomerToken(
   customer: CustomerHref(href: ""),
 );
 
-final UserInfo _userInfo = UserInfo();
 
 class LoginPageState {
   CustomerToken customerToken;

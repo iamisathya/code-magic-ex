@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
@@ -13,7 +12,8 @@ class GithubApi {
     required Map<String, SearchResult> cache,
     this.baseUrl = 'https://api.github.com/search/repositories?q=',
   })  : client = http.Client(),
-        cache = cache ?? <String, SearchResult>{};
+        // ignore: prefer_initializing_formals
+        cache = cache;
 
   /// Search Github for repositories using the given term
   Future<SearchResult?> search(String term) async {

@@ -97,12 +97,14 @@ class UserSessionManager {
     try {
       final data =
           KeyValueStorageManager.getString(KeyValueStorageKeys.userInfo);
-      if (null == data || data.isEmpty)
+      if (null == data || data.isEmpty) {
         throw Exception('No data available in DB');
+      }
       final Map<String, dynamic> jsonData =
           json.decode(data) as Map<String, dynamic>;
-      if (jsonData.isEmpty)
+      if (jsonData.isEmpty) {
         throw Exception('No data available after JSON convert');
+      }
       userInfo = UserInfo.fromJson(jsonData);
     } catch (error) {
       LoggerService.instance

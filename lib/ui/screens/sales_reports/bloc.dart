@@ -2,8 +2,6 @@ import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'package:code_magic_ex/ui/screens/demo/model.dart';
-import 'package:code_magic_ex/ui/screens/demo/service.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/state.dart';
 
 class SalesReportBloc {

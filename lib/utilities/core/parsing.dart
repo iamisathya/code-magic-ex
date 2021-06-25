@@ -64,13 +64,15 @@ class Parsing {
   /// Get Map from Dynamic Data
   static Map<String, dynamic>? mapFrom(dynamic data, {bool makeNull = false}) {
     if (null == data) return makeNull ? null : {};
-    if (data is Map)
+    if (data is Map) {
       return data.map((key, value) => MapEntry(key.toString(), value));
+    }
     if (data is String) {
       try {
         final newData = convert.jsonDecode(data);
-        if (newData is Map)
+        if (newData is Map) {
           return newData.map((key, value) => MapEntry(key.toString(), value));
+        }
       } catch (e) {
         debugPrint(e.toString());
       }
@@ -85,8 +87,9 @@ class Parsing {
     try {
       final stringData = convert.jsonEncode(data);
       final newData = convert.jsonDecode(stringData);
-      if (newData is Map)
+      if (newData is Map) {
         return newData.map((key, value) => MapEntry(key.toString(), value));
+      }
     } catch (e) {
       debugPrint(e.toString());
     }

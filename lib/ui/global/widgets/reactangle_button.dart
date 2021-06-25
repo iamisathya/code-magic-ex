@@ -40,11 +40,10 @@ class RectangleButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       elevation: elevation,
-      fillColor: backgroundColor ?? Theme.of(context).primaryColor,
+      fillColor: backgroundColor,
       onPressed: onPressed,
-      shape: shape ??
-          (rounded ? const StadiumBorder() : const RoundedRectangleBorder()),
-      constraints: boxConstraints ?? BoxConstraints(),
+      shape: shape,
+      constraints: boxConstraints,
       materialTapTargetSize: materialTapTargetSize,
       padding: padding,
       highlightColor:
@@ -67,11 +66,7 @@ class RectangleButtonWidget extends StatelessWidget {
                       child: Text(
                         title,
                         textAlign: TextAlign.center,
-                        style: textStyle ??
-                            const TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                fontWeight: AppFontWeight.semiBold),
+                        style: textStyle,
                       ),
                     ),
                   ),
@@ -81,11 +76,7 @@ class RectangleButtonWidget extends StatelessWidget {
           : Text(
               title,
               textAlign: TextAlign.center,
-              style: textStyle ??
-                  TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: AppFontWeight.semiBold),
+              style: textStyle,
             ),
     );
   }

@@ -1,7 +1,7 @@
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/resources/colors.dart';
 import 'package:code_magic_ex/translations/bloc.dart';
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
@@ -36,7 +36,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "EN",
           child: ListTile(
-            selectedTileColor: AppColor.COLOR_399000,
+            selectedTileColor: kPrimaryColor,
             selected: translationBloc.getCurrentLanguage == "en",
             leading: const IconButton(
               onPressed: null,
@@ -50,7 +50,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "TH",
           child: ListTile(
-            selectedTileColor: AppColor.COLOR_399000,
+            selectedTileColor: kPrimaryColor,
             selected: translationBloc.getCurrentLanguage == "th",
             leading: const IconButton(
               onPressed: null,

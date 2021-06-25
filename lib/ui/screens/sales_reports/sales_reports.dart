@@ -1,16 +1,14 @@
 import 'package:code_magic_ex/models/order_list_rmas.dart';
-import 'package:code_magic_ex/resources/colors.dart';
 import 'package:code_magic_ex/ui/screens/github/empty_result_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/search_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/search_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/bloc.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/state.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
-import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
-import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
 import 'package:code_magic_ex/ui/screens/inventory/bloc.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:intl/intl.dart';
@@ -107,7 +105,6 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
             StreamBuilder<SalesReportPageState>(
                 stream: salesReportBloc.state,
                 builder: (context, snapshot) {
-                  print(snapshot.hasData);
                   if (snapshot.hasData) {
                     return Container(child: _buildChild(snapshot.data!));
                   }
@@ -135,32 +132,29 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
       context: context,
       position: const RelativeRect.fromLTRB(100, 182, 0, 100),
       items: [
-        PopupMenuItem<String>(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+        const PopupMenuItem<String>(
+          padding: EdgeInsets.symmetric(horizontal: 8),
           value: "EN",
           child: ListTile(
             selected: true,
             selectedTileColor: Colors.blue,
-            title: const Text("By Order"),
-            onTap: () => {print("ji")},
+            title: Text("By Order"),
           ),
         ),
-        PopupMenuItem<String>(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+        const PopupMenuItem<String>(
+          padding: EdgeInsets.symmetric(horizontal: 8),
           value: "TH",
           child: ListTile(
-            selectedTileColor: AppColor.COLOR_399000,
-            title: const Text("By Item"),
-            onTap: () => {print("ji")},
+            selectedTileColor: kPrimaryColor,
+            title: Text("By Item"),
           ),
         ),
-        PopupMenuItem<String>(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+        const PopupMenuItem<String>(
+          padding: EdgeInsets.symmetric(horizontal: 8),
           value: "TH",
           child: ListTile(
-            selectedTileColor: AppColor.COLOR_399000,
-            title: const Text("RMAs"),
-            onTap: () => {print("ji")},
+            selectedTileColor: kPrimaryColor,
+            title: Text("RMAs"),
           ),
         )
       ],
@@ -359,15 +353,5 @@ class _SalesReportsHomeScreenState extends State<SalesReportsHomeScreen> {
             .compareTo(a.id.unicity.retrieveOrderId()));
       }
     }
-  }
-
-  String _calculateEachTotal(String qty, double unitPrice) {
-    final int? parsedQty = Parsing.intFrom(qty);
-    return (parsedQty! * unitPrice).toInt().toString();
-  }
-
-  String _calculateTotalPv(String qty, int unitPv) {
-    final int? parsedQty = Parsing.intFrom(qty);
-    return (parsedQty! * unitPv).toInt().toString();
   }
 }
