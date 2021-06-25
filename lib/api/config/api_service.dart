@@ -37,7 +37,7 @@ abstract class ApiService {
   factory ApiService.shared() {
     final Dio dio = Dio();
     dio.options.headers['authorization'] =
-        "Bearer a30be6a4-d6d5-4119-9e3a-84bfb90f71e2";
+        "Bearer 8c3dba26-2454-4c3e-bb27-05c349b06ffd";
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
     return ApiService(dio);
   }
