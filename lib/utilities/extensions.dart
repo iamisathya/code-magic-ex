@@ -24,6 +24,15 @@ extension OrderId on String {
       return this;
     }
   }
+  
+  String retrieveOrderStatus() {
+    try {
+      return split("_")[0];
+    } catch (e) {
+      return this;
+    }
+  }
+
 }
 
 extension DateFormater on String {
@@ -73,4 +82,7 @@ extension AppStyles on TextTheme {
 
   TextStyle get backButton =>
       const TextStyle(fontSize: 14.0, color: Colors.black);
+
+  TextStyle get whiteButtonText =>
+      const TextStyle(fontSize: 14.0, color: Colors.white);
 }

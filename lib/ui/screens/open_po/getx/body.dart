@@ -26,7 +26,7 @@ class Body extends StatelessWidget {
             controller.getAllOpenPo();
           },
           builder: (_) {
-            if(controller.showDetails.value) {
+            if (controller.showDetails.value) {
               return _buildDetailsContainer(context);
             }
             return _buildChild(context);
@@ -41,7 +41,7 @@ class Body extends StatelessWidget {
         svgIcon: kImageApproveTask,
       );
     }
-    return PurchaseOrderDetailsPage();    
+    return PurchaseOrderDetailsPage();
   }
 
   Widget _buildChild(BuildContext context) {
@@ -114,28 +114,57 @@ class Body extends StatelessWidget {
                     : Colors.white,
             border: Border.all(width: 0.5),
           ),
-          child: index == 5
+          child: index == 4
               ? mainIndex == 0
                   ? _renderTableHeader(index, currentItem, mainIndex, context)
-                  : (currentItem.iconAttachment != "1_0_0"
-                      ? IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => WebivewHomeScreen(
-                                    url:
-                                        "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
-                                  ),
-                                ));
-                          },
-                          icon: const Icon(Icons.attach_file,
-                              color: kPrimaryLightColor))
-                      : const SizedBox())
-              : _renderTableHeader(index, currentItem, mainIndex, context),
+                  : _renderStatusButton(
+                      context, currentItem.orderStatus.retrieveOrderStatus())
+              : index == 5
+                  ? mainIndex == 0
+                      ? _renderTableHeader(
+                          index, currentItem, mainIndex, context)
+                      : (currentItem.iconAttachment != "1_0_0"
+                          ? IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WebivewHomeScreen(
+                                        url:
+                                            "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
+                                      ),
+                                    ));
+                              },
+                              icon: const Icon(Icons.attach_file,
+                                  color: kPrimaryLightColor))
+                          : const SizedBox())
+                  : _renderTableHeader(index, currentItem, mainIndex, context),
         ),
       );
     });
+  }
+
+  Container _renderStatusButton(BuildContext context, String status) {
+    if (status == "0") {
+      _renderEachStatusButton(context, "Pending", kTernaryLightColor);
+    } else if (status == "4") {
+      return _renderEachStatusButton(context, "Approved", kPrimaryColor);
+    } else if (status == "2") {
+      return _renderEachStatusButton(context, "Unknown", kSecondaryColor);
+    }
+    return _renderEachStatusButton(context, "Deleted", Colors.red);
+  }
+
+  Container _renderEachStatusButton(
+      BuildContext context, String text, Color color) {
+    return Container(
+      alignment: Alignment.center,
+      height: 45,
+      width: 100,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(8), color: color),
+      child: Text(text, style: Theme.of(context).textTheme.whiteButtonText),
+    );
   }
 
   Text _renderTableHeader(
