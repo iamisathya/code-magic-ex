@@ -70,10 +70,10 @@ class CommonUserIdCountry {
 @JsonSerializable()
 class CommonIdWithCountryCode {
   @JsonKey(name: "unicity")
-  String unicity;
+  final String unicity;
 
-  CommonIdWithCountryCode({
-    required this.unicity,
+  const CommonIdWithCountryCode({
+    this.unicity = "",
   });
 
   factory CommonIdWithCountryCode.fromJson(Map<String, dynamic> json) =>
@@ -88,10 +88,10 @@ class CommonIdWithCountryCode {
 @JsonSerializable()
 class CommonUserIdString {
   @JsonKey(name: "id")
-  CommonIdTypeString id;
+  final CommonIdTypeString id;
 
-  CommonUserIdString({
-    required this.id,
+  const CommonUserIdString({
+    this.id = const CommonIdTypeString(),
   });
 
   factory CommonUserIdString.fromJson(Map<String, dynamic> json) =>
@@ -104,10 +104,10 @@ class CommonUserIdString {
 @JsonSerializable()
 class CommonIdTypeString {
   @JsonKey(name: "unicity")
-  String unicity;
+  final String unicity;
 
-  CommonIdTypeString({
-    required this.unicity,
+  const CommonIdTypeString({
+    this.unicity = "",
   });
 
   factory CommonIdTypeString.fromJson(Map<String, dynamic> json) =>
@@ -275,9 +275,9 @@ class CommonShipToNameFull {
 @JsonSerializable()
 class CommonCatalogSlideContent {
   @JsonKey(name: "content")
-  CommonContentDescription content;
+  final CommonContentDescription content;
 
-  CommonCatalogSlideContent({required this.content});
+  const CommonCatalogSlideContent({this.content = const CommonContentDescription()});
 
   factory CommonCatalogSlideContent.fromJson(Map<String, dynamic> json) =>
       _$CommonCatalogSlideContentFromJson(json);
@@ -289,10 +289,10 @@ class CommonCatalogSlideContent {
 @JsonSerializable()
 class CommonContentDescription {
   @JsonKey(name: "description")
-  String description;
+  final String description;
 
-  CommonContentDescription({
-    required this.description,
+  const CommonContentDescription({
+    this.description = "",
   });
 
   factory CommonContentDescription.fromJson(Map<String, dynamic> json) =>
@@ -308,13 +308,13 @@ class CommonContentDescription {
 @JsonSerializable()
 class CommonTermsEach {
   @JsonKey(name: "priceEach")
-  double priceEach;
+  final double priceEach;
   @JsonKey(name: "pvEach")
-  int pvEach;
+  final int pvEach;
 
-  CommonTermsEach({
-    required this.pvEach,
-    required this.priceEach,
+  const CommonTermsEach({
+    this.pvEach = 0,
+    this.priceEach = 0.0,
   });
 
   factory CommonTermsEach.fromJson(Map<String, dynamic> json) =>
@@ -329,10 +329,10 @@ class CommonTermsEach {
 @JsonSerializable()
 class TermsPeriod {
   @JsonKey(name: "period")
-  String period;
+  final String period;
 
-  TermsPeriod({
-    required this.period,
+  const TermsPeriod({
+    this.period = "",
   });
 
   factory TermsPeriod.fromJson(Map<String, dynamic> json) =>
@@ -368,10 +368,10 @@ class CommonCustomerIdHref {
 @JsonSerializable()
 class CommonUserIdIntObject {
   @JsonKey(name: "id")
-  CommonIdTypeInt id;
+  final CommonIdTypeInt id;
 
-  CommonUserIdIntObject({
-    required this.id,
+  const CommonUserIdIntObject({
+    this.id = const CommonIdTypeInt(),
   });
 
   factory CommonUserIdIntObject.fromJson(Map<String, dynamic> json) =>
@@ -384,10 +384,10 @@ class CommonUserIdIntObject {
 @JsonSerializable()
 class CommonIdTypeInt {
   @JsonKey(name: "unicity")
-  int unicity;
+  final int unicity;
 
-  CommonIdTypeInt({
-    required this.unicity,
+  const CommonIdTypeInt({
+    this.unicity = 0,
   });
 
   factory CommonIdTypeInt.fromJson(Map<String, dynamic> json) =>

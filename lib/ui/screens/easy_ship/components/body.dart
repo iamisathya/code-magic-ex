@@ -16,6 +16,9 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final ClassOne _oneeeeeene = ClassOne(secend: const ClassTwo(value: "THis is annotjher vvalue"));
+    // print(_oneeeeeene.secend.value);
+
     return SafeArea(
         child: GetBuilder<EasyShipController>(
             init: EasyShipController(),

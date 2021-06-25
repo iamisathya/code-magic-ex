@@ -33,11 +33,11 @@ class OrderLineItem {
   Orderitem order;
 
   OrderLineItem({
-    required this.index,
-    required this.item,
-    required this.catalogSlide,
-    required this.terms,
-    required this.order,
+    this.index = 0,
+    this.item = const CommonUserIdString(),
+    this.catalogSlide = const CommonCatalogSlideContent(),
+    this.terms = const CommonTermsEach(),
+    this.order = const Orderitem(),
   });
 
   factory OrderLineItem.fromJson(Map<String, dynamic> json) =>
@@ -49,23 +49,33 @@ class OrderLineItem {
 @JsonSerializable()
 class Orderitem {
   @JsonKey(name: "id")
-  CommonIdWithCountryCode id;
+  final CommonIdWithCountryCode id;
   @JsonKey(name: "terms")
-  TermsPeriod terms;
+  final TermsPeriod terms;
   @JsonKey(name: "customer")
-  CommonUserIdIntObject customer;
+  final CommonUserIdIntObject customer;
   @JsonKey(name: "href")
-  String href;
+  final String href;
 
-  Orderitem({
-    required this.id,
-    required this.terms,
-    required this.customer,
-    required this.href,
+  const Orderitem({
+    this.id = const CommonIdWithCountryCode(),
+    this.terms = const TermsPeriod(),
+    this.customer = const CommonUserIdIntObject(),
+    this.href = "",
   });
 
   factory Orderitem.fromJson(Map<String, dynamic> json) =>
       _$OrderitemFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderitemToJson(this);
+}
+
+class ClassOne {
+  ClassTwo secend;
+  ClassOne({this.secend = const ClassTwo(value: "another value")});
+}
+
+class ClassTwo {
+  final String value;
+  const ClassTwo({this.value = "default"});
 }
