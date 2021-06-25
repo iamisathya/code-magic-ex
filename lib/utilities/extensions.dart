@@ -62,9 +62,14 @@ extension AppStyles on TextTheme {
   TextStyle get tableHeader =>
       const TextStyle(fontSize: 16.0, color: Colors.white);
 
+  TextStyle get productTitle =>
+      const TextStyle(fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600);
+
   TextStyle get tableData =>
       const TextStyle(fontSize: 14.0, color: Colors.black);
 
+  TextStyle get cardItemTitle =>
+      const TextStyle(fontSize: 16.0, color: Colors.black);
 
   TextStyle get backButton =>
       const TextStyle(fontSize: 14.0, color: Colors.black);

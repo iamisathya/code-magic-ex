@@ -27,6 +27,7 @@ class SampleController extends GetxController {
   RxList<OpenPO> allOpenPlaceOrders = List<OpenPO>.filled(0, OpenPO()).obs;
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;  
+  OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();  
 
   Future<void> getOpenPlaceOrderDetails(String ponumber, BuildContext context) async {
     showDetails(true);
@@ -35,7 +36,7 @@ class SampleController extends GetxController {
     update();
     try {
       // * Getting order id from getOpenOrderId API - 203
-      final OpenPlaceOrderId openPlaceOrderId =
+      openPlaceOrderId =
           await MemberCallsService.init().getOpenOrderId("203", ponumber);
 
       // * Getting order details from from getOpenOrderDetails API - 204

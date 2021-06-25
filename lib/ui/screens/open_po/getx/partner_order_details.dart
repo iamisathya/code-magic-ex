@@ -1,8 +1,10 @@
+import 'package:code_magic_ex/models/open_po_details.dart';
 import 'package:code_magic_ex/ui/global/widgets/back_buttonn.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_surfix_icon.dart';
 import 'package:code_magic_ex/ui/screens/open_po/getx/bloc.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
+
+import 'package:code_magic_ex/utilities/extensions.dart';
 
 import 'package:get/get.dart';
 
@@ -14,72 +16,192 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: Duration(milliseconds: 1250),
-      margin: const EdgeInsets.all(8),
+    return SingleChildScrollView(
+      child: AnimatedContainer(
+        duration: kAnimationDuration,
+        margin: const EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BackIconButton(press: () {
+              controller.toggle();
+            }),
+            _renderRowItem(
+                "DSC Information", controller.openPlaceOrderId.orderDscid),
+            _renderRowItem("Date", controller.openPlaceOrderId.orderDate),
+            _renderRowItem("DSC Name", controller.openPlaceOrderId.createBy),
+            _renderProductCards(context),
+            _renderDividerPadding(),
+            _renderTotal(context),
+            _renderDividerPadding(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Padding _renderDividerPadding() {
+    return const Padding(
+      padding: EdgeInsets.all(0),
+      child: Divider(
+        thickness: 1,
+        indent: 4,
+        color: Colors.black,
+      ),
+    );
+  }
+
+  Column _renderTotal(BuildContext context) {
+    return Column(
+      children: [
+      Padding(
+        padding: kEdgeV12H16(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              "Total PV: ",
+              style: Theme.of(context).textTheme.productTitle,
+            ),
+            Text(
+              controller.openPlaceOrderId.orderTotalPv,
+              style: Theme.of(context).textTheme.productTitle,
+            ),
+          ],
+        ),
+      ),
+      Padding(
+        padding: kEdgeV12H16(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              "Total Price: ",
+              style: Theme.of(context).textTheme.productTitle,
+            ),
+            Text(
+              controller.openPlaceOrderId.orderTotalPrice,
+              style: Theme.of(context).textTheme.productTitle,
+            ),
+          ],
+        ),
+      )
+    ]);
+  }
+
+  ListView _renderProductCards(BuildContext context) {
+    return ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: controller.openPlaceOrderDetails.length,
+        itemBuilder: (context, position) {
+          return _renderProductItem(
+              controller.openPlaceOrderDetails[position], context);
+        });
+  }
+
+  Card _renderProductItem(OpenPlaceOrderDetails item, BuildContext context) {
+    return Card(
+      elevation: 2,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BackIconButton(press: (){
-            controller.toggle();
-          }),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(child: Text("DSC Information")),
-                Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                          color: kWhiteSmokeColor,
-                          border: Border.all(),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(8.0))),
-                      child: Text("00001"),
-                    )),
-              ],
+            padding: kEdgeV12H16(),
+            child: Text(
+              item.productName,
+              style: Theme.of(context).textTheme.productTitle,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
               children: [
-                Expanded(child: Text("Date")),
-                Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                          color: kWhiteSmokeColor,
-                          border: Border.all(),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(8.0))),
-                      child: Text("00001"),
-                    )),
+                Text(
+                  "Product Code : ",
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                Text(
+                  item.productId,
+                  style: Theme.of(context).textTheme.caption,
+                ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(child: Text("DSC Name")),
-                Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                          color: kWhiteSmokeColor,
-                          border: Border.all(),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(8.0))),
-                      child: Text("00001"),
-                    )),
-              ],
-            ),
-          )
+          const Divider(
+            color: Colors.grey,
+          ),
+          _renderCardItemRow("Qty Order	", ": ${item.productQty}", context),
+          _renderCardItemRow("PV", ": ${item.totalPv}", context),
+          _renderCardItemRow("Item Price", ": ${item.productPrice}", context),
+          const Divider(
+            color: Colors.grey,
+          ),
+          Row(
+            children: [
+              Expanded(
+                  child: _renderCardItemBottomRow(
+                      "Total PV :", item.totalPv.toString(), context, 16)),
+              Expanded(
+                  child: _renderCardItemBottomRow(
+                      "Total Price :", " ${item.totalPrice}", context, 0)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding _renderCardItemRow(String title, String value, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Row(
+        children: [
+          Expanded(
+              child: Text(title,
+                  style: Theme.of(context).textTheme.cardItemTitle)),
+          Expanded(
+              child:
+                  Text(value, style: Theme.of(context).textTheme.cardItemTitle))
+        ],
+      ),
+    );
+  }
+
+  Padding _renderCardItemBottomRow(
+      String title, String value, BuildContext context, double horPadding) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: horPadding),
+      child: Row(
+        children: [
+          SizedBox(
+              width: 100,
+              child: Text(title,
+                  style: Theme.of(context).textTheme.cardItemTitle)),
+          Expanded(
+              child: Text(value, style: Theme.of(context).textTheme.button))
+        ],
+      ),
+    );
+  }
+
+  Padding _renderRowItem(String title, String value) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Expanded(child: Text(title)),
+          Expanded(
+              child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: normalBoxDecoration(),
+            child: Text(value),
+          )),
         ],
       ),
     );
