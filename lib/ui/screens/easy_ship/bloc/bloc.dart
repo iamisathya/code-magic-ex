@@ -16,6 +16,7 @@ class EasyShipController extends GetxController {
 
   Future<void> getAllOrderlines({String userId = "3011266"}) async {
     loading(true);
+    update();
     final String localUserId = userId;
     const String dateCreated = "[2020-11;2021-06]";
     const String criteria = "easyship";

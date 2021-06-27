@@ -12,6 +12,7 @@ import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 
 
 
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         themeBloc: themeBloc.appThemeStream,
         translationBloc: translationBloc.appLanguageStream,
         builder: (context) {
-          return MaterialApp(
+          return GetMaterialApp(
             title: 'DSC Tools',
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,

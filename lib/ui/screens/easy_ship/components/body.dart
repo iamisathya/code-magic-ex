@@ -1,4 +1,6 @@
 import 'package:code_magic_ex/models/order_lines.dart';
+import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
+import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
 import 'package:code_magic_ex/ui/screens/easy_ship/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
@@ -13,6 +15,7 @@ import 'package:code_magic_ex/utilities/extensions.dart';
 
 class Body extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());
+  TextEditingController searchConntroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +25,17 @@ class Body extends StatelessWidget {
     return SafeArea(
         child: GetBuilder<EasyShipController>(
             init: EasyShipController(),
-            initState: (state) {
-              controller.getAllOrderlines();
-            },
             builder: (_) {
-              return _buildChild(context);
+              return SingleChildScrollView(
+                child: Expanded(
+                  child: Column(
+                    children: [
+                      _buildSearchContainer(context),
+                      _buildChild(context),
+                    ],
+                  ),
+                ),
+              );
             }));
   }
 
@@ -39,7 +48,7 @@ class Body extends StatelessWidget {
       return const CustomErrorWidget(
         svgIcon: kImageServerDown,
       );
-    } else if (controller.allEasyShipOrders.items.isEmpty) {
+    } else if (controller.allEasyShipOrders.items.length == 1) {
       return const CustomEmptyWidget(
         svgIcon: kImageEmptyBox,
       );
@@ -48,30 +57,71 @@ class Body extends StatelessWidget {
     }
   }
 
-  SingleChildScrollView _renderDataTable(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+  Widget _buildSearchContainer(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(16),
+      child: Row(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: _buildMainCells(context),
-              ),
-              Flexible(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: _buildRows(context),
-                  ),
-                ),
-              ),
-            ],
+          Flexible(child: SearchViewWidget(controller: searchConntroller)),
+          MaterialButton(
+            shape: kRoundedRectangleBorder8(),
+            disabledColor: Colors.grey,
+            color: kPrimaryLightColor,
+            onPressed: () {
+              if (searchConntroller.text.isNotEmpty) {
+                controller.getAllOrderlines(userId: searchConntroller.text);
+              } else {
+                _renderErrorSnackBar();
+              }
+            },
+            height: 55,
+            child:
+                Text('Search', style: Theme.of(context).textTheme.tableHeader),
           ),
         ],
       ),
+    );
+  }
+
+  void _renderErrorSnackBar() {
+    return Get.snackbar(
+      "Search field empty!",
+      "Please enter user id to search.",
+      titleText: const Text("Search field empty!",
+          style: TextStyle(color: kPrimaryColor, fontSize: 16)),
+      messageText: const Text("Please enter user id to search.",
+          style: TextStyle(color: kPrimaryColor, fontSize: 14)),
+      backgroundColor: Colors.white,
+      borderColor: kPrimaryLightColor,
+      animationDuration: const Duration(milliseconds: 300),
+      snackPosition: SnackPosition.BOTTOM,
+      borderRadius: 10.0,
+      borderWidth: 2,
+      icon: const Icon(
+        Icons.error_outline,
+        color: kPrimaryColor,
+      ),
+    );
+  }
+
+  Row _renderDataTable(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: _buildMainCells(context),
+        ),
+        Flexible(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: _buildRows(context),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -146,8 +196,11 @@ class Body extends StatelessWidget {
             : index == 2
                 ? currentItem.item.id.unicity
                 : index == 3
-                    ? Parsing.stringFrom(mainIndex == 0 ? "PV" : currentItem.terms.pvEach)
-                    : Parsing.stringFrom(mainIndex == 0 ? "Price" : currentItem.terms.priceEach.toInt());
+                    ? Parsing.stringFrom(
+                        mainIndex == 0 ? "PV" : currentItem.terms.pvEach)
+                    : Parsing.stringFrom(mainIndex == 0
+                        ? "Price"
+                        : currentItem.terms.priceEach.toInt());
     return Text(_headerText,
         style: mainIndex != 0
             ? Theme.of(context).textTheme.tableData

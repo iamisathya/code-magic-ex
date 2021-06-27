@@ -1,4 +1,5 @@
 //Create a SearchView
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class SearchViewWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class SearchViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = controller.text.isNotEmpty ? Colors.blue : Colors.grey;
+    final Color color = controller.text.isNotEmpty ? kPrimaryColor : Colors.grey;
     return Container(
         margin: const EdgeInsets.only(right: 16),
         decoration: BoxDecoration(
