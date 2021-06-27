@@ -86,3 +86,9 @@ extension AppStyles on TextTheme {
   TextStyle get whiteButtonText =>
       const TextStyle(fontSize: 14.0, color: Colors.white);
 }
+
+
+extension MyIterable<E> on Iterable<E> {
+  Iterable<E> sortedBy(Comparable Function(E e) key) =>
+      toList()..sort((a, b) => key(a).compareTo(key(b)));
+}

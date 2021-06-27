@@ -82,7 +82,7 @@ class Body extends StatelessWidget {
         onTap: () {},
         child: Container(
           alignment: Alignment.center,
-          width: 180.0,
+          width: 140.0,
           height: 60.0,
           decoration: BoxDecoration(
             color: index == 0
@@ -121,7 +121,7 @@ class Body extends StatelessWidget {
         onTap: () {},
         child: Container(
           alignment: Alignment.center,
-          width: 160,
+          width: index == 1 ? 320 : 120,
           height: 60.0,
           decoration: BoxDecoration(
             color: mainIndex == 0
@@ -146,8 +146,8 @@ class Body extends StatelessWidget {
             : index == 2
                 ? currentItem.item.id.unicity
                 : index == 3
-                    ? Parsing.stringFrom(currentItem.terms.pvEach)
-                    : Parsing.stringFrom(currentItem.terms.priceEach);
+                    ? Parsing.stringFrom(mainIndex == 0 ? "PV" : currentItem.terms.pvEach)
+                    : Parsing.stringFrom(mainIndex == 0 ? "Price" : currentItem.terms.priceEach.toInt());
     return Text(_headerText,
         style: mainIndex != 0
             ? Theme.of(context).textTheme.tableData

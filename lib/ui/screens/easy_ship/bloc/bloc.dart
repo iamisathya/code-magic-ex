@@ -1,15 +1,16 @@
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/common_methods.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
+import "package:collection/collection.dart";
+
 import 'package:get/get.dart';
 
+import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class EasyShipController extends GetxController {
-
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
-
 
   OrderLines allEasyShipOrders = OrderLines(items: []);
 
@@ -21,11 +22,22 @@ class EasyShipController extends GetxController {
     const String expand = "catalogSlide,order,order.customer";
     const String market = "TH";
     try {
-      allEasyShipOrders =
-          await ApiService.shared().getOrderLines(localUserId, dateCreated, criteria, expand, market);
-          OrderLines headeritem = OrderLines(items: [OrderLineItem(item: const CommonUserIdString(id: CommonIdTypeString(unicity: "Item Code")), order: const Orderitem(terms: TermsPeriod(period: "Period"), id: CommonIdWithCountryCode(unicity: "Order Number")), catalogSlide: const CommonCatalogSlideContent(content: CommonContentDescription(description: "Product name")) )]);
-          print("THis is new thing tyo you: ${headeritem.items[0].catalogSlide.content.description}");
-          allEasyShipOrders.items = [...headeritem.items, ...allEasyShipOrders.items];
+      allEasyShipOrders = await ApiService.shared()
+          .getOrderLines(localUserId, dateCreated, criteria, expand, market);
+      final OrderLines headeritem = OrderLines(items: [
+        OrderLineItem(
+            item: const CommonUserIdString(
+                id: CommonIdTypeString(unicity: "Item Code")),
+            order: const Orderitem(
+                terms: TermsPeriod(period: "Period"),
+                id: CommonIdWithCountryCode(unicity: "Order Number")),
+            catalogSlide: const CommonCatalogSlideContent(
+                content: CommonContentDescription(description: "Product name")))
+      ]);
+      allEasyShipOrders.items = [
+        ...headeritem.items,
+        ...allEasyShipOrders.items
+      ];
       loading(false);
       update();
     } catch (err) {
