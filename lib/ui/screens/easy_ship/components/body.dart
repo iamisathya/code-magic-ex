@@ -1,5 +1,4 @@
 import 'package:code_magic_ex/models/order_lines.dart';
-import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
 import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
 import 'package:code_magic_ex/ui/screens/easy_ship/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';

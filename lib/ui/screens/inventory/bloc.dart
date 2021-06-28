@@ -23,7 +23,6 @@ class InventoryBLoc {
         .catalogSlideContent.content.description
         .toLowerCase()
         .contains(searchText.toLowerCase()));
-    print(filteredRecords.items.length);
     _inventoryStreamController.sink.add(filteredRecords);
     setInventoryStream(filteredRecords);
     setSearchTextStream(searchText);

@@ -19,8 +19,9 @@ class Parsing {
     if (null == data) return defaultValue;
     if (data is double) return data;
     if (data is int) return data.toDouble();
-    if (data is String)
+    if (data is String) {
       return _doubleFromString(data, defaultValue: defaultValue);
+    }
     return defaultValue;
   }
 
@@ -83,7 +84,6 @@ class Parsing {
   /// Get Map from Dynamic Data
   static Map<String, dynamic>? cloneMap(Map<String, dynamic> data,
       {bool makeNull = false}) {
-    if (null == data) return makeNull ? null : {};
     try {
       final stringData = convert.jsonEncode(data);
       final newData = convert.jsonDecode(stringData);

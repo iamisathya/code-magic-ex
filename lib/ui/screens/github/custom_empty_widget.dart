@@ -1,4 +1,3 @@
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

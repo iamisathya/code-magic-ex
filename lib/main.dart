@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget _nextScreen() {
     UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
-    return isLoggedIn ? EasyShipHomePage() : LoginScreen();
+    return isLoggedIn ? EasyShipHomeScreen() : LoginScreen();
   }
 
   @override

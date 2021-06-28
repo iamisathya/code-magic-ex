@@ -1,11 +1,9 @@
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/common_methods.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
-import "package:collection/collection.dart";
 
 import 'package:get/get.dart';
 
-import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class EasyShipController extends GetxController {

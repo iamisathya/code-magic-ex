@@ -5,7 +5,7 @@ import 'package:code_magic_ex/utilities/constants.dart';
 
 import 'package:flutter/material.dart';
 
-class EasyShipHomePage extends StatelessWidget {
+class EasyShipHomeScreen extends StatelessWidget {
   static const String routeName = '/easyShipReportsHomePage';
 
   @override
