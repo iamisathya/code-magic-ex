@@ -26,14 +26,16 @@ class Body extends StatelessWidget {
             init: EasyShipController(),
             builder: (_) {
               return SingleChildScrollView(
-                child: Expanded(
-                  child: Column(
-                    children: [
-                      _buildSearchContainer(context),
-                      _buildChild(context),
-                    ],
-                  ),
-                ),
+                child: Flex(direction: Axis.horizontal, children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        _buildSearchContainer(context),
+                        _buildChild(context),
+                      ],
+                    ),
+                  )
+                ]),
               );
             }));
   }
