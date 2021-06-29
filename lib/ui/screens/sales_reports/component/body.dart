@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
@@ -56,11 +57,16 @@ class Body extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: HorizontalDataTable(
         leftHandSideColumnWidth: 140,
-        rightHandSideColumnWidth: 1260,
+        rightHandSideColumnWidth:
+            controller.filterMethod.value == 'order' ? 1260 : 1300,
         isFixedHeader: true,
-        headerWidgets: _getTitleWidget(),
+        headerWidgets: controller.filterMethod.value == 'order'
+            ? _getTitleWidget()
+            : _getRmaTitleWidget(),
         leftSideItemBuilder: _generateFirstColumnRow,
-        rightSideItemBuilder: _generateRightHandSideColumnRow,
+        rightSideItemBuilder: controller.filterMethod.value == 'order'
+            ? _generateRightHandSideColumnRow
+            : _generateRightHandSideRmaColumnRow,
         itemCount: controller.currentTabLength,
         rowSeparatorWidget: const Divider(
           color: Colors.black54,
@@ -97,6 +103,27 @@ class Body extends StatelessWidget {
       _renderTableHeader(
           "Total PV", EasyShipSortTypes.totalPV, Alignment.centerRight, 200),
       _getTitleItemWidget('Barcode', 100, Alignment.center),
+    ];
+  }
+
+  List<Widget> _getRmaTitleWidget() {
+    return [
+      _renderTableHeader(
+          "Record", EasyShipSortTypes.record, Alignment.center, 140),
+      _renderTableHeader(
+          "BA Number", EasyShipSortTypes.baNumber, Alignment.center, 140),
+      _renderTableHeader(
+          "Name", EasyShipSortTypes.name, Alignment.centerLeft, 200),
+      _renderTableHeader("Date", EasyShipSortTypes.date, Alignment.center, 140),
+      _renderTableHeader("Time", EasyShipSortTypes.time, Alignment.center, 140),
+      _renderTableHeader(
+          "RMA", EasyShipSortTypes.orderId, Alignment.center, 140),
+      _renderTableHeader(
+          "Original", EasyShipSortTypes.orderId, Alignment.center, 140),
+      _renderTableHeader(
+          "Total", EasyShipSortTypes.total, Alignment.centerRight, 200),
+      _renderTableHeader(
+          "Total PV", EasyShipSortTypes.totalPV, Alignment.centerRight, 200),
     ];
   }
 
@@ -169,6 +196,35 @@ class Body extends StatelessWidget {
         _renderDataCell(index, 200, Parsing.stringFrom(currentItem.terms.pv),
             Alignment.centerRight, "value"),
         _renderDataIcon(),
+      ],
+    );
+  }
+
+  Widget _generateRightHandSideRmaColumnRow(BuildContext context, int index) {
+    final RmaItem currentItem = controller.currentRmas[index];
+    return Row(
+      children: <Widget>[
+        Container(
+            width: 140,
+            height: 65,
+            decoration: BoxDecoration(border: Border.all(width: 0.5)),
+            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+            alignment: Alignment.center,
+            child: Text(currentItem.customer.id.unicity)),
+        _renderDataCell(index, 200, currentItem.customer.humanName.fullName,
+            Alignment.centerLeft, "value"),
+        _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),
+            Alignment.center, "link"),
+        _renderDataCell(index, 140, currentItem.dateCreated.asDDMMYYYY,
+            Alignment.center, "value"),
+        _renderDataCell(index, 140, currentItem.dateCreated.asHHMMA,
+            Alignment.center, "value"),
+        _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),
+            Alignment.center, "value"),
+        _renderDataCell(index, 200, currentItem.terms.total.toString(),
+            Alignment.centerRight, "value"),
+        _renderDataCell(index, 200, Parsing.stringFrom(currentItem.terms.pv),
+            Alignment.centerRight, "value"),
       ],
     );
   }
@@ -266,8 +322,8 @@ class Body extends StatelessWidget {
 
   InputDecoration _renderInputDecoration(String hintText, String label) {
     return InputDecoration(
-      border:
-          const OutlineInputBorder(borderSide: BorderSide(color: kPrimaryColor)),
+      border: const OutlineInputBorder(
+          borderSide: BorderSide(color: kPrimaryColor)),
       hintText: hintText,
       labelText: label,
     );

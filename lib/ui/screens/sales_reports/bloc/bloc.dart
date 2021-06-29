@@ -18,74 +18,96 @@ class SalesReportController extends GetxController {
   bool isAscending = true;
   EasyShipSortTypes currentType = EasyShipSortTypes.record;
 
+  RxString filterMethod = "order".obs;
+
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
-  RxString currentTab = "orders".obs;
 
   OrdersAndRmas allOrdersAndRmas = const OrdersAndRmas();
 
   int get currentOrdersLength => allOrdersAndRmas.orders[0].items.length;
   int get currentRmasLength => allOrdersAndRmas.rmas[0].items.length;
   int get currentTabLength =>
-      currentTab.value == "orders" ? currentOrdersLength : currentRmasLength;
+      filterMethod.value == "order" ? currentOrdersLength : currentRmasLength;
 
-  List<Object> get currentTabItems => currentTab.value == "orders"
-      ? allOrdersAndRmas.orders
-      : allOrdersAndRmas.rmas;
+  List<Object> get currentTabItems => filterMethod.value == "order"
+      ? allOrdersAndRmas.orders[0].items
+      : allOrdersAndRmas.rmas[0].items;
+
+    List<OrderItem> get currentOrders => allOrdersAndRmas.orders[0].items;
+    List<RmaItem> get currentRmas => allOrdersAndRmas.rmas[0].items;
 
   void onSortCulumn(EasyShipSortTypes sortStatus) {
     currentType = sortStatus;
     isAscending = !isAscending;
     switch (sortStatus) {
       case EasyShipSortTypes.baNumber:
-        if(isAscending) {
-          allOrdersAndRmas.orders[0].items.sort((a, b) => a.customer.id.unicity.compareTo(b.customer.id.unicity));
+        if (isAscending) {
+          allOrdersAndRmas.orders[0].items.sort(
+              (a, b) => a.customer.id.unicity.compareTo(b.customer.id.unicity));
         } else {
-          allOrdersAndRmas.orders[0].items.sort((b, a) => a.customer.id.unicity.compareTo(b.customer.id.unicity));
+          allOrdersAndRmas.orders[0].items.sort(
+              (b, a) => a.customer.id.unicity.compareTo(b.customer.id.unicity));
         }
         break;
       case EasyShipSortTypes.name:
-        if(isAscending) {
-          allOrdersAndRmas.orders[0].items.sort((a, b) => a.customer.humanName.fullName.compareTo(b.customer.humanName.fullName));
+        if (isAscending) {
+          allOrdersAndRmas.orders[0].items.sort((a, b) => a
+              .customer.humanName.fullName
+              .compareTo(b.customer.humanName.fullName));
         } else {
-          allOrdersAndRmas.orders[0].items.sort((b, a) => a.customer.humanName.fullName.compareTo(b.customer.humanName.fullName));
+          allOrdersAndRmas.orders[0].items.sort((b, a) => a
+              .customer.humanName.fullName
+              .compareTo(b.customer.humanName.fullName));
         }
-        break; 
+        break;
       case EasyShipSortTypes.orderId:
-        if(isAscending) {
-          allOrdersAndRmas.orders[0].items.sort((a, b) => a.id.unicity.retrieveOrderId().compareTo(b.id.unicity.retrieveOrderId()));
+        if (isAscending) {
+          allOrdersAndRmas.orders[0].items.sort((a, b) => a.id.unicity
+              .retrieveOrderId()
+              .compareTo(b.id.unicity.retrieveOrderId()));
         } else {
-          allOrdersAndRmas.orders[0].items.sort((b, a) => a.id.unicity.retrieveOrderId().compareTo(b.id.unicity.retrieveOrderId()));
+          allOrdersAndRmas.orders[0].items.sort((b, a) => a.id.unicity
+              .retrieveOrderId()
+              .compareTo(b.id.unicity.retrieveOrderId()));
         }
-        break; 
+        break;
       case EasyShipSortTypes.date:
-        if(isAscending) {
-          allOrdersAndRmas.orders[0].items.sort((a, b) => a.dateCreated.asDDMMYYYY.compareTo(b.dateCreated.asDDMMYYYY));
+        if (isAscending) {
+          allOrdersAndRmas.orders[0].items.sort((a, b) =>
+              a.dateCreated.asDDMMYYYY.compareTo(b.dateCreated.asDDMMYYYY));
         } else {
-          allOrdersAndRmas.orders[0].items.sort((b, a) => a.dateCreated.asDDMMYYYY.compareTo(b.dateCreated.asDDMMYYYY));
+          allOrdersAndRmas.orders[0].items.sort((b, a) =>
+              a.dateCreated.asDDMMYYYY.compareTo(b.dateCreated.asDDMMYYYY));
         }
-        break; 
+        break;
       case EasyShipSortTypes.time:
-        if(isAscending) {
-          allOrdersAndRmas.orders[0].items.sort((a, b) => a.dateCreated.asHHMMA.compareTo(b.dateCreated.asHHMMA));
+        if (isAscending) {
+          allOrdersAndRmas.orders[0].items.sort(
+              (a, b) => a.dateCreated.asHHMMA.compareTo(b.dateCreated.asHHMMA));
         } else {
-          allOrdersAndRmas.orders[0].items.sort((b, a) => a.dateCreated.asHHMMA.compareTo(b.dateCreated.asHHMMA));
+          allOrdersAndRmas.orders[0].items.sort(
+              (b, a) => a.dateCreated.asHHMMA.compareTo(b.dateCreated.asHHMMA));
         }
-        break; 
+        break;
       case EasyShipSortTypes.total:
-        if(isAscending) {
-          allOrdersAndRmas.orders[0].items.sort((a, b) => a.terms.total.compareTo(b.terms.total));
+        if (isAscending) {
+          allOrdersAndRmas.orders[0].items
+              .sort((a, b) => a.terms.total.compareTo(b.terms.total));
         } else {
-          allOrdersAndRmas.orders[0].items.sort((b, a) => a.terms.total.compareTo(b.terms.total));
+          allOrdersAndRmas.orders[0].items
+              .sort((b, a) => a.terms.total.compareTo(b.terms.total));
         }
-        break; 
-         case EasyShipSortTypes.totalPV:
-        if(isAscending) {
-          allOrdersAndRmas.orders[0].items.sort((a, b) => a.terms.pv.compareTo(b.terms.pv));
+        break;
+      case EasyShipSortTypes.totalPV:
+        if (isAscending) {
+          allOrdersAndRmas.orders[0].items
+              .sort((a, b) => a.terms.pv.compareTo(b.terms.pv));
         } else {
-          allOrdersAndRmas.orders[0].items.sort((b, a) => a.terms.pv.compareTo(b.terms.pv));
+          allOrdersAndRmas.orders[0].items
+              .sort((b, a) => a.terms.pv.compareTo(b.terms.pv));
         }
-        break; 
+        break;
 
       default:
     }
@@ -93,19 +115,25 @@ class SalesReportController extends GetxController {
   }
 
   Future<void> loadSalesReports() async {
-    if(startDate.text.isEmpty || endDate.text.isEmpty) {
-      renderErrorSnackBar(title: "Select ${startDate.text.isEmpty ? 'start' : 'end'} date", subTitle: "Please select ${startDate.text.isEmpty ? 'start' : 'end'} date from Calender");
+    if (startDate.text.isEmpty || endDate.text.isEmpty) {
+      renderErrorSnackBar(
+          title: "Select ${startDate.text.isEmpty ? 'start' : 'end'} date",
+          subTitle:
+              "Please select ${startDate.text.isEmpty ? 'start' : 'end'} date from Calender");
       return;
     } else {
       final DateTime _start = DateTime.parse(startDate.text);
       final DateTime _end = DateTime.parse(endDate.text);
-      if(_start.isAfter(_end)) {
-        renderErrorSnackBar(title: "Invalid date range!", subTitle: "Start date should be lower than end date!");
+      if (_start.isAfter(_end)) {
+        renderErrorSnackBar(
+            title: "Invalid date range!",
+            subTitle: "Start date should be lower than end date!");
         return;
       }
     }
     const String type = "order,rma";
-    const String userId = "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
+    const String userId =
+        "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     final String duration = "[${startDate.text};${endDate.text}]";
     loading(true);
     update();
@@ -122,35 +150,51 @@ class SalesReportController extends GetxController {
     }
   }
 
-
   Future<void> showPopupMenu(BuildContext context) async {
     await showMenu(
       context: context,
-      position: const RelativeRect.fromLTRB(100, 100, 0, 100),
+      position: const RelativeRect.fromLTRB(100, 105, 0, 100),
       items: [
-        const PopupMenuItem<String>(
-          padding: EdgeInsets.symmetric(horizontal: 8),
+        PopupMenuItem<String>(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "order",
           child: ListTile(
-            selected: true,
+            onTap: () {
+              filterMethod = "order".obs;
+              update();
+              Navigator.pop(context);
+            },
+            selected: filterMethod.value == "order",
             selectedTileColor: kPrimaryColor,
-            title: Text("By Order"),
+            title: const Text("By Order"),
           ),
         ),
-        const PopupMenuItem<String>(
-          padding: EdgeInsets.symmetric(horizontal: 8),
+        PopupMenuItem<String>(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "item",
           child: ListTile(
+            selected: filterMethod.value == "item",
+            onTap: () {
+              filterMethod = "item".obs;
+              update();
+              Navigator.pop(context);
+            },
             selectedTileColor: kPrimaryColor,
-            title: Text("By Item"),
+            title: const Text("By Item"),
           ),
         ),
-        const PopupMenuItem<String>(
-          padding: EdgeInsets.symmetric(horizontal: 8),
+        PopupMenuItem<String>(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "rma",
           child: ListTile(
+            selected: filterMethod.value == "rma",
+            onTap: () {
+              filterMethod = "rma".obs;
+              Navigator.pop(context);
+              update();
+            },
             selectedTileColor: kPrimaryColor,
-            title: Text("RMAs"),
+            title: const Text("RMAs"),
           ),
         )
       ],
