@@ -279,7 +279,7 @@ class Body extends StatelessWidget {
                     });
                   },
                   decoration:
-                      _renderInputDecoration("Select from date", "From"),
+                      _renderInputDecoration("Select start date", "From"),
                 )),
           ),
           Flexible(
@@ -294,7 +294,7 @@ class Body extends StatelessWidget {
                           DateFormat('yyyy-MM-dd').format(date).toString();
                     }, currentTime: DateTime.now());
                   },
-                  decoration: _renderInputDecoration("Select to date", "To"),
+                  decoration: _renderInputDecoration("Select end date", "To"),
                 )),
           ),
           SizedBox(
