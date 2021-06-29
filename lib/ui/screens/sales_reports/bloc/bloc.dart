@@ -1,5 +1,6 @@
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/order_list_rmas.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:flutter/material.dart';
 
@@ -96,11 +97,10 @@ class SalesReportController extends GetxController {
     update();
   }
 
-  Future<void> loadSalesReports(
-      {String userId =
-          "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c",
-      String duration = "[2021-06-14;2021-06-15]",
-      String type = "order,rma"}) async {
+  Future<void> loadSalesReports() async {
+    const String type = "order,rma";
+    const String userId = "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
+    final String duration = "[$startDate;$startDate]";
     loading(true);
     update();
     try {
@@ -114,5 +114,41 @@ class SalesReportController extends GetxController {
       LoggerService.instance.e(err.toString());
       update();
     }
+  }
+
+
+  Future<void> showPopupMenu(BuildContext context) async {
+    await showMenu(
+      context: context,
+      position: const RelativeRect.fromLTRB(100, 100, 0, 100),
+      items: [
+        const PopupMenuItem<String>(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          value: "order",
+          child: ListTile(
+            selected: true,
+            selectedTileColor: kPrimaryColor,
+            title: Text("By Order"),
+          ),
+        ),
+        const PopupMenuItem<String>(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          value: "item",
+          child: ListTile(
+            selectedTileColor: kPrimaryColor,
+            title: Text("By Item"),
+          ),
+        ),
+        const PopupMenuItem<String>(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          value: "rma",
+          child: ListTile(
+            selectedTileColor: kPrimaryColor,
+            title: Text("RMAs"),
+          ),
+        )
+      ],
+      elevation: 8.0,
+    );
   }
 }

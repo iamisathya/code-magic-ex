@@ -241,58 +241,33 @@ class Body extends StatelessWidget {
                   decoration: _renderInputDecoration("Select to date", "To"),
                 )),
           ),
-          IconButton(
-            icon: const Icon(
-              Icons.sort,
-              color: Colors.black,
+          SizedBox(
+            width: 66,
+            height: 60,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Container(
+                decoration: kCircular8,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_forward_outlined,
+                    color: Colors.white,
+                  ),
+                  tooltip: 'Find easy ship',
+                  onPressed: () => controller.loadSalesReports(),
+                ),
+              ),
             ),
-            tooltip: 'Theme selector',
-            onPressed: () => _showPopupMenu(context),
           ),
         ],
       ),
     );
   }
 
-  Future<void> _showPopupMenu(BuildContext context) async {
-    await showMenu(
-      context: context,
-      position: const RelativeRect.fromLTRB(100, 182, 0, 100),
-      items: [
-        const PopupMenuItem<String>(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          value: "order",
-          child: ListTile(
-            selected: true,
-            selectedTileColor: Colors.blue,
-            title: Text("By Order"),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          value: "item",
-          child: ListTile(
-            selectedTileColor: kPrimaryColor,
-            title: Text("By Item"),
-          ),
-        ),
-        const PopupMenuItem<String>(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          value: "rma",
-          child: ListTile(
-            selectedTileColor: kPrimaryColor,
-            title: Text("RMAs"),
-          ),
-        )
-      ],
-      elevation: 8.0,
-    );
-  }
-
   InputDecoration _renderInputDecoration(String hintText, String label) {
     return InputDecoration(
       border:
-          const OutlineInputBorder(borderSide: BorderSide(color: Colors.teal)),
+          const OutlineInputBorder(borderSide: BorderSide(color: kPrimaryColor)),
       hintText: hintText,
       labelText: label,
     );
