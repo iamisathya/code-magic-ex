@@ -9,10 +9,10 @@ part 'common_methods.g.dart';
 @JsonSerializable()
 class CommonGenericHref {
   @JsonKey(name: "href")
-  String href;
+  final String href;
 
-  CommonGenericHref({
-    required this.href,
+  const CommonGenericHref({
+    this.href = "",
   });
 
   factory CommonGenericHref.fromJson(Map<String, dynamic> json) =>
@@ -30,17 +30,17 @@ class CommonGenericHref {
 //*  },
 @JsonSerializable()
 class CommonHumanNameFull {
-  String firstName;
-  String lastName;
-  String fullName;
+  final String firstName;
+  final String lastName;
+  final String fullName;
   @JsonKey(name: "fullName@th")
-  String fullNameTh;
+  final String fullNameTh;
 
-  CommonHumanNameFull(
-      {required this.firstName,
-      required this.lastName,
-      required this.fullName,
-      required this.fullNameTh});
+  const CommonHumanNameFull(
+      {this.firstName = "",
+      this.lastName = "",
+      this.fullName = "",
+      this.fullNameTh = ""});
 
   factory CommonHumanNameFull.fromJson(Map<String, dynamic> json) =>
       _$CommonHumanNameFullFromJson(json);
@@ -54,10 +54,10 @@ class CommonHumanNameFull {
 @JsonSerializable()
 class CommonUserIdCountry {
   @JsonKey(name: "id")
-  CommonIdWithCountryCode id;
+  final CommonIdWithCountryCode id;
 
   CommonUserIdCountry({
-    required this.id,
+    this.id = const CommonIdWithCountryCode(),
   });
 
   factory CommonUserIdCountry.fromJson(Map<String, dynamic> json) =>
@@ -124,10 +124,10 @@ class CommonIdTypeString {
 @JsonSerializable()
 class CommonHumanNameObject {
   @JsonKey(name: "humanName")
-  CommonFullName humanName;
+  final CommonFullName humanName;
 
-  CommonHumanNameObject({
-    required this.humanName,
+  const CommonHumanNameObject({
+    this.humanName = const CommonFullName(),
   });
 
   factory CommonHumanNameObject.fromJson(Map<String, dynamic> json) =>
@@ -139,10 +139,10 @@ class CommonHumanNameObject {
 @JsonSerializable()
 class CommonFullName {
   @JsonKey(name: "fullName")
-  String fullName;
+  final String fullName;
 
-  CommonFullName({
-    required this.fullName,
+  const CommonFullName({
+    this.fullName = "",
   });
 
   factory CommonFullName.fromJson(Map<String, dynamic> json) =>
@@ -154,10 +154,10 @@ class CommonFullName {
 @JsonSerializable()
 class CommonHumanFullName {
   @JsonKey(name: "fullName")
-  CommonFullNameOnly fullName;
+  final CommonFullNameOnly fullName;
 
   CommonHumanFullName({
-    required this.fullName,
+    this.fullName = const CommonFullNameOnly(),
   });
 
   factory CommonHumanFullName.fromJson(Map<String, dynamic> json) =>
@@ -171,10 +171,10 @@ class CommonHumanFullName {
 @JsonSerializable()
 class CommonFullNameOnly {
   @JsonKey(name: "fullName")
-  String fullName;
+  final String fullName;
 
-  CommonFullNameOnly({
-    required this.fullName,
+  const CommonFullNameOnly({
+    this.fullName = "",
   });
 
   factory CommonFullNameOnly.fromJson(Map<String, dynamic> json) =>
@@ -188,13 +188,13 @@ class CommonFullNameOnly {
 @JsonSerializable()
 class CommonIdAndIota {
   @JsonKey(name: "unicity")
-  String unicity;
+  final String unicity;
   @JsonKey(name: "iota")
-  String iota;
+  final String iota;
 
-  CommonIdAndIota({
-    required this.unicity,
-    required this.iota,
+  const CommonIdAndIota({
+    this.unicity = "",
+    this.iota = "",
   });
 
   factory CommonIdAndIota.fromJson(Map<String, dynamic> json) =>
@@ -215,25 +215,25 @@ class CommonIdAndIota {
 @JsonSerializable()
 class CompleteHumanThName {
   @JsonKey(name: "firstName")
-  String firstName;
+  final String firstName;
   @JsonKey(name: "lastName")
-  String lastName;
+  final String lastName;
   @JsonKey(name: "fullName")
-  String fullName;
+  final String fullName;
   @JsonKey(name: "firstName@th")
-  String firstNameTh;
+  final String firstNameTh;
   @JsonKey(name: "lastName@th")
-  String lastNameTh;
+  final String lastNameTh;
   @JsonKey(name: "fullName@th")
-  String fullNameTh;
+  final String fullNameTh;
 
-  CompleteHumanThName({
-    required this.firstName,
-    required this.lastName,
-    required this.fullName,
-    required this.firstNameTh,
-    required this.lastNameTh,
-    required this.fullNameTh,
+  const CompleteHumanThName({
+    this.firstName = "",
+    this.lastName = "",
+    this.fullName = "",
+    this.firstNameTh = "",
+    this.lastNameTh = "",
+    this.fullNameTh = "", 
   });
 
   factory CompleteHumanThName.fromJson(Map<String, dynamic> json) =>
@@ -251,16 +251,14 @@ class CompleteHumanThName {
 @JsonSerializable()
 class CommonShipToNameFull {
   @JsonKey(name: "firstName")
-  String firstName;
+  final String firstName;
   @JsonKey(name: "lastName")
-  String lastName;
+  final String lastName;
   @JsonKey(name: "fullName")
-  String fullName;
+  final String fullName;
 
-  CommonShipToNameFull(
-      {required this.firstName,
-      required this.lastName,
-      required this.fullName});
+  const CommonShipToNameFull(
+      {this.firstName = "", this.lastName = "", this.fullName = ""});
 
   factory CommonShipToNameFull.fromJson(Map<String, dynamic> json) =>
       _$CommonShipToNameFullFromJson(json);
@@ -277,7 +275,8 @@ class CommonCatalogSlideContent {
   @JsonKey(name: "content")
   final CommonContentDescription content;
 
-  const CommonCatalogSlideContent({this.content = const CommonContentDescription()});
+  const CommonCatalogSlideContent(
+      {this.content = const CommonContentDescription()});
 
   factory CommonCatalogSlideContent.fromJson(Map<String, dynamic> json) =>
       _$CommonCatalogSlideContentFromJson(json);
@@ -350,10 +349,10 @@ class TermsPeriod {
 @JsonSerializable()
 class CommonCustomerIdHref {
   @JsonKey(name: "href")
-  String href;
+  final String href;
 
-  CommonCustomerIdHref({
-    required this.href,
+  const CommonCustomerIdHref({
+    this.href = "",
   });
 
   factory CommonCustomerIdHref.fromJson(Map<String, dynamic> json) =>

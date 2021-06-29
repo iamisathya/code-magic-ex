@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ScrollableTable extends StatelessWidget {
+class EasyShipHomePage extends StatelessWidget {
   static const String routeName = '/easyShipReportsHomePage';
 
   List<Widget> _buildCells(int count, BuildContext context) {
@@ -11,7 +11,7 @@ class ScrollableTable extends StatelessWidget {
         width: 120.0,
         height: 60.0,
         color: Colors.white,
-        margin: const EdgeInsets.all(4.0),
+        margin: EdgeInsets.all(4.0),
         child: Text("${index + 1}", style: Theme.of(context).textTheme.button),
       ),
     );
@@ -34,7 +34,7 @@ class ScrollableTable extends StatelessWidget {
         width: 120.0,
         height: 60.0,
         color: Colors.white,
-        margin: const EdgeInsets.all(4.0),
+        margin: EdgeInsets.all(4.0),
         child: Text("${index + 1}", style: Theme.of(context).textTheme.button),
       ),
     );

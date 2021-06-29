@@ -14,7 +14,7 @@ import 'package:code_magic_ex/utilities/extensions.dart';
 
 class Body extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());
-  TextEditingController searchConntroller = TextEditingController();
+  final TextEditingController searchConntroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

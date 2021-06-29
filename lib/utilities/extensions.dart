@@ -39,8 +39,7 @@ extension DateFormater on String {
   String get asDDMMYYYY {
     try {
       final DateTime currentDateTime = DateTime.parse(this);
-      final DateFormat formatter = DateFormat('DD/MM/YYYY');
-      return formatter.format(currentDateTime);
+      return DateFormat('dd-MM-yyyy').format(currentDateTime);
     } catch (e) {
       return '';
     }

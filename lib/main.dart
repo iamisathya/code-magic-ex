@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
+import 'package:code_magic_ex/ui/screens/sales_reports/home.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +13,6 @@ import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
-
-
 
 // ignore: avoid_void_async
 void main() async {
@@ -35,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget _nextScreen() {
     UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
-    return isLoggedIn ? EasyShipHomeScreen() : LoginScreen();
+    return isLoggedIn ? SalesReportsHomeScreen() : LoginScreen();
   }
 
   @override

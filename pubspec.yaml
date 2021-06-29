@@ -53,6 +53,8 @@ dependencies:
   tuple: ^2.0.0
   webview_flutter: ^2.0.8
   http:
+  horizontal_data_table: ^3.4.2
+  linked_scroll_controller: ^0.2.0
   
 
 dev_dependencies:
