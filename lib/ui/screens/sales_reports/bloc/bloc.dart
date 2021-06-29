@@ -2,6 +2,7 @@ import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:code_magic_ex/utilities/function.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -31,12 +32,6 @@ class SalesReportController extends GetxController {
   List<Object> get currentTabItems => currentTab.value == "orders"
       ? allOrdersAndRmas.orders
       : allOrdersAndRmas.rmas;
-
-  @override
-  void onInit() {
-    super.onInit();
-    loadSalesReports();
-  }
 
   void onSortCulumn(EasyShipSortTypes sortStatus) {
     currentType = sortStatus;
@@ -98,9 +93,20 @@ class SalesReportController extends GetxController {
   }
 
   Future<void> loadSalesReports() async {
+    if(startDate.text.isEmpty || endDate.text.isEmpty) {
+      renderErrorSnackBar(title: "Select ${startDate.text.isEmpty ? 'start' : 'end'} date", subTitle: "Please select ${startDate.text.isEmpty ? 'start' : 'end'} date from Calender");
+      return;
+    } else {
+      final DateTime _start = DateTime.parse(startDate.text);
+      final DateTime _end = DateTime.parse(endDate.text);
+      if(_start.isAfter(_end)) {
+        renderErrorSnackBar(title: "Invalid date range!", subTitle: "Start date should be lower than end date!");
+        return;
+      }
+    }
     const String type = "order,rma";
     const String userId = "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
-    final String duration = "[$startDate;$startDate]";
+    final String duration = "[${startDate.text};${endDate.text}]";
     loading(true);
     update();
     try {

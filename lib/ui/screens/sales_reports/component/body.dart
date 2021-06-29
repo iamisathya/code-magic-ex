@@ -219,7 +219,7 @@ class Body extends StatelessWidget {
                   onTap: () {
                     DatePicker.showDatePicker(context, onConfirm: (date) {
                       controller.startDate.text =
-                          DateFormat('dd-MM-yyyy').format(date).toString();
+                          DateFormat('yyyy-MM-dd').format(date).toString();
                     });
                   },
                   decoration:
@@ -235,7 +235,7 @@ class Body extends StatelessWidget {
                   onTap: () {
                     DatePicker.showDatePicker(context, onConfirm: (date) {
                       controller.endDate.text =
-                          DateFormat('dd-MM-yyyy').format(date).toString();
+                          DateFormat('yyyy-MM-dd').format(date).toString();
                     }, currentTime: DateTime.now());
                   },
                   decoration: _renderInputDecoration("Select to date", "To"),
