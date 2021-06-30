@@ -1,6 +1,6 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
+import 'package:code_magic_ex/ui/screens/inventory/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/inventory/component/body.dart';
-import 'package:code_magic_ex/ui/screens/sales_reports/bloc/bloc.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class InventoryHomeScreen extends StatelessWidget {
-  final SalesReportController controller = Get.put(SalesReportController());
+  final InventoryController controller = Get.put(InventoryController());
   static const String routeName = '/inventoryHomePage';
 
   @override
@@ -42,7 +42,7 @@ class InventoryHomeScreen extends StatelessWidget {
       ),
       IconButton(
         icon: const Icon(
-          Icons.sort,
+          Icons.filter_alt_outlined,
         ),
         tooltip: 'Sort types',
         onPressed: () => controller.showPopupMenu(context),

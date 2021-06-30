@@ -188,21 +188,45 @@ class Body extends StatelessWidget {
 
   //Create a SearchView
   Widget _createSearchView() {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-          border: Border.all(),
-          borderRadius: const BorderRadius.all(Radius.circular(8.0))),
-      child: TextField(
-        cursorColor: Colors.grey[300],
-        controller: controller.searchController,
-        decoration: InputDecoration(
-          hintText: "Search",
-          focusedBorder: InputBorder.none,
-          prefixIcon: const Icon(Icons.search, color: Colors.grey),
-          hintStyle: TextStyle(color: Colors.grey[300]),
+    return Row(
+      children: [
+        Flexible(
+          child: Container(
+            margin: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                border: Border.all(),
+                borderRadius: const BorderRadius.all(Radius.circular(8.0))),
+            child: TextField(
+              cursorColor: Colors.grey[300],
+              controller: controller.searchController,
+              decoration: InputDecoration(
+                hintText: "Search",
+                focusedBorder: InputBorder.none,
+                prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                hintStyle: TextStyle(color: Colors.grey[300]),
+              ),
+            ),
+          ),
         ),
-      ),
+        SizedBox(
+            width: 66,
+            height: 50,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Container(
+                decoration: kCircular8,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_forward_outlined,
+                    color: Colors.white,
+                  ),
+                  tooltip: 'Search inventory',
+                  onPressed: () => controller.loadSalesReports(),
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

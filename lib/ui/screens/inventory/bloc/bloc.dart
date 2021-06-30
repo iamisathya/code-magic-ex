@@ -2,7 +2,6 @@ import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
-import 'package:code_magic_ex/utilities/function.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -16,7 +15,7 @@ class InventoryController extends GetxController {
   bool isAscending = true;
   InventorySortTypes currentType = InventorySortTypes.itemCode;
 
-  RxString filterMethod = "order".obs;
+  RxString filterMethod = "onHand".obs;
 
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
@@ -141,46 +140,32 @@ class InventoryController extends GetxController {
       items: [
         PopupMenuItem<String>(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          value: "order",
+          value: "onHand",
           child: ListTile(
             onTap: () {
-              filterMethod = "order".obs;
+              filterMethod = "onHand".obs;
               update();
               Navigator.pop(context);
             },
             selected: filterMethod.value == "order",
             selectedTileColor: kPrimaryColor,
-            title: const Text("By Order"),
+            title: const Text("On Hand"),
           ),
         ),
         PopupMenuItem<String>(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          value: "item",
+          value: "outOfStock",
           child: ListTile(
-            selected: filterMethod.value == "item",
+            selected: filterMethod.value == "outOfStock",
             onTap: () {
-              filterMethod = "item".obs;
+              filterMethod = "outOfStock".obs;
               update();
               Navigator.pop(context);
             },
             selectedTileColor: kPrimaryColor,
-            title: const Text("By Item"),
+            title: const Text("Out Of Stock"),
           ),
         ),
-        PopupMenuItem<String>(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          value: "rma",
-          child: ListTile(
-            selected: filterMethod.value == "rma",
-            onTap: () {
-              filterMethod = "rma".obs;
-              Navigator.pop(context);
-              update();
-            },
-            selectedTileColor: kPrimaryColor,
-            title: const Text("RMAs"),
-          ),
-        )
       ],
       elevation: 8.0,
     );
