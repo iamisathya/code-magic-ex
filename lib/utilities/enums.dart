@@ -8,3 +8,14 @@ enum EasyShipSortTypes {
   total,
   totalPV
 }
+
+
+enum InventorySortTypes {
+  itemCode,
+  itemName,
+  pv,
+  price,
+  quantityOnHand,
+  totalAccumulatedPrice,
+  totalPV
+}

@@ -18,7 +18,7 @@ class SalesReportController extends GetxController {
   bool isAscending = true;
   EasyShipSortTypes currentType = EasyShipSortTypes.record;
 
-  RxString filterMethod = "order".obs;
+  RxString filterMethod = "onHand".obs;
 
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
@@ -28,7 +28,7 @@ class SalesReportController extends GetxController {
   int get currentOrdersLength => allOrdersAndRmas.orders[0].items.length;
   int get currentRmasLength => allOrdersAndRmas.rmas[0].items.length;
   int get currentTabLength =>
-      filterMethod.value == "order" ? currentOrdersLength : currentRmasLength;
+      filterMethod.value == "onHand" ? currentOrdersLength : currentRmasLength;
 
   List<Object> get currentTabItems => filterMethod.value == "order"
       ? allOrdersAndRmas.orders[0].items

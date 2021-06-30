@@ -5,7 +5,7 @@ import 'package:code_magic_ex/ui/screens/inventory/bloc.dart';
 import 'package:flutter/material.dart';
 
 class InventoryHomeScreen extends StatefulWidget {
-  static const String routeName = '/inventoryHomePage';
+  static const String routeName = '/inventoryHomePage1';
 
   @override
   _InventoryHomeScreenState createState() => _InventoryHomeScreenState();

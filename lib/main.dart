@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/ui/screens/sales_reports/home.dart';
+import 'package:code_magic_ex/ui/screens/inventory/home.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget _nextScreen() {
     UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
-    return isLoggedIn ? SalesReportsHomeScreen() : LoginScreen();
+    return isLoggedIn ? InventoryHomeScreen() : LoginScreen();
   }
 
   @override
