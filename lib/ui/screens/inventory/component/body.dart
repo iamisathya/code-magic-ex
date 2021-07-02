@@ -5,6 +5,7 @@ import 'package:code_magic_ex/ui/screens/inventory/bloc/bloc.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/images.dart';
+import 'package:code_magic_ex/utilities/function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
@@ -55,7 +56,7 @@ class Body extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: HorizontalDataTable(
         leftHandSideColumnWidth: 140,
-        rightHandSideColumnWidth: 1470,
+        rightHandSideColumnWidth: 1260,
         isFixedHeader: true,
         headerWidgets: _getTitleWidget(),
         leftSideItemBuilder: _generateFirstColumnRow,
@@ -86,15 +87,15 @@ class Body extends StatelessWidget {
       _renderTableHeader(
           "Item Name", InventorySortTypes.itemName, Alignment.center, 280),
       _renderTableHeader(
-          "PV", InventorySortTypes.pv, Alignment.centerRight, 140),
+          "PV", InventorySortTypes.pv, Alignment.centerRight, 100),
       _renderTableHeader(
-          "Price", InventorySortTypes.price, Alignment.centerRight, 140),
+          "Price", InventorySortTypes.price, Alignment.centerRight, 100),
       _renderTableHeader("Quantity On Hannd", InventorySortTypes.quantityOnHand,
-          Alignment.centerRight, 210),
+          Alignment.centerRight, 180),
       _renderTableHeader("Total Accumlated Price",
-          InventorySortTypes.totalAccumulatedPrice, Alignment.centerRight, 350),
+          InventorySortTypes.totalAccumulatedPrice, Alignment.centerRight, 300),
       _renderTableHeader(
-          "Total PV", InventorySortTypes.totalPV, Alignment.centerRight, 350),
+          "Total PV", InventorySortTypes.totalPV, Alignment.centerRight, 300),
     ];
   }
 
@@ -154,15 +155,15 @@ class Body extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
             alignment: Alignment.center,
             child: Text(currentItem.catalogSlideContent.content.description)),
-        _renderDataCell(index, 140, currentItem.terms.pvEach.toString(),
+        _renderDataCell(index, 100, currentItem.terms.pvEach.toString(),
             Alignment.centerRight, "value"),
-        _renderDataCell(index, 140, currentItem.terms.priceEach.toString(),
+        _renderDataCell(index, 100, currentItem.terms.priceEach.toString(),
             Alignment.centerRight, "link"),
-        _renderDataCell(index, 210, currentItem.quantityOnHand,
+        _renderDataCell(index, 180, currentItem.quantityOnHand,
             Alignment.centerRight, "value"),
-        _renderDataCell(index, 350, currentItem.terms.priceEach.toString(),
+        _renderDataCell(index, 300, calculateTotalAmount(quantity: currentItem.quantityOnHand, price: currentItem.terms.priceEach),
             Alignment.centerRight, "value"),
-        _renderDataCell(index, 350, currentItem.terms.pvEach.toString(),
+        _renderDataCell(index, 300, currentItem.terms.pvEach.toString(),
             Alignment.centerRight, "value"),
       ],
     );

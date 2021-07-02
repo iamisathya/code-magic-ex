@@ -17,7 +17,7 @@ class InventoryHomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: AppBar(
-          title: const Text("Sales Report"),
+          title: const Text("Inventory"),
           actions: _renderActionBar(context),
         ),
         drawer: NavigationDrawer(),

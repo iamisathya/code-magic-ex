@@ -22,3 +22,11 @@ void renderErrorSnackBar({String title = "", String subTitle = ""}) {
       ),
     );
   }
+
+  String calculateTotalAmount({required String quantity, required double price}) {
+    try {
+      return (double.parse(quantity) * price).toInt().toString();
+    } catch (e) {
+      return price.toString();
+    }
+  }
