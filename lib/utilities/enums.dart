@@ -19,3 +19,8 @@ enum InventorySortTypes {
   totalAccumulatedPrice,
   totalPV
 }
+
+enum StockTypes {
+  onHand,
+  outOfStock
+}

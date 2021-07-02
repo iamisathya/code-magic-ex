@@ -1,7 +1,9 @@
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,128 +11,29 @@ import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class InventoryController extends GetxController {
-  Rx<InventoryRecords> backUpGamesList = InventoryRecords(items: []).obs;
-  Rx<InventoryRecords> filteredGamesList = InventoryRecords(items: []).obs;
-
   final TextEditingController searchController = TextEditingController();
+  Rx<InventoryRecords> _inventoryRecords = InventoryRecords(items: []).obs;
+  final Rx<InventoryRecords> _tempInventoryRecords = InventoryRecords(items: []).obs;
+
   RxString searchText = ''.obs;
   static int sortName = 0;
   static int sortStatus = 1;
   bool isAscending = true;
   InventorySortTypes currentType = InventorySortTypes.itemCode;
 
-  set onSearchTextChanged(String val) {
-    if (val.isNotEmpty) {
-      filteredGamesList.value.items.clear();
-      filteredGamesList.value.items.addAll(backUpGamesList.value.items);
-      filteredGamesList.value.items.removeWhere((game) => !game
-          .catalogSlideContent.content.description
-          .toLowerCase()
-          .contains(val.toLowerCase()));
-      print(filteredGamesList.value.items.length);
-      tempInventoryRecords = filteredGamesList.value;
-      // update();
-    } else {
-      tempInventoryRecords = inventoryRecords;
-    }
-    searchText.value = val;
-    update();
+  RxString filterMethod = describeEnum(StockTypes.onHand).obs;
+  RxBool loading = false.obs;
+  RxString errorMessage = "".obs;
+  
+  Rx<bool> get isEmptyList => _tempInventoryRecords.value.items.isEmpty.obs;
+
+  // Use this to retrieve all records
+  InventoryRecords get inventoryRecords {
+    return _tempInventoryRecords.value;
   }
 
   String get onSearchTextChanged => searchText.value;
 
-  RxString filterMethod = "onHand".obs;
-
-  RxBool loading = false.obs;
-  RxString errorMessage = "".obs;
-
-  InventoryRecords inventoryRecords = InventoryRecords(items: []);
-  InventoryRecords tempInventoryRecords = InventoryRecords(items: []);
-
-  int get currentOrdersLength => tempInventoryRecords.items.length;
-  int get currentTabLength => currentOrdersLength;
-
-  List<InventoryRecordItems> get currentTabItems => tempInventoryRecords.items;
-
-  List<InventoryRecordItems> get currentOrders => tempInventoryRecords.items;
-
-  void onSortCulumn(InventorySortTypes sortStatus) {
-    currentType = sortStatus;
-    isAscending = !isAscending;
-    switch (sortStatus) {
-      case InventorySortTypes.itemCode:
-        if (isAscending) {
-          tempInventoryRecords.items
-              .sort((a, b) => a.item.id.unicity.compareTo(b.item.id.unicity));
-        } else {
-          tempInventoryRecords.items
-              .sort((b, a) => a.item.id.unicity.compareTo(b.item.id.unicity));
-        }
-        break;
-      case InventorySortTypes.itemName:
-        if (isAscending) {
-          tempInventoryRecords.items.sort((a, b) => a
-              .catalogSlideContent.content.description
-              .compareTo(b.catalogSlideContent.content.description));
-        } else {
-          tempInventoryRecords.items.sort((b, a) => a
-              .catalogSlideContent.content.description
-              .compareTo(b.catalogSlideContent.content.description));
-        }
-        break;
-      case InventorySortTypes.pv:
-        if (isAscending) {
-          tempInventoryRecords.items
-              .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
-        } else {
-          tempInventoryRecords.items
-              .sort((b, a) => a.terms.priceEach.compareTo(b.terms.priceEach));
-        }
-        break;
-      case InventorySortTypes.price:
-        if (isAscending) {
-          tempInventoryRecords.items
-              .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
-        } else {
-          tempInventoryRecords.items
-              .sort((b, a) => a.terms.priceEach.compareTo(b.terms.priceEach));
-        }
-        break;
-      case InventorySortTypes.quantityOnHand:
-        if (isAscending) {
-          tempInventoryRecords.items
-              .sort((a, b) => a.quantityOnHand.compareTo(b.quantityOnHand));
-        } else {
-          tempInventoryRecords.items
-              .sort((b, a) => a.quantityOnHand.compareTo(b.quantityOnHand));
-        }
-        break;
-      case InventorySortTypes.totalAccumulatedPrice:
-        if (isAscending) {
-          tempInventoryRecords.items.sort((a, b) =>
-              (a.quantityOnHand * a.terms.priceEach.toInt())
-                  .compareTo(b.quantityOnHand * a.terms.priceEach.toInt()));
-        } else {
-          tempInventoryRecords.items.sort((b, a) =>
-              (a.quantityOnHand * a.terms.priceEach.toInt())
-                  .compareTo(b.quantityOnHand * b.terms.priceEach.toInt()));
-        }
-        break;
-      case InventorySortTypes.totalPV:
-        if (isAscending) {
-          tempInventoryRecords.items.sort((a, b) =>
-              (a.quantityOnHand * a.terms.pvEach.toInt())
-                  .compareTo(b.quantityOnHand * b.terms.pvEach.toInt()));
-        } else {
-          tempInventoryRecords.items.sort((b, a) =>
-              (a.quantityOnHand * a.terms.pvEach.toInt())
-                  .compareTo(b.quantityOnHand * b.terms.pvEach.toInt()));
-        }
-        break;
-      default:
-    }
-    update();
-  }
 
   Future<void> loadSalesReports() async {
     // if (searchController.text.isEmpty) {
@@ -145,12 +48,9 @@ class InventoryController extends GetxController {
     loading(true);
     update();
     try {
-      inventoryRecords =
-          await ApiService.shared().getInventoryRecords(userId, type);
-      tempInventoryRecords = inventoryRecords;
-      backUpGamesList.value.items.addAll(inventoryRecords.items.obs);
-      filteredGamesList.value.items.addAll(inventoryRecords.items.obs);
-      
+      _inventoryRecords =
+          Rx(await ApiService.shared().getInventoryRecords(userId, type));
+      _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
       loading(false);
       update();
     } catch (err) {
@@ -158,6 +58,131 @@ class InventoryController extends GetxController {
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
       update();
+    }
+  }
+
+
+  set onSearchTextChanged(String val) {
+    if (val.isNotEmpty) {
+      _tempInventoryRecords.value.items.clear();
+      _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+      _tempInventoryRecords.value.items.removeWhere((game) => !game
+          .catalogSlideContent.content.description
+          .toLowerCase()
+          .contains(val.toLowerCase()));
+    } else {
+      _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+    }
+    searchText.value = val;
+    update();
+  }
+
+  int get currentOrdersLength => _tempInventoryRecords.value.items.length;
+  int get currentTabLength => currentOrdersLength;
+
+  List<InventoryRecordItems> get currentTabItems =>
+      _tempInventoryRecords.value.items;
+
+  List<InventoryRecordItems> get currentOrders =>
+      _tempInventoryRecords.value.items;
+
+  void onSortCulumn(InventorySortTypes sortStatus) {
+    currentType = sortStatus;
+    isAscending = !isAscending;
+    switch (sortStatus) {
+      case InventorySortTypes.itemCode:
+        if (isAscending) {
+          _tempInventoryRecords.value.items
+              .sort((a, b) => a.item.id.unicity.compareTo(b.item.id.unicity));
+        } else {
+          _tempInventoryRecords.value.items
+              .sort((b, a) => a.item.id.unicity.compareTo(b.item.id.unicity));
+        }
+        break;
+      case InventorySortTypes.itemName:
+        if (isAscending) {
+          _tempInventoryRecords.value.items.sort((a, b) => a
+              .catalogSlideContent.content.description
+              .compareTo(b.catalogSlideContent.content.description));
+        } else {
+          _tempInventoryRecords.value.items.sort((b, a) => a
+              .catalogSlideContent.content.description
+              .compareTo(b.catalogSlideContent.content.description));
+        }
+        break;
+      case InventorySortTypes.pv:
+        if (isAscending) {
+          _tempInventoryRecords.value.items
+              .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
+        } else {
+          _tempInventoryRecords.value.items
+              .sort((b, a) => a.terms.priceEach.compareTo(b.terms.priceEach));
+        }
+        break;
+      case InventorySortTypes.price:
+        if (isAscending) {
+          _tempInventoryRecords.value.items
+              .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
+        } else {
+          _tempInventoryRecords.value.items
+              .sort((b, a) => a.terms.priceEach.compareTo(b.terms.priceEach));
+        }
+        break;
+      case InventorySortTypes.quantityOnHand:
+        if (isAscending) {
+          _tempInventoryRecords.value.items
+              .sort((a, b) => a.quantityOnHand.compareTo(b.quantityOnHand));
+        } else {
+          _tempInventoryRecords.value.items
+              .sort((b, a) => a.quantityOnHand.compareTo(b.quantityOnHand));
+        }
+        break;
+      case InventorySortTypes.totalAccumulatedPrice:
+        if (isAscending) {
+          _tempInventoryRecords.value.items.sort((a, b) =>
+              (a.quantityOnHand * a.terms.priceEach.toInt())
+                  .compareTo(b.quantityOnHand * a.terms.priceEach.toInt()));
+        } else {
+          _tempInventoryRecords.value.items.sort((b, a) =>
+              (a.quantityOnHand * a.terms.priceEach.toInt())
+                  .compareTo(b.quantityOnHand * b.terms.priceEach.toInt()));
+        }
+        break;
+      case InventorySortTypes.totalPV:
+        if (isAscending) {
+          _tempInventoryRecords.value.items.sort((a, b) =>
+              (a.quantityOnHand * a.terms.pvEach.toInt())
+                  .compareTo(b.quantityOnHand * b.terms.pvEach.toInt()));
+        } else {
+          _tempInventoryRecords.value.items.sort((b, a) =>
+              (a.quantityOnHand * a.terms.pvEach.toInt())
+                  .compareTo(b.quantityOnHand * b.terms.pvEach.toInt()));
+        }
+        break;
+      default:
+    }
+    update();
+  }
+
+  void onTapFilterInventory(BuildContext context, StockTypes type) {
+    filterMethod = describeEnum(type).obs;
+    update();
+    Navigator.pop(context);
+    filterInventoryData(type);
+  }
+
+  //* Filter inventory records with quanntity without quantity 
+  void filterInventoryData(StockTypes type) {
+    _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+    switch (type) {
+      case StockTypes.onHand:
+        _tempInventoryRecords.value.items.removeWhere((game) => Parsing.intFrom(game.quantityOnHand) == 0);
+        break;
+      case StockTypes.outOfStock:
+        _tempInventoryRecords.value.items.removeWhere((game) => Parsing.intFrom(game.quantityOnHand) != 0);
+        break;
+      default:
+      _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
     }
   }
 
@@ -171,11 +196,9 @@ class InventoryController extends GetxController {
           value: "onHand",
           child: ListTile(
             onTap: () {
-              filterMethod = "onHand".obs;
-              update();
-              Navigator.pop(context);
+              onTapFilterInventory(context, StockTypes.onHand);
             },
-            selected: filterMethod.value == "order",
+            selected: filterMethod.value == describeEnum(StockTypes.onHand),
             selectedTileColor: kPrimaryColor,
             title: const Text("On Hand"),
           ),
@@ -184,11 +207,9 @@ class InventoryController extends GetxController {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "outOfStock",
           child: ListTile(
-            selected: filterMethod.value == "outOfStock",
+            selected: filterMethod.value == describeEnum(StockTypes.outOfStock),
             onTap: () {
-              filterMethod = "outOfStock".obs;
-              update();
-              Navigator.pop(context);
+              onTapFilterInventory(context, StockTypes.outOfStock);
             },
             selectedTileColor: kPrimaryColor,
             title: const Text("Out Of Stock"),

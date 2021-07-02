@@ -41,7 +41,7 @@ class Body extends StatelessWidget {
       return const CustomErrorWidget(
         svgIcon: kImageServerDown,
       );
-    } else if (controller.tempInventoryRecords.items.isEmpty) {
+    } else if (controller.isEmptyList.value) {
       return const CustomEmptyWidget(
         svgIcon: kImageEmptyBox,
       );
@@ -81,8 +81,8 @@ class Body extends StatelessWidget {
   }
 
   List<Widget> _getTitleWidget() {
-     final String totalPrice = calculateTotalPrice(controller.tempInventoryRecords, 'price');
-    final String totalPv = calculateTotalPrice(controller.tempInventoryRecords, 'pv');
+     final String totalPrice = calculateTotalPrice(controller.inventoryRecords, 'price');
+    final String totalPv = calculateTotalPrice(controller.inventoryRecords, 'pv');
 
     return [
       _renderTableHeader(
@@ -136,7 +136,7 @@ class Body extends StatelessWidget {
   }
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
-    final currentItem = controller.tempInventoryRecords.items[index];
+    final currentItem = controller.inventoryRecords.items[index];
     return Container(
       width: 140,
       height: 65,
@@ -148,7 +148,7 @@ class Body extends StatelessWidget {
   }
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
-    final currentItem = controller.tempInventoryRecords.items[index];
+    final currentItem = controller.inventoryRecords.items[index];
     return Row(
       children: <Widget>[
         Container(
