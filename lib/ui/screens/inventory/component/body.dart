@@ -56,7 +56,7 @@ class Body extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: HorizontalDataTable(
         leftHandSideColumnWidth: 140,
-        rightHandSideColumnWidth: 1260,
+        rightHandSideColumnWidth: 1200,
         isFixedHeader: true,
         headerWidgets: _getTitleWidget(),
         leftSideItemBuilder: _generateFirstColumnRow,
@@ -81,6 +81,9 @@ class Body extends StatelessWidget {
   }
 
   List<Widget> _getTitleWidget() {
+     final String totalPrice = calculateTotalPrice(controller.inventoryRecords, 'price');
+    final String totalPv = calculateTotalPrice(controller.inventoryRecords, 'pv');
+
     return [
       _renderTableHeader(
           "Item Code", InventorySortTypes.itemCode, Alignment.center, 140),
@@ -92,10 +95,10 @@ class Body extends StatelessWidget {
           "Price", InventorySortTypes.price, Alignment.centerRight, 100),
       _renderTableHeader("Quantity On Hannd", InventorySortTypes.quantityOnHand,
           Alignment.centerRight, 180),
-      _renderTableHeader("Total Accumlated Price",
-          InventorySortTypes.totalAccumulatedPrice, Alignment.centerRight, 300),
+      _renderTableHeader("Total Accumlated Price ($totalPrice)",
+          InventorySortTypes.totalAccumulatedPrice, Alignment.centerRight, 340),
       _renderTableHeader(
-          "Total PV", InventorySortTypes.totalPV, Alignment.centerRight, 300),
+          "Total PV ($totalPv)", InventorySortTypes.totalPV, Alignment.centerRight, 200),
     ];
   }
 
@@ -161,9 +164,9 @@ class Body extends StatelessWidget {
             Alignment.centerRight, "link"),
         _renderDataCell(index, 180, currentItem.quantityOnHand,
             Alignment.centerRight, "value"),
-        _renderDataCell(index, 300, calculateTotalAmount(quantity: currentItem.quantityOnHand, price: currentItem.terms.priceEach),
+        _renderDataCell(index, 340, calculateTotalAmount(quantity: currentItem.quantityOnHand, price: currentItem.terms.priceEach),
             Alignment.centerRight, "value"),
-        _renderDataCell(index, 300, currentItem.terms.pvEach.toString(),
+        _renderDataCell(index, 200, calculateTotalAmount(quantity: currentItem.quantityOnHand, price: currentItem.terms.pvEach.toDouble()),
             Alignment.centerRight, "value"),
       ],
     );
