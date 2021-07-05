@@ -2,11 +2,11 @@ import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/translations/bloc.dart';
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/theme/bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get/get.dart';
 
 class MainHomeScreen extends StatefulWidget {
   static const String routeName = '/mainHomePage';
@@ -22,12 +22,15 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   }
 
   Future<void> _changeLanguage(String lang) async {
-    translationBloc.setappLanguageStream(lang);
-    Navigator.pop(context, lang);
+    final locale = Locale(lang, 'US');
+    Get.updateLocale(locale);
+    // translationBloc.setappLanguageStream(lang);
     await UserSessionManager.shared.setCurrentLanguage(lang);
+    Navigator.pop(context, lang);
   }
 
   Future<void> _showPopupMenu(BuildContext context) async {
+    final currentLang = UserSessionManager.shared.currentLanguage;
     await showMenu(
       context: context,
       position: const RelativeRect.fromLTRB(100, 100, 0, 100),
@@ -37,7 +40,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           value: "EN",
           child: ListTile(
             selectedTileColor: kPrimaryColor,
-            selected: translationBloc.getCurrentLanguage == "en",
+            selected: currentLang == "en",
             leading: const IconButton(
               onPressed: null,
               icon: Icon(Icons.language_outlined),
@@ -51,7 +54,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           value: "TH",
           child: ListTile(
             selectedTileColor: kPrimaryColor,
-            selected: translationBloc.getCurrentLanguage == "th",
+            selected: currentLang == "th",
             leading: const IconButton(
               onPressed: null,
               icon: Icon(Icons.language_outlined),
@@ -69,7 +72,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Home"),
+          title: Text("totalpv".tr),
           actions: <Widget>[
             IconButton(
               icon: const Icon(

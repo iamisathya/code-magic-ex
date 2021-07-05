@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/translations/translations.dart';
 import 'package:code_magic_ex/ui/screens/inventory/home.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
@@ -25,6 +26,28 @@ void main() async {
   //* Local Key Value DB
   await KeyValueStorageManager.setStorage();
 
+  //* disable collecting in debug mode
+  // if (dotenv.env['DEBUG'] == 'True') {
+  //   await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
+  //   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+  // }
+
+  //* Pass all uncaught errors from the framework to Crashlytics.
+  // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
+  //* To catch errors that happen outside of the Flutter context, install an error listener on the current Isolate:
+  // Isolate.current.addErrorListener(RawReceivePort((pair) async {
+  //   final List<dynamic> errorAndStacktrace = pair;
+  //   await FirebaseCrashlytics.instance.recordError(
+  //     errorAndStacktrace.first,
+  //     errorAndStacktrace.last,
+  //   );
+  // }).sendPort);
+  //* If you want to catch errors that occur in zones, you can pass FirebaseCrashlytics.instance.recordError to the second parameter of runZonedGuarded
+  // runZonedGuarded(() {
+  //   runApp(MyApp());
+  // }, FirebaseCrashlytics.instance.recordError);
+
   // * Run app normally
   runApp(MyApp());
 }
@@ -35,6 +58,11 @@ class MyApp extends StatelessWidget {
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
     return isLoggedIn ? InventoryHomeScreen() : LoginScreen();
   }
+  
+  //* init firebase analytics
+  // static FirebaseAnalytics analytics = FirebaseAnalytics();
+  // static FirebaseAnalyticsObserver observer =
+  // FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +75,17 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: themeBloc.getThemeMode,
+            translations: AppTranslations(),
+            locale: const Locale('en', 'US'), // translations will be displayed in that locale
+            fallbackLocale: const Locale('en', 'UK'),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale(translationBloc.getCurrentLanguage, ''),
+            // locale: Locale(translationBloc.getCurrentLanguage, ''),
             routes: routes,
             home: _nextScreen(),
+            // navigatorObservers: [
+            //   FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+            // ],
           );
         });
   }

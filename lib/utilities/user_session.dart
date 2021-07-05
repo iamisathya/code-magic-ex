@@ -85,6 +85,7 @@ class UserSessionManager {
     try {
       await KeyValueStorageManager.setString(
           KeyValueStorageKeys.currentLanguage, language);
+          currentLanguage = language;
       return true;
     } catch (error) {
       LoggerService.instance

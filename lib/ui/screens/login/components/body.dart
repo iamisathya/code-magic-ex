@@ -1,10 +1,11 @@
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
+
 import 'sign_form.dart';
 
 class Body extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return SafeArea(
       child: SizedBox(
         width: double.infinity,

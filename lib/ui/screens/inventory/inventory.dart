@@ -3,6 +3,7 @@ import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/widgets/activity_indicators.dart';
 import 'package:code_magic_ex/ui/screens/inventory/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class InventoryHomeScreen extends StatefulWidget {
   static const String routeName = '/inventoryHomePage1';
@@ -51,12 +52,12 @@ class _InventoryHomeScreenState extends State<InventoryHomeScreen> {
         String type, double totalPrice, double totalPv) {
       final int totalLength = inventoryRecords.items.length + 1;
       final List<Map<String, dynamic>> mainHeaders = [
-        {"name": "Item Name", "width": 360.0},
-        {"name": "PV", "width": 120.0},
-        {"name": "Price", "width": 120.0},
-        {"name": "Quantity on hand", "width": 240.0},
-        {"name": "Total Accumulated Price $totalPrice", "width": 360.0},
-        {"name": "Total PV $totalPv", "width": 240.0},
+        {"name": "itemname".tr, "width": 360.0},
+        {"name": "pv".tr, "width": 120.0},
+        {"name": "price".tr, "width": 120.0},
+        {"name": "ctotal".tr, "width": 240.0},
+        {"name": "${"total_price_title".tr} ${"$totalPrice"}", "width": 360.0},
+        {"name": "${"totalpv".tr} $totalPv", "width": 240.0},
       ];
       return List.generate(
         type == "main" ? totalLength : 6,
