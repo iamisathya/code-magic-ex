@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
@@ -7,13 +9,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:excel/excel.dart';
+import 'package:path/path.dart';
 
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:open_file/open_file.dart';
 
 class InventoryController extends GetxController {
   final TextEditingController searchController = TextEditingController();
   Rx<InventoryRecords> _inventoryRecords = InventoryRecords(items: []).obs;
-  final Rx<InventoryRecords> _tempInventoryRecords = InventoryRecords(items: []).obs;
+  final Rx<InventoryRecords> _tempInventoryRecords =
+      InventoryRecords(items: []).obs;
 
   RxString searchText = ''.obs;
   static int sortName = 0;
@@ -24,7 +32,7 @@ class InventoryController extends GetxController {
   RxString filterMethod = describeEnum(StockTypes.onHand).obs;
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
-  
+
   Rx<bool> get isEmptyList => _tempInventoryRecords.value.items.isEmpty.obs;
 
   // Use this to retrieve all records
@@ -33,7 +41,6 @@ class InventoryController extends GetxController {
   }
 
   String get onSearchTextChanged => searchText.value;
-
 
   Future<void> loadSalesReports() async {
     // if (searchController.text.isEmpty) {
@@ -60,7 +67,6 @@ class InventoryController extends GetxController {
       update();
     }
   }
-
 
   set onSearchTextChanged(String val) {
     if (val.isNotEmpty) {
@@ -171,18 +177,20 @@ class InventoryController extends GetxController {
     filterInventoryData(type);
   }
 
-  //* Filter inventory records with quanntity without quantity 
+  //* Filter inventory records with quanntity without quantity
   void filterInventoryData(StockTypes type) {
     _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
     switch (type) {
       case StockTypes.onHand:
-        _tempInventoryRecords.value.items.removeWhere((game) => Parsing.intFrom(game.quantityOnHand) == 0);
+        _tempInventoryRecords.value.items
+            .removeWhere((game) => Parsing.intFrom(game.quantityOnHand) == 0);
         break;
       case StockTypes.outOfStock:
-        _tempInventoryRecords.value.items.removeWhere((game) => Parsing.intFrom(game.quantityOnHand) != 0);
+        _tempInventoryRecords.value.items
+            .removeWhere((game) => Parsing.intFrom(game.quantityOnHand) != 0);
         break;
       default:
-      _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+        _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
     }
   }
 
@@ -218,5 +226,48 @@ class InventoryController extends GetxController {
       ],
       elevation: 8.0,
     );
+  }
+
+  Future onTapExportExcellSheet() async {
+    if (await Permission.storage.request().isGranted) {
+      // Either the permission was already granted before or the user just granted it.
+      final Directory appDocDirectory =
+          await getApplicationDocumentsDirectory();
+
+      Directory('${appDocDirectory.path}/dir').create(recursive: true)
+          // The created directory is returned as a Future.
+          .then((Directory directory) async {
+        final excel = Excel.createExcel();
+        final bytes = excel.encode();
+        final Sheet sheet = excel['mySheet'];
+
+        //* Check this 
+        // final Sheet unlinkedSheetObject = excel["sheet1"];
+        // final List<InventoryRecordItems> dataList =
+        //     _tempInventoryRecords.value.items;
+        // unlinkedSheetObject.insertRowIterables(dataList, 8);
+
+        /// appending rows
+        List<List<String>> list = List.generate(
+            2, (index) => List.generate(2, (index1) => '$index $index1'));
+
+        list.forEach((row) {
+          sheet.appendRow(row);
+        });
+
+        sheet.appendRow([8, 10, 12, 12, 14, 14, 15, 16, 65]);
+        final String filePath =
+            '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.xlsx';
+        final fileDate = File(join(filePath))
+          ..createSync(recursive: true)
+          ..writeAsBytesSync(bytes!);
+        debugPrint('Path of New Dir: $fileDate');
+        OpenFile.open(fileDate.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");
+      });
+    }
+
+    //* shareFiles: this has to be awaited 🤔
+    // await Share.shareFiles([path]).then((value) => setState(() => excel = null));
+    // });
   }
 }
