@@ -19,6 +19,9 @@ class Body extends StatelessWidget {
     return SafeArea(
         child: GetBuilder<InventoryController>(
             init: InventoryController(),
+            initState: (state) {
+              controller.loadSalesReports();
+            },
             builder: (_) {
               return Column(
                 children: [
@@ -78,8 +81,10 @@ class Body extends StatelessWidget {
   }
 
   List<Widget> _getTitleWidget() {
-     final String totalPrice = calculateTotalPrice(controller.inventoryRecords, 'price');
-    final String totalPv = calculateTotalPrice(controller.inventoryRecords, 'pv');
+    final String totalPrice =
+        calculateTotalPrice(controller.inventoryRecords, 'price');
+    final String totalPv =
+        calculateTotalPrice(controller.inventoryRecords, 'pv');
 
     return [
       _renderTableHeader(
@@ -94,8 +99,8 @@ class Body extends StatelessWidget {
           Alignment.centerRight, 180),
       _renderTableHeader("Total Accumlated Price ($totalPrice)",
           InventorySortTypes.totalAccumulatedPrice, Alignment.centerRight, 340),
-      _renderTableHeader(
-          "Total PV ($totalPv)", InventorySortTypes.totalPV, Alignment.centerRight, 200),
+      _renderTableHeader("Total PV ($totalPv)", InventorySortTypes.totalPV,
+          Alignment.centerRight, 200),
     ];
   }
 
@@ -161,10 +166,22 @@ class Body extends StatelessWidget {
             Alignment.centerRight, "link"),
         _renderDataCell(index, 180, currentItem.quantityOnHand,
             Alignment.centerRight, "value"),
-        _renderDataCell(index, 340, calculateTotalAmount(quantity: currentItem.quantityOnHand, price: currentItem.terms.priceEach),
-            Alignment.centerRight, "value"),
-        _renderDataCell(index, 200, calculateTotalAmount(quantity: currentItem.quantityOnHand, price: currentItem.terms.pvEach.toDouble()),
-            Alignment.centerRight, "value"),
+        _renderDataCell(
+            index,
+            340,
+            calculateTotalAmount(
+                quantity: currentItem.quantityOnHand,
+                price: currentItem.terms.priceEach),
+            Alignment.centerRight,
+            "value"),
+        _renderDataCell(
+            index,
+            200,
+            calculateTotalAmount(
+                quantity: currentItem.quantityOnHand,
+                price: currentItem.terms.pvEach.toDouble()),
+            Alignment.centerRight,
+            "value"),
       ],
     );
   }
@@ -212,23 +229,20 @@ class Body extends StatelessWidget {
           ),
         ),
         SizedBox(
-            width: 66,
-            height: 50,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Container(
-                decoration: kCircular8,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.arrow_forward_outlined,
-                    color: Colors.white,
-                  ),
-                  tooltip: 'Search inventory',
-                  onPressed: () => controller.loadSalesReports(),
-                ),
+          width: 86,
+          height: 50,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: Container(
+              decoration: kCircular8,
+              child: ElevatedButton(
+                onPressed: () => controller.resetSearchText(),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(kPrimaryColor)),
+                child: const Text("Clear"),
               ),
             ),
           ),
+        ),
       ],
     );
   }

@@ -18,7 +18,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:open_file/open_file.dart';
 
 class InventoryController extends GetxController {
-  final TextEditingController searchController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
   Rx<InventoryRecords> _inventoryRecords = InventoryRecords(items: []).obs;
   final Rx<InventoryRecords> _tempInventoryRecords =
       InventoryRecords(items: []).obs;
@@ -28,6 +28,12 @@ class InventoryController extends GetxController {
   static int sortStatus = 1;
   bool isAscending = true;
   InventorySortTypes currentType = InventorySortTypes.itemCode;
+
+  void resetSearchText() {
+    _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+    searchController.text = "";
+    update();
+  }
 
   RxString filterMethod = describeEnum(StockTypes.onHand).obs;
   RxBool loading = false.obs;
@@ -241,7 +247,7 @@ class InventoryController extends GetxController {
         final bytes = excel.encode();
         final Sheet sheet = excel['mySheet'];
 
-        //* Check this 
+        //* Check this
         // final Sheet unlinkedSheetObject = excel["sheet1"];
         // final List<InventoryRecordItems> dataList =
         //     _tempInventoryRecords.value.items;
