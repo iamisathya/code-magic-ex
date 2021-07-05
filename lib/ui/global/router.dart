@@ -2,7 +2,7 @@ import 'package:code_magic_ex/ui/screens/barcode/barcode.dart';
 import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
 import 'package:code_magic_ex/ui/screens/home/home.dart';
-import 'package:code_magic_ex/ui/screens/inventory/inventory.dart';
+import 'package:code_magic_ex/ui/screens/inventory/home.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/ui/screens/open_po/home.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';

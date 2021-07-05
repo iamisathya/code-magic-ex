@@ -19,9 +19,6 @@ class Body extends StatelessWidget {
     return SafeArea(
         child: GetBuilder<InventoryController>(
             init: InventoryController(),
-            initState: (state) {
-              controller.loadSalesReports();
-            },
             builder: (_) {
               return Column(
                 children: [
