@@ -1,5 +1,7 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
+import 'package:code_magic_ex/ui/screens/barcode/components/body.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class BarcodeHomeScreen extends StatefulWidget {
@@ -19,29 +21,6 @@ class _BarcodeHomeScreenState extends State<BarcodeHomeScreen> {
           title: const Text("BarCode"),
         ),
         drawer: NavigationDrawer(),
-        body: Container(
-          child: _buildSearchContainer(),
-        ));
-  }
-
-  Widget _buildSearchContainer() {
-    return Container(
-      margin: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          Flexible(child: SearchViewWidget(controller: searchConntroller)),
-          MaterialButton(
-            shape: RoundedRectangleBorder(
-                side: const BorderSide(),
-                borderRadius: BorderRadius.circular(8)),
-            disabledColor: Colors.grey,
-            color: Colors.yellow,
-            onPressed: () {},
-            height: 55,
-            child: const Text('Search'),
-          ),
-        ],
-      ),
-    );
+        body: Body());
   }
 }

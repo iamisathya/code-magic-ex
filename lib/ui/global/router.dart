@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/ui/screens/barcode/barcode.dart';
+import 'package:code_magic_ex/ui/screens/barcode/home.dart';
 import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
 import 'package:code_magic_ex/ui/screens/home/home.dart';

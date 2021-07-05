@@ -39,4 +39,12 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=204&order_id=50291
   @GET("${Address.allDscPath}/THA/getdata.php")
   Future<List<OpenPlaceOrderDetails>> getOpenOrderDetails(@Query("type") String type, @Query("order_id") String orderId);
+
+    //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?lang=en&order=423135644&token=2096fb4a-783d-4b60-baec-f5880bab1e7a&user=2970466
+  @GET("${Address.allDscPath}/THA/barcode/redirect.php")
+  Future<dynamic> getBarcodePath(
+      @Query('lang') String lang,
+      @Query('order') String order,
+      @Query('token') String token,
+      @Query('user') String user);
 }

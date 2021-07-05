@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/ui/global/router.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
-import 'package:code_magic_ex/ui/screens/barcode/barcode.dart';
+import 'package:code_magic_ex/ui/screens/barcode/home.dart';
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
 import 'package:code_magic_ex/ui/screens/home/home.dart';
 import 'package:code_magic_ex/ui/screens/open_po/home.dart';
