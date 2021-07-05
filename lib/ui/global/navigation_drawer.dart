@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/ui/global/router.dart';
@@ -22,54 +23,64 @@ class NavigationDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentRoute = ModalRoute.of(context)!.settings.name;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createDrawerHeader(),
           _createDrawerBodyItem(
+            selected: currentRoute == ScreenPaths.mainHome,
             icon: Icons.home_outlined,
             text: 'Home',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.mainHome),
           ),
           _createDrawerBodyItem(
+            selected: currentRoute == ScreenPaths.openPO,
             icon: Icons.trending_up_sharp,
             text: 'Open PO',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.openPO),
           ),
           _createDrawerBodyItem(
+            selected: currentRoute == ScreenPaths.enroll,
             icon: Icons.mode_edit_sharp,
             text: 'Enroll',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.enroll),
           ),
           _createDrawerBodyItem(
+            selected: currentRoute == ScreenPaths.orderEntry,
             icon: Icons.shopping_cart_outlined,
             text: 'Order Entry',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.orderEntry),
           ),
           const Divider(thickness: 1),
           _createDrawerBodyItem(
+            selected: currentRoute == ScreenPaths.inventory,
             icon: Icons.inventory_2,
             text: 'Inventory',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.inventory),
           ),
           _createDrawerBodyItem(
+            selected: currentRoute == ScreenPaths.salesReport,
             icon: Icons.receipt_outlined,
             text: 'Sales Report',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.salesReport),
           ),
           _createDrawerBodyItem(
+            selected: currentRoute == ScreenPaths.easyShipReport,
             icon: Icons.share_outlined,
             text: 'Easyship Report',
             onTap: () =>
                 Navigator.pushNamed(context, ScreenPaths.easyShipReport),
           ),
           _createDrawerBodyItem(
+            selected: currentRoute == ScreenPaths.barcode,
             icon: Icons.qr_code_2_outlined,
             text: 'Barcode',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.barcode),
           ),
           _createDrawerBodyItem(
+            selected: false,
             icon: Icons.logout_outlined,
             text: 'Signout',
             onTap: () => _didMenuPressed(context),
@@ -121,8 +132,11 @@ Widget _createDrawerHeader() {
 Widget _createDrawerBodyItem(
     {required IconData icon,
     required String text,
-    required GestureTapCallback onTap}) {
+    required GestureTapCallback onTap,
+    required bool selected}) {
   return ListTile(
+    selectedTileColor: kPrimaryColor,
+    selected: selected,
     leading: Icon(icon),
     title: Text(text),
     onTap: onTap,
