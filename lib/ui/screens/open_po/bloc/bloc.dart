@@ -1,4 +1,6 @@
 import 'package:code_magic_ex/api/api_address.dart';
+import 'package:code_magic_ex/ui/screens/open_po/pages/partner_order_details.dart';
+import 'package:code_magic_ex/ui/screens/open_po/pages/place_order.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:dio/dio.dart';
@@ -56,8 +58,8 @@ class SampleController extends GetxController {
   }
 
   Future<void> getOpenPlaceOrderDetails(
-      String ponumber, BuildContext context) async {    
-    showDetails(true);
+      String ponumber, BuildContext context) async {
+    // showDetails(true);
     loadingDetails(true);
     detailsErrorMessage("");
     update();
@@ -65,13 +67,13 @@ class SampleController extends GetxController {
       // * Getting order id from getOpenOrderId API - 203
       openPlaceOrderId =
           await MemberCallsService.init().getOpenOrderId("203", ponumber);
-
-    currentPoNumber = openPlaceOrderId.orderId;
+      currentPoNumber = openPlaceOrderId.orderId;
       // * Getting order details from from getOpenOrderDetails API - 204
       final List<OpenPlaceOrderDetails> detailsResponse =
           await MemberCallsService.init()
               .getOpenOrderDetails("204", openPlaceOrderId.orderId);
       openPlaceOrderDetails = detailsResponse.obs;
+      Get.to(PurchaseOrderDetailsPage());
       // Navigator.pushNamed(context, '/poOrderDetailsPage');
 
       loadingDetails(false);

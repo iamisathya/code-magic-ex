@@ -1,7 +1,8 @@
 import 'package:code_magic_ex/models/open_po_details.dart';
-import 'package:code_magic_ex/ui/global/widgets/back_buttonn.dart';
+import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/utilities/extensions.dart';
@@ -16,16 +17,28 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: AnimatedContainer(
+    return Scaffold(
+      backgroundColor: kWhiteSmokeColor,
+      appBar: AppBar(
+        title: const Text("PO List"),
+        actions: _renderActionBar(context),
+      ),
+      body: SingleChildScrollView(child: _renderChild(context)),
+    );
+  }
+
+  Widget _renderChild(BuildContext context) {
+    if (controller.loadingDetails.value == true) {
+      return const CustomLoadingWidget(
+        svgIcon: kImageApproveTask,
+      );
+    } else {
+      return AnimatedContainer(
         duration: kAnimationDuration,
         margin: const EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BackIconButton(press: () {
-              controller.toggle();
-            }),
             _renderRowItem(
                 "DSC Information", controller.openPlaceOrderId.orderDscid),
             _renderRowItem("Date", controller.openPlaceOrderId.orderDate),
@@ -36,8 +49,8 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
             _renderDividerPadding(),
           ],
         ),
-      ),
-    );
+      );
+    }
   }
 
   Padding _renderDividerPadding() {
@@ -52,8 +65,7 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
   }
 
   Column _renderTotal(BuildContext context) {
-    return Column(
-      children: [
+    return Column(children: [
       Padding(
         padding: kEdgeV12H16(),
         child: Row(
@@ -205,5 +217,18 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<Widget> _renderActionBar(BuildContext context) {
+    return <Widget>[
+      IconButton(
+        icon: const Icon(
+          Icons.print_outlined,
+        ),
+        tooltip: 'Print',
+        onPressed: () =>
+            controller.proceedToPrint(orderId: controller.currentPoNumber),
+      ),
+    ];
   }
 }

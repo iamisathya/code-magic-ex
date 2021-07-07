@@ -1,5 +1,5 @@
 import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
-import 'package:code_magic_ex/ui/screens/open_po/components/partner_order_details.dart';
+import 'package:code_magic_ex/ui/screens/open_po/pages/partner_order_details.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -29,9 +29,6 @@ class Body extends StatelessWidget {
             controller.getAllOpenPo();
           },
           builder: (_) {
-            if (controller.showDetails.value) {
-              return _buildDetailsContainer(context);
-            }
             return _buildChild();
           }),
     );
