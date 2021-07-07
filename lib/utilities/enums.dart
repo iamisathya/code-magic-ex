@@ -24,3 +24,13 @@ enum StockTypes {
   onHand,
   outOfStock
 }
+
+enum OpenPoTypes {
+  poNumber,
+  date,
+  time,
+  totalPv,
+  totalPrice,
+  status,
+  attachment,
+}

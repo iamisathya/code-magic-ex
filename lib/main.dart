@@ -1,5 +1,5 @@
 import 'package:code_magic_ex/translations/translations.dart';
-import 'package:code_magic_ex/ui/screens/inventory/home.dart';
+import 'package:code_magic_ex/ui/screens/open_po/home.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
   Widget _nextScreen() {
     UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
-    return isLoggedIn ? InventoryHomeScreen() : LoginScreen();
+    return isLoggedIn ? OpenPOHomeScreen() : LoginScreen();
   }
   
   //* init firebase analytics

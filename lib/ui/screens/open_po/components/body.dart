@@ -1,5 +1,6 @@
 import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/open_po/components/partner_order_details.dart';
+import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -13,8 +14,10 @@ import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/images.dart';
 import 'package:code_magic_ex/utilities/extensions.dart';
+import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 class Body extends StatelessWidget {
+  final HDTRefreshController _hdtRefreshController = HDTRefreshController();
   final SampleController controller = Get.put(SampleController());
 
   @override
@@ -29,10 +32,186 @@ class Body extends StatelessWidget {
             if (controller.showDetails.value) {
               return _buildDetailsContainer(context);
             }
-            return _buildChild(context);
+            return _buildChild();
           }),
     );
   }
+
+  // *
+  Widget _buildChild() {
+    if (controller.loading.value) {
+      return const CustomLoadingWidget(
+        svgIcon: kImageBroswerStats,
+      );
+    } else if (controller.errorMessage.value.isNotEmpty) {
+      return const CustomErrorWidget(
+        svgIcon: kImageServerDown,
+      );
+    } else if (controller.isEmptyList.value) {
+      return const CustomEmptyWidget(
+        svgIcon: kImageEmptyBox,
+      );
+    } else {
+      return _getBodyWidget();
+    }
+  }
+
+  Widget _getBodyWidget() {
+    return Container(
+      decoration: const BoxDecoration(color: Colors.white),
+      height: Get.height,
+      child: HorizontalDataTable(
+        leftHandSideColumnWidth: 200,
+        rightHandSideColumnWidth: 1080,
+        isFixedHeader: true,
+        headerWidgets: _getTitleWidget(),
+        leftSideItemBuilder: _generateFirstColumnRow,
+        rightSideItemBuilder: _generateRightHandSideColumnRow,
+        itemCount: controller.currentItemsLength,
+        rowSeparatorWidget: kRowDivider,
+        enablePullToRefresh: true,
+        refreshIndicator: const WaterDropHeader(),
+        refreshIndicatorHeight: 100,
+        onRefresh: () async {
+          //Do sth
+          await Future.delayed(const Duration(milliseconds: 500));
+          _hdtRefreshController.refreshCompleted();
+        },
+        htdRefreshController: _hdtRefreshController,
+      ),
+    );
+  }
+
+  List<Widget> _getTitleWidget() {
+    return [
+      _renderTableHeader("P/O Number", OpenPoTypes.poNumber, 200),
+      _renderTableHeader("Date", OpenPoTypes.date, 180),
+      _renderTableHeader("Time", OpenPoTypes.time, 180),
+      _renderTableHeader("Total PV", OpenPoTypes.totalPv, 180),
+      _renderTableHeader("Total Price", OpenPoTypes.totalPrice, 180),
+      _renderTableHeader("Status", OpenPoTypes.status, 180),
+      _renderTableHeader("Attachment", OpenPoTypes.attachment, 180),
+    ];
+  }
+
+  TextButton _renderTableHeader(String title, OpenPoTypes type, double width) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
+      onPressed: () {
+        controller.onSortCulumn(type);
+      },
+      child: _getTitleItemWidget(
+        '$title ${controller.currentType == type ? (controller.isAscending ? '↓' : '↑') : ''}',
+        width,
+      ),
+    );
+  }
+
+  Widget _getTitleItemWidget(String label, double width) {
+    return Container(
+      decoration: BoxDecoration(
+          color: kPrimaryLightColor, border: Border.all(width: 0.5)),
+      width: width,
+      height: 56,
+      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(label,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white)),
+      ),
+    );
+  }
+
+  Widget _generateFirstColumnRow(BuildContext context, int index) {
+    final currentItem = controller.openPlaceOrders[index];
+    return Container(
+      width: 140,
+      height: 65,
+      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(border: Border.all(width: 0.5)),
+      child: Text(currentItem.orderOpid),
+    );
+  }
+
+  Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
+    final currentItem = controller.openPlaceOrders[index];
+    return Row(
+      children: <Widget>[
+        Container(
+            width: 180,
+            height: 65,
+            decoration: BoxDecoration(border: Border.all(width: 0.5)),
+            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+            alignment: Alignment.center,
+            child: Text(currentItem.orderDate)),
+        _renderDataCell(
+            index, 180, currentItem.orderTime, Alignment.centerRight, "value"),
+        _renderDataCell(index, 180, currentItem.orderTotalPv,
+            Alignment.centerRight, "link"),
+        _renderDataCell(
+            index, 180, currentItem.orderTotalPrice, Alignment.center, "value"),
+        _renderDataCellWidget(
+          180,
+          Alignment.center,
+          _renderStatusButton(
+              context, currentItem.orderStatus.retrieveOrderStatus()),
+        ),
+        _renderDataCellWidget(180, Alignment.centerRight,
+            _renderAttachement(context, currentItem)),
+      ],
+    );
+  }
+
+  Container _renderDataCellWidget(
+      double width, Alignment textAlign, Widget widget) {
+    return Container(
+      width: width,
+      height: 65,
+      decoration: BoxDecoration(border: Border.all(width: 0.5)),
+      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.center,
+      child: widget,
+    );
+  }
+
+  IconButton _renderAttachement(BuildContext context, OpenPO currentItem) {
+    return IconButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => WebivewHomeScreen(
+                  url:
+                      "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
+                ),
+              ));
+        },
+        icon: const Icon(Icons.attach_file, color: kPrimaryLightColor));
+  }
+
+  Container _renderDataCell(int index, double width, String titleText,
+      Alignment textAlign, String type) {
+    return Container(
+      width: width,
+      height: 65,
+      decoration: BoxDecoration(border: Border.all(width: 0.5)),
+      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          titleText,
+          style: TextStyle(color: type == 'link' ? Colors.blue : Colors.black),
+        ),
+      ),
+    );
+  }
+  // *
 
   Widget _buildDetailsContainer(BuildContext context) {
     if (controller.loadingDetails.value) {
@@ -41,106 +220,6 @@ class Body extends StatelessWidget {
       );
     }
     return PurchaseOrderDetailsPage();
-  }
-
-  Widget _buildChild(BuildContext context) {
-    if (controller.loading.value) {
-      return const CustomLoadingWidget(
-        svgIcon: kImageCompletedTask,
-      );
-    } else if (controller.errorMessage.value.isNotEmpty) {
-      return const CustomErrorWidget(
-        svgIcon: kImageServerDown,
-      );
-    } else if (controller.allOpenPlaceOrders.isEmpty) {
-      return const CustomEmptyWidget(
-        svgIcon: kImageEmptyBox,
-      );
-    } else {
-      return _renderDataTable(controller.allOpenPlaceOrders, context);
-    }
-  }
-
-  List<Widget> _buildMainCells(List<OpenPO> items, BuildContext context) {
-    final int totalLength = items.length;
-    return List.generate(
-      totalLength,
-      (index) => GestureDetector(
-        onTap: () {
-          controller.getOpenPlaceOrderDetails(items[index].orderOpid, context);
-        },
-        child: Container(
-          alignment: Alignment.center,
-          width: 180.0,
-          height: 60.0,
-          decoration: BoxDecoration(
-            color: index == 0
-                ? kPrimaryLightColor
-                : index.isEven
-                    ? kWhiteSmokeColor
-                    : Colors.white,
-            border: Border.all(width: 0.5),
-          ),
-          child: Text(
-            items[index].orderOpid,
-            style: index != 0
-                ? Theme.of(context).textTheme.tableData
-                : Theme.of(context).textTheme.tableHeader,
-          ),
-        ),
-      ),
-    );
-  }
-
-  List<Widget> _buildCells(
-      int mainIndex, List<OpenPO> items, BuildContext context) {
-    return List.generate(6, (index) {
-      final OpenPO currentItem = items[mainIndex];
-      return GestureDetector(
-        onTap: () {
-          controller.getOpenPlaceOrderDetails(
-              items[mainIndex].orderOpid, context);
-        },
-        child: Container(
-          alignment: Alignment.center,
-          width: 160,
-          height: 60.0,
-          decoration: BoxDecoration(
-            color: mainIndex == 0
-                ? kPrimaryLightColor
-                : mainIndex.isEven
-                    ? kWhiteSmokeColor
-                    : Colors.white,
-            border: Border.all(width: 0.5),
-          ),
-          child: index == 4
-              ? mainIndex == 0
-                  ? _renderTableHeader(index, currentItem, mainIndex, context)
-                  : _renderStatusButton(
-                      context, currentItem.orderStatus.retrieveOrderStatus())
-              : index == 5
-                  ? mainIndex == 0
-                      ? _renderTableHeader(
-                          index, currentItem, mainIndex, context)
-                      : (currentItem.iconAttachment != "1_0_0"
-                          ? IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => WebivewHomeScreen(
-                                        url:
-                                            "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
-                                      ),
-                                    ));
-                              },
-                              icon: const Icon(Icons.attach_file,
-                                  color: kPrimaryLightColor))
-                          : const SizedBox())
-                  : _renderTableHeader(index, currentItem, mainIndex, context),
-        ),
-      );
-    });
   }
 
   Container _renderStatusButton(BuildContext context, String status) {
@@ -164,56 +243,5 @@ class Body extends StatelessWidget {
           BoxDecoration(borderRadius: BorderRadius.circular(8), color: color),
       child: Text(text, style: Theme.of(context).textTheme.whiteButtonText),
     );
-  }
-
-  Text _renderTableHeader(
-      int index, OpenPO currentItem, int mainIndex, BuildContext context) {
-    final String _headerText = index == 0
-        ? currentItem.orderDate
-        : index == 1
-            ? currentItem.orderTime
-            : index == 2
-                ? currentItem.orderTotalPrice
-                : index == 3
-                    ? currentItem.orderTotalPv
-                    : index == 4
-                        ? currentItem.orderStatus
-                        : currentItem.iconAttachment;
-    return Text(_headerText,
-        style: mainIndex != 0
-            ? Theme.of(context).textTheme.tableData
-            : Theme.of(context).textTheme.tableHeader);
-  }
-
-  List<Widget> _buildRows(List<OpenPO> items, BuildContext context) {
-    return List.generate(
-      items.length,
-      (index) => Row(
-        children: _buildCells(index, items, context),
-      ),
-    );
-  }
-
-  SingleChildScrollView _renderDataTable(
-      List<OpenPO> items, BuildContext context) {
-    return SingleChildScrollView(
-        child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: _buildMainCells(items, context),
-        ),
-        Flexible(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: _buildRows(items, context),
-            ),
-          ),
-        )
-      ],
-    ));
   }
 }

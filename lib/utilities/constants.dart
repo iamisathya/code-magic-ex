@@ -76,7 +76,8 @@ EdgeInsets kEdgeA8() => const EdgeInsets.all(8.0);
 EdgeInsets kEdgeA12() => const EdgeInsets.all(12.0);
 EdgeInsets kEdgeA16() => const EdgeInsets.all(16.0);
 
-BoxDecoration kCircular8 = BoxDecoration(borderRadius: BorderRadius.circular(8), color: kPrimaryColor);
+BoxDecoration kCircular8 =
+    BoxDecoration(borderRadius: BorderRadius.circular(8), color: kPrimaryColor);
 
 MaterialStateProperty<RoundedRectangleBorder> elevatedShape() {
   return MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -87,5 +88,13 @@ MaterialStateProperty<RoundedRectangleBorder> elevatedShape() {
 
 RoundedRectangleBorder kRoundedRectangleBorder8() {
   return RoundedRectangleBorder(
-      side: const BorderSide(), borderRadius: BorderRadius.circular(8), );
+    side: const BorderSide(),
+    borderRadius: BorderRadius.circular(8),
+  );
 }
+
+Divider kRowDivider = const Divider(
+  color: Colors.black54,
+  height: 1.0,
+  thickness: 0.0,
+);
