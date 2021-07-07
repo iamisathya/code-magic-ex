@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,7 @@ import 'package:code_magic_ex/models/open_po_details.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class SampleController extends GetxController {
+  RxString filterMethod = "6".obs;
   RxInt count = 0.obs;
   RxInt increment() => count++;
 
@@ -61,7 +63,7 @@ class SampleController extends GetxController {
     loading(true);
     try {
       final List<OpenPO> allOpenPO =
-          await MemberCallsService.init().getAllOpenPo("106", "12", "2970466");
+          await MemberCallsService.init().getAllOpenPo("106", filterMethod.value, "2970466");
       allOpenPO.insert(
           0,
           OpenPO(
@@ -82,5 +84,45 @@ class SampleController extends GetxController {
       LoggerService.instance.e(err.toString());
       update();
     }
+  }
+
+  Future<void> showPopupMenu(BuildContext context) async {
+    await showMenu(
+      context: context,
+      position: const RelativeRect.fromLTRB(100, 105, 0, 100),
+      items: [
+        PopupMenuItem<String>(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          value: "6",
+          child: ListTile(
+            onTap: () {
+              filterMethod = "6".obs;
+              update();
+              Navigator.pop(context);
+              getAllOpenPo();
+            },
+            selected: filterMethod.value == "6",
+            selectedTileColor: kPrimaryColor,
+            title: const Text("6 Months"),
+          ),
+        ),
+        PopupMenuItem<String>(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          value: "12",
+          child: ListTile(
+            selected: filterMethod.value == "12",
+            onTap: () {
+              filterMethod = "12".obs;
+              update();
+              Navigator.pop(context);
+              getAllOpenPo();
+            },
+            selectedTileColor: kPrimaryColor,
+            title: const Text("All"),
+          ),
+        ),
+      ],
+      elevation: 8.0,
+    );
   }
 }
