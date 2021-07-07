@@ -3,6 +3,8 @@ PODS:
     - Flutter
     - Reachability
   - Flutter (1.0.0)
+  - flutter_html_to_pdf (0.0.1):
+    - Flutter
   - flutter_webview_plugin (0.0.1):
     - Flutter
   - open_file (0.0.1):
@@ -10,6 +12,8 @@ PODS:
   - path_provider (0.0.1):
     - Flutter
   - "permission_handler (5.1.0+2)":
+    - Flutter
+  - printing (1.0.0):
     - Flutter
   - Reachability (3.2)
   - shared_preferences (0.0.1):
@@ -20,10 +24,12 @@ PODS:
 DEPENDENCIES:
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - Flutter (from `Flutter`)
+  - flutter_html_to_pdf (from `.symlinks/plugins/flutter_html_to_pdf/ios`)
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - printing (from `.symlinks/plugins/printing/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
@@ -36,6 +42,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   Flutter:
     :path: Flutter
+  flutter_html_to_pdf:
+    :path: ".symlinks/plugins/flutter_html_to_pdf/ios"
   flutter_webview_plugin:
     :path: ".symlinks/plugins/flutter_webview_plugin/ios"
   open_file:
@@ -44,6 +52,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
+  printing:
+    :path: ".symlinks/plugins/printing/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   webview_flutter:
@@ -52,10 +62,12 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   connectivity_plus: f5e5e0b894ec1187bfab9816d6c2f034da8d46da
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_html_to_pdf: 0fd9f8d04f335d68b06a7c4ab5fc85d22e1ef91b
   flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
+  printing: eafa00acb682c0ca029d4d98d0798f55a1e27102
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   webview_flutter: 9f491a9b5a66f2573946a389b2677987b0ff8c0b

@@ -1,26 +1,34 @@
+import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
 
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/open_order_id.dart';
 import 'package:code_magic_ex/models/open_po.dart';
 import 'package:code_magic_ex/models/open_po_details.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:printing/printing.dart';
 
 class SampleController extends GetxController {
   RxString filterMethod = "6".obs;
   RxInt count = 0.obs;
+  String currentPoNumber = "";
 
   RxList<OpenPO> allOpenPlaceOrders = List<OpenPO>.filled(0, OpenPO()).obs;
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
-      List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;  
-  OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();  
+      List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
+  OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
   RxList<OpenPO> _tempOpenPlaceOrders = <OpenPO>[].obs;
   RxInt increment() => count++;
 
-    // Use this to retrieve all records
+  // Use this to retrieve all records
   List<OpenPO> get openPlaceOrders {
     return _tempOpenPlaceOrders;
   }
@@ -34,20 +42,21 @@ class SampleController extends GetxController {
   RxString detailsErrorMessage = "".obs;
 
   RxBool loading = false.obs;
-  
+
   RxBool loadingDetails = false.obs;
   RxBool showDetails = false.obs;
 
   Rx<bool> get isEmptyList => _tempOpenPlaceOrders.isEmpty.obs;
   int get currentItemsLength => _tempOpenPlaceOrders.length;
 
-   // swap true/false & save it to observable
-  void toggle(){
+  // swap true/false & save it to observable
+  void toggle() {
     showDetails.value = !showDetails.value;
     update();
-  } 
+  }
 
-  Future<void> getOpenPlaceOrderDetails(String ponumber, BuildContext context) async {
+  Future<void> getOpenPlaceOrderDetails(
+      String ponumber, BuildContext context) async {    
     showDetails(true);
     loadingDetails(true);
     detailsErrorMessage("");
@@ -57,6 +66,7 @@ class SampleController extends GetxController {
       openPlaceOrderId =
           await MemberCallsService.init().getOpenOrderId("203", ponumber);
 
+    currentPoNumber = openPlaceOrderId.orderId;
       // * Getting order details from from getOpenOrderDetails API - 204
       final List<OpenPlaceOrderDetails> detailsResponse =
           await MemberCallsService.init()
@@ -78,9 +88,9 @@ class SampleController extends GetxController {
   Future<void> getAllOpenPo() async {
     loading(true);
     try {
-      final List<OpenPO> allOpenPO =
-          await MemberCallsService.init().getAllOpenPo("106", filterMethod.value, "2970466");
-          _tempOpenPlaceOrders = allOpenPO.obs;
+      final List<OpenPO> allOpenPO = await MemberCallsService.init()
+          .getAllOpenPo("106", filterMethod.value, "2970466");
+      _tempOpenPlaceOrders = allOpenPO.obs;
       allOpenPO.insert(
           0,
           OpenPO(
@@ -103,14 +113,14 @@ class SampleController extends GetxController {
     }
   }
 
-
   void onSortCulumn(OpenPoTypes sortStatus) {
     currentType = sortStatus;
     isAscending = !isAscending;
     switch (sortStatus) {
       case OpenPoTypes.poNumber:
         if (isAscending) {
-          _tempOpenPlaceOrders.sort((a, b) => a.orderDscid.compareTo(b.orderDscid));
+          _tempOpenPlaceOrders
+              .sort((a, b) => a.orderDscid.compareTo(b.orderDscid));
         } else {
           _tempOpenPlaceOrders
               .sort((b, a) => a.orderDscid.compareTo(b.orderDscid));
@@ -118,13 +128,11 @@ class SampleController extends GetxController {
         break;
       case OpenPoTypes.date:
         if (isAscending) {
-          _tempOpenPlaceOrders.sort((a, b) => a
-              .orderDate
-              .compareTo(b.orderDate));
+          _tempOpenPlaceOrders
+              .sort((a, b) => a.orderDate.compareTo(b.orderDate));
         } else {
-          _tempOpenPlaceOrders.sort((b, a) => a
-              .orderDate
-              .compareTo(b.orderDate));
+          _tempOpenPlaceOrders
+              .sort((b, a) => a.orderDate.compareTo(b.orderDate));
         }
         break;
       case OpenPoTypes.time:
@@ -197,5 +205,21 @@ class SampleController extends GetxController {
       ],
       elevation: 8.0,
     );
+  }
+
+  Future<void> proceedToPrint({required String orderId}) async {
+    final String imgUrl = "${Address.poOrder}?order_id=$orderId";
+    print(imgUrl);
+    final Dio dio = Dio();
+    final response = await dio.get(imgUrl);
+    // * removing background from html document
+    final removedBackground =
+        response.toString().replaceAll('background: rgb(204,204,204);', '');
+    await Printing.layoutPdf(
+        dynamicLayout: false,
+        onLayout: (PdfPageFormat format) async => Printing.convertHtml(
+              format: format,
+              html: removedBackground,
+            ));
   }
 }

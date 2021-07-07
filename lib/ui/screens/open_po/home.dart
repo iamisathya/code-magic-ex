@@ -1,11 +1,13 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/open_po/components/body.dart';
+import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 
 class OpenPOHomeScreen extends StatelessWidget {
   final SampleController controller = Get.put(SampleController());
@@ -21,12 +23,7 @@ class OpenPOHomeScreen extends StatelessWidget {
           actions: _renderActionBar(context),
         ),
         drawer: NavigationDrawer(),
-        body: Body(),
-        floatingActionButton: FloatingActionButton(
-            elevation: 0.0,
-            backgroundColor: kPrimaryLightColor,
-            onPressed: () {},
-            child: const Icon(Icons.add, color: Colors.white)));
+        body: Body());
   }
 
   List<Widget> _renderActionBar(BuildContext context) {
@@ -37,6 +34,13 @@ class OpenPOHomeScreen extends StatelessWidget {
         ),
         tooltip: 'Sort types',
         onPressed: () => controller.showPopupMenu(context),
+      ),
+      IconButton(
+        icon: const Icon(
+          Icons.print_outlined,
+        ),
+        tooltip: 'Sort types',
+        onPressed: () => controller.proceedToPrint(orderId: controller.currentPoNumber),
       ),
     ];
   }

@@ -128,42 +128,51 @@ class Body extends StatelessWidget {
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     final currentItem = controller.openPlaceOrders[index];
-    return Container(
-      width: 140,
-      height: 65,
-      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(border: Border.all(width: 0.5)),
-      child: Text(currentItem.orderOpid),
-    );
+    return GestureDetector(
+        onTap: () {
+          controller.getOpenPlaceOrderDetails(currentItem.orderOpid, context);
+        },
+        child: Container(
+          width: 140,
+          height: 65,
+          padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(border: Border.all(width: 0.5)),
+          child: Text(currentItem.orderOpid),
+        ));
   }
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
     final currentItem = controller.openPlaceOrders[index];
-    return Row(
-      children: <Widget>[
-        Container(
-            width: 180,
-            height: 65,
-            decoration: BoxDecoration(border: Border.all(width: 0.5)),
-            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-            alignment: Alignment.center,
-            child: Text(currentItem.orderDate)),
-        _renderDataCell(
-            index, 180, currentItem.orderTime, Alignment.centerRight, "value"),
-        _renderDataCell(index, 180, currentItem.orderTotalPv,
-            Alignment.centerRight, "link"),
-        _renderDataCell(
-            index, 180, currentItem.orderTotalPrice, Alignment.center, "value"),
-        _renderDataCellWidget(
-          180,
-          Alignment.center,
-          _renderStatusButton(
-              context, currentItem.orderStatus.retrieveOrderStatus()),
-        ),
-        _renderDataCellWidget(180, Alignment.centerRight,
-            _renderAttachement(context, currentItem)),
-      ],
+    return GestureDetector(
+      onTap: () {
+        controller.getOpenPlaceOrderDetails(currentItem.orderOpid, context);
+      },
+      child: Row(
+        children: <Widget>[
+          Container(
+              width: 180,
+              height: 65,
+              decoration: BoxDecoration(border: Border.all(width: 0.5)),
+              padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+              alignment: Alignment.center,
+              child: Text(currentItem.orderDate)),
+          _renderDataCell(index, 180, currentItem.orderTime,
+              Alignment.centerRight, "value"),
+          _renderDataCell(index, 180, currentItem.orderTotalPv,
+              Alignment.centerRight, "link"),
+          _renderDataCell(index, 180, currentItem.orderTotalPrice,
+              Alignment.center, "value"),
+          _renderDataCellWidget(
+            180,
+            Alignment.center,
+            _renderStatusButton(
+                context, currentItem.orderStatus.retrieveOrderStatus()),
+          ),
+          _renderDataCellWidget(180, Alignment.centerRight,
+              _renderAttachement(context, currentItem)),
+        ],
+      ),
     );
   }
 

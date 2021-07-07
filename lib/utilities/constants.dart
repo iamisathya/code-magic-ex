@@ -98,3 +98,5 @@ Divider kRowDivider = const Divider(
   height: 1.0,
   thickness: 0.0,
 );
+
+String kCurrentTimeStamp = DateTime.now().millisecondsSinceEpoch.toString();
