@@ -1,4 +1,7 @@
 import 'package:code_magic_ex/api/api_address.dart';
+import 'package:code_magic_ex/api/config/api_service.dart';
+import 'package:code_magic_ex/models/cart_products.dart';
+import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/ui/screens/open_po/pages/partner_order_details.dart';
 import 'package:code_magic_ex/ui/screens/open_po/pages/place_order.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
@@ -23,6 +26,8 @@ class SampleController extends GetxController {
   RxInt count = 0.obs;
   String currentPoNumber = "";
 
+  Rx<InventoryRecords> _inventoryRecords = InventoryRecords(items: []).obs;
+  RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
   RxList<OpenPO> allOpenPlaceOrders = List<OpenPO>.filled(0, OpenPO()).obs;
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
@@ -33,6 +38,62 @@ class SampleController extends GetxController {
   // Use this to retrieve all records
   List<OpenPO> get openPlaceOrders {
     return _tempOpenPlaceOrders;
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    _generateEmptyCart();
+  }
+
+  void _generateEmptyCart() {
+    for (var i = 0; i < 40; i++) {
+      final CartProductsItem item = CartProductsItem();
+      cartProducts.add(item);
+    }
+  }
+
+  void addItemToCart({required String itemCode, required int index}) {
+    final InventoryRecordItems itemFound = _inventoryRecords.value.items
+        .firstWhere((item) => item.item.id.unicity == itemCode);
+    final CartProductsItem item = CartProductsItem(
+        itemCode: itemFound.item.id.unicity,
+        productName: itemFound.catalogSlideContent.content.description,
+        quantity: 1,
+        itemPrice: itemFound.terms.priceEach,
+        itemPv: itemFound.terms.pvEach,
+        totalPrice: 1 * itemFound.terms.priceEach,
+        totalPv: 1 * itemFound.terms.pvEach);
+    cartProducts.insert(index, item);
+  }
+
+  void updateQuantity(CartUpdate type, String itemCode) {
+    final CartProductsItem target = cartProducts.firstWhere((item) => item.itemCode == itemCode);
+    if (target.itemCode != "") {
+      if (CartUpdate.increament == type) {
+        target.quantity = target.quantity + 1;
+      } else {
+        if(target.quantity == 1) {
+          cartProducts.removeWhere((item) => item.itemCode == itemCode);
+        } else {
+          target.quantity = target.quantity - 1;
+        }
+      }
+    }
+    update();
+    // if(CartUpdate.increament == type) {
+    //   cartProducts[index].quantity++;
+    // } else {
+    //   cartProducts[index].quantity--;
+    // }
+  }
+
+  bool checkIsItemExist(int index) {
+    if (cartProducts.asMap().containsKey(index)) {
+      return true;
+    }
+    return false;
   }
 
   static int sortName = 0;
@@ -84,6 +145,23 @@ class SampleController extends GetxController {
       detailsErrorMessage(err.toString());
       LoggerService.instance.e(err.toString());
       update();
+    }
+  }
+
+  // Use this to retrieve all records
+  InventoryRecords get fetchInventoryRecords {
+    return _inventoryRecords.value;
+  }
+
+  Future<void> loadInventoryRecords() async {
+    const String userId =
+        "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
+    try {
+      _inventoryRecords =
+          Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
+    } catch (err) {
+      detailsErrorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
     }
   }
 

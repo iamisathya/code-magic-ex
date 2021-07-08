@@ -34,3 +34,8 @@ enum OpenPoTypes {
   status,
   attachment,
 }
+
+enum CartUpdate {
+  increament,
+  decreament,
+}
