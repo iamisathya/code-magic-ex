@@ -1,3 +1,5 @@
+import 'package:code_magic_ex/models/user_id.dart';
+import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -30,21 +32,49 @@ abstract class MemberCallsService {
 
   //? url=https://member-calls.unicity.com/ALL/DSC/getdata.php?type=106&mode=12&dscid=2970466
   @GET(Address.validOrders)
-  Future<List<OpenPO>> getAllOpenPo(@Query("type") String type, @Query("mode") String mode, @Query("dscid") String dscid);
+  Future<List<OpenPO>> getAllOpenPo(@Query("type") String type,
+      @Query("mode") String mode, @Query("dscid") String dscid);
 
   //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=203&ponumber=BKM%202021-06-W003
   @GET("${Address.allDscPath}/THA/getdata.php")
-  Future<OpenPlaceOrderId> getOpenOrderId(@Query("type") String type, @Query("ponumber") String ponumber);
+  Future<OpenPlaceOrderId> getOpenOrderId(
+      @Query("type") String type, @Query("ponumber") String ponumber);
 
   //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=204&order_id=50291
   @GET("${Address.allDscPath}/THA/getdata.php")
-  Future<List<OpenPlaceOrderDetails>> getOpenOrderDetails(@Query("type") String type, @Query("order_id") String orderId);
+  Future<List<OpenPlaceOrderDetails>> getOpenOrderDetails(
+      @Query("type") String type, @Query("order_id") String orderId);
 
-    //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?lang=en&order=423135644&token=2096fb4a-783d-4b60-baec-f5880bab1e7a&user=2970466
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?lang=en&order=423135644&token=2096fb4a-783d-4b60-baec-f5880bab1e7a&user=2970466
   @GET("${Address.allDscPath}/THA/barcode/redirect.php")
   Future<dynamic> getBarcodePath(
       @Query('lang') String lang,
       @Query('order') String order,
       @Query('token') String token,
       @Query('user') String user);
+
+  //? url=https://member-calls.unicity.com/period_DSC_PO.asp
+  @POST("/period_DSC_PO.asp")
+  @FormUrlEncoded()
+  Future<ValidateOrder> valiadateOrder(@Field() String country, @Field() String dsc);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?lang=en&order=423135644&token=2096fb4a-783d-4b60-baec-f5880bab1e7a&user=2970466
+  @GET("${Address.allDscPath}/THA/getdata.php")
+  Future<dynamic> placeOrder(
+      @Query('type') String type,
+      @Query('comment') String comment,
+      @Query('token') String token,
+      @Query('cus_id') String custimerId,
+      @Query('cus_dscid') String customeDscId,
+      @Query('poid') String poid,
+      @Query('totalpv') String totalpv,
+      @Query('totalprice') String totalprice,
+      @Query('cusname') String cusname,
+      @Query('data') String data);
+
+  //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=206&username=2970466
+  @GET("${Address.allDscPath}/THA/getdata.php")
+  Future<UserId> getUserId(
+      @Query('type') String type,
+      @Query('username') String username);
 }

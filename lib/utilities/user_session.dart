@@ -26,6 +26,8 @@ class UserSessionManager {
   int? selectedId;
   CustomerToken customerToken = _emptyCustomerTokenData();
   UserInfo userInfo = _emptyUserInfo();
+  String customerId = "";
+  String customerCode = "";
   bool isUserLoggedIn = false;
 
   // ignore: avoid_positional_boolean_parameters

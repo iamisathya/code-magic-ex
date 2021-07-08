@@ -109,6 +109,68 @@ class _MemberCallsService implements MemberCallsService {
     return value;
   }
 
+  @override
+  Future<ValidateOrder> valiadateOrder(country, dsc) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = {'country': country, 'dsc': dsc};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ValidateOrder>(Options(
+                method: 'POST',
+                headers: <String, dynamic>{},
+                extra: _extra,
+                contentType: 'application/x-www-form-urlencoded')
+            .compose(_dio.options, '/period_DSC_PO.asp',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ValidateOrder.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<dynamic> placeOrder(type, comment, token, custimerId, customeDscId,
+      poid, totalpv, totalprice, cusname, data) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'type': type,
+      r'comment': comment,
+      r'token': token,
+      r'cus_id': custimerId,
+      r'cus_dscid': customeDscId,
+      r'poid': poid,
+      r'totalpv': totalpv,
+      r'totalprice': totalprice,
+      r'cusname': cusname,
+      r'data': data
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch(_setStreamType<dynamic>(
+        Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
+    return value;
+  }
+
+  @override
+  Future<UserId> getUserId(type, username) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'type': type,
+      r'username': username
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<UserId>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = UserId.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

@@ -1,15 +1,26 @@
 import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 class PlaceOrderHomePage extends StatelessWidget {
+  final ProgressBar _sendingMsgProgressBar = ProgressBar();
   final SampleController controller = Get.put(SampleController());
   static const String routeName = '/placeOrderHomePage';
+
+  void showSendingProgressBar(BuildContext context) {
+    _sendingMsgProgressBar.show(context);
+  }
+
+  void hideSendingProgressBar() {
+    _sendingMsgProgressBar.hide();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +36,13 @@ class PlaceOrderHomePage extends StatelessWidget {
           },
           builder: (_) {
             return Container(
-              child: _renderDataTable(),
+              child: _renderDataTable(context),
             );
           }),
     );
   }
 
-  Widget _renderDataTable() {
+  Widget _renderDataTable(BuildContext context) {
     return Column(
       children: [
         Flexible(
@@ -50,61 +61,62 @@ class PlaceOrderHomePage extends StatelessWidget {
             ),
           ),
         ),
-        if (controller.cartProducts.isNotEmpty) _renderCartFooter(),
+        if (controller.cartProducts.isNotEmpty) _renderCartFooter(context),
       ],
     );
   }
 
-  Container _renderCartFooter() {
+  Container _renderCartFooter(BuildContext context) {
     return Container(
-          padding: kEdgeV12H16(),
-          color: Colors.black54,
-          width: Get.width,
-          height: 80,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      const Text(
-                        "Total Price: ",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      Text(
-                        controller.totalCartPrice().toString(),
-                        style: const TextStyle(
-                            color: Colors.white, fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        "Total PV: ",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      Text(
-                        controller.totalCartPv().toString(),
-                        style: const TextStyle(
-                            color: Colors.white, fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: kPrimaryColor, padding: kEdgeA12()),
-                onPressed: () {
-                  controller.placeOrder();
-                },
-                child: const Text("Place Order"),
-              ),
-            ],
-          ));
+        padding: kEdgeV12H16(),
+        color: Colors.black54,
+        width: Get.width,
+        height: 80,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Text(
+                      "Total Price: ",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    Text(
+                      controller.totalCartPrice().toString(),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text(
+                      "Total PV: ",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    Text(
+                      controller.totalCartPv().toString(),
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  primary: kPrimaryColor, padding: kEdgeA12()),
+              onPressed: () {
+                if (!controller.isEmptyCart) {
+                  controller.validateOrder(context);
+                }
+              },
+              child: const Text("Place Order"),
+            ),
+          ],
+        ));
   }
 
   List<Widget> _getTitleWidget() {

@@ -54,6 +54,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   Widget _nextScreen() {
+    UserSessionManager.shared.setUserInfoFromDB();
     UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
     return isLoggedIn ? OpenPOHomeScreen() : LoginScreen();

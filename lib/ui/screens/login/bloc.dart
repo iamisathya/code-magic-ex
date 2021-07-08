@@ -1,3 +1,5 @@
+import 'package:code_magic_ex/api/config/member_class.dart';
+import 'package:code_magic_ex/models/user_id.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -49,7 +51,13 @@ class LoginBLoc {
       final UserInfo responseUserInfo =
           await ApiService.shared().getCustomerData(loginToken);
 
+      //*  getCustomerData from api
+      final UserId userResponse =
+          await MemberCallsService.init().getUserId(kUserId, "2970466");
+
       //*  Storing user info to db
+      UserSessionManager.shared.customerId = userResponse.customerId;
+      UserSessionManager.shared.customerCode = userResponse.customerCode;
       await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
       await UserSessionManager.shared.setLoginStatusIntoDB(true);
       _stateSubject.add(LoginPageState(

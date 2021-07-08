@@ -1,5 +1,6 @@
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 const kPrimaryColor = Color(0xFF1D3557);
 const kPrimaryLightColor = Color(0xFF457B9D);
@@ -100,3 +101,14 @@ Divider kRowDivider = const Divider(
 );
 
 String kCurrentTimeStamp = DateTime.now().millisecondsSinceEpoch.toString();
+
+// * Order related constants
+String kPlaceOrder = "201";
+String kUserId = "206";
+
+
+// * Screen size related
+
+double kScreenHeight = Get.height;
+
+double kScreenWidth = Get.width;

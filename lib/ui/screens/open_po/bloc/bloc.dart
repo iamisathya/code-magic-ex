@@ -1,11 +1,17 @@
+import 'dart:math';
+
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/models/validate_order.dart';
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/open_po/pages/partner_order_details.dart';
 import 'package:code_magic_ex/ui/screens/open_po/pages/place_order.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:code_magic_ex/utilities/function.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +31,9 @@ class SampleController extends GetxController {
   RxString filterMethod = "6".obs;
   RxInt count = 0.obs;
   String currentPoNumber = "";
+
+  RxInt totalCartPv = 0.obs;
+  RxDouble totalCartPrice = 0.0.obs;
 
   Rx<InventoryRecords> _inventoryRecords = InventoryRecords(items: []).obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
@@ -88,27 +97,23 @@ class SampleController extends GetxController {
     update();
   }
 
-  double totalCartPrice() {
-    double totalCartAmount = 0.0;
-    for (final item in cartProducts) {
-      totalCartAmount += item.totalPrice;
-    }
-    return totalCartAmount;
-  }
-
-  void placeOrder() {
-
-  }
+  // double totalCartPrice() {
+  //   double totalCartAmount = 0.0;
+  //   for (final item in cartProducts) {
+  //     totalCartAmount += item.totalPrice;
+  //   }
+  //   return totalCartAmount;
+  // }
 
   bool get isEmptyCart => cartProducts.isEmpty;
 
-  int totalCartPv() {
-    int totalCartPv = 0;
-    for (final item in cartProducts) {
-      totalCartPv += item.totalPv;
-    }
-    return totalCartPv;
-  }
+  // int totalCartPv() {
+  //   int totalCartPv = 0;
+  //   for (final item in cartProducts) {
+  //     totalCartPv += item.totalPv;
+  //   }
+  //   return totalCartPv;
+  // }
 
   bool checkIsItemExist(int index) {
     if (cartProducts.asMap().containsKey(index)) {
@@ -322,5 +327,68 @@ class SampleController extends GetxController {
               format: format,
               html: removedBackground,
             ));
+  }
+
+  Future<void> validateOrder(BuildContext context) async {
+    final ProgressBar _sendingMsgProgressBar = ProgressBar();
+    _sendingMsgProgressBar.show(context);
+    try {
+      final ValidateOrder reponse =
+          await MemberCallsService.init().valiadateOrder("TH", "BKM");
+      if (reponse.success == "yes") {
+        print("hi");
+        // placeOrder(reponse.message);
+      }
+      _sendingMsgProgressBar.hide();
+    } catch (err) {
+      _sendingMsgProgressBar.hide();
+      loading(false);
+      errorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
+  String _collectOrderData() {
+    final buffer = StringBuffer();
+    try {
+      for (final item in cartProducts) {
+        buffer.write("@${item.itemCode}|${item.quantity}");
+      }
+      return buffer.toString();
+    } catch (e) {
+      return buffer.toString();
+    }
+  }
+
+  Future<void> placeOrder(String orderId) async {
+//     type: 201
+// comment: TEST ORDER 2
+// token: cyzr29ke2go0at89ygorpdd
+// cus_id: 1
+// cus_dscid: 0001
+// poid: BKM 2021-07-W002
+// totalpv: 20
+// totalprice: 7,900
+// cusname: Thailand TEST DSC
+// data: @17532|1@17616|1
+    try {
+      final dynamic reponse = await MemberCallsService.init().placeOrder(
+          kPlaceOrder,
+          "TEST ORDER DYNAMIC",
+          generateRandomString(23),
+          UserSessionManager.shared.customerId,
+          UserSessionManager.shared.customerCode,
+          orderId,
+          totalCartPv.value.toString(),
+          totalCartPrice.value.toString(),
+          "Thailand TEST DSC",
+          _collectOrderData());
+      if (reponse.success == "yes") {}
+    } catch (err) {
+      loading(false);
+      errorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
+      update();
+    }
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
@@ -41,4 +43,12 @@ String calculateTotalPrice(InventoryRecords inventoryRecords, String type) {
         (type == "pv" ? item.terms.pvEach : item.terms.priceEach);
   }
   return total.toInt().toString();
+}
+
+String generateRandomString(int length) {
+  const _chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
+  final Random _rnd = Random();
+
+  return String.fromCharCodes(Iterable.generate(
+      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 }
