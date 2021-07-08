@@ -39,3 +39,12 @@ enum CartUpdate {
   increament,
   decreament,
 }
+
+enum EasyShipTypes {
+  orderNumber,
+  period,
+  productName,
+  itemCode,
+  pv,
+  price
+}

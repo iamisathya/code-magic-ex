@@ -1,16 +1,16 @@
-import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
 import 'package:code_magic_ex/ui/screens/easy_ship/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/core/parsing.dart';
+import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:code_magic_ex/utilities/extensions.dart';
+import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 class Body extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());
@@ -18,24 +18,17 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final ClassOne _oneeeeeene = ClassOne(secend: const ClassTwo(value: "THis is annotjher vvalue"));
-    // print(_oneeeeeene.secend.value);
-
     return SafeArea(
         child: GetBuilder<EasyShipController>(
             init: EasyShipController(),
             builder: (_) {
-              return SingleChildScrollView(
-                child: Flex(direction: Axis.horizontal, children: [
+              return Column(
+                children: [
+                  _buildSearchContainer(context),
                   Expanded(
-                    child: Column(
-                      children: [
-                        _buildSearchContainer(context),
-                        _buildChild(context),
-                      ],
-                    ),
-                  )
-                ]),
+                    child: _buildChild(context),
+                  ),
+                ],
               );
             }));
   }
@@ -49,12 +42,12 @@ class Body extends StatelessWidget {
       return const CustomErrorWidget(
         svgIcon: kImageServerDown,
       );
-    } else if (controller.allEasyShipOrders.items.length == 1) {
+    } else if (controller.isAllEasyShipOrdersEmpty) {
       return const CustomEmptyWidget(
         svgIcon: kImageEmptyBox,
       );
     } else {
-      return _renderDataTable(context);
+      return _getBodyWidget();
     }
   }
 
@@ -105,106 +98,106 @@ class Body extends StatelessWidget {
     );
   }
 
-  Row _renderDataTable(BuildContext context) {
+  Widget _getBodyWidget() {
+    return Container(
+      decoration: const BoxDecoration(color: Colors.white),
+      height: Get.height,
+      child: HorizontalDataTable(
+        leftHandSideColumnWidth: 180,
+        rightHandSideColumnWidth: 900,
+        isFixedHeader: true,
+        headerWidgets: _getTitleWidget(),
+        leftSideItemBuilder: _generateFirstColumnRow,
+        rightSideItemBuilder: _generateRightHandSideColumnRow,
+        itemCount: controller.allEasyShipOrdersCount,
+        rowSeparatorWidget: kRowDivider,
+      ),
+    );
+  }
+
+  List<Widget> _getTitleWidget() {
+    return [
+      _renderTableHeader("Order Number", EasyShipTypes.orderNumber, 180),
+      _renderTableHeader("Period", EasyShipTypes.period, 150),
+      _renderTableHeader("Product Name", EasyShipTypes.productName, 300),
+      _renderTableHeader("Item Code", EasyShipTypes.itemCode, 150),
+      _renderTableHeader("PV", EasyShipTypes.pv, 150),
+      _renderTableHeader("Price", EasyShipTypes.price, 150),
+    ];
+  }
+
+  TextButton _renderTableHeader(
+      String title, EasyShipTypes type, double width) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+      ),
+      onPressed: () {
+        controller.onSortCulumn(type);
+      },
+      child: _getTitleItemWidget(
+        '$title ${controller.currentType == type ? (controller.isAscending ? '↓' : '↑') : ''}',
+        width,
+      ),
+    );
+  }
+
+  Widget _getTitleItemWidget(String label, double width) {
+    return Container(
+      decoration: BoxDecoration(
+          color: kPrimaryLightColor, border: Border.all(width: 0.5)),
+      width: width,
+      height: 56,
+      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(label,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white)),
+      ),
+    );
+  }
+
+  Widget _generateFirstColumnRow(BuildContext context, int index) {
+    final currentItem = controller.getAllEasyShipOrders[index];
+    return Container(
+      width: 180,
+      height: 65,
+      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(border: Border.all(width: 0.5)),
+      child: Text(currentItem.order.id.unicity.retrieveOrderId()),
+    );
+  }
+
+  Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
+    final currentItem = controller.getAllEasyShipOrders[index];
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: _buildMainCells(context),
-        ),
-        Flexible(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: _buildRows(context),
-            ),
-          ),
-        ),
+        _renderDataCell(150, currentItem.order.terms.period),
+        _renderDataCell(300, currentItem.catalogSlide.content.description),
+        _renderDataCell(150, currentItem.item.id.unicity),
+        _renderDataCell(150, currentItem.terms.pvEach.toString()),
+        _renderDataCell(150, currentItem.terms.priceEach.toString()),
       ],
     );
   }
 
-  List<Widget> _buildMainCells(BuildContext context) {
-    return List.generate(
-      controller.allEasyShipOrders.items.length,
-      (index) => GestureDetector(
-        onTap: () {},
-        child: Container(
-          alignment: Alignment.center,
-          width: 140.0,
-          height: 60.0,
-          decoration: BoxDecoration(
-            color: index == 0
-                ? kPrimaryLightColor
-                : index.isEven
-                    ? kWhiteSmokeColor
-                    : Colors.white,
-            border: Border.all(width: 0.5),
-          ),
-          child: Text(
-            controller.allEasyShipOrders.items[index].order.id.unicity
-                .retrieveOrderId(),
-            style: index != 0
-                ? Theme.of(context).textTheme.tableData
-                : Theme.of(context).textTheme.tableHeader,
-          ),
+  Container _renderDataCell(double width, String titleText) {
+    return Container(
+      width: width,
+      height: 65,
+      decoration: BoxDecoration(border: Border.all(width: 0.5)),
+      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          titleText,
+          style: const TextStyle(color: Colors.black),
         ),
       ),
     );
-  }
-
-  List<Widget> _buildRows(BuildContext context) {
-    return List.generate(
-      controller.allEasyShipOrders.items.length,
-      (index) => Row(
-        children: _buildCells(index, context),
-      ),
-    );
-  }
-
-  List<Widget> _buildCells(int mainIndex, BuildContext context) {
-    return List.generate(5, (index) {
-      final OrderLineItem currentItem =
-          controller.allEasyShipOrders.items[mainIndex];
-      return GestureDetector(
-        onTap: () {},
-        child: Container(
-          alignment: Alignment.center,
-          width: index == 1 ? 320 : 120,
-          height: 60.0,
-          decoration: BoxDecoration(
-            color: mainIndex == 0
-                ? kPrimaryLightColor
-                : mainIndex.isEven
-                    ? kWhiteSmokeColor
-                    : Colors.white,
-            border: Border.all(width: 0.5),
-          ),
-          child: _renderTableHeader(index, currentItem, mainIndex, context),
-        ),
-      );
-    });
-  }
-
-  Text _renderTableHeader(int index, OrderLineItem currentItem, int mainIndex,
-      BuildContext context) {
-    final String _headerText = index == 0
-        ? currentItem.order.terms.period
-        : index == 1
-            ? currentItem.catalogSlide.content.description
-            : index == 2
-                ? currentItem.item.id.unicity
-                : index == 3
-                    ? Parsing.stringFrom(
-                        mainIndex == 0 ? "PV" : currentItem.terms.pvEach)
-                    : Parsing.stringFrom(mainIndex == 0
-                        ? "Price"
-                        : currentItem.terms.priceEach.toInt());
-    return Text(_headerText,
-        style: mainIndex != 0
-            ? Theme.of(context).textTheme.tableData
-            : Theme.of(context).textTheme.tableHeader);
   }
 }
