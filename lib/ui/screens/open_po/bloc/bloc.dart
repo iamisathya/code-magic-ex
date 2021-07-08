@@ -66,15 +66,19 @@ class SampleController extends GetxController {
         totalPrice: 1 * itemFound.terms.priceEach,
         totalPv: 1 * itemFound.terms.pvEach);
     cartProducts.insert(index, item);
+    update();
   }
 
   void updateQuantity(CartUpdate type, String itemCode) {
-    final CartProductsItem target = cartProducts.firstWhere((item) => item.itemCode == itemCode);
+    final CartProductsItem target =
+        cartProducts.firstWhere((item) => item.itemCode == itemCode);
     if (target.itemCode != "") {
       if (CartUpdate.increament == type) {
         target.quantity = target.quantity + 1;
+        target.totalPrice = target.quantity * target.itemPrice;
+        target.totalPv = target.quantity * target.itemPv;
       } else {
-        if(target.quantity == 1) {
+        if (target.quantity == 1) {
           cartProducts.removeWhere((item) => item.itemCode == itemCode);
         } else {
           target.quantity = target.quantity - 1;
@@ -82,11 +86,28 @@ class SampleController extends GetxController {
       }
     }
     update();
-    // if(CartUpdate.increament == type) {
-    //   cartProducts[index].quantity++;
-    // } else {
-    //   cartProducts[index].quantity--;
-    // }
+  }
+
+  double totalCartPrice() {
+    double totalCartAmount = 0.0;
+    for (final item in cartProducts) {
+      totalCartAmount += item.totalPrice;
+    }
+    return totalCartAmount;
+  }
+
+  void placeOrder() {
+
+  }
+
+  bool get isEmptyCart => cartProducts.isEmpty;
+
+  int totalCartPv() {
+    int totalCartPv = 0;
+    for (final item in cartProducts) {
+      totalCartPv += item.totalPv;
+    }
+    return totalCartPv;
   }
 
   bool checkIsItemExist(int index) {

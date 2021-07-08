@@ -32,20 +32,79 @@ class PlaceOrderHomePage extends StatelessWidget {
   }
 
   Widget _renderDataTable() {
-    return Container(
-      decoration: const BoxDecoration(color: Colors.white),
-      height: Get.height,
-      child: HorizontalDataTable(
-        leftHandSideColumnWidth: 150,
-        rightHandSideColumnWidth: 1200,
-        isFixedHeader: true,
-        headerWidgets: _getTitleWidget(),
-        leftSideItemBuilder: _generateFirstColumnRow,
-        rightSideItemBuilder: _generateRightHandSideColumnRow,
-        itemCount: controller.cartProducts.length,
-        rowSeparatorWidget: kRowDivider,
-      ),
+    return Column(
+      children: [
+        Flexible(
+          child: Container(
+            decoration: const BoxDecoration(color: Colors.white),
+            height: Get.height,
+            child: HorizontalDataTable(
+              leftHandSideColumnWidth: 150,
+              rightHandSideColumnWidth: 1200,
+              isFixedHeader: true,
+              headerWidgets: _getTitleWidget(),
+              leftSideItemBuilder: _generateFirstColumnRow,
+              rightSideItemBuilder: _generateRightHandSideColumnRow,
+              itemCount: controller.cartProducts.length,
+              rowSeparatorWidget: kRowDivider,
+            ),
+          ),
+        ),
+        if (controller.cartProducts.isNotEmpty) _renderCartFooter(),
+      ],
     );
+  }
+
+  Container _renderCartFooter() {
+    return Container(
+          padding: kEdgeV12H16(),
+          color: Colors.black54,
+          width: Get.width,
+          height: 80,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Text(
+                        "Total Price: ",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      Text(
+                        controller.totalCartPrice().toString(),
+                        style: const TextStyle(
+                            color: Colors.white, fontSize: 18),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        "Total PV: ",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      Text(
+                        controller.totalCartPv().toString(),
+                        style: const TextStyle(
+                            color: Colors.white, fontSize: 18),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: kPrimaryColor, padding: kEdgeA12()),
+                onPressed: () {
+                  controller.placeOrder();
+                },
+                child: const Text("Place Order"),
+              ),
+            ],
+          ));
   }
 
   List<Widget> _getTitleWidget() {
