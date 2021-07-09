@@ -1,14 +1,20 @@
+import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
+import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
+import 'package:pdf/pdf.dart';
+import 'package:printing/printing.dart';
 
 class SalesReportController extends GetxController {
   final TextEditingController startDate = TextEditingController();
@@ -18,7 +24,7 @@ class SalesReportController extends GetxController {
   bool isAscending = true;
   EasyShipSortTypes currentType = EasyShipSortTypes.record;
 
-  RxString filterMethod = "onHand".obs;
+  RxString filterMethod = "order".obs;
 
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
@@ -26,16 +32,33 @@ class SalesReportController extends GetxController {
   OrdersAndRmas allOrdersAndRmas = const OrdersAndRmas();
 
   int get currentOrdersLength => allOrdersAndRmas.orders[0].items.length;
+  int get currentItemsLength => 0;
   int get currentRmasLength => allOrdersAndRmas.rmas[0].items.length;
-  int get currentTabLength =>
-      filterMethod.value == "onHand" ? currentOrdersLength : currentRmasLength;
+  int get currentTabLength => filterMethod.value == "order"
+      ? currentOrdersLength
+      : filterMethod.value == "item"
+          ? currentItemsLength
+          : currentRmasLength;
 
   List<Object> get currentTabItems => filterMethod.value == "order"
       ? allOrdersAndRmas.orders[0].items
       : allOrdersAndRmas.rmas[0].items;
 
-    List<OrderItem> get currentOrders => allOrdersAndRmas.orders[0].items;
-    List<RmaItem> get currentRmas => allOrdersAndRmas.rmas[0].items;
+  List<OrderItem> get currentOrders => allOrdersAndRmas.orders[0].items;
+  List<RmaItem> get currentRmas => allOrdersAndRmas.rmas[0].items;
+
+  RxInt totalAmount = 0.obs;
+  RxInt totalVolume = 0.obs;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    startDate.text = DateFormat('yyyy-MM-dd')
+        .format(DateTime.now().subtract(const Duration(days: 1)))
+        .toString();
+    endDate.text = DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
+  }
 
   void onSortCulumn(EasyShipSortTypes sortStatus) {
     currentType = sortStatus;
@@ -140,6 +163,7 @@ class SalesReportController extends GetxController {
     try {
       allOrdersAndRmas = await ApiService.clientNoLogger()
           .getOrdersAndRmas(userId, duration, type);
+      calulateValue();
       loading(false);
       update();
     } catch (err) {
@@ -147,6 +171,20 @@ class SalesReportController extends GetxController {
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
       update();
+    }
+  }
+
+  void calulateValue() {
+    if (filterMethod.value == "order") {
+      totalVolume = allOrdersAndRmas.orders[0].items
+          .fold(0.obs, (sum, item) => sum + item.terms.pv);
+      totalAmount = allOrdersAndRmas.orders[0].items
+          .fold(0.obs, (sum, item) => sum + Parsing.intFrom(item.terms.total)!);
+    } else {
+      totalVolume = allOrdersAndRmas.rmas[0].items
+          .fold(0.obs, (sum, item) => sum + item.terms.pv);
+      totalAmount = allOrdersAndRmas.rmas[0].items
+          .fold(0.obs, (sum, item) => sum + Parsing.intFrom(item.terms.total)!);
     }
   }
 
@@ -200,5 +238,24 @@ class SalesReportController extends GetxController {
       ],
       elevation: 8.0,
     );
+  }
+
+  Future<void> proceedToPrint({required String orderHref}) async {
+    //  https://dsc-th.unicity.com/invoice.php?link=https://hydra.unicity.net/v5a/orders/31512d2a1d4a2a5860bc785d27d1f75270eabace2d169ad5bfab2c45959ff3de&token=08b438b3-5326-45d7-9cc9-f4f3299bae5c
+    final String imgUrl =
+        "${Address.dscHome}invoice.php?link=$orderHref&token=c1fd1d7c-7ad5-4143-ba27-f73e4520a376";
+    try {
+      final Dio dio = Dio();
+      final response = await dio.get(imgUrl);
+      await Printing.layoutPdf(
+          dynamicLayout: false,
+          onLayout: (PdfPageFormat format) async => Printing.convertHtml(
+                format: format,
+                html: response.data.toString(),
+              ));
+    } catch (err) {
+      errorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
+    }
   }
 }

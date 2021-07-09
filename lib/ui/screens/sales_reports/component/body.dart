@@ -58,7 +58,7 @@ class Body extends StatelessWidget {
       child: HorizontalDataTable(
         leftHandSideColumnWidth: 140,
         rightHandSideColumnWidth:
-            controller.filterMethod.value == 'order' ? 1260 : 1300,
+            controller.filterMethod.value == 'order' ? 1160 : 1200,
         isFixedHeader: true,
         headerWidgets: controller.filterMethod.value == 'order'
             ? _getTitleWidget()
@@ -99,9 +99,9 @@ class Body extends StatelessWidget {
       _renderTableHeader("Date", EasyShipSortTypes.date, Alignment.center, 140),
       _renderTableHeader("Time", EasyShipSortTypes.time, Alignment.center, 140),
       _renderTableHeader(
-          "Total", EasyShipSortTypes.total, Alignment.centerRight, 200),
+          "Total ${controller.totalAmount}", EasyShipSortTypes.total, Alignment.centerRight, 150),
       _renderTableHeader(
-          "Total PV", EasyShipSortTypes.totalPV, Alignment.centerRight, 200),
+          "Total PV ${controller.totalVolume}", EasyShipSortTypes.totalPV, Alignment.centerRight, 150),
       _getTitleItemWidget('Barcode', 100, Alignment.center),
     ];
   }
@@ -121,9 +121,9 @@ class Body extends StatelessWidget {
       _renderTableHeader(
           "Original", EasyShipSortTypes.orderId, Alignment.center, 140),
       _renderTableHeader(
-          "Total", EasyShipSortTypes.total, Alignment.centerRight, 200),
+          "Total ${controller.totalAmount}", EasyShipSortTypes.total, Alignment.centerRight, 150),
       _renderTableHeader(
-          "Total PV", EasyShipSortTypes.totalPV, Alignment.centerRight, 200),
+          "Total PV ${controller.totalVolume}", EasyShipSortTypes.totalPV, Alignment.centerRight, 150),
     ];
   }
 
@@ -184,17 +184,17 @@ class Body extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(currentItem.customer.id.unicity)),
         _renderDataCell(index, 200, currentItem.customer.humanName.fullName,
-            Alignment.centerLeft, "value"),
+            Alignment.centerLeft, "value", ""),
         _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),
-            Alignment.center, "link"),
+            Alignment.center, "link", currentItem.href),
         _renderDataCell(index, 140, currentItem.dateCreated.asDDMMYYYY,
-            Alignment.center, "value"),
+            Alignment.center, "value", ""),
         _renderDataCell(index, 140, currentItem.dateCreated.asHHMMA,
-            Alignment.center, "value"),
-        _renderDataCell(index, 200, currentItem.terms.total.toString(),
-            Alignment.centerRight, "value"),
-        _renderDataCell(index, 200, Parsing.stringFrom(currentItem.terms.pv),
-            Alignment.centerRight, "value"),
+            Alignment.center, "value", ""),
+        _renderDataCell(index, 150, currentItem.terms.total.toString(),
+            Alignment.centerRight, "value", ""),
+        _renderDataCell(index, 150, Parsing.stringFrom(currentItem.terms.pv),
+            Alignment.centerRight, "value", ""),
         _renderDataIcon(),
       ],
     );
@@ -212,19 +212,19 @@ class Body extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(currentItem.customer.id.unicity)),
         _renderDataCell(index, 200, currentItem.customer.humanName.fullName,
-            Alignment.centerLeft, "value"),
+            Alignment.centerLeft, "value", ""),
         _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),
-            Alignment.center, "link"),
+            Alignment.center, "link", ""),
         _renderDataCell(index, 140, currentItem.dateCreated.asDDMMYYYY,
-            Alignment.center, "value"),
+            Alignment.center, "value", ""),
         _renderDataCell(index, 140, currentItem.dateCreated.asHHMMA,
-            Alignment.center, "value"),
+            Alignment.center, "value", ""),
         _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),
-            Alignment.center, "value"),
-        _renderDataCell(index, 200, currentItem.terms.total.toString(),
-            Alignment.centerRight, "value"),
-        _renderDataCell(index, 200, Parsing.stringFrom(currentItem.terms.pv),
-            Alignment.centerRight, "value"),
+            Alignment.center, "value", ""),
+        _renderDataCell(index, 150, currentItem.terms.total.toString(),
+            Alignment.centerRight, "value", ""),
+        _renderDataCell(index, 150, Parsing.stringFrom(currentItem.terms.pv),
+            Alignment.centerRight, "value", ""),
       ],
     );
   }
@@ -244,18 +244,25 @@ class Body extends StatelessWidget {
   }
 
   Container _renderDataCell(int index, double width, String titleText,
-      Alignment textAlign, String type) {
+      Alignment textAlign, String type, String href) {
     return Container(
       width: width,
       height: 65,
       decoration: BoxDecoration(border: Border.all(width: 0.5)),
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
       alignment: textAlign,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          titleText,
-          style: TextStyle(color: type == 'link' ? Colors.blue : Colors.black),
+      child: GestureDetector(
+        onTap: () {
+          if(type == 'link') {
+            controller.proceedToPrint(orderHref: href);
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            titleText,
+            style: TextStyle(color: type == 'link' ? Colors.blue : Colors.black),
+          ),
         ),
       ),
     );

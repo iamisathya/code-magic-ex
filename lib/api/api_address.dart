@@ -21,6 +21,7 @@ class Address {
   static const String allDsc = "ALL/DSC/";
   static const String allDscPath = "ALL/DSC";
   static const String dictionary = "dictionary/publish";
+  static const String dscHome = "https://dsc-th.unicity.com/";
   static const String resource = "https://dsc-th.unicity.com/data/";
   static const String poOrder = "https://dsc-th.unicity.com/po_1.php";
 }
