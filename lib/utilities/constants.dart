@@ -105,6 +105,7 @@ String kCurrentTimeStamp = DateTime.now().millisecondsSinceEpoch.toString();
 // * Order related constants
 String kPlaceOrder = "201";
 String kUserId = "206";
+String kEasyShipReports = "2";
 
 
 // * Screen size related

@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/models/easy_ship_reports.dart';
 import 'package:code_magic_ex/models/user_id.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:dio/dio.dart';
@@ -77,4 +78,11 @@ abstract class MemberCallsService {
   Future<UserId> getUserId(
       @Query('type') String type,
       @Query('username') String username);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=2&distID=3011266&token=c1fd1d7c-7ad5-4143-ba27-f73e4520a376
+  @GET("${Address.allDscPath}/THA/getdata.php")
+  Future<List<EasyShipReports>> getEasyShipReports(
+      @Query('type') String type,
+      @Query('distID') String distID,
+      @Query('token') String token);
 }

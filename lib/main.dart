@@ -1,4 +1,6 @@
 import 'package:code_magic_ex/translations/translations.dart';
+import 'package:code_magic_ex/ui/global/widgets/scrollable.dart';
+import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
 import 'package:code_magic_ex/ui/screens/open_po/home.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
@@ -57,7 +59,7 @@ class MyApp extends StatelessWidget {
     UserSessionManager.shared.setUserInfoFromDB();
     UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
-    return isLoggedIn ? OpenPOHomeScreen() : LoginScreen();
+    return isLoggedIn ? EasyShipHomeScreen() : LoginScreen();
   }
   
   //* init firebase analytics

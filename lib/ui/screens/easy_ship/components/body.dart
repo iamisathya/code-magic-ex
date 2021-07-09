@@ -42,7 +42,7 @@ class Body extends StatelessWidget {
       return const CustomErrorWidget(
         svgIcon: kImageServerDown,
       );
-    } else if (controller.isAllEasyShipOrdersEmpty) {
+    } else if (controller.isEasyShipReportsEmpty) {
       return const CustomEmptyWidget(
         svgIcon: kImageEmptyBox,
       );
@@ -109,7 +109,7 @@ class Body extends StatelessWidget {
         headerWidgets: _getTitleWidget(),
         leftSideItemBuilder: _generateFirstColumnRow,
         rightSideItemBuilder: _generateRightHandSideColumnRow,
-        itemCount: controller.allEasyShipOrdersCount,
+        itemCount: controller.easyShipReportsCount,
         rowSeparatorWidget: kRowDivider,
       ),
     );
@@ -160,7 +160,7 @@ class Body extends StatelessWidget {
   }
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
-    final currentItem = controller.getAllEasyShipOrders[index];
+    final currentItem = controller.getEasyShipReports[index];
     final color = index % 2 == 0 ? Colors.white : kWhiteSmokeColor;
     return Container(
       width: 180,
@@ -168,19 +168,19 @@ class Body extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
       alignment: Alignment.center,
       decoration: BoxDecoration(border: Border.all(width: 0.5), color: color),
-      child: Text(currentItem.order.id.unicity.retrieveOrderId()),
+      child: Text(currentItem.orderNumber),
     );
   }
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
-    final currentItem = controller.getAllEasyShipOrders[index];    
+    final currentItem = controller.getEasyShipReports[index];
     return Row(
       children: <Widget>[
-        _renderDataCell(150, index, currentItem.order.terms.period),
-        _renderDataCell(300, index, currentItem.catalogSlide.content.description),
-        _renderDataCell(150, index, currentItem.item.id.unicity),
-        _renderDataCell(150, index, currentItem.terms.pvEach.toString()),
-        _renderDataCell(150, index, currentItem.terms.priceEach.toString()),
+        _renderDataCell(150, index, currentItem.pvDate),
+        _renderDataCell(300, index, currentItem.name),
+        _renderDataCell(150, index, currentItem.itemName),
+        _renderDataCell(150, index, currentItem.pv.toString()),
+        _renderDataCell(150, index, currentItem.totalPrice),
       ],
     );
   }

@@ -7,7 +7,7 @@
         {
             "name": "code_magic_ex",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
         },
         {
             "name": "code_magic_ex (profile mode)",

@@ -1,6 +1,8 @@
-import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/models/order_lines.dart';
+import 'package:code_magic_ex/api/config/member_class.dart';
+import 'package:code_magic_ex/models/easy_ship_reports.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:get/get.dart';
 
@@ -10,29 +12,25 @@ class EasyShipController extends GetxController {
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
 
-  OrderLines allEasyShipOrders = OrderLines(items: []);
-  OrderLines _tempEasyShipOrders = OrderLines(items: []);
+  List<EasyShipReports> allEasyShipOrders = <EasyShipReports>[];
+  List<EasyShipReports> _tempEasyShipOrders = <EasyShipReports>[];
 
   static int sortName = 0;
   static int sortStatus = 1;
   bool isAscending = true;
   EasyShipTypes currentType = EasyShipTypes.orderNumber;
 
-  List<OrderLineItem> get getAllEasyShipOrders => _tempEasyShipOrders.items;
-  int get allEasyShipOrdersCount => _tempEasyShipOrders.items.length;
-  bool get isAllEasyShipOrdersEmpty => _tempEasyShipOrders.items.isEmpty;
+  List<EasyShipReports> get getEasyShipReports => _tempEasyShipOrders;
+  int get easyShipReportsCount => _tempEasyShipOrders.length;
+  bool get isEasyShipReportsEmpty => _tempEasyShipOrders.isEmpty;
 
   Future<void> getAllOrderlines({String userId = "3011266"}) async {
     loading(true);
     update();
-    final String localUserId = userId;
-    const String dateCreated = "[2020-11;2021-06]";
-    const String criteria = "easyship";
-    const String expand = "catalogSlide,order,order.customer";
-    const String market = "TH";
     try {
-      allEasyShipOrders = await ApiService.shared()
-          .getOrderLines(localUserId, dateCreated, criteria, expand, market);
+      allEasyShipOrders = await MemberCallsService.init().getEasyShipReports(
+          kEasyShipReports, userId, "c1fd1d7c-7ad5-4143-ba27-f73e4520a376");
+      allEasyShipOrders = addTotalRowAfterEachUniqueItemSet();
       _tempEasyShipOrders = allEasyShipOrders;
       loading(false);
       update();
@@ -50,62 +48,82 @@ class EasyShipController extends GetxController {
     switch (sortStatus) {
       case EasyShipTypes.orderNumber:
         if (isAscending) {
-          _tempEasyShipOrders.items
-              .sort((a, b) => a.order.id.unicity.compareTo(b.order.id.unicity));
+          _tempEasyShipOrders
+              .sort((a, b) => a.orderNumber.compareTo(b.orderNumber));
         } else {
-          _tempEasyShipOrders.items
-              .sort((b, a) => a.order.id.unicity.compareTo(b.order.id.unicity));
+          _tempEasyShipOrders
+              .sort((b, a) => a.orderNumber.compareTo(b.orderNumber));
         }
         break;
       case EasyShipTypes.period:
         if (isAscending) {
-          _tempEasyShipOrders.items.sort(
-              (a, b) => a.order.terms.period.compareTo(b.order.terms.period));
+          _tempEasyShipOrders.sort((a, b) => a.pvDate.compareTo(b.pvDate));
         } else {
-          _tempEasyShipOrders.items.sort(
-              (b, a) => a.order.terms.period.compareTo(b.order.terms.period));
+          _tempEasyShipOrders.sort((b, a) => a.pvDate.compareTo(b.pvDate));
         }
         break;
       case EasyShipTypes.productName:
         if (isAscending) {
-          _tempEasyShipOrders.items.sort((a, b) => a
-              .catalogSlide.content.description
-              .compareTo(b.catalogSlide.content.description));
+          _tempEasyShipOrders.sort((a, b) => a.name.compareTo(b.name));
         } else {
-          _tempEasyShipOrders.items.sort((b, a) => a
-              .catalogSlide.content.description
-              .compareTo(b.catalogSlide.content.description));
+          _tempEasyShipOrders.sort((b, a) => a.name.compareTo(b.name));
         }
         break;
       case EasyShipTypes.itemCode:
         if (isAscending) {
-          _tempEasyShipOrders.items
-              .sort((a, b) => a.item.id.unicity.compareTo(b.item.id.unicity));
+          _tempEasyShipOrders.sort((a, b) => a.itemName.compareTo(b.itemName));
         } else {
-          _tempEasyShipOrders.items
-              .sort((b, a) => a.item.id.unicity.compareTo(b.item.id.unicity));
+          _tempEasyShipOrders.sort((b, a) => a.itemName.compareTo(b.itemName));
         }
         break;
       case EasyShipTypes.pv:
         if (isAscending) {
-          _tempEasyShipOrders.items
-              .sort((a, b) => a.terms.pvEach.compareTo(b.terms.pvEach));
+          _tempEasyShipOrders.sort((a, b) => a.pv.compareTo(b.pv));
         } else {
-          _tempEasyShipOrders.items
-              .sort((b, a) => a.terms.pvEach.compareTo(b.terms.pvEach));
+          _tempEasyShipOrders.sort((b, a) => a.pv.compareTo(b.pv));
         }
         break;
       case EasyShipTypes.price:
         if (isAscending) {
-          _tempEasyShipOrders.items
-              .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
+          _tempEasyShipOrders
+              .sort((a, b) => a.totalPrice.compareTo(b.totalPrice));
         } else {
-          _tempEasyShipOrders.items
-              .sort((b, a) => a.terms.priceEach.compareTo(b.terms.priceEach));
+          _tempEasyShipOrders
+              .sort((b, a) => a.totalPrice.compareTo(b.totalPrice));
         }
         break;
       default:
     }
     update();
+  }
+
+  //*  This will find & returns total unique order size
+  int totalUniqueOrderItemSize() {
+    final List<EasyShipReports> resArr = [];
+    for (final item in _tempEasyShipOrders) {
+      final i =
+          resArr.indexWhere((x) => x.orderNumber == item.orderNumber);
+      if (i <= -1) {
+        resArr.add(item);
+      }
+    }
+    return resArr.length;
+  }
+
+  List<EasyShipReports> addTotalRowAfterEachUniqueItemSet() {
+    final EasyShipReports emptyReport = EasyShipReports(orderNumber: "", itemName: "Total", name: "", price: "", pv: 0, pvDate: "", totalPrice: "");
+    final Map<String, List<EasyShipReports>> easyShipMap = groupBy(allEasyShipOrders, (obj) => obj.orderNumber);
+    //* Adding empty EasyShipReports object after each set of unique orders
+    for(final objectItem in easyShipMap.values) {
+      objectItem.add(emptyReport);
+    }
+    // ! Need to optimise this
+    final List<EasyShipReports> easyShipReports = [];
+    for(final objectItems in easyShipMap.values) {
+      for (var i = 0; i < objectItems.length; i++) {
+        easyShipReports.add(objectItems[i]);
+      }
+    }
+    return easyShipReports;
   }
 }

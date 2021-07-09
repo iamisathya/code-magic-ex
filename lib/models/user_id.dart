@@ -8,8 +8,10 @@ class UserId {
   String customerId;
   @JsonKey(name: "cus_code")
   String customerCode;
+  @JsonKey(name: "cus_pocode")
+  String customerPoCode;
 
-  UserId({required this.customerId, required this.customerCode});
+  UserId({required this.customerId, required this.customerCode, required this.customerPoCode});
 
   factory UserId.fromJson(Map<String, dynamic> json) =>
       _$UserIdFromJson(json);
@@ -17,5 +19,5 @@ class UserId {
   Map<String, dynamic> toJson() => _$UserIdToJson(this);
 
   Map<String, dynamic> toMap() =>
-      {'customerCode': customerCode, 'customerId': customerId};
+      {'customerCode': customerCode, 'customerId': customerId, 'customerPoCode': customerPoCode};
 }
