@@ -1,5 +1,4 @@
 import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/models/common_methods.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 

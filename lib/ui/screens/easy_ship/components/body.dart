@@ -161,34 +161,36 @@ class Body extends StatelessWidget {
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     final currentItem = controller.getAllEasyShipOrders[index];
+    final color = index % 2 == 0 ? Colors.white : kWhiteSmokeColor;
     return Container(
       width: 180,
       height: 65,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
       alignment: Alignment.center,
-      decoration: BoxDecoration(border: Border.all(width: 0.5)),
+      decoration: BoxDecoration(border: Border.all(width: 0.5), color: color),
       child: Text(currentItem.order.id.unicity.retrieveOrderId()),
     );
   }
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
-    final currentItem = controller.getAllEasyShipOrders[index];
+    final currentItem = controller.getAllEasyShipOrders[index];    
     return Row(
       children: <Widget>[
-        _renderDataCell(150, currentItem.order.terms.period),
-        _renderDataCell(300, currentItem.catalogSlide.content.description),
-        _renderDataCell(150, currentItem.item.id.unicity),
-        _renderDataCell(150, currentItem.terms.pvEach.toString()),
-        _renderDataCell(150, currentItem.terms.priceEach.toString()),
+        _renderDataCell(150, index, currentItem.order.terms.period),
+        _renderDataCell(300, index, currentItem.catalogSlide.content.description),
+        _renderDataCell(150, index, currentItem.item.id.unicity),
+        _renderDataCell(150, index, currentItem.terms.pvEach.toString()),
+        _renderDataCell(150, index, currentItem.terms.priceEach.toString()),
       ],
     );
   }
 
-  Container _renderDataCell(double width, String titleText) {
+  Container _renderDataCell(double width, int idx, String titleText) {
+    final color = idx % 2 == 0 ? Colors.white : kWhiteSmokeColor;
     return Container(
       width: width,
       height: 65,
-      decoration: BoxDecoration(border: Border.all(width: 0.5)),
+      decoration: BoxDecoration(border: Border.all(width: 0.5), color: color),
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
       alignment: Alignment.center,
       child: Padding(
