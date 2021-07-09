@@ -46,7 +46,7 @@ abstract class ApiService {
     final Dio dio = Dio();
     dio.options.headers['authorization'] =
         // "Bearer ${UserSessionManager.shared.customerToken.token}";
-        "Bearer 8c3dba26-2454-4c3e-bb27-05c349b06ffd";
+        "Bearer c1fd1d7c-7ad5-4143-ba27-f73e4520a376";
     return ApiService(dio);
   }
 

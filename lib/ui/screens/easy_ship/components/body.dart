@@ -163,7 +163,7 @@ class Body extends StatelessWidget {
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     final currentItem = controller.getEasyShipReports[index];
-    final color = index % 2 == 0 ? Colors.white : kWhiteSmokeColor;
+    final color = currentItem.itemName == "Total" ? kWhiteSmokeColor : Colors.white;
     return Container(
       width: 180,
       height: 65,
@@ -176,19 +176,19 @@ class Body extends StatelessWidget {
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
     final currentItem = controller.getEasyShipReports[index];
+    final color = currentItem.itemName == "Total" ? kWhiteSmokeColor : Colors.white;
     return Row(
       children: <Widget>[
-        _renderDataCell(150, index, currentItem.pvDate),
-        _renderDataCell(300, index, currentItem.name),
-        _renderDataCell(150, index, currentItem.itemName),
-        _renderDataCell(150, index, currentItem.pv.toString()),
-        _renderDataCell(150, index, currentItem.totalPrice),
+        _renderDataCell(150, color, currentItem.pvDate),
+        _renderDataCell(300, color, currentItem.name),
+        _renderDataCell(150, color, currentItem.itemName),
+        _renderDataCell(150, color, currentItem.pv.toString()),
+        _renderDataCell(150, color, currentItem.totalPrice),
       ],
     );
   }
 
-  Container _renderDataCell(double width, int idx, String titleText) {
-    final color = idx % 2 == 0 ? Colors.white : kWhiteSmokeColor;
+  Container _renderDataCell(double width, Color color, String titleText) {
     return Container(
       width: width,
       height: 65,
