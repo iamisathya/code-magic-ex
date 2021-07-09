@@ -15,9 +15,11 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 class Body extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());
   final TextEditingController searchConntroller = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
+    searchConntroller.text = "3011266";
     return SafeArea(
         child: GetBuilder<EasyShipController>(
             init: EasyShipController(),

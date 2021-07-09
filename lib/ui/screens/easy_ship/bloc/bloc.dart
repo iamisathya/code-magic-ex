@@ -1,12 +1,14 @@
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/easy_ship_reports.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:get/get.dart';
 
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
+import 'package:intl/intl.dart';
 
 class EasyShipController extends GetxController {
   RxBool loading = false.obs;
@@ -110,11 +112,17 @@ class EasyShipController extends GetxController {
     return resArr.length;
   }
 
+  int forceParse(String str) {
+   return Parsing.doubleFrom(str.replaceAll(",", ""))!.toInt();
+  }
+
   List<EasyShipReports> addTotalRowAfterEachUniqueItemSet() {
-    final EasyShipReports emptyReport = EasyShipReports(orderNumber: "", itemName: "Total", name: "", price: "", pv: 0, pvDate: "", totalPrice: "");
     final Map<String, List<EasyShipReports>> easyShipMap = groupBy(allEasyShipOrders, (obj) => obj.orderNumber);
     //* Adding empty EasyShipReports object after each set of unique orders
     for(final objectItem in easyShipMap.values) {
+      final int totalAmount = objectItem.fold(0, (sum, item) => sum + forceParse(item.totalPrice));
+      final int totalVolume = objectItem.fold(0, (sum, item) => sum + item.pv);
+      final EasyShipReports emptyReport = EasyShipReports(orderNumber: "", itemName: "Total", name: "", price: "", pv: totalVolume, pvDate: "", totalPrice: NumberFormat("#,###").format(totalAmount));
       objectItem.add(emptyReport);
     }
     // ! Need to optimise this
