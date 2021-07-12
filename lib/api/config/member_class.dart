@@ -117,7 +117,8 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/THA/THA_DSC_Enroll_ValidationV2.asp
   @POST(Address.verifyEnroll)
   @FormUrlEncoded()
-  Future<EnrollResponse> verifyEnrollForm(
+  // Future<EnrollResponse> verifyEnrollForm(
+  Future<dynamic> verifyEnrollForm(
     @Field("language") String language,
     @Field("firstName") String firstName,
     @Field("firstName@th") String firstNameTh,

@@ -288,7 +288,7 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
-  Future<EnrollResponse> verifyEnrollForm(
+  Future<dynamic> verifyEnrollForm(
       language,
       firstName,
       firstNameTh,
@@ -325,16 +325,15 @@ class _MemberCallsService implements MemberCallsService {
       'homePhone': homePhone,
       'password': password
     };
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<EnrollResponse>(Options(
-                method: 'POST',
-                headers: <String, dynamic>{},
-                extra: _extra,
-                contentType: 'application/x-www-form-urlencoded')
-            .compose(_dio.options, 'THA/THA_DSC_Enroll_ValidationV2.asp',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = EnrollResponse.fromJson(_result.data!);
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            contentType: 'application/x-www-form-urlencoded')
+        .compose(_dio.options, 'THA/THA_DSC_Enroll_ValidationV2.asp',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
     return value;
   }
 

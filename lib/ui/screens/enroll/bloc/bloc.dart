@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/amphur_item.dart';
@@ -41,6 +43,8 @@ class EnrollController extends GetxController {
   GuestUserInfoList sponserProfile = GuestUserInfoList(items: []);
   GovtIdVerify govtIdVerification = GovtIdVerify(message: null, success: '');
   Rx<bool> isSubmitting = false.obs;
+  Rx<bool> isEnrollerIdSuccess = false.obs;
+  Rx<bool> isGovtIdSuccess = false.obs;
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
   RxBool isUnderAgeLimit = false.obs;
@@ -105,7 +109,7 @@ class EnrollController extends GetxController {
           await ApiService.shared().getCustomerInfo(108357166, "customer");
       enrollerProfile =
           await ApiService.shared().getCustomerInfo(108357166, "customer");
-
+      isEnrollerIdSuccess.value = true;
       isSubmitting(false);
       update();
     } catch (err) {
@@ -133,6 +137,7 @@ class EnrollController extends GetxController {
             value: province.provienceId,
             child: Text(province.provienceNameEn)));
       }
+      isGovtIdSuccess.value = true;
       isSubmitting(false);
       update();
     } catch (err) {
@@ -199,30 +204,32 @@ class EnrollController extends GetxController {
   }
 
   Future<void> verifyEnrollForm() async {
-  
     try {
-      final EnrollResponse enrollResponse = await MemberCallsService.init()
-          .verifyEnrollForm(
-              "English",
-              firstNameEnController.text,
-              lastNameEnController.text,
-              firstNameThController.text,
-              lastNameThController.text,
-              userGender.value,
-              maritalStatus.value,
-              birthDateController.text,
-              mainAddressController.text,
-              "city",
-              country.value,
-              zipCodeController.text,
-              emailAddressController.text,
-              mobileNumberController.text,
-              phoneNumberController.text,
-              "22222");
-      if(enrollResponse.success == "No") {
+      final response = await MemberCallsService.init().verifyEnrollForm(
+          "English",
+          firstNameEnController.text,
+          lastNameEnController.text,
+          firstNameThController.text,
+          lastNameThController.text,
+          userGender.value,
+          maritalStatus.value,
+          birthDateController.text,
+          mainAddressController.text,
+          "city",
+          country.value,
+          zipCodeController.text,
+          emailAddressController.text,
+          mobileNumberController.text,
+          phoneNumberController.text,
+          "22222");
+      final body = json.decode(response.toString());
+      final enrollResponse =
+          EnrollResponse.fromJson(body as Map<String, dynamic>);
+      if (enrollResponse.success == "No") {
         _renderErrorSnackBar();
-      } else if(enrollResponse.message.isNotEmpty){
-        errorMessages.addAll(enrollResponse.message);
+        if (enrollResponse.message.isNotEmpty) {
+          errorMessages.addAll(enrollResponse.message);
+        }
       }
       update();
     } catch (err) {

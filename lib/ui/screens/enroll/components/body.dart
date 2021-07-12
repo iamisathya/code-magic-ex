@@ -19,108 +19,130 @@ class Body extends StatelessWidget {
           child: Obx(
             () => Column(
               children: [
-                // _renderInfoMessage(),
-                // _renderTextField(
-                //     ctlr: controller.enrollIdController, label: "Enroller ID"),
-                // _renderTextField(
-                //   ctlr: controller.sponsorIdController,
-                //   label: "Sponosr ID",
-                // ),
-                // _renderSubmitButton(
-                //     label: "Verify Enroller",
-                //     onPress: () => controller.verifyEnrollerSponsor()),
-                // _renderTextField(
-                //     ctlr: controller.idCardNumberController,
-                //     label: "ID Card Number"),
+                _renderInfoMessage(),
+                _renderTextField(
+                    ctlr: controller.enrollIdController, label: "Enroller ID"),
+                _renderTextField(
+                  ctlr: controller.sponsorIdController,
+                  label: "Sponosr ID",
+                ),
+                _renderSubmitButton(
+                    label: "Verify Enroller",
+                    onPress: () => controller.verifyEnrollerSponsor()),
+                if (controller.isEnrollerIdSuccess.value == true)
+                  _renderTextField(
+                      ctlr: controller.idCardNumberController,
+                      label: "ID Card Number"),
                 _renderSubmitButton(
                     label: "Verify ID",
                     onPress: () => controller.verifyGovtIdNumber()),
-                // _renderTextField(
-                //     ctlr: controller.firstNameThController,
-                //     label: "First Name(Thai)"),
-                // _renderTextField(
-                //     ctlr: controller.lastNameThController,
-                //     label: "Last Name(Thai)"),
-                // _renderTextField(
-                //     ctlr: controller.firstNameEnController,
-                //     label: "First Name(En)"),
-                // _renderTextField(
-                //     ctlr: controller.lastNameEnController,
-                //     label: "Last Name(En)"),
-                // Obx(() => _renderDropdownButton(
-                //     label: "Gender",
-                //     selectedValue: controller.userGender.value,
-                //     items: controller.genderDropdownItems,
-                //     onChanged: (String val) => controller.userGender = val)),
-                // Obx(() => _renderDropdownButton(
-                //     label: "Marital Status",
-                //     selectedValue: controller.maritalStatus.value,
-                //     items: controller.statusDropdownItems,
-                //     onChanged: (String val) =>
-                //         controller.maritalStatus = val)),
-                // _renderDatePicker("Birth Day", context),
-                // Obx(() => controller.isUnderAgeLimit.value
-                //     ? Padding(
-                //         padding: const EdgeInsets.symmetric(vertical: 16.0),
-                //         child: Text(
-                //             "Applicant must be 18 years or older. (DD/MM/YYYY)",
-                //             style: Theme.of(context).textTheme.cardItemTitle),
-                //       )
-                //     : const SizedBox()),
-                // Obx(() => _renderDropdownButton(
-                //     label: "Gender",
-                //     selectedValue: controller.userGender.value,
-                //     items: controller.genderDropdownItems,
-                //     onChanged: (String val) => controller.userGender = val)),
-                // _renderSubmitButton(
-                //     label: "Verify Enroller",
-                //     onPress: () => controller.verifyEnrollerSponsor()),
-                _renderDropdownButton(
-                    label: "Choose Province",
-                    selectedValue: controller.provience.value,
-                    items: controller.provinceDropdownItems,
-                    onChanged: (String val) {
-                      controller.provience.value = val;
-                      controller.getAmphuresByProvince();
-                    }),
-                _renderTextField(
-                    ctlr: controller.mainAddressController, label: "Address"),
-                _renderDropdownButton(
-                    label: "Area",
-                    selectedValue: controller.area.value,
-                    items: controller.areaDropdownItems,
-                    onChanged: (String val) {
-                      controller.area.value = val;
-                      controller.getDistrictsByAmphur();
-                    }),
-                _renderDropdownButton(
-                    label: "Sub-Area",
-                    selectedValue: controller.subArea.value,
-                    items: controller.subAreaDropdownItems,
-                    onChanged: (String val) {
-                      controller.subArea.value = val;
-                      controller.getZipcodeByDistricts();
-                    }),
-                _renderDropdownButton(
-                    label: "Country",
-                    selectedValue: controller.country.value,
-                    items: controller.countryDropdownItems,
-                    onChanged: (String val) =>
-                        controller.userGender.value = val),
-                _renderTextField(
-                    ctlr: controller.lastNameEnController,
-                    label: "Zip code",
-                    enabled: false),
-                _renderTextField(
-                    ctlr: controller.emailAddressController, label: "Email"),
-                _renderTextField(
-                    ctlr: controller.phoneNumberController, label: "Phone"),
-                _renderTextField(
-                    ctlr: controller.mobileNumberController, label: "Mobile"),
-                _renderSubmitButton(
-                    label: "Verify All",
-                    onPress: () => controller.verifyEnrollForm()),
-                if (controller.errorMessages.isNotEmpty) _renderErrorBox(),
+                if (controller.isGovtIdSuccess.value == true)
+                  Column(
+                    children: [
+                      _renderTextField(
+                          ctlr: controller.firstNameThController,
+                          label: "First Name(Thai)"),
+                      _renderTextField(
+                          ctlr: controller.lastNameThController,
+                          label: "Last Name(Thai)"),
+                      _renderTextField(
+                          ctlr: controller.firstNameEnController,
+                          label: "First Name(En)"),
+                      _renderTextField(
+                          ctlr: controller.lastNameEnController,
+                          label: "Last Name(En)"),
+                      Obx(() => _renderDropdownButton(
+                          label: "Gender",
+                          top: 10,
+                          selectedValue: controller.userGender.value,
+                          items: controller.genderDropdownItems,
+                          onChanged: (String val) =>
+                              controller.userGender.value = val)),
+                      Obx(() => _renderDropdownButton(
+                          label: "Marital Status",
+                          top: 10,
+                          selectedValue: controller.maritalStatus.value,
+                          items: controller.statusDropdownItems,
+                          onChanged: (String val) =>
+                              controller.maritalStatus.value = val)),
+                      _renderDatePicker("Birth Day", context),
+                      Obx(() => controller.isUnderAgeLimit.value
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
+                              child: Text(
+                                  "Applicant must be 18 years or older. (DD/MM/YYYY)",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .cardItemTitle),
+                            )
+                          : const SizedBox()),
+                      _renderDropdownButton(
+                          label: "Gender",
+                          top: 10,
+                          selectedValue: controller.userGender.value,
+                          items: controller.genderDropdownItems,
+                          onChanged: (String val) =>
+                              controller.userGender.value = val),
+                      _renderDropdownButton(
+                          label: "Choose Province",
+                          top: 10,
+                          selectedValue: controller.provience.value,
+                          items: controller.provinceDropdownItems,
+                          onChanged: (String val) {
+                            controller.provience.value = val;
+                            controller.getAmphuresByProvince();
+                          }),
+                      _renderTextField(
+                          ctlr: controller.mainAddressController,
+                          label: "Address"),
+                      _renderDropdownButton(
+                          label: "Area",
+                          top: 10,
+                          selectedValue: controller.area.value,
+                          items: controller.areaDropdownItems,
+                          onChanged: (String val) {
+                            controller.area.value = val;
+                            controller.getDistrictsByAmphur();
+                          }),
+                      _renderDropdownButton(
+                          label: "Sub-Area",
+                          top: 10,
+                          selectedValue: controller.subArea.value,
+                          items: controller.subAreaDropdownItems,
+                          onChanged: (String val) {
+                            controller.subArea.value = val;
+                            controller.getZipcodeByDistricts();
+                          }),
+                      _renderDropdownButton(
+                          label: "Country",
+                          top: 10,
+                          selectedValue: controller.country.value,
+                          items: controller.countryDropdownItems,
+                          onChanged: (String val) =>
+                              controller.userGender.value = val),
+                      _renderTextField(
+                          ctlr: controller.lastNameEnController,
+                          label: "Zip code",
+                          enabled: false),
+                      _renderTextField(
+                          ctlr: controller.emailAddressController,
+                          label: "Email"),
+                      _renderTextField(
+                          ctlr: controller.phoneNumberController,
+                          helperText: "* Please enter phone Thailand Only",
+                          label: "Phone"),
+                      _renderTextField(
+                          ctlr: controller.mobileNumberController,
+                          helperText: "* Please enter mobile phone Thailand Only",
+                          label: "Mobile"),
+                      _renderSubmitButton(
+                          label: "Verify All",
+                          onPress: () => controller.verifyEnrollForm()),
+                      if (controller.errorMessages.isNotEmpty)
+                        _renderErrorBox(),
+                    ],
+                  )
               ],
             ),
           ),
@@ -196,7 +218,7 @@ class Body extends StatelessWidget {
 
   Container _renderDatePicker(String label, BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 40),
+      margin: const EdgeInsets.only(top: 10),
       child: Column(children: <Widget>[
         _renderLabel(label),
         Container(
@@ -218,9 +240,10 @@ class Body extends StatelessWidget {
       {required String label,
       required String selectedValue,
       required List<DropdownMenuItem<String>> items,
-      required Function onChanged}) {
+      required Function onChanged,
+      required double top}) {
     return Container(
-        margin: const EdgeInsets.only(top: 40),
+        margin: EdgeInsets.only(top: top),
         child: Column(children: <Widget>[
           _renderLabel(label),
           InputDecorator(
@@ -255,7 +278,7 @@ class Body extends StatelessWidget {
 
   Container _renderErrorBox() {
     return Container(
-        margin: const EdgeInsets.only(top: 16, bottom: 32),
+        margin: const EdgeInsets.only(top: 24, bottom: 24),
         width: Get.width,
         decoration: BoxDecoration(
             color: Colors.red.shade50,
@@ -271,6 +294,9 @@ class Body extends StatelessWidget {
         ));
   }
 
-  Text _errorText(String text) =>
-      Text(text, style: const TextStyle(color: Colors.red, fontSize: 16));
+  Padding _errorText(String text) => Padding(
+        padding: const EdgeInsets.all(4.0),
+        child:
+            Text(text, style: const TextStyle(color: Colors.red, fontSize: 16)),
+      );
 }
