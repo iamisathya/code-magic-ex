@@ -1,7 +1,11 @@
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/config/member_class.dart';
+import 'package:code_magic_ex/models/amphur_item.dart';
+import 'package:code_magic_ex/models/district_item.dart';
 import 'package:code_magic_ex/models/govt_id_verify.dart';
 import 'package:code_magic_ex/models/guest_user_info.dart';
+import 'package:code_magic_ex/models/provience_item.dart';
+import 'package:code_magic_ex/models/zip_code_response.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +30,7 @@ class EnrollController extends GetxController {
   TextEditingController mainAddressController = TextEditingController();
   RxString area = "".obs;
   RxString subArea = "".obs;
-  RxString country = "".obs;
+  RxString country = "th".obs;
   TextEditingController zipCodeController = TextEditingController();
   TextEditingController emailAddressController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
@@ -52,20 +56,20 @@ class EnrollController extends GetxController {
     const DropdownMenuItem(value: "married", child: Text("Married")),
   ];
 
-  List<DropdownMenuItem<String>> provinceDropdownItems = [
+  RxList<DropdownMenuItem<String>> provinceDropdownItems = [
     const DropdownMenuItem(value: "", child: Text("Select Province")),
-  ];
+  ].obs;
 
-  List<DropdownMenuItem<String>> areaDropdownItems = [
+  RxList<DropdownMenuItem<String>> areaDropdownItems = [
     const DropdownMenuItem(value: "", child: Text("Select Area")),
-  ];
+  ].obs;
 
-  List<DropdownMenuItem<String>> subAreaDropdownItems = [
+  RxList<DropdownMenuItem<String>> subAreaDropdownItems = [
     const DropdownMenuItem(value: "", child: Text("Select Sub-Area")),
-  ];
+  ].obs;
 
   List<DropdownMenuItem<String>> countryDropdownItems = [
-    const DropdownMenuItem(value: "", child: Text("Select Country")),
+    const DropdownMenuItem(value: "th", child: Text("Thailand")),
   ];
 
   @override
@@ -76,6 +80,7 @@ class EnrollController extends GetxController {
         "1981156516516"; // valid: 4568767867811 invalid: 1981156516516
     enrollIdController.text = "108357166";
     sponsorIdController.text = "108357166";
+    zipCodeController.text = "AAAAA";
   }
 
   void onChangeBirthDay(DateTime date) {
@@ -117,8 +122,15 @@ class EnrollController extends GetxController {
     isSubmitting(true);
     update();
     try {
-      govtIdVerification = await MemberCallsService.init()
-          .validateIdCard(idCardNumberController.text);
+      // govtIdVerification = await MemberCallsService.init()
+      //     .validateIdCard(idCardNumberController.text);
+      final List<ProvinceItem> allProvince =
+          await MemberCallsService.init().getAllProvince("getAllProvince");
+      for (final province in allProvince) {
+        provinceDropdownItems.add(DropdownMenuItem(
+            value: province.provienceId,
+            child: Text(province.provienceNameEn)));
+      }
       isSubmitting(false);
       update();
     } catch (err) {
@@ -126,6 +138,60 @@ class EnrollController extends GetxController {
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
       update();
+    }
+  }
+
+  Future<void> getAmphuresByProvince() async {
+    if (provience.isEmpty) {
+      _renderErrorSnackBar();
+      return;
+    }
+    try {
+      final List<AmphurItem> allAmphures = await MemberCallsService.init()
+          .getAmphuresByProvince("getAmphuresByProvince", provience.value);
+      for (final amphure in allAmphures) {
+        areaDropdownItems.add(DropdownMenuItem(
+            value: amphure.amphurId, child: Text(amphure.amphurNameEn)));
+      }
+      update();
+    } catch (err) {
+      errorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
+  Future<void> getDistrictsByAmphur() async {
+    if (area.value.isEmpty) {
+      _renderErrorSnackBar();
+      return;
+    }
+    try {
+      final List<DisctrictItem> allDistricts = await MemberCallsService.init()
+          .getDistrictsByAmphur("getDistrictsByAmphur", area.value);
+      for (final district in allDistricts) {
+        subAreaDropdownItems.add(DropdownMenuItem(
+            value: district.districtCode, child: Text(district.districtNameEn)));
+      }
+      update();
+    } catch (err) {
+      errorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
+  Future<void> getZipcodeByDistricts() async {
+    if (subArea.value.isEmpty) {
+      _renderErrorSnackBar();
+      return;
+    }
+    try {
+      final List<ZipCodeResponse> zipResponse = await MemberCallsService.init()
+          .getZipcodeByDistricts("getZipcodeByDistricts", subArea.value);
+      zipCodeController.text = zipResponse[0].zipCode;
+      update();
+    } catch (err) {
+      errorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
     }
   }
 

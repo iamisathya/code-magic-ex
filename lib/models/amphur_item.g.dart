@@ -6,8 +6,8 @@ part of 'amphur_item.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DisctrictItem _$DisctrictItemFromJson(Map<String, dynamic> json) {
-  return DisctrictItem(
+AmphurItem _$AmphurItemFromJson(Map<String, dynamic> json) {
+  return AmphurItem(
     amphurCode: json['AMPHUR_CODE'] as String,
     amphurId: json['AMPHUR_ID'] as String,
     amphurName: json['AMPHUR_NAME'] as String,
@@ -17,7 +17,7 @@ DisctrictItem _$DisctrictItemFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$DisctrictItemToJson(DisctrictItem instance) =>
+Map<String, dynamic> _$AmphurItemToJson(AmphurItem instance) =>
     <String, dynamic>{
       'AMPHUR_CODE': instance.amphurCode,
       'AMPHUR_ID': instance.amphurId,

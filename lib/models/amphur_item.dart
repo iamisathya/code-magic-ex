@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'amphur_item.g.dart';
 
 @JsonSerializable()
-class DisctrictItem {
+class AmphurItem {
   @JsonKey(name: "AMPHUR_CODE")
   String amphurCode;
   @JsonKey(name: "AMPHUR_ID")
@@ -18,7 +18,7 @@ class DisctrictItem {
   @JsonKey(name: "PROVINCE_ID")
   String provinceId;
 
-  DisctrictItem({
+  AmphurItem({
     required this.amphurCode,
     required this.amphurId,
     required this.amphurName,
@@ -27,7 +27,7 @@ class DisctrictItem {
     required this.provinceId,
   });
   
-  factory DisctrictItem.fromJson(Map<String, dynamic> json) => _$DisctrictItemFromJson(json);
+  factory AmphurItem.fromJson(Map<String, dynamic> json) => _$AmphurItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DisctrictItemToJson(this);
+  Map<String, dynamic> toJson() => _$AmphurItemToJson(this);
 }

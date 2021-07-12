@@ -228,7 +228,7 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
-  Future<List<ProvinceItem>> getAmphuresByProvince(type, provinceId) async {
+  Future<List<AmphurItem>> getAmphuresByProvince(type, provinceId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'type': type,
@@ -236,19 +236,19 @@ class _MemberCallsService implements MemberCallsService {
     };
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<ProvinceItem>>(
+        _setStreamType<List<AmphurItem>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => ProvinceItem.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => AmphurItem.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<List<ProvinceItem>> getDistrictsByAmphur(type, amphurId) async {
+  Future<List<DisctrictItem>> getDistrictsByAmphur(type, amphurId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'type': type,
@@ -256,32 +256,34 @@ class _MemberCallsService implements MemberCallsService {
     };
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<ProvinceItem>>(
+        _setStreamType<List<DisctrictItem>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => ProvinceItem.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => DisctrictItem.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<ZipCodeResponse> getZipcodeByDistricts(type, districtId) async {
+  Future<List<ZipCodeResponse>> getZipcodeByDistricts(type, districtId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'type': type,
       r'district_id': districtId
     };
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ZipCodeResponse>(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<ZipCodeResponse>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ZipCodeResponse.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => ZipCodeResponse.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

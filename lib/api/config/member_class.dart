@@ -1,3 +1,5 @@
+import 'package:code_magic_ex/models/amphur_item.dart';
+import 'package:code_magic_ex/models/district_item.dart';
 import 'package:code_magic_ex/models/easy_ship_reports.dart';
 import 'package:code_magic_ex/models/govt_id_verify.dart';
 import 'package:code_magic_ex/models/provience_item.dart';
@@ -100,13 +102,13 @@ abstract class MemberCallsService {
 
   //? url=https://dsc-th.unicity.com/getdata.php?type=getAmphuresByProvince&province_id=1
   @GET(Address.validOrders)
-  Future<List<ProvinceItem>> getAmphuresByProvince(@Query("type") String type, @Query("province_id") String provinceId);
+  Future<List<AmphurItem>> getAmphuresByProvince(@Query("type") String type, @Query("province_id") String provinceId);
 
   //? url=https://dsc-th.unicity.com/getdata.php?type=getDistrictsByAmphur&amphur_id=178
   @GET(Address.validOrders)
-  Future<List<ProvinceItem>> getDistrictsByAmphur(@Query("type") String type, @Query("amphur_id") String amphurId);
+  Future<List<DisctrictItem>> getDistrictsByAmphur(@Query("type") String type, @Query("amphur_id") String amphurId);
 
   //? url=https://dsc-th.unicity.com/getdata.php?type=getZipcodeByDistricts&district_id=240102
   @GET(Address.validOrders)
-  Future<ZipCodeResponse> getZipcodeByDistricts(@Query("type") String type, @Query("district_id") String districtId);
+  Future<List<ZipCodeResponse>> getZipcodeByDistricts(@Query("type") String type, @Query("district_id") String districtId);
 }
