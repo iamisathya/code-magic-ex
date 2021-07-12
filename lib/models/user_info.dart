@@ -3,6 +3,18 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user_info.g.dart';
 
 @JsonSerializable()
+class UserInfoList {
+  @JsonKey(name: "items")
+  List<UserInfo> items;
+  
+  UserInfoList({required this.items});
+
+  factory UserInfoList.fromJson(Map<String, dynamic> json) => _$UserInfoListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserInfoListToJson(this);
+}
+
+@JsonSerializable()
 class UserInfo {
   final CollectHrefFromMap achievementsHistory;
   final BusinessEntity businessEntity;

@@ -2,6 +2,8 @@ import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+const kPageBackground = Color(0xFFF2F3F7);
+const kMainColor = Color(0xFF204CDC);
 const kPrimaryColor = Color(0xFF1D3557);
 const kPrimaryLightColor = Color(0xFF457B9D);
 const kPrimaryGradientColor = LinearGradient(
@@ -76,6 +78,7 @@ EdgeInsets kEdgeV12H16() =>
 EdgeInsets kEdgeA8() => const EdgeInsets.all(8.0);
 EdgeInsets kEdgeA12() => const EdgeInsets.all(12.0);
 EdgeInsets kEdgeA16() => const EdgeInsets.all(16.0);
+EdgeInsets kEdgeA24() => const EdgeInsets.all(24.0);
 
 BoxDecoration kCircular8 =
     BoxDecoration(borderRadius: BorderRadius.circular(8), color: kPrimaryColor);
@@ -94,6 +97,32 @@ RoundedRectangleBorder kRoundedRectangleBorder8() {
   );
 }
 
+OutlineInputBorder kFocusedOutlineInputBorder() {
+  return const OutlineInputBorder(
+    borderSide: BorderSide(color: kMainColor, width: 3.0),
+    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+  );
+}
+
+OutlineInputBorder kOutlineInputBorder() {
+  return const OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.white, width: 0.0),
+      borderRadius: BorderRadius.all(Radius.circular(12.0)));
+}
+
+InputDecoration kTextInputDecoration({String hintText= "", String helperText = ""}) {
+  return InputDecoration(
+    fillColor: Colors.white,
+    filled: true,
+    isDense: true,
+    contentPadding: const EdgeInsets.all(20.0),
+    focusedBorder: kFocusedOutlineInputBorder(),
+    border: kOutlineInputBorder(),
+    hintText: hintText,
+    helperText: helperText,
+  );
+}
+
 Divider kRowDivider = const Divider(
   color: Colors.black54,
   height: 1.0,
@@ -107,9 +136,17 @@ String kPlaceOrder = "201";
 String kUserId = "206";
 String kEasyShipReports = "2";
 
-
 // * Screen size related
 
 double kScreenHeight = Get.height;
 
 double kScreenWidth = Get.width;
+
+InputDecoration kInputDecoration(String hintText, String label) {
+  return InputDecoration(
+    border:
+        const OutlineInputBorder(borderSide: BorderSide(color: kPrimaryColor)),
+    hintText: hintText,
+    labelText: label,
+  );
+}

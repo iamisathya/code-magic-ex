@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'package:code_magic_ex/models/guest_user_info.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -87,6 +87,11 @@ abstract class ApiService {
   //? Example: https://hydra.unicity.net/v5a/customers?unicity=108357166&expand=customer
   @GET(Address.customers)
   Future<FindCustomer> findCustomer(
+      @Query("unicity") int id, @Query("expand") String expand);
+  
+    //? Example: https://hydra.unicity.net/v5a/customers?unicity=108357166&expand=customer
+  @GET(Address.customers)
+  Future<GuestUserInfoList> getCustomerInfo(
       @Query("unicity") int id, @Query("expand") String expand);
 
   //? Example: https://hydra.unicity.net/v5a/customers?fulltext=Test&sponsor.id.unicity=1

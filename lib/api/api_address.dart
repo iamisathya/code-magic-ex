@@ -24,4 +24,5 @@ class Address {
   static const String dscHome = "https://dsc-th.unicity.com/";
   static const String resource = "https://dsc-th.unicity.com/data/";
   static const String poOrder = "https://dsc-th.unicity.com/po_1.php";
+  static const String validateIdCard = "api/unishop/v1/th/validate_address/idcard";
 }

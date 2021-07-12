@@ -24,7 +24,7 @@ extension OrderId on String {
       return this;
     }
   }
-  
+
   String retrieveOrderStatus() {
     try {
       return split("_")[0];
@@ -32,7 +32,6 @@ extension OrderId on String {
       return this;
     }
   }
-
 }
 
 extension DateFormater on String {
@@ -70,8 +69,8 @@ extension AppStyles on TextTheme {
   TextStyle get tableHeader =>
       const TextStyle(fontSize: 16.0, color: Colors.white);
 
-  TextStyle get productTitle =>
-      const TextStyle(fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600);
+  TextStyle get productTitle => const TextStyle(
+      fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600);
 
   TextStyle get tableData =>
       const TextStyle(fontSize: 14.0, color: Colors.black);
@@ -86,8 +85,23 @@ extension AppStyles on TextTheme {
       const TextStyle(fontSize: 14.0, color: Colors.white);
 }
 
-
 extension MyIterable<E> on Iterable<E> {
   Iterable<E> sortedBy(Comparable Function(E e) key) =>
       toList()..sort((a, b) => key(a).compareTo(key(b)));
+}
+
+extension DateFormula on DateTime {
+  bool isAdult(DateTime birthDate) {
+    // Current time - at this moment
+    final DateTime today = DateTime.now();
+
+    // Date to check but moved 18 years ahead
+    final DateTime adultDate = DateTime(
+      birthDate.year + 18,
+      birthDate.month,
+      birthDate.day,
+    );
+
+    return adultDate.isBefore(today);
+  }
 }

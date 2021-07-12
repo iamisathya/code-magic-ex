@@ -6,6 +6,19 @@ part of 'user_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+UserInfoList _$UserInfoListFromJson(Map<String, dynamic> json) {
+  return UserInfoList(
+    items: (json['items'] as List<dynamic>)
+        .map((e) => UserInfo.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
+
+Map<String, dynamic> _$UserInfoListToJson(UserInfoList instance) =>
+    <String, dynamic>{
+      'items': instance.items,
+    };
+
 UserInfo _$UserInfoFromJson(Map<String, dynamic> json) {
   return UserInfo()
     ..rights = (json['rights'] as List<dynamic>)

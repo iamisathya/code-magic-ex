@@ -1,6 +1,9 @@
 import 'package:code_magic_ex/models/easy_ship_reports.dart';
+import 'package:code_magic_ex/models/govt_id_verify.dart';
+import 'package:code_magic_ex/models/provience_item.dart';
 import 'package:code_magic_ex/models/user_id.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
+import 'package:code_magic_ex/models/zip_code_response.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -85,4 +88,25 @@ abstract class MemberCallsService {
       @Query('type') String type,
       @Query('distID') String distID,
       @Query('token') String token);
+
+  //? url=https://member-calls.unicity.com/api/unishop/v1/th/validate_address/idcard
+  @POST(Address.validateIdCard)
+  @FormUrlEncoded()
+  Future<GovtIdVerify> validateIdCard(@Field() String strID);
+
+   //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=getAllProvince
+  @GET(Address.validOrders)
+  Future<List<ProvinceItem>> getAllProvince(@Query("type") String type);
+
+  //? url=https://dsc-th.unicity.com/getdata.php?type=getAmphuresByProvince&province_id=1
+  @GET(Address.validOrders)
+  Future<List<ProvinceItem>> getAmphuresByProvince(@Query("type") String type, @Query("province_id") String provinceId);
+
+  //? url=https://dsc-th.unicity.com/getdata.php?type=getDistrictsByAmphur&amphur_id=178
+  @GET(Address.validOrders)
+  Future<List<ProvinceItem>> getDistrictsByAmphur(@Query("type") String type, @Query("amphur_id") String amphurId);
+
+  //? url=https://dsc-th.unicity.com/getdata.php?type=getZipcodeByDistricts&district_id=240102
+  @GET(Address.validOrders)
+  Future<ZipCodeResponse> getZipcodeByDistricts(@Query("type") String type, @Query("district_id") String districtId);
 }

@@ -136,6 +136,24 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<GuestUserInfoList> getCustomerInfo(id, expand) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'unicity': id,
+      r'expand': expand
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GuestUserInfoList>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/customers',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GuestUserInfoList.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<SearchCustomer> searchCustomer(searchKey, userId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{

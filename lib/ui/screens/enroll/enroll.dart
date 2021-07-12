@@ -1,4 +1,6 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
+import 'package:code_magic_ex/ui/screens/enroll/components/body.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class EnrollHomeScreen extends StatelessWidget {
@@ -8,9 +10,12 @@ class EnrollHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Home"),
+          iconTheme: const IconThemeData(color: kMainColor),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: const Text("Enroll", style: TextStyle(color: kMainColor),),
         ),
         drawer: NavigationDrawer(),
-        body: const Center(child: Text("This is home page")));
+        body: Body());
   }
 }
