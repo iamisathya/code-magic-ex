@@ -287,6 +287,57 @@ class _MemberCallsService implements MemberCallsService {
     return value;
   }
 
+  @override
+  Future<EnrollResponse> verifyEnrollForm(
+      language,
+      firstName,
+      firstNameTh,
+      lastNameTh,
+      gender,
+      maritalStatus,
+      birthDate,
+      address1,
+      address2,
+      city,
+      country,
+      zip,
+      email,
+      mobilePhone,
+      homePhone,
+      password) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = {
+      'language': language,
+      'firstName': firstName,
+      'firstName@th': firstNameTh,
+      'lastName@th: ': lastNameTh,
+      'gender': gender,
+      'maritalStatus': maritalStatus,
+      'birthDate': birthDate,
+      'address1': address1,
+      'address2': address2,
+      'city': city,
+      'country': country,
+      'zip': zip,
+      'email': email,
+      'mobilePhone': mobilePhone,
+      'homePhone': homePhone,
+      'password': password
+    };
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<EnrollResponse>(Options(
+                method: 'POST',
+                headers: <String, dynamic>{},
+                extra: _extra,
+                contentType: 'application/x-www-form-urlencoded')
+            .compose(_dio.options, 'THA/THA_DSC_Enroll_ValidationV2.asp',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = EnrollResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

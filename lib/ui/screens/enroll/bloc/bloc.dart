@@ -2,6 +2,7 @@ import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/amphur_item.dart';
 import 'package:code_magic_ex/models/district_item.dart';
+import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/govt_id_verify.dart';
 import 'package:code_magic_ex/models/guest_user_info.dart';
 import 'package:code_magic_ex/models/provience_item.dart';
@@ -43,6 +44,7 @@ class EnrollController extends GetxController {
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
   RxBool isUnderAgeLimit = false.obs;
+  RxList<String> errorMessages = [""].obs;
 
   List<DropdownMenuItem<String>> genderDropdownItems = [
     const DropdownMenuItem(value: "", child: Text("Select Gender")),
@@ -170,7 +172,8 @@ class EnrollController extends GetxController {
           .getDistrictsByAmphur("getDistrictsByAmphur", area.value);
       for (final district in allDistricts) {
         subAreaDropdownItems.add(DropdownMenuItem(
-            value: district.districtCode, child: Text(district.districtNameEn)));
+            value: district.districtCode,
+            child: Text(district.districtNameEn)));
       }
       update();
     } catch (err) {
@@ -188,6 +191,39 @@ class EnrollController extends GetxController {
       final List<ZipCodeResponse> zipResponse = await MemberCallsService.init()
           .getZipcodeByDistricts("getZipcodeByDistricts", subArea.value);
       zipCodeController.text = zipResponse[0].zipCode;
+      update();
+    } catch (err) {
+      errorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
+  Future<void> verifyEnrollForm() async {
+  
+    try {
+      final EnrollResponse enrollResponse = await MemberCallsService.init()
+          .verifyEnrollForm(
+              "English",
+              firstNameEnController.text,
+              lastNameEnController.text,
+              firstNameThController.text,
+              lastNameThController.text,
+              userGender.value,
+              maritalStatus.value,
+              birthDateController.text,
+              mainAddressController.text,
+              "city",
+              country.value,
+              zipCodeController.text,
+              emailAddressController.text,
+              mobileNumberController.text,
+              phoneNumberController.text,
+              "22222");
+      if(enrollResponse.success == "No") {
+        _renderErrorSnackBar();
+      } else if(enrollResponse.message.isNotEmpty){
+        errorMessages.addAll(enrollResponse.message);
+      }
       update();
     } catch (err) {
       errorMessage(err.toString());

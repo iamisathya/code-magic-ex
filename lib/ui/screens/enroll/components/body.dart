@@ -84,7 +84,7 @@ class Body extends StatelessWidget {
                       controller.getAmphuresByProvince();
                     }),
                 _renderTextField(
-                    ctlr: controller.lastNameEnController, label: "Address"),
+                    ctlr: controller.mainAddressController, label: "Address"),
                 _renderDropdownButton(
                     label: "Area",
                     selectedValue: controller.area.value,
@@ -105,7 +105,8 @@ class Body extends StatelessWidget {
                     label: "Country",
                     selectedValue: controller.country.value,
                     items: controller.countryDropdownItems,
-                    onChanged: (String val) => controller.userGender.value = val),
+                    onChanged: (String val) =>
+                        controller.userGender.value = val),
                 _renderTextField(
                     ctlr: controller.lastNameEnController,
                     label: "Zip code",
@@ -118,7 +119,8 @@ class Body extends StatelessWidget {
                     ctlr: controller.mobileNumberController, label: "Mobile"),
                 _renderSubmitButton(
                     label: "Verify All",
-                    onPress: () => controller.verifyGovtIdNumber()),
+                    onPress: () => controller.verifyEnrollForm()),
+                if (controller.errorMessages.isNotEmpty) _renderErrorBox(),
               ],
             ),
           ),
@@ -250,4 +252,25 @@ class Body extends StatelessWidget {
       ),
     );
   }
+
+  Container _renderErrorBox() {
+    return Container(
+        margin: const EdgeInsets.only(top: 16, bottom: 32),
+        width: Get.width,
+        decoration: BoxDecoration(
+            color: Colors.red.shade50,
+            border: Border.all(width: 2, color: Colors.red),
+            borderRadius: const BorderRadius.all(Radius.circular(8.0))),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: controller.errorMessages
+                .map((errorMsg) => _errorText(errorMsg))
+                .toList(),
+          ),
+        ));
+  }
+
+  Text _errorText(String text) =>
+      Text(text, style: const TextStyle(color: Colors.red, fontSize: 16));
 }
