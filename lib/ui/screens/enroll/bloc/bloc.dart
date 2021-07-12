@@ -225,11 +225,8 @@ class EnrollController extends GetxController {
       final body = json.decode(response.toString());
       final enrollResponse =
           EnrollResponse.fromJson(body as Map<String, dynamic>);
-      if (enrollResponse.success == "No") {
-        _renderErrorSnackBar();
-        if (enrollResponse.message.isNotEmpty) {
-          errorMessages.addAll(enrollResponse.message);
-        }
+      if (enrollResponse.success == "No" && enrollResponse.message.isNotEmpty) {
+        errorMessages.addAll(enrollResponse.message);
       }
       update();
     } catch (err) {
