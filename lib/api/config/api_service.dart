@@ -91,7 +91,7 @@ abstract class ApiService {
   
     //? Example: https://hydra.unicity.net/v5a/customers?unicity=108357166&expand=customer
   @GET(Address.customers)
-  Future<dynamic> getCustomerInfo(
+  Future<GuestUserInfoList> getCustomerInfo(
       @Query("unicity") int id, @Query("expand") String expand);
 
   //? Example: https://hydra.unicity.net/v5a/customers?fulltext=Test&sponsor.id.unicity=1

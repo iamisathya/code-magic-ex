@@ -11,6 +11,8 @@ import 'package:code_magic_ex/models/provience_item.dart';
 import 'package:code_magic_ex/models/zip_code_response.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
+import 'package:code_magic_ex/utilities/function.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -108,44 +110,24 @@ class EnrollController extends GetxController {
     try {
       // * if sponsor & enroller are same
       if (enrollIdController.text == sponsorIdController.text) {
-        final dynamic response = await ApiService.shared().getCustomerInfo(
+        enrollerProfile = await ApiService.shared().getCustomerInfo(
             Parsing.intFrom(enrollIdController.text)!, "customer");
-        final body = json.decode(response.toString());
-        if (body["error"] != null) {
-          final enrollIdResponse =
-              GuestUserInfoList.fromJson(body as Map<String, dynamic>);
-          enrollerProfile = enrollIdResponse;
-        } else {
-          throw "user not found";
-        }
+        sponserProfile = enrollerProfile;
       } else {
         // * Calling sponser validation
-        final dynamic sponsorIdResponse = await ApiService.shared()
-            .getCustomerInfo(
-                Parsing.intFrom(enrollIdController.text)!, "customer");
-        if (sponsorIdResponse["error"] != null) {
-          final body = json.decode(sponsorIdResponse.toString());
-          sponserProfile =
-              GuestUserInfoList.fromJson(body as Map<String, dynamic>);
-        } else {
-          throw "user not found";
-        }
+        sponserProfile = await ApiService.shared().getCustomerInfo(
+            Parsing.intFrom(enrollIdController.text)!, "customer");
 
         // * Calling enroller validation
-        final dynamic enrollIdResponse = await ApiService.shared()
-            .getCustomerInfo(
-                Parsing.intFrom(sponsorIdController.text)!, "customer");
-        if (enrollIdResponse["error"] != null) {
-          final enrolResponseBody = json.decode(enrollIdResponse.toString());
-          enrollerProfile = GuestUserInfoList.fromJson(
-              enrolResponseBody as Map<String, dynamic>);
-        } else {
-          throw "user not found";
-        }
+        enrollerProfile = await ApiService.shared().getCustomerInfo(
+            Parsing.intFrom(sponsorIdController.text)!, "customer");
       }
       isEnrollerIdSuccess.value = true;
       isSubmitting(false);
       update();
+    } on DioError catch (e) {
+      isSubmitting(false);
+      returnResponse(e.response!);
     } catch (err) {
       isSubmitting(false);
       errorMessage(err.toString());

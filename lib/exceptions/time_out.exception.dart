@@ -1,11 +1,11 @@
-import 'package:logger/logger.dart';
+import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class TimeOutException implements Exception {
   final String message;
   TimeOutException({
     this.message = 'Timeout when trying to connect to the server',
   }) {
-    Logger().w(message);
+    LoggerService.instance.e(message);
   }
 
   @override

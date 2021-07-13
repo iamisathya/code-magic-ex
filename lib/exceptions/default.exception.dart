@@ -1,13 +1,13 @@
-import 'package:logger/logger.dart';
+import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class DefaultException implements Exception {
   final String message;
   final StackTrace? stackTrace;
   DefaultException({
-    this.message = 'Internnet error!',
+    this.message = 'Internet error!',
     this.stackTrace,
   }) {
-    Logger().e(stackTrace);
+    LoggerService.instance.e(stackTrace);
   }
 
   @override

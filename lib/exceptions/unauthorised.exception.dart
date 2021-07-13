@@ -1,8 +1,12 @@
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
-class InvalidBodyException implements Exception {
+class UnauthorisedException implements Exception {
   final String message;
-  InvalidBodyException({required this.message}) {
+  final StackTrace? stackTrace;
+  UnauthorisedException({
+    this.message = 'Internet error!',
+    this.stackTrace,
+  }) {
     LoggerService.instance.e(message);
   }
 

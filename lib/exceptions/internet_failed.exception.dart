@@ -1,4 +1,4 @@
-import 'package:logger/logger.dart';
+import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class InternetFailedException implements Exception {
   final String message;
@@ -6,7 +6,7 @@ class InternetFailedException implements Exception {
   InternetFailedException({
     this.message = 'Failed to connect to server!',
   }) {
-    Logger().w(message);
+    LoggerService.instance.e(message);
   }
 
   @override
