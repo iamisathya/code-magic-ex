@@ -1,4 +1,3 @@
-
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/find_customer.dart';
@@ -15,35 +14,49 @@ import 'package:code_magic_ex/utilities/Logger/logger.dart';
 class OrderEntryController extends GetxController {
   RxInt selectedTab = 0.obs;
 
-  List<OrderEntryRadioButton> searchRadioOptions = [
+  RxList<OrderEntryRadioButton> searchRadioOptions = [
     OrderEntryRadioButton(
-      index: 1,
+      index: 0,
       name: "BA's ID",
     ),
     OrderEntryRadioButton(
-      index: 2,
+      index: 1,
       name: "Govt ID, Name..",
     ),
-  ];
+  ].obs;
 
-  late OrderEntryRadioButton seletedOption;
-
-  OrderEntryController() {
-    seletedOption = searchRadioOptions[0];
-  }
+  Rx<OrderEntryRadioButton> seletedOption = OrderEntryRadioButton(index: 0, name: "BA's ID").obs;
 
   TextEditingController searchIdTextController = TextEditingController();
   SearchCustomer searchedResultsOfHref = SearchCustomer(items: []);
   FindCustomer searchedGuestUserInfo = FindCustomer(items: []);
   List<SearchedUserInfo> searchResultsOfUserInfo = <SearchedUserInfo>[];
 
-  Future<void> searchUserBySearchKey(String userId) async {
+  void onChangedSearchType(OrderEntryRadioButton data) {
+    seletedOption.value = searchRadioOptions[data.index];
+    update();
+  }
+
+  Future<void> searchUserBySearchQuery() async {
+    if (searchIdTextController.text.isEmpty) {
+      renderErrorSnackBar(
+          title: "Enroller ID empty", subTitle: "Please enter valid enroller");
+      return;
+    }
+    if (seletedOption.value.index == 0) {
+      searchUserById();
+    } else {
+      searchUserBySearchKey();
+    }
+  }
+
+  Future<void> searchUserById() async {
     try {
       // * search for users by user id(search key)
-      searchedResultsOfHref = await ApiService.shared()
-          .searchCustomer(searchIdTextController.text, 1);
+      searchedGuestUserInfo = await ApiService.shared().findCustomer(
+          Parsing.intFrom(searchIdTextController.text)!, "customer");
       if (searchedResultsOfHref.items.isNotEmpty) {
-        searchUsersByHref([""]);
+        // Move to details page
       }
       update();
     } on DioError catch (e) {
@@ -54,13 +67,15 @@ class OrderEntryController extends GetxController {
     }
   }
 
-  Future<void> searchUserById(String userId) async {
+  Future<void> searchUserBySearchKey() async {
     try {
       // * search for users by user id(search key)
-      searchedGuestUserInfo = await ApiService.shared().findCustomer(
-          Parsing.intFrom(searchIdTextController.text)!, "customer");
+      searchedResultsOfHref = await ApiService.shared()
+          .searchCustomer(searchIdTextController.text, 1);
       if (searchedResultsOfHref.items.isNotEmpty) {
-        // Move to details page
+        final List<String> data =
+            searchedResultsOfHref.items.map((e) => e.href).toList();
+        searchUsersByHref(data);
       }
       update();
     } on DioError catch (e) {
@@ -94,7 +109,6 @@ class OrderEntryController extends GetxController {
     searchIdTextController.text = "3011266";
   }
 }
-
 
 class OrderEntryRadioButton {
   String name;

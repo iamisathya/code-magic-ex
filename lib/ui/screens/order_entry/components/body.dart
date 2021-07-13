@@ -62,11 +62,12 @@ class Body extends StatelessWidget {
   Widget _getTitleItemWidget(String label, double width) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            bottom: kBorderSide(),
-            right: kBorderSide(),
-          ),),
+        color: Colors.white,
+        border: Border(
+          bottom: kBorderSide(),
+          right: kBorderSide(),
+        ),
+      ),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),

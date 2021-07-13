@@ -11,18 +11,15 @@ class SearchRadioOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: controller.searchRadioOptions
-          .map((data) => Flexible(
+          .map((data) => Obx(() => Flexible(
                 child: RadioListTile(
                   title: Text(data.name),
                   activeColor: kMainColor,
-                  groupValue: controller.seletedOption.index,
+                  groupValue: controller.seletedOption.value.index,
                   value: data.index,
-                  onChanged: (val) {
-                    controller.seletedOption =
-                        controller.searchRadioOptions[data.index];
-                  },
+                  onChanged: (val) => controller.onChangedSearchType(data),
                 ),
-              ))
+              )))
           .toList(),
     );
   }

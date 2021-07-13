@@ -1,7 +1,6 @@
 import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/controllers/controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/function.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/utilities/extensions.dart';
@@ -21,13 +20,7 @@ class SearchBox extends StatelessWidget {
             shape: kRoundedRectangleBorder8(),
             disabledColor: Colors.grey,
             color: kMainColor,
-            onPressed: () {
-              if (controller.searchIdTextController.text.isNotEmpty) {
-                controller.searchUserById(controller.searchIdTextController.text);
-              } else {
-                renderErrorSnackBar(title: "Empty user id!", subTitle: "Please enter valid search id!");
-              }
-            },
+            onPressed: () => controller.searchUserBySearchQuery(),
             height: 55,
             child:
                 Text('Search', style: Theme.of(context).textTheme.tableHeader),
