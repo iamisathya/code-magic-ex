@@ -18,14 +18,17 @@ class OpenPOHomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: AppBar(
-          title: const Text("PO List"),
+          backgroundColor: Colors.white,
+          title: const Text("PO List", style: TextStyle(color: kMainColor)),
           actions: _renderActionBar(context),
+          elevation: 0,
+          iconTheme: const IconThemeData(color: kMainColor),
         ),
         drawer: NavigationDrawer(),
         body: Body(),
         floatingActionButton: FloatingActionButton(
             elevation: 0.0,
-            backgroundColor: kPrimaryLightColor,
+            backgroundColor: kMainColor,
             onPressed: () => Get.to(PlaceOrderHomePage()),
             child: const Icon(Icons.add, color: Colors.white)));
   }

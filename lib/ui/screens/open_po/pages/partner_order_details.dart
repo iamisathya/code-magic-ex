@@ -20,7 +20,10 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteSmokeColor,
       appBar: AppBar(
-        title: const Text("Order Details"),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: kMainColor),
+        title: const Text("Order Details", style: TextStyle(color: kMainColor),),
         actions: _renderActionBar(context),
       ),
       body: SingleChildScrollView(child: _renderChild(context)),

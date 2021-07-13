@@ -109,7 +109,7 @@ class Body extends StatelessWidget {
   Widget _getTitleItemWidget(String label, double width) {
     return Container(
       decoration: BoxDecoration(
-          color: kPrimaryLightColor, border: Border.all(width: 0.5)),
+          color: kMainColor, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -197,7 +197,7 @@ class Body extends StatelessWidget {
                 ),
               ));
         },
-        icon: const Icon(Icons.attach_file, color: kPrimaryLightColor));
+        icon: const Icon(Icons.attach_file, color: kMainColor));
   }
 
   Container _renderDataCell(int index, double width, String titleText,
@@ -212,7 +212,7 @@ class Body extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           titleText,
-          style: TextStyle(color: type == 'link' ? Colors.blue : Colors.black),
+          style: TextStyle(color: type == 'link' ? kMainColor : Colors.black),
         ),
       ),
     );
@@ -232,7 +232,7 @@ class Body extends StatelessWidget {
     if (status == "0") {
       _renderEachStatusButton(context, "Pending", kTernaryLightColor);
     } else if (status == "4") {
-      return _renderEachStatusButton(context, "Approved", kPrimaryColor);
+      return _renderEachStatusButton(context, "Approved", kMainColor);
     } else if (status == "2") {
       return _renderEachStatusButton(context, "Unknown", kSecondaryColor);
     }

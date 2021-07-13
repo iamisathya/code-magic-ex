@@ -69,7 +69,7 @@ OutlineInputBorder outlineInputBorder() {
 BoxDecoration normalBoxDecoration() {
   return BoxDecoration(
       color: kWhiteSmokeColor,
-      border: Border.all(),
+      border: Border.all(color: kMainColor, width: 3),
       borderRadius: const BorderRadius.all(Radius.circular(8.0)));
 }
 
