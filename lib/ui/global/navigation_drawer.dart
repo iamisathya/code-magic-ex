@@ -135,7 +135,7 @@ Widget _createDrawerBodyItem(
     required GestureTapCallback onTap,
     required bool selected}) {
   return ListTile(
-    selectedTileColor: kPrimaryColor,
+    selectedTileColor: kMainColor,
     selected: selected,
     leading: Icon(icon),
     title: Text(text),
