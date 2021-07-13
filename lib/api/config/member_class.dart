@@ -140,6 +140,6 @@ abstract class MemberCallsService {
 
 
   // //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=getBAInfo
-  // @POST(Address.validOrders)
-  // Future<List<SearchedUserInfo>> searchUsersByHref(@Query("type") String type);
+  @POST(Address.validOrders)
+  Future<List<SearchedUserInfo>> searchUsersByHref(@Query("type") String type, @Body() List<String> task);
 }

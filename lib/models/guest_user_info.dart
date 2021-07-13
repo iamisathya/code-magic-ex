@@ -91,7 +91,7 @@ class HumanName {
   String lastName;
   String fullName;
   @JsonKey(name: "fullName@th")
-  String fullNameTh;
+  String? fullNameTh;
 
   HumanName(
       {required this.firstName,

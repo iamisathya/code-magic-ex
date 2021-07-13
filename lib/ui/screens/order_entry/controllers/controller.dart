@@ -1,5 +1,5 @@
-import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
+import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/find_customer.dart';
 import 'package:code_magic_ex/models/search_customer.dart';
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
@@ -25,12 +25,16 @@ class OrderEntryController extends GetxController {
     ),
   ].obs;
 
-  Rx<OrderEntryRadioButton> seletedOption = OrderEntryRadioButton(index: 0, name: "BA's ID").obs;
+  RxBool isSearching = false.obs;
+  RxString errorMessage = "".obs;
+
+  Rx<OrderEntryRadioButton> seletedOption =
+      OrderEntryRadioButton(index: 0, name: "BA's ID").obs;
 
   TextEditingController searchIdTextController = TextEditingController();
   SearchCustomer searchedResultsOfHref = SearchCustomer(items: []);
   FindCustomer searchedGuestUserInfo = FindCustomer(items: []);
-  List<SearchedUserInfo> searchResultsOfUserInfo = <SearchedUserInfo>[];
+  RxList<SearchedUserInfo> searchResultsOfUserInfo = <SearchedUserInfo>[].obs;
 
   void onChangedSearchType(OrderEntryRadioButton data) {
     seletedOption.value = searchRadioOptions[data.index];
@@ -43,11 +47,13 @@ class OrderEntryController extends GetxController {
           title: "Enroller ID empty", subTitle: "Please enter valid enroller");
       return;
     }
+    isSearching.value = true;
     if (seletedOption.value.index == 0) {
       searchUserById();
     } else {
       searchUserBySearchKey();
     }
+    update();
   }
 
   Future<void> searchUserById() async {
@@ -58,12 +64,16 @@ class OrderEntryController extends GetxController {
       if (searchedResultsOfHref.items.isNotEmpty) {
         // Move to details page
       }
-      update();
+      isSearching(false);
     } on DioError catch (e) {
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
       returnResponse(e.response!);
+      errorMessage( e.error.toString());
     } catch (err) {
+      errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
+    } finally {
+      isSearching(false);
     }
   }
 
@@ -77,11 +87,12 @@ class OrderEntryController extends GetxController {
             searchedResultsOfHref.items.map((e) => e.href).toList();
         searchUsersByHref(data);
       }
-      update();
     } on DioError catch (e) {
+      errorMessage(e.error.toString());
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
+      errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
     }
   }
@@ -89,16 +100,18 @@ class OrderEntryController extends GetxController {
   Future<void> searchUsersByHref(List<String> results) async {
     try {
       // * search for users by user id(search key)
-      final Dio dio = Dio();
-      var response = await dio.post(
-          "${Address.memberCallsBase + Address.validOrders}?type=getBAInfo",
-          data: results);
-      update();
+      searchResultsOfUserInfo.value = await MemberCallsService.init()
+          .searchUsersByHref("getBAInfo", results);
     } on DioError catch (e) {
+      errorMessage(e.error.toString());
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
+      errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
+    } finally {
+      update();
+      isSearching(false);
     }
   }
 

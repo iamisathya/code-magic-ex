@@ -337,6 +337,24 @@ class _MemberCallsService implements MemberCallsService {
     return value;
   }
 
+  @override
+  Future<List<SearchedUserInfo>> searchUsersByHref(type, task) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'type': type};
+    final _data = task;
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<SearchedUserInfo>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map(
+            (dynamic i) => SearchedUserInfo.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

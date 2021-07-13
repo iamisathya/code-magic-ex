@@ -81,7 +81,7 @@ HumanName _$HumanNameFromJson(Map<String, dynamic> json) {
     firstName: json['firstName'] as String,
     lastName: json['lastName'] as String,
     fullName: json['fullName'] as String,
-    fullNameTh: json['fullName@th'] as String,
+    fullNameTh: json['fullName@th'] as String?,
   );
 }
 
