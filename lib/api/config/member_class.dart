@@ -4,6 +4,7 @@ import 'package:code_magic_ex/models/easy_ship_reports.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/govt_id_verify.dart';
 import 'package:code_magic_ex/models/provience_item.dart';
+import 'package:code_magic_ex/models/search_reponse_by_href.dart';
 import 'package:code_magic_ex/models/user_id.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/models/zip_code_response.dart';
@@ -136,4 +137,9 @@ abstract class MemberCallsService {
     @Field("homePhone") String homePhone,
     @Field("password") String password,
   );
+
+
+  // //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=getBAInfo
+  // @POST(Address.validOrders)
+  // Future<List<SearchedUserInfo>> searchUsersByHref(@Query("type") String type);
 }

@@ -150,3 +150,7 @@ InputDecoration kInputDecoration(String hintText, String label) {
     labelText: label,
   );
 }
+
+BorderSide kBorderSide({double w = 2.0, Color c = kMainColor}) => BorderSide(color: c, width: w);
+
+BorderRadius kBorderRadius({double w = 8.0}) =>  BorderRadius.all(Radius.circular(w));

@@ -1,4 +1,7 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
+import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/components/body.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class OrderEntryHomeScreen extends StatelessWidget {
@@ -7,10 +10,11 @@ class OrderEntryHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Home"),
+        backgroundColor: kPageBackground,
+        appBar: const TransAppBar(
+          title: "Order Entry",
         ),
         drawer: NavigationDrawer(),
-        body: const Center(child: Text("This is home page")));
+        body: Body());
   }
 }

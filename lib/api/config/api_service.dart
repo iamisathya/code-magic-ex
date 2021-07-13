@@ -89,7 +89,7 @@ abstract class ApiService {
   Future<FindCustomer> findCustomer(
       @Query("unicity") int id, @Query("expand") String expand);
   
-    //? Example: https://hydra.unicity.net/v5a/customers?unicity=108357166&expand=customer
+  //? Example: https://hydra.unicity.net/v5a/customers?unicity=108357166&expand=customer
   @GET(Address.customers)
   Future<GuestUserInfoList> getCustomerInfo(
       @Query("unicity") int id, @Query("expand") String expand);

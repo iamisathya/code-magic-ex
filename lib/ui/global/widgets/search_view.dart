@@ -13,25 +13,25 @@ class SearchViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = controller.text.isNotEmpty ? kPrimaryColor : Colors.grey;
+    final Color color = controller.text.isNotEmpty ? kMainColor : Colors.grey;
     return Container(
         margin: const EdgeInsets.only(right: 16),
-        decoration: BoxDecoration(
-            border: Border.all(),
-            borderRadius: const BorderRadius.all(Radius.circular(8.0))),
         child: TextField(
           keyboardType: TextInputType.number,
-          cursorColor: Colors.grey[300],
+          cursorColor: kMainColor,
           controller: controller,
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(16),
+            fillColor: Colors.white,
+            filled: true,
+            isDense: true,
+            contentPadding: const EdgeInsets.all(20.0),
+            focusedBorder: kFocusedOutlineInputBorder(),
+            border: kOutlineInputBorder(),
             hintText: hintText,
-            focusedBorder: InputBorder.none,
-            // prefixIcon: const Icon(Icons.search, color: Colors.grey),
             suffixIcon: IconButton(
                 onPressed: controller.text.isNotEmpty ? controller.clear : null,
                 color: color,
-                icon: const Icon(Icons.clear)),
+                icon: const Icon(Icons.clear, color: kMainColor,)),
             hintStyle: TextStyle(color: Colors.grey[300]),
           ),
         ));
