@@ -38,6 +38,7 @@ class Body extends StatelessWidget {
                       label: controller.govtIdVerifyButton.value,
                       onPress: () => controller.verifyGovtIdNumber()),
                 ]),
+                const SizedBox(height: 30),
               if (controller.isGovtIdSuccess.value == true)
                 Column(
                   children: [
