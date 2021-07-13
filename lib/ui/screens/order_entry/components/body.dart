@@ -71,6 +71,7 @@ class Body extends StatelessWidget {
           title: Text(currentItem.id.unicity.toString()),
           subtitle: Text(currentItem.humanName.fullName),
           trailing: const Icon(Icons.arrow_forward_ios, color: kMainColor),
+          onTap: ()=> controller.onClickOpenOrderEntry(),
         ),
       ),
     );

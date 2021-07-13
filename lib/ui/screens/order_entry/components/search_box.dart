@@ -12,7 +12,7 @@ class SearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 16, left: 8, right: 8, top: 8),
       child: Row(
         children: [
           Flexible(child: SearchViewWidget(controller: controller.searchIdTextController)),

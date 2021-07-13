@@ -3,6 +3,7 @@ import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/find_customer.dart';
 import 'package:code_magic_ex/models/search_customer.dart';
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';
@@ -35,6 +36,13 @@ class OrderEntryController extends GetxController {
   SearchCustomer searchedResultsOfHref = SearchCustomer(items: []);
   FindCustomer searchedGuestUserInfo = FindCustomer(items: []);
   RxList<SearchedUserInfo> searchResultsOfUserInfo = <SearchedUserInfo>[].obs;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    searchIdTextController.text = "3011266";
+  }
 
   void onChangedSearchType(OrderEntryRadioButton data) {
     seletedOption.value = searchRadioOptions[data.index];
@@ -115,11 +123,8 @@ class OrderEntryController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    searchIdTextController.text = "3011266";
+  void onClickOpenOrderEntry() {
+    Get.to(() => OrderEntryTable());
   }
 }
 

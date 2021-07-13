@@ -12,12 +12,20 @@ class SearchRadioOptions extends StatelessWidget {
     return Row(
       children: controller.searchRadioOptions
           .map((data) => Obx(() => Flexible(
-                child: RadioListTile(
-                  title: Text(data.name),
-                  activeColor: kMainColor,
-                  groupValue: controller.seletedOption.value.index,
-                  value: data.index,
-                  onChanged: (val) => controller.onChangedSearchType(data),
+                child: Container(
+                  margin: kEdgeA8(),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                      border: kBorderAll(w: 3),
+                      borderRadius: kBorderRadius()),
+                  child: RadioListTile(
+                    contentPadding: const EdgeInsets.all(0),
+                    title: Text(data.name),
+                    activeColor: kMainColor,
+                    groupValue: controller.seletedOption.value.index,
+                    value: data.index,
+                    onChanged: (val) => controller.onChangedSearchType(data),
+                  ),
                 ),
               )))
           .toList(),
