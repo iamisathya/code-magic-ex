@@ -9,11 +9,15 @@ class EnrollHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: kPageBackground,
         appBar: AppBar(
           iconTheme: const IconThemeData(color: kMainColor),
           backgroundColor: Colors.white,
           elevation: 0,
-          title: const Text("Enroll", style: TextStyle(color: kMainColor),),
+          title: const Text(
+            "Enroll",
+            style: TextStyle(color: kMainColor),
+          ),
         ),
         drawer: NavigationDrawer(),
         body: Body());

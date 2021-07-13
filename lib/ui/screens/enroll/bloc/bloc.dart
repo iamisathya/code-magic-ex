@@ -21,6 +21,8 @@ import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class EnrollController extends GetxController {
+  ScrollController scrollController = ScrollController();
+
   TextEditingController enrollIdController = TextEditingController();
   TextEditingController sponsorIdController = TextEditingController();
   TextEditingController idCardNumberController = TextEditingController();
@@ -51,7 +53,11 @@ class EnrollController extends GetxController {
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
   RxBool isUnderAgeLimit = false.obs;
-  RxList<String> errorMessages = [""].obs;
+  RxList<String> errorMessages = <String>[].obs;
+  RxBool isEnrollerSponsorVerified = false.obs;
+  RxBool isGovtIdVerified = false.obs;
+  RxString enrollerSponsorVerifyButton = "Verify Enroller".obs;
+  RxString govtIdVerifyButton = "Verify ID".obs;
 
   List<DropdownMenuItem<String>> genderDropdownItems = [
     const DropdownMenuItem(value: "", child: Text("Select Gender")),
@@ -102,10 +108,14 @@ class EnrollController extends GetxController {
 
   Future<void> verifyEnrollerSponsor() async {
     if (enrollIdController.text.isEmpty) {
-      _renderErrorSnackBar();
+      _renderErrorSnackBar("Enroller ID empty", "Please enter valid enroller");
       return;
     }
+    enrollerSponsorVerifyButton.value = "Verifying";
     isSubmitting(true);
+    errorMessages.clear();
+    isGovtIdSuccess.value = false;
+    isEnrollerIdSuccess.value = false;
     update();
     try {
       // * if sponsor & enroller are same
@@ -122,13 +132,17 @@ class EnrollController extends GetxController {
         enrollerProfile = await ApiService.shared().getCustomerInfo(
             Parsing.intFrom(sponsorIdController.text)!, "customer");
       }
+      enrollerSponsorVerifyButton.value = "Verified";
       isEnrollerIdSuccess.value = true;
       isSubmitting(false);
       update();
     } on DioError catch (e) {
+      enrollerSponsorVerifyButton.value = "Verify Enroller";
       isSubmitting(false);
+      _renderErrorSnackBar("Error!", e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
+      enrollerSponsorVerifyButton.value = "Verify Enroller";
       isSubmitting(false);
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
@@ -138,9 +152,10 @@ class EnrollController extends GetxController {
 
   Future<void> verifyGovtIdNumber() async {
     if (idCardNumberController.text.isEmpty) {
-      _renderErrorSnackBar();
+      _renderErrorSnackBar("Empty!", "Please enter valid governament ID!");
       return;
     }
+    govtIdVerifyButton.value = "Verifying";
     isSubmitting(true);
     update();
     try {
@@ -153,10 +168,12 @@ class EnrollController extends GetxController {
             value: province.provienceId,
             child: Text(province.provienceNameEn)));
       }
+      govtIdVerifyButton.value = "Verified";
       isGovtIdSuccess.value = true;
       isSubmitting(false);
       update();
     } catch (err) {
+      govtIdVerifyButton.value = "Verified ID";
       isSubmitting(false);
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
@@ -166,7 +183,8 @@ class EnrollController extends GetxController {
 
   Future<void> getAmphuresByProvince() async {
     if (provience.isEmpty) {
-      _renderErrorSnackBar();
+      _renderErrorSnackBar(
+          "Select province", "Please select your province to proceed!");
       return;
     }
     try {
@@ -185,7 +203,8 @@ class EnrollController extends GetxController {
 
   Future<void> getDistrictsByAmphur() async {
     if (area.value.isEmpty) {
-      _renderErrorSnackBar();
+      _renderErrorSnackBar(
+          "Select amphur", "Please select your amphur to proceed!");
       return;
     }
     try {
@@ -205,7 +224,8 @@ class EnrollController extends GetxController {
 
   Future<void> getZipcodeByDistricts() async {
     if (subArea.value.isEmpty) {
-      _renderErrorSnackBar();
+      _renderErrorSnackBar(
+          "Select disctrict", "Please select your disctrict to proceed!");
       return;
     }
     try {
@@ -242,6 +262,13 @@ class EnrollController extends GetxController {
       final enrollResponse =
           EnrollResponse.fromJson(body as Map<String, dynamic>);
       if (enrollResponse.success == "No" && enrollResponse.message.isNotEmpty) {
+        // * Scroll to bottom to see error
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 300),
+        );
+        errorMessages.clear();
         errorMessages.addAll(enrollResponse.message);
       }
       update();
@@ -251,14 +278,14 @@ class EnrollController extends GetxController {
     }
   }
 
-  void _renderErrorSnackBar() {
+  void _renderErrorSnackBar(String title, String message) {
     return Get.snackbar(
-      "Search field empty!",
-      "Please enter user id to search.",
-      titleText: const Text("Search field empty!",
-          style: TextStyle(color: kPrimaryColor, fontSize: 16)),
-      messageText: const Text("Please enter user id to search.",
-          style: TextStyle(color: kPrimaryColor, fontSize: 14)),
+      title,
+      message,
+      titleText: Text(title,
+          style: const TextStyle(color: kPrimaryColor, fontSize: 16)),
+      messageText: Text(message,
+          style: const TextStyle(color: kPrimaryColor, fontSize: 14)),
       backgroundColor: Colors.white,
       borderColor: kPrimaryLightColor,
       animationDuration: const Duration(milliseconds: 300),
