@@ -3,6 +3,7 @@ import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/find_customer.dart';
 import 'package:code_magic_ex/models/search_customer.dart';
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -13,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class OrderEntryController extends GetxController {
+  final OrderEntryTableController controller = Get.put(OrderEntryTableController());
   RxInt selectedTab = 0.obs;
 
   RxList<OrderEntryRadioButton> searchRadioOptions = [
@@ -42,6 +44,7 @@ class OrderEntryController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     searchIdTextController.text = "3011266";
+    controller.getOrderEntryProductList("userId");
   }
 
   void onChangedSearchType(OrderEntryRadioButton data) {
@@ -123,8 +126,9 @@ class OrderEntryController extends GetxController {
     }
   }
 
-  void onClickOpenOrderEntry() {
-    Get.to(() => OrderEntryTable());
+  void onClickOpenOrderEntry(String userId) {
+    controller.getOrderEntryProductList(userId);
+    Get.to(() => OrderEntryTable(), arguments: userId);
   }
 }
 

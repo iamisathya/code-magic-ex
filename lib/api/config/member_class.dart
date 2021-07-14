@@ -3,6 +3,7 @@ import 'package:code_magic_ex/models/district_item.dart';
 import 'package:code_magic_ex/models/easy_ship_reports.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/govt_id_verify.dart';
+import 'package:code_magic_ex/models/order_entry_product_item.dart';
 import 'package:code_magic_ex/models/provience_item.dart';
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
 import 'package:code_magic_ex/models/user_id.dart';
@@ -142,4 +143,12 @@ abstract class MemberCallsService {
   // //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=getBAInfo
   @POST(Address.validOrders)
   Future<List<SearchedUserInfo>> searchUsersByHref(@Query("type") String type, @Body() List<String> task);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=104&itemcode=17532&selectname=itemcode190
+  @POST(Address.validOrders)
+  Future<dynamic> getOrderEntryProductInfo(@Query("type") String type, @Query("itemcode") String itemcode, @Query("selectname") String selectname);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=31&token=6e4234c7-fee7-4160-9e17-c029415a6b4f&warehouse=https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c
+  @POST(Address.validOrders)
+  Future<List<OrderEntryItem>> getOrderEntryProductList(@Query("type") String type, @Query("token") String token, @Query("warehouse") String warehouse);
 }
