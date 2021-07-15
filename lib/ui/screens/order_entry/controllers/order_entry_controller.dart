@@ -26,7 +26,7 @@ class OrderEntryTableController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    // loadInventoryRecords();
+    loadInventoryRecords();
     _generateEmptyCart();
   }
 
@@ -35,6 +35,10 @@ class OrderEntryTableController extends GetxController {
       final CartProductsItem item = CartProductsItem();
       cartProducts.add(item);
     }
+  }
+
+  void onUpdateQuantity(CartUpdate type , String itemCde) {
+
   }
 
   Future<void> loadInventoryRecords() async {

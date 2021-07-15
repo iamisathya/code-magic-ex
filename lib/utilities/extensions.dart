@@ -66,6 +66,10 @@ extension AppStyles on TextTheme {
       color: Colors.blue,
       fontWeight: FontWeight.bold);
 
+
+  TextStyle get cartFooter =>
+      const TextStyle(fontSize: 16.0, color: Colors.black);
+
   TextStyle get tableHeader =>
       const TextStyle(fontSize: 16.0, color: Colors.white);
 

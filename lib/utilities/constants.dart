@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 const kPageBackground = Color(0xFFF2F3F7);
 const kMainColor = Color(0xFF204CDC);
+const kMainColorSub = Color(0xFF4660B4);
 const kPrimaryColor = Color(0xFF1D3557);
 const kPrimaryLightColor = Color(0xFF457B9D);
 const kPrimaryGradientColor = LinearGradient(
