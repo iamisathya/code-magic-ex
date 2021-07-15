@@ -127,7 +127,6 @@ class OrderEntryController extends GetxController {
   }
 
   void onClickOpenOrderEntry(String userId) {
-    controller.getOrderEntryProductList(userId);
     Get.to(() => OrderEntryTable(), arguments: userId);
   }
 }

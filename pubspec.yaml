@@ -31,6 +31,7 @@ dependencies:
   connectivity_plus: ^1.0.1
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
+  dropdown_search: ^0.6.3
   easy_localization: ^3.0.0
   equatable: ^2.0.2
   excel: 2.0.0-null-safety-3

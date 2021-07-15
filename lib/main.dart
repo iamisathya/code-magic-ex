@@ -1,6 +1,7 @@
 import 'package:code_magic_ex/translations/translations.dart';
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
     UserSessionManager.shared.setUserInfoFromDB();
     UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
-    return isLoggedIn ? OrderEntryHomeScreen() : LoginScreen();
+    return isLoggedIn ? OrderEntryTable() : LoginScreen();
   }
   
   //* init firebase analytics

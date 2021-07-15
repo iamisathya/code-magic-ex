@@ -123,6 +123,17 @@ InputDecoration kTextInputDecoration({String hintText= "", String helperText = "
   );
 }
 
+InputDecoration kAutoCompleteTextInputDecoration({String hintText= "", String helperText = ""}) {
+  return InputDecoration(
+    fillColor: Colors.white,
+    filled: true,
+    isDense: true,
+    focusedBorder: kFocusedOutlineInputBorder(),
+    border: kOutlineInputBorder(),
+  );
+}
+
+
 Divider kRowDivider = const Divider(
   color: Colors.black54,
   height: 1.0,
@@ -159,3 +170,5 @@ BorderSide kBorderSide({double w = 2.0, Color c = kMainColor}) => BorderSide(col
 BorderRadius kBorderRadius({double w = 8.0}) =>  BorderRadius.all(Radius.circular(w));
 
 Border kBorderAll({double w = 2.0, Color c = kMainColor}) =>  Border.all(color: c, width: w);
+
+BoxDecoration kTableHeaderTileBox = BoxDecoration(color: kMainColor, border: Border.all(width: 0.5));
