@@ -19,11 +19,11 @@ class OrderEntryTable extends StatelessWidget {
         ),
         body: OrderEntryBody(),
         bottomNavigationBar: BottomAppBar(
-          color: kPageBackground,
-            child: CartFooter(
-          onPressed: () {},
-          totalCartPrice: controller.totalCartPrice.value,
-          totalCartPv: controller.totalCartPv.value,
-        )));
+            color: kPageBackground,
+            child: Obx(() => CartFooter(
+                  onPressed: () {},
+                  totalCartPrice: controller.totalCartPrice.value,
+                  totalCartPv: controller.totalCartPv.value,
+                ))));
   }
 }

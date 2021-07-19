@@ -1,21 +1,18 @@
+import 'dart:ffi';
+
 import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
-import 'package:code_magic_ex/models/order_entry_product_item.dart';
-import 'package:code_magic_ex/models/order_entry_product_info.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class OrderEntryTableController extends GetxController {
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
-  RxList<OrderEntryItem> allProductList = <OrderEntryItem>[].obs;
-  OrderEntryProductInfo orderEntryProductInfo = OrderEntryProductInfo();
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   RxString errorMessage = "".obs;
   RxBool isLoading = false.obs;
@@ -26,8 +23,8 @@ class OrderEntryTableController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    loadInventoryRecords();
     _generateEmptyCart();
+    loadInventoryRecords();
   }
 
   void _generateEmptyCart() {
@@ -37,16 +34,13 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  void onUpdateQuantity(CartUpdate type , String itemCde) {
-
-  }
-
   Future<void> loadInventoryRecords() async {
     const String userId =
         "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
       inventoryRecords =
           Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
+      dropDownItems();
     } on DioError catch (e) {
       errorMessage(e.error.toString());
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
@@ -60,45 +54,12 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<void> getOrderEntryProductList(String itemCode) async {
-    const String warehouse =
-        "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
-    try {
-      // * search for users by user id(search key)
-      allProductList.value = await MemberCallsService.init()
-          .getOrderEntryProductList(kOrderEntryProductList,
-              "6e4234c7-fee7-4160-9e17-c029415a6b4f", warehouse);
-    } on DioError catch (e) {
-      errorMessage(e.error.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      returnResponse(e.response!);
-    } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
-    } finally {
-      isLoading(false);
-    }
-  }
-
-  Future<void> getOrderEntryProductInfo(String itemCode) async {
-    const String selectname = "itemcode190";
-    try {
-      // * search for users by user id(search key)
-      var response = await MemberCallsService.init().getOrderEntryProductInfo(
-          kOrderEntryProductInfo, itemCode, selectname);
-    } on DioError catch (e) {
-      errorMessage(e.error.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      returnResponse(e.response!);
-    } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
-    } finally {
-      isLoading(false);
-    }
+  String findItemCode(int idx) {
+    return inventoryRecords.value.items[idx].item.id.unicity;
   }
 
   void addItemToCart({required String itemCode, required int index}) {
+    final selectedIdx = inventoryRecords.value.items.indexWhere((e) => e.item.id.unicity == itemCode);
     final InventoryRecordItems itemFound = inventoryRecords.value.items
         .firstWhere((item) => item.item.id.unicity == itemCode);
     final CartProductsItem item = CartProductsItem(
@@ -109,8 +70,8 @@ class OrderEntryTableController extends GetxController {
         itemPv: itemFound.terms.pvEach,
         totalPrice: 1 * itemFound.terms.priceEach,
         totalPv: 1 * itemFound.terms.pvEach);
-    cartProducts.insert(index, item);
-    update();
+    cartProducts.insert(selectedIdx, item);
+    calculateTotal();
   }
 
   void updateQuantity(CartUpdate type, String itemCode) {
@@ -123,14 +84,40 @@ class OrderEntryTableController extends GetxController {
         target.totalPv = target.quantity * target.itemPv;
       } else {
         if (target.quantity == 1) {
-          cartProducts.removeWhere((item) => item.itemCode == itemCode);
+          onPressRemove(itemCode);
         } else {
           target.quantity = target.quantity - 1;
         }
       }
     }
-    update();
+    calculateTotal();
+  }
+
+  void calculateTotal() {
+    totalCartPrice.value =
+        cartProducts.fold(0, (i, element) => i + element.totalPrice);
+    totalCartPv.value =
+        cartProducts.fold(0, (i, element) => i + element.totalPv);
+    // update();
+  }
+
+  void onUpdateQuantity(CartUpdate type, String itemCode) {
+    if (type == CartUpdate.increament) {
+      updateQuantity(CartUpdate.increament, itemCode);
+    } else {
+      updateQuantity(CartUpdate.decreament, itemCode);
+    }
+  }
+
+  void onPressRemove(String itemCode) {
+    cartProducts.removeWhere((item) => item.itemCode == itemCode);
+    calculateTotal();
   }
 
   void placeOrder() {}
+
+  List<String> dropDownItems() {
+    final items = inventoryRecords.value.items.map((e) => e.item.id.unicity).toList();
+    return items;
+  }
 }

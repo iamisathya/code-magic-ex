@@ -44,7 +44,7 @@ class OrderEntryController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     searchIdTextController.text = "3011266";
-    controller.getOrderEntryProductList("userId");
+    // controller.getOrderEntryProductList("userId");
   }
 
   void onChangedSearchType(OrderEntryRadioButton data) {

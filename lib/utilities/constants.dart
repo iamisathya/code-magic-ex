@@ -81,9 +81,10 @@ EdgeInsets kEdgeA12() => const EdgeInsets.all(12.0);
 EdgeInsets kEdgeA16() => const EdgeInsets.all(16.0);
 EdgeInsets kEdgeA24() => const EdgeInsets.all(24.0);
 
+EdgeInsets kEdgeInset({double v = 8.0}) => EdgeInsets.all(v);
+
 BoxDecoration kCircular8 =
     BoxDecoration(borderRadius: BorderRadius.circular(8), color: kPrimaryColor);
-
 MaterialStateProperty<RoundedRectangleBorder> elevatedShape() {
   return MaterialStateProperty.all<RoundedRectangleBorder>(
       RoundedRectangleBorder(
@@ -111,7 +112,8 @@ OutlineInputBorder kOutlineInputBorder() {
       borderRadius: BorderRadius.all(Radius.circular(12.0)));
 }
 
-InputDecoration kTextInputDecoration({String hintText= "", String helperText = ""}) {
+InputDecoration kTextInputDecoration(
+    {String hintText = "", String helperText = ""}) {
   return InputDecoration(
     fillColor: Colors.white,
     filled: true,
@@ -124,7 +126,8 @@ InputDecoration kTextInputDecoration({String hintText= "", String helperText = "
   );
 }
 
-InputDecoration kAutoCompleteTextInputDecoration({String hintText= "", String helperText = ""}) {
+InputDecoration kAutoCompleteTextInputDecoration(
+    {String hintText = "", String helperText = ""}) {
   return InputDecoration(
     fillColor: Colors.white,
     filled: true,
@@ -134,6 +137,10 @@ InputDecoration kAutoCompleteTextInputDecoration({String hintText= "", String he
   );
 }
 
+//* Box Decoration
+BoxDecoration kTableHeaderBoxDecoration(
+        {Color c = kMainColor, double w = 0.5, Color bc = Colors.white}) =>
+    BoxDecoration(color: c, border: Border.all(width: w, color: bc));
 
 Divider kRowDivider = const Divider(
   color: Colors.black54,
@@ -150,12 +157,15 @@ String kEasyShipReports = "2";
 String kOrderEntryProductInfo = "104";
 String kOrderEntryProductList = "31";
 
-
 // * Screen size related
 
 double kScreenHeight = Get.height;
 
 double kScreenWidth = Get.width;
+
+// * Border
+
+InputDecoration kBorderNone = const InputDecoration(border: InputBorder.none);
 
 InputDecoration kInputDecoration(String hintText, String label) {
   return InputDecoration(
@@ -166,10 +176,14 @@ InputDecoration kInputDecoration(String hintText, String label) {
   );
 }
 
-BorderSide kBorderSide({double w = 2.0, Color c = kMainColor}) => BorderSide(color: c, width: w);
+BorderSide kBorderSide({double w = 2.0, Color c = kMainColor}) =>
+    BorderSide(color: c, width: w);
 
-BorderRadius kBorderRadius({double w = 8.0}) =>  BorderRadius.all(Radius.circular(w));
+BorderRadius kBorderRadius({double w = 8.0}) =>
+    BorderRadius.all(Radius.circular(w));
 
-Border kBorderAll({double w = 2.0, Color c = kMainColor}) =>  Border.all(color: c, width: w);
+Border kBorderAll({double w = 2.0, Color c = kMainColor}) =>
+    Border.all(color: c, width: w);
 
-BoxDecoration kTableHeaderTileBox = BoxDecoration(color: kMainColor, border: Border.all(width: 0.5));
+BoxDecoration kTableHeaderTileBox =
+    BoxDecoration(color: kMainColor, border: Border.all(width: 0.5));
