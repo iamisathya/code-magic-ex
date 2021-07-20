@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:code_magic_ex/api/request/request_order_calculation.dart';
 import 'package:code_magic_ex/models/guest_user_info.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:dio/dio.dart';
@@ -14,6 +15,7 @@ import 'package:code_magic_ex/models/inventory_movement_records.dart';
 import 'package:code_magic_ex/models/managed_warehouse.dart';
 import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:code_magic_ex/models/search_customer.dart';
+import 'package:code_magic_ex/models/order_calc_response.dart';
 
 import 'package:code_magic_ex/api/request/request_customer_token.dart';
 import 'package:code_magic_ex/models/user_info.dart';
@@ -142,4 +144,8 @@ abstract class MemberCalls2Service {
       @Query('lang') String lang,
       @Query('id') String id,
       @Query('action') String action);
+  
+    //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
+  @POST(Address.validOrders)
+  Future<OrderCalculationResponse> orderCalculation(@Query('order') RequestOrderCalculation uShopData);
 }

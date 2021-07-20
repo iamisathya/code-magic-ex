@@ -26,4 +26,5 @@ class Address {
   static const String poOrder = "https://dsc-th.unicity.com/po_1.php";
   static const String validateIdCard = "api/unishop/v1/th/validate_address/idcard";
   static const String verifyEnroll = "THA/THA_DSC_Enroll_ValidationV2.asp";
+  static const String validateEmail = "ALL/Email_Validation.asp";
 }

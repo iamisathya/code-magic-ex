@@ -395,6 +395,24 @@ class _MemberCallsService implements MemberCallsService {
     return value;
   }
 
+  @override
+  Future<EnrollResponse> validateEmail(language, email) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = {'language': language, 'email': email};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<EnrollResponse>(Options(
+                method: 'POST',
+                headers: <String, dynamic>{},
+                extra: _extra,
+                contentType: 'application/x-www-form-urlencoded')
+            .compose(_dio.options, 'ALL/Email_Validation.asp',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = EnrollResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

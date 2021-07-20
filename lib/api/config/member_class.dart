@@ -151,4 +151,9 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=31&token=6e4234c7-fee7-4160-9e17-c029415a6b4f&warehouse=https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c
   @POST(Address.validOrders)
   Future<List<OrderEntryItem>> getOrderEntryProductList(@Query("type") String type, @Query("token") String token, @Query("warehouse") String warehouse);
+
+  //? url=https://member-calls.unicity.com/ALL/Email_Validation.asp
+  @POST(Address.validateEmail)
+  @FormUrlEncoded()
+  Future<EnrollResponse> validateEmail(  @Field("language") String language, @Field("email") String email);
 }
