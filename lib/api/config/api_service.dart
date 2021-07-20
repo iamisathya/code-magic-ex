@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'package:code_magic_ex/api/request/request_order_calculation.dart';
+import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/guest_user_info.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:dio/dio.dart';
@@ -145,7 +147,11 @@ abstract class MemberCalls2Service {
       @Query('id') String id,
       @Query('action') String action);
   
-    //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
+  //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
   @POST(Address.validOrders)
   Future<OrderCalculationResponse> orderCalculation(@Query('order') RequestOrderCalculation uShopData);
+
+  //? Example: https://member-calls2.unicity.com/unishop-fn-misc/cashcoupon_quota/3011266?pv=25
+  @POST("${Address.cashCoupon}/3011266")
+  Future<CashCouponResponse> getCashCoupon(@Query('pv') String pv);
 }

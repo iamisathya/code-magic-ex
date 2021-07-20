@@ -1,9 +1,11 @@
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
+import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';
@@ -19,6 +21,7 @@ class OrderEntryTableController extends GetxController {
   RxBool isLoading = false.obs;
   RxDouble totalCartPrice = 0.0.obs;
   RxInt totalCartPv = 0.obs;
+  RxInt availableCreditAmount = 0.obs;
 
   @override
   void onInit() {
@@ -60,6 +63,26 @@ class OrderEntryTableController extends GetxController {
       final EnrollResponse validationResponse = await MemberCallsService.init().validateEmail(kCurrentLanguage, "rasachankan@gmail.com");
       if(validationResponse.success != "No") {
         // continue with order place
+      }
+    } on DioError catch (e) {
+      errorMessage(e.error.toString());
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      returnResponse(e.response!);
+    } catch (err) {
+      errorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
+    } finally {
+      isLoading(false);
+      update();
+    }
+  }
+
+  Future<void> getCashCoupon() async {
+    try {
+      final CashCouponResponse cashCoupon = await MemberCalls2Service.init().getCashCoupon(totalCartPv.value.toString());
+      if(cashCoupon.success != false) {
+        // continue with order place
+        availableCreditAmount.value = cashCoupon.availableCreditAmount;
       }
     } on DioError catch (e) {
       errorMessage(e.error.toString());

@@ -287,6 +287,22 @@ class _MemberCalls2Service implements MemberCalls2Service {
     return value;
   }
 
+  @override
+  Future<CashCouponResponse> getCashCoupon(pv) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'pv': pv};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CashCouponResponse>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(
+                    _dio.options, 'unishop-fn-misc/cashcoupon_quota//3011266',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CashCouponResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
