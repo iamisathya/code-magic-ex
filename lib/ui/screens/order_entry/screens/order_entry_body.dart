@@ -134,6 +134,8 @@ class OrderEntryBody extends StatelessWidget {
   Autocomplete renderAutoComplete(int idx) {
     String _displayStringForOption(InventoryRecordItems option) =>
         option.item.id.unicity;
+    final itemCode = controller
+                        .cartProducts[idx].itemCode;
 
     return Autocomplete<InventoryRecordItems>(
       fieldViewBuilder: (BuildContext context,
@@ -143,13 +145,13 @@ class OrderEntryBody extends StatelessWidget {
         return TextField(
           decoration: InputDecoration(
               border: InputBorder.none,
-              suffixIcon: IconButton(
+              suffixIcon: (itemCode != "") ? IconButton(
                   onPressed: () {
+                    if(itemCode == "") return;
+                    controller.onPressRemove(itemCode);
                     fieldTextEditingController.text = "";
-                    controller.onPressRemove(controller
-                        .inventoryRecords.value.items[idx].item.id.unicity);
                   },
-                  icon: const Icon(Icons.clear, color: Colors.black))),
+                  icon: const Icon(Icons.clear, color: Colors.black)) : SizedBox()),
           controller: fieldTextEditingController,
           focusNode: fieldFocusNode,
           style: const TextStyle(fontWeight: FontWeight.bold),

@@ -59,7 +59,6 @@ class OrderEntryTableController extends GetxController {
   }
 
   void addItemToCart({required String itemCode, required int index}) {
-    final selectedIdx = inventoryRecords.value.items.indexWhere((e) => e.item.id.unicity == itemCode);
     final InventoryRecordItems itemFound = inventoryRecords.value.items
         .firstWhere((item) => item.item.id.unicity == itemCode);
     final CartProductsItem item = CartProductsItem(
@@ -70,7 +69,7 @@ class OrderEntryTableController extends GetxController {
         itemPv: itemFound.terms.pvEach,
         totalPrice: 1 * itemFound.terms.priceEach,
         totalPv: 1 * itemFound.terms.pvEach);
-    cartProducts.insert(selectedIdx, item);
+    cartProducts.insert(index, item);
     calculateTotal();
   }
 
