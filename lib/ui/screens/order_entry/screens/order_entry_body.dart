@@ -1,11 +1,9 @@
 import 'package:code_magic_ex/models/inventory_records.dart';
-import 'package:code_magic_ex/ui/global/widgets/all_icons.dart';
 import 'package:code_magic_ex/ui/global/widgets/common_button.dart';
 import 'package:code_magic_ex/ui/global/widgets/counter_view.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/extensions.dart';
@@ -143,6 +141,8 @@ class OrderEntryBody extends StatelessWidget {
           FocusNode fieldFocusNode,
           VoidCallback onFieldSubmitted) {
         return TextField(
+          textAlign: TextAlign.center,
+          cursorColor: Colors.black,
           decoration: InputDecoration(
               border: InputBorder.none,
               suffixIcon: (itemCode != "") ? IconButton(
@@ -160,11 +160,14 @@ class OrderEntryBody extends StatelessWidget {
       displayStringForOption: _displayStringForOption,
       optionsBuilder: (TextEditingValue textEditingValue) {
         if (textEditingValue.text == '') {
+          if (itemCode != ""){
+            controller.onPressRemove(itemCode);
+          }
           return const Iterable<InventoryRecordItems>.empty();
         }
         return controller.inventoryRecords.value.items
             .where((InventoryRecordItems option) {
-          return option.toString().contains(textEditingValue.text);
+          return option.item.id.unicity.contains(textEditingValue.text);
         });
       },
       onSelected: (InventoryRecordItems item) {

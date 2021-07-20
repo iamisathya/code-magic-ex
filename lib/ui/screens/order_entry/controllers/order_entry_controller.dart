@@ -111,6 +111,8 @@ class OrderEntryTableController extends GetxController {
   }
 
   void onPressRemove(String itemCode) {
+    final bool targetFound = cartProducts.map((element) => element.itemCode).contains(itemCode);
+    if(!targetFound) return;
     cartProducts.removeWhere((item) => item.itemCode == itemCode);
     calculateTotal();
   }
