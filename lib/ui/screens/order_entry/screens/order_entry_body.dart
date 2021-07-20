@@ -151,7 +151,7 @@ class OrderEntryBody extends StatelessWidget {
                     controller.onPressRemove(itemCode);
                     fieldTextEditingController.text = "";
                   },
-                  icon: const Icon(Icons.clear, color: Colors.black)) : SizedBox()),
+                  icon: const Icon(Icons.clear, color: Colors.black)) : const SizedBox()),
           controller: fieldTextEditingController,
           focusNode: fieldFocusNode,
           style: const TextStyle(fontWeight: FontWeight.bold),

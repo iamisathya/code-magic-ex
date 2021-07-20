@@ -1,12 +1,9 @@
-import 'dart:ffi';
-
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
@@ -59,6 +56,11 @@ class OrderEntryTableController extends GetxController {
   }
 
   void addItemToCart({required String itemCode, required int index}) {
+    final bool targetFound = cartProducts.map((element) => element.itemCode).contains(itemCode);
+    if(targetFound) {
+      updateQuantity(CartUpdate.increament, itemCode);
+      return;
+    }
     final InventoryRecordItems itemFound = inventoryRecords.value.items
         .firstWhere((item) => item.item.id.unicity == itemCode);
     final CartProductsItem item = CartProductsItem(
