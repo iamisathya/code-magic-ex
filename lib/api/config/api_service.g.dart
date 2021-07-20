@@ -273,10 +273,11 @@ class _MemberCalls2Service implements MemberCalls2Service {
   }
 
   @override
-  Future<OrderCalculationResponse> orderCalculation(uShopData) async {
+  Future<OrderCalculationResponse> orderCalculation(request) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'order': uShopData.toJson()};
+    final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<OrderCalculationResponse>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)

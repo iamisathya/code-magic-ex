@@ -8,6 +8,7 @@ class RequestOrderCalculation {
   Order order;
   @JsonKey(name: "uShopData")
   UShopData uShopData;
+
   RequestOrderCalculation({
     required this.order,
     required this.uShopData,
@@ -21,14 +22,32 @@ class RequestOrderCalculation {
 
 @JsonSerializable()
 class Order {
-  @JsonKey(name: "items")
-  List<LineItem> items;
+  @JsonKey(name: "customer")
+  CustomerHref customer;
+  @JsonKey(name: "lines")
+  Lines lines;
+  @JsonKey(name: "shipToAddress")
+  ShipToAddress shipToAddress;
+  @JsonKey(name: "shippingMethod")
+  ShippingMethod shippingMethod;
 
-  Order({required this.items});
+  Order({required this.lines, required this.customer, required this.shipToAddress, required this.shippingMethod });
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderToJson(this);
+}
+
+@JsonSerializable()
+class Lines {
+  @JsonKey(name: "items")
+  List<LineItem> items;
+
+  Lines({required this.items });
+
+  factory Lines.fromJson(Map<String, dynamic> json) => _$LinesFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LinesToJson(this);
 }
 
 @JsonSerializable()

@@ -1,22 +1,22 @@
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/config/member_class.dart';
+import 'package:code_magic_ex/api/request/request_order_calculation.dart';
+import 'package:code_magic_ex/models/order_calc_response.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class OrderEntryTableController extends GetxController {
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
-  Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;  
+  Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   RxString errorMessage = "".obs;
   RxBool isLoading = false.obs;
   RxDouble totalCartPrice = 0.0.obs;
@@ -58,19 +58,65 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<void> validateEmail() async {
+  Future<bool> validateEmail() async {
     try {
-      final EnrollResponse validationResponse = await MemberCallsService.init().validateEmail(kCurrentLanguage, "rasachankan@gmail.com");
-      if(validationResponse.success != "No") {
-        // continue with order place
+      final EnrollResponse validationResponse = await MemberCallsService.init()
+          .validateEmail(kCurrentLanguage, "rasachankan@gmail.com");
+      if (validationResponse.success != "No") {
+        return true;
       }
+      return false;
     } on DioError catch (e) {
       errorMessage(e.error.toString());
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
       returnResponse(e.response!);
+      return false;
     } catch (err) {
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
+      return false;
+    } finally {
+      isLoading(false);
+      update();
+    }
+  }
+
+  Future<bool> orderCalculation() async {
+    try {
+      final List<LineItem> checkoutItems = cartProducts
+          .map((element) => LineItem(
+              itemId: element.itemCode,
+              quantity: element.quantity.toString(),
+              items: CustomerHref(
+                  href:
+                      "https://hydra.unicity.net/v5a/items?id.unicity=${element.itemCode}")))
+          .toList();
+      final RequestOrderCalculation requestObject = RequestOrderCalculation(
+          uShopData: UShopData(loginId: "3011266"),
+          order: Order(
+              lines: Lines(items: checkoutItems),
+              shipToAddress: ShipToAddress(country: "TH"),
+              shippingMethod: ShippingMethod(
+                  href:
+                      "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"),
+              customer: CustomerHref(
+                  href:
+                      "https://hydra.unicity.net/v5a/customers?type=Associate")));
+      final OrderCalculationResponse validationResponse =
+          await MemberCalls2Service.init().orderCalculation(requestObject);
+      if (validationResponse.items.isNotEmpty) {
+        return true;
+      }
+      return false;
+    } on DioError catch (e) {
+      errorMessage(e.error.toString());
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      returnResponse(e.response!);
+      return false;
+    } catch (err) {
+      errorMessage(err.toString());
+      LoggerService.instance.e(err.toString());
+      return false;
     } finally {
       isLoading(false);
       update();
@@ -79,8 +125,9 @@ class OrderEntryTableController extends GetxController {
 
   Future<void> getCashCoupon() async {
     try {
-      final CashCouponResponse cashCoupon = await MemberCalls2Service.init().getCashCoupon(totalCartPv.value.toString());
-      if(cashCoupon.success != false) {
+      final CashCouponResponse cashCoupon = await MemberCalls2Service.init()
+          .getCashCoupon(totalCartPv.value.toString());
+      if (cashCoupon.success != false) {
         // continue with order place
         availableCreditAmount.value = cashCoupon.availableCreditAmount;
       }
@@ -97,13 +144,25 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
+  Future<void> validateOrder() async {
+    final bool isValidEMail = await validateEmail();
+    if (!isValidEMail) return;
+
+    final bool validated = await orderCalculation();
+    if (!validated) return;
+
+    await getCashCoupon();
+    if (!validated) return;
+  }
+
   String findItemCode(int idx) {
     return inventoryRecords.value.items[idx].item.id.unicity;
   }
 
   void addItemToCart({required String itemCode, required int index}) {
-    final bool targetFound = cartProducts.map((element) => element.itemCode).contains(itemCode);
-    if(targetFound) {
+    final bool targetFound =
+        cartProducts.map((element) => element.itemCode).contains(itemCode);
+    if (targetFound) {
       updateQuantity(CartUpdate.increament, itemCode);
       return;
     }
@@ -157,8 +216,9 @@ class OrderEntryTableController extends GetxController {
   }
 
   void onPressRemove(String itemCode) {
-    final bool targetFound = cartProducts.map((element) => element.itemCode).contains(itemCode);
-    if(!targetFound) return;
+    final bool targetFound =
+        cartProducts.map((element) => element.itemCode).contains(itemCode);
+    if (!targetFound) return;
     cartProducts.removeWhere((item) => item.itemCode == itemCode);
     calculateTotal();
   }
@@ -166,7 +226,8 @@ class OrderEntryTableController extends GetxController {
   void placeOrder() {}
 
   List<String> dropDownItems() {
-    final items = inventoryRecords.value.items.map((e) => e.item.id.unicity).toList();
+    final items =
+        inventoryRecords.value.items.map((e) => e.item.id.unicity).toList();
     return items;
   }
 }

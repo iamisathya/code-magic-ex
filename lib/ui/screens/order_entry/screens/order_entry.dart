@@ -21,7 +21,7 @@ class OrderEntryTable extends StatelessWidget {
         bottomNavigationBar: BottomAppBar(
             color: kPageBackground,
             child: Obx(() => CartFooter(
-                  onPressed: () {},
+                  onPressed: controller.validateOrder,
                   totalCartPrice: controller.totalCartPrice.value,
                   totalCartPv: controller.totalCartPv.value,
                 ))));

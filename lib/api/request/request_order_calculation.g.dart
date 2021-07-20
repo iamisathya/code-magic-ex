@@ -23,13 +23,31 @@ Map<String, dynamic> _$RequestOrderCalculationToJson(
 
 Order _$OrderFromJson(Map<String, dynamic> json) {
   return Order(
+    lines: Lines.fromJson(json['lines'] as Map<String, dynamic>),
+    customer: CustomerHref.fromJson(json['customer'] as Map<String, dynamic>),
+    shipToAddress:
+        ShipToAddress.fromJson(json['shipToAddress'] as Map<String, dynamic>),
+    shippingMethod:
+        ShippingMethod.fromJson(json['shippingMethod'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
+      'customer': instance.customer,
+      'lines': instance.lines,
+      'shipToAddress': instance.shipToAddress,
+      'shippingMethod': instance.shippingMethod,
+    };
+
+Lines _$LinesFromJson(Map<String, dynamic> json) {
+  return Lines(
     items: (json['items'] as List<dynamic>)
         .map((e) => LineItem.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
-Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
+Map<String, dynamic> _$LinesToJson(Lines instance) => <String, dynamic>{
       'items': instance.items,
     };
 
