@@ -15,15 +15,17 @@ class OrderEntryBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => HorizontalDataTable(
-          leftHandSideColumnWidth: 180,
-          rightHandSideColumnWidth: 1320,
-          isFixedHeader: true,
-          headerWidgets: _getTitleWidget(context),
-          leftSideItemBuilder: _generateFirstColumnRow,
-          rightSideItemBuilder: _generateRightHandSideColumnRow,
-          itemCount: controller.cartProducts.length,
-        ));
+    return Obx(
+      () => HorizontalDataTable(
+        leftHandSideColumnWidth: 180,
+        rightHandSideColumnWidth: 1320,
+        isFixedHeader: true,
+        headerWidgets: _getTitleWidget(context),
+        leftSideItemBuilder: _generateFirstColumnRow,
+        rightSideItemBuilder: _generateRightHandSideColumnRow,
+        itemCount: controller.cartProducts.length,
+      ),
+    );
   }
 
   List<Widget> _getTitleWidget(BuildContext context) {
@@ -132,8 +134,7 @@ class OrderEntryBody extends StatelessWidget {
   Autocomplete renderAutoComplete(int idx) {
     String _displayStringForOption(InventoryRecordItems option) =>
         option.item.id.unicity;
-    final itemCode = controller
-                        .cartProducts[idx].itemCode;
+    final itemCode = controller.cartProducts[idx].itemCode;
 
     return Autocomplete<InventoryRecordItems>(
       fieldViewBuilder: (BuildContext context,
@@ -145,13 +146,15 @@ class OrderEntryBody extends StatelessWidget {
           cursorColor: Colors.black,
           decoration: InputDecoration(
               border: InputBorder.none,
-              suffixIcon: (itemCode != "") ? IconButton(
-                  onPressed: () {
-                    if(itemCode == "") return;
-                    controller.onPressRemove(itemCode);
-                    fieldTextEditingController.text = "";
-                  },
-                  icon: const Icon(Icons.clear, color: Colors.black)) : const SizedBox()),
+              suffixIcon: (itemCode != "")
+                  ? IconButton(
+                      onPressed: () {
+                        if (itemCode == "") return;
+                        controller.onPressRemove(itemCode);
+                        fieldTextEditingController.text = "";
+                      },
+                      icon: const Icon(Icons.clear, color: Colors.black))
+                  : const SizedBox()),
           controller: fieldTextEditingController,
           focusNode: fieldFocusNode,
           style: const TextStyle(fontWeight: FontWeight.bold),
@@ -160,7 +163,7 @@ class OrderEntryBody extends StatelessWidget {
       displayStringForOption: _displayStringForOption,
       optionsBuilder: (TextEditingValue textEditingValue) {
         if (textEditingValue.text == '') {
-          if (itemCode != ""){
+          if (itemCode != "") {
             controller.onPressRemove(itemCode);
           }
           return const Iterable<InventoryRecordItems>.empty();

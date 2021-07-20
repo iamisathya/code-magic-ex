@@ -48,3 +48,8 @@ enum EasyShipTypes {
   pv,
   price
 }
+
+enum SuccessTypes {
+  Yes,
+  No,
+}

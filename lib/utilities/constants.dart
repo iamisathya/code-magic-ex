@@ -156,6 +156,7 @@ String kUserId = "206";
 String kEasyShipReports = "2";
 String kOrderEntryProductInfo = "104";
 String kOrderEntryProductList = "31";
+String kCurrentLanguage = "English";
 
 // * Screen size related
 
