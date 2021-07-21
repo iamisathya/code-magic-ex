@@ -3,6 +3,7 @@ import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
+import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MainStreamBuilder(
         themeBloc: themeBloc.appThemeStream,
         translationBloc: translationBloc.appLanguageStream,

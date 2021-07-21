@@ -155,5 +155,5 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/ALL/Email_Validation.asp
   @POST(Address.validateEmail)
   @FormUrlEncoded()
-  Future<EnrollResponse> validateEmail(  @Field("language") String language, @Field("email") String email);
+  Future<EnrollResponse> validateEmail(@Field("language") String language, @Field("email") String email);
 }

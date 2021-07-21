@@ -281,7 +281,7 @@ class _MemberCalls2Service implements MemberCalls2Service {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<OrderCalculationResponse>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                .compose(_dio.options, 'ordercalc',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = OrderCalculationResponse.fromJson(_result.data!);
@@ -295,7 +295,7 @@ class _MemberCalls2Service implements MemberCalls2Service {
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<CashCouponResponse>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(
                     _dio.options, 'unishop-fn-misc/cashcoupon_quota//3011266',
                     queryParameters: queryParameters, data: _data)

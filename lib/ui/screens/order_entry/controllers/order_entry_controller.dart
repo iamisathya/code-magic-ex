@@ -6,6 +6,8 @@ import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/models/radio_button_value.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout_screen.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -16,12 +18,28 @@ import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class OrderEntryTableController extends GetxController {
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
+  RxList<CartProductsItem> checkoutProducts = <CartProductsItem>[].obs;
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   RxString errorMessage = "".obs;
   RxBool isLoading = false.obs;
   RxDouble totalCartPrice = 0.0.obs;
   RxInt totalCartPv = 0.obs;
-  RxInt availableCreditAmount = 0.obs;
+  RxInt availableCreditAmount = 1000.obs;
+  RxDouble totalCheckoutAmount = 0.0.obs;
+  RxList<RadioButtonModel> paymentOptions = [
+    RadioButtonModel(
+      index: 0,
+      name: "DSC",
+    ),
+    RadioButtonModel(
+      index: 1,
+      name: "Voucher",
+    ),
+  ].obs;
+  Rx<RadioButtonModel> seletedOption = RadioButtonModel(
+    index: 0,
+    name: "DSC",
+  ).obs;
 
   @override
   void onInit() {
@@ -83,7 +101,8 @@ class OrderEntryTableController extends GetxController {
 
   Future<bool> orderCalculation() async {
     try {
-      final List<LineItem> checkoutItems = cartProducts
+      final nonEmptyProducts = cartProducts.where((e) => e.itemCode != "");
+      final List<LineItem> checkoutItems = nonEmptyProducts
           .map((element) => LineItem(
               itemId: element.itemCode,
               quantity: element.quantity.toString(),
@@ -145,14 +164,17 @@ class OrderEntryTableController extends GetxController {
   }
 
   Future<void> validateOrder() async {
-    final bool isValidEMail = await validateEmail();
-    if (!isValidEMail) return;
+    // final bool isValidEMail = await validateEmail();
+    // if (!isValidEMail) return;
 
-    final bool validated = await orderCalculation();
-    if (!validated) return;
+    // final bool validated = await orderCalculation();
+    // if (!validated) return;
 
-    await getCashCoupon();
-    if (!validated) return;
+    // await getCashCoupon();
+    // if (!validated) return;
+    Get.to(() => CheckoutPage(), transition: Transition.downToUp);
+    checkoutProducts.value =
+        cartProducts.where((el) => el.itemCode != "").toList();
   }
 
   String findItemCode(int idx) {
@@ -229,5 +251,12 @@ class OrderEntryTableController extends GetxController {
     final items =
         inventoryRecords.value.items.map((e) => e.item.id.unicity).toList();
     return items;
+  }
+
+  void onChangedSearchType(RadioButtonModel data) {
+    seletedOption.value = paymentOptions[data.index];
+    totalCheckoutAmount.value = data.index == 0
+        ? totalCartPrice.value
+        : totalCartPrice.value - availableCreditAmount.value;
   }
 }

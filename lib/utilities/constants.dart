@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 const kPageBackground = Color(0xFFF2F3F7);
+const kBackground = Color(0xFFF8F8F8);
 const kMainColor = Color(0xFF204CDC);
 const kMainColorSub = Color(0xFF4660B4);
 const kPrimaryColor = Color(0xFF1D3557);
@@ -89,7 +90,8 @@ MaterialStateProperty<RoundedRectangleBorder> elevatedShape() {
   return MaterialStateProperty.all<RoundedRectangleBorder>(
       RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
-          side: const BorderSide(color: Colors.blueAccent)));
+          side: const BorderSide(color: Colors.blueAccent)
+          ));
 }
 
 RoundedRectangleBorder kRoundedRectangleBorder8() {
@@ -147,6 +149,12 @@ Divider kRowDivider = const Divider(
   height: 1.0,
   thickness: 0.0,
 );
+
+BoxDecoration kCheckoutDecoration({Color c = Colors.white, double r = 15}) =>
+    BoxDecoration(
+      color: c,
+      borderRadius: BorderRadius.circular(r),
+    );
 
 String kCurrentTimeStamp = DateTime.now().millisecondsSinceEpoch.toString();
 
