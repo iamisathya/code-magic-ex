@@ -12,6 +12,7 @@ class OrderEntryTable extends StatelessWidget {
       Get.put(OrderEntryTableController());
   @override
   Widget build(BuildContext context) {
+    controller.loadInventoryRecords(context);
     return Scaffold(
         backgroundColor: kPageBackground,
         appBar: TransAppBar(
@@ -22,7 +23,7 @@ class OrderEntryTable extends StatelessWidget {
         bottomNavigationBar: BottomAppBar(
             color: kPageBackground,
             child: Obx(() => CartFooter(
-                  onPressed: controller.validateOrder,
+                  onPressed: () => controller.validateOrder(context),
                   totalCartPrice: controller.totalCartPrice.value,
                   totalCartPv: controller.totalCartPv.value,
                 ))));

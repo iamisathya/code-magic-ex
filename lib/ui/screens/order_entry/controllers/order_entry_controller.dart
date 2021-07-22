@@ -71,11 +71,11 @@ class OrderEntryTableController extends GetxController {
     const String userId =
         "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
-      _sendingMsgProgressBar.show(context);
+      // _sendingMsgProgressBar.show(context);
       inventoryRecords =
           Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
       dropDownItems();
-      _sendingMsgProgressBar.hide();
+      // _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
       _onDioError(e);
     } catch (err) {
@@ -88,14 +88,12 @@ class OrderEntryTableController extends GetxController {
 
   Future<bool> validateEmail(BuildContext context) async {
     try {
-      _sendingMsgProgressBar.show(context);
       // ! Check this api parsing
       final dynamic result = await MemberCallsService.init()
           .validateEmail(kCurrentLanguage, "rasachankan@gmail.com");
       final jsonResponse = jsonDecode(result.toString());
       final EnrollResponse enrollResponse =
           EnrollResponse.fromJson(jsonResponse as Map<String, dynamic>);
-          _sendingMsgProgressBar.hide();
       if (enrollResponse.success != "No") {
         return true;
       }
@@ -114,7 +112,6 @@ class OrderEntryTableController extends GetxController {
 
   Future<bool> orderCalculation(BuildContext context) async {
     try {
-      _sendingMsgProgressBar.show(context);
       final nonEmptyProducts = cartProducts.where((e) => e.itemCode != "");
       final List<LineItem> checkoutItems = nonEmptyProducts
           .map((element) => LineItem(
@@ -137,7 +134,6 @@ class OrderEntryTableController extends GetxController {
                       "https://hydra.unicity.net/v5a/customers?type=Associate")));
       final OrderCalculationResponse validationResponse =
           await MemberCalls2Service.init().orderCalculation(requestObject);
-          _sendingMsgProgressBar.hide();
       if (validationResponse.items.isNotEmpty) {
         return true;
       }
@@ -155,7 +151,6 @@ class OrderEntryTableController extends GetxController {
   }
 
   Future<void> getCashCoupon(BuildContext context) async {
-    _sendingMsgProgressBar.show(context);
     try {
       final CashCouponResponse cashCoupon = await MemberCalls2Service.init()
           .getCashCoupon(totalCartPv.value.toString());
@@ -163,7 +158,6 @@ class OrderEntryTableController extends GetxController {
         // continue with order place
         availableCreditAmount.value = cashCoupon.availableCreditAmount;
       }
-      _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
       _onDioError(e);
     } catch (err) {
@@ -183,6 +177,7 @@ class OrderEntryTableController extends GetxController {
           subTitle: "Please select products to proceed with checkout!");
       return;
     }
+    _sendingMsgProgressBar.show(context);
     final bool isValidEMail = await validateEmail(context);
     if (!isValidEMail) return;
 
@@ -190,6 +185,7 @@ class OrderEntryTableController extends GetxController {
     if (!validated) return;
 
     await getCashCoupon(context);
+    _sendingMsgProgressBar.hide();
     // ! Check this warnig message comming
     Get.to(() => CheckoutPage(), transition: Transition.downToUp);
   }
