@@ -10,11 +10,13 @@ import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/models/radio_button_value.dart';
 import 'package:code_magic_ex/models/user_minimal_data.dart';
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout/checkout_screen.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
@@ -44,6 +46,7 @@ class OrderEntryTableController extends GetxController {
     name: "DSC",
   ).obs;
 
+  final ProgressBar _sendingMsgProgressBar = ProgressBar();
   late UserMinimalData passedUser;
 
   @override
@@ -51,7 +54,6 @@ class OrderEntryTableController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     _generateEmptyCart();
-    loadInventoryRecords();
     final dynamic data = Get.arguments;
     if(data != null) {
       passedUser = data as UserMinimalData;
@@ -65,46 +67,44 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<void> loadInventoryRecords() async {
+  Future<void> loadInventoryRecords(BuildContext context) async {
     const String userId =
         "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
+      _sendingMsgProgressBar.show(context);
       inventoryRecords =
           Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
       dropDownItems();
+      _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
-      errorMessage(e.error.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      returnResponse(e.response!);
+      _onDioError(e);
     } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
+      _onCatchError(err);
     } finally {
       isLoading(false);
       update();
     }
   }
 
-  Future<bool> validateEmail() async {
+  Future<bool> validateEmail(BuildContext context) async {
     try {
+      _sendingMsgProgressBar.show(context);
       // ! Check this api parsing
       final dynamic result = await MemberCallsService.init()
           .validateEmail(kCurrentLanguage, "rasachankan@gmail.com");
       final jsonResponse = jsonDecode(result.toString());
       final EnrollResponse enrollResponse =
           EnrollResponse.fromJson(jsonResponse as Map<String, dynamic>);
+          _sendingMsgProgressBar.hide();
       if (enrollResponse.success != "No") {
         return true;
       }
       return false;
     } on DioError catch (e) {
-      errorMessage(e.error.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      returnResponse(e.response!);
+      _onDioError(e);
       return false;
     } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
+      _onCatchError(err);
       return false;
     } finally {
       isLoading(false);
@@ -112,8 +112,9 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<bool> orderCalculation() async {
+  Future<bool> orderCalculation(BuildContext context) async {
     try {
+      _sendingMsgProgressBar.show(context);
       final nonEmptyProducts = cartProducts.where((e) => e.itemCode != "");
       final List<LineItem> checkoutItems = nonEmptyProducts
           .map((element) => LineItem(
@@ -136,18 +137,16 @@ class OrderEntryTableController extends GetxController {
                       "https://hydra.unicity.net/v5a/customers?type=Associate")));
       final OrderCalculationResponse validationResponse =
           await MemberCalls2Service.init().orderCalculation(requestObject);
+          _sendingMsgProgressBar.hide();
       if (validationResponse.items.isNotEmpty) {
         return true;
       }
       return false;
     } on DioError catch (e) {
-      errorMessage(e.error.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      returnResponse(e.response!);
+      _onDioError(e);
       return false;
     } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
+      _onCatchError(err);
       return false;
     } finally {
       isLoading(false);
@@ -155,7 +154,8 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<void> getCashCoupon() async {
+  Future<void> getCashCoupon(BuildContext context) async {
+    _sendingMsgProgressBar.show(context);
     try {
       final CashCouponResponse cashCoupon = await MemberCalls2Service.init()
           .getCashCoupon(totalCartPv.value.toString());
@@ -163,20 +163,18 @@ class OrderEntryTableController extends GetxController {
         // continue with order place
         availableCreditAmount.value = cashCoupon.availableCreditAmount;
       }
+      _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
-      errorMessage(e.error.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      returnResponse(e.response!);
+      _onDioError(e);
     } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
+      _onCatchError(err);
     } finally {
       isLoading(false);
       update();
     }
   }
 
-  Future<void> validateOrder() async {
+  Future<void> validateOrder(BuildContext context) async {
     checkoutProducts.value =
         cartProducts.where((el) => el.itemCode != "").toList();
     if (checkoutProducts.isEmpty) {
@@ -185,13 +183,13 @@ class OrderEntryTableController extends GetxController {
           subTitle: "Please select products to proceed with checkout!");
       return;
     }
-    final bool isValidEMail = await validateEmail();
+    final bool isValidEMail = await validateEmail(context);
     if (!isValidEMail) return;
 
-    final bool validated = await orderCalculation();
+    final bool validated = await orderCalculation(context);
     if (!validated) return;
 
-    await getCashCoupon();
+    await getCashCoupon(context);
     // ! Check this warnig message comming
     Get.to(() => CheckoutPage(), transition: Transition.downToUp);
   }
@@ -277,5 +275,18 @@ class OrderEntryTableController extends GetxController {
     totalCheckoutAmount.value = data.index == 0
         ? totalCartPrice.value
         : totalCartPrice.value - availableCreditAmount.value;
+  }
+
+    void _onDioError(DioError e) {
+    _sendingMsgProgressBar.hide();
+    errorMessage(e.error.toString());
+    renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+    returnResponse(e.response!);
+  }
+
+  void _onCatchError(Object err) {
+    errorMessage(err.toString());
+    LoggerService.instance.e(err.toString());
+    _sendingMsgProgressBar.hide();
   }
 }
