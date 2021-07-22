@@ -158,6 +158,7 @@ class OrderEntryTableController extends GetxController {
         // continue with order place
         availableCreditAmount.value = cashCoupon.availableCreditAmount;
       }
+      onChangedSearchType(seletedOption.value);
     } on DioError catch (e) {
       _onDioError(e);
     } catch (err) {
