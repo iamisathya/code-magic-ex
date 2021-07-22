@@ -7,7 +7,7 @@ import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/models/radio_button_value.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout_screen.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout/checkout_screen.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -164,17 +164,20 @@ class OrderEntryTableController extends GetxController {
   }
 
   Future<void> validateOrder() async {
-    // final bool isValidEMail = await validateEmail();
-    // if (!isValidEMail) return;
-
-    // final bool validated = await orderCalculation();
-    // if (!validated) return;
-
-    // await getCashCoupon();
-    // if (!validated) return;
-    Get.to(() => CheckoutPage(), transition: Transition.downToUp);
     checkoutProducts.value =
         cartProducts.where((el) => el.itemCode != "").toList();
+    if(checkoutProducts.isEmpty) {
+      renderErrorSnackBar(title: "Empty cart!", subTitle: "Please select products to proceed with checkout!");
+      return;
+    }
+    final bool isValidEMail = await validateEmail();
+    if (!isValidEMail) return;
+
+    final bool validated = await orderCalculation();
+    if (!validated) return;
+
+    await getCashCoupon();
+    Get.to(() => CheckoutPage(), transition: Transition.downToUp);
   }
 
   String findItemCode(int idx) {

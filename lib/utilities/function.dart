@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,23 +15,24 @@ import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 
-void renderErrorSnackBar({String title = "", String subTitle = ""}) {
+void renderErrorSnackBar({String title = "", String subTitle = "", bool isError = true}) {
+  final Color c = isError == true ? Colors.red : kMainColor;
   return Get.snackbar(
     title,
     subTitle,
     titleText:
-        Text(title, style: const TextStyle(color: kPrimaryColor, fontSize: 16)),
+        Text(title, style: TextStyle(color: c, fontSize: 16, fontWeight: FontWeight.bold)),
     messageText: Text(subTitle,
-        style: const TextStyle(color: kPrimaryColor, fontSize: 14)),
+        style: TextStyle(color: c, fontSize: 14)),
     backgroundColor: Colors.white,
-    borderColor: kPrimaryLightColor,
+    borderColor: c,
     animationDuration: const Duration(milliseconds: 300),
     snackPosition: SnackPosition.BOTTOM,
     borderRadius: 10.0,
     borderWidth: 2,
-    icon: const Icon(
+    icon: Icon(
       Icons.error_outline,
-      color: kPrimaryColor,
+      color: c,
     ),
   );
 }

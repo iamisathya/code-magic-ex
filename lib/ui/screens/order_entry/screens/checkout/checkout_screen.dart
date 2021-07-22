@@ -5,7 +5,7 @@ import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'checkout/components/body.dart';
+import 'components/body.dart';
 
 class CheckoutPage extends StatelessWidget {
     static const String routeName = '/checkoutPage';
