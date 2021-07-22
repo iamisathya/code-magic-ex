@@ -26,7 +26,7 @@ class OrderEntryTableController extends GetxController {
   RxBool isLoading = false.obs;
   RxDouble totalCartPrice = 0.0.obs;
   RxInt totalCartPv = 0.obs;
-  RxInt availableCreditAmount = 1000.obs;
+  RxInt availableCreditAmount = 0.obs;
   RxDouble totalCheckoutAmount = 0.0.obs;
   RxList<RadioButtonModel> paymentOptions = [
     RadioButtonModel(
