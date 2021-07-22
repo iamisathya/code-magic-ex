@@ -14,8 +14,9 @@ class OrderEntryTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: kPageBackground,
-        appBar: const TransAppBar(
-          title: "Order Entry",
+        appBar: TransAppBar(
+          title: controller.passedUser.fullName,
+          subTitle: controller.passedUser.userId,
         ),
         body: OrderEntryBody(),
         bottomNavigationBar: BottomAppBar(

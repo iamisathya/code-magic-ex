@@ -44,6 +44,8 @@ class CustomerData {
   String status;
   @JsonKey(name: "type")
   String type;
+  @JsonKey(name: "email")
+  String email;
   @JsonKey(name: "entryPeriod")
   String entryPeriod;
   @JsonKey(name: "subscriptions")
@@ -60,6 +62,7 @@ class CustomerData {
     required this.joinDate,
     required this.status,
     required this.type,
+    required this.email,
     required this.entryPeriod,
     required this.subscriptions,
   });

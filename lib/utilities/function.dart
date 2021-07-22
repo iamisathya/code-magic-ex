@@ -15,15 +15,15 @@ import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 
-void renderErrorSnackBar({String title = "", String subTitle = "", bool isError = true}) {
+void renderErrorSnackBar(
+    {String title = "", String subTitle = "", bool isError = true}) {
   final Color c = isError == true ? Colors.red : kMainColor;
   return Get.snackbar(
     title,
     subTitle,
-    titleText:
-        Text(title, style: TextStyle(color: c, fontSize: 16, fontWeight: FontWeight.bold)),
-    messageText: Text(subTitle,
-        style: TextStyle(color: c, fontSize: 14)),
+    titleText: Text(title,
+        style: TextStyle(color: c, fontSize: 16, fontWeight: FontWeight.bold)),
+    messageText: Text(subTitle, style: TextStyle(color: c, fontSize: 14)),
     backgroundColor: Colors.white,
     borderColor: c,
     animationDuration: const Duration(milliseconds: 300),
@@ -80,13 +80,49 @@ dynamic returnResponse(dio.Response response) {
     case 408:
       throw TimeOutException(message: response.data.toString());
     case 500:
-     throw InternetFailedException(
+      throw InternetFailedException(
           message: 'Internal Server Error: ${response.statusCode}');
     case 503:
-     throw InternetFailedException(
+      throw InternetFailedException(
           message: 'Service Unavailable: ${response.statusCode}');
     default:
       throw InternetFailedException(
           message: 'Internal Server Error: ${response.statusCode}');
   }
+}
+
+void showAlertDialog(BuildContext context,
+    {String cancel = "Cancel",
+    String ok = "Continue",
+    String title = "AlertDialog",
+    String subtitle = "Would you like to continue?",
+    required Function onOk,
+    required Function onCancel}) {
+  // set up the buttons
+  final Widget cancelButton = TextButton(
+    onPressed: () => onCancel,
+    child: Text(cancel),
+  );
+  final Widget continueButton = TextButton(
+    onPressed: () => onOk,
+    child: Text(ok),
+  );
+
+  // set up the AlertDialog
+  final AlertDialog alert = AlertDialog(
+    title: Text(title),
+    content: Text(subtitle),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

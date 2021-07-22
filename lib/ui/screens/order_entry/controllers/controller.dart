@@ -3,7 +3,8 @@ import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/find_customer.dart';
 import 'package:code_magic_ex/models/search_customer.dart';
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
+import 'package:code_magic_ex/models/user_minimal_data.dart';
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry_table/order_entry.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -14,7 +15,6 @@ import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class OrderEntryController extends GetxController {
-  final OrderEntryTableController controller = Get.put(OrderEntryTableController());
   RxInt selectedTab = 0.obs;
 
   RxList<OrderEntryRadioButton> searchRadioOptions = [
@@ -39,6 +39,8 @@ class OrderEntryController extends GetxController {
   FindCustomer searchedGuestUserInfo = FindCustomer(items: []);
   RxList<SearchedUserInfo> searchResultsOfUserInfo = <SearchedUserInfo>[].obs;
 
+  final ProgressBar _sendingMsgProgressBar = ProgressBar();
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -52,7 +54,7 @@ class OrderEntryController extends GetxController {
     update();
   }
 
-  Future<void> searchUserBySearchQuery() async {
+  Future<void> searchUserBySearchQuery(BuildContext context) async {
     if (searchIdTextController.text.isEmpty) {
       renderErrorSnackBar(
           title: "Enroller ID empty", subTitle: "Please enter valid enroller");
@@ -60,35 +62,40 @@ class OrderEntryController extends GetxController {
     }
     isSearching.value = true;
     if (seletedOption.value.index == 0) {
-      searchUserById();
+      searchUserById(context);
     } else {
-      searchUserBySearchKey();
+      searchUserBySearchKey(context);
     }
     update();
   }
 
-  Future<void> searchUserById() async {
+  Future<void> searchUserById(BuildContext context) async {
+    _sendingMsgProgressBar.show(context);
     try {
       // * search for users by user id(search key)
       searchedGuestUserInfo = await ApiService.shared().findCustomer(
           Parsing.intFrom(searchIdTextController.text)!, "customer");
-      if (searchedResultsOfHref.items.isNotEmpty) {
+      if (searchedGuestUserInfo.items.isNotEmpty) {
         // Move to details page
+        final UserMinimalData user = UserMinimalData(
+            fullName: searchedGuestUserInfo.items[0].humanName.fullName,
+            email: searchedGuestUserInfo.items[0].email,
+            userId: searchedGuestUserInfo.items[0].id.unicity);
+        Get.to(() => OrderEntryTable(), arguments: user);
       }
+      _sendingMsgProgressBar.hide();
       isSearching(false);
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      returnResponse(e.response!);
-      errorMessage( e.error.toString());
+      _onDioError(e);
     } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
+      _onCatchError(err);
     } finally {
       isSearching(false);
     }
   }
 
-  Future<void> searchUserBySearchKey() async {
+  Future<void> searchUserBySearchKey(BuildContext context) async {
+    _sendingMsgProgressBar.show(context);
     try {
       // * search for users by user id(search key)
       searchedResultsOfHref = await ApiService.shared()
@@ -99,12 +106,9 @@ class OrderEntryController extends GetxController {
         searchUsersByHref(data);
       }
     } on DioError catch (e) {
-      errorMessage(e.error.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      returnResponse(e.response!);
+      _onDioError(e);
     } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
+      _onCatchError(err);
     }
   }
 
@@ -113,21 +117,36 @@ class OrderEntryController extends GetxController {
       // * search for users by user id(search key)
       searchResultsOfUserInfo.value = await MemberCallsService.init()
           .searchUsersByHref("getBAInfo", results);
+      _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
-      errorMessage(e.error.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      returnResponse(e.response!);
+      _onDioError(e);
     } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
+      _onCatchError(err);
     } finally {
       update();
       isSearching(false);
     }
   }
 
-  void onClickOpenOrderEntry(String userId) {
-    Get.to(() => OrderEntryTable(), arguments: userId);
+  void _onDioError(DioError e) {
+    _sendingMsgProgressBar.hide();
+    errorMessage(e.error.toString());
+    renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+    returnResponse(e.response!);
+  }
+
+  void _onCatchError(Object err) {
+    errorMessage(err.toString());
+    LoggerService.instance.e(err.toString());
+    _sendingMsgProgressBar.hide();
+  }
+
+  void onClickOpenOrderEntry(SearchedUserInfo user) {
+    final UserMinimalData userData = UserMinimalData(
+        fullName: user.humanName.fullName,
+        email: user.email,
+        userId: user.id.unicity.toString());
+    Get.to(() => OrderEntryTable(), arguments: userData);
   }
 }
 

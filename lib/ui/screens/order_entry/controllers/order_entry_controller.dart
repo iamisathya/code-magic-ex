@@ -9,6 +9,7 @@ import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/models/radio_button_value.dart';
+import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout/checkout_screen.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
@@ -43,12 +44,18 @@ class OrderEntryTableController extends GetxController {
     name: "DSC",
   ).obs;
 
+  late UserMinimalData passedUser;
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     _generateEmptyCart();
     loadInventoryRecords();
+    final dynamic data = Get.arguments;
+    if(data != null) {
+      passedUser = data as UserMinimalData;
+    }
   }
 
   void _generateEmptyCart() {

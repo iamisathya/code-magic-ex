@@ -35,6 +35,7 @@ CustomerData _$CustomerDataFromJson(Map<String, dynamic> json) {
     joinDate: json['joinDate'] as String,
     status: json['status'] as String,
     type: json['type'] as String,
+    email: json['email'] as String,
     entryPeriod: json['entryPeriod'] as String,
     subscriptions: (json['subscriptions'] as List<dynamic>)
         .map((e) => Subscription.fromJson(e as Map<String, dynamic>))
@@ -54,6 +55,7 @@ Map<String, dynamic> _$CustomerDataToJson(CustomerData instance) =>
       'joinDate': instance.joinDate,
       'status': instance.status,
       'type': instance.type,
+      'email': instance.email,
       'entryPeriod': instance.entryPeriod,
       'subscriptions': instance.subscriptions,
     };

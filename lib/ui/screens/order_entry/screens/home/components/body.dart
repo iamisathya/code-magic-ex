@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
@@ -38,6 +39,7 @@ class Body extends StatelessWidget {
   // *
   Widget _buildChild(BuildContext context) {
     if (controller.isSearching.value == true) {
+      
       return const CustomLoadingWidget(
         svgIcon: kImageBroswerStats,
       );
@@ -71,7 +73,7 @@ class Body extends StatelessWidget {
           title: Text(currentItem.id.unicity.toString()),
           subtitle: Text(currentItem.humanName.fullName),
           trailing: const Icon(Icons.arrow_forward_ios, color: kMainColor),
-          onTap: ()=> controller.onClickOpenOrderEntry(currentItem.id.unicity.toString()),
+          onTap: ()=> controller.onClickOpenOrderEntry(currentItem),
         ),
       ),
     );

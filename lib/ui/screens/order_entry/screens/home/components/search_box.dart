@@ -20,7 +20,7 @@ class SearchBox extends StatelessWidget {
             shape: kRoundedRectangleBorder8(),
             disabledColor: Colors.grey,
             color: kMainColor,
-            onPressed: () => controller.searchUserBySearchQuery(),
+            onPressed: () => controller.searchUserBySearchQuery(context),
             height: 55,
             child:
                 Text('Search', style: Theme.of(context).textTheme.tableHeader),
