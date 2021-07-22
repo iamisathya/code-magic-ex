@@ -183,6 +183,7 @@ class PlaceOrderHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
           FloatingActionButton(
+            heroTag: "decreament",
             onPressed: () {
               controller.updateQuantity(CartUpdate.decreament, itemCode);
             },
@@ -196,6 +197,7 @@ class PlaceOrderHomePage extends StatelessWidget {
           ),
           Text('$quantity', style: const TextStyle(fontSize: 18.0)),
           FloatingActionButton(
+            heroTag: "increament",
             onPressed: () {
               controller.updateQuantity(CartUpdate.increament, itemCode);
             },

@@ -1,5 +1,6 @@
 import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
 import 'package:code_magic_ex/ui/screens/inventory/home.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout_screen.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/home.dart';
 import 'package:flutter/material.dart';
 
@@ -24,5 +25,6 @@ Map<String, WidgetBuilder> get routes {
     ScreenPaths.easyShipReport: (context) => EasyShipHomeScreen(),
     ScreenPaths.barcode: (context) => BarcodeHomeScreen(),
     ScreenPaths.webview: (context) => const WebivewHomeScreen(),
+    ScreenPaths.checkout: (context) => CheckoutPage(),
   };
 }

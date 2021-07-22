@@ -6,6 +6,7 @@ import 'package:code_magic_ex/ui/screens/inventory/home.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/ui/screens/open_po/home.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout_screen.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/home.dart';
 import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 
@@ -20,4 +21,5 @@ class ScreenPaths {
   static const String easyShipReport = EasyShipHomeScreen.routeName;
   static const String barcode = BarcodeHomeScreen.routeName;
   static const String webview = WebivewHomeScreen.routeName;
+  static const String checkout = CheckoutPage.routeName;
 }

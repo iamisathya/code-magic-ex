@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'checkout/components/body.dart';
 
 class CheckoutPage extends StatelessWidget {
+  static const String routeName = '/checkoutPage';
   final OrderEntryTableController controller =
       Get.put(OrderEntryTableController());
 
