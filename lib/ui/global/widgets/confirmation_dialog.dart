@@ -7,7 +7,7 @@ class ConfirmationDialog {
   static Future<bool> show<bool>({
     required BuildContext context,
     required String message,
-    String title = "Alert!",
+    String title = "Logout!",
     String okText = "Ok",
     String cancelText = "Cancel",
   }) async {
@@ -18,21 +18,24 @@ class ConfirmationDialog {
         return WillPopScope(
           onWillPop: () async => false,
           child: AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Text(title,
-                style: const TextStyle(fontWeight: AppFontWeight.bold)),
+                style: const TextStyle(
+                    fontWeight: AppFontWeight.bold, color: Colors.black)),
             content: Text(message),
             actions: <Widget>[
-              ElevatedButton(
+              TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
                 child: Text(
                   cancelText,
                   style: const TextStyle(fontSize: 14, color: Colors.black),
                 ),
               ),
-              ElevatedButton(
+              TextButton(
                 onPressed: () => Navigator.of(context).pop(true),
                 child: Text(okText,
-                    style: const TextStyle(fontSize: 14, color: Colors.black)),
+                    style: const TextStyle(fontSize: 14, color: Colors.red)),
               )
             ],
           ),
