@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/find_customer.dart';
@@ -6,13 +12,9 @@ import 'package:code_magic_ex/models/search_reponse_by_href.dart';
 import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry_table/order_entry.dart';
+import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/function.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 class OrderEntryController extends GetxController {
   RxInt selectedTab = 0.obs;
@@ -28,7 +30,6 @@ class OrderEntryController extends GetxController {
     ),
   ].obs;
 
-  RxBool isSearching = false.obs;
   RxString errorMessage = "".obs;
 
   Rx<OrderEntryRadioButton> seletedOption =
@@ -60,7 +61,6 @@ class OrderEntryController extends GetxController {
           title: "Enroller ID empty", subTitle: "Please enter valid enroller");
       return;
     }
-    isSearching.value = true;
     if (seletedOption.value.index == 0) {
       searchUserById(context);
     } else {
@@ -84,13 +84,10 @@ class OrderEntryController extends GetxController {
         Get.to(() => OrderEntryTable(), arguments: user);
       }
       _sendingMsgProgressBar.hide();
-      isSearching(false);
     } on DioError catch (e) {
       _onDioError(e);
     } catch (err) {
       _onCatchError(err);
-    } finally {
-      isSearching(false);
     }
   }
 
@@ -124,19 +121,24 @@ class OrderEntryController extends GetxController {
       _onCatchError(err);
     } finally {
       update();
-      isSearching(false);
     }
   }
 
   void _onDioError(DioError e) {
     _sendingMsgProgressBar.hide();
     errorMessage(e.error.toString());
-    renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+    final message = _getErrorMessage(e.response!.data);
+    renderErrorSnackBar(
+        title: "${e.response!.statusCode} Error!",
+        subTitle: message);
     returnResponse(e.response!);
   }
 
   void _onCatchError(Object err) {
     errorMessage(err.toString());
+    renderErrorSnackBar(
+        title: "Error!",
+        subTitle: "Error while getting user details!");
     LoggerService.instance.e(err.toString());
     _sendingMsgProgressBar.hide();
   }
@@ -147,6 +149,12 @@ class OrderEntryController extends GetxController {
         email: user.email,
         userId: user.id.unicity.toString());
     Get.to(() => OrderEntryTable(), arguments: userData);
+  }
+
+  String _getErrorMessage(dynamic error) {
+    // final errorObj = jsonDecode(error.toString());
+    final mappedObj = error as Map<String, dynamic>;
+    return mappedObj["error"]["error_message"].toString();
   }
 }
 

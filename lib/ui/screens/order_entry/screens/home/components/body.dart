@@ -1,8 +1,6 @@
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
-import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/controllers/controller.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/home/components/search_box.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/home/components/top_tabs.dart';
@@ -38,12 +36,7 @@ class Body extends StatelessWidget {
 
   // *
   Widget _buildChild(BuildContext context) {
-    if (controller.isSearching.value == true) {
-      
-      return const CustomLoadingWidget(
-        svgIcon: kImageBroswerStats,
-      );
-    } else if (controller.errorMessage.value.isNotEmpty) {
+    if (controller.errorMessage.value.isNotEmpty) {
       return const CustomErrorWidget(
         svgIcon: kImageServerDown,
       );
