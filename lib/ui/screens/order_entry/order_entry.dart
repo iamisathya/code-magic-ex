@@ -1,6 +1,6 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/components/body.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/home/components/body.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 

@@ -4,7 +4,7 @@ import 'package:code_magic_ex/models/find_customer.dart';
 import 'package:code_magic_ex/models/search_customer.dart';
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry/order_entry.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry_table/order_entry.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';

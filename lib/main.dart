@@ -1,9 +1,6 @@
 import 'package:code_magic_ex/translations/translations.dart';
-import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry/order_entry.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry_table/order_entry.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 
