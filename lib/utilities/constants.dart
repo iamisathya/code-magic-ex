@@ -85,13 +85,13 @@ EdgeInsets kEdgeA24() => const EdgeInsets.all(24.0);
 EdgeInsets kEdgeInset({double v = 8.0}) => EdgeInsets.all(v);
 
 BoxDecoration kCircular8 =
-    BoxDecoration(borderRadius: BorderRadius.circular(8), color: kPrimaryColor);
+    BoxDecoration(borderRadius: BorderRadius.circular(8), color: kMainColor);
+    
 MaterialStateProperty<RoundedRectangleBorder> elevatedShape() {
   return MaterialStateProperty.all<RoundedRectangleBorder>(
       RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
-          side: const BorderSide(color: Colors.blueAccent)
-          ));
+          side: const BorderSide(color: Colors.blueAccent)));
 }
 
 RoundedRectangleBorder kRoundedRectangleBorder8() {
@@ -179,7 +179,7 @@ InputDecoration kBorderNone = const InputDecoration(border: InputBorder.none);
 InputDecoration kInputDecoration(String hintText, String label) {
   return InputDecoration(
     border:
-        const OutlineInputBorder(borderSide: BorderSide(color: kPrimaryColor)),
+        const OutlineInputBorder(borderSide: BorderSide(color: kMainColor)),
     hintText: hintText,
     labelText: label,
   );
@@ -197,19 +197,18 @@ Border kBorderAll({double w = 2.0, Color c = kMainColor}) =>
 BoxDecoration kTableHeaderTileBox =
     BoxDecoration(color: kMainColor, border: Border.all(width: 0.5));
 
-
 // currencies
 class Currencies {
- static const String dollar = "¢";
- static const String euro = "€";
- static const String pound = "£";
- static const String yuan = "¢";
- static const String won = "₩";
- static const String ruble = "₽";
- static const String rupee = "₹";
- static const String peso = "₱";
- static const String tugrik = "₮";
- static const String rupees = "₨";
- static const String bath = "฿";
- static const String kip = "₭";
+  static const String dollar = "¢";
+  static const String euro = "€";
+  static const String pound = "£";
+  static const String yuan = "¢";
+  static const String won = "₩";
+  static const String ruble = "₽";
+  static const String rupee = "₹";
+  static const String peso = "₱";
+  static const String tugrik = "₮";
+  static const String rupees = "₨";
+  static const String bath = "฿";
+  static const String kip = "₭";
 }

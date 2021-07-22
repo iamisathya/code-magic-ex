@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -6,9 +7,11 @@ import 'package:code_magic_ex/utilities/constants.dart';
 class WebivewHomeScreen extends StatefulWidget {
   static const String routeName = '/webviewHomePage';
   final String url;
+  final String title;
 
   const WebivewHomeScreen({
     this.url = "",
+    this.title = "Webpgae",
     Key? key,
   }) : super(key: key);
 
@@ -35,8 +38,8 @@ class _WebivewHomeScreenState extends State<WebivewHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Webview"),
+      appBar: TransAppBar(
+        title: widget.title,
       ),
       body: Stack(
         children: <Widget>[

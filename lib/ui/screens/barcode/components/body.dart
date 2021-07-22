@@ -12,10 +12,11 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [_createSearchView(), Expanded(child: _buildChild(context))],
-      ),
+    return Column(
+      children: [
+        _createSearchView(context),
+        Expanded(child: _buildChild(context))
+      ],
     );
   }
 
@@ -46,22 +47,23 @@ class Body extends StatelessWidget {
   }
 
   //Create a SearchView
-  Widget _createSearchView() {
+  Widget _createSearchView(BuildContext context) {
     return Row(
       children: [
         Flexible(
           child: Container(
             margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-                border: Border.all(),
+                border: Border.all(width: 2, color: kMainColor),
                 borderRadius: const BorderRadius.all(Radius.circular(8.0))),
             child: TextField(
               controller: controller.bardcodeTextField,
-              cursorColor: Colors.grey[300],
+              cursorColor: kMainColor,
               decoration: InputDecoration(
+                hoverColor: kMainColor,
                 hintText: "Search",
                 focusedBorder: InputBorder.none,
-                prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                prefixIcon: const Icon(Icons.search, color: kMainColor),
                 hintStyle: TextStyle(color: Colors.grey[300]),
               ),
             ),
@@ -80,7 +82,7 @@ class Body extends StatelessWidget {
                   color: Colors.white,
                 ),
                 tooltip: 'Find easy ship',
-                onPressed: () => controller.getBarcodePath(),
+                onPressed: () => controller.getBarcodePath(context),
               ),
             ),
           ),
