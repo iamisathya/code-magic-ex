@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/api/request/request_order_calculation.dart';
@@ -78,9 +80,13 @@ class OrderEntryTableController extends GetxController {
 
   Future<bool> validateEmail() async {
     try {
-      final EnrollResponse validationResponse = await MemberCallsService.init()
+      // ! Check this api parsing
+      final dynamic result = await MemberCallsService.init()
           .validateEmail(kCurrentLanguage, "rasachankan@gmail.com");
-      if (validationResponse.success != "No") {
+      final jsonResponse = jsonDecode(result.toString());
+      final EnrollResponse enrollResponse =
+          EnrollResponse.fromJson(jsonResponse as Map<String, dynamic>);
+      if (enrollResponse.success != "No") {
         return true;
       }
       return false;
@@ -166,8 +172,10 @@ class OrderEntryTableController extends GetxController {
   Future<void> validateOrder() async {
     checkoutProducts.value =
         cartProducts.where((el) => el.itemCode != "").toList();
-    if(checkoutProducts.isEmpty) {
-      renderErrorSnackBar(title: "Empty cart!", subTitle: "Please select products to proceed with checkout!");
+    if (checkoutProducts.isEmpty) {
+      renderErrorSnackBar(
+          title: "Empty cart!",
+          subTitle: "Please select products to proceed with checkout!");
       return;
     }
     final bool isValidEMail = await validateEmail();
@@ -177,6 +185,7 @@ class OrderEntryTableController extends GetxController {
     if (!validated) return;
 
     await getCashCoupon();
+    // ! Check this warnig message comming
     Get.to(() => CheckoutPage(), transition: Transition.downToUp);
   }
 
