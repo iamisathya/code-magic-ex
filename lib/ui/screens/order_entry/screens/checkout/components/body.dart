@@ -95,7 +95,10 @@ class Body extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40),
-            PrimaryButton(press: () {}, text: 'Checkout',)
+            PrimaryButton(
+              press: () {},
+              text: 'Checkout',
+            )
           ],
         ),
       ),
@@ -110,12 +113,10 @@ class Body extends StatelessWidget {
           padding: EdgeInsets.all(getProportionateScreenWidth(10)),
           child: Column(
             children: [
-              _renderUserInfo(context, "BA Number",
-                  UserSessionManager.shared.userInfo.id.unicity.toString()),
-              _renderUserInfo(context, "Name",
-                  UserSessionManager.shared.userInfo.humanName.fullName),
               _renderUserInfo(
-                  context, "Email", UserSessionManager.shared.userInfo.email),
+                  context, "BA Number", controller.passedUser.userId),
+              _renderUserInfo(context, "Name", controller.passedUser.fullName),
+              _renderUserInfo(context, "Email", controller.passedUser.email),
             ],
           ),
         ));
@@ -171,6 +172,7 @@ class Body extends StatelessWidget {
             flex: 2,
             child: Text(
               value,
+              textAlign: TextAlign.end,
               maxLines: 2,
               style: Theme.of(context).textTheme.commonText,
             ),

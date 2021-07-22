@@ -196,3 +196,20 @@ Border kBorderAll({double w = 2.0, Color c = kMainColor}) =>
 
 BoxDecoration kTableHeaderTileBox =
     BoxDecoration(color: kMainColor, border: Border.all(width: 0.5));
+
+
+// currencies
+class Currencies {
+ static const String dollar = "¢";
+ static const String euro = "€";
+ static const String pound = "£";
+ static const String yuan = "¢";
+ static const String won = "₩";
+ static const String ruble = "₽";
+ static const String rupee = "₹";
+ static const String peso = "₱";
+ static const String tugrik = "₮";
+ static const String rupees = "₨";
+ static const String bath = "฿";
+ static const String kip = "₭";
+}
