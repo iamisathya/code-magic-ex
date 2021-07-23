@@ -21,6 +21,7 @@ import 'package:code_magic_ex/models/managed_warehouse.dart';
 import 'package:code_magic_ex/models/order_list_rmas.dart';
 import 'package:code_magic_ex/models/search_customer.dart';
 import 'package:code_magic_ex/models/order_calc_response.dart';
+import 'package:code_magic_ex/models/profile_picture.dart';
 
 import 'package:code_magic_ex/api/request/request_customer_token.dart';
 import 'package:code_magic_ex/models/user_info.dart';
@@ -69,6 +70,10 @@ abstract class ApiService {
   //? Example: https://hydra.unicity.net/v5a/customers/3d9104cc2fa45dbd0bdd1a4261f6969e
   @GET(Address.customerData)
   Future<UserInfo> getCustomerData(@Path('id') String id);
+
+  //? Example: https://hydra.unicity.net/v5a/customers/3d9104cc2fa45dbd0bdd1a4261f6969e/profilePicture
+  @GET(Address.profilePicture)
+  Future<ProfilePicture> getProfilePicture(@Path('id') String id);
 
   //? Example: https://hydra.unicity.net/v5a/customers/me/managedwarehouses
   @GET(Address.managedWarehouse)

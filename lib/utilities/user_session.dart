@@ -5,6 +5,7 @@ import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/utilities/key_value_storage.dart';
+import 'package:code_magic_ex/models/profile_picture.dart';
 
 enum ThemeTypes { light, dark }
 
@@ -13,7 +14,8 @@ class UserSessionManager {
 
   static UserSessionManager shared = UserSessionManager._internal();
 
-  static UserInfo _emptyUserInfo() => UserInfo();
+  static UserInfo? _emptyUserInfo() => null;
+  static ProfilePicture? _emptyProfilePictureData() => null;
   static CustomerToken _emptyCustomerTokenData() => CustomerToken(
       href: "",
       whoami: WhoMeHref(href: ""),
@@ -25,18 +27,33 @@ class UserSessionManager {
 
   int? selectedId;
   CustomerToken customerToken = _emptyCustomerTokenData();
-  UserInfo userInfo = _emptyUserInfo();
+  late ProfilePicture? profilePicture = _emptyProfilePictureData();
+  late UserInfo? userInfo = _emptyUserInfo();
   String customerId = "";
   String customerCode = "";
   String customerPoCode = "";
   bool isUserLoggedIn = false;
 
-  // ignore: avoid_positional_boolean_parameters
+    // ignore: avoid_positional_boolean_parameters
   Future<bool> setLoginStatusIntoDB(bool status) async {
     try {
       await KeyValueStorageManager.setBool(
           KeyValueStorageKeys.loginStatus, status.toString());
       isUserLoggedIn = status;
+      return true;
+    } catch (error) {
+      LoggerService.instance.e(
+          'Session - Set Login Status into DB - Error : ${error.toString()}');
+    }
+    return false;
+  }
+
+  // ignore: avoid_positional_boolean_parameters
+  Future<bool> setProfilePictureToDB(ProfilePicture pictures) async {
+    try {
+      await KeyValueStorageManager.setString(
+          KeyValueStorageKeys.profilePictures, json.encode(pictures.toMap()));
+      profilePicture = pictures;
       return true;
     } catch (error) {
       LoggerService.instance.e(
@@ -130,6 +147,26 @@ class UserSessionManager {
       isUserLoggedIn = false;
       LoggerService.instance
           .e('Session - Set User Info from DB - Error : ${error.toString()}');
+    }
+  }
+
+  void getProfilePictureFromDB() {
+    try {
+      final data =
+          KeyValueStorageManager.getString(KeyValueStorageKeys.profilePictures);
+      if (null == data || data.isEmpty) {
+        throw Exception('No data available in DB');
+      }
+      final Map<String, dynamic> jsonData =
+          json.decode(data) as Map<String, dynamic>;
+      if (jsonData.isEmpty) {
+        throw Exception('No data available after JSON convert');
+      }
+      profilePicture = ProfilePicture.fromJson(jsonData);
+    } catch (error) {
+      LoggerService.instance
+          .e('Session - Set User Info from DB - Error : ${error.toString()}');
+      userInfo = _emptyUserInfo();
     }
   }
 

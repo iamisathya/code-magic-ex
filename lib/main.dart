@@ -26,6 +26,8 @@ void main() async {
   //* Local Key Value DB
   await KeyValueStorageManager.setStorage();
 
+  UserSessionManager.shared.getLoginStatusFromDB();
+
   //* disable collecting in debug mode
   // if (dotenv.env['DEBUG'] == 'True') {
   //   await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
@@ -58,6 +60,7 @@ class MyApp extends StatelessWidget {
     if (isLoggedIn) {
       UserSessionManager.shared.setUserInfoFromDB();
       UserSessionManager.shared.getLoginStatusFromDB();
+      UserSessionManager.shared.getProfilePictureFromDB();
       return OrderEntryHomeScreen();
     }
     return LoginScreen();

@@ -12,6 +12,7 @@ import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/keyboard.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
+import 'package:code_magic_ex/models/profile_picture.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +91,10 @@ class LoginController extends GetxController {
           await ApiService.shared().getCustomerData(loginToken);
 
       //*  getCustomerData from api
+      final ProfilePicture profilePicture =
+          await ApiService.shared().getProfilePicture(loginToken);
+
+      //*  getCustomerData from api
       final UserId userResponse =
           await MemberCallsService.init().getUserId(kUserId, "2970466");
 
@@ -99,6 +104,7 @@ class LoginController extends GetxController {
       UserSessionManager.shared.customerPoCode = userResponse.customerPoCode;
       await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
       await UserSessionManager.shared.setLoginStatusIntoDB(true);
+      await UserSessionManager.shared.setProfilePictureToDB(profilePicture);
 
       //*  navigate to home page
       _sendingMsgProgressBar.hide();

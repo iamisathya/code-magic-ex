@@ -101,29 +101,28 @@ Widget _createDrawerHeader() {
       margin: EdgeInsets.zero,
       padding: EdgeInsets.zero,
       decoration: const BoxDecoration(color: Colors.white),
-      child: Stack(children: const <Widget>[
+      child: Stack(children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(left: 12.0),
+          padding: const EdgeInsets.only(left: 12.0),
           child: CircleAvatar(
             radius: 50.0,
-            backgroundColor: Color(0xFF778899),
-            backgroundImage: NetworkImage(
-                "http://d27zzi0gwko92h.cloudfront.net/media/image/customers/421adf11-eb44-44de-acd9-56d746304c37_original.jpeg"), // for Network image
+            backgroundColor: const Color(0xFF778899),
+            backgroundImage: NetworkImage(UserSessionManager.shared.profilePicture!.customer[0].media), // for Network image
           ),
         ),
         Positioned(
             bottom: 38.0,
             left: 16.0,
-            child: Text("122345455",
-                style: TextStyle(
+            child: Text(UserSessionManager.shared.userInfo!.id.unicity.toString(),
+                style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 12.0,
                     fontWeight: FontWeight.w500))),
         Positioned(
             bottom: 12.0,
             left: 16.0,
-            child: Text("Kim Jung Un",
-                style: TextStyle(
+            child: Text(UserSessionManager.shared.userInfo!.humanName.fullName,
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500))),

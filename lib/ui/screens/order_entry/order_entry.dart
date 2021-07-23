@@ -10,7 +10,7 @@ class OrderEntryHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(UserSessionManager.shared.customerToken.token);
+    print(UserSessionManager.shared.userInfo!.humanName.fullName);
     return Scaffold(
         backgroundColor: kPageBackground,
         appBar: const TransAppBar(
