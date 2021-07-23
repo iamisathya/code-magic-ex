@@ -9,6 +9,7 @@ import 'package:code_magic_ex/models/user_id.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/models/zip_code_response.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -28,7 +29,7 @@ abstract class MemberCallsService {
   factory MemberCallsService.init() {
     final Dio dio = Dio();
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
-    dio.options.headers['authorization'] = "Bearer $kLoginToken";
+    dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.options.headers['Content-Type'] = "application/json;charset=utf-8 ";
     return MemberCallsService(dio);
   }

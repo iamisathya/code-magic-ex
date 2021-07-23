@@ -5,6 +5,7 @@ import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -243,7 +244,7 @@ class SalesReportController extends GetxController {
   Future<void> proceedToPrint({required String orderHref}) async {
     //  https://dsc-th.unicity.com/invoice.php?link=https://hydra.unicity.net/v5a/orders/31512d2a1d4a2a5860bc785d27d1f75270eabace2d169ad5bfab2c45959ff3de&token=08b438b3-5326-45d7-9cc9-f4f3299bae5c
     final String imgUrl =
-        "${Address.dscHome}invoice.php?link=$orderHref&token=$kLoginToken";
+        "${Address.dscHome}invoice.php?link=$orderHref&token=${UserSessionManager.shared.customerToken.token}";
     try {
       final Dio dio = Dio();
       final response = await dio.get(imgUrl);
