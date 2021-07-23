@@ -3,10 +3,7 @@ import 'package:code_magic_ex/ui/screens/login/controller/login_controller.dart'
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/ui/screens/login/bloc.dart';
-import 'package:code_magic_ex/ui/screens/login/state.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_surfix_icon.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:get/get.dart';
 
@@ -19,53 +16,47 @@ class SignForm extends StatelessWidget {
       controller.userIdController.text = "2970466";
       controller.passwordController.text = "1234";
     }
-    return StreamBuilder<LoginPageState>(
-        stream: loginBloc.state,
-        builder: (context, snapshot) {
-          return Form(
-            key: controller.formKey,
-            child: Column(
-              children: [
-                _renderTextField(
-                    ctlr: controller.userIdController,
-                    label: "User ID",
-                    hintText: "Enter your user id"),
-                // buildUserIdFormField(),
-                SizedBox(height: getProportionateScreenHeight(10)),
-                _renderTextField(
-                    ctlr: controller.passwordController,
-                    label: "Password",
-                    isPassword: true,
-                    hintText: "Enter your password"),
-                // buildPasswordFormField(),
-                SizedBox(height: getProportionateScreenHeight(10)),
-                Row(
-                  children: [
-                    Obx(() => Checkbox(
-                        value: controller.remember.value,
-                        activeColor: Colors.blueAccent,
-                        onChanged: (value) =>
-                            controller.remember.value = value!)),
-                    const Text("Remember me"),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () =>
-                          controller.openMailConfirmationDialog(context),
-                      child: const Text(
-                        "Forgot Password",
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                    )
-                  ],
+    return Form(
+      key: controller.formKey,
+      child: Column(
+        children: [
+          _renderTextField(
+              ctlr: controller.userIdController,
+              label: "User ID",
+              hintText: "Enter your user id"),
+          // buildUserIdFormField(),
+          SizedBox(height: getProportionateScreenHeight(10)),
+          _renderTextField(
+              ctlr: controller.passwordController,
+              label: "Password",
+              isPassword: true,
+              hintText: "Enter your password"),
+          // buildPasswordFormField(),
+          SizedBox(height: getProportionateScreenHeight(10)),
+          Row(
+            children: [
+              Obx(() => Checkbox(
+                  value: controller.remember.value,
+                  activeColor: Colors.blueAccent,
+                  onChanged: (value) => controller.remember.value = value!)),
+              const Text("Remember me"),
+              const Spacer(),
+              GestureDetector(
+                onTap: () => controller.openMailConfirmationDialog(context),
+                child: const Text(
+                  "Forgot Password",
+                  style: TextStyle(decoration: TextDecoration.underline),
                 ),
-                SizedBox(height: getProportionateScreenHeight(20)),
-                PrimaryButton(
-                    text: "Continue",
-                    press: () => controller.onPressContinue(context)),
-              ],
-            ),
-          );
-        });
+              )
+            ],
+          ),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          PrimaryButton(
+              text: "Continue",
+              press: () => controller.onPressContinue(context)),
+        ],
+      ),
+    );
   }
 
   Container _renderTextField(
