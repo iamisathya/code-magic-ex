@@ -1,6 +1,5 @@
 import 'package:code_magic_ex/translations/translations.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry_table/order_entry.dart';
 import 'package:code_magic_ex/utilities/connectivity.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ import 'package:get/get.dart';
 // ignore: avoid_void_async
 void main() async {
   //* Ensure initialization of Widgets.
-  WidgetsFlutterBinding.ensureInitialized();  
+  WidgetsFlutterBinding.ensureInitialized();
 
   //* Connectivity
   ConnectivityManager.shared.doInitialCheck();
@@ -55,12 +54,15 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   Widget _nextScreen() {
-    UserSessionManager.shared.setUserInfoFromDB();
-    UserSessionManager.shared.getLoginStatusFromDB();
     final bool isLoggedIn = UserSessionManager.shared.isUserLoggedIn;
-    return isLoggedIn ? OrderEntryHomeScreen() : LoginScreen();
+    if (isLoggedIn) {
+      UserSessionManager.shared.setUserInfoFromDB();
+      UserSessionManager.shared.getLoginStatusFromDB();
+      return OrderEntryHomeScreen();
+    }
+    return LoginScreen();
   }
-  
+
   //* init firebase analytics
   // static FirebaseAnalytics analytics = FirebaseAnalytics();
   // static FirebaseAnalyticsObserver observer =
@@ -68,7 +70,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MainStreamBuilder(
         themeBloc: themeBloc.appThemeStream,
         translationBloc: translationBloc.appLanguageStream,
@@ -79,7 +80,8 @@ class MyApp extends StatelessWidget {
             darkTheme: AppTheme.darkTheme,
             themeMode: themeBloc.getThemeMode,
             translations: AppTranslations(),
-            locale: const Locale('en', 'US'), // translations will be displayed in that locale
+            locale: const Locale(
+                'en', 'US'), // translations will be displayed in that locale
             fallbackLocale: const Locale('en', 'UK'),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,

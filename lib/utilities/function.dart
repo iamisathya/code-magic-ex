@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
+import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -125,4 +128,26 @@ void showAlertDialog(BuildContext context,
       return alert;
     },
   );
+}
+
+String getErrorMessage(dynamic error) {
+  final mappedObj = error as Map<String, dynamic>;
+  return mappedObj["error"]["error_message"].toString();
+}
+
+void onDioError(DioError e, ProgressBar progressBar, RxString error) {
+  progressBar.hide();
+  error(e.error.toString());
+  final String message = getErrorMessage(e.response!.data);
+  renderErrorSnackBar(
+      title: "${e.response!.statusCode} Error!", subTitle: message);
+  returnResponse(e.response!);
+}
+
+void onCatchError(Object err, ProgressBar progressBar, RxString error) {
+  error(err.toString());
+  renderErrorSnackBar(
+      title: "Error!", subTitle: "Error while getting user details!");
+  LoggerService.instance.e(err.toString());
+  progressBar.hide();
 }

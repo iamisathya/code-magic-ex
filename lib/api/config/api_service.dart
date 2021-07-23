@@ -4,7 +4,10 @@ import 'package:code_magic_ex/api/request/request_order_calculation.dart';
 import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/guest_user_info.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -41,16 +44,16 @@ abstract class ApiService {
   factory ApiService.shared() {
     final Dio dio = Dio();
     dio.options.headers['authorization'] =
-        "Bearer b58b3444-7013-4351-bdf3-ceda5557f72a";
+        "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
     return ApiService(dio);
   }
 
   factory ApiService.clientNoLogger() {
     final Dio dio = Dio();
+    debugPrint("token ${UserSessionManager.shared.customerToken.token}");
     dio.options.headers['authorization'] =
-        // "Bearer ${UserSessionManager.shared.customerToken.token}";
-        "Bearer c1fd1d7c-7ad5-4143-ba27-f73e4520a376";
+        "Bearer ${UserSessionManager.shared.customerToken.token}";
     return ApiService(dio);
   }
 
@@ -92,7 +95,7 @@ abstract class ApiService {
   @GET(Address.customers)
   Future<FindCustomer> findCustomer(
       @Query("unicity") int id, @Query("expand") String expand);
-  
+
   //? Example: https://hydra.unicity.net/v5a/customers?unicity=108357166&expand=customer
   @GET(Address.customers)
   Future<GuestUserInfoList> getCustomerInfo(
@@ -146,10 +149,11 @@ abstract class MemberCalls2Service {
       @Query('lang') String lang,
       @Query('id') String id,
       @Query('action') String action);
-  
+
   //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
   @POST("ordercalc")
-  Future<OrderCalculationResponse> orderCalculation(@Body() RequestOrderCalculation request);
+  Future<OrderCalculationResponse> orderCalculation(
+      @Body() RequestOrderCalculation request);
 
   //? Example: https://member-calls2.unicity.com/unishop-fn-misc/cashcoupon_quota/3011266?pv=25
   @GET("${Address.cashCoupon}/3011266")

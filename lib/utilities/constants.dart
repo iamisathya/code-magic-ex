@@ -212,3 +212,7 @@ class Currencies {
   static const String bath = "฿";
   static const String kip = "₭";
 }
+
+
+// ! delete later 
+const String kLoginToken = "fb8f3763-c423-4066-82eb-4666181fb607";

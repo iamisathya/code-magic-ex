@@ -62,7 +62,7 @@ class Body extends StatelessWidget {
           MaterialButton(
             shape: kRoundedRectangleBorder8(),
             disabledColor: Colors.grey,
-            color: kPrimaryLightColor,
+            color: kMainColor,
             onPressed: () {
               if (searchConntroller.text.isNotEmpty) {
                 controller.getAllOrderlines(userId: searchConntroller.text);

@@ -1,7 +1,7 @@
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/ui/screens/webview/webview.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
@@ -20,7 +20,7 @@ class BarcodeController extends GetxController {
 
   Future<void> getBarcodePath(BuildContext context,
       {String userId = "3011266"}) async {
-    const String token = "2096fb4a-783d-4b60-baec-f5880bab1e7a";
+    const String token = kLoginToken;
     String barcodePath = "";
     errorMessage.value = "";
     _sendingMsgProgressBar.show(context);

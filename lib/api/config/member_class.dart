@@ -1,7 +1,6 @@
 import 'package:code_magic_ex/models/amphur_item.dart';
 import 'package:code_magic_ex/models/district_item.dart';
 import 'package:code_magic_ex/models/easy_ship_reports.dart';
-import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/govt_id_verify.dart';
 import 'package:code_magic_ex/models/order_entry_product_item.dart';
 import 'package:code_magic_ex/models/provience_item.dart';
@@ -9,6 +8,7 @@ import 'package:code_magic_ex/models/search_reponse_by_href.dart';
 import 'package:code_magic_ex/models/user_id.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/models/zip_code_response.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -28,8 +28,7 @@ abstract class MemberCallsService {
   factory MemberCallsService.init() {
     final Dio dio = Dio();
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
-    dio.options.headers['authorization'] =
-        "Bearer a30be6a4-d6d5-4119-9e3a-84bfb90f71e2";
+    dio.options.headers['authorization'] = "Bearer $kLoginToken";
     dio.options.headers['Content-Type'] = "application/json;charset=utf-8 ";
     return MemberCallsService(dio);
   }
@@ -139,21 +138,28 @@ abstract class MemberCallsService {
     @Field("password") String password,
   );
 
-
   // //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=getBAInfo
   @POST(Address.validOrders)
-  Future<List<SearchedUserInfo>> searchUsersByHref(@Query("type") String type, @Body() List<String> task);
+  Future<List<SearchedUserInfo>> searchUsersByHref(
+      @Query("type") String type, @Body() List<String> task);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=104&itemcode=17532&selectname=itemcode190
   @POST(Address.validOrders)
-  Future<dynamic> getOrderEntryProductInfo(@Query("type") String type, @Query("itemcode") String itemcode, @Query("selectname") String selectname);
+  Future<dynamic> getOrderEntryProductInfo(
+      @Query("type") String type,
+      @Query("itemcode") String itemcode,
+      @Query("selectname") String selectname);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=31&token=6e4234c7-fee7-4160-9e17-c029415a6b4f&warehouse=https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c
   @POST(Address.validOrders)
-  Future<List<OrderEntryItem>> getOrderEntryProductList(@Query("type") String type, @Query("token") String token, @Query("warehouse") String warehouse);
+  Future<List<OrderEntryItem>> getOrderEntryProductList(
+      @Query("type") String type,
+      @Query("token") String token,
+      @Query("warehouse") String warehouse);
 
   //? url=https://member-calls.unicity.com/ALL/Email_Validation.asp
   @POST(Address.validateEmail)
   @FormUrlEncoded()
-  Future<dynamic> validateEmail(@Field("language") String language, @Field("email") String email);
+  Future<dynamic> validateEmail(
+      @Field("language") String language, @Field("email") String email);
 }

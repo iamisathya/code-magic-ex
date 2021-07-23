@@ -243,7 +243,7 @@ class SalesReportController extends GetxController {
   Future<void> proceedToPrint({required String orderHref}) async {
     //  https://dsc-th.unicity.com/invoice.php?link=https://hydra.unicity.net/v5a/orders/31512d2a1d4a2a5860bc785d27d1f75270eabace2d169ad5bfab2c45959ff3de&token=08b438b3-5326-45d7-9cc9-f4f3299bae5c
     final String imgUrl =
-        "${Address.dscHome}invoice.php?link=$orderHref&token=c1fd1d7c-7ad5-4143-ba27-f73e4520a376";
+        "${Address.dscHome}invoice.php?link=$orderHref&token=$kLoginToken";
     try {
       final Dio dio = Dio();
       final response = await dio.get(imgUrl);

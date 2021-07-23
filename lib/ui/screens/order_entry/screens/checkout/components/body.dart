@@ -1,4 +1,3 @@
-import 'package:code_magic_ex/ui/global/widgets/default_button.dart';
 import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
@@ -106,7 +105,6 @@ class Body extends StatelessWidget {
   }
 
   Widget _renderUserDetails(BuildContext context) {
-    UserSessionManager.shared.setUserInfoFromDB();
     return Container(
         decoration: kCheckoutDecoration(),
         child: Padding(
