@@ -1,11 +1,15 @@
+import 'package:code_magic_ex/ui/screens/login/controller/login_controller.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'sign_form.dart';
 
 class Body extends StatelessWidget {
+  final LoginController controller = Get.put(LoginController());
+
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
@@ -28,7 +32,15 @@ class Body extends StatelessWidget {
                   "Sign in with your user id and password",
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: SizeConfig.screenHeight * 0.08),
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
+                Obx(() => controller.isSessionExpired.value
+                    ? const Text(
+                        "Session Expired, pleadse login again",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.red),
+                      )
+                    : const SizedBox()),
+                SizedBox(height: SizeConfig.screenHeight * 0.04),
                 SignForm(),
                 SizedBox(height: SizeConfig.screenHeight * 0.08),
                 SizedBox(height: getProportionateScreenHeight(20)),

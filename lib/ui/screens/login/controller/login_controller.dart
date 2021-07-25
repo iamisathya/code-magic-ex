@@ -30,11 +30,22 @@ class LoginController extends GetxController {
   RxBool remember = false.obs;
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
+  RxBool isSessionExpired = false.obs;
 
   final ProgressBar _sendingMsgProgressBar = ProgressBar();
 
+  @override
+  void onInit() {
+    super.onInit();
+    final dynamic data = Get.arguments;
+    if(data != null) {
+      isSessionExpired.value = data as bool;
+    }
+  }
+
   void onPressContinue(BuildContext context) {
     if (formKey.currentState!.validate()) {
+      isSessionExpired.value = false;
       formKey.currentState!.save();
       getLoginTokens(context);
       KeyboardUtil.hideKeyboard(context);

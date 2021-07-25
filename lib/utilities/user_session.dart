@@ -174,6 +174,7 @@ class UserSessionManager {
     await KeyValueStorageManager.remove(KeyValueStorageKeys.loginTokens);
     await KeyValueStorageManager.remove(KeyValueStorageKeys.userInfo);
     await KeyValueStorageManager.remove(KeyValueStorageKeys.loginStatus);
+    await KeyValueStorageManager.remove(KeyValueStorageKeys.profilePictures);
     userInfo = _emptyUserInfo();
     customerToken = _emptyCustomerTokenData();
     isUserLoggedIn = false;

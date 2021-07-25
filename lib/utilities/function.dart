@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
+import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -75,6 +77,12 @@ dynamic returnResponse(dio.Response response) {
     case 400:
       throw DefaultException(message: response.data.toString());
     case 401:
+      final String errorMsg = getErrorMessage(response.data);
+      if (errorMsg == "Invalid Bearer Token.") {
+        UserSessionManager.shared.removeUserInfoFromDB();
+        return Get.offAll(() => LoginScreen(),
+            arguments: true, transition: Transition.cupertino);
+      }
       throw UnauthorisedException(message: response.data.toString());
     case 403:
       throw UnauthorisedException(message: response.data.toString());
