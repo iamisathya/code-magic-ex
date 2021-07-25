@@ -8,7 +8,7 @@ part of 'profile_picture.dart';
 
 ProfilePicture _$ProfilePictureFromJson(Map<String, dynamic> json) {
   return ProfilePicture(
-    customer: (json['customer'] as List<dynamic>)
+    sizes: (json['sizes'] as List<dynamic>)
         .map((e) => PictureObject.fromJson(e as Map<String, dynamic>))
         .toList(),
     href: json['href'] as String,
@@ -17,7 +17,7 @@ ProfilePicture _$ProfilePictureFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ProfilePictureToJson(ProfilePicture instance) =>
     <String, dynamic>{
-      'customer': instance.customer,
+      'sizes': instance.sizes,
       'href': instance.href,
     };
 

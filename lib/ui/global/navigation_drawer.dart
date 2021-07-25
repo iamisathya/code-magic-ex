@@ -107,7 +107,7 @@ Widget _createDrawerHeader() {
           child: CircleAvatar(
             radius: 50.0,
             backgroundColor: const Color(0xFF778899),
-            backgroundImage: NetworkImage(UserSessionManager.shared.profilePicture!.customer[0].media), // for Network image
+            backgroundImage: NetworkImage(UserSessionManager.shared.profilePicture!.sizes[0].media), // for Network image
           ),
         ),
         Positioned(

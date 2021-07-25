@@ -3,13 +3,13 @@ part 'profile_picture.g.dart';
 
 @JsonSerializable()
 class ProfilePicture {
-  @JsonKey(name: "customer")
-  List<PictureObject> customer;
+  @JsonKey(name: "sizes")
+  List<PictureObject> sizes;
   @JsonKey(name: "href")
   String href;
 
   ProfilePicture({
-    required this.customer,
+    required this.sizes,
     required this.href,
   });
 
@@ -19,7 +19,7 @@ class ProfilePicture {
   Map<String, dynamic> toJson() => _$ProfilePictureToJson(this);
 
     Map<String, dynamic> toMap() =>
-      {'customer': customer, 'href': href};
+      {'sizes': sizes, 'href': href};
 }
 
 @JsonSerializable()
