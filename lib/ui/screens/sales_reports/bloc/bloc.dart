@@ -1,6 +1,7 @@
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/order_list_rmas.dart';
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
@@ -31,6 +32,8 @@ class SalesReportController extends GetxController {
   RxString errorMessage = "".obs;
 
   OrdersAndRmas allOrdersAndRmas = const OrdersAndRmas();
+
+  final ProgressBar _sendingMsgProgressBar = ProgressBar();
 
   int get currentOrdersLength => allOrdersAndRmas.orders[0].items.length;
   int get currentItemsLength => 0;
@@ -138,7 +141,7 @@ class SalesReportController extends GetxController {
     update();
   }
 
-  Future<void> loadSalesReports() async {
+  Future<void> loadSalesReports(BuildContext context) async {
     if (startDate.text.isEmpty || endDate.text.isEmpty) {
       renderErrorSnackBar(
           title: "Select ${startDate.text.isEmpty ? 'start' : 'end'} date",
@@ -160,6 +163,7 @@ class SalesReportController extends GetxController {
         "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     final String duration = "[${startDate.text};${endDate.text}]";
     loading(true);
+    _sendingMsgProgressBar.show(context);
     update();
     try {
       allOrdersAndRmas = await ApiService.clientNoLogger()
@@ -167,11 +171,10 @@ class SalesReportController extends GetxController {
       calulateValue();
       loading(false);
       update();
+    } on DioError catch (e) {
+      onDioError(e, _sendingMsgProgressBar, errorMessage);
     } catch (err) {
-      loading(false);
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
-      update();
+      onCatchError(err, _sendingMsgProgressBar, errorMessage);
     }
   }
 

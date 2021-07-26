@@ -317,7 +317,7 @@ class Body extends StatelessWidget {
                     color: Colors.white,
                   ),
                   tooltip: 'Find easy ship',
-                  onPressed: () => controller.loadSalesReports(),
+                  onPressed: () => controller.loadSalesReports(context),
                 ),
               ),
             ),

@@ -34,7 +34,7 @@ class UserSessionManager {
   String customerPoCode = "";
   bool isUserLoggedIn = false;
 
-    // ignore: avoid_positional_boolean_parameters
+  // ignore: avoid_positional_boolean_parameters
   Future<bool> setLoginStatusIntoDB(bool status) async {
     try {
       await KeyValueStorageManager.setBool(
@@ -105,7 +105,7 @@ class UserSessionManager {
     try {
       await KeyValueStorageManager.setString(
           KeyValueStorageKeys.currentLanguage, language);
-          currentLanguage = language;
+      currentLanguage = language;
       return true;
     } catch (error) {
       LoggerService.instance
@@ -148,6 +148,27 @@ class UserSessionManager {
       LoggerService.instance
           .e('Session - Set User Info from DB - Error : ${error.toString()}');
     }
+  }
+
+  CustomerToken getLoginTokensFromDB() {
+    try {
+      final data =
+          KeyValueStorageManager.getString(KeyValueStorageKeys.loginTokens);
+      if (null == data || data.isEmpty) {
+        throw Exception('No data available in DB');
+      }
+      final Map<String, dynamic> jsonData =
+          json.decode(data) as Map<String, dynamic>;
+      if (jsonData.isEmpty) {
+        throw Exception('No data available after JSON convert');
+      }
+      customerToken = CustomerToken.fromJson(jsonData);
+    } catch (error) {
+      LoggerService.instance
+          .e('Session - Set User Info from DB - Error : ${error.toString()}');
+      customerToken = _emptyCustomerTokenData();
+    }
+    return customerToken;
   }
 
   void getProfilePictureFromDB() {

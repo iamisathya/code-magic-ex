@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
+import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/sales_reports/component/body.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
@@ -16,9 +17,9 @@ class SalesReportsHomeScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
-        appBar: AppBar(
-          title: const Text("Sales Report"),
-          actions: _renderActionBar(context),
+        appBar: TransAppBar(
+          title: "Sales Report",
+          action: _renderActionBar(context),
         ),
         drawer: NavigationDrawer(),
         body: Body());

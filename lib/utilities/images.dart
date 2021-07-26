@@ -15,4 +15,5 @@ const kImageSearchSecendary = 'assets/images/search_two.svg';
 //* Icons
 const kIconProduct = 'assets/icons/Product.svg';
 const kIconTrash = 'assets/icons/Trash.svg';
-
+// * splash
+const kSplashImage = 'assets/images/splash.jpg';
