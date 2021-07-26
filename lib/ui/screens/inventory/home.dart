@@ -41,7 +41,7 @@ class InventoryHomeScreen extends StatelessWidget {
           Icons.print_outlined,
         ),
         tooltip: 'Print',
-        onPressed: () {},
+        onPressed: () => controller.onTapPrint(context),
       ),
       IconButton(
         icon: const Icon(

@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
               ),
               _renderSubmitButton(
                   label: controller.enrollerSponsorVerifyButton.value,
-                  onPress: () => controller.verifyEnrollerSponsor()),
+                  onPress: () => controller.verifyEnrollerSponsor(context)),
               if (controller.isEnrollerIdSuccess.value == true)
                 Column(children: [
                   _renderInformationHeader(),
@@ -36,7 +36,7 @@ class Body extends StatelessWidget {
                       label: "ID Card Number"),
                   _renderSubmitButton(
                       label: controller.govtIdVerifyButton.value,
-                      onPress: () => controller.verifyGovtIdNumber()),
+                      onPress: () => controller.verifyGovtIdNumber(context)),
                 ]),
                 const SizedBox(height: 30),
               if (controller.isGovtIdSuccess.value == true)
@@ -140,7 +140,7 @@ class Body extends StatelessWidget {
                     const SizedBox(height: 30),
                     _renderSubmitButton(
                         label: "Verify All",
-                        onPress: () => controller.verifyEnrollForm()),
+                        onPress: () => controller.verifyEnrollForm(context)),
                     if (controller.errorMessages.isNotEmpty) _renderErrorBox(),
                   ],
                 )

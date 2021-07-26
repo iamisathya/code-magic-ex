@@ -38,6 +38,7 @@ class SampleController extends GetxController {
   OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
   RxList<OpenPO> _tempOpenPlaceOrders = <OpenPO>[].obs;
   RxInt increment() => count++;
+  final ProgressBar _sendingMsgProgressBar = ProgressBar();
 
   // Use this to retrieve all records
   List<OpenPO> get openPlaceOrders {
@@ -146,6 +147,7 @@ class SampleController extends GetxController {
     detailsErrorMessage("");
     update();
     try {
+      _sendingMsgProgressBar.show(context);
       // * Getting order id from getOpenOrderId API - 203
       openPlaceOrderId =
           await MemberCallsService.init().getOpenOrderId("203", ponumber);
@@ -155,6 +157,7 @@ class SampleController extends GetxController {
           await MemberCallsService.init()
               .getOpenOrderDetails("204", openPlaceOrderId.orderId);
       openPlaceOrderDetails = detailsResponse.obs;
+      _sendingMsgProgressBar.hide();
       Get.to(PurchaseOrderDetailsPage());
       // Navigator.pushNamed(context, '/poOrderDetailsPage');
 
@@ -164,6 +167,7 @@ class SampleController extends GetxController {
     } catch (err) {
       loadingDetails(false);
       detailsErrorMessage(err.toString());
+      _sendingMsgProgressBar.hide();
       LoggerService.instance.e(err.toString());
       update();
     }
@@ -308,14 +312,15 @@ class SampleController extends GetxController {
     );
   }
 
-  Future<void> proceedToPrint({required String orderId}) async {
+  Future<void> proceedToPrint(BuildContext context, {required String orderId}) async {
     final String imgUrl = "${Address.poOrder}?order_id=$orderId";
-    print(imgUrl);
+    _sendingMsgProgressBar.show(context);
     final Dio dio = Dio();
     final response = await dio.get(imgUrl);
     // * removing background from html document
     final removedBackground =
         response.toString().replaceAll('background: rgb(204,204,204);', '');
+        _sendingMsgProgressBar.hide();
     await Printing.layoutPdf(
         dynamicLayout: false,
         onLayout: (PdfPageFormat format) async => Printing.convertHtml(

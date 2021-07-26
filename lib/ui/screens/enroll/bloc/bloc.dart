@@ -9,6 +9,7 @@ import 'package:code_magic_ex/models/govt_id_verify.dart';
 import 'package:code_magic_ex/models/guest_user_info.dart';
 import 'package:code_magic_ex/models/provience_item.dart';
 import 'package:code_magic_ex/models/zip_code_response.dart';
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -87,6 +88,8 @@ class EnrollController extends GetxController {
     const DropdownMenuItem(value: "th", child: Text("Thailand")),
   ];
 
+  final ProgressBar _sendingMsgProgressBar = ProgressBar();
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -106,7 +109,7 @@ class EnrollController extends GetxController {
     birthDateController.text = selectedDate.toString();
   }
 
-  Future<void> verifyEnrollerSponsor() async {
+  Future<void> verifyEnrollerSponsor(BuildContext context) async {
     if (enrollIdController.text.isEmpty) {
       _renderErrorSnackBar("Enroller ID empty", "Please enter valid enroller");
       return;
@@ -118,6 +121,7 @@ class EnrollController extends GetxController {
     isEnrollerIdSuccess.value = false;
     update();
     try {
+      _sendingMsgProgressBar.show(context);
       // * if sponsor & enroller are same
       if (enrollIdController.text == sponsorIdController.text) {
         enrollerProfile = await ApiService.shared().getCustomerInfo(
@@ -134,14 +138,17 @@ class EnrollController extends GetxController {
       }
       enrollerSponsorVerifyButton.value = "Verified";
       isEnrollerIdSuccess.value = true;
+      _sendingMsgProgressBar.hide();
       isSubmitting(false);
       update();
     } on DioError catch (e) {
+      _sendingMsgProgressBar.hide();
       enrollerSponsorVerifyButton.value = "Verify Enroller";
       isSubmitting(false);
       _renderErrorSnackBar("Error!", e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
+      _sendingMsgProgressBar.hide();
       enrollerSponsorVerifyButton.value = "Verify Enroller";
       isSubmitting(false);
       errorMessage(err.toString());
@@ -150,7 +157,7 @@ class EnrollController extends GetxController {
     }
   }
 
-  Future<void> verifyGovtIdNumber() async {
+  Future<void> verifyGovtIdNumber(BuildContext context) async {
     if (idCardNumberController.text.isEmpty) {
       _renderErrorSnackBar("Empty!", "Please enter valid governament ID!");
       return;
@@ -159,6 +166,7 @@ class EnrollController extends GetxController {
     isSubmitting(true);
     update();
     try {
+      _sendingMsgProgressBar.show(context);
       govtIdVerification = await MemberCallsService.init()
           .validateIdCard(idCardNumberController.text);
       final List<ProvinceItem> allProvince =
@@ -171,8 +179,10 @@ class EnrollController extends GetxController {
       govtIdVerifyButton.value = "Verified";
       isGovtIdSuccess.value = true;
       isSubmitting(false);
+      _sendingMsgProgressBar.hide();
       update();
     } catch (err) {
+      _sendingMsgProgressBar.hide();
       govtIdVerifyButton.value = "Verified ID";
       isSubmitting(false);
       errorMessage(err.toString());
@@ -239,8 +249,9 @@ class EnrollController extends GetxController {
     }
   }
 
-  Future<void> verifyEnrollForm() async {
+  Future<void> verifyEnrollForm(BuildContext context) async {
     try {
+      _sendingMsgProgressBar.show(context);
       final response = await MemberCallsService.init().verifyEnrollForm(
           "English",
           firstNameEnController.text,
@@ -271,8 +282,10 @@ class EnrollController extends GetxController {
         errorMessages.clear();
         errorMessages.addAll(enrollResponse.message);
       }
+      _sendingMsgProgressBar.hide();
       update();
     } catch (err) {
+      _sendingMsgProgressBar.hide();
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
     }

@@ -1,10 +1,13 @@
 import 'dart:io';
 
+import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +17,10 @@ import 'package:path/path.dart';
 
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:open_file/open_file.dart';
+import 'package:printing/printing.dart';
 
 class InventoryController extends GetxController {
   TextEditingController searchController = TextEditingController();
@@ -28,6 +33,7 @@ class InventoryController extends GetxController {
   static int sortStatus = 1;
   bool isAscending = true;
   InventorySortTypes currentType = InventorySortTypes.itemCode;
+  final ProgressBar _sendingMsgProgressBar = ProgressBar();
 
   void resetSearchText() {
     _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
@@ -275,5 +281,26 @@ class InventoryController extends GetxController {
     //* shareFiles: this has to be awaited 🤔
     // await Share.shareFiles([path]).then((value) => setState(() => excel = null));
     // });
+  }
+
+  Future<void> onTapPrint(BuildContext context) async {
+    try {
+      _sendingMsgProgressBar.show(context);
+      final Dio dio = Dio();
+      final response = await dio.get("${Address.inventoryPrint}=2970466");
+      final removedBackground =
+          response.toString().replaceAll('background: rgb(204,204,204);', '');
+          _sendingMsgProgressBar.hide();
+      await Printing.layoutPdf(
+          dynamicLayout: false,
+          onLayout: (PdfPageFormat format) async => Printing.convertHtml(
+                format: format,
+                html: removedBackground,
+              ));
+    } catch (err) {
+      errorMessage.value = err.toString();
+      LoggerService.instance.e(err.toString());
+      _sendingMsgProgressBar.hide();
+    }
   }
 }

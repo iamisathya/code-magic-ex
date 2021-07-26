@@ -29,4 +29,5 @@ class Address {
   static const String verifyEnroll = "THA/THA_DSC_Enroll_ValidationV2.asp";
   static const String validateEmail = "ALL/Email_Validation.asp";
   static const String cashCoupon = "unishop-fn-misc/cashcoupon_quota/";
+  static const String inventoryPrint = "https://dsc-th.unicity.com/administrator/print/inventory.php?user_id";
 }
