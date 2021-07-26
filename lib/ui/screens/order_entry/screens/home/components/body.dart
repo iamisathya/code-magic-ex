@@ -59,6 +59,9 @@ class Body extends StatelessWidget {
     return Card(
       color: Colors.white,
       elevation: 2,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)),
+          margin: const EdgeInsets.symmetric(vertical: 8),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
