@@ -146,7 +146,7 @@ class Body extends StatelessWidget {
   Widget _getTitleItemWidget(String label, double width, Alignment alignment) {
     return Container(
       decoration: BoxDecoration(
-          color: kPrimaryLightColor, border: Border.all(width: 0.5)),
+          color: kMainColor, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -184,17 +184,17 @@ class Body extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(currentItem.customer.id.unicity)),
         _renderDataCell(index, 200, currentItem.customer.humanName.fullName,
-            Alignment.centerLeft, "value", ""),
+            Alignment.centerLeft, "value", "", context),
         _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),
-            Alignment.center, "link", currentItem.href),
+            Alignment.center, "link", currentItem.href, context),
         _renderDataCell(index, 140, currentItem.dateCreated.asDDMMYYYY,
-            Alignment.center, "value", ""),
+            Alignment.center, "value", "", context),
         _renderDataCell(index, 140, currentItem.dateCreated.asHHMMA,
-            Alignment.center, "value", ""),
+            Alignment.center, "value", "", context),
         _renderDataCell(index, 150, currentItem.terms.total.toString(),
-            Alignment.centerRight, "value", ""),
+            Alignment.centerRight, "value", "", context),
         _renderDataCell(index, 150, Parsing.stringFrom(currentItem.terms.pv),
-            Alignment.centerRight, "value", ""),
+            Alignment.centerRight, "value", "", context),
         _renderDataIcon(),
       ],
     );
@@ -212,19 +212,19 @@ class Body extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(currentItem.customer.id.unicity)),
         _renderDataCell(index, 200, currentItem.customer.humanName.fullName,
-            Alignment.centerLeft, "value", ""),
+            Alignment.centerLeft, "value", "", context),
         _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),
-            Alignment.center, "link", ""),
+            Alignment.center, "link", "", context),
         _renderDataCell(index, 140, currentItem.dateCreated.asDDMMYYYY,
-            Alignment.center, "value", ""),
+            Alignment.center, "value", "", context),
         _renderDataCell(index, 140, currentItem.dateCreated.asHHMMA,
-            Alignment.center, "value", ""),
+            Alignment.center, "value", "", context),
         _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),
-            Alignment.center, "value", ""),
+            Alignment.center, "value", "", context),
         _renderDataCell(index, 150, currentItem.terms.total.toString(),
-            Alignment.centerRight, "value", ""),
+            Alignment.centerRight, "value", "", context),
         _renderDataCell(index, 150, Parsing.stringFrom(currentItem.terms.pv),
-            Alignment.centerRight, "value", ""),
+            Alignment.centerRight, "value", "", context),
       ],
     );
   }
@@ -244,7 +244,7 @@ class Body extends StatelessWidget {
   }
 
   Container _renderDataCell(int index, double width, String titleText,
-      Alignment textAlign, String type, String href) {
+      Alignment textAlign, String type, String href, BuildContext context) {
     return Container(
       width: width,
       height: 65,
@@ -254,7 +254,7 @@ class Body extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if(type == 'link') {
-            controller.proceedToPrint(orderHref: href);
+            controller.proceedToPrint(context, orderHref: href);
           }
         },
         child: Padding(
@@ -330,7 +330,7 @@ class Body extends StatelessWidget {
   InputDecoration _renderInputDecoration(String hintText, String label) {
     return InputDecoration(
       border: const OutlineInputBorder(
-          borderSide: BorderSide(color: kPrimaryColor)),
+          borderSide: BorderSide(color: kMainColor)),
       hintText: hintText,
       labelText: label,
     );

@@ -170,6 +170,7 @@ class SalesReportController extends GetxController {
           .getOrdersAndRmas(userId, duration, type);
       calulateValue();
       loading(false);
+      _sendingMsgProgressBar.hide();
       update();
     } on DioError catch (e) {
       onDioError(e, _sendingMsgProgressBar, errorMessage);
@@ -244,13 +245,15 @@ class SalesReportController extends GetxController {
     );
   }
 
-  Future<void> proceedToPrint({required String orderHref}) async {
+  Future<void> proceedToPrint(BuildContext context, {required String orderHref}) async {
     //  https://dsc-th.unicity.com/invoice.php?link=https://hydra.unicity.net/v5a/orders/31512d2a1d4a2a5860bc785d27d1f75270eabace2d169ad5bfab2c45959ff3de&token=08b438b3-5326-45d7-9cc9-f4f3299bae5c
     final String imgUrl =
         "${Address.dscHome}invoice.php?link=$orderHref&token=${UserSessionManager.shared.customerToken.token}";
     try {
+      _sendingMsgProgressBar.show(context);
       final Dio dio = Dio();
       final response = await dio.get(imgUrl);
+      _sendingMsgProgressBar.hide();
       await Printing.layoutPdf(
           dynamicLayout: false,
           onLayout: (PdfPageFormat format) async => Printing.convertHtml(
@@ -258,6 +261,7 @@ class SalesReportController extends GetxController {
                 html: response.data.toString(),
               ));
     } catch (err) {
+      _sendingMsgProgressBar.hide();
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
     }

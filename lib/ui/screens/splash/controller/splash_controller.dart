@@ -13,7 +13,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SalesReportController extends GetxController {
+class SplashController extends GetxController {
   Timer? _timer;
   Rx<FlutterLogoStyle> logoStyle = FlutterLogoStyle.markOnly.obs;
   final CustomerToken customerToken =

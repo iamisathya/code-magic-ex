@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
-  final SalesReportController controller = Get.put(SalesReportController());
+  final SplashController controller = Get.put(SplashController());
 
   @override
   Widget build(BuildContext context) {

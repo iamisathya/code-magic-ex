@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
@@ -123,7 +124,7 @@ class Body extends StatelessWidget {
   Widget _getTitleItemWidget(String label, double width, Alignment alignment) {
     return Container(
       decoration: BoxDecoration(
-          color: kPrimaryLightColor, border: Border.all(width: 0.5)),
+          color: kMainColor, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -163,7 +164,7 @@ class Body extends StatelessWidget {
         _renderDataCell(index, 100, currentItem.terms.pvEach.toString(),
             Alignment.centerRight, "value"),
         _renderDataCell(index, 100, currentItem.terms.priceEach.toString(),
-            Alignment.centerRight, "link"),
+            Alignment.centerRight, "value"),
         _renderDataCell(index, 180, currentItem.quantityOnHand,
             Alignment.centerRight, "value"),
         _renderDataCell(
@@ -212,7 +213,7 @@ class Body extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-                border: Border.all(),
+                border: Border.all(color: kMainColor, width: 2),
                 borderRadius: const BorderRadius.all(Radius.circular(8.0))),
             child: TextField(
               cursorColor: Colors.grey[300],
@@ -237,7 +238,7 @@ class Body extends StatelessWidget {
               decoration: kCircular8,
               child: ElevatedButton(
                 onPressed: () => controller.resetSearchText(),
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(kPrimaryColor)),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(kMainColor)),
                 child: const Text("Clear"),
               ),
             ),

@@ -14,10 +14,24 @@ class EasyShipHomeScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
-        appBar: const TransAppBar(
+        appBar: TransAppBar(
           title: "Easy Ship",
+          action: [
+            _appBarActions(),
+          ],
         ),
         drawer: NavigationDrawer(),
         body: Body());
+  }
+
+  IconButton _appBarActions() {
+    return const IconButton(
+      icon: Icon(
+        Icons.open_in_new_outlined,
+        color: kMainColor,
+      ),
+      tooltip: 'Theme selector',
+      onPressed: null,
+    );
   }
 }
