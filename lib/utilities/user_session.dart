@@ -4,6 +4,7 @@ import 'package:code_magic_ex/models/user_token.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
 import 'package:code_magic_ex/models/user_info.dart';
+import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/key_value_storage.dart';
 import 'package:code_magic_ex/models/profile_picture.dart';
 
@@ -32,6 +33,7 @@ class UserSessionManager {
   String customerId = "";
   String customerCode = "";
   String customerPoCode = "";
+  String customerUniqueId = ""; //3d9104cc2fa45dbd0bdd1a4261f6969e
   bool isUserLoggedIn = false;
 
   // ignore: avoid_positional_boolean_parameters
@@ -67,6 +69,7 @@ class UserSessionManager {
       await KeyValueStorageManager.setString(
           KeyValueStorageKeys.loginTokens, json.encode(token.toMap()));
       customerToken = token;
+      customerUniqueId = getUniqueId(customerToken.customer.href);
       return true;
     } catch (error) {
       LoggerService.instance
@@ -163,6 +166,7 @@ class UserSessionManager {
         throw Exception('No data available after JSON convert');
       }
       customerToken = CustomerToken.fromJson(jsonData);
+      customerUniqueId = getUniqueId(customerToken.customer.href);
     } catch (error) {
       LoggerService.instance
           .e('Session - Set User Info from DB - Error : ${error.toString()}');

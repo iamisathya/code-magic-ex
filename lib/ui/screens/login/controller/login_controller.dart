@@ -92,18 +92,13 @@ class LoginController extends GetxController {
           await ApiService.init().getLoginTokens(request);
       await UserSessionManager.shared.setLoginTokenIntoDB(customerToken);
 
-      //* getting loginToken by fetching string after last slash /
-      final String loginToken = customerToken.customer.href.substring(
-          customerToken.customer.href.lastIndexOf("/") + 1,
-          customerToken.customer.href.length);
-
       //*  getCustomerData from api
       final UserInfo responseUserInfo =
-          await ApiService.shared().getCustomerData(loginToken);
+          await ApiService.shared().getCustomerData(UserSessionManager.shared.customerUniqueId);
 
       //*  getCustomerData from api
       final ProfilePicture profilePicture =
-          await ApiService.shared().getProfilePicture(loginToken);
+          await ApiService.shared().getProfilePicture(UserSessionManager.shared.customerUniqueId);
 
       //*  getCustomerData from api
       final UserId userResponse =

@@ -159,3 +159,10 @@ void onCatchError(Object err, ProgressBar progressBar, RxString error) {
   LoggerService.instance.e(err.toString());
   progressBar.hide();
 }
+
+String getUniqueId(String href) {
+  //* getting loginToken by fetching string after last slash /
+  final String loginToken =
+      href.substring(href.lastIndexOf("/") + 1, href.length);
+  return loginToken;
+}
