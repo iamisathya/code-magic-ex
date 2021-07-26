@@ -51,6 +51,7 @@ class OrderEntryController extends GetxController {
 
   void onChangedSearchType(OrderEntryRadioButton data) {
     seletedOption.value = searchRadioOptions[data.index];
+    searchResultsOfUserInfo.clear();
     update();
   }
 
