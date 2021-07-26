@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:code_magic_ex/api/config/api_service.dart';
@@ -274,11 +275,13 @@ class EnrollController extends GetxController {
           EnrollResponse.fromJson(body as Map<String, dynamic>);
       if (enrollResponse.success == "No" && enrollResponse.message.isNotEmpty) {
         // * Scroll to bottom to see error
-        scrollController.animateTo(
-          scrollController.position.maxScrollExtent,
-          curve: Curves.easeOut,
-          duration: const Duration(milliseconds: 300),
-        );
+        Timer(const Duration(milliseconds: 20), () {
+          scrollController.animateTo(
+            scrollController.position.maxScrollExtent,
+            curve: Curves.easeOut,
+            duration: const Duration(milliseconds: 300),
+          );
+        });
         errorMessages.clear();
         errorMessages.addAll(enrollResponse.message);
       }
