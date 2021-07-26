@@ -3,6 +3,7 @@ import 'package:code_magic_ex/models/easy_ship_reports.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:get/get.dart';
@@ -31,7 +32,7 @@ class EasyShipController extends GetxController {
     update();
     try {
       allEasyShipOrders = await MemberCallsService.init().getEasyShipReports(
-          kEasyShipReports, userId, "c1fd1d7c-7ad5-4143-ba27-f73e4520a376");
+          kEasyShipReports, userId, UserSessionManager.shared.customerToken.token);
       allEasyShipOrders = addTotalRowAfterEachUniqueItemSet();
       _tempEasyShipOrders = allEasyShipOrders;
       loading(false);

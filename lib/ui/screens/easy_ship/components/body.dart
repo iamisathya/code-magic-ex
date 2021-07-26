@@ -5,6 +5,7 @@ import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,7 +68,7 @@ class Body extends StatelessWidget {
               if (searchConntroller.text.isNotEmpty) {
                 controller.getAllOrderlines(userId: searchConntroller.text);
               } else {
-                _renderErrorSnackBar();
+                renderErrorSnackBar(title: "Search field empty!", subTitle: "Please enter user id to search.");
               }
             },
             height: 55,
@@ -75,27 +76,6 @@ class Body extends StatelessWidget {
                 Text('Search', style: Theme.of(context).textTheme.tableHeader),
           ),
         ],
-      ),
-    );
-  }
-
-  void _renderErrorSnackBar() {
-    return Get.snackbar(
-      "Search field empty!",
-      "Please enter user id to search.",
-      titleText: const Text("Search field empty!",
-          style: TextStyle(color: kPrimaryColor, fontSize: 16)),
-      messageText: const Text("Please enter user id to search.",
-          style: TextStyle(color: kPrimaryColor, fontSize: 14)),
-      backgroundColor: Colors.white,
-      borderColor: kPrimaryLightColor,
-      animationDuration: const Duration(milliseconds: 300),
-      snackPosition: SnackPosition.BOTTOM,
-      borderRadius: 10.0,
-      borderWidth: 2,
-      icon: const Icon(
-        Icons.error_outline,
-        color: kPrimaryColor,
       ),
     );
   }
@@ -147,7 +127,7 @@ class Body extends StatelessWidget {
   Widget _getTitleItemWidget(String label, double width) {
     return Container(
       decoration: BoxDecoration(
-          color: kPrimaryLightColor, border: Border.all(width: 0.5)),
+          color: kMainColor, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
