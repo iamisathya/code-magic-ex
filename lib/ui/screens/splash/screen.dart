@@ -29,7 +29,7 @@ class SplashScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: kMainColor,
-                      fontSize: 40,
+                      fontSize: 50,
                       fontWeight: FontWeight.w700),
                 ),
               ),
@@ -38,7 +38,7 @@ class SplashScreen extends StatelessWidget {
                 child: Text(
                   "OFFICE",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: kMainColor, fontSize: 30),
+                  style: TextStyle(color: kMainColor, fontSize: 40),
                 ),
               ),
             ],

@@ -1,5 +1,4 @@
 import 'package:code_magic_ex/api/api_address.dart';
-import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
@@ -93,23 +92,8 @@ class OpenPoController extends GetxController {
     update();
   }
 
-  // double totalCartPrice() {
-  //   double totalCartAmount = 0.0;
-  //   for (final item in cartProducts) {
-  //     totalCartAmount += item.totalPrice;
-  //   }
-  //   return totalCartAmount;
-  // }
-
   bool get isEmptyCart => cartProducts.isEmpty;
 
-  // int totalCartPv() {
-  //   int totalCartPv = 0;
-  //   for (final item in cartProducts) {
-  //     totalCartPv += item.totalPv;
-  //   }
-  //   return totalCartPv;
-  // }
 
   bool checkIsItemExist(int index) {
     if (cartProducts.asMap().containsKey(index)) {
@@ -176,18 +160,6 @@ class OpenPoController extends GetxController {
   // Use this to retrieve all records
   InventoryRecords get fetchInventoryRecords {
     return _inventoryRecords.value;
-  }
-
-  Future<void> loadInventoryRecords() async {
-    const String userId =
-        "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
-    try {
-      _inventoryRecords =
-          Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
-    } catch (err) {
-      detailsErrorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
-    }
   }
 
   Future<void> getAllOpenPo() async {

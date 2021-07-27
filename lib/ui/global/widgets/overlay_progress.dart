@@ -1,6 +1,5 @@
-import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ProgressBar {
   late OverlayEntry _progressOverlayEntry;
@@ -18,12 +17,16 @@ class ProgressBar {
       builder: (BuildContext context) => Stack(
             children: <Widget>[
               Container(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withOpacity(0.6),
               ),
-              Positioned(
-                top: Get.height / 2,
-                left: Get.width / 2,
-                child: const CircularProgressIndicator(color: kPrimaryColor),
+              Positioned.fill(
+                child: Align(
+                  child: Image.asset(
+                    kAnimatedLoader,
+                    height: 100.0,
+                    width: 100.0,
+                  ),
+                ),
               )
             ],
           ));

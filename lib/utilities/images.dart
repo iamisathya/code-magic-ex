@@ -17,3 +17,5 @@ const kIconProduct = 'assets/icons/Product.svg';
 const kIconTrash = 'assets/icons/Trash.svg';
 // * splash
 const kSplashImage = 'assets/images/splash.jpg';
+// * animated
+const kAnimatedLoader = 'assets/animated/spinner.gif';

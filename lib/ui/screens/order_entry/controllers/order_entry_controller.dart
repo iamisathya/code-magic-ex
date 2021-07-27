@@ -259,8 +259,6 @@ class OrderEntryTableController extends GetxController {
     calculateTotal();
   }
 
-  void placeOrder() {}
-
   List<String> dropDownItems() {
     final items =
         inventoryRecords.value.items.map((e) => e.item.id.unicity).toList();
