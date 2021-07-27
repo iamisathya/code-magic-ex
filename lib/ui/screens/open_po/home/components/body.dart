@@ -1,3 +1,6 @@
+import 'package:code_magic_ex/ui/global/widgets/custom_empty_widget.dart';
+import 'package:code_magic_ex/ui/global/widgets/custom_error_widget.dart';
+import 'package:code_magic_ex/ui/global/widgets/custom_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +9,6 @@ import 'package:get/get.dart';
 
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/models/open_po.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/images.dart';
