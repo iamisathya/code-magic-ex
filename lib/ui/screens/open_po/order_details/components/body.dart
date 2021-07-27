@@ -1,5 +1,5 @@
 import 'package:code_magic_ex/models/open_po_details.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
+import 'package:code_magic_ex/ui/global/widgets/custom_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/images.dart';

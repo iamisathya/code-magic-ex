@@ -1,7 +1,7 @@
 import 'package:code_magic_ex/ui/screens/barcode/controller/controller.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
+import 'package:code_magic_ex/ui/global/widgets/custom_empty_widget.dart';
+import 'package:code_magic_ex/ui/global/widgets/custom_error_widget.dart';
+import 'package:code_magic_ex/ui/global/widgets/custom_loading_widget.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';

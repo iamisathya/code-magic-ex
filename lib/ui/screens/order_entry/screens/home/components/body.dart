@@ -1,6 +1,6 @@
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_empty_widget.dart';
-import 'package:code_magic_ex/ui/screens/github/custom_error_widget.dart';
+import 'package:code_magic_ex/ui/global/widgets/custom_empty_widget.dart';
+import 'package:code_magic_ex/ui/global/widgets/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/controllers/controller.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/home/components/search_box.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/home/components/top_tabs.dart';
