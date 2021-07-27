@@ -31,7 +31,7 @@ class NavigationDrawer extends StatelessWidget {
           _createDrawerHeader(),
           _createDrawerBodyItem(
             selected:
-                currentRoute == ScreenPaths.mainHome || currentRoute == "/",
+                currentRoute == ScreenPaths.mainHome || currentRoute == "/" || currentRoute == null,
             icon: Icons.home_outlined,
             text: 'Home',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.mainHome),

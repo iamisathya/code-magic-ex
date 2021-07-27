@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
+import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/open_po/components/body.dart';
 import 'package:code_magic_ex/ui/screens/open_po/pages/place_order.dart';
@@ -17,12 +18,9 @@ class OpenPOHomeScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: const Text("PO List", style: TextStyle(color: kMainColor)),
-          actions: _renderActionBar(context),
-          elevation: 0,
-          iconTheme: const IconThemeData(color: kMainColor),
+        appBar: TransAppBar(
+          title: "PO List",
+          action: _renderActionBar(context),
         ),
         drawer: NavigationDrawer(),
         body: Body(),

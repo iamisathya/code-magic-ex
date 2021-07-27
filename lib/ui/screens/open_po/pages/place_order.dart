@@ -1,5 +1,6 @@
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
+import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
@@ -25,8 +26,8 @@ class PlaceOrderHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteSmokeColor,
-      appBar: AppBar(
-        title: const Text("Create Order"),
+      appBar: const TransAppBar(
+        title: "Create Order",
       ),
       body: GetBuilder<SampleController>(
           init: SampleController(),
@@ -106,7 +107,7 @@ class PlaceOrderHomePage extends StatelessWidget {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  primary: kPrimaryColor, padding: kEdgeA12()),
+                  primary: kMainColor, padding: kEdgeA12()),
               onPressed: () {
                 if (!controller.isEmptyCart) {
                   controller.validateOrder(context);
@@ -146,7 +147,7 @@ class PlaceOrderHomePage extends StatelessWidget {
   Widget _getTitleItemWidget(String label, double width) {
     return Container(
       decoration: BoxDecoration(
-          color: kPrimaryLightColor, border: Border.all(width: 0.5)),
+          color: kMainColor, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),

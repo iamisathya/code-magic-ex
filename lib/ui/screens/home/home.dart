@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "EN",
           child: ListTile(
-            selectedTileColor: kPrimaryColor,
+            shape: kRoundedBorder(),
+            selectedTileColor: kMainColor,
             selected: currentLang == "en",
             leading: const IconButton(
               onPressed: null,
@@ -53,7 +55,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "TH",
           child: ListTile(
-            selectedTileColor: kPrimaryColor,
+            shape: kRoundedBorder(),
+            selectedTileColor: kMainColor,
             selected: currentLang == "th",
             leading: const IconButton(
               onPressed: null,
@@ -71,9 +74,9 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("totalpv".tr),
-          actions: <Widget>[
+        appBar: TransAppBar(
+          title: "home".tr,
+          action: <Widget>[
             IconButton(
               icon: const Icon(
                 Icons.mode_night_outlined,

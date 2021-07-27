@@ -281,6 +281,7 @@ class SampleController extends GetxController {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "6",
           child: ListTile(
+            shape: kRoundedBorder(),
             onTap: () {
               filterMethod = "6".obs;
               update();
@@ -288,7 +289,7 @@ class SampleController extends GetxController {
               getAllOpenPo();
             },
             selected: filterMethod.value == "6",
-            selectedTileColor: kPrimaryColor,
+            selectedTileColor: kMainColor,
             title: const Text("6 Months"),
           ),
         ),
@@ -296,6 +297,7 @@ class SampleController extends GetxController {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           value: "12",
           child: ListTile(
+            shape: kRoundedBorder(),
             selected: filterMethod.value == "12",
             onTap: () {
               filterMethod = "12".obs;
@@ -303,7 +305,7 @@ class SampleController extends GetxController {
               Navigator.pop(context);
               getAllOpenPo();
             },
-            selectedTileColor: kPrimaryColor,
+            selectedTileColor: kMainColor,
             title: const Text("All"),
           ),
         ),

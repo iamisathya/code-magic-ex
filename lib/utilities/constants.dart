@@ -86,6 +86,8 @@ EdgeInsets kEdgeInset({double v = 8.0}) => EdgeInsets.all(v);
 
 BoxDecoration kCircular8 =
     BoxDecoration(borderRadius: BorderRadius.circular(8), color: kMainColor);
+
+RoundedRectangleBorder kRoundedBorder({double radius = 10}) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));
     
 MaterialStateProperty<RoundedRectangleBorder> elevatedShape() {
   return MaterialStateProperty.all<RoundedRectangleBorder>(
