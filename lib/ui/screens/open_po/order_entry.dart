@@ -1,7 +1,7 @@
 import 'package:code_magic_ex/ui/global/widgets/cart_footer.dart';
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
+import 'package:code_magic_ex/ui/screens/open_po/components/open_po_table_body.dart';
 import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_table_controller.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry_table/components/order_entry_body.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +19,7 @@ class OpenPoTable extends StatelessWidget {
           title: controller.passedUser.fullName,
           subTitle: controller.passedUser.userId,
         ),
-        body: OrderEntryBody(),
+        body: OpenPoTableBody(controller: controller),
         bottomNavigationBar: BottomAppBar(
             color: kPageBackground,
             child: Obx(() => CartFooter(

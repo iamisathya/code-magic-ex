@@ -217,16 +217,6 @@ class Body extends StatelessWidget {
       ),
     );
   }
-  // *
-
-  Widget _buildDetailsContainer(BuildContext context) {
-    if (controller.loadingDetails.value) {
-      return const CustomLoadingWidget(
-        svgIcon: kImageApproveTask,
-      );
-    }
-    return PurchaseOrderDetailsPage();
-  }
 
   Container _renderStatusButton(BuildContext context, String status) {
     if (status == "0") {

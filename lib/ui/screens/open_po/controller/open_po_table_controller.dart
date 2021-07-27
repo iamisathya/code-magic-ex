@@ -47,11 +47,10 @@ class OpenPoTableController extends GetxController {
   ).obs;
 
   final ProgressBar _sendingMsgProgressBar = ProgressBar();
-  late UserMinimalData passedUser;
+  late UserMinimalData passedUser = UserMinimalData(email: "", userId: "3011266", fullName: "Name");
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     _generateEmptyCart();
     final dynamic data = Get.arguments;

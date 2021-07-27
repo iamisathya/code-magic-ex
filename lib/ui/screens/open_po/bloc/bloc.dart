@@ -341,7 +341,6 @@ class SampleController extends GetxController {
       final ValidateOrder reponse =
           await MemberCallsService.init().valiadateOrder("TH", "BKM");
       if (reponse.success == "yes") {
-        print("hi");
         // placeOrder(reponse.message);
       }
       _sendingMsgProgressBar.hide();

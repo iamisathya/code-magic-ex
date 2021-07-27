@@ -4,7 +4,6 @@ import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:code_magic_ex/utilities/images.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

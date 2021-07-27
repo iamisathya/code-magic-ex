@@ -9,10 +9,10 @@ import 'package:get/get.dart';
 import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
-class OrderEntryBody extends StatelessWidget {
-  final OpenPoTableController controller =
-      Get.put(OpenPoTableController());
-
+class OpenPoTableBody extends StatelessWidget {
+  final OpenPoTableController controller;
+  const OpenPoTableBody({required this.controller});
+      
   @override
   Widget build(BuildContext context) {
     return Obx(
