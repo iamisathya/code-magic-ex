@@ -1,5 +1,4 @@
-import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
-import 'package:code_magic_ex/ui/screens/open_po/pages/partner_order_details.dart';
+import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -18,13 +17,13 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 class Body extends StatelessWidget {
   final HDTRefreshController _hdtRefreshController = HDTRefreshController();
-  final SampleController controller = Get.put(SampleController());
+  final OpenPoController controller = Get.put(OpenPoController());
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: GetBuilder<SampleController>(
-          init: SampleController(),
+      child: GetBuilder<OpenPoController>(
+          init: OpenPoController(),
           initState: (state) {
             controller.getAllOpenPo();
           },

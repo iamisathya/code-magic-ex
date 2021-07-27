@@ -1,33 +1,19 @@
 import 'package:code_magic_ex/models/open_po_details.dart';
 import 'package:code_magic_ex/ui/screens/github/custom_loading_widget.dart';
-import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
+import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/utilities/extensions.dart';
-
 import 'package:get/get.dart';
 
-class PurchaseOrderDetailsPage extends StatelessWidget {
-  static const String routeName = '/purchaseOrderDetailsPage';
-  final SampleController controller = Get.put(SampleController());
-
-  PurchaseOrderDetailsPage({Key? key}) : super(key: key);
+class Body extends StatelessWidget {
+  final OpenPoController controller = Get.put(OpenPoController());
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kWhiteSmokeColor,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: kMainColor),
-        title: const Text("Order Details", style: TextStyle(color: kMainColor),),
-        actions: _renderActionBar(context),
-      ),
-      body: SingleChildScrollView(child: _renderChild(context)),
-    );
+    return SingleChildScrollView(child: _renderChild(context));
   }
 
   Widget _renderChild(BuildContext context) {
@@ -220,18 +206,5 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  List<Widget> _renderActionBar(BuildContext context) {
-    return <Widget>[
-      IconButton(
-        icon: const Icon(
-          Icons.print_outlined,
-        ),
-        tooltip: 'Print',
-        onPressed: () =>
-            controller.proceedToPrint(context, orderId: controller.currentPoNumber),
-      ),
-    ];
   }
 }

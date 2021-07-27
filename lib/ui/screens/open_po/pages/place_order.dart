@@ -1,7 +1,7 @@
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
-import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
+import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
@@ -11,7 +11,7 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 class PlaceOrderHomePage extends StatelessWidget {
   final ProgressBar _sendingMsgProgressBar = ProgressBar();
-  final SampleController controller = Get.put(SampleController());
+  final OpenPoController controller = Get.put(OpenPoController());
   static const String routeName = '/placeOrderHomePage';
 
   void showSendingProgressBar(BuildContext context) {
@@ -29,8 +29,8 @@ class PlaceOrderHomePage extends StatelessWidget {
       appBar: const TransAppBar(
         title: "Create Order",
       ),
-      body: GetBuilder<SampleController>(
-          init: SampleController(),
+      body: GetBuilder<OpenPoController>(
+          init: OpenPoController(),
           initState: (state) {
             controller.loadInventoryRecords();
           },

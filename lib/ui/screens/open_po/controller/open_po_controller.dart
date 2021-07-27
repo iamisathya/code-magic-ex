@@ -5,7 +5,7 @@ import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/open_po/order_entry.dart';
-import 'package:code_magic_ex/ui/screens/open_po/pages/partner_order_details.dart';
+import 'package:code_magic_ex/ui/screens/open_po/order_details/partner_order_details.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -22,7 +22,7 @@ import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
-class SampleController extends GetxController {
+class OpenPoController extends GetxController {
   RxString filterMethod = "6".obs;
   RxInt count = 0.obs;
   String currentPoNumber = "";
