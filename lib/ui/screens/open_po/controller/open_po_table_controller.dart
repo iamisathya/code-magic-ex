@@ -9,12 +9,14 @@ import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/models/radio_button_value.dart';
+import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout/checkout_screen.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -47,15 +49,25 @@ class OpenPoTableController extends GetxController {
   ).obs;
 
   final ProgressBar _sendingMsgProgressBar = ProgressBar();
-  late UserMinimalData passedUser = UserMinimalData(email: "", userId: "3011266", fullName: "Name");
+  late UserMinimalData passedUser;
 
   @override
   void onInit() {
     super.onInit();
     _generateEmptyCart();
-    final dynamic data = Get.arguments;
-    if(data != null) {
-      passedUser = data as UserMinimalData;
+    initUserDetails();
+  }
+
+  void initUserDetails() {
+    try {
+      final UserInfo info = UserSessionManager.shared.userInfo!;
+      if (info.id.unicity == "") return;
+      passedUser = UserMinimalData(
+          email: info.email,
+          fullName: info.humanName.fullName,
+          userId: info.id.unicity.toString());
+    } catch (e) {
+      LoggerService.instance.e(e.toString());
     }
   }
 
@@ -70,11 +82,9 @@ class OpenPoTableController extends GetxController {
     const String userId =
         "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
-      // _sendingMsgProgressBar.show(context);
       inventoryRecords =
           Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
       dropDownItems();
-      // _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
       _onDioError(e);
     } catch (err) {
@@ -273,7 +283,7 @@ class OpenPoTableController extends GetxController {
         : totalCartPrice.value - availableCreditAmount.value;
   }
 
-    void _onDioError(DioError e) {
+  void _onDioError(DioError e) {
     _sendingMsgProgressBar.hide();
     errorMessage(e.error.toString());
     renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());

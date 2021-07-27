@@ -2,8 +2,6 @@ import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/ui/screens/open_po/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/open_po/components/body.dart';
-import 'package:code_magic_ex/ui/screens/open_po/order_entry.dart';
-import 'package:code_magic_ex/ui/screens/open_po/pages/place_order.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 

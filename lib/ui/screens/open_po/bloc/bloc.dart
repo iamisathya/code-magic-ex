@@ -2,8 +2,6 @@ import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
-import 'package:code_magic_ex/models/user_info.dart';
-import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/open_po/order_entry.dart';
@@ -397,13 +395,6 @@ class SampleController extends GetxController {
   }
 
   Future<void> onAddOrderTap() async {
-    UserSessionManager.shared.setUserInfoFromDB();
-    final UserInfo info = UserSessionManager.shared.userInfo!;
-    if (info.id.unicity == "") return;
-    final UserMinimalData user = UserMinimalData(
-        email: info.email,
-        fullName: info.humanName.fullName,
-        userId: info.id.unicity.toString());
-    Get.to(OpenPoTable(), arguments: user);
+    Get.to(OpenPoTable());
   }
 }
