@@ -1,10 +1,12 @@
-
 import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/models/user_info.dart';
+import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
+import 'package:code_magic_ex/ui/screens/open_po/order_entry.dart';
 import 'package:code_magic_ex/ui/screens/open_po/pages/partner_order_details.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
@@ -314,7 +316,8 @@ class SampleController extends GetxController {
     );
   }
 
-  Future<void> proceedToPrint(BuildContext context, {required String orderId}) async {
+  Future<void> proceedToPrint(BuildContext context,
+      {required String orderId}) async {
     final String imgUrl = "${Address.poOrder}?order_id=$orderId";
     _sendingMsgProgressBar.show(context);
     final Dio dio = Dio();
@@ -322,7 +325,7 @@ class SampleController extends GetxController {
     // * removing background from html document
     final removedBackground =
         response.toString().replaceAll('background: rgb(204,204,204);', '');
-        _sendingMsgProgressBar.hide();
+    _sendingMsgProgressBar.hide();
     await Printing.layoutPdf(
         dynamicLayout: false,
         onLayout: (PdfPageFormat format) async => Printing.convertHtml(
@@ -392,5 +395,16 @@ class SampleController extends GetxController {
       LoggerService.instance.e(err.toString());
       update();
     }
+  }
+
+  Future<void> onAddOrderTap() async {
+    UserSessionManager.shared.setUserInfoFromDB();
+    final UserInfo info = UserSessionManager.shared.userInfo!;
+    if (info.id.unicity == "") return;
+    final UserMinimalData user = UserMinimalData(
+        email: info.email,
+        fullName: info.humanName.fullName,
+        userId: info.id.unicity.toString());
+    Get.to(OpenPoTable(), arguments: user);
   }
 }

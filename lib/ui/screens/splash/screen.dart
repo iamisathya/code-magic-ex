@@ -1,5 +1,6 @@
+import 'package:code_magic_ex/ui/global/widgets/animated_show_up.dart';
 import 'package:code_magic_ex/ui/screens/splash/controller/splash_controller.dart';
-import 'package:code_magic_ex/utilities/images.dart';
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,14 +14,36 @@ class SplashScreen extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           height: double.infinity,
-          child: Image.asset(kSplashImage, fit: BoxFit.cover),
-        ),
-        Obx(() => Align(
-          child: FlutterLogo(
-            size: 200.0,
-            style: controller.logoStyle.value,
+          child: Container(
+            color: Colors.white,
           ),
-        ))
+        ),
+        Align(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              AnimatedShowUp(
+                delay: 500,
+                child: Text(
+                  "UNICITY",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: kMainColor,
+                      fontSize: 40,
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+              AnimatedShowUp(
+                delay: 2000,
+                child: Text(
+                  "OFFICE",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: kMainColor, fontSize: 30),
+                ),
+              ),
+            ],
+          ),
+        )
       ]),
     );
   }
