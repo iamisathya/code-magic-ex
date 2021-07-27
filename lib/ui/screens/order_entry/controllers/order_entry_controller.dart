@@ -221,7 +221,7 @@ class OrderEntryTableController extends GetxController {
         cartProducts.firstWhere((item) => item.itemCode == itemCode);
     if (target.itemCode != "") {
       if (CartUpdate.increament == type) {
-        target.quantity = target.quantity + 1;
+        target.quantity++;
         target.totalPrice = target.quantity * target.itemPrice;
         target.totalPv = target.quantity * target.itemPv;
       } else {
@@ -232,6 +232,7 @@ class OrderEntryTableController extends GetxController {
         }
       }
     }
+    cartProducts.refresh();
     calculateTotal();
   }
 
