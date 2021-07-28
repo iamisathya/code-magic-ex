@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
+import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
 import 'package:code_magic_ex/ui/screens/open_po/home/components/body.dart';
@@ -65,11 +66,11 @@ class OpenPOHomeScreen extends StatelessWidget {
               onTap: controller.selectSource,
               child: Stack(children: [
                 _renderTextField(
-                  ctlr: controller.commentController,
-                  label: "Browse file",
-                  minLines: 1,
-                  enabled: false,
-                ),
+                      ctlr: controller.selectedFileController,
+                      label: "Browse file",
+                      minLines: 1,
+                      enabled: false,
+                    ),
                 Positioned(
                     left: 0,
                     top: 40,
@@ -89,6 +90,11 @@ class OpenPOHomeScreen extends StatelessWidget {
                     ))
               ]),
             ),
+            const SizedBox(height: 30),
+            PrimaryButton(
+              press: () {},
+              text: 'Checkout',
+            )
           ],
         ),
       ),

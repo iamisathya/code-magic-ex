@@ -23,8 +23,9 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 class OpenPoController extends GetxController {
+  TextEditingController selectedFileController =
+      TextEditingController();
   TextEditingController commentController = TextEditingController();
-  TextEditingController selectedFileController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   RxString filterMethod = "6".obs;
   RxInt count = 0.obs;
@@ -429,10 +430,12 @@ class OpenPoController extends GetxController {
 
   Future<void> browseImage(ImageSource source) async {
     try {
-      final pickedFile = await _picker.pickImage(
+      final _pickedImage = (await _picker.pickImage(
         source: source,
-      );
-      debugPrint(pickedFile.toString());
+      ))!;
+        selectedFileController.text = _pickedImage.path.split('/').last;
+        update();
+        debugPrint(_pickedImage.path.toString());
     } catch (e) {
       debugPrint(e.toString());
     }
