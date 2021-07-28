@@ -130,6 +130,36 @@ InputDecoration kTextInputDecoration(
   );
 }
 
+InputDecoration kActiveTextInputDecoration(
+    {String hintText = "", String helperText = ""}) {
+  return InputDecoration(
+    fillColor: Colors.white,
+    filled: true,
+    isDense: true,
+    contentPadding: const EdgeInsets.all(20.0),
+    focusedBorder: kFocusedOutlineInputBorder(),
+    enabledBorder: kFocusedOutlineInputBorder(),
+    disabledBorder: kFocusedOutlineInputBorder(),
+    hintText: hintText,
+    helperText: helperText,
+  );
+}
+
+InputDecoration kDisabledTextInputDecoration(
+    {String hintText = "", String helperText = ""}) {
+  return InputDecoration(
+    fillColor: Colors.white,
+    filled: true,
+    isDense: true,
+    contentPadding: const EdgeInsets.all(20.0),
+    focusedBorder: kFocusedOutlineInputBorder(),
+    enabledBorder: kFocusedOutlineInputBorder(),
+    disabledBorder: kFocusedOutlineInputBorder(),
+    hintText: hintText,
+    helperText: helperText,
+  );
+}
+
 InputDecoration kAutoCompleteTextInputDecoration(
     {String hintText = "", String helperText = ""}) {
   return InputDecoration(

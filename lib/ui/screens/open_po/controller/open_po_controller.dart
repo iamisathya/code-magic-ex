@@ -18,10 +18,14 @@ import 'package:code_magic_ex/models/open_order_id.dart';
 import 'package:code_magic_ex/models/open_po.dart';
 import 'package:code_magic_ex/models/open_po_details.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 class OpenPoController extends GetxController {
+  TextEditingController commentController = TextEditingController();
+  TextEditingController selectedFileController = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
   RxString filterMethod = "6".obs;
   RxInt count = 0.obs;
   String currentPoNumber = "";
@@ -93,7 +97,6 @@ class OpenPoController extends GetxController {
   }
 
   bool get isEmptyCart => cartProducts.isEmpty;
-
 
   bool checkIsItemExist(int index) {
     if (cartProducts.asMap().containsKey(index)) {
@@ -368,5 +371,70 @@ class OpenPoController extends GetxController {
 
   Future<void> onAddOrderTap() async {
     Get.to(OpenPoTable());
+  }
+
+  void selectSource() {
+    // set up the buttons
+    final Widget cameraButton = TextButton(
+      onPressed: () {
+        browseImage(ImageSource.camera);
+        Get.back();
+      },
+      child: const Text(
+        "Open Camera",
+        style: TextStyle(color: Colors.black),
+      ),
+    );
+    final Widget photosButton = TextButton(
+      onPressed: () {
+        browseImage(ImageSource.gallery);
+        Get.back();
+      },
+      child: const Text(
+        "Browse photos",
+        style: TextStyle(color: Colors.black),
+      ),
+    );
+    final Widget canncelButton = TextButton(
+      onPressed: () {
+        Get.back();
+      },
+      child: const Text(
+        "Cacnel",
+        style: TextStyle(color: Colors.red),
+      ),
+    );
+
+    Get.dialog(
+      AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: const Text(
+          "Upload Image",
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800),
+        ),
+        content: const Text(
+          "Capture/Select an image you wish to upload",
+          style: TextStyle(color: Colors.black),
+        ),
+        actions: <Widget>[
+          cameraButton,
+          photosButton,
+          canncelButton,
+        ],
+      ),
+      barrierDismissible: false,
+    );
+  }
+
+  Future<void> browseImage(ImageSource source) async {
+    try {
+      final pickedFile = await _picker.pickImage(
+        source: source,
+      );
+      debugPrint(pickedFile.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }
