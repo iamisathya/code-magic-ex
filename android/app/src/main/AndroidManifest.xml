@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sathya.code_magic_ex">
+    package="com.unicity.dsctools">
    <application
         android:label="code_magic_ex"
         android:icon="@mipmap/ic_launcher">

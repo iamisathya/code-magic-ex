@@ -1,4 +1,4 @@
-package com.sathya.code_magic_ex
+package com.unicity.dsctools
 
 import io.flutter.embedding.android.FlutterActivity
 
