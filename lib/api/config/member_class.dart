@@ -29,7 +29,8 @@ abstract class MemberCallsService {
   factory MemberCallsService.init() {
     final Dio dio = Dio();
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
-    dio.options.headers['authorization'] = "Bearer ${UserSessionManager.shared.customerToken.token}";
+    dio.options.headers['authorization'] =
+        "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.options.headers['Content-Type'] = "application/json;charset=utf-8 ";
     return MemberCallsService(dio);
   }
@@ -163,4 +164,14 @@ abstract class MemberCallsService {
   @FormUrlEncoded()
   Future<dynamic> validateEmail(
       @Field("language") String language, @Field("email") String email);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?token=weylbzpplvy6wq9ae5rma&temp_id=BKM%20-00-W001&id=0&type=207
+  @POST(Address.validOrders)
+  @FormUrlEncoded()
+  Future<dynamic> uploadFile(
+      @Query("token") String token,
+      @Query("temp_id") String tempId,
+      @Query("id") String id,
+      @Query("type") String type,
+      FormData data);
 }
