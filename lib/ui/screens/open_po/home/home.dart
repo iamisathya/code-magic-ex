@@ -46,7 +46,7 @@ class OpenPOHomeScreen extends StatelessWidget {
   void renderBottomSheet(BuildContext context) {
     Get.bottomSheet(
       Container(
-        margin: EdgeInsets.all(16),
+        margin: const EdgeInsets.all(16),
         child: Column(
           children: [
             Padding(
@@ -101,7 +101,6 @@ class OpenPOHomeScreen extends StatelessWidget {
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-      elevation: 10,
       backgroundColor: Colors.white,
     );
   }

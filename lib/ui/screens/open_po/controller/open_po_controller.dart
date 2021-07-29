@@ -434,7 +434,6 @@ class OpenPoController extends GetxController {
         source: source,
       ))!;
         selectedFileController.text = _pickedImage.path.split('/').last;
-        update();
         debugPrint(_pickedImage.path.toString());
     } catch (e) {
       debugPrint(e.toString());
