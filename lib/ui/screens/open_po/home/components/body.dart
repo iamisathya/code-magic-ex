@@ -156,7 +156,7 @@ class Body extends StatelessWidget {
           _renderDataCell(index, 180, currentItem.orderTime,
               Alignment.centerRight, "value"),
           _renderDataCell(index, 180, currentItem.orderTotalPv,
-              Alignment.centerRight, "link"),
+              Alignment.centerRight, "value"),
           _renderDataCell(index, 180, currentItem.orderTotalPrice,
               Alignment.center, "value"),
           _renderDataCellWidget(
