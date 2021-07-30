@@ -10,7 +10,9 @@ class ProgressBar {
   }
 
   void hide() {
-    _progressOverlayEntry.remove();
+    if (_progressOverlayEntry.mounted) {
+      _progressOverlayEntry.remove();
+    }
   }
 
   OverlayEntry _createdProgressEntry(BuildContext context) => OverlayEntry(

@@ -25,9 +25,8 @@ import 'package:printing/printing.dart';
 
 class InventoryController extends GetxController {
   TextEditingController searchController = TextEditingController();
-  Rx<InventoryRecords> _inventoryRecords = InventoryRecords(items: []).obs;
-  final Rx<InventoryRecords> _tempInventoryRecords =
-      InventoryRecords(items: []).obs;
+  Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
+  Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
 
   RxString searchText = ''.obs;
   static int sortName = 0;
@@ -39,59 +38,42 @@ class InventoryController extends GetxController {
   RxString filterMethod = describeEnum(StockTypes.onHand).obs;
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
-  final int _currentListLength = 0;
-
-  Rx<bool> get isEmptyList => _tempInventoryRecords.value.items.isEmpty.obs;
-
-  int get currentTabLength => _currentListLength;
-  set currentTabLength(int length) => currentTabLength = length;
-
-  List<InventoryRecordItems> get currentTabItems =>
-      _tempInventoryRecords.value.items;
-
-  List<InventoryRecordItems> get currentOrders =>
-      _tempInventoryRecords.value.items;
-
-  String get onSearchTextChanged => searchText.value;
-
-  // Use this to retrieve all records
-  InventoryRecords get inventoryRecords {
-    return _tempInventoryRecords.value;
-  }
 
   void resetSearchText() {
-    _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+    tempInventoryRecords.value.items.addAll(inventoryRecords.value.items);
     searchController.text = "";
+    update();
   }
 
-  Future<void> loadSalesReports(BuildContext context) async {
-    _sendingMsgProgressBar.show(context);
+  Future<void> loadInventoryProducts(BuildContext context) async {
+    Timer(const Duration(milliseconds: 100),
+        () => {_sendingMsgProgressBar.show(context)});
     const String type = "item";
     const String userId =
         "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
-      _inventoryRecords =
-          Rx(await ApiService.shared().getInventoryRecords(userId, type));
-      _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
-      currentTabLength = _inventoryRecords.value.items.length;
+      inventoryRecords.value =
+          await ApiService.shared().getInventoryRecords(userId, type);
+      tempInventoryRecords.value.items = List.from(inventoryRecords.value.items);
+      update();
       _sendingMsgProgressBar.hide();
-    }  on DioError catch (e) {
+    } on DioError catch (e) {
       onDioError(e, _sendingMsgProgressBar, errorMessage);
     } catch (err) {
       onCatchError(err, _sendingMsgProgressBar, errorMessage);
     }
   }
 
-  set onSearchTextChanged(String val) {
+  void onSearchTextChanged(String val) {
     if (val.isNotEmpty) {
-      _tempInventoryRecords.value.items.clear();
-      _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
-      _tempInventoryRecords.value.items.removeWhere((game) => !game
+      tempInventoryRecords.value.items.clear();
+      tempInventoryRecords.value.items.addAll(inventoryRecords.value.items);
+      tempInventoryRecords.value.items.removeWhere((game) => !game
           .catalogSlideContent.content.description
           .toLowerCase()
           .contains(val.toLowerCase()));
     } else {
-      _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+      tempInventoryRecords.value.items.addAll(inventoryRecords.value.items);
     }
     searchText.value = val;
     update();
@@ -103,69 +85,69 @@ class InventoryController extends GetxController {
     switch (sortStatus) {
       case InventorySortTypes.itemCode:
         if (isAscending) {
-          _tempInventoryRecords.value.items
+          tempInventoryRecords.value.items
               .sort((a, b) => a.item.id.unicity.compareTo(b.item.id.unicity));
         } else {
-          _tempInventoryRecords.value.items
+          tempInventoryRecords.value.items
               .sort((b, a) => a.item.id.unicity.compareTo(b.item.id.unicity));
         }
         break;
       case InventorySortTypes.itemName:
         if (isAscending) {
-          _tempInventoryRecords.value.items.sort((a, b) => a
+          tempInventoryRecords.value.items.sort((a, b) => a
               .catalogSlideContent.content.description
               .compareTo(b.catalogSlideContent.content.description));
         } else {
-          _tempInventoryRecords.value.items.sort((b, a) => a
+          tempInventoryRecords.value.items.sort((b, a) => a
               .catalogSlideContent.content.description
               .compareTo(b.catalogSlideContent.content.description));
         }
         break;
       case InventorySortTypes.pv:
         if (isAscending) {
-          _tempInventoryRecords.value.items
+          tempInventoryRecords.value.items
               .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
         } else {
-          _tempInventoryRecords.value.items
+          tempInventoryRecords.value.items
               .sort((b, a) => a.terms.priceEach.compareTo(b.terms.priceEach));
         }
         break;
       case InventorySortTypes.price:
         if (isAscending) {
-          _tempInventoryRecords.value.items
+          tempInventoryRecords.value.items
               .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
         } else {
-          _tempInventoryRecords.value.items
+          tempInventoryRecords.value.items
               .sort((b, a) => a.terms.priceEach.compareTo(b.terms.priceEach));
         }
         break;
       case InventorySortTypes.quantityOnHand:
         if (isAscending) {
-          _tempInventoryRecords.value.items
+          tempInventoryRecords.value.items
               .sort((a, b) => a.quantityOnHand.compareTo(b.quantityOnHand));
         } else {
-          _tempInventoryRecords.value.items
+          tempInventoryRecords.value.items
               .sort((b, a) => a.quantityOnHand.compareTo(b.quantityOnHand));
         }
         break;
       case InventorySortTypes.totalAccumulatedPrice:
         if (isAscending) {
-          _tempInventoryRecords.value.items.sort((a, b) =>
+          tempInventoryRecords.value.items.sort((a, b) =>
               (a.quantityOnHand * a.terms.priceEach.toInt())
                   .compareTo(b.quantityOnHand * a.terms.priceEach.toInt()));
         } else {
-          _tempInventoryRecords.value.items.sort((b, a) =>
+          tempInventoryRecords.value.items.sort((b, a) =>
               (a.quantityOnHand * a.terms.priceEach.toInt())
                   .compareTo(b.quantityOnHand * b.terms.priceEach.toInt()));
         }
         break;
       case InventorySortTypes.totalPV:
         if (isAscending) {
-          _tempInventoryRecords.value.items.sort((a, b) =>
+          tempInventoryRecords.value.items.sort((a, b) =>
               (a.quantityOnHand * a.terms.pvEach.toInt())
                   .compareTo(b.quantityOnHand * b.terms.pvEach.toInt()));
         } else {
-          _tempInventoryRecords.value.items.sort((b, a) =>
+          tempInventoryRecords.value.items.sort((b, a) =>
               (a.quantityOnHand * a.terms.pvEach.toInt())
                   .compareTo(b.quantityOnHand * b.terms.pvEach.toInt()));
         }
@@ -184,18 +166,18 @@ class InventoryController extends GetxController {
 
   //* Filter inventory records with quanntity without quantity
   void filterInventoryData(StockTypes type) {
-    _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+    tempInventoryRecords.value.items.addAll(inventoryRecords.value.items);
     switch (type) {
       case StockTypes.onHand:
-        _tempInventoryRecords.value.items
+        tempInventoryRecords.value.items
             .removeWhere((game) => Parsing.intFrom(game.quantityOnHand) == 0);
         break;
       case StockTypes.outOfStock:
-        _tempInventoryRecords.value.items
+        tempInventoryRecords.value.items
             .removeWhere((game) => Parsing.intFrom(game.quantityOnHand) != 0);
         break;
       default:
-        _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+        tempInventoryRecords.value.items.addAll(inventoryRecords.value.items);
     }
   }
 
@@ -251,7 +233,7 @@ class InventoryController extends GetxController {
         //* Check this
         // final Sheet unlinkedSheetObject = excel["sheet1"];
         // final List<InventoryRecordItems> dataList =
-        //     _tempInventoryRecords.value.items;
+        //     tempInventoryRecords.value.items;
         // unlinkedSheetObject.insertRowIterables(dataList, 8);
 
         /// appending rows

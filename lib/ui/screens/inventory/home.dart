@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/ui/screens/inventory/component/body.dart';
@@ -10,14 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class InventoryHomeScreen extends StatelessWidget {
-  final InventoryController controller = Get.put(InventoryController());
   static const String routeName = '/inventoryHomePage';
+  final InventoryController controller = Get.put(InventoryController());
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(milliseconds: 1), () {
-      controller.loadSalesReports(context);
-    });
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: TransAppBar(

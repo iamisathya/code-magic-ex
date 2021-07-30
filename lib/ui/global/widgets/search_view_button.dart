@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class SearchWithButton extends StatelessWidget {
   final TextEditingController searchController;
   final Function onPressClear;
+  final Function(String) onTextChange;
   final String hintText;
   final String clearText;
   const SearchWithButton(
       {required this.searchController,
       required this.onPressClear,
+      required this.onTextChange,
       this.hintText = "Search",
       this.clearText = "Clear"});
 
@@ -23,6 +25,7 @@ class SearchWithButton extends StatelessWidget {
                 border: Border.all(color: kMainColor, width: 2),
                 borderRadius: const BorderRadius.all(Radius.circular(8.0))),
             child: TextField(
+              onChanged: (val) => onTextChange(val),
               cursorColor: Colors.grey[300],
               controller: searchController,
               decoration: InputDecoration(

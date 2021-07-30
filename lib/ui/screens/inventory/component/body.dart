@@ -8,25 +8,30 @@ import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 class Body extends StatelessWidget {
-  final InventoryController controller = Get.put(InventoryController());
+  InventoryController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Column(
-          children: [
-            SearchWithButton(
-                searchController: controller.searchController,
-                onPressClear: controller.resetSearchText),
-            Expanded(child: _getBodyWidget(context)),
-          ],
-        ));
+    return GetBuilder<InventoryController>(
+        init: InventoryController(),
+        initState: (state) {
+          controller.loadInventoryProducts(context);
+        },
+        builder: (_) => Obx(() => Column(
+              children: [
+                SearchWithButton(
+                    onTextChange: (val) => controller.onSearchTextChanged(val),
+                    searchController: controller.searchController,
+                    onPressClear: controller.resetSearchText),
+                Expanded(child: _getBodyWidget(context)),
+              ],
+            )));
   }
 
   Widget _getBodyWidget(BuildContext context) {
-    print(controller.currentTabLength);
     return Container(
       decoration: const BoxDecoration(color: Colors.white),
-      height: MediaQuery.of(context).size.height,
+      height: Get.height,
       child: HorizontalDataTable(
         leftHandSideColumnWidth: 140,
         rightHandSideColumnWidth: 1200,
@@ -34,7 +39,7 @@ class Body extends StatelessWidget {
         headerWidgets: _getTitleWidget(),
         leftSideItemBuilder: _generateFirstColumnRow,
         rightSideItemBuilder: _generateRightHandSideColumnRow,
-        itemCount: controller.currentTabLength,
+        itemCount: controller.tempInventoryRecords.value.items.length,
         rowSeparatorWidget: kDivider(),
       ),
     );
@@ -42,9 +47,9 @@ class Body extends StatelessWidget {
 
   List<Widget> _getTitleWidget() {
     final String totalPrice =
-        calculateTotalPrice(controller.inventoryRecords, 'price');
+        calculateTotalPrice(controller.tempInventoryRecords.value, 'price');
     final String totalPv =
-        calculateTotalPrice(controller.inventoryRecords, 'pv');
+        calculateTotalPrice(controller.tempInventoryRecords.value, 'pv');
 
     return [
       _renderTableHeader(
@@ -62,6 +67,50 @@ class Body extends StatelessWidget {
       _renderTableHeader("Total PV ($totalPv)", InventorySortTypes.totalPV,
           Alignment.centerRight, 200),
     ];
+  }
+
+  Widget _generateFirstColumnRow(BuildContext context, int index) {
+    final currentItem = controller.tempInventoryRecords.value.items[index];
+    return Container(
+      width: 140,
+      height: 65,
+      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(border: Border.all(width: 0.5)),
+      child: Text(currentItem.item.id.unicity),
+    );
+  }
+
+  Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
+    final currentItem = controller.tempInventoryRecords.value.items[index];
+    return Row(
+      children: <Widget>[
+        Container(
+            width: 280,
+            height: 65,
+            decoration: BoxDecoration(border: Border.all(width: 0.5)),
+            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+            alignment: Alignment.center,
+            child: Text(currentItem.catalogSlideContent.content.description)),
+        _renderDataCell(
+            100, currentItem.terms.pvEach.toString(), Alignment.centerRight),
+        _renderDataCell(
+            100, currentItem.terms.priceEach.toString(), Alignment.centerRight),
+        _renderDataCell(180, currentItem.quantityOnHand, Alignment.centerRight),
+        _renderDataCell(
+            340,
+            calculateTotalAmount(
+                quantity: currentItem.quantityOnHand,
+                price: currentItem.terms.priceEach),
+            Alignment.centerRight),
+        _renderDataCell(
+            200,
+            calculateTotalAmount(
+                quantity: currentItem.quantityOnHand,
+                price: currentItem.terms.pvEach.toDouble()),
+            Alignment.centerRight),
+      ],
+    );
   }
 
   TextButton _renderTableHeader(
@@ -97,57 +146,8 @@ class Body extends StatelessWidget {
     );
   }
 
-  Widget _generateFirstColumnRow(BuildContext context, int index) {
-    final currentItem = controller.inventoryRecords.items[index];
-    return Container(
-      width: 140,
-      height: 65,
-      padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(border: Border.all(width: 0.5)),
-      child: Text(currentItem.item.id.unicity),
-    );
-  }
-
-  Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
-    final currentItem = controller.inventoryRecords.items[index];
-    return Row(
-      children: <Widget>[
-        Container(
-            width: 280,
-            height: 65,
-            decoration: BoxDecoration(border: Border.all(width: 0.5)),
-            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-            alignment: Alignment.center,
-            child: Text(currentItem.catalogSlideContent.content.description)),
-        _renderDataCell(index, 100, currentItem.terms.pvEach.toString(),
-            Alignment.centerRight, "value"),
-        _renderDataCell(index, 100, currentItem.terms.priceEach.toString(),
-            Alignment.centerRight, "value"),
-        _renderDataCell(index, 180, currentItem.quantityOnHand,
-            Alignment.centerRight, "value"),
-        _renderDataCell(
-            index,
-            340,
-            calculateTotalAmount(
-                quantity: currentItem.quantityOnHand,
-                price: currentItem.terms.priceEach),
-            Alignment.centerRight,
-            "value"),
-        _renderDataCell(
-            index,
-            200,
-            calculateTotalAmount(
-                quantity: currentItem.quantityOnHand,
-                price: currentItem.terms.pvEach.toDouble()),
-            Alignment.centerRight,
-            "value"),
-      ],
-    );
-  }
-
-  Container _renderDataCell(int index, double width, String titleText,
-      Alignment textAlign, String type) {
+  Container _renderDataCell(
+      double width, String titleText, Alignment textAlign) {
     return Container(
       width: width,
       height: 65,
@@ -158,7 +158,7 @@ class Body extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           titleText,
-          style: TextStyle(color: type == 'link' ? Colors.blue : Colors.black),
+          style: const TextStyle(color: Colors.black),
         ),
       ),
     );

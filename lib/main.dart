@@ -57,7 +57,7 @@ void main() async {
   //     errorAndStacktrace.last as StackTrace,
   //   );
   // }).sendPort);
-
+  
   //* If you want to catch errors that occur in zones, you can pass FirebaseCrashlytics.instance.recordError to the second parameter of runZonedGuarded
   // runZonedGuarded(() {
   //   runApp(MyApp());

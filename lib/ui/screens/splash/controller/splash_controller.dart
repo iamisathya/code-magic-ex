@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_token.dart';
+import 'package:code_magic_ex/ui/screens/inventory/home.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/ui/screens/open_po/home/home.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
@@ -56,7 +57,7 @@ class SplashController extends GetxController {
       UserSessionManager.shared.setUserInfoFromDB();
       UserSessionManager.shared.getLoginStatusFromDB();
       UserSessionManager.shared.getProfilePictureFromDB();
-      Get.offAll(() => OpenPOHomeScreen());
+      Get.offAll(() => InventoryHomeScreen());
     } else {
       Get.offAll(() => LoginScreen());
     }
