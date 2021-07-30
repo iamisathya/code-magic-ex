@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
   }
 
   Widget _renderChild(BuildContext context) {
-    TextEditingController commentCtrl = TextEditingController();
+    final TextEditingController commentCtrl = TextEditingController();
     commentCtrl.text = controller.openPlaceOrderId.comment;
     if (controller.loadingDetails.value == true) {
       return const CustomLoadingWidget(

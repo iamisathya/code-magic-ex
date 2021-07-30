@@ -1,5 +1,7 @@
+import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
 import 'package:code_magic_ex/ui/screens/open_po/order_details/components/body.dart';
+import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +33,13 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
 
   List<Widget> _renderActionBar(BuildContext context) {
     return <Widget>[
+      if (controller.wasAttachementExists()) IconButton(
+        icon: const Icon(
+          Icons.attach_file_outlined
+        ),
+        tooltip: 'Attachement',
+        onPressed: controller.onTapOpenAttchment,
+      ) else const SizedBox(),
       IconButton(
         icon: const Icon(
           Icons.print_outlined,
