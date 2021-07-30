@@ -17,7 +17,6 @@ import 'package:get/get.dart';
 import 'package:excel/excel.dart';
 import 'package:path/path.dart';
 
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -37,31 +36,35 @@ class InventoryController extends GetxController {
   InventorySortTypes currentType = InventorySortTypes.itemCode;
   final ProgressBar _sendingMsgProgressBar = ProgressBar();
 
-  void resetSearchText() {
-    _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
-    searchController.text = "";
-  }
-
   RxString filterMethod = describeEnum(StockTypes.onHand).obs;
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
+  final int _currentListLength = 0;
 
   Rx<bool> get isEmptyList => _tempInventoryRecords.value.items.isEmpty.obs;
+
+  int get currentTabLength => _currentListLength;
+  set currentTabLength(int length) => currentTabLength = length;
+
+  List<InventoryRecordItems> get currentTabItems =>
+      _tempInventoryRecords.value.items;
+
+  List<InventoryRecordItems> get currentOrders =>
+      _tempInventoryRecords.value.items;
+
+  String get onSearchTextChanged => searchText.value;
 
   // Use this to retrieve all records
   InventoryRecords get inventoryRecords {
     return _tempInventoryRecords.value;
   }
 
-  String get onSearchTextChanged => searchText.value;
+  void resetSearchText() {
+    _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+    searchController.text = "";
+  }
 
   Future<void> loadSalesReports(BuildContext context) async {
-    // if (searchController.text.isEmpty) {
-    //   renderErrorSnackBar(
-    //       title: "Search text empty!",
-    //       subTitle: "Please enter search text to continue");
-    //   return;
-    // }
     _sendingMsgProgressBar.show(context);
     const String type = "item";
     const String userId =
@@ -70,11 +73,12 @@ class InventoryController extends GetxController {
       _inventoryRecords =
           Rx(await ApiService.shared().getInventoryRecords(userId, type));
       _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
+      currentTabLength = _inventoryRecords.value.items.length;
       _sendingMsgProgressBar.hide();
     }  on DioError catch (e) {
-      _onDioError(e);
+      onDioError(e, _sendingMsgProgressBar, errorMessage);
     } catch (err) {
-      _onCatchError(err);
+      onCatchError(err, _sendingMsgProgressBar, errorMessage);
     }
   }
 
@@ -92,15 +96,6 @@ class InventoryController extends GetxController {
     searchText.value = val;
     update();
   }
-
-  int get currentOrdersLength => _tempInventoryRecords.value.items.length;
-  int get currentTabLength => currentOrdersLength;
-
-  List<InventoryRecordItems> get currentTabItems =>
-      _tempInventoryRecords.value.items;
-
-  List<InventoryRecordItems> get currentOrders =>
-      _tempInventoryRecords.value.items;
 
   void onSortCulumn(InventorySortTypes sortStatus) {
     currentType = sortStatus;
@@ -298,29 +293,7 @@ class InventoryController extends GetxController {
                 html: removedBackground,
               ));
     } catch (err) {
-      errorMessage.value = err.toString();
-      LoggerService.instance.e(err.toString());
-      _sendingMsgProgressBar.hide();
+      onCatchError(err, _sendingMsgProgressBar, errorMessage);
     }
-  }
-
-
-  void _onDioError(DioError e) {
-    _sendingMsgProgressBar.hide();
-    errorMessage(e.error.toString());
-    final message = getErrorMessage(e.response!.data);
-    renderErrorSnackBar(
-        title: "${e.response!.statusCode} Error!",
-        subTitle: message);
-    returnResponse(e.response!);
-  }
-
-  void _onCatchError(Object err) {
-    errorMessage(err.toString());
-    renderErrorSnackBar(
-        title: "Error!",
-        subTitle: "Error while getting user details!");
-    LoggerService.instance.e(err.toString());
-    _sendingMsgProgressBar.hide();
   }
 }

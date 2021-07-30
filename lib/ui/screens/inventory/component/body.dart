@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/ui/screens/inventory/bloc/bloc.dart';
+import 'package:code_magic_ex/ui/screens/inventory/controller/inventory_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -11,20 +11,20 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Column(
-      children: [
-        _createSearchView(),
-        Expanded(child: _getBodyWidget(context)),
-      ],
-    ));
+    return Obx(() => Column(
+          children: [
+            _createSearchView(),
+            Expanded(child: _getBodyWidget(context)),
+          ],
+        ));
   }
 
   Widget _getBodyWidget(BuildContext context) {
+    print(controller.currentTabLength);
     return Container(
       decoration: const BoxDecoration(color: Colors.white),
       height: MediaQuery.of(context).size.height,
-      child: Obx(() => HorizontalDataTable(
+      child: HorizontalDataTable(
         leftHandSideColumnWidth: 140,
         rightHandSideColumnWidth: 1200,
         isFixedHeader: true,
@@ -34,7 +34,7 @@ class Body extends StatelessWidget {
         itemCount: controller.currentTabLength,
         rowSeparatorWidget: kDivider(),
       ),
-    ));
+    );
   }
 
   List<Widget> _getTitleWidget() {
@@ -192,8 +192,10 @@ class Body extends StatelessWidget {
               decoration: kCircular8,
               child: ElevatedButton(
                 onPressed: () => controller.resetSearchText(),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(kMainColor)),
+                style: ElevatedButton.styleFrom(
+                    shape: kRoundedBorder(radius: 20),
+                    primary: kMainColor,
+                    padding: kEdgeA12()),
                 child: const Text("Clear"),
               ),
             ),
