@@ -17,7 +17,7 @@ class SearchRadioOptions extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                       border: kBorderAll(w: 3),
-                      borderRadius: kBorderRadius()),
+                      borderRadius: kBorderRadius(w: 12)),
                   child: RadioListTile(
                     contentPadding: const EdgeInsets.all(0),
                     title: Text(data.name),

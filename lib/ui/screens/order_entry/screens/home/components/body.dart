@@ -28,30 +28,16 @@ class Body extends StatelessWidget {
           ),
           SearchRadioOptions(),
           SearchBox(),
-          Obx(()=> _buildChild(context)),
+          Obx(() => Expanded(child: _getSearchResult(context))),
         ],
       ),
     );
   }
 
-  // *
-  Widget _buildChild(BuildContext context) {
-    if (controller.errorMessage.value.isNotEmpty) {
-      return const CustomErrorWidget(
-        svgIcon: kImageServerDown,
-      );
-    } else if (controller.searchResultsOfUserInfo.isEmpty) {
-      return const CustomEmptyWidget(
-        svgIcon: kImageEmptyBox,
-      );
-    } else {
-      return Expanded(child: _getSearchResult(context));
-    }
-  }
-
   Widget _getSearchResult(BuildContext context) {
     return ListView.builder(
-        itemCount: controller.searchResultsOfUserInfo.length, itemBuilder: (context, i) => _renderResultItem(i));
+        itemCount: controller.searchResultsOfUserInfo.length,
+        itemBuilder: (context, i) => _renderResultItem(i));
   }
 
   Widget _renderResultItem(int i) {
@@ -59,9 +45,8 @@ class Body extends StatelessWidget {
     return Card(
       color: Colors.white,
       elevation: 2,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0)),
-          margin: const EdgeInsets.symmetric(vertical: 8),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
@@ -69,7 +54,7 @@ class Body extends StatelessWidget {
           title: Text(currentItem.id.unicity.toString()),
           subtitle: Text(currentItem.humanName.fullName),
           trailing: const Icon(Icons.arrow_forward_ios, color: kMainColor),
-          onTap: ()=> controller.onClickOpenOrderEntry(currentItem),
+          onTap: () => controller.onClickOpenOrderEntry(currentItem),
         ),
       ),
     );

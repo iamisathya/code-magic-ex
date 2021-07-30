@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:code_magic_ex/ui/global/widgets/cart_footer.dart';
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
@@ -12,7 +14,9 @@ class OrderEntryTable extends StatelessWidget {
       Get.put(OrderEntryTableController());
   @override
   Widget build(BuildContext context) {
-    controller.loadInventoryRecords(context);
+     Timer(const Duration(milliseconds: 100), () {
+      controller.loadInventoryRecords(context);
+    });
     return Scaffold(
         backgroundColor: kPageBackground,
         appBar: TransAppBar(

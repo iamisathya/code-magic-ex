@@ -24,7 +24,7 @@ class SearchViewWidget extends StatelessWidget {
             fillColor: Colors.white,
             filled: true,
             isDense: true,
-            contentPadding: const EdgeInsets.all(14.0),
+            contentPadding: const EdgeInsets.all(20.0),
             focusedBorder: kFocusedOutlineInputBorder(),
             border: kOutlineInputBorder(),
             hintText: hintText,
