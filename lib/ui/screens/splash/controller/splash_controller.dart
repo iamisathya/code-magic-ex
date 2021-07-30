@@ -41,6 +41,8 @@ class SplashController extends GetxController {
             .getCustomerData(UserSessionManager.shared.customerUniqueId);
         await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
         _didSplashCompleted();
+      } else {
+        Get.offAll(() => LoginScreen());
       }
     } on DioError catch (e) {
       returnResponse(e.response!);

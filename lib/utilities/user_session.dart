@@ -148,8 +148,8 @@ class UserSessionManager {
       isUserLoggedIn = data;
     } catch (error) {
       isUserLoggedIn = false;
-      LoggerService.instance
-          .e('Session - Set User Info from DB - Error : ${error.toString()}');
+      LoggerService.instance.e(
+          'Session - Get login status from DB - Error : ${error.toString()}');
     }
   }
 
@@ -158,19 +158,21 @@ class UserSessionManager {
       final data =
           KeyValueStorageManager.getString(KeyValueStorageKeys.loginTokens);
       if (null == data || data.isEmpty) {
-        throw Exception('No data available in DB');
+        customerToken = _emptyCustomerTokenData();
+      } else {
+        final Map<String, dynamic> jsonData =
+            json.decode(data) as Map<String, dynamic>;
+        if (jsonData.isEmpty) {
+          throw Exception('No data available after JSON convert');
+        }
+        customerToken = CustomerToken.fromJson(jsonData);
+        customerUniqueId = getUniqueId(customerToken.customer.href);
       }
-      final Map<String, dynamic> jsonData =
-          json.decode(data) as Map<String, dynamic>;
-      if (jsonData.isEmpty) {
-        throw Exception('No data available after JSON convert');
-      }
-      customerToken = CustomerToken.fromJson(jsonData);
-      customerUniqueId = getUniqueId(customerToken.customer.href);
     } catch (error) {
       LoggerService.instance
-          .e('Session - Set User Info from DB - Error : ${error.toString()}');
+          .e('Session - Get login token from DB - Error : ${error.toString()}');
       customerToken = _emptyCustomerTokenData();
+      throw Exception('No data available in DB');
     }
     return customerToken;
   }
