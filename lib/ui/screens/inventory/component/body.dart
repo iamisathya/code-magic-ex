@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/global/widgets/search_view_button.dart';
 import 'package:code_magic_ex/ui/screens/inventory/controller/inventory_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
@@ -13,7 +14,9 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => Column(
           children: [
-            _createSearchView(),
+            SearchWithButton(
+                searchController: controller.searchController,
+                onPressClear: controller.resetSearchText),
             Expanded(child: _getBodyWidget(context)),
           ],
         ));
@@ -158,50 +161,6 @@ class Body extends StatelessWidget {
           style: TextStyle(color: type == 'link' ? Colors.blue : Colors.black),
         ),
       ),
-    );
-  }
-
-  //Create a SearchView
-  Widget _createSearchView() {
-    return Row(
-      children: [
-        Flexible(
-          child: Container(
-            margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-                border: Border.all(color: kMainColor, width: 2),
-                borderRadius: const BorderRadius.all(Radius.circular(8.0))),
-            child: TextField(
-              cursorColor: Colors.grey[300],
-              controller: controller.searchController,
-              decoration: InputDecoration(
-                hintText: "Search",
-                focusedBorder: InputBorder.none,
-                prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                hintStyle: TextStyle(color: Colors.grey[300]),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 86,
-          height: 50,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Container(
-              decoration: kCircular8,
-              child: ElevatedButton(
-                onPressed: () => controller.resetSearchText(),
-                style: ElevatedButton.styleFrom(
-                    shape: kRoundedBorder(radius: 20),
-                    primary: kMainColor,
-                    padding: kEdgeA12()),
-                child: const Text("Clear"),
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
