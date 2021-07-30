@@ -14,6 +14,7 @@ import 'package:code_magic_ex/utilities/keyboard.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:code_magic_ex/models/profile_picture.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,7 @@ class LoginController extends GetxController {
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
   RxBool isSessionExpired = false.obs;
+  final FirebaseAnalytics analytics = FirebaseAnalytics();
 
   final ProgressBar _sendingMsgProgressBar = ProgressBar();
 
@@ -82,6 +84,7 @@ class LoginController extends GetxController {
   Future<void> getLoginTokens(BuildContext context) async {
     try {
       _sendingMsgProgressBar.show(context);
+      analytics.logLogin();
       final RequestPostCustomerToken request = RequestPostCustomerToken(
           namespace: '${Address.baseUrl}customers',
           type: kEncodeType,
@@ -111,7 +114,6 @@ class LoginController extends GetxController {
       await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
       await UserSessionManager.shared.setLoginStatusIntoDB(true);
       await UserSessionManager.shared.setProfilePictureToDB(profilePicture);
-
       //*  navigate to home page
       _sendingMsgProgressBar.hide();
       Get.off(() => MainHomeScreen(), transition: Transition.cupertino);
