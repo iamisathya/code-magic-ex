@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/ui/screens/inventory/bloc/bloc.dart';
 import 'package:code_magic_ex/ui/screens/inventory/component/body.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 
 import 'package:flutter/material.dart';
@@ -14,7 +15,9 @@ class InventoryHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    Timer(const Duration(milliseconds: 1), () {
+      controller.loadSalesReports(context);
+    });
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: TransAppBar(

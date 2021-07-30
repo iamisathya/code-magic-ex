@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
@@ -10,8 +11,6 @@ class DataTableClass extends StatefulWidget {
 }
 
 class _DataTableClassState extends State<DataTableClass> {
-  final HDTRefreshController _hdtRefreshController = HDTRefreshController();
-
   static const int sortName = 0;
   static const int sortStatus = 1;
   bool isAscending = true;
@@ -45,32 +44,7 @@ class _DataTableClassState extends State<DataTableClass> {
         leftSideItemBuilder: _generateFirstColumnRow,
         rightSideItemBuilder: _generateRightHandSideColumnRow,
         itemCount: user.userInfo.length,
-        rowSeparatorWidget: const Divider(
-          color: Colors.black54,
-          height: 1.0,
-          thickness: 0.0,
-        ),
-        leftHandSideColBackgroundColor: const Color(0xFFFFFFFF),
-        rightHandSideColBackgroundColor: const Color(0xFFFFFFFF),
-        verticalScrollbarStyle: const ScrollbarStyle(
-          isAlwaysShown: true,
-          thickness: 4.0,
-          radius: Radius.circular(5.0),
-        ),
-        horizontalScrollbarStyle: const ScrollbarStyle(
-          isAlwaysShown: true,
-          thickness: 4.0,
-          radius: Radius.circular(5.0),
-        ),
-        enablePullToRefresh: true,
-        refreshIndicator: const WaterDropHeader(),
-        refreshIndicatorHeight: 60,
-        onRefresh: () async {
-          //Do sth
-          await Future.delayed(const Duration(milliseconds: 500));
-          _hdtRefreshController.refreshCompleted();
-        },
-        htdRefreshController: _hdtRefreshController,
+        rowSeparatorWidget: kDivider(),
       ),
     );
   }

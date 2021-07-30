@@ -34,7 +34,7 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
               AnimatedShowUp(
-                delay: 2000,
+                delay: 1000,
                 child: Text(
                   "OFFICE",
                   textAlign: TextAlign.center,

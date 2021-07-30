@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:code_magic_ex/api/api_address.dart';
@@ -7,6 +8,7 @@ import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +40,6 @@ class InventoryController extends GetxController {
   void resetSearchText() {
     _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
     searchController.text = "";
-    update();
   }
 
   RxString filterMethod = describeEnum(StockTypes.onHand).obs;
@@ -54,29 +55,26 @@ class InventoryController extends GetxController {
 
   String get onSearchTextChanged => searchText.value;
 
-  Future<void> loadSalesReports() async {
+  Future<void> loadSalesReports(BuildContext context) async {
     // if (searchController.text.isEmpty) {
     //   renderErrorSnackBar(
     //       title: "Search text empty!",
     //       subTitle: "Please enter search text to continue");
     //   return;
     // }
+    _sendingMsgProgressBar.show(context);
     const String type = "item";
     const String userId =
         "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
-    loading(true);
-    update();
     try {
       _inventoryRecords =
           Rx(await ApiService.shared().getInventoryRecords(userId, type));
       _tempInventoryRecords.value.items.addAll(_inventoryRecords.value.items);
-      loading(false);
-      update();
+      _sendingMsgProgressBar.hide();
+    }  on DioError catch (e) {
+      _onDioError(e);
     } catch (err) {
-      loading(false);
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
-      update();
+      _onCatchError(err);
     }
   }
 
@@ -292,7 +290,7 @@ class InventoryController extends GetxController {
       final response = await dio.get("${Address.inventoryPrint}=2970466");
       final removedBackground =
           response.toString().replaceAll('background: rgb(204,204,204);', '');
-          _sendingMsgProgressBar.hide();
+      _sendingMsgProgressBar.hide();
       await Printing.layoutPdf(
           dynamicLayout: false,
           onLayout: (PdfPageFormat format) async => Printing.convertHtml(
@@ -304,5 +302,25 @@ class InventoryController extends GetxController {
       LoggerService.instance.e(err.toString());
       _sendingMsgProgressBar.hide();
     }
+  }
+
+
+  void _onDioError(DioError e) {
+    _sendingMsgProgressBar.hide();
+    errorMessage(e.error.toString());
+    final message = getErrorMessage(e.response!.data);
+    renderErrorSnackBar(
+        title: "${e.response!.statusCode} Error!",
+        subTitle: message);
+    returnResponse(e.response!);
+  }
+
+  void _onCatchError(Object err) {
+    errorMessage(err.toString());
+    renderErrorSnackBar(
+        title: "Error!",
+        subTitle: "Error while getting user details!");
+    LoggerService.instance.e(err.toString());
+    _sendingMsgProgressBar.hide();
   }
 }

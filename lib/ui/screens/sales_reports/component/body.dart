@@ -16,7 +16,6 @@ import 'package:intl/intl.dart';
 
 class Body extends StatelessWidget {
   final SalesReportController controller = Get.put(SalesReportController());
-  final HDTRefreshController _hdtRefreshController = HDTRefreshController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,20 +67,7 @@ class Body extends StatelessWidget {
             ? _generateRightHandSideColumnRow
             : _generateRightHandSideRmaColumnRow,
         itemCount: controller.currentTabLength,
-        rowSeparatorWidget: const Divider(
-          color: Colors.black54,
-          height: 1.0,
-          thickness: 0.0,
-        ),
-        enablePullToRefresh: true,
-        refreshIndicator: const WaterDropHeader(),
-        refreshIndicatorHeight: 100,
-        onRefresh: () async {
-          //Do sth
-          await Future.delayed(const Duration(milliseconds: 500));
-          _hdtRefreshController.refreshCompleted();
-        },
-        htdRefreshController: _hdtRefreshController,
+        rowSeparatorWidget: kDivider(),
       ),
     );
   }

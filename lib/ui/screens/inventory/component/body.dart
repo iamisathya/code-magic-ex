@@ -1,10 +1,6 @@
-import 'package:code_magic_ex/ui/global/widgets/custom_empty_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_error_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/inventory/bloc/bloc.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
-import 'package:code_magic_ex/utilities/images.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,49 +8,23 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 class Body extends StatelessWidget {
   final InventoryController controller = Get.put(InventoryController());
-  final HDTRefreshController _hdtRefreshController = HDTRefreshController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: GetBuilder<InventoryController>(
-            init: InventoryController(),
-            initState: (state) {
-              controller.loadSalesReports();
-            },
-            builder: (_) {
-              return Column(
-                children: [
-                  _createSearchView(),
-                  Expanded(child: _buildChild(context)),
-                ],
-              );
-            }));
-  }
-
-  Widget _buildChild(BuildContext context) {
-    if (controller.loading.value) {
-      return const CustomLoadingWidget(
-        svgIcon: kImageBroswerStats,
-      );
-    } else if (controller.errorMessage.value.isNotEmpty) {
-      return const CustomErrorWidget(
-        svgIcon: kImageServerDown,
-      );
-    } else if (controller.isEmptyList.value) {
-      return const CustomEmptyWidget(
-        svgIcon: kImageEmptyBox,
-      );
-    } else {
-      return _getBodyWidget(context);
-    }
+        child: Column(
+      children: [
+        _createSearchView(),
+        Expanded(child: _getBodyWidget(context)),
+      ],
+    ));
   }
 
   Widget _getBodyWidget(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(color: Colors.white),
       height: MediaQuery.of(context).size.height,
-      child: HorizontalDataTable(
+      child: Obx(() => HorizontalDataTable(
         leftHandSideColumnWidth: 140,
         rightHandSideColumnWidth: 1200,
         isFixedHeader: true,
@@ -62,22 +32,9 @@ class Body extends StatelessWidget {
         leftSideItemBuilder: _generateFirstColumnRow,
         rightSideItemBuilder: _generateRightHandSideColumnRow,
         itemCount: controller.currentTabLength,
-        rowSeparatorWidget: const Divider(
-          color: Colors.black54,
-          height: 1.0,
-          thickness: 0.0,
-        ),
-        enablePullToRefresh: true,
-        refreshIndicator: const WaterDropHeader(),
-        refreshIndicatorHeight: 100,
-        onRefresh: () async {
-          //Do sth
-          await Future.delayed(const Duration(milliseconds: 500));
-          _hdtRefreshController.refreshCompleted();
-        },
-        htdRefreshController: _hdtRefreshController,
+        rowSeparatorWidget: kDivider(),
       ),
-    );
+    ));
   }
 
   List<Widget> _getTitleWidget() {
@@ -95,7 +52,7 @@ class Body extends StatelessWidget {
           "PV", InventorySortTypes.pv, Alignment.centerRight, 100),
       _renderTableHeader(
           "Price", InventorySortTypes.price, Alignment.centerRight, 100),
-      _renderTableHeader("Quantity On Hannd", InventorySortTypes.quantityOnHand,
+      _renderTableHeader("Quantity On Hand", InventorySortTypes.quantityOnHand,
           Alignment.centerRight, 180),
       _renderTableHeader("Total Accumlated Price ($totalPrice)",
           InventorySortTypes.totalAccumulatedPrice, Alignment.centerRight, 340),
@@ -122,8 +79,8 @@ class Body extends StatelessWidget {
 
   Widget _getTitleItemWidget(String label, double width, Alignment alignment) {
     return Container(
-      decoration: BoxDecoration(
-          color: kMainColor, border: Border.all(width: 0.5)),
+      decoration:
+          BoxDecoration(color: kMainColor, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -216,8 +173,6 @@ class Body extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(8.0))),
             child: TextField(
               cursorColor: Colors.grey[300],
-              onChanged: (value) => controller.onSearchTextChanged = value,
-              // onChanged: (() => controller.onSearchTextChanged()),
               controller: controller.searchController,
               decoration: InputDecoration(
                 hintText: "Search",
@@ -237,7 +192,8 @@ class Body extends StatelessWidget {
               decoration: kCircular8,
               child: ElevatedButton(
                 onPressed: () => controller.resetSearchText(),
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(kMainColor)),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(kMainColor)),
                 child: const Text("Clear"),
               ),
             ),

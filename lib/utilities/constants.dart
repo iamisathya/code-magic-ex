@@ -87,8 +87,9 @@ EdgeInsets kEdgeInset({double v = 8.0}) => EdgeInsets.all(v);
 BoxDecoration kCircular8 =
     BoxDecoration(borderRadius: BorderRadius.circular(8), color: kMainColor);
 
-RoundedRectangleBorder kRoundedBorder({double radius = 10}) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));
-    
+RoundedRectangleBorder kRoundedBorder({double radius = 10}) =>
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));
+
 MaterialStateProperty<RoundedRectangleBorder> elevatedShape() {
   return MaterialStateProperty.all<RoundedRectangleBorder>(
       RoundedRectangleBorder(
@@ -171,6 +172,14 @@ InputDecoration kAutoCompleteTextInputDecoration(
   );
 }
 
+//* Divider
+Divider kDivider({double h = 1.0, double t = 1.0, Color c = Colors.black54}) =>
+    Divider(
+      color: c,
+      height: h,
+      thickness: t,
+    );
+
 //* Box Decoration
 BoxDecoration kTableHeaderBoxDecoration(
         {Color c = kMainColor, double w = 0.5, Color bc = Colors.white}) =>
@@ -211,8 +220,7 @@ InputDecoration kBorderNone = const InputDecoration(border: InputBorder.none);
 
 InputDecoration kInputDecoration(String hintText, String label) {
   return InputDecoration(
-    border:
-        const OutlineInputBorder(borderSide: BorderSide(color: kMainColor)),
+    border: const OutlineInputBorder(borderSide: BorderSide(color: kMainColor)),
     hintText: hintText,
     labelText: label,
   );
@@ -246,6 +254,5 @@ class Currencies {
   static const String kip = "₭";
 }
 
-
-// ! delete later 
+// ! delete later
 const String kLoginToken = "fb8f3763-c423-4066-82eb-4666181fb607";
