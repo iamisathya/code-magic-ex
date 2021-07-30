@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/global/widgets/common_widgets.dart';
 import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
 import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_table_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
@@ -18,7 +19,7 @@ void renderBottomSheet(BuildContext context) {
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-          _renderTextField(
+          renderTextField(
               ctlr: controller.commentController,
               helperText: "Add your comments here",
               maxLines: 5,
@@ -27,7 +28,7 @@ void renderBottomSheet(BuildContext context) {
           GestureDetector(
             onTap: controller.selectSource,
             child: Stack(children: [
-              _renderTextField(
+              renderTextField(
                 ctlr: controller.selectedFileController,
                 label: "Browse file",
                 minLines: 1,
@@ -67,46 +68,3 @@ void renderBottomSheet(BuildContext context) {
   );
 }
 
-Container _renderTextField(
-    {TextEditingController? ctlr,
-    bool enabled = true,
-    String label = "",
-    String helperText = "",
-    String hintText = "",
-    int maxLines = 1,
-    int minLines = 2}) {
-  return Container(
-    margin: const EdgeInsets.only(top: 10),
-    child: Column(
-      children: [
-        _renderLabel(label),
-        TextField(
-            enabled: enabled,
-            controller: ctlr,
-            maxLines: maxLines,
-            minLines: minLines,
-            style: const TextStyle(fontSize: 18),
-            cursorColor: kMainColor,
-            decoration: enabled == false
-                ? kDisabledTextInputDecoration(
-                    helperText: helperText, hintText: hintText)
-                : kActiveTextInputDecoration(
-                    helperText: helperText, hintText: hintText))
-      ],
-    ),
-  );
-}
-
-Padding _renderLabel(String label) {
-  return Padding(
-    padding: const EdgeInsets.only(bottom: 10, left: 8),
-    child: SizedBox(
-      width: Get.width,
-      child: Text(
-        label,
-        textAlign: TextAlign.left,
-        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-      ),
-    ),
-  );
-}

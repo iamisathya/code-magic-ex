@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/models/open_po_details.dart';
+import 'package:code_magic_ex/ui/global/widgets/common_widgets.dart';
 import 'package:code_magic_ex/ui/global/widgets/custom_loading_widget.dart';
 import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
@@ -17,6 +18,8 @@ class Body extends StatelessWidget {
   }
 
   Widget _renderChild(BuildContext context) {
+    TextEditingController commentCtrl = TextEditingController();
+    commentCtrl.text = controller.openPlaceOrderId.comment;
     if (controller.loadingDetails.value == true) {
       return const CustomLoadingWidget(
         svgIcon: kImageApproveTask,
@@ -34,6 +37,12 @@ class Body extends StatelessWidget {
             _renderRowItem("DSC Name", controller.openPlaceOrderId.createBy),
             _renderProductCards(context),
             _renderDividerPadding(),
+            renderTextField(
+              ctlr: commentCtrl,
+              label: "Comment",
+              minLines: 1,
+              enabled: false,
+            ),
             _renderTotal(context),
             _renderDividerPadding(),
           ],

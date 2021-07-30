@@ -107,8 +107,8 @@ class Body extends StatelessWidget {
 
   Widget _getTitleItemWidget(String label, double width) {
     return Container(
-      decoration: BoxDecoration(
-          color: kMainColor, border: Border.all(width: 0.5)),
+      decoration:
+          BoxDecoration(color: kMainColor, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -165,8 +165,12 @@ class Body extends StatelessWidget {
             _renderStatusButton(
                 context, currentItem.orderStatus.retrieveOrderStatus()),
           ),
-          _renderDataCellWidget(180, Alignment.centerRight,
-              _renderAttachement(context, currentItem)),
+          _renderDataCellWidget(
+              180,
+              Alignment.centerRight,
+              currentItem.iconAttachment.retrieveAttachementName() != "0"
+                  ? _renderAttachement(context, currentItem)
+                  : const SizedBox()),
         ],
       ),
     );
@@ -185,17 +189,10 @@ class Body extends StatelessWidget {
   }
 
   IconButton _renderAttachement(BuildContext context, OpenPO currentItem) {
+    final String url =
+        "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}";
     return IconButton(
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => WebivewHomeScreen(
-                  url:
-                      "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}",
-                ),
-              ));
-        },
+        onPressed: () => Get.to(() => WebivewHomeScreen(url: url)),
         icon: const Icon(Icons.attach_file, color: kMainColor));
   }
 
