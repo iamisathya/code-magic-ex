@@ -218,8 +218,9 @@ class InventoryController extends GetxController {
             onTap: () {
               onTapFilterInventory(context, StockTypes.onHand);
             },
+            shape: kRoundedBorder(),
             selected: filterMethod.value == describeEnum(StockTypes.onHand),
-            selectedTileColor: kPrimaryColor,
+            selectedTileColor: kMainColor,
             title: const Text("On Hand"),
           ),
         ),
@@ -231,7 +232,8 @@ class InventoryController extends GetxController {
             onTap: () {
               onTapFilterInventory(context, StockTypes.outOfStock);
             },
-            selectedTileColor: kPrimaryColor,
+            shape: kRoundedBorder(),
+            selectedTileColor: kMainColor,
             title: const Text("Out Of Stock"),
           ),
         ),
