@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:code_magic_ex/api/api_address.dart';
@@ -26,6 +24,7 @@ import 'package:pdf/pdf.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:printing/printing.dart';
 import 'package:path/path.dart';
+import 'package:share/share.dart';
 
 class SalesReportController extends GetxController {
   final TextEditingController startDate = TextEditingController();
@@ -254,7 +253,8 @@ class SalesReportController extends GetxController {
     );
   }
 
-  Future<void> proceedToPrint(BuildContext context, {required String orderHref}) async {
+  Future<void> proceedToPrint(BuildContext context,
+      {required String orderHref}) async {
     //  https://dsc-th.unicity.com/invoice.php?link=https://hydra.unicity.net/v5a/orders/31512d2a1d4a2a5860bc785d27d1f75270eabace2d169ad5bfab2c45959ff3de&token=08b438b3-5326-45d7-9cc9-f4f3299bae5c
     final String imgUrl =
         "${Address.dscHome}invoice.php?link=$orderHref&token=${UserSessionManager.shared.customerToken.token}";
@@ -276,22 +276,23 @@ class SalesReportController extends GetxController {
     }
   }
 
-  Future onTapExportExcellSheet() async {
+  Future<File?> createExcellSheet() async {
+    File? createdFile;
     if (allOrdersAndRmas.orders[0].items.isEmpty) {
       renderGetSnackbar(
           title: "Empty table!",
           message: "No data found in table.",
           type: SnackBarType.error);
-      return;
+      return createdFile;
     }
     if (await Permission.storage.request().isGranted) {
       // Either the permission was already granted before or the user just granted it.
       final Directory appDocDirectory =
           await getApplicationDocumentsDirectory();
 
-      Directory('${appDocDirectory.path}/dir').create(recursive: true)
+      Directory directory = await Directory('${appDocDirectory.path}/dir').create(recursive: true);
           // The created directory is returned as a Future.
-          .then((Directory directory) async {
+          // .then((Directory directory) async {
         final excel = Excel.createExcel();
         final Sheet sheetObject = excel["Sheet1"];
 
@@ -376,11 +377,28 @@ class SalesReportController extends GetxController {
             '${directory.path}/easyship_${DateTime.now().millisecondsSinceEpoch}.xlsx';
 
         final encoded = excel.encode();
-        final file = File(join(filePath))
+        createdFile = File(join(filePath))
           ..createSync(recursive: true)
           ..writeAsBytesSync(encoded!);
-        OpenFile.open(file.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");
-      });
+      
+      return createdFile;
+    } else {
+      return createdFile;
+    }
+  }
+
+  Future<void> onTapExportExcellSheet() async {
+    final File? createdFile = await createExcellSheet();
+    if (createdFile != null) {
+      OpenFile.open(createdFile.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");
+    }
+  }
+
+  Future<void> onTapPrintExcellSheet() async {
+    final File? createdFile = await createExcellSheet();
+    if (createdFile != null) {
+      await OpenFile.open(createdFile.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");      
+      Share.shareFiles([createdFile.path], text: "Sales Report");
     }
   }
 }

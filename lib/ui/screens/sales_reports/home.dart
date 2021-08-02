@@ -39,7 +39,7 @@ class SalesReportsHomeScreen extends StatelessWidget {
           Icons.print_outlined,
         ),
         tooltip: 'Print',
-        onPressed: () => controller.onTapExportExcellSheet(),
+        onPressed: () => controller.onTapPrintExcellSheet(),
       ),
       IconButton(
         icon: const Icon(
