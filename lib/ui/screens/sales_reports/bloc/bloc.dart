@@ -290,98 +290,97 @@ class SalesReportController extends GetxController {
       final Directory appDocDirectory =
           await getApplicationDocumentsDirectory();
 
-      Directory directory = await Directory('${appDocDirectory.path}/dir').create(recursive: true);
-          // The created directory is returned as a Future.
-          // .then((Directory directory) async {
-        final excel = Excel.createExcel();
-        final Sheet sheetObject = excel["Sheet1"];
+      Directory directory = await Directory('${appDocDirectory.path}/dir')
+          .create(recursive: true);
+      // The created directory is returned as a Future.
+      // .then((Directory directory) async {
+      final excel = Excel.createExcel();
+      final Sheet sheetObject = excel["Sheet1"];
 
-        final CellStyle headerCellStyle = CellStyle(
-            backgroundColorHex: "#e0e2e5",
-            horizontalAlign: HorizontalAlign.Center,
-            verticalAlign: VerticalAlign.Center,
-            bold: true,
-            fontFamily: getFontFamily(FontFamily.Calibri));
+      final CellStyle headerCellStyle = CellStyle(
+          backgroundColorHex: "#e0e2e5",
+          horizontalAlign: HorizontalAlign.Center,
+          verticalAlign: VerticalAlign.Center,
+          bold: true,
+          fontFamily: getFontFamily(FontFamily.Calibri));
 
-        final CellStyle dataCellStyle = CellStyle(
-            horizontalAlign: HorizontalAlign.Center,
-            verticalAlign: VerticalAlign.Center,
-            fontFamily: getFontFamily(FontFamily.Calibri));
+      final CellStyle dataCellStyle = CellStyle(
+          horizontalAlign: HorizontalAlign.Center,
+          verticalAlign: VerticalAlign.Center,
+          fontFamily: getFontFamily(FontFamily.Calibri));
 
-        for (int x = 0; x < allOrdersAndRmas.orders[0].items.length; x++) {
-          final OrderItem currentItem = allOrdersAndRmas.orders[0].items[x];
-          final emptyA = sheetObject.cell(CellIndex.indexByString("A${x + 1}"));
+      for (int x = 0; x < allOrdersAndRmas.orders[0].items.length; x++) {
+        final OrderItem currentItem = allOrdersAndRmas.orders[0].items[x];
+        final emptyA = sheetObject.cell(CellIndex.indexByString("A${x + 1}"));
 
+        emptyA.cellStyle = headerCellStyle;
+        final b = sheetObject.cell(CellIndex.indexByString("B${x + 1}"));
+        final c = sheetObject.cell(CellIndex.indexByString("C${x + 1}"));
+        final d = sheetObject.cell(CellIndex.indexByString("D${x + 1}"));
+        final e = sheetObject.cell(CellIndex.indexByString("E${x + 1}"));
+        final f = sheetObject.cell(CellIndex.indexByString("F${x + 1}"));
+        final g = sheetObject.cell(CellIndex.indexByString("G${x + 1}"));
+        final h = sheetObject.cell(CellIndex.indexByString("H${x + 1}"));
+        final i = sheetObject.cell(CellIndex.indexByString("I${x + 1}"));
+        if (x == 0) {
           emptyA.cellStyle = headerCellStyle;
-          final b = sheetObject.cell(CellIndex.indexByString("B${x + 1}"));
-          final c = sheetObject.cell(CellIndex.indexByString("C${x + 1}"));
-          final d = sheetObject.cell(CellIndex.indexByString("D${x + 1}"));
-          final e = sheetObject.cell(CellIndex.indexByString("E${x + 1}"));
-          final f = sheetObject.cell(CellIndex.indexByString("F${x + 1}"));
-          final g = sheetObject.cell(CellIndex.indexByString("G${x + 1}"));
-          final h = sheetObject.cell(CellIndex.indexByString("H${x + 1}"));
-          final i = sheetObject.cell(CellIndex.indexByString("I${x + 1}"));
-          if (x == 0) {
-            emptyA.cellStyle = headerCellStyle;
-            b.cellStyle = headerCellStyle;
-            c.cellStyle = headerCellStyle;
-            d.cellStyle = headerCellStyle;
-            e.cellStyle = headerCellStyle;
-            f.cellStyle = headerCellStyle;
-            g.cellStyle = headerCellStyle;
-            h.cellStyle = headerCellStyle;
-            i.cellStyle = headerCellStyle;
-          }
-          if (x == 0) {
-            emptyA.value = "SL No.";
-            b.value = "Record";
-            c.value = "BA Number";
-            d.value = "Name";
-            e.value = "Order ID";
-            f.value = "Date";
-            g.value = "Time";
-            h.value = "Total Price";
-            i.value = "Total PV";
-            emptyA.cellStyle = headerCellStyle;
-            b.cellStyle = headerCellStyle;
-            c.cellStyle = headerCellStyle;
-            d.cellStyle = headerCellStyle;
-            e.cellStyle = headerCellStyle;
-            f.cellStyle = headerCellStyle;
-            g.cellStyle = headerCellStyle;
-            h.cellStyle = headerCellStyle;
-            i.cellStyle = headerCellStyle;
-          } else {
-            emptyA.cellStyle = headerCellStyle;
-            b.cellStyle = dataCellStyle;
-            c.cellStyle = dataCellStyle;
-            d.cellStyle = dataCellStyle;
-            e.cellStyle = dataCellStyle;
-            f.cellStyle = dataCellStyle;
-            g.cellStyle = dataCellStyle;
-            h.cellStyle = dataCellStyle;
-            i.cellStyle = dataCellStyle;
-            emptyA.value = "$x";
-            b.value = currentItem.creator.humanName.fullName;
-            c.value = currentItem.customer.id.unicity;
-            d.value = currentItem.customer.humanName.fullName;
-            e.value = currentItem.id.unicity.retrieveOrderId();
-            f.value = currentItem.dateCreated.asDDMMYYYY;
-            g.value = currentItem.dateCreated.asHHMMA;
-            h.value = currentItem.terms.total.toString();
-            i.value = Parsing.stringFrom(currentItem.terms.pv);
-          }
+          b.cellStyle = headerCellStyle;
+          c.cellStyle = headerCellStyle;
+          d.cellStyle = headerCellStyle;
+          e.cellStyle = headerCellStyle;
+          f.cellStyle = headerCellStyle;
+          g.cellStyle = headerCellStyle;
+          h.cellStyle = headerCellStyle;
+          i.cellStyle = headerCellStyle;
         }
+        if (x == 0) {
+          emptyA.value = "SL No.";
+          b.value = "Record";
+          c.value = "BA Number";
+          d.value = "Name";
+          e.value = "Order ID";
+          f.value = "Date";
+          g.value = "Time";
+          h.value = "Total Price";
+          i.value = "Total PV";
+          emptyA.cellStyle = headerCellStyle;
+          b.cellStyle = headerCellStyle;
+          c.cellStyle = headerCellStyle;
+          d.cellStyle = headerCellStyle;
+          e.cellStyle = headerCellStyle;
+          f.cellStyle = headerCellStyle;
+          g.cellStyle = headerCellStyle;
+          h.cellStyle = headerCellStyle;
+          i.cellStyle = headerCellStyle;
+        } else {
+          emptyA.cellStyle = headerCellStyle;
+          b.cellStyle = dataCellStyle;
+          c.cellStyle = dataCellStyle;
+          d.cellStyle = dataCellStyle;
+          e.cellStyle = dataCellStyle;
+          f.cellStyle = dataCellStyle;
+          g.cellStyle = dataCellStyle;
+          h.cellStyle = dataCellStyle;
+          i.cellStyle = dataCellStyle;
+          emptyA.value = "$x";
+          b.value = currentItem.creator.humanName.fullName;
+          c.value = currentItem.customer.id.unicity;
+          d.value = currentItem.customer.humanName.fullName;
+          e.value = currentItem.id.unicity.retrieveOrderId();
+          f.value = currentItem.dateCreated.asDDMMYYYY;
+          g.value = currentItem.dateCreated.asHHMMA;
+          h.value = currentItem.terms.total.toString();
+          i.value = Parsing.stringFrom(currentItem.terms.pv);
+        }
+      }
 
-        final String filePath =
-            '${directory.path}/easyship_${DateTime.now().millisecondsSinceEpoch}.xlsx';
+      final String filePath =
+          '${directory.path}/easyship_${DateTime.now().millisecondsSinceEpoch}.xlsx';
 
-        final encoded = excel.encode();
-        createdFile = File(join(filePath))
-          ..createSync(recursive: true)
-          ..writeAsBytesSync(encoded!);
-      
-      return createdFile;
+      final encoded = excel.encode();
+      return File(join(filePath))
+        ..createSync(recursive: true)
+        ..writeAsBytesSync(encoded!);
     } else {
       return createdFile;
     }
@@ -395,10 +394,79 @@ class SalesReportController extends GetxController {
   }
 
   Future<void> onTapPrintExcellSheet() async {
-    final File? createdFile = await createExcellSheet();
-    if (createdFile != null) {
-      await OpenFile.open(createdFile.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");      
-      Share.shareFiles([createdFile.path], text: "Sales Report");
+    // final File? createdFile = await createExcellSheet();
+    if (allOrdersAndRmas.orders[0].items.isNotEmpty) {
+      // FlutterPdfPrinter.printFile(createdFile.path);
+      var tableData = """
+      <!DOCTYPE html>
+        <html>
+          <head>
+            <style>
+              #customers {
+                font-family: Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+              }
+
+              #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+              }
+
+              #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+              #customers tr:hover {background-color: #ddd;}
+
+              #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #e0e2e5;
+                color: white;
+              }
+            </style>
+          </head>
+        <body>
+        <table id="customers">
+          <tr>
+            <th>SL No.</th>
+            <th>Record</th>
+            <th>BA Number</th>
+            <th>Name</th>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Total Price</th>
+            <th>Total PV</th>
+          </tr>
+        """;
+      for (int x = 0; x < allOrdersAndRmas.orders[0].items.length; x++) {
+        final currentItem = allOrdersAndRmas.orders[0].items[x];
+        // ignore: use_string_buffers
+        tableData += """
+          <tr>
+            <td>$x</td>
+            <td>${currentItem.creator.humanName.fullName}</th>
+            <td>${currentItem.customer.id.unicity}</td>
+            <td>${currentItem.customer.humanName.fullName}</td>
+            <td>${currentItem.id.unicity.retrieveOrderId()}</td>
+            <td>${currentItem.dateCreated.asDDMMYYYY}</td>
+            <td>${currentItem.dateCreated.asHHMMA}</td>
+            <td>${currentItem.terms.total.toString()}</td>
+            <td>${Parsing.stringFrom(currentItem.terms.pv)}</td>
+          </tr>""";
+      }
+      tableData += """
+            </table>
+          </body>
+        </html>
+      """;
+      await Printing.layoutPdf(
+          dynamicLayout: false,
+          onLayout: (PdfPageFormat format) async => Printing.convertHtml(
+                format: format,
+                html: tableData,
+              ));
     }
   }
 }
