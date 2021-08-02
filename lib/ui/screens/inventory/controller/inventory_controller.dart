@@ -54,7 +54,8 @@ class InventoryController extends GetxController {
     try {
       inventoryRecords.value =
           await ApiService.shared().getInventoryRecords(userId, type);
-      tempInventoryRecords.value.items = List.from(inventoryRecords.value.items);
+      tempInventoryRecords.value.items =
+          List.from(inventoryRecords.value.items);
       update();
       _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
@@ -227,37 +228,94 @@ class InventoryController extends GetxController {
           // The created directory is returned as a Future.
           .then((Directory directory) async {
         final excel = Excel.createExcel();
-        final bytes = excel.encode();
-        final Sheet sheet = excel['mySheet'];
+        final Sheet sheetObject = excel["Sheet1"];
 
-        //* Check this
-        // final Sheet unlinkedSheetObject = excel["sheet1"];
-        // final List<InventoryRecordItems> dataList =
-        //     tempInventoryRecords.value.items;
-        // unlinkedSheetObject.insertRowIterables(dataList, 8);
+        final CellStyle headerCellStyle = CellStyle(
+            backgroundColorHex: "#e0e2e5",
+            horizontalAlign: HorizontalAlign.Center,
+            verticalAlign: VerticalAlign.Center,
+            bold: true,
+            fontFamily: getFontFamily(FontFamily.Calibri));
 
-        /// appending rows
-        List<List<String>> list = List.generate(
-            2, (index) => List.generate(2, (index1) => '$index $index1'));
+        final CellStyle dataCellStyle = CellStyle(
+            horizontalAlign: HorizontalAlign.Center,
+            verticalAlign: VerticalAlign.Center,
+            fontFamily: getFontFamily(FontFamily.Calibri));
 
-        list.forEach((row) {
-          sheet.appendRow(row);
-        });
+        for (int i = 0; i < tempInventoryRecords.value.items.length; i++) {
+          final InventoryRecordItems currentItem =
+              tempInventoryRecords.value.items[i];
+          final emptyA = sheetObject.cell(CellIndex.indexByString("A${i + 1}"));
 
-        sheet.appendRow([8, 10, 12, 12, 14, 14, 15, 16, 65]);
+          emptyA.cellStyle = headerCellStyle;
+          final b = sheetObject.cell(CellIndex.indexByString("B${i + 1}"));
+          final c = sheetObject.cell(CellIndex.indexByString("C${i + 1}"));
+          final d = sheetObject.cell(CellIndex.indexByString("D${i + 1}"));
+          final e = sheetObject.cell(CellIndex.indexByString("E${i + 1}"));
+          final f = sheetObject.cell(CellIndex.indexByString("F${i + 1}"));
+          final g = sheetObject.cell(CellIndex.indexByString("G${i + 1}"));
+          final h = sheetObject.cell(CellIndex.indexByString("H${i + 1}"));
+          if (i == 0) {
+            emptyA.cellStyle = headerCellStyle;
+            b.cellStyle = headerCellStyle;
+            c.cellStyle = headerCellStyle;
+            d.cellStyle = headerCellStyle;
+            e.cellStyle = headerCellStyle;
+            f.cellStyle = headerCellStyle;
+            g.cellStyle = headerCellStyle;
+            h.cellStyle = headerCellStyle;
+          }
+          if (i == 0) {
+            emptyA.value = "SL No.";
+            b.value = "Item Code";
+            c.value = "Item Name";
+            d.value = "PV";
+            e.value = "Price";
+            f.value = "Quantity on hand";
+            g.value = "Total Accumulated Price";
+            h.value = "Total PV";
+            emptyA.cellStyle = headerCellStyle;
+            b.cellStyle = headerCellStyle;
+            c.cellStyle = headerCellStyle;
+            d.cellStyle = headerCellStyle;
+            e.cellStyle = headerCellStyle;
+            f.cellStyle = headerCellStyle;
+            g.cellStyle = headerCellStyle;
+            h.cellStyle = headerCellStyle;
+          } else {
+            emptyA.cellStyle = headerCellStyle;
+            b.cellStyle = dataCellStyle;
+            c.cellStyle = dataCellStyle;
+            d.cellStyle = dataCellStyle;
+            e.cellStyle = dataCellStyle;
+            f.cellStyle = dataCellStyle;
+            g.cellStyle = dataCellStyle;
+            h.cellStyle = dataCellStyle;
+            emptyA.value = "$i";
+            b.value = currentItem.item.id.unicity;
+            c.value = currentItem.catalogSlideContent.content.description;
+            d.value = currentItem.terms.pvEach;
+            e.value = currentItem.terms.priceEach;
+            f.value = currentItem.quantityOnHand;
+            g.value = calculateTotalAmount(
+                quantity: currentItem.quantityOnHand,
+                price: currentItem.terms.priceEach);
+            h.value = calculateTotalAmount(
+                quantity: currentItem.quantityOnHand,
+                price: currentItem.terms.pvEach.toDouble());
+          }
+        }
+
         final String filePath =
             '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.xlsx';
-        final fileDate = File(join(filePath))
+
+        final encoded = excel.encode();
+        final file = File(join(filePath))
           ..createSync(recursive: true)
-          ..writeAsBytesSync(bytes!);
-        debugPrint('Path of New Dir: $fileDate');
-        OpenFile.open(fileDate.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");
+          ..writeAsBytesSync(encoded!);
+        OpenFile.open(file.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");
       });
     }
-
-    //* shareFiles: this has to be awaited 🤔
-    // await Share.shareFiles([path]).then((value) => setState(() => excel = null));
-    // });
   }
 
   Future<void> onTapPrint(BuildContext context) async {

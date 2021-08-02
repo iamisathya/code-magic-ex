@@ -53,3 +53,9 @@ enum SuccessTypes {
   Yes,
   No,
 }
+
+enum SnackBarType {
+  error,
+  waring,
+  success,
+}

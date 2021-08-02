@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
+import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
@@ -165,4 +166,24 @@ String getUniqueId(String href) {
   final String loginToken =
       href.substring(href.lastIndexOf("/") + 1, href.length);
   return loginToken;
+}
+
+void renderGetSnackbar(
+    {String title = "Error!",
+    String message = "Unexpcted error occured. Please try later!",
+    SnackBarType type = SnackBarType.success}) {
+  final Color color = type == SnackBarType.success
+      ? kPrimaryColor
+      : type == SnackBarType.error
+          ? Colors.red
+          : Colors.yellow;
+  Get.snackbar("Empty table!", "No data found in table.",
+      snackPosition: SnackPosition.BOTTOM,
+      overlayColor: color,
+      backgroundColor: Colors.white,
+      borderColor: color,
+      borderWidth: 2,
+      colorText: color,
+      animationDuration: const Duration(milliseconds: 300),
+      icon: Icon(Icons.error, color: color));
 }
