@@ -14,6 +14,7 @@ import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart' hide FormData, MultipartFile;
@@ -34,12 +35,14 @@ class OpenPoTableController extends GetxController {
   final ProgressBar _sendingMsgProgressBar = ProgressBar();
   late UserMinimalData passedUser;
   XFile uploadFile = XFile("");
+  String? selectedImageBaes64 = "";
   final ImagePicker _picker = ImagePicker();
 
   @override
   void onInit() {
     super.onInit();
     _generateEmptyCart();
+    FirebaseAnalytics().setCurrentScreen(screenName: "open_po_table");
     initUserDetails();
   }
 
@@ -97,39 +100,45 @@ class OpenPoTableController extends GetxController {
   Future<void> confirmOrder(BuildContext context) async {
     _sendingMsgProgressBar.show(context);
     try {
-      final ValidateOrder reponse =
+      final dynamic reponse =
           await MemberCallsService.init().valiadateOrder("TH", "BKM");
-      if (reponse.success == "yes") {
-        // placeOrder(reponse.message);
-        // uploadImage()
+      final jsonResponse = jsonDecode(reponse.toString());
+      final ValidateOrder orderResponse =
+          ValidateOrder.fromJson(jsonResponse as Map<String, dynamic>);
+      if (orderResponse.success == "Yes") {
+        placeOrder(orderResponse.message, context);
       }
       _sendingMsgProgressBar.hide();
+    } on DioError catch (e) {
+      _onDioError(e);
     } catch (err) {
-      _sendingMsgProgressBar.hide();
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
+      _onCatchError(err);
     }
   }
 
-  Future<void> placeOrder(String orderId) async {
+  Future<void> placeOrder(String orderId, BuildContext context) async {
     // type: 201, comment: TEST ORDER 2, token: cyzr29ke2go0at89ygorpdd, cus_id: 1, cus_dscid: 0001, poid: BKM 2021-07-W002, totalpv: 20, totalprice: 7,900, cusname: Thailand TEST DSC, data: @17532|1@17616|1
+    _sendingMsgProgressBar.show(context);
     try {
       final dynamic reponse = await MemberCallsService.init().placeOrder(
-          kPlaceOrder,
-          "TEST ORDER DYNAMIC",
-          generateRandomString(23),
-          UserSessionManager.shared.customerId,
-          UserSessionManager.shared.customerCode,
-          orderId,
-          totalCartPv.value.toString(),
-          totalCartPrice.value.toString(),
-          "Thailand TEST DSC",
-          _collectOrderData());
+        commentController.text,
+        UserSessionManager.shared.customerId,
+        UserSessionManager.shared.customerCode,
+        orderId,
+        totalCartPv.value.toString(),
+        totalCartPrice.value.toString(),
+        UserSessionManager.shared.userInfo!.humanName.fullName,
+        _collectOrderData(),
+        selectedImageBaes64!,
+        kPlaceOrder,
+        generateRandomString(23),
+      );
       if (reponse.success == "yes") {}
+      _sendingMsgProgressBar.hide();
+    } on DioError catch (e) {
+      _onDioError(e);
     } catch (err) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
-      update();
+      _onCatchError(err);
     }
   }
 
@@ -164,6 +173,16 @@ class OpenPoTableController extends GetxController {
         totalPv: 1 * itemFound.terms.pvEach);
     cartProducts.insert(index, item);
     calculateTotal();
+    //* Logging add to cart
+    FirebaseAnalytics().logAddToCart(
+      itemId: itemFound.item.id.unicity,
+      itemName: itemFound.catalogSlideContent.content.description,
+      itemCategory: "open_po",
+      quantity: 1,
+      price: itemFound.terms.priceEach,
+      origin: "TH",
+      currency: "THB",
+    ); //! Update currency
   }
 
   void updateQuantity(CartUpdate type, String itemCode) {
@@ -208,6 +227,14 @@ class OpenPoTableController extends GetxController {
     if (!targetFound) return;
     cartProducts.removeWhere((item) => item.itemCode == itemCode);
     calculateTotal();
+    final CartProductsItem target =
+        cartProducts.firstWhere((item) => item.itemCode == itemCode);
+    //** Logging remove from cart
+    FirebaseAnalytics().logRemoveFromCart(
+        itemId: target.itemCode,
+        itemName: target.productName,
+        itemCategory: "open_po",
+        quantity: 0);
   }
 
   List<String> dropDownItems() {
@@ -217,7 +244,6 @@ class OpenPoTableController extends GetxController {
   }
 
   void selectSource() {
-    // set up the buttons
     final Widget cameraButton = TextButton(
       onPressed: () {
         browseImage(ImageSource.camera);
@@ -275,8 +301,10 @@ class OpenPoTableController extends GetxController {
       final _pickedImage = (await _picker.pickImage(
         source: source,
       ))!;
+      selectedImageBaes64 = await readFileByte(_pickedImage.path);
       uploadFile = _pickedImage;
-      selectedFileController.text = _pickedImage.path.split('/').last;
+      selectedFileController.text =
+          '           ${_pickedImage.path.split('/').last}';
       debugPrint(_pickedImage.path.toString());
     } catch (e) {
       debugPrint(e.toString());

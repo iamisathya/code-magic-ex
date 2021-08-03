@@ -11,6 +11,7 @@ import 'package:code_magic_ex/utilities/key_value_storage.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,7 +42,7 @@ class SplashController extends GetxController {
         final UserInfo responseUserInfo = await ApiService.shared()
             .getCustomerData(UserSessionManager.shared.customerUniqueId);
         await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
-        _didSplashCompleted(responseUserInfo.id.unicity);
+        _didSplashCompleted(responseUserInfo.id.unicity.toString());
       } else {
         FirebaseAnalytics().logEvent(name: 'log_out',parameters: {'type': "session_expire"});
         Get.offAll(() => LoginScreen());

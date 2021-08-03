@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
@@ -8,6 +10,8 @@ import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -186,4 +190,18 @@ void renderGetSnackbar(
       colorText: color,
       animationDuration: const Duration(milliseconds: 300),
       icon: Icon(Icons.error, color: color));
+}
+
+Future<String?> readFileByte(String filePath) async {
+  String? base64Image;
+  try {
+    final Uri myUri = Uri.parse(filePath);
+    final File audioFile = File.fromUri(myUri);
+    final List<int> imageBytes = audioFile.readAsBytesSync();
+    base64Image = base64Encode(imageBytes);
+  } catch (e) {
+    FirebaseCrashlytics.instance.log("Error while reading base64 from file path:$e");
+    debugPrint('Error while reading base64 from file path:$e');
+  }
+  return base64Image;
 }

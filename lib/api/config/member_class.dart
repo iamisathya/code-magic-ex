@@ -66,22 +66,24 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/period_DSC_PO.asp
   @POST("/period_DSC_PO.asp")
   @FormUrlEncoded()
-  Future<ValidateOrder> valiadateOrder(
+  Future<dynamic> valiadateOrder(
       @Field() String country, @Field() String dsc);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?lang=en&order=423135644&token=2096fb4a-783d-4b60-baec-f5880bab1e7a&user=2970466
-  @GET("${Address.allDscPath}/THA/getdata.php")
+  @POST("${Address.allDscPath}/THA/getdata.php")
   Future<dynamic> placeOrder(
+      @Field('comment') String comment,
+      @Field('cus_id') String custimerId,
+      @Field('cus_dscid') String customeDscId,
+      @Field('poid') String poid,
+      @Field('totalpv') String totalpv,
+      @Field('totalprice') String totalprice,
+      @Field('cusname') String cusname,
+      @Field('item') String data,
+      @Field('po_img') String base64Image,
       @Query('type') String type,
-      @Query('comment') String comment,
-      @Query('token') String token,
-      @Query('cus_id') String custimerId,
-      @Query('cus_dscid') String customeDscId,
-      @Query('poid') String poid,
-      @Query('totalpv') String totalpv,
-      @Query('totalprice') String totalprice,
-      @Query('cusname') String cusname,
-      @Query('data') String data);
+      @Field('token') String token,
+      @Body() RequestPlaceOrder request);
 
   //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=206&username=2970466
   @GET("${Address.allDscPath}/THA/getdata.php")

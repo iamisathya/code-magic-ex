@@ -11,6 +11,7 @@ import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +35,7 @@ class OpenPoController extends GetxController {
   RxInt totalCartPv = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
 
-  Rx<InventoryRecords> _inventoryRecords = InventoryRecords(items: []).obs;
+  final Rx<InventoryRecords> _inventoryRecords = InventoryRecords(items: []).obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
   RxList<OpenPO> allOpenPlaceOrders = List<OpenPO>.filled(0, OpenPO()).obs;
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
@@ -53,6 +54,7 @@ class OpenPoController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    FirebaseAnalytics().setCurrentScreen(screenName: "open_po");
     _generateEmptyCart();
   }
 
@@ -306,68 +308,6 @@ class OpenPoController extends GetxController {
               format: format,
               html: removedBackground,
             ));
-  }
-
-  Future<void> validateOrder(BuildContext context) async {
-    final ProgressBar _sendingMsgProgressBar = ProgressBar();
-    _sendingMsgProgressBar.show(context);
-    try {
-      final ValidateOrder reponse =
-          await MemberCallsService.init().valiadateOrder("TH", "BKM");
-      if (reponse.success == "yes") {
-        // placeOrder(reponse.message);
-      }
-      _sendingMsgProgressBar.hide();
-    } catch (err) {
-      _sendingMsgProgressBar.hide();
-      loading(false);
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
-    }
-  }
-
-  String _collectOrderData() {
-    final buffer = StringBuffer();
-    try {
-      for (final item in cartProducts) {
-        buffer.write("@${item.itemCode}|${item.quantity}");
-      }
-      return buffer.toString();
-    } catch (e) {
-      return buffer.toString();
-    }
-  }
-
-  Future<void> placeOrder(String orderId) async {
-//     type: 201
-// comment: TEST ORDER 2
-// token: cyzr29ke2go0at89ygorpdd
-// cus_id: 1
-// cus_dscid: 0001
-// poid: BKM 2021-07-W002
-// totalpv: 20
-// totalprice: 7,900
-// cusname: Thailand TEST DSC
-// data: @17532|1@17616|1
-    try {
-      final dynamic reponse = await MemberCallsService.init().placeOrder(
-          kPlaceOrder,
-          "TEST ORDER DYNAMIC",
-          generateRandomString(23),
-          UserSessionManager.shared.customerId,
-          UserSessionManager.shared.customerCode,
-          orderId,
-          totalCartPv.value.toString(),
-          totalCartPrice.value.toString(),
-          "Thailand TEST DSC",
-          _collectOrderData());
-      if (reponse.success == "yes") {}
-    } catch (err) {
-      loading(false);
-      errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
-      update();
-    }
   }
 
   Future<void> onAddOrderTap() async {

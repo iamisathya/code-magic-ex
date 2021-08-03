@@ -110,40 +110,39 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
-  Future<ValidateOrder> valiadateOrder(country, dsc) async {
+  Future<dynamic> valiadateOrder(country, dsc) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = {'country': country, 'dsc': dsc};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ValidateOrder>(Options(
-                method: 'POST',
-                headers: <String, dynamic>{},
-                extra: _extra,
-                contentType: 'application/x-www-form-urlencoded')
-            .compose(_dio.options, '/period_DSC_PO.asp',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ValidateOrder.fromJson(_result.data!);
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            contentType: 'application/x-www-form-urlencoded')
+        .compose(_dio.options, '/period_DSC_PO.asp',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
     return value;
   }
 
   @override
-  Future<dynamic> placeOrder(type, comment, token, custimerId, customeDscId,
-      poid, totalpv, totalprice, cusname, data) async {
+  Future<dynamic> placeOrder(comment, custimerId, customeDscId, poid, totalpv,
+      totalprice, cusname, data, base64Image, type, token) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'type': type,
-      r'comment': comment,
-      r'token': token,
-      r'cus_id': custimerId,
-      r'cus_dscid': customeDscId,
-      r'poid': poid,
-      r'totalpv': totalpv,
-      r'totalprice': totalprice,
-      r'cusname': cusname,
-      r'data': data
+    final queryParameters = <String, dynamic>{r'type': type};
+    final _data = {
+      'comment': comment,
+      'cus_id': custimerId,
+      'cus_dscid': customeDscId,
+      'poid': poid,
+      'totalpv': totalpv,
+      'totalprice': totalprice,
+      'cusname': cusname,
+      'item': data,
+      'po_img': base64Image,
+      'token': token
     };
-    final _data = <String, dynamic>{};
     final _result = await _dio.fetch(_setStreamType<dynamic>(
         Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
             .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
