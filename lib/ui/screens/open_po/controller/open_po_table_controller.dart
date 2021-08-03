@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:code_magic_ex/api/config/api_service.dart';
@@ -12,18 +13,15 @@ import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/open_po/home/home.dart';
 import 'package:code_magic_ex/ui/screens/open_po/order_table/components/upload_image.dart';
-import 'package:code_magic_ex/ui/screens/open_po/order_table/order_table.dart';
+import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
-import 'dart:async';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart' hide FormData, MultipartFile;
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:image_picker/image_picker.dart';
 
 class OpenPoTableController extends GetxController {

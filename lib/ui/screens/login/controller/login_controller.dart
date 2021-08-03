@@ -77,6 +77,7 @@ class LoginController extends GetxController {
         path: 'smith@example.com',
         queryParameters: {'subject': 'Example Subject & Symbols are allowed!'});
     final String _emailUriString =
+        // ignore: unnecessary_string_escapes
         _emailLaunchUri.toString().replaceAll('+', '\%20');
     await launch(_emailUriString);
   }

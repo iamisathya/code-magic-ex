@@ -1,11 +1,8 @@
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_empty_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_error_widget.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/controllers/controller.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/home/components/search_box.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/home/components/top_tabs.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,7 +1,6 @@
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -44,7 +43,7 @@ class BarcodeController extends GetxController {
     }
   }
 
-  void _launchURL(String url) async {
+  Future<void> _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {

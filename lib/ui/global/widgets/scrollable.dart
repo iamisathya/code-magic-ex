@@ -11,7 +11,7 @@ class EasyShipHomePage extends StatelessWidget {
         width: 120.0,
         height: 60.0,
         color: Colors.white,
-        margin: EdgeInsets.all(4.0),
+        margin: const EdgeInsets.all(4.0),
         child: Text("${index + 1}", style: Theme.of(context).textTheme.button),
       ),
     );
@@ -34,7 +34,7 @@ class EasyShipHomePage extends StatelessWidget {
         width: 120.0,
         height: 60.0,
         color: Colors.white,
-        margin: EdgeInsets.all(4.0),
+        margin: const EdgeInsets.all(4.0),
         child: Text("${index + 1}", style: Theme.of(context).textTheme.button),
       ),
     );

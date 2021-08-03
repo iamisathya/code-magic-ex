@@ -24,7 +24,6 @@ import 'package:pdf/pdf.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:printing/printing.dart';
 import 'package:path/path.dart';
-import 'package:share/share.dart';
 
 class SalesReportController extends GetxController {
   final TextEditingController startDate = TextEditingController();
@@ -290,7 +289,7 @@ class SalesReportController extends GetxController {
       final Directory appDocDirectory =
           await getApplicationDocumentsDirectory();
 
-      Directory directory = await Directory('${appDocDirectory.path}/dir')
+      final Directory directory = await Directory('${appDocDirectory.path}/dir')
           .create(recursive: true);
       // The created directory is returned as a Future.
       // .then((Directory directory) async {

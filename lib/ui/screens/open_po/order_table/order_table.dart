@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:code_magic_ex/ui/global/widgets/cart_footer.dart';
-import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_table_controller.dart';
 import 'package:code_magic_ex/ui/screens/open_po/order_table/components/open_po_table_body.dart';
