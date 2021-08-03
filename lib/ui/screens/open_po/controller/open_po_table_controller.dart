@@ -2,13 +2,16 @@ import 'dart:convert';
 
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/config/member_class.dart';
+import 'package:code_magic_ex/api/request/request_place_open_po_order.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/models/open_po_create_order_response.dart';
 import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/open_po/order_table/components/upload_image.dart';
+import 'package:code_magic_ex/ui/screens/open_po/order_table/order_table.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -120,20 +123,23 @@ class OpenPoTableController extends GetxController {
     // type: 201, comment: TEST ORDER 2, token: cyzr29ke2go0at89ygorpdd, cus_id: 1, cus_dscid: 0001, poid: BKM 2021-07-W002, totalpv: 20, totalprice: 7,900, cusname: Thailand TEST DSC, data: @17532|1@17616|1
     _sendingMsgProgressBar.show(context);
     try {
-      final dynamic reponse = await MemberCallsService.init().placeOrder(
-        commentController.text,
-        UserSessionManager.shared.customerId,
-        UserSessionManager.shared.customerCode,
-        orderId,
-        totalCartPv.value.toString(),
-        totalCartPrice.value.toString(),
-        UserSessionManager.shared.userInfo!.humanName.fullName,
-        _collectOrderData(),
-        selectedImageBaes64!,
-        kPlaceOrder,
-        generateRandomString(23),
-      );
-      if (reponse.success == "yes") {}
+      final RequestPlaceOpenPoOrder request = RequestPlaceOpenPoOrder(
+          comment: commentController.text,
+          customerId: UserSessionManager.shared.customerId,
+          customeDscId: UserSessionManager.shared.customerCode,
+          poId: orderId,
+          totalPrice: totalCartPv.value.toString(),
+          totalPv: totalCartPrice.value.toString(),
+          customerName: UserSessionManager.shared.userInfo!.humanName.fullName,
+          base64Image: selectedImageBaes64!,
+          item: _collectOrderData());
+      final OpenPOCreateOrderResponse reponse =
+          await MemberCallsService.init().placeOrder(kPlaceOrder, request);
+      if (reponse.success == true) {
+        renderGetSnackbar(title: "Order created! Id: ${reponse.poId}", message: "Your order created successfully");
+        Navigator.pop(context);
+        Get.off(() => OpenPoTable());
+      }
       _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
       _onDioError(e);
@@ -145,7 +151,7 @@ class OpenPoTableController extends GetxController {
   String _collectOrderData() {
     final buffer = StringBuffer();
     try {
-      for (final item in cartProducts) {
+      for (final item in checkoutProducts) {
         buffer.write("@${item.itemCode}|${item.quantity}");
       }
       return buffer.toString();

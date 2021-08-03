@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'request_calculate_order.g.dart';
+part 'request_place_open_po_order.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class RequestPlaceOpenPoOrder {
@@ -18,8 +18,7 @@ class RequestPlaceOpenPoOrder {
   @JsonKey(name: 'cusname')
   String customerName;
   @JsonKey(name: 'item')
-  @JsonKey(name: 'item')
-  String totalPitemrice;
+  String item;
   @JsonKey(name: 'po_img')
   String base64Image;
 
@@ -30,13 +29,14 @@ class RequestPlaceOpenPoOrder {
       required this.poId,
       required this.totalPv,
       required this.totalPrice,
+      required this.customerName,
       required this.item,
-      required this.name,
+      required this.base64Image,
   });
 
-  factory RequestPostCaclulateOrder.fromJson(Map<String, dynamic> json) =>
-      _$RequestPostCaclulateOrderFromJson(json);
+  factory RequestPlaceOpenPoOrder.fromJson(Map<String, dynamic> json) =>
+      _$RequestPlaceOpenPoOrderFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RequestPostCaclulateOrderToJson(this);
+  Map<String, dynamic> toJson() => _$RequestPlaceOpenPoOrderToJson(this);
 }
 

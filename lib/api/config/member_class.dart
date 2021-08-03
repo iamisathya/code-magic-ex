@@ -1,14 +1,14 @@
+import 'package:code_magic_ex/api/request/request_place_open_po_order.dart';
 import 'package:code_magic_ex/models/amphur_item.dart';
 import 'package:code_magic_ex/models/district_item.dart';
 import 'package:code_magic_ex/models/easy_ship_reports.dart';
 import 'package:code_magic_ex/models/govt_id_verify.dart';
+import 'package:code_magic_ex/models/open_po_create_order_response.dart';
 import 'package:code_magic_ex/models/order_entry_product_item.dart';
 import 'package:code_magic_ex/models/provience_item.dart';
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
 import 'package:code_magic_ex/models/user_id.dart';
-import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/models/zip_code_response.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -71,19 +71,9 @@ abstract class MemberCallsService {
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?lang=en&order=423135644&token=2096fb4a-783d-4b60-baec-f5880bab1e7a&user=2970466
   @POST("${Address.allDscPath}/THA/getdata.php")
-  Future<dynamic> placeOrder(
-      @Field('comment') String comment,
-      @Field('cus_id') String custimerId,
-      @Field('cus_dscid') String customeDscId,
-      @Field('poid') String poid,
-      @Field('totalpv') String totalpv,
-      @Field('totalprice') String totalprice,
-      @Field('cusname') String cusname,
-      @Field('item') String data,
-      @Field('po_img') String base64Image,
+  Future<OpenPOCreateOrderResponse> placeOrder(
       @Query('type') String type,
-      @Field('token') String token,
-      @Body() RequestPlaceOrder request);
+      @Body() RequestPlaceOpenPoOrder request);
 
   //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=206&username=2970466
   @GET("${Address.allDscPath}/THA/getdata.php")

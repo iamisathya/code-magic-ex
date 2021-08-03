@@ -127,28 +127,18 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
-  Future<dynamic> placeOrder(comment, custimerId, customeDscId, poid, totalpv,
-      totalprice, cusname, data, base64Image, type, token) async {
+  Future<OpenPOCreateOrderResponse> placeOrder(type, request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'type': type};
-    final _data = {
-      'comment': comment,
-      'cus_id': custimerId,
-      'cus_dscid': customeDscId,
-      'poid': poid,
-      'totalpv': totalpv,
-      'totalprice': totalprice,
-      'cusname': cusname,
-      'item': data,
-      'po_img': base64Image,
-      'token': token
-    };
-    final _result = await _dio.fetch(_setStreamType<dynamic>(
-        Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data;
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<OpenPOCreateOrderResponse>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = OpenPOCreateOrderResponse.fromJson(_result.data!);
     return value;
   }
 
