@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import 'package:code_magic_ex/ui/global/router.dart';
@@ -15,6 +16,7 @@ class NavigationDrawer extends StatelessWidget {
         okText: 'Yes',
         cancelText: 'No');
     if (isConfirmed == false) return;
+    FirebaseAnalytics().logEvent(name: 'log_out',parameters: {'type': "normal_signout"});
     UserSessionManager.shared.removeUserInfoFromDB();
     final route = MaterialPageRoute(builder: (context) => LoginScreen());
     Navigator.of(context).pushAndRemoveUntil(route, (_) => false);

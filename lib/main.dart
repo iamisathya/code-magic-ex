@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:isolate';
 
@@ -27,9 +26,8 @@ import 'package:get/get.dart';
 void main() async {
   //* Ensure initialization of Widgets.
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  // await dotenv.load(); //
-  // FirebaseCrashlytics.instance.crash();
+  await Firebase.initializeApp();
+  await dotenv.load(); 
 
   await KeyValueStorageManager.setStorage();
   UserSessionManager.shared.getLoginStatusFromDB();
@@ -37,41 +35,38 @@ void main() async {
   //* Connectivity
   ConnectivityManager.shared.doInitialCheck();
 
-  //* Local Key Value DB
-  // await Firebase.initializeApp();
-
   // //* disable collecting in debug mode
   // if (dotenv.env['DEBUG'] == 'True') {
-  //   await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
-  //   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+    await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   // }
 
   //* Pass all uncaught errors from the framework to Crashlytics.
-  // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
   //* To catch errors that happen outside of the Flutter context, install an error listener on the current Isolate:
-  // Isolate.current.addErrorListener(RawReceivePort((dynamic pair) async {
-  //   final List<dynamic> errorAndStacktrace = pair as List<dynamic>;
-  //   await FirebaseCrashlytics.instance.recordError(
-  //     errorAndStacktrace.first as StackTrace,
-  //     errorAndStacktrace.last as StackTrace,
-  //   );
-  // }).sendPort);
-  
+  Isolate.current.addErrorListener(RawReceivePort((dynamic pair) async {
+    final List<dynamic> errorAndStacktrace = pair as List<dynamic>;
+    await FirebaseCrashlytics.instance.recordError(
+      errorAndStacktrace.first as StackTrace,
+      errorAndStacktrace.last as StackTrace,
+    );
+  }).sendPort);
+
   //* If you want to catch errors that occur in zones, you can pass FirebaseCrashlytics.instance.recordError to the second parameter of runZonedGuarded
-  // runZonedGuarded(() {
-  //   runApp(MyApp());
-  // }, FirebaseCrashlytics.instance.recordError);
-  
+  runZonedGuarded(() {
+    runApp(MyApp());
+  }, FirebaseCrashlytics.instance.recordError);
+
   // * Run app normally
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   //* init firebase analytics
-  // static FirebaseAnalytics analytics = FirebaseAnalytics();
-  // static FirebaseAnalyticsObserver observer =
-  //     FirebaseAnalyticsObserver(analytics: analytics);
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +88,9 @@ class MyApp extends StatelessWidget {
             // locale: Locale(translationBloc.getCurrentLanguage, ''),
             routes: routes,
             home: SplashScreen(),
-            // navigatorObservers: [
-            //   FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
-            // ],
+            navigatorObservers: [
+              FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+            ],
           );
         });
   }

@@ -5,12 +5,12 @@ import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_token.dart';
 import 'package:code_magic_ex/ui/screens/inventory/home.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
-import 'package:code_magic_ex/ui/screens/open_po/home/home.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/key_value_storage.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -41,8 +41,9 @@ class SplashController extends GetxController {
         final UserInfo responseUserInfo = await ApiService.shared()
             .getCustomerData(UserSessionManager.shared.customerUniqueId);
         await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
-        _didSplashCompleted();
+        _didSplashCompleted(responseUserInfo.id.unicity);
       } else {
+        FirebaseAnalytics().logEvent(name: 'log_out',parameters: {'type': "session_expire"});
         Get.offAll(() => LoginScreen());
       }
     } on DioError catch (e) {
@@ -52,11 +53,12 @@ class SplashController extends GetxController {
     }
   }
 
-  Future<void> _didSplashCompleted() async {
+  Future<void> _didSplashCompleted(String userId) async {
     if (customerToken.token != "" && UserSessionManager.shared.isUserLoggedIn) {
       UserSessionManager.shared.setUserInfoFromDB();
       UserSessionManager.shared.getLoginStatusFromDB();
       UserSessionManager.shared.getProfilePictureFromDB();
+      FirebaseCrashlytics.instance.setUserIdentifier(userId);
       Get.offAll(() => InventoryHomeScreen());
     } else {
       Get.offAll(() => LoginScreen());
