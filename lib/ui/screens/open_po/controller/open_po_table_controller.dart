@@ -10,6 +10,7 @@ import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/models/validate_order.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
+import 'package:code_magic_ex/ui/screens/open_po/home/home.dart';
 import 'package:code_magic_ex/ui/screens/open_po/order_table/components/upload_image.dart';
 import 'package:code_magic_ex/ui/screens/open_po/order_table/order_table.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
@@ -17,6 +18,7 @@ import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
+import 'dart:async';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
@@ -111,7 +113,6 @@ class OpenPoTableController extends GetxController {
       if (orderResponse.success == "Yes") {
         placeOrder(orderResponse.message, context);
       }
-      _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
       _onDioError(e);
     } catch (err) {
@@ -121,7 +122,6 @@ class OpenPoTableController extends GetxController {
 
   Future<void> placeOrder(String orderId, BuildContext context) async {
     // type: 201, comment: TEST ORDER 2, token: cyzr29ke2go0at89ygorpdd, cus_id: 1, cus_dscid: 0001, poid: BKM 2021-07-W002, totalpv: 20, totalprice: 7,900, cusname: Thailand TEST DSC, data: @17532|1@17616|1
-    _sendingMsgProgressBar.show(context);
     try {
       final RequestPlaceOpenPoOrder request = RequestPlaceOpenPoOrder(
           comment: commentController.text,
@@ -131,16 +131,20 @@ class OpenPoTableController extends GetxController {
           totalPrice: totalCartPv.value.toString(),
           totalPv: totalCartPrice.value.toString(),
           customerName: UserSessionManager.shared.userInfo!.humanName.fullName,
-          base64Image: selectedImageBaes64!,
+          base64Image: "data:image/png;base64,${selectedImageBaes64!}",
           item: _collectOrderData());
       final OpenPOCreateOrderResponse reponse =
           await MemberCallsService.init().placeOrder(kPlaceOrder, request);
       if (reponse.success == true) {
-        renderGetSnackbar(title: "Order created! Id: ${reponse.poId}", message: "Your order created successfully");
+        renderGetSnackbar(
+            title: "Order created! Id: ${reponse.poId}",
+            message: "Your order created successfully");
+        _sendingMsgProgressBar.hide();
         Navigator.pop(context);
-        Get.off(() => OpenPoTable());
+        Timer(const Duration(milliseconds: 100), () {
+          Get.off(() => OpenPOHomeScreen());
+        });
       }
-      _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
       _onDioError(e);
     } catch (err) {
