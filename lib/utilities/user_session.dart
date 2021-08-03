@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:code_magic_ex/models/user_id.dart';
 import 'package:code_magic_ex/models/user_token.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
@@ -16,6 +17,7 @@ class UserSessionManager {
   static UserSessionManager shared = UserSessionManager._internal();
 
   static UserInfo? _emptyUserInfo() => null;
+  static UserId? _emptyCustomerIdInfo() => null;
   static ProfilePicture? _emptyProfilePictureData() => null;
   static CustomerToken _emptyCustomerTokenData() => CustomerToken(
       href: "",
@@ -30,6 +32,7 @@ class UserSessionManager {
   CustomerToken customerToken = _emptyCustomerTokenData();
   late ProfilePicture? profilePicture = _emptyProfilePictureData();
   late UserInfo? userInfo = _emptyUserInfo();
+  late UserId? customerIdInfo = _emptyCustomerIdInfo();
   String customerId = "";
   String customerCode = "";
   String customerPoCode = "";
@@ -46,6 +49,20 @@ class UserSessionManager {
     } catch (error) {
       LoggerService.instance.e(
           'Session - Set Login Status into DB - Error : ${error.toString()}');
+    }
+    return false;
+  }
+
+  // ignore: avoid_positional_boolean_parameters
+  Future<bool> setCustomerIdInfo(UserId _customerIdInfo) async {
+    try {
+      await KeyValueStorageManager.setString(KeyValueStorageKeys.customerIdInfo,
+          json.encode(_customerIdInfo.toOriginalMap()));
+      customerIdInfo = _customerIdInfo;
+      return true;
+    } catch (error) {
+      LoggerService.instance
+          .e('Session - Set Customer ID Info DB - Error : ${error.toString()}');
     }
     return false;
   }
@@ -197,12 +214,34 @@ class UserSessionManager {
     }
   }
 
+  void getCustomerIdInfoFromDB() {
+    try {
+      final data =
+          KeyValueStorageManager.getString(KeyValueStorageKeys.customerIdInfo);
+      if (null == data || data.isEmpty) {
+        throw Exception('No customer id data available in DB');
+      }
+      final Map<String, dynamic> jsonData =
+          json.decode(data) as Map<String, dynamic>;
+      if (jsonData.isEmpty) {
+        throw Exception('No data available after JSON convert');
+      }
+      customerIdInfo = UserId.fromJson(jsonData);
+    } catch (error) {
+      LoggerService.instance.e(
+          'Session - Get Customer Info from DB - Error : ${error.toString()}');
+      customerIdInfo = _emptyCustomerIdInfo();
+    }
+  }
+
   Future<void> removeUserInfoFromDB() async {
     await KeyValueStorageManager.remove(KeyValueStorageKeys.loginTokens);
     await KeyValueStorageManager.remove(KeyValueStorageKeys.userInfo);
     await KeyValueStorageManager.remove(KeyValueStorageKeys.loginStatus);
     await KeyValueStorageManager.remove(KeyValueStorageKeys.profilePictures);
+    await KeyValueStorageManager.remove(KeyValueStorageKeys.customerIdInfo);
     userInfo = _emptyUserInfo();
+    customerIdInfo = _emptyCustomerIdInfo();
     customerToken = _emptyCustomerTokenData();
     isUserLoggedIn = false;
   }

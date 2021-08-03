@@ -95,7 +95,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         ),
         drawer: NavigationDrawer(),
         body: Center(
-          child: Text(AppLocalizations.of(context)!.zip),
+          child: Column(
+            children: [
+              Text("DASHBOARD"),
+            ],
+          ),
         ));
   }
 }

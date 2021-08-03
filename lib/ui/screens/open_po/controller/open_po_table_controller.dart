@@ -123,8 +123,8 @@ class OpenPoTableController extends GetxController {
     try {
       final RequestPlaceOpenPoOrder request = RequestPlaceOpenPoOrder(
           comment: commentController.text,
-          customerId: UserSessionManager.shared.customerId,
-          customeDscId: UserSessionManager.shared.customerCode,
+          customerId: UserSessionManager.shared.customerIdInfo!.customerId,
+          customeDscId: UserSessionManager.shared.customerIdInfo!.customerCode,
           poId: orderId,
           totalPrice: totalCartPv.value.toString(),
           totalPv: totalCartPrice.value.toString(),

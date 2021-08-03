@@ -20,4 +20,8 @@ class UserId {
 
   Map<String, dynamic> toMap() =>
       {'customerCode': customerCode, 'customerId': customerId, 'customerPoCode': customerPoCode};
+
+  
+  Map<String, dynamic> toOriginalMap() =>
+      {'cus_code': customerCode, 'cus_id': customerId, 'cus_pocode': customerPoCode};
 }

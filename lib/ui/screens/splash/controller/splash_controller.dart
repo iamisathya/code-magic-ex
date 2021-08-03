@@ -59,6 +59,7 @@ class SplashController extends GetxController {
       UserSessionManager.shared.setUserInfoFromDB();
       UserSessionManager.shared.getLoginStatusFromDB();
       UserSessionManager.shared.getProfilePictureFromDB();
+      UserSessionManager.shared.getCustomerIdInfoFromDB();
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
       Get.offAll(() => InventoryHomeScreen());
     } else {

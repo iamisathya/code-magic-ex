@@ -115,6 +115,7 @@ class LoginController extends GetxController {
       await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
       await UserSessionManager.shared.setLoginStatusIntoDB(true);
       await UserSessionManager.shared.setProfilePictureToDB(profilePicture);
+      await UserSessionManager.shared.setCustomerIdInfo(userResponse);
       //*  navigate to home page
       _sendingMsgProgressBar.hide();
       Get.off(() => MainHomeScreen(), transition: Transition.cupertino);
