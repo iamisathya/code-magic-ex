@@ -9,6 +9,15 @@ import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/models/place_order.dart'
+    hide
+        Customer,
+        ShipToAddress,
+        ShippingMethod,
+        ShipToName,
+        ProductLines,
+        ProductTerms,
+        Transactions;
 import 'package:code_magic_ex/models/purchase_log_request_data.dart';
 import 'package:code_magic_ex/models/radio_button_value.dart';
 import 'package:code_magic_ex/models/user_info.dart';
@@ -290,10 +299,60 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
+  Future<bool> getPlaceOrders(PurchaseLogRequestData data) async {
+    try {
+      final PlaceOrder response =
+          await ApiService.shared().getPlaceOrders(data);
+      if (response.taxedAs != "") {
+        await clearOrderCache();
+        await verifyOrder(response);
+        await sendOrderOnline(response);
+      }
+
+      return false;
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      return false;
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      return false;
+    }
+  }
+
   Future<bool> checkOrderEntryServerStatus() async {
     try {
       final String status = await MemberCallsService.init()
           .checkOrderEntryStatus(kCheckOrderEntryServerStatus);
+      if (status == "on") {
+        // continue with order place
+        return true;
+      }
+      return false;
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      return false;
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      return false;
+    }
+  }
+
+  Future<bool> sendOrderOnline(PlaceOrder data) async {
+    try {
+      UserInfo info = UserSessionManager.shared.userInfo!;
+      final VerifyOrderResponse status = await MemberCallsService.init()
+          .sendOrderOnline(
+              "${info.humanName.fullNameTh} (${info.humanName.fullName})",
+              "${info.mainAddress.address1}, ${info.mainAddress.city},  ${info.mainAddress.state}, ${info.mainAddress.country} ${info.mainAddress.zip}",
+              info.email,
+              data.id.unicity.toString(),
+              "shopping",
+              info.id.unicity.toString(),
+              "https://hydra.unicity.net/v5a/items?id.unicity=${data.lines.items[0].item.id.unicity}",
+              data.lines.items[0].quantity.toString(),
+              getCurrentPeriod(),
+              "15",
+              data.terms.subtotal);
       if (status == "on") {
         // continue with order place
         return true;
@@ -367,9 +426,10 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<void> clearOrderCache(String periodResponse) async {
+  Future<void> clearOrderCache() async {
     try {
-      await MemberCalls2Service.init().clearOrderCache(kPeriodLog);
+      await MemberCalls2Service.init().clearOrderCache(
+          UserSessionManager.shared.userInfo!.id.unicity.toString());
     } on DioError catch (e) {
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
     } catch (err) {
@@ -377,9 +437,10 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<void> verifyOrder(PurchaseLogRequestData requestData) async {
+  Future<void> verifyOrder(PlaceOrder requestData) async {
     try {
-      final VerifyOrderResponse response = await MemberCallsService.init().verifyOrder(requestData);
+      final VerifyOrderResponse response =
+          await MemberCallsService.init().verifyOrder(requestData);
     } on DioError catch (e) {
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
     } catch (err) {

@@ -6,6 +6,7 @@ import 'package:code_magic_ex/models/general_models.dart';
 import 'package:code_magic_ex/models/govt_id_verify.dart';
 import 'package:code_magic_ex/models/open_po_create_order_response.dart';
 import 'package:code_magic_ex/models/order_entry_product_item.dart';
+import 'package:code_magic_ex/models/place_order.dart';
 import 'package:code_magic_ex/models/provience_item.dart';
 import 'package:code_magic_ex/models/search_reponse_by_href.dart';
 import 'package:code_magic_ex/models/user_id.dart';
@@ -196,7 +197,7 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/order_verify.php
   @POST(Address.validOrders)
   @FormUrlEncoded()
-  Future<VerifyOrderResponse> verifyOrder(FormData data);
+  Future<VerifyOrderResponse> verifyOrder(@Body() PlaceOrder data);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/email/send_order_online_TH.php
   @POST(Address.validOrders)
@@ -212,5 +213,6 @@ abstract class MemberCallsService {
     @Field("product[0][quantity]") String quantity,
     @Field("period") String period,
     @Field("pv") String pv,
+    @Field("amount") int amount,
   );
 }

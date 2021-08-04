@@ -19,3 +19,37 @@ Map<String, dynamic> _$GetPeriodLogResponseToJson(
       'status': instance.status,
       'idLog': instance.idLog,
     };
+
+ClearOrderCacheResponse _$ClearOrderCacheResponseFromJson(
+    Map<String, dynamic> json) {
+  return ClearOrderCacheResponse(
+    message: json['message'] as String,
+  );
+}
+
+Map<String, dynamic> _$ClearOrderCacheResponseToJson(
+        ClearOrderCacheResponse instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+    };
+
+VerifyOrderResponse _$VerifyOrderResponseFromJson(Map<String, dynamic> json) {
+  return VerifyOrderResponse(
+    code: json['code'] as int,
+    require:
+        (json['require'] as List<dynamic>).map((e) => e as String).toList(),
+    unRequire: json['un_require'] as bool,
+    updated: json['updated'] as bool,
+    user: json['user'],
+  );
+}
+
+Map<String, dynamic> _$VerifyOrderResponseToJson(
+        VerifyOrderResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'require': instance.require,
+      'un_require': instance.unRequire,
+      'updated': instance.updated,
+      'user': instance.user,
+    };

@@ -5,6 +5,8 @@ import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/general_models.dart';
 import 'package:code_magic_ex/models/guest_user_info.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
+import 'package:code_magic_ex/models/place_order.dart';
+import 'package:code_magic_ex/models/purchase_log_request_data.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -131,7 +133,7 @@ abstract class ApiService {
   //?  "shippingMethod": { "href": "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"},
   //? "notes": "batch XXYY by First Last", "transactions": {"items": [{"amount": "this.terms.total","type": "record","method": "Cash"}]}}
   @POST(Address.orders)
-  Future<UserInfo> getPlaceOrders(@Body() RequestPostPlaceOrder request);
+  Future<PlaceOrder> getPlaceOrders(@Body() PurchaseLogRequestData request);
 }
 
 @RestApi(baseUrl: Address.memberCalls2Base)
