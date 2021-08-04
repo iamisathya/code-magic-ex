@@ -139,7 +139,7 @@ class OpenPoTableController extends GetxController {
             message: "Your order created successfully");
         _sendingMsgProgressBar.hide();
         Navigator.pop(context);
-        Timer(const Duration(milliseconds: 100), () {
+        Timer(const Duration(milliseconds: 1000), () {
           Get.off(() => OpenPOHomeScreen());
         });
       }
