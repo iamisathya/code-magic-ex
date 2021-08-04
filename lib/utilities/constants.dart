@@ -23,6 +23,8 @@ const kSecondaryGradientColor = LinearGradient(
 
 const kTernaryLightColor = Color(0xFFE63946);
 const kWhiteSmokeColor = Color(0xfff5f5f5);
+const kPendingColor = Color(0xfff0ad4e);
+const kApprovedColor = Color(0xff5cb85c);
 
 const kTextColor = Color(0xFF757575);
 

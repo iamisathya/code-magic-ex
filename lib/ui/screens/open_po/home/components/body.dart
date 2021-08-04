@@ -16,7 +16,6 @@ import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 class Body extends StatelessWidget {
-  final HDTRefreshController _hdtRefreshController = HDTRefreshController();
   final OpenPoController controller = Get.put(OpenPoController());
 
   @override
@@ -65,15 +64,6 @@ class Body extends StatelessWidget {
         rightSideItemBuilder: _generateRightHandSideColumnRow,
         itemCount: controller.currentItemsLength,
         rowSeparatorWidget: kRowDivider,
-        enablePullToRefresh: true,
-        refreshIndicator: const WaterDropHeader(),
-        refreshIndicatorHeight: 100,
-        onRefresh: () async {
-          //Do sth
-          await Future.delayed(const Duration(milliseconds: 500));
-          _hdtRefreshController.refreshCompleted();
-        },
-        htdRefreshController: _hdtRefreshController,
       ),
     );
   }
@@ -216,9 +206,9 @@ class Body extends StatelessWidget {
 
   Container _renderStatusButton(BuildContext context, String status) {
     if (status == "0") {
-      _renderEachStatusButton(context, "Pending", kTernaryLightColor);
+      return _renderEachStatusButton(context, "Pending", kPendingColor);
     } else if (status == "4") {
-      return _renderEachStatusButton(context, "Approved", kMainColor);
+      return _renderEachStatusButton(context, "Approved", kApprovedColor);
     } else if (status == "2") {
       return _renderEachStatusButton(context, "Unknown", kSecondaryColor);
     }
