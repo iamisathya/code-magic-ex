@@ -22,6 +22,7 @@ import 'package:code_magic_ex/exceptions/unauthorised.exception.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/core/parsing.dart';
+import 'package:intl/intl.dart';
 
 void renderErrorSnackBar(
     {String title = "", String subTitle = "", bool isError = true}) {
@@ -202,4 +203,12 @@ Future<String?> readFileByte(String filePath) async {
     debugPrint('Error while reading base64 from file path:$e');
   }
   return base64Image;
+}
+
+String getCurrentPeriod() {
+  try {
+    return DateFormat("MM-yyyy").format(DateTime.now()); // => 21-04-2019
+  } catch (e) {
+    return "";
+  }
 }

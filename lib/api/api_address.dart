@@ -30,4 +30,5 @@ class Address {
   static const String validateEmail = "ALL/Email_Validation.asp";
   static const String cashCoupon = "unishop-fn-misc/cashcoupon_quota/";
   static const String inventoryPrint = "https://dsc-th.unicity.com/administrator/print/inventory.php?user_id";
+  static const String period = "period.asp";
 }

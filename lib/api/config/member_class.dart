@@ -2,6 +2,7 @@ import 'package:code_magic_ex/api/request/request_place_open_po_order.dart';
 import 'package:code_magic_ex/models/amphur_item.dart';
 import 'package:code_magic_ex/models/district_item.dart';
 import 'package:code_magic_ex/models/easy_ship_reports.dart';
+import 'package:code_magic_ex/models/general_models.dart';
 import 'package:code_magic_ex/models/govt_id_verify.dart';
 import 'package:code_magic_ex/models/open_po_create_order_response.dart';
 import 'package:code_magic_ex/models/order_entry_product_item.dart';
@@ -66,14 +67,12 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/period_DSC_PO.asp
   @POST("/period_DSC_PO.asp")
   @FormUrlEncoded()
-  Future<dynamic> valiadateOrder(
-      @Field() String country, @Field() String dsc);
+  Future<dynamic> valiadateOrder(@Field() String country, @Field() String dsc);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?lang=en&order=423135644&token=2096fb4a-783d-4b60-baec-f5880bab1e7a&user=2970466
   @POST("${Address.allDscPath}/THA/getdata.php")
   Future<OpenPOCreateOrderResponse> placeOrder(
-      @Query('type') String type,
-      @Body() RequestPlaceOpenPoOrder request);
+      @Query('type') String type, @Body() RequestPlaceOpenPoOrder request);
 
   //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=206&username=2970466
   @GET("${Address.allDscPath}/THA/getdata.php")
@@ -108,6 +107,33 @@ abstract class MemberCallsService {
   @GET(Address.validOrders)
   Future<List<ZipCodeResponse>> getZipcodeByDistricts(
       @Query("type") String type, @Query("district_id") String districtId);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=0000
+  @GET(Address.validOrders)
+  Future<String> checkOrderEntryStatus(@Query("type") String type);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=0000
+  @POST(Address.period)
+  @FormUrlEncoded()
+  Future<String> getPeriodResponse(
+      @Field("country") String country,
+      @Field("joinPeriod") String joinPeriod,
+      @Field("system") String system);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=0000
+  @GET(Address.validOrders)
+  Future<GetPeriodLogResponse> getPeriodLog(@Query("type") String type,
+      @Field("data") String data, @Field("customerID") String customerID);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=purchaseLog
+  @POST(Address.validOrders)
+  @FormUrlEncoded()
+  Future<String> logPurchaseOrder(
+      @Query("type") String type,
+      @Field("data") String data,
+      @Field("customerID") String customerID,
+      @Field("period") String period,
+      @Field("periodLog") String periodLog);
 
   //? url=https://member-calls.unicity.com/THA/THA_DSC_Enroll_ValidationV2.asp
   @POST(Address.verifyEnroll)

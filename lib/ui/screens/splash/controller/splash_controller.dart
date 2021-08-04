@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_token.dart';
-import 'package:code_magic_ex/ui/screens/inventory/home.dart';
 import 'package:code_magic_ex/ui/screens/login/login.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/key_value_storage.dart';
@@ -28,7 +28,6 @@ class SplashController extends GetxController {
     _timer = Timer(const Duration(seconds: 2), () {
       logoStyle.value = FlutterLogoStyle.horizontal;
       fetchCustomerData();
-      
     });
     debugPrint(
         " USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.loginTokens)}");
@@ -61,7 +60,7 @@ class SplashController extends GetxController {
       UserSessionManager.shared.getProfilePictureFromDB();
       UserSessionManager.shared.getCustomerIdInfoFromDB();
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
-      Get.offAll(() => InventoryHomeScreen());
+      Get.offAll(() => OrderEntryHomeScreen());
     } else {
       Get.offAll(() => LoginScreen());
     }

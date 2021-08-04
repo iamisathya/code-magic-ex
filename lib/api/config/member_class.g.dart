@@ -277,6 +277,79 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
+  Future<String> checkOrderEntryStatus(type) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'type': type};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> getPeriodResponse(country, joinPeriod, system) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = {
+      'country': country,
+      'joinPeriod': joinPeriod,
+      'system': system
+    };
+    final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            contentType: 'application/x-www-form-urlencoded')
+        .compose(_dio.options, 'period.asp',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<GetPeriodLogResponse> getPeriodLog(type, data, customerID) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'type': type};
+    final _data = {'data': data, 'customerID': customerID};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetPeriodLogResponse>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GetPeriodLogResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<String> logPurchaseOrder(
+      type, data, customerID, period, periodLog) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'type': type};
+    final _data = {
+      'data': data,
+      'customerID': customerID,
+      'period': period,
+      'periodLog': periodLog
+    };
+    final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            contentType: 'application/x-www-form-urlencoded')
+        .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
   Future<dynamic> verifyEnrollForm(
       language,
       firstName,

@@ -202,13 +202,19 @@ BoxDecoration kCheckoutDecoration({Color c = Colors.white, double r = 15}) =>
 String kCurrentTimeStamp = DateTime.now().millisecondsSinceEpoch.toString();
 
 // * Order related constants
+String kCheckOrderEntryServerStatus = "000";
+String kEasyShipReports = "2";
+String kOrderEntryProductList = "31";
+String kOrderEntryProductInfo = "104";
 String kPlaceOrder = "201";
 String kUserId = "206";
-String kEasyShipReports = "2";
-String kOrderEntryProductInfo = "104";
 String kUploadFileId = "207";
-String kOrderEntryProductList = "31";
 String kCurrentLanguage = "English";
+String kPeriodLog = "periodLog";
+String kPurchaseLog = "purchaseLog";
+
+String kCountry = "TH";
+String kSystem = "DSC";
 
 // * Screen size related
 

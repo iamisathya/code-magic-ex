@@ -3,18 +3,22 @@ import 'dart:convert';
 import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:code_magic_ex/api/config/member_class.dart';
 import 'package:code_magic_ex/api/request/request_order_calculation.dart';
+import 'package:code_magic_ex/models/general_models.dart';
 import 'package:code_magic_ex/models/order_calc_response.dart';
 import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/cash_coupon_response.dart';
 import 'package:code_magic_ex/models/enroll_response.dart';
 import 'package:code_magic_ex/models/inventory_records.dart';
+import 'package:code_magic_ex/models/purchase_log_request_data.dart';
 import 'package:code_magic_ex/models/radio_button_value.dart';
+import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout/checkout_screen.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:code_magic_ex/utilities/function.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +59,7 @@ class OrderEntryTableController extends GetxController {
     super.onInit();
     _generateEmptyCart();
     final dynamic data = Get.arguments;
-    if(data != null) {
+    if (data != null) {
       passedUser = data as UserMinimalData;
     }
   }
@@ -266,6 +270,146 @@ class OrderEntryTableController extends GetxController {
     return items;
   }
 
+  Future<void> proceedToCheckOut(BuildContext context) async {
+    try {
+      final bool serverStatus = await checkOrderEntryServerStatus();
+      if (serverStatus) {
+        final String periodResponse = await getPeriodResponse();
+        if (periodResponse != "") {
+          final GetPeriodLogResponse? periodLogResponse =
+              await getPeriodLog(periodResponse);
+          if (periodLogResponse != null) {
+            if (periodLogResponse.status == "success") {
+              getPurchaseLog(periodLogResponse.idLog);
+            }
+          }
+        }
+      }
+    } catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.toString());
+    }
+  }
+
+  Future<bool> checkOrderEntryServerStatus() async {
+    try {
+      final String status = await MemberCallsService.init()
+          .checkOrderEntryStatus(kCheckOrderEntryServerStatus);
+      if (status == "on") {
+        // continue with order place
+        return true;
+      }
+      return false;
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      return false;
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      return false;
+    }
+  }
+
+  Future<String> getPeriodResponse() async {
+    try {
+      final String response = await MemberCallsService.init()
+          .getPeriodResponse(kCountry, getCurrentPeriod(), kSystem);
+      final jsonResponse = jsonDecode(response.toString());
+      if (jsonResponse != null) {
+        final mapped = jsonResponse as Map<String, dynamic>;
+        if (mapped["success"] == "Yes") {
+          return response;
+        }
+      }
+      return "";
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      return "false";
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      return "false";
+    }
+  }
+
+  Future<GetPeriodLogResponse?> getPeriodLog(String periodResponse) async {
+    try {
+      final GetPeriodLogResponse status = await MemberCallsService.init()
+          .getPeriodLog(
+              kPeriodLog, periodResponse, kCheckOrderEntryServerStatus);
+      if (status.status == "success") {
+        // continue with order place
+        return status;
+      }
+      return null;
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      return null;
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      return null;
+    }
+  }
+
+  PurchaseLogRequestData prepareRequestPaylod() {
+    final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
+    final nonEmptyProducts = cartProducts.where((e) => e.itemCode != "");
+    final List<ProductLineItem> checkoutItems = nonEmptyProducts
+        .map((element) => ProductLineItem(
+            quantity: element.quantity.toString(),
+            item: Customer(
+                href:
+                    "https://hydra.unicity.net/v5a/items?id.unicity=${element.itemCode}")))
+        .toList();
+
+    PurchaseLogRequestData requestData = PurchaseLogRequestData(
+        customer: Customer(
+            href:
+                "https://hydra.unicity.net/v5a/customers?unicity=${usedInfo.id.unicity.toString()}"),
+        lines: ProductLines(items: checkoutItems),
+        shipToAddress: UserShipToAddress(
+            city: usedInfo.mainAddress.city,
+            state: usedInfo.mainAddress.state,
+            address1: usedInfo.mainAddress.address1,
+            zip: usedInfo.mainAddress.zip,
+            country: "TH"),
+        shipToEmail: usedInfo.email,
+        shipToName: ShipToName(
+            firstName: usedInfo.humanName.firstName,
+            lastName: usedInfo.humanName.lastName),
+        shipToPhone: usedInfo.homePhone,
+        shippingMethod: Customer(
+            href:
+                "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"),
+        terms: ProductTerms(period: getCurrentPeriod()),
+        transactions: Transactions(items: [
+          TransactionItem(
+              amount: 6000.toString(), method: "Cash", type: "record")
+        ]));
+    return requestData;
+  }
+
+  Future<bool> getPurchaseLog(int periodLog) async {
+    try {
+      final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
+      final String status = await MemberCallsService.init().logPurchaseOrder(
+          kPurchaseLog,
+          prepareRequestPaylod().toString(),
+          usedInfo.id.unicity.toString(),
+          getCurrentPeriod(),
+          periodLog.toString());
+          print("getPurchaseLog, ${status}");
+      if (status == "on") {
+        // continue with order place
+        return true;
+      }
+      return false;
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      return false;
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      return false;
+    }
+  }
+
   void onChangedSearchType(RadioButtonModel data) {
     seletedOption.value = paymentOptions[data.index];
     totalCheckoutAmount.value = data.index == 0
@@ -273,7 +417,7 @@ class OrderEntryTableController extends GetxController {
         : totalCartPrice.value - availableCreditAmount.value;
   }
 
-    void _onDioError(DioError e) {
+  void _onDioError(DioError e) {
     _sendingMsgProgressBar.hide();
     errorMessage(e.error.toString());
     renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
