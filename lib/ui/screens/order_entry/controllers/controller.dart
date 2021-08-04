@@ -45,7 +45,7 @@ class OrderEntryController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    searchIdTextController.text = "3011266";
+    searchIdTextController.text = "2970466";
     // controller.getOrderEntryProductList("userId");
   }
 

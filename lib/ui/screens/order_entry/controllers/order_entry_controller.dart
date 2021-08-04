@@ -122,7 +122,7 @@ class OrderEntryTableController extends GetxController {
                       "https://hydra.unicity.net/v5a/items?id.unicity=${element.itemCode}")))
           .toList();
       final RequestOrderCalculation requestObject = RequestOrderCalculation(
-          uShopData: UShopData(loginId: "3011266"),
+          uShopData: UShopData(loginId: "2970466"),
           order: Order(
               lines: Lines(items: checkoutItems),
               shipToAddress: ShipToAddress(country: "TH"),

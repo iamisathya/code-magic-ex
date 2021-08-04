@@ -312,7 +312,7 @@ class _MemberCalls2Service implements MemberCalls2Service {
         _setStreamType<CashCouponResponse>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(
-                    _dio.options, 'unishop-fn-misc/cashcoupon_quota//3011266',
+                    _dio.options, 'unishop-fn-misc/cashcoupon_quota//2970466',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CashCouponResponse.fromJson(_result.data!);

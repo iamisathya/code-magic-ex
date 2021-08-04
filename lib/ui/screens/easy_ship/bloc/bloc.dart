@@ -35,7 +35,7 @@ class EasyShipController extends GetxController {
   int get easyShipReportsCount => _tempEasyShipOrders.length;
   bool get isEasyShipReportsEmpty => _tempEasyShipOrders.isEmpty;
 
-  Future<void> getAllOrderlines({String userId = "3011266"}) async {
+  Future<void> getAllOrderlines({String userId = "2970466"}) async {
     loading(true);
     update();
     try {

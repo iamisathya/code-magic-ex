@@ -114,7 +114,7 @@ abstract class ApiService {
   Future<CustomerToken> getOrderTerms(
       @Body() RequestPostCaclulateOrder request);
 
-  //? Example: https://hydra.unicity.net/v5a/orderlines?order.customer.id.unicity=3011266&order.dateCreated=[2020-11;2021-06]&criteria=easyship&expand=catalogSlide,order,order.customer&order.market=TH
+  //? Example: https://hydra.unicity.net/v5a/orderlines?order.customer.id.unicity=2970466&order.dateCreated=[2020-11;2021-06]&criteria=easyship&expand=catalogSlide,order,order.customer&order.market=TH
   @GET(Address.orderLines)
   Future<OrderLines> getOrderLines(
       @Query('order.customer.id.unicity') String userId,
@@ -159,7 +159,7 @@ abstract class MemberCalls2Service {
   Future<OrderCalculationResponse> orderCalculation(
       @Body() RequestOrderCalculation request);
 
-  //? Example: https://member-calls2.unicity.com/unishop-fn-misc/cashcoupon_quota/3011266?pv=25
-  @GET("${Address.cashCoupon}/3011266")
+  //? Example: https://member-calls2.unicity.com/unishop-fn-misc/cashcoupon_quota/2970466?pv=25
+  @GET("${Address.cashCoupon}/2970466")
   Future<CashCouponResponse> getCashCoupon(@Query('pv') String pv);
 }

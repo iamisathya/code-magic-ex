@@ -19,7 +19,7 @@ class BarcodeController extends GetxController {
   OrderLines allEasyShipOrders = OrderLines(items: []);
 
   Future<void> getBarcodePath(BuildContext context,
-      {String userId = "3011266"}) async {
+      {String userId = "2970466"}) async {
     final String token = UserSessionManager.shared.customerToken.token;
     String barcodePath = "";
     errorMessage.value = "";
