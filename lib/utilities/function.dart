@@ -212,3 +212,12 @@ String getCurrentPeriod() {
     return "";
   }
 }
+
+String prepareNotes(String userId, String countryId) {
+  final String device = Platform.isAndroid ? "android": "ios";
+  try {
+    return "shopping|dsc|mobile app|tha||$userId|$device";
+  } catch (e) {
+    return "shopping|dsc|mobile app|unknown|$device";
+  }
+}

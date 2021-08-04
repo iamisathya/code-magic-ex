@@ -20,6 +20,8 @@ class PurchaseLogRequestData {
   UserShipToAddress shipToAddress;
   @JsonKey(name: 'shippingMethod')
   Customer shippingMethod;
+  @JsonKey(name: 'notes')
+  String notes;
   @JsonKey(name: 'terms')
   ProductTerms terms;
   @JsonKey(name: 'transactions')
@@ -33,6 +35,7 @@ class PurchaseLogRequestData {
       required this.shipToEmail,
       required this.shipToAddress,
       required this.shippingMethod,
+      required this.notes,
       required this.terms,
       required this.transactions});
 
@@ -44,6 +47,7 @@ class PurchaseLogRequestData {
         'shipToEmail': shipToEmail,
         'shipToAddress': shipToAddress,
         'shippingMethod': shippingMethod,
+        'notes': notes,
         'terms': terms,
         'transactions': transactions,
       };

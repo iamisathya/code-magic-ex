@@ -19,3 +19,45 @@ class GetPeriodLogResponse {
 
   Map<String, dynamic> toJson() => _$GetPeriodLogResponseToJson(this);
 }
+
+@JsonSerializable()
+class ClearOrderCacheResponse {
+  @JsonKey(name: "message")
+  String message;
+
+  ClearOrderCacheResponse({
+    required this.message,
+  });
+
+  factory ClearOrderCacheResponse.fromJson(Map<String, dynamic> json) =>
+      _$ClearOrderCacheResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ClearOrderCacheResponseToJson(this);
+}
+
+@JsonSerializable()
+class VerifyOrderResponse {
+  @JsonKey(name: "code")
+  int code;
+  @JsonKey(name: "require")
+  List<String> require;
+  @JsonKey(name: "un_require")
+  bool unRequire;
+  @JsonKey(name: "updated")
+  bool updated;
+  @JsonKey(name: "user")
+  dynamic user;
+
+  VerifyOrderResponse({
+    required this.code,
+    required this.require,
+    required this.unRequire,
+    required this.updated,
+    required this.user,
+  });
+
+  factory VerifyOrderResponse.fromJson(Map<String, dynamic> json) =>
+      _$VerifyOrderResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VerifyOrderResponseToJson(this);
+}

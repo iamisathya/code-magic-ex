@@ -348,7 +348,46 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  PurchaseLogRequestData prepareRequestPaylod() {
+  Future<GetPeriodLogResponse?> placeOrder(String periodResponse) async {
+    try {
+      final GetPeriodLogResponse status = await MemberCallsService.init()
+          .getPeriodLog(
+              kPeriodLog, periodResponse, kCheckOrderEntryServerStatus);
+      if (status.status == "success") {
+        // continue with order place
+        return status;
+      }
+      return null;
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      return null;
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      return null;
+    }
+  }
+
+  Future<void> clearOrderCache(String periodResponse) async {
+    try {
+      await MemberCalls2Service.init().clearOrderCache(kPeriodLog);
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+    }
+  }
+
+  Future<void> verifyOrder(PurchaseLogRequestData requestData) async {
+    try {
+      final VerifyOrderResponse response = await MemberCallsService.init().verifyOrder(requestData);
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+    }
+  }
+
+  String prepareRequestPaylod() {
     final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
     final nonEmptyProducts = cartProducts.where((e) => e.itemCode != "");
     final List<ProductLineItem> checkoutItems = nonEmptyProducts
@@ -359,7 +398,7 @@ class OrderEntryTableController extends GetxController {
                     "https://hydra.unicity.net/v5a/items?id.unicity=${element.itemCode}")))
         .toList();
 
-    PurchaseLogRequestData requestData = PurchaseLogRequestData(
+    final PurchaseLogRequestData requestData = PurchaseLogRequestData(
         customer: Customer(
             href:
                 "https://hydra.unicity.net/v5a/customers?unicity=${usedInfo.id.unicity.toString()}"),
@@ -378,12 +417,14 @@ class OrderEntryTableController extends GetxController {
         shippingMethod: Customer(
             href:
                 "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"),
+        notes: prepareNotes(usedInfo.id.unicity.toString(), "TH"),
         terms: ProductTerms(period: getCurrentPeriod()),
         transactions: Transactions(items: [
           TransactionItem(
               amount: 6000.toString(), method: "Cash", type: "record")
         ]));
-    return requestData;
+    final String jsonUser = jsonEncode(requestData);
+    return jsonUser;
   }
 
   Future<bool> getPurchaseLog(int periodLog) async {
@@ -391,11 +432,11 @@ class OrderEntryTableController extends GetxController {
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
       final String status = await MemberCallsService.init().logPurchaseOrder(
           kPurchaseLog,
-          prepareRequestPaylod().toString(),
+          prepareRequestPaylod(),
           usedInfo.id.unicity.toString(),
           getCurrentPeriod(),
           periodLog.toString());
-          print("getPurchaseLog, ${status}");
+      print("getPurchaseLog, ${status}");
       if (status == "on") {
         // continue with order place
         return true;

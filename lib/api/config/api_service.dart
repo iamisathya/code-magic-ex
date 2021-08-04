@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:code_magic_ex/api/request/request_order_calculation.dart';
 import 'package:code_magic_ex/models/cash_coupon_response.dart';
+import 'package:code_magic_ex/models/general_models.dart';
 import 'package:code_magic_ex/models/guest_user_info.dart';
 import 'package:code_magic_ex/models/order_lines.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
@@ -162,4 +163,8 @@ abstract class MemberCalls2Service {
   //? Example: https://member-calls2.unicity.com/unishop-fn-misc/cashcoupon_quota/2970466?pv=25
   @GET("${Address.cashCoupon}/2970466")
   Future<CashCouponResponse> getCashCoupon(@Query('pv') String pv);
+
+  //? Example: https://member-calls2.unicity.com/etlV2/cache/clearAll?baId=2970466
+  @GET(Address.clearOrderCache)
+  Future<ClearOrderCacheResponse> clearOrderCache(@Query('baId') String baId);
 }

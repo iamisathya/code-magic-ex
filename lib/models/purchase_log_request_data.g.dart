@@ -18,6 +18,7 @@ PurchaseLogRequestData _$PurchaseLogRequestDataFromJson(
         json['shipToAddress'] as Map<String, dynamic>),
     shippingMethod:
         Customer.fromJson(json['shippingMethod'] as Map<String, dynamic>),
+    notes: json['notes'] as String,
     terms: ProductTerms.fromJson(json['terms'] as Map<String, dynamic>),
     transactions:
         Transactions.fromJson(json['transactions'] as Map<String, dynamic>),
@@ -34,6 +35,7 @@ Map<String, dynamic> _$PurchaseLogRequestDataToJson(
       'shipToEmail': instance.shipToEmail,
       'shipToAddress': instance.shipToAddress,
       'shippingMethod': instance.shippingMethod,
+      'notes': instance.notes,
       'terms': instance.terms,
       'transactions': instance.transactions,
     };

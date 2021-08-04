@@ -192,4 +192,25 @@ abstract class MemberCallsService {
       @Query("id") String id,
       @Query("type") String type,
       FormData data);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/order_verify.php
+  @POST(Address.validOrders)
+  @FormUrlEncoded()
+  Future<VerifyOrderResponse> verifyOrder(FormData data);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/email/send_order_online_TH.php
+  @POST(Address.validOrders)
+  @FormUrlEncoded()
+  Future<VerifyOrderResponse> sendOrderOnline(
+    @Field("forename") String forename,
+    @Field("address") String address,
+    @Field("email") String email,
+    @Field("orderNumber") String orderNumber,
+    @Field("orderType") String orderType,
+    @Field("disID") String disID,
+    @Field("product[0][item][href]") String href,
+    @Field("product[0][quantity]") String quantity,
+    @Field("period") String period,
+    @Field("pv") String pv,
+  );
 }
