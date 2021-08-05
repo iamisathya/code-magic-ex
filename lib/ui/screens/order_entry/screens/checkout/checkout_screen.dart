@@ -1,5 +1,5 @@
 import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_checkout_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +9,8 @@ import 'components/body.dart';
 
 class CheckoutPage extends StatelessWidget {
     static const String routeName = '/checkoutPage';
-  final OrderEntryTableController controller =
-      Get.put(OrderEntryTableController());
+  final OrderEntryCheckoutController controller =
+      Get.put(OrderEntryCheckoutController());
 
 
   @override

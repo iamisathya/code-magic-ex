@@ -1,5 +1,5 @@
 import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_checkout_controller.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:code_magic_ex/utilities/images.dart';
@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import 'cart_card.dart';
 
 class Body extends StatelessWidget {
-  final OrderEntryTableController controller =
-      Get.put(OrderEntryTableController());
+  final OrderEntryCheckoutController controller =
+      Get.put(OrderEntryCheckoutController());
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class Body extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             PrimaryButton(
-              press: () => controller.validateOrder(context),
+              press: () => controller.proceedToCheckOut(context),
               text: 'Checkout',
             )
           ],

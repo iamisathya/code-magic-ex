@@ -20,6 +20,7 @@ class CounterView extends StatelessWidget {
           FloatingActionButton(
             onPressed: () => onPress(CartUpdate.decreament, itemCode),
             mini: true,
+            heroTag: "${itemCode}_minus",
             backgroundColor: Colors.white,
             child: const Text("-",
                 style: TextStyle(
@@ -31,6 +32,7 @@ class CounterView extends StatelessWidget {
           FloatingActionButton(
             onPressed: () => onPress(CartUpdate.increament, itemCode),
             mini: true,
+            heroTag: "${itemCode}_plus",
             backgroundColor: Colors.white,
             child: const Text("+",
                 style: TextStyle(
