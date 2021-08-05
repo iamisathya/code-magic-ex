@@ -61,3 +61,19 @@ class VerifyOrderResponse {
 
   Map<String, dynamic> toJson() => _$VerifyOrderResponseToJson(this);
 }
+
+
+@JsonSerializable()
+class SendOrderOnlineResponse {
+  @JsonKey(name: "status")
+  bool status;
+
+  SendOrderOnlineResponse({
+    required this.status,
+  });
+
+  factory SendOrderOnlineResponse.fromJson(Map<String, dynamic> json) =>
+      _$SendOrderOnlineResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendOrderOnlineResponseToJson(this);
+}

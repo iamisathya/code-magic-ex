@@ -94,7 +94,7 @@ class Body extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             PrimaryButton(
-              press: () => controller.proceedToCheckOut(context),
+              press: () => controller.getPlaceOrders(context),
               text: 'Checkout',
             )
           ],

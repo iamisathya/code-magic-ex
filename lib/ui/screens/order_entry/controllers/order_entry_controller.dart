@@ -299,22 +299,28 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<bool> getPlaceOrders(PurchaseLogRequestData data) async {
+  Future<bool> getPlaceOrders(BuildContext context) async {
     try {
-      final String jsonUser = jsonEncode(prepareRequestPaylod());
-      final PlaceOrder response =
-          await ApiService.shared().getPlaceOrders(jsonUser);
-      if (response.taxedAs != "") {
+      String data = await DefaultAssetBundle.of(context).loadString("jsons/order_response.json");
+      final jsonResult = jsonDecode(data); 
+      final PlaceOrder enrollResponse =
+          PlaceOrder.fromJson(jsonResult as Map<String, dynamic>);
+      // final String jsonUser = jsonEncode(prepareRequestPaylod());
+      // final PlaceOrder response =
+      //     await ApiService.shared().getPlaceOrders(jsonUser);
+      if (enrollResponse.taxedAs != "") {
         await clearOrderCache();
-        await verifyOrder(response);
-        await sendOrderOnline(response);
+        await verifyOrder(enrollResponse);
+        await sendOrderOnline(enrollResponse);
       }
 
       return false;
     } on DioError catch (e) {
+      print(e);
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
       return false;
     } catch (err) {
+      print(err);
       renderErrorSnackBar(title: "Error!", subTitle: err.toString());
       return false;
     }
@@ -341,7 +347,7 @@ class OrderEntryTableController extends GetxController {
   Future<bool> sendOrderOnline(PlaceOrder data) async {
     try {
       UserInfo info = UserSessionManager.shared.userInfo!;
-      final VerifyOrderResponse status = await MemberCallsService.init()
+      final SendOrderOnlineResponse status = await MemberCallsService.init()
           .sendOrderOnline(
               "${info.humanName.fullNameTh} (${info.humanName.fullName})",
               "${info.mainAddress.address1}, ${info.mainAddress.city},  ${info.mainAddress.state}, ${info.mainAddress.country} ${info.mainAddress.zip}",
@@ -354,7 +360,7 @@ class OrderEntryTableController extends GetxController {
               getCurrentPeriod(),
               "15",
               data.terms.subtotal);
-      if (status == "on") {
+      if (status == true) {
         // continue with order place
         return true;
       }
@@ -498,7 +504,7 @@ class OrderEntryTableController extends GetxController {
           usedInfo.id.unicity.toString(),
           getCurrentPeriod(),
           periodLog.toString());
-      getPlaceOrders(prepareRequestPaylod());
+      // getPlaceOrders(prepareRequestPaylod());
       print("getPurchaseLog, ${status}");
       if (status == "on") {
         // continue with order place

@@ -195,14 +195,14 @@ abstract class MemberCallsService {
       FormData data);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/order_verify.php
-  @POST(Address.validOrders)
+  @POST(Address.orderVerify)
   @FormUrlEncoded()
   Future<VerifyOrderResponse> verifyOrder(@Body() PlaceOrder data);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/email/send_order_online_TH.php
-  @POST(Address.validOrders)
+  @POST(Address.sendOrderOnline)
   @FormUrlEncoded()
-  Future<VerifyOrderResponse> sendOrderOnline(
+  Future<SendOrderOnlineResponse> sendOrderOnline(
     @Field("forename") String forename,
     @Field("address") String address,
     @Field("email") String email,

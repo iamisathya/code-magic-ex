@@ -508,7 +508,7 @@ class _MemberCallsService implements MemberCallsService {
                 headers: <String, dynamic>{},
                 extra: _extra,
                 contentType: 'application/x-www-form-urlencoded')
-            .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+            .compose(_dio.options, 'ALL/DSC/THA/barcode/order_verify.php',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = VerifyOrderResponse.fromJson(_result.data!);
@@ -516,7 +516,7 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
-  Future<VerifyOrderResponse> sendOrderOnline(forename, address, email,
+  Future<SendOrderOnlineResponse> sendOrderOnline(forename, address, email,
       orderNumber, orderType, disID, href, quantity, period, pv, amount) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -534,15 +534,15 @@ class _MemberCallsService implements MemberCallsService {
       'amount': amount
     };
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<VerifyOrderResponse>(Options(
+        _setStreamType<SendOrderOnlineResponse>(Options(
                 method: 'POST',
                 headers: <String, dynamic>{},
                 extra: _extra,
                 contentType: 'application/x-www-form-urlencoded')
-            .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+            .compose(_dio.options, 'ALL/DSC/THA/email/send_order_online_TH.php',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = VerifyOrderResponse.fromJson(_result.data!);
+    final value = SendOrderOnlineResponse.fromJson(_result.data!);
     return value;
   }
 

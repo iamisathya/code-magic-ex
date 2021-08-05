@@ -53,3 +53,16 @@ Map<String, dynamic> _$VerifyOrderResponseToJson(
       'updated': instance.updated,
       'user': instance.user,
     };
+
+SendOrderOnlineResponse _$SendOrderOnlineResponseFromJson(
+    Map<String, dynamic> json) {
+  return SendOrderOnlineResponse(
+    status: json['status'] as bool,
+  );
+}
+
+Map<String, dynamic> _$SendOrderOnlineResponseToJson(
+        SendOrderOnlineResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+    };

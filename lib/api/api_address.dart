@@ -32,5 +32,6 @@ class Address {
   static const String inventoryPrint = "https://dsc-th.unicity.com/administrator/print/inventory.php?user_id";
   static const String period = "period.asp";
   static const String clearOrderCache = "etlV2/cache/clearAll";
-  static const String orderVerify = "barcode/order_verify.php";
+  static const String orderVerify = "ALL/DSC/THA/barcode/order_verify.php";
+  static const String sendOrderOnline = "ALL/DSC/THA/email/send_order_online_TH.php";
 }
