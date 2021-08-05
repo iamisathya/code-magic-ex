@@ -207,7 +207,7 @@ Future<String?> readFileByte(String filePath) async {
 
 String getCurrentPeriod() {
   try {
-    return DateFormat("MM-yyyy").format(DateTime.now()); // => 21-04-2019
+    return DateFormat("yyyy-MM").format(DateTime.now()); // => 21-04-2019
   } catch (e) {
     return "";
   }

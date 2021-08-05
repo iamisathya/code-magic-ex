@@ -225,18 +225,18 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<UserInfo> getPlaceOrders(request) async {
+  Future<PlaceOrder> getPlaceOrders(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserInfo>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/warehouses/{id}/orders',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserInfo.fromJson(_result.data!);
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<
+        PlaceOrder>(Options(
+            method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+        .compose(_dio.options,
+            '/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/orders',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = PlaceOrder.fromJson(_result.data!);
     return value;
   }
 

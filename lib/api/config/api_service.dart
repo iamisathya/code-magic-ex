@@ -133,7 +133,7 @@ abstract class ApiService {
   //?  "shippingMethod": { "href": "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"},
   //? "notes": "batch XXYY by First Last", "transactions": {"items": [{"amount": "this.terms.total","type": "record","method": "Cash"}]}}
   @POST(Address.orders)
-  Future<PlaceOrder> getPlaceOrders(@Body() PurchaseLogRequestData request);
+  Future<PlaceOrder> getPlaceOrders(@Body() String request);
 }
 
 @RestApi(baseUrl: Address.memberCalls2Base)
@@ -167,6 +167,6 @@ abstract class MemberCalls2Service {
   Future<CashCouponResponse> getCashCoupon(@Query('pv') String pv);
 
   //? Example: https://member-calls2.unicity.com/etlV2/cache/clearAll?baId=2970466
-  @GET(Address.clearOrderCache)
+  @DELETE(Address.clearOrderCache)
   Future<ClearOrderCacheResponse> clearOrderCache(@Query('baId') String baId);
 }

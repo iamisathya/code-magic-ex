@@ -14,7 +14,7 @@ class Address {
   static const String customers = "/customers";
   static const String orderTerms = "/orderTerms";
   static const String orderLines = "/orderlines";
-  static const String orders = "/warehouses/{id}/orders";
+  static const String orders = "/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/orders";
   static const String customersPath = "customers";
   static const String memberCalls2Base = "https://member-calls2.unicity.com/";
   static const String memberCallsBase = "https://member-calls.unicity.com/";

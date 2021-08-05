@@ -301,8 +301,9 @@ class OrderEntryTableController extends GetxController {
 
   Future<bool> getPlaceOrders(PurchaseLogRequestData data) async {
     try {
+      final String jsonUser = jsonEncode(prepareRequestPaylod());
       final PlaceOrder response =
-          await ApiService.shared().getPlaceOrders(data);
+          await ApiService.shared().getPlaceOrders(jsonUser);
       if (response.taxedAs != "") {
         await clearOrderCache();
         await verifyOrder(response);
@@ -448,7 +449,7 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  String prepareRequestPaylod() {
+  PurchaseLogRequestData prepareRequestPaylod() {
     final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
     final nonEmptyProducts = cartProducts.where((e) => e.itemCode != "");
     final List<ProductLineItem> checkoutItems = nonEmptyProducts
@@ -470,7 +471,7 @@ class OrderEntryTableController extends GetxController {
             address1: usedInfo.mainAddress.address1,
             zip: usedInfo.mainAddress.zip,
             country: "TH"),
-        shipToEmail: usedInfo.email,
+        shipToEmail: usedInfo.email.isNotEmpty ? usedInfo.email : "none@unicity.com",
         shipToName: ShipToName(
             firstName: usedInfo.humanName.firstName,
             lastName: usedInfo.humanName.lastName),
@@ -484,19 +485,20 @@ class OrderEntryTableController extends GetxController {
           TransactionItem(
               amount: 6000.toString(), method: "Cash", type: "record")
         ]));
-    final String jsonUser = jsonEncode(requestData);
-    return jsonUser;
+    return requestData;
   }
 
   Future<bool> getPurchaseLog(int periodLog) async {
     try {
+      final String jsonUser = jsonEncode(prepareRequestPaylod());
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
       final String status = await MemberCallsService.init().logPurchaseOrder(
           kPurchaseLog,
-          prepareRequestPaylod(),
+          jsonUser,
           usedInfo.id.unicity.toString(),
           getCurrentPeriod(),
           periodLog.toString());
+      getPlaceOrders(prepareRequestPaylod());
       print("getPurchaseLog, ${status}");
       if (status == "on") {
         // continue with order place

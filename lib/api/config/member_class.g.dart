@@ -501,6 +501,7 @@ class _MemberCallsService implements MemberCallsService {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
+    _data.addAll(data.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<VerifyOrderResponse>(Options(
                 method: 'POST',
@@ -516,7 +517,7 @@ class _MemberCallsService implements MemberCallsService {
 
   @override
   Future<VerifyOrderResponse> sendOrderOnline(forename, address, email,
-      orderNumber, orderType, disID, href, quantity, period, pv) async {
+      orderNumber, orderType, disID, href, quantity, period, pv, amount) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = {
@@ -529,7 +530,8 @@ class _MemberCallsService implements MemberCallsService {
       'product[0][item][href]': href,
       'product[0][quantity]': quantity,
       'period': period,
-      'pv': pv
+      'pv': pv,
+      'amount': amount
     };
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<VerifyOrderResponse>(Options(
