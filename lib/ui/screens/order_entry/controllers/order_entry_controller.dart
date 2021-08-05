@@ -289,7 +289,8 @@ class OrderEntryTableController extends GetxController {
               await getPeriodLog(periodResponse);
           if (periodLogResponse != null) {
             if (periodLogResponse.status == "success") {
-              getPurchaseLog(periodLogResponse.idLog);
+              await getPurchaseLog(periodLogResponse.idLog);
+              await getPlaceOrders(context);
             }
           }
         }
@@ -299,41 +300,34 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
+  Future<void> getPurchaseLog(int periodLog) async {
+    try {
+      final String jsonUser = jsonEncode(prepareRequestPaylod());
+      final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
+      final String status = await MemberCallsService.init().logPurchaseOrder(
+          kPurchaseLog,
+          jsonUser,
+          usedInfo.id.unicity.toString(),
+          getCurrentPeriod(),
+          periodLog.toString());
+    } on DioError catch (e) {
+      LoggerService.instance.e(e.toString());
+    } catch (err) {
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
   Future<bool> getPlaceOrders(BuildContext context) async {
     try {
-      String data = await DefaultAssetBundle.of(context).loadString("jsons/order_response.json");
-      final jsonResult = jsonDecode(data); 
-      final PlaceOrder enrollResponse =
-          PlaceOrder.fromJson(jsonResult as Map<String, dynamic>);
-      // final String jsonUser = jsonEncode(prepareRequestPaylod());
-      // final PlaceOrder response =
-      //     await ApiService.shared().getPlaceOrders(jsonUser);
-      if (enrollResponse.taxedAs != "") {
+      final String enrollResponse = jsonEncode(prepareRequestPaylod());
+      final PlaceOrder response =
+          await ApiService.shared().getPlaceOrders(enrollResponse);
+      if (response.taxedAs != "") {
         await clearOrderCache();
-        await verifyOrder(enrollResponse);
-        await sendOrderOnline(enrollResponse);
+        await verifyOrder(response);
+        await sendOrderOnline(response);
       }
 
-      return false;
-    } on DioError catch (e) {
-      print(e);
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      return false;
-    } catch (err) {
-      print(err);
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
-      return false;
-    }
-  }
-
-  Future<bool> checkOrderEntryServerStatus() async {
-    try {
-      final String status = await MemberCallsService.init()
-          .checkOrderEntryStatus(kCheckOrderEntryServerStatus);
-      if (status == "on") {
-        // continue with order place
-        return true;
-      }
       return false;
     } on DioError catch (e) {
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
@@ -344,9 +338,32 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<bool> sendOrderOnline(PlaceOrder data) async {
+
+  Future<void> clearOrderCache() async {
     try {
-      UserInfo info = UserSessionManager.shared.userInfo!;
+      await MemberCalls2Service.init().clearOrderCache(
+          UserSessionManager.shared.userInfo!.id.unicity.toString());
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+    }
+  }
+
+  Future<void> verifyOrder(PlaceOrder requestData) async {
+    try {
+      final VerifyOrderResponse response =
+          await MemberCallsService.init().verifyOrder(requestData);
+    } on DioError catch (e) {
+      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+    } catch (err) {
+      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+    }
+  }
+
+  Future<void> sendOrderOnline(PlaceOrder data) async {
+    try {
+      final UserInfo info = UserSessionManager.shared.userInfo!;
       final SendOrderOnlineResponse status = await MemberCallsService.init()
           .sendOrderOnline(
               "${info.humanName.fullNameTh} (${info.humanName.fullName})",
@@ -360,8 +377,18 @@ class OrderEntryTableController extends GetxController {
               getCurrentPeriod(),
               "15",
               data.terms.subtotal);
-      if (status == true) {
-        // continue with order place
+    } on DioError catch (e) {
+      LoggerService.instance.e(e.toString());
+    } catch (err) {
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
+  Future<bool> checkOrderEntryServerStatus() async {
+    try {
+      final String status = await MemberCallsService.init()
+          .checkOrderEntryStatus(kCheckOrderEntryServerStatus);
+      if (status == "on") {
         return true;
       }
       return false;
@@ -433,28 +460,6 @@ class OrderEntryTableController extends GetxController {
     }
   }
 
-  Future<void> clearOrderCache() async {
-    try {
-      await MemberCalls2Service.init().clearOrderCache(
-          UserSessionManager.shared.userInfo!.id.unicity.toString());
-    } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-    } catch (err) {
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
-    }
-  }
-
-  Future<void> verifyOrder(PlaceOrder requestData) async {
-    try {
-      final VerifyOrderResponse response =
-          await MemberCallsService.init().verifyOrder(requestData);
-    } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-    } catch (err) {
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
-    }
-  }
-
   PurchaseLogRequestData prepareRequestPaylod() {
     final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
     final nonEmptyProducts = cartProducts.where((e) => e.itemCode != "");
@@ -492,32 +497,6 @@ class OrderEntryTableController extends GetxController {
               amount: 6000.toString(), method: "Cash", type: "record")
         ]));
     return requestData;
-  }
-
-  Future<bool> getPurchaseLog(int periodLog) async {
-    try {
-      final String jsonUser = jsonEncode(prepareRequestPaylod());
-      final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
-      final String status = await MemberCallsService.init().logPurchaseOrder(
-          kPurchaseLog,
-          jsonUser,
-          usedInfo.id.unicity.toString(),
-          getCurrentPeriod(),
-          periodLog.toString());
-      // getPlaceOrders(prepareRequestPaylod());
-      print("getPurchaseLog, ${status}");
-      if (status == "on") {
-        // continue with order place
-        return true;
-      }
-      return false;
-    } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      return false;
-    } catch (err) {
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
-      return false;
-    }
   }
 
   void onChangedSearchType(RadioButtonModel data) {
