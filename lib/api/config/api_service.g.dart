@@ -325,11 +325,11 @@ class _MemberCalls2Service implements MemberCalls2Service {
     final queryParameters = <String, dynamic>{r'baId': baId};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ClearOrderCacheResponse>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, 'etlV2/cache/clearAll',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<ClearOrderCacheResponse>(Options(
+                method: 'DELETE', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, 'etlV2/cache/clearAll',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ClearOrderCacheResponse.fromJson(_result.data!);
     return value;
   }
