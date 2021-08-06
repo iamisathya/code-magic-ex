@@ -1,13 +1,13 @@
-import 'package:code_magic_ex/models/open_po_details.dart';
-import 'package:code_magic_ex/ui/global/widgets/common_widgets.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_loading_widget.dart';
-import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';
-
-import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:get/get.dart';
+
+import '../../../../../models/open_po_details.dart';
+import '../../../../../utilities/constants.dart';
+import '../../../../../utilities/extensions.dart';
+import '../../../../../utilities/images.dart';
+import '../../../../global/widgets/common_widgets.dart';
+import '../../../../global/widgets/custom_loading_widget.dart';
+import '../../controller/open_po_controller.dart';
 
 class Body extends StatelessWidget {
   final OpenPoController controller = Get.put(OpenPoController());

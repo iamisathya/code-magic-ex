@@ -1,13 +1,11 @@
-import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
-
-import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
-import 'package:code_magic_ex/ui/global/theme/bloc.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+
+import '../../../utilities/constants.dart';
+import '../../../utilities/user_session.dart';
+import '../../global/navigation_drawer.dart';
+import '../../global/theme/bloc.dart';
+import '../../global/widgets/transparent_app_bar.dart';
 
 class MainHomeScreen extends StatefulWidget {
   static const String routeName = '/mainHomePage';

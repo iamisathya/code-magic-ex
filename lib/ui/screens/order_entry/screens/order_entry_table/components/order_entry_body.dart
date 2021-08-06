@@ -1,13 +1,14 @@
-import 'package:code_magic_ex/models/inventory_records.dart';
-import 'package:code_magic_ex/ui/global/widgets/common_button.dart';
-import 'package:code_magic_ex/ui/global/widgets/counter_view.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
+
+import '../../../../../../models/inventory_records.dart';
+import '../../../../../../utilities/constants.dart';
+import '../../../../../../utilities/core/parsing.dart';
+import '../../../../../../utilities/extensions.dart';
+import '../../../../../global/widgets/common_button.dart';
+import '../../../../../global/widgets/counter_view.dart';
+import '../../../controllers/order_entry_controller.dart';
 
 class OrderEntryBody extends StatelessWidget {
   final OrderEntryTableController controller =

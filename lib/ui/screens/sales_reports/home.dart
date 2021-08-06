@@ -1,12 +1,12 @@
-import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
-import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
-import 'package:code_magic_ex/ui/screens/sales_reports/bloc/bloc.dart';
-import 'package:code_magic_ex/ui/screens/sales_reports/component/body.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../utilities/constants.dart';
+import '../../../utilities/size_config.dart';
+import '../../global/navigation_drawer.dart';
+import '../../global/widgets/transparent_app_bar.dart';
+import 'bloc/bloc.dart';
+import 'component/body.dart';
 
 class SalesReportsHomeScreen extends StatelessWidget {
   final SalesReportController controller = Get.put(SalesReportController());

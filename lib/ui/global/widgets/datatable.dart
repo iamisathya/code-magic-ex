@@ -1,6 +1,7 @@
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
+
+import '../../../utilities/constants.dart';
 
 class DataTableClass extends StatefulWidget {
   const DataTableClass({Key? key, required this.title}) : super(key: key);

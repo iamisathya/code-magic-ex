@@ -1,10 +1,10 @@
-import 'package:code_magic_ex/ui/screens/enroll/bloc/bloc.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 
-import 'package:code_magic_ex/utilities/extensions.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/extensions.dart';
+import '../bloc/bloc.dart';
 
 class Body extends StatelessWidget {
   final EnrollController controller = Get.put(EnrollController());

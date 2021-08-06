@@ -1,11 +1,11 @@
-import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
-import 'package:code_magic_ex/ui/screens/login/controller/login_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:get/get.dart';
+
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/size_config.dart';
+import '../../../global/widgets/primary_button.dart';
+import '../controller/login_controller.dart';
 
 class SignForm extends StatelessWidget {
   final LoginController controller = Get.put(LoginController());

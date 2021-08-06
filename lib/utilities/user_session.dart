@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:code_magic_ex/models/user_id.dart';
-import 'package:code_magic_ex/models/user_token.dart';
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
 
-import 'package:code_magic_ex/models/user_info.dart';
-import 'package:code_magic_ex/utilities/function.dart';
-import 'package:code_magic_ex/utilities/key_value_storage.dart';
-import 'package:code_magic_ex/models/profile_picture.dart';
+import '../models/profile_picture.dart';
+import '../models/user_id.dart';
+import '../models/user_info.dart';
+import '../models/user_token.dart';
+import 'Logger/logger.dart';
+import 'function.dart';
+import 'key_value_storage.dart';
 
 enum ThemeTypes { light, dark }
 

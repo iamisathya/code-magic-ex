@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:code_magic_ex/services/rest_api/exceptions.dart';
-import 'package:code_magic_ex/utilities/connectivity.dart';
-import 'package:code_magic_ex/utilities/core/parsing.dart';
+import 'exceptions.dart';
+import '../../utilities/connectivity.dart';
+import '../../utilities/core/parsing.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';

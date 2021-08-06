@@ -1,5 +1,6 @@
-import 'package:code_magic_ex/models/inventory_records.dart';
 import 'package:flutter/material.dart';
+
+import '../../../models/inventory_records.dart';
 
 class ProductEntryAutoComplete extends StatelessWidget {
   const ProductEntryAutoComplete({

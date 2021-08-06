@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/utilities/size_config.dart';
+import '../../../utilities/size_config.dart';
 
 import 'components/body.dart';
 

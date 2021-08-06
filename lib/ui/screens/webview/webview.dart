@@ -1,8 +1,8 @@
-import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'package:code_magic_ex/utilities/constants.dart';
+import '../../../utilities/constants.dart';
+import '../../global/widgets/transparent_app_bar.dart';
 
 class WebivewHomeScreen extends StatefulWidget {
   static const String routeName = '/webviewHomePage';

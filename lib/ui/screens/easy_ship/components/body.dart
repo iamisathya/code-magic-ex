@@ -1,17 +1,17 @@
-import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
-import 'package:code_magic_ex/ui/screens/easy_ship/bloc/bloc.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_empty_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_error_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_loading_widget.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/enums.dart';
-import 'package:code_magic_ex/utilities/function.dart';
-import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
+
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/extensions.dart';
+import '../../../../utilities/function.dart';
+import '../../../../utilities/images.dart';
+import '../../../global/widgets/custom_empty_widget.dart';
+import '../../../global/widgets/custom_error_widget.dart';
+import '../../../global/widgets/custom_loading_widget.dart';
+import '../../../global/widgets/search_view.dart';
+import '../bloc/bloc.dart';
 
 class Body extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());

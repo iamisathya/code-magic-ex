@@ -1,5 +1,6 @@
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utilities/constants.dart';
 
 class TransAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

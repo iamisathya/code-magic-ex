@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/resources/font_weights.dart';
+import '../../../resources/font_weights.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmationDialog {

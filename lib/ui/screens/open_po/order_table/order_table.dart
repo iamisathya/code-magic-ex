@@ -1,11 +1,13 @@
 import 'dart:async';
-import 'package:code_magic_ex/ui/global/widgets/cart_footer.dart';
-import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
-import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_table_controller.dart';
-import 'package:code_magic_ex/ui/screens/open_po/order_table/components/open_po_table_body.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../utilities/constants.dart';
+import '../../../global/widgets/cart_footer.dart';
+import '../../../global/widgets/transparent_app_bar.dart';
+import '../controller/open_po_table_controller.dart';
+import 'components/open_po_table_body.dart';
 
 class OpenPoTable extends StatelessWidget {
   static const String routeName = '/openPoTable';

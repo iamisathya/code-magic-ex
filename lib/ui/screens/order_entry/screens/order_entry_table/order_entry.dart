@@ -1,12 +1,13 @@
 import 'dart:async';
 
-import 'package:code_magic_ex/ui/global/widgets/cart_footer.dart';
-import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_controller.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry_table/components/order_entry_body.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../utilities/constants.dart';
+import '../../../../global/widgets/cart_footer.dart';
+import '../../../../global/widgets/transparent_app_bar.dart';
+import '../../controllers/order_entry_controller.dart';
+import 'components/order_entry_body.dart';
 
 class OrderEntryTable extends StatelessWidget {
   static const String routeName = '/orderEntryTablePage';

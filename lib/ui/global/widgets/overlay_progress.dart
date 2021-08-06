@@ -1,5 +1,6 @@
-import 'package:code_magic_ex/utilities/images.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utilities/images.dart';
 
 class ProgressBar {
   late OverlayEntry _progressOverlayEntry;

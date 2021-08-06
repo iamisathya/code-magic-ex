@@ -3,17 +3,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/api/config/member_class.dart';
-import 'package:code_magic_ex/models/find_customer.dart';
-import 'package:code_magic_ex/models/search_customer.dart';
-import 'package:code_magic_ex/models/search_reponse_by_href.dart';
-import 'package:code_magic_ex/models/user_minimal_data.dart';
-import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/order_entry_table/order_entry.dart';
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
-import 'package:code_magic_ex/utilities/core/parsing.dart';
-import 'package:code_magic_ex/utilities/function.dart';
+import '../../../../api/config/api_service.dart';
+import '../../../../api/config/member_class.dart';
+import '../../../../models/find_customer.dart';
+import '../../../../models/search_customer.dart';
+import '../../../../models/search_reponse_by_href.dart';
+import '../../../../models/user_minimal_data.dart';
+import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/core/parsing.dart';
+import '../../../../utilities/function.dart';
+import '../../../global/widgets/overlay_progress.dart';
+import '../screens/order_entry_table/order_entry.dart';
 
 class OrderEntryController extends GetxController {
   RxInt selectedTab = 0.obs;

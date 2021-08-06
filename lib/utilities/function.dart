@@ -2,27 +2,27 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/ui/screens/login/login.dart';
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
-import 'package:code_magic_ex/utilities/enums.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:code_magic_ex/exceptions/default.exception.dart';
-import 'package:code_magic_ex/exceptions/internet_failed.exception.dart';
-import 'package:code_magic_ex/exceptions/not_found.exception.dart';
-import 'package:code_magic_ex/exceptions/time_out.exception.dart';
-import 'package:code_magic_ex/exceptions/unauthorised.exception.dart';
-import 'package:code_magic_ex/models/inventory_records.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:intl/intl.dart';
+
+import '../exceptions/default.exception.dart';
+import '../exceptions/internet_failed.exception.dart';
+import '../exceptions/not_found.exception.dart';
+import '../exceptions/time_out.exception.dart';
+import '../exceptions/unauthorised.exception.dart';
+import '../models/inventory_records.dart';
+import '../ui/global/widgets/overlay_progress.dart';
+import '../ui/screens/login/login.dart';
+import 'Logger/logger.dart';
+import 'constants.dart';
+import 'core/parsing.dart';
+import 'enums.dart';
+import 'user_session.dart';
 
 void renderErrorSnackBar(
     {String title = "", String subTitle = "", bool isError = true}) {

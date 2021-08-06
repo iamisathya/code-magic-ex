@@ -1,23 +1,22 @@
 import 'dart:io';
 
-import 'package:code_magic_ex/api/config/member_class.dart';
-import 'package:code_magic_ex/models/easy_ship_reports.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/core/parsing.dart';
-import 'package:code_magic_ex/utilities/enums.dart';
-import 'package:code_magic_ex/utilities/function.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:excel/excel.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:get/get.dart';
-
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart';
 import 'package:open_file/open_file.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import '../../../../api/config/member_class.dart';
+import '../../../../models/easy_ship_reports.dart';
+import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/core/parsing.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/function.dart';
+import '../../../../utilities/user_session.dart';
 
 class EasyShipController extends GetxController {
   RxBool loading = false.obs;

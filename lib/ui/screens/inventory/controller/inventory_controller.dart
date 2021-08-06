@@ -1,27 +1,26 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:code_magic_ex/api/api_address.dart';
-import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/models/inventory_records.dart';
-import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/core/parsing.dart';
-import 'package:code_magic_ex/utilities/enums.dart';
-import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';
+import 'package:excel/excel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:excel/excel.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
-
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:open_file/open_file.dart';
 import 'package:printing/printing.dart';
+
+import '../../../../api/api_address.dart';
+import '../../../../api/config/api_service.dart';
+import '../../../../models/inventory_records.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/core/parsing.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/function.dart';
+import '../../../global/widgets/overlay_progress.dart';
 
 class InventoryController extends GetxController {
   TextEditingController searchController = TextEditingController();

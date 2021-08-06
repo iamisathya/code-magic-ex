@@ -1,13 +1,12 @@
-import 'package:code_magic_ex/api/config/member_class.dart';
-import 'package:code_magic_ex/models/order_lines.dart';
-import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:get/get.dart';
-
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../../api/config/member_class.dart';
+import '../../../../models/order_lines.dart';
+import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/user_session.dart';
+import '../../../global/widgets/overlay_progress.dart';
 
 class BarcodeController extends GetxController {
   TextEditingController bardcodeTextField = TextEditingController();

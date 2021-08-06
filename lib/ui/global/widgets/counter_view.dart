@@ -1,5 +1,5 @@
-import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:flutter/material.dart';
+import '../../../utilities/enums.dart';
 
 class CounterView extends StatelessWidget {
   const CounterView({

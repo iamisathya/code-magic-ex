@@ -1,22 +1,22 @@
 import 'dart:async';
 import 'dart:isolate';
 
-import 'package:code_magic_ex/translations/translations.dart';
-import 'package:code_magic_ex/ui/screens/splash/screen.dart';
-import 'package:code_magic_ex/utilities/connectivity.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
+import 'translations/translations.dart';
+import 'ui/screens/splash/screen.dart';
+import 'utilities/connectivity.dart';
+import 'utilities/user_session.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/ui/global/routes.dart';
-import 'package:code_magic_ex/utilities/key_value_storage.dart';
-import 'package:code_magic_ex/bloc/main_bloc.dart';
-import 'package:code_magic_ex/translations/bloc.dart';
-import 'package:code_magic_ex/ui/global/theme/bloc.dart';
-import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
+import 'ui/global/routes.dart';
+import 'utilities/key_value_storage.dart';
+import 'bloc/main_bloc.dart';
+import 'translations/bloc.dart';
+import 'ui/global/theme/bloc.dart';
+import 'ui/global/theme/app_theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

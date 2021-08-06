@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/extensions.dart';
+import '../../../utilities/constants.dart';
+import '../../../utilities/extensions.dart';
 
 class CartFooter extends StatelessWidget {
   final Function onPressed;

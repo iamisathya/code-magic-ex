@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
+import '../utilities/Logger/logger.dart';
 
 class InvalidBodyException implements Exception {
   final String message;

@@ -1,13 +1,13 @@
-import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_entry_checkout_controller.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/extensions.dart';
-import 'package:code_magic_ex/utilities/images.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../utilities/constants.dart';
+import '../../../../../../utilities/extensions.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../../utilities/size_config.dart';
+import '../../../../../global/widgets/primary_button.dart';
+import '../../../controllers/order_entry_checkout_controller.dart';
 import 'cart_card.dart';
 
 class Body extends StatelessWidget {

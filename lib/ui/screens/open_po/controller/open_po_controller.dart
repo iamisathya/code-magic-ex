@@ -1,26 +1,25 @@
-import 'package:code_magic_ex/api/api_address.dart';
-import 'package:code_magic_ex/models/cart_products.dart';
-import 'package:code_magic_ex/models/inventory_records.dart';
-import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/ui/screens/open_po/order_details/partner_order_details.dart';
-import 'package:code_magic_ex/ui/screens/open_po/order_table/order_table.dart';
-import 'package:code_magic_ex/ui/screens/webview/webview.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:code_magic_ex/api/config/member_class.dart';
-import 'package:code_magic_ex/models/open_order_id.dart';
-import 'package:code_magic_ex/models/open_po.dart';
-import 'package:code_magic_ex/models/open_po_details.dart';
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
-import 'package:code_magic_ex/utilities/extensions.dart';
+
+import '../../../../api/api_address.dart';
+import '../../../../api/config/member_class.dart';
+import '../../../../models/cart_products.dart';
+import '../../../../models/inventory_records.dart';
+import '../../../../models/open_order_id.dart';
+import '../../../../models/open_po.dart';
+import '../../../../models/open_po_details.dart';
+import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/extensions.dart';
+import '../../../global/widgets/overlay_progress.dart';
+import '../../webview/webview.dart';
+import '../order_details/partner_order_details.dart';
+import '../order_table/order_table.dart';
 
 class OpenPoController extends GetxController {
   TextEditingController commentController = TextEditingController();

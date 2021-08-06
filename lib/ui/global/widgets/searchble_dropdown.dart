@@ -1,8 +1,8 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/models/inventory_records.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
+import '../../../models/inventory_records.dart';
+import '../../../utilities/constants.dart';
 
 class SearchableDropdown extends StatelessWidget {
   const SearchableDropdown({

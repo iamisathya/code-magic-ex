@@ -1,11 +1,12 @@
-import 'package:code_magic_ex/ui/global/widgets/search_view_button.dart';
-import 'package:code_magic_ex/ui/screens/inventory/controller/inventory_controller.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/enums.dart';
-import 'package:code_magic_ex/utilities/function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
+
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/function.dart';
+import '../../../global/widgets/search_view_button.dart';
+import '../controller/inventory_controller.dart';
 
 class Body extends StatelessWidget {
   InventoryController controller = Get.find();

@@ -1,26 +1,26 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/api/config/member_class.dart';
-import 'package:code_magic_ex/models/amphur_item.dart';
-import 'package:code_magic_ex/models/district_item.dart';
-import 'package:code_magic_ex/models/enroll_response.dart';
-import 'package:code_magic_ex/models/govt_id_verify.dart';
-import 'package:code_magic_ex/models/guest_user_info.dart';
-import 'package:code_magic_ex/models/provience_item.dart';
-import 'package:code_magic_ex/models/zip_code_response.dart';
-import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/core/parsing.dart';
-import 'package:code_magic_ex/utilities/function.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
-import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:get/get.dart';
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
+
+import '../../../../api/config/api_service.dart';
+import '../../../../api/config/member_class.dart';
+import '../../../../models/amphur_item.dart';
+import '../../../../models/district_item.dart';
+import '../../../../models/enroll_response.dart';
+import '../../../../models/govt_id_verify.dart';
+import '../../../../models/guest_user_info.dart';
+import '../../../../models/provience_item.dart';
+import '../../../../models/zip_code_response.dart';
+import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/core/parsing.dart';
+import '../../../../utilities/extensions.dart';
+import '../../../../utilities/function.dart';
+import '../../../global/widgets/overlay_progress.dart';
 
 class EnrollController extends GetxController {
   ScrollController scrollController = ScrollController();

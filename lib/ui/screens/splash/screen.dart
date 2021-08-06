@@ -1,8 +1,9 @@
-import 'package:code_magic_ex/ui/global/widgets/animated_show_up.dart';
-import 'package:code_magic_ex/ui/screens/splash/controller/splash_controller.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../utilities/constants.dart';
+import '../../global/widgets/animated_show_up.dart';
+import 'controller/splash_controller.dart';
 
 class SplashScreen extends StatelessWidget {
   final SplashController controller = Get.put(SplashController());

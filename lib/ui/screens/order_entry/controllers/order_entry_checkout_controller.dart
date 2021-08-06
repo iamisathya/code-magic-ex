@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/api/config/member_class.dart';
-import 'package:code_magic_ex/models/general_models.dart';
-import 'package:code_magic_ex/models/cart_products.dart';
 import 'package:code_magic_ex/models/place_order.dart'
     hide
         Customer,
@@ -18,14 +14,18 @@ import 'package:code_magic_ex/models/radio_button_value.dart';
 import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
+import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
+
+import '../../../../api/config/api_service.dart';
+import '../../../../api/config/member_class.dart';
+import '../../../../models/cart_products.dart';
+import '../../../../models/general_models.dart';
 
 class OrderEntryCheckoutController extends GetxController {
   RxDouble totalCartPrice = 0.0.obs;

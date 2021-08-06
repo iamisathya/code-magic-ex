@@ -1,8 +1,8 @@
-import 'package:code_magic_ex/ui/screens/login/controller/login_controller.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../utilities/size_config.dart';
+import '../controller/login_controller.dart';
 import 'sign_form.dart';
 
 class Body extends StatelessWidget {

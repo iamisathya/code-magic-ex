@@ -1,17 +1,17 @@
-import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
-import 'package:code_magic_ex/ui/screens/inventory/home.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout/checkout_screen.dart';
-import 'package:code_magic_ex/ui/screens/sales_reports/home.dart';
+import '../screens/easy_ship/home.dart';
+import '../screens/inventory/home.dart';
+import '../screens/order_entry/screens/checkout/checkout_screen.dart';
+import '../screens/sales_reports/home.dart';
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/ui/screens/webview/webview.dart';
-import 'package:code_magic_ex/ui/global/router.dart';
-import 'package:code_magic_ex/ui/screens/login/login.dart';
-import 'package:code_magic_ex/ui/screens/barcode/home.dart';
-import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
-import 'package:code_magic_ex/ui/screens/home/home.dart';
-import 'package:code_magic_ex/ui/screens/open_po/home/home.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
+import '../screens/webview/webview.dart';
+import 'router.dart';
+import '../screens/login/login.dart';
+import '../screens/barcode/home.dart';
+import '../screens/enroll/enroll.dart';
+import '../screens/home/home.dart';
+import '../screens/open_po/home/home.dart';
+import '../screens/order_entry/order_entry.dart';
 
 Map<String, WidgetBuilder> get routes {
   return {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/utilities/constants.dart';
+import '../../../utilities/constants.dart';
 
 class CommonButton extends StatelessWidget {
   final Function(String) onPressed;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
+import '../../../utilities/constants.dart';
+import '../../../utilities/size_config.dart';
 
 class BackIconButton extends StatelessWidget {
   const BackIconButton({

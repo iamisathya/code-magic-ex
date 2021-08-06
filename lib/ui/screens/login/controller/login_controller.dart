@@ -1,26 +1,25 @@
-import 'package:code_magic_ex/api/api_address.dart';
-import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/api/config/member_class.dart';
-import 'package:code_magic_ex/api/request/request_customer_token.dart';
-import 'package:code_magic_ex/models/user_id.dart';
-import 'package:code_magic_ex/models/user_info.dart';
-import 'package:code_magic_ex/models/user_token.dart';
-import 'package:code_magic_ex/ui/global/widgets/confirmation_dialog.dart';
-import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/ui/screens/home/home.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/function.dart';
-import 'package:code_magic_ex/utilities/keyboard.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
-import 'package:code_magic_ex/models/profile_picture.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../../api/api_address.dart';
+import '../../../../api/config/api_service.dart';
+import '../../../../api/config/member_class.dart';
+import '../../../../api/request/request_customer_token.dart';
+import '../../../../models/profile_picture.dart';
+import '../../../../models/user_id.dart';
+import '../../../../models/user_info.dart';
+import '../../../../models/user_token.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/function.dart';
+import '../../../../utilities/keyboard.dart';
+import '../../../../utilities/user_session.dart';
+import '../../../global/widgets/confirmation_dialog.dart';
+import '../../../global/widgets/overlay_progress.dart';
+import '../../home/home.dart';
 
 class LoginController extends GetxController {
   final TextEditingController userIdController = TextEditingController();

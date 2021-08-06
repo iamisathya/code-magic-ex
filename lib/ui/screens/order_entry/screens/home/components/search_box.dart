@@ -1,10 +1,10 @@
-import 'package:code_magic_ex/ui/global/widgets/search_view.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/controller.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
-
-import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../utilities/constants.dart';
+import '../../../../../../utilities/extensions.dart';
+import '../../../../../global/widgets/search_view.dart';
+import '../../../controllers/controller.dart';
 
 class SearchBox extends StatelessWidget {
   final OrderEntryController controller = Get.put(OrderEntryController());

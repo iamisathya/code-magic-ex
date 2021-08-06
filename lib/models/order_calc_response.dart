@@ -1,5 +1,5 @@
-import 'package:code_magic_ex/models/place_order.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'place_order.dart';
 
 part 'order_calc_response.g.dart';
 

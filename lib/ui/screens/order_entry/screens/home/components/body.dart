@@ -1,12 +1,12 @@
-import 'package:code_magic_ex/models/search_reponse_by_href.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/controller.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/home/components/search_box.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/home/components/top_tabs.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:code_magic_ex/utilities/extensions.dart';
+import '../../../../../../models/search_reponse_by_href.dart';
+import '../../../../../../utilities/constants.dart';
+import '../../../../../../utilities/extensions.dart';
+import '../../../controllers/controller.dart';
+import 'search_box.dart';
+import 'top_tabs.dart';
 
 class Body extends StatelessWidget {
   final OrderEntryController controller = Get.put(OrderEntryController());

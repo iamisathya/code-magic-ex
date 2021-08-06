@@ -1,19 +1,20 @@
 import 'dart:async';
 
-import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/models/user_info.dart';
-import 'package:code_magic_ex/models/user_token.dart';
-import 'package:code_magic_ex/ui/screens/login/login.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
-import 'package:code_magic_ex/utilities/function.dart';
-import 'package:code_magic_ex/utilities/key_value_storage.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../api/config/api_service.dart';
+import '../../../../models/user_info.dart';
+import '../../../../models/user_token.dart';
+import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/function.dart';
+import '../../../../utilities/key_value_storage.dart';
+import '../../../../utilities/user_session.dart';
+import '../../login/login.dart';
+import '../../order_entry/order_entry.dart';
 
 class SplashController extends GetxController {
   Timer? _timer;

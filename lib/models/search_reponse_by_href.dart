@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:code_magic_ex/models/guest_user_info.dart';
+import 'guest_user_info.dart';
 
 part 'search_reponse_by_href.g.dart';
 

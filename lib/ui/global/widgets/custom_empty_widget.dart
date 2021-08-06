@@ -1,6 +1,6 @@
-import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../utilities/size_config.dart';
 
 class CustomEmptyWidget extends StatelessWidget {
   const CustomEmptyWidget({

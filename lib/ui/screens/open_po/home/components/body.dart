@@ -1,19 +1,19 @@
-import 'package:code_magic_ex/ui/global/widgets/custom_empty_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_error_widget.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_loading_widget.dart';
-import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
-import 'package:code_magic_ex/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-
-import 'package:code_magic_ex/api/api_address.dart';
-import 'package:code_magic_ex/models/open_po.dart';
-import 'package:code_magic_ex/ui/screens/webview/webview.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/images.dart';
-import 'package:code_magic_ex/utilities/extensions.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
+
+import '../../../../../api/api_address.dart';
+import '../../../../../models/open_po.dart';
+import '../../../../../utilities/constants.dart';
+import '../../../../../utilities/enums.dart';
+import '../../../../../utilities/extensions.dart';
+import '../../../../../utilities/images.dart';
+import '../../../../global/widgets/custom_empty_widget.dart';
+import '../../../../global/widgets/custom_error_widget.dart';
+import '../../../../global/widgets/custom_loading_widget.dart';
+import '../../../webview/webview.dart';
+import '../../controller/open_po_controller.dart';
 
 class Body extends StatelessWidget {
   final OpenPoController controller = Get.put(OpenPoController());

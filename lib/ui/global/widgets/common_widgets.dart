@@ -1,5 +1,5 @@
 
-import 'package:code_magic_ex/utilities/constants.dart';
+import '../../../utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,5 @@
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import '../../../utilities/constants.dart';
 
 Padding clearIcon(
         {double s = 33.0,

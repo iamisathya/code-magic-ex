@@ -1,9 +1,9 @@
-import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import 'package:code_magic_ex/ui/global/navigation_drawer.dart';
-import 'package:code_magic_ex/ui/screens/enroll/components/body.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
+import '../../../utilities/constants.dart';
+import '../../global/navigation_drawer.dart';
+import '../../global/widgets/transparent_app_bar.dart';
+import 'components/body.dart';
 
 class EnrollHomeScreen extends StatelessWidget {
   static const String routeName = '/enrollHomePage';

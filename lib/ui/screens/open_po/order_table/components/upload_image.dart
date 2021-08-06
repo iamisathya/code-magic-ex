@@ -1,9 +1,10 @@
-import 'package:code_magic_ex/ui/global/widgets/common_widgets.dart';
-import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
-import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_table_controller.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../utilities/constants.dart';
+import '../../../../global/widgets/common_widgets.dart';
+import '../../../../global/widgets/primary_button.dart';
+import '../../controller/open_po_table_controller.dart';
 
 void renderBottomSheet(BuildContext context) {
   final OpenPoTableController controller = Get.put(OpenPoTableController());

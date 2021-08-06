@@ -1,9 +1,9 @@
-import 'package:code_magic_ex/ui/screens/open_po/controller/open_po_controller.dart';
-import 'package:code_magic_ex/ui/screens/open_po/order_details/components/body.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+
+import '../../../../utilities/constants.dart';
+import '../controller/open_po_controller.dart';
+import 'components/body.dart';
 
 class PurchaseOrderDetailsPage extends StatelessWidget {
   static const String routeName = '/purchaseOrderDetailsPage';

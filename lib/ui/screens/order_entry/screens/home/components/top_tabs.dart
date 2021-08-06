@@ -1,8 +1,9 @@
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/controller.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../utilities/constants.dart';
+import '../../../controllers/controller.dart';
 
 class SearchRadioOptions extends StatelessWidget {
   final OrderEntryController controller = Get.put(OrderEntryController());

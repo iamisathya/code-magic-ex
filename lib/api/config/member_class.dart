@@ -1,26 +1,26 @@
-import 'package:code_magic_ex/api/request/request_place_open_po_order.dart';
-import 'package:code_magic_ex/models/amphur_item.dart';
-import 'package:code_magic_ex/models/district_item.dart';
-import 'package:code_magic_ex/models/easy_ship_reports.dart';
-import 'package:code_magic_ex/models/general_models.dart';
-import 'package:code_magic_ex/models/govt_id_verify.dart';
-import 'package:code_magic_ex/models/open_po_create_order_response.dart';
-import 'package:code_magic_ex/models/order_entry_product_item.dart';
-import 'package:code_magic_ex/models/place_order.dart';
-import 'package:code_magic_ex/models/provience_item.dart';
-import 'package:code_magic_ex/models/search_reponse_by_href.dart';
-import 'package:code_magic_ex/models/user_id.dart';
-import 'package:code_magic_ex/models/zip_code_response.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
+import '../request/request_place_open_po_order.dart';
+import '../../models/amphur_item.dart';
+import '../../models/district_item.dart';
+import '../../models/easy_ship_reports.dart';
+import '../../models/general_models.dart';
+import '../../models/govt_id_verify.dart';
+import '../../models/open_po_create_order_response.dart';
+import '../../models/order_entry_product_item.dart';
+import '../../models/place_order.dart';
+import '../../models/provience_item.dart';
+import '../../models/search_reponse_by_href.dart';
+import '../../models/user_id.dart';
+import '../../models/zip_code_response.dart';
+import '../../utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
 
-import 'package:code_magic_ex/api/api_address.dart';
-import 'package:code_magic_ex/models/open_order_id.dart';
-import 'package:code_magic_ex/models/open_po.dart';
-import 'package:code_magic_ex/models/open_po_details.dart';
-import 'package:code_magic_ex/models/user_token.dart';
+import '../api_address.dart';
+import '../../models/open_order_id.dart';
+import '../../models/open_po.dart';
+import '../../models/open_po_details.dart';
+import '../../models/user_token.dart';
 
 part 'member_class.g.dart';
 
