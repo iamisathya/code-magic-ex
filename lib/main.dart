@@ -1,26 +1,25 @@
 import 'dart:async';
 import 'dart:isolate';
 
-import 'translations/translations.dart';
-import 'ui/screens/splash/screen.dart';
-import 'utilities/connectivity.dart';
-import 'utilities/user_session.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-
-import 'ui/global/routes.dart';
-import 'utilities/key_value_storage.dart';
-import 'bloc/main_bloc.dart';
-import 'translations/bloc.dart';
-import 'ui/global/theme/bloc.dart';
-import 'ui/global/theme/app_theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+
+import 'bloc/main_bloc.dart';
+import 'translations/bloc.dart';
+import 'translations/translations.dart';
+import 'ui/global/routes.dart';
+import 'ui/global/theme/app_theme.dart';
+import 'ui/global/theme/bloc.dart';
+import 'ui/screens/splash/screen.dart';
+import 'utilities/connectivity.dart';
+import 'utilities/key_value_storage.dart';
+import 'utilities/user_session.dart';
 
 // ignore: avoid_void_asyn
 Future<void> main() async {

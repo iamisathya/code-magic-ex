@@ -1,5 +1,6 @@
-import 'common_methods.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'common_methods.dart';
 
 part 'find_customer.g.dart';
 

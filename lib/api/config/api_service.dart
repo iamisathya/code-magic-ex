@@ -1,33 +1,30 @@
 import 'dart:async';
 
-import '../request/request_order_calculation.dart';
-import '../../models/cash_coupon_response.dart';
-import '../../models/general_models.dart';
-import '../../models/guest_user_info.dart';
-import '../../models/order_lines.dart';
-import '../../models/place_order.dart';
-import '../../models/purchase_log_request_data.dart';
-import '../../utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:retrofit/retrofit.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:retrofit/retrofit.dart';
 
-import '../api_address.dart';
-import '../request/request_calculate_order.dart';
-import '../request/request_place_order.dart';
+import '../../models/cash_coupon_response.dart';
 import '../../models/find_customer.dart';
-import '../../models/inventory_records.dart';
+import '../../models/general_models.dart';
+import '../../models/guest_user_info.dart';
 import '../../models/inventory_movement_records.dart';
+import '../../models/inventory_records.dart';
 import '../../models/managed_warehouse.dart';
-import '../../models/order_list_rmas.dart';
-import '../../models/search_customer.dart';
 import '../../models/order_calc_response.dart';
+import '../../models/order_lines.dart';
+import '../../models/order_list_rmas.dart';
+import '../../models/place_order.dart';
 import '../../models/profile_picture.dart';
-
-import '../request/request_customer_token.dart';
+import '../../models/search_customer.dart';
 import '../../models/user_info.dart';
 import '../../models/user_token.dart';
+import '../../utilities/user_session.dart';
+import '../api_address.dart';
+import '../request/request_calculate_order.dart';
+import '../request/request_customer_token.dart';
+import '../request/request_order_calculation.dart';
 
 part 'api_service.g.dart';
 

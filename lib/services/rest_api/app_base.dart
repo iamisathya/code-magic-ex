@@ -1,12 +1,13 @@
 import 'dart:io';
 
-import 'exceptions.dart';
-import '../../utilities/connectivity.dart';
-import '../../utilities/core/parsing.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+import '../../utilities/connectivity.dart';
+import '../../utilities/core/parsing.dart';
+import 'exceptions.dart';
 
 abstract class RestApiNepBaseService {
   Dio dio = Dio();

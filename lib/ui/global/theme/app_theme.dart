@@ -1,5 +1,5 @@
-import '../../../utilities/constants.dart';
 import 'package:flutter/material.dart';
+import '../../../utilities/constants.dart';
 
 class AppTheme {
   //
