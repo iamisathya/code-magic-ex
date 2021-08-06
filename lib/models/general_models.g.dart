@@ -35,7 +35,7 @@ Map<String, dynamic> _$ClearOrderCacheResponseToJson(
 
 VerifyOrderResponse _$VerifyOrderResponseFromJson(Map<String, dynamic> json) {
   return VerifyOrderResponse(
-    code: json['code'] as int,
+    code: json['code'],
     require:
         (json['require'] as List<dynamic>).map((e) => e as String).toList(),
     unRequire: json['un_require'] as bool,

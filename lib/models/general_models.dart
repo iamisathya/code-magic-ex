@@ -38,7 +38,7 @@ class ClearOrderCacheResponse {
 @JsonSerializable()
 class VerifyOrderResponse {
   @JsonKey(name: "code")
-  int code;
+  dynamic code;
   @JsonKey(name: "require")
   List<String> require;
   @JsonKey(name: "un_require")

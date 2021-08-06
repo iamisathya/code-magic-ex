@@ -26,6 +26,7 @@ import '../../../../api/config/api_service.dart';
 import '../../../../api/config/member_class.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/general_models.dart';
+import '../order_entry.dart';
 
 class OrderEntryCheckoutController extends GetxController {
   RxDouble totalCartPrice = 0.0.obs;
@@ -69,8 +70,8 @@ class OrderEntryCheckoutController extends GetxController {
       // * Check for server status if on or off
       final bool serverStatus = await checkOrderEntryServerStatus();
       if (serverStatus) {
-        final List<dynamic> response =
-            await Future.wait([getPeriodResponse(), getPlaceOrders(context)]);
+        final List<dynamic> response = await Future.wait(
+            [getPeriodResponse(), proceedPlaceOrder(context)]);
         final periodResponse = response[0] as String;
         final orderPlaceResponse = response[1] as bool;
         if (orderPlaceResponse != false && periodResponse != "") {
@@ -82,6 +83,7 @@ class OrderEntryCheckoutController extends GetxController {
             }
           }
         }
+        Get.off(() => OrderEntryHomeScreen());
       }
       _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
@@ -100,7 +102,7 @@ class OrderEntryCheckoutController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "Server Error!", subTitle: e.error.toString());
       return false;
     } catch (err) {
       renderErrorSnackBar(title: "Error!", subTitle: err.toString());
@@ -141,7 +143,8 @@ class OrderEntryCheckoutController extends GetxController {
     }
   }
 
-  PurchaseLogRequestData prepareRequestPaylod() {
+  PurchaseLogRequestData? prepareRequestPaylod() {
+    try {
     final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
     final List<ProductLineItem> checkoutItems = checkoutProducts
         .map((element) => ProductLineItem(
@@ -178,10 +181,20 @@ class OrderEntryCheckoutController extends GetxController {
               amount: 6000.toString(), method: "Cash", type: "record")
         ]));
     return requestData;
+
+
+    } catch (err) {
+      LoggerService.instance.e(err.toString());
+      return null;
+    }
   }
 
   Future<void> getPurchaseLog(int periodLog) async {
     try {
+      final payload = prepareRequestPaylod();
+      if(payload == null){
+        throw Exception('Somthing went wrong while preparing PurchaseLogRequestData');
+      }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
       await MemberCallsService.init().logPurchaseOrder(
@@ -195,21 +208,26 @@ class OrderEntryCheckoutController extends GetxController {
     }
   }
 
-  Future<bool> getPlaceOrders(BuildContext context) async {
+  Future<bool> proceedPlaceOrder(BuildContext context) async {
     try {
       final String enrollResponse = jsonEncode(prepareRequestPaylod());
       final PlaceOrder response =
           await ApiService.shared().getPlaceOrders(enrollResponse);
       if (response.taxedAs != "") {
-        await clearOrderCache();
-        await verifyOrder(response);
-        await sendOrderOnline(response);
+        // * firing all api's at once
+        await Future.wait([
+          clearOrderCache(),
+          verifyOrder(response),
+          sendOrderOnline(response)
+        ]);
       }
       return false;
     } on DioError catch (e) {
+      LoggerService.instance.e(e.toString());
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
       return false;
     } catch (err) {
+      LoggerService.instance.e(err.toString());
       renderErrorSnackBar(title: "Error!", subTitle: err.toString());
       return false;
     }
@@ -230,6 +248,7 @@ class OrderEntryCheckoutController extends GetxController {
     } on DioError catch (e) {
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
     } catch (err) {
+      LoggerService.instance.e(err.toString());
       renderErrorSnackBar(title: "Error!", subTitle: err.toString());
     }
   }
