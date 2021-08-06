@@ -59,6 +59,7 @@ class OrderEntryCheckoutController extends GetxController {
       final intent = data as Map<String, dynamic>;
       checkoutProducts = intent["products"] as RxList<CartProductsItem>;
       passedUser = intent["user"] as UserMinimalData;
+      calculateTotal();
     }
   }
 
@@ -261,11 +262,20 @@ class OrderEntryCheckoutController extends GetxController {
       LoggerService.instance.e(err.toString());
     }
   }
-    void onChangedSearchType(RadioButtonModel data) {
+
+  void onChangedSearchType(RadioButtonModel data) {
     seletedOption.value = paymentOptions[data.index];
     totalCheckoutAmount.value = data.index == 0
         ? totalCartPrice.value
         : totalCartPrice.value - availableCreditAmount.value;
+  }
+
+  void calculateTotal() {
+    totalCartPrice.value =
+        checkoutProducts.fold(0, (i, element) => i + element.totalPrice);
+    totalCartPv.value =
+        checkoutProducts.fold(0, (i, element) => i + element.totalPv);
+    totalCheckoutAmount = totalCartPrice;
   }
 
   void _onDioError(DioError e) {
