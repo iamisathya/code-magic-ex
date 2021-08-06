@@ -14,6 +14,7 @@ import 'package:code_magic_ex/models/radio_button_value.dart';
 import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/models/user_minimal_data.dart';
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/screens/order_complete/order_complete.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -83,7 +84,7 @@ class OrderEntryCheckoutController extends GetxController {
             }
           }
         }
-        Get.off(() => OrderEntryHomeScreen());
+        Get.offAll(() => OrderComplete());
       }
       _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
