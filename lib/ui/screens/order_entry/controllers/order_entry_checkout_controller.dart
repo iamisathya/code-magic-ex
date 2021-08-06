@@ -21,7 +21,6 @@ import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tuple/tuple.dart';
 
 import '../../../../api/config/api_service.dart';
 import '../../../../api/config/member_class.dart';
