@@ -21,6 +21,7 @@ import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tuple/tuple.dart';
 
 import '../../../../api/config/api_service.dart';
 import '../../../../api/config/member_class.dart';
@@ -65,20 +66,25 @@ class OrderEntryCheckoutController extends GetxController {
 
   Future<void> proceedToCheckOut(BuildContext context) async {
     try {
+      _sendingMsgProgressBar.show(context);
+      // * Check for server status if on or off
       final bool serverStatus = await checkOrderEntryServerStatus();
       if (serverStatus) {
-        final String periodResponse = await getPeriodResponse();
-        if (periodResponse != "") {
+        final List<dynamic> response =
+            await Future.wait([getPeriodResponse(), getPlaceOrders(context)]);
+        final periodResponse = response[0] as String;
+        final orderPlaceResponse = response[1] as bool;
+        if (orderPlaceResponse != false && periodResponse != "") {
           final GetPeriodLogResponse? periodLogResponse =
               await getPeriodLog(periodResponse);
           if (periodLogResponse != null) {
             if (periodLogResponse.status == "success") {
               await getPurchaseLog(periodLogResponse.idLog);
-              await getPlaceOrders(context);
             }
           }
         }
       }
+      _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
       _onDioError(e);
     } catch (err) {
@@ -104,8 +110,9 @@ class OrderEntryCheckoutController extends GetxController {
   }
 
   Future<String> getPeriodResponse() async {
+    String response = "";
     try {
-      final String response = await MemberCallsService.init()
+      response = await MemberCallsService.init()
           .getPeriodResponse(kCountry, getCurrentPeriod(), kSystem);
       final jsonResponse = jsonDecode(response.toString());
       if (jsonResponse != null) {
@@ -114,13 +121,9 @@ class OrderEntryCheckoutController extends GetxController {
           return response;
         }
       }
-      return "";
-    } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      return "false";
+      return response;
     } catch (err) {
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
-      return "false";
+      return response;
     }
   }
 
@@ -130,15 +133,11 @@ class OrderEntryCheckoutController extends GetxController {
           .getPeriodLog(
               kPeriodLog, periodResponse, kCheckOrderEntryServerStatus);
       if (status.status == "success") {
-        // continue with order place
         return status;
       }
       return null;
-    } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      return null;
     } catch (err) {
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      LoggerService.instance.e(err.toString());
       return null;
     }
   }
@@ -192,8 +191,6 @@ class OrderEntryCheckoutController extends GetxController {
           usedInfo.id.unicity.toString(),
           getCurrentPeriod(),
           periodLog.toString());
-    } on DioError catch (e) {
-      LoggerService.instance.e(e.toString());
     } catch (err) {
       LoggerService.instance.e(err.toString());
     }
@@ -209,7 +206,6 @@ class OrderEntryCheckoutController extends GetxController {
         await verifyOrder(response);
         await sendOrderOnline(response);
       }
-
       return false;
     } on DioError catch (e) {
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
@@ -224,10 +220,8 @@ class OrderEntryCheckoutController extends GetxController {
     try {
       await MemberCalls2Service.init().clearOrderCache(
           UserSessionManager.shared.userInfo!.id.unicity.toString());
-    } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
     } catch (err) {
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      LoggerService.instance.e(err.toString());
     }
   }
 
