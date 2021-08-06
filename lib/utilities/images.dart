@@ -12,6 +12,7 @@ const kImageNotFound = 'assets/images/not_found.svg';
 const kImageBlankPage = 'assets/images/blank_page.svg';
 const kImageSearch = 'assets/images/search.svg';
 const kImageSearchSecendary = 'assets/images/search_two.svg';
+const kImageOrderComplete = 'assets/images/order_confirm.svg';
 //* Icons
 const kIconProduct = 'assets/icons/Product.svg';
 const kIconTrash = 'assets/icons/Trash.svg';

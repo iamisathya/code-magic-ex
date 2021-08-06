@@ -8,33 +8,33 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
-      color: kPrimaryColor,
+      color: kMainColor,
       iconTheme: IconThemeData(
-        color: Colors.white,
+        color: kMainColor,
       ),
     ),
     colorScheme: const ColorScheme.light(
-      primary: Colors.white,
-      primaryVariant: Colors.white38,
+      primary: Colors.black,
+      primaryVariant: Colors.black,
       secondary: Colors.red,
     ),
     cardTheme: const CardTheme(
-      color: Colors.teal,
+      color: Colors.black,
     ),
     iconTheme: const IconThemeData(
-      color: Colors.white54,
+      color: Colors.black,
     ),
     textTheme: const TextTheme(
       headline6: TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 20.0,
       ),
       subtitle2: TextStyle(
-        color: Colors.white70,
+        color: Colors.black87,
         fontSize: 16.0,
       ),
       headline4: TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 16.0,
       ),
     ),
@@ -61,18 +61,34 @@ class AppTheme {
       color: Colors.white54,
     ),
     textTheme: const TextTheme(
-      headline6: TextStyle(
-        color: Colors.white,
-        fontSize: 20.0,
+      headline1: TextStyle(
+        color: Colors.black,
+        fontSize: 34.0,
       ),
-      subtitle2: TextStyle(
-        color: Colors.white70,
-        fontSize: 18.0,
+      headline2: TextStyle(
+        color: Colors.black,
+        fontSize: 28.0,
+      ),
+      headline3: TextStyle(
+        color: Colors.black,
+        fontSize: 24.0,
       ),
       headline4: TextStyle(
-        color: Colors.white,
-        fontSize: 16.0,
-      )
+        color: Colors.black,
+        fontSize: 22.0,
+      ),
+      headline5: TextStyle(
+        color: Colors.black,
+        fontSize: 20.0,
+      ),
+      headline6: TextStyle(
+        color: Colors.black,
+        fontSize: 18.0,
+      ),
+      subtitle2: TextStyle(
+        color: Colors.black,
+        fontSize: 18.0,
+      ),
     ),
   );
 }
