@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../utilities/constants.dart';
 import '../../../utilities/size_config.dart';
 
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({
+class PrimaryOutlineButton extends StatelessWidget {
+  const PrimaryOutlineButton({
     required this.text,
     required this.press,
     this.loading = false,
@@ -22,21 +22,20 @@ class PrimaryButton extends StatelessWidget {
         : SizedBox(
             width: getProportionateScreenWidth(150),
             height: getProportionateScreenHeight(56),
-            child: ElevatedButton.icon(
+            child: FlatButton.icon(
               icon: Text(text,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: kMainColor,
                     fontSize: getProportionateScreenWidth(14),
                   )),
               label: showIcon
                   ? const Icon(Icons.arrow_forward,
-                      size: 16, color: Colors.white)
+                      size: 16, color: kMainColor)
                   : const SizedBox(),
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(kMainColor),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)))),
+              shape: RoundedRectangleBorder(
+                  side: const BorderSide(
+                      color: kMainColor, width: 3),
+                  borderRadius: BorderRadius.circular(50)),
               onPressed: () => press(),
             ));
   }

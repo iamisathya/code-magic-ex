@@ -1,75 +1,91 @@
-import 'package:code_magic_ex/constants/font_weights.dart';
-import 'package:code_magic_ex/styles/edge_insets.dart';
-import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
-
-import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
-import 'package:code_magic_ex/utilities/images.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
+import 'package:code_magic_ex/api/api_address.dart';
+import 'package:code_magic_ex/utilities/function.dart';
+import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../../styles/edge_insets.dart';
+import '../../../../../../../ui/global/theme/app_theme.dart';
+import '../../../../../../../ui/global/widgets/primary_button.dart';
+import '../../../../../../../ui/global/widgets/primary_button_outline.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../../utilities/size_config.dart';
 import '../../../order_entry.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(child: 
-    Container(
-      margin: kEdgeInset(v: 16),
-      child: Center(
-        child: Column(
-          children: [
-            SizedBox(height: SizeConfig.screenHeight * 0.03),
-            SvgPicture.asset(kImageOrderComplete,
-                height: SizeConfig.screenHeight * 0.25),
-            SizedBox(height: SizeConfig.screenHeight * 0.05),
-            Text(
-              "Order Summary - #23232323",
-              style: AppTheme.lightTheme.textTheme.headline2,
-            ),
-            const Text(
-              "We are recived order from your, we are processing it. We'll send it to you shortly",
-            ),
-            Container(
-              margin: kEdgeInsetSymmetric(h: 0, v: 20),
-              child: Column(
-                children: const [
-                  ColumnItem(
-                    title: "User ID",
-                    value: "121212",
-                  ),
-                  ColumnItem(
-                    title: "User Name",
-                    value: "121212",
-                  ),
-                  ColumnItem(
-                    title: "Order Number",
-                    value: "121212",
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: kEdgeInsetTLRB(b: 20),
-              child: Column(
+    return SingleChildScrollView(
+      child: Container(
+        margin: kEdgeInset(v: 12),
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: SizeConfig.screenHeight * 0.03),
+              SvgPicture.asset(kImageOrderComplete,
+                  height: SizeConfig.screenHeight * 0.25),
+              SizedBox(height: SizeConfig.screenHeight * 0.05),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextButton.icon(onPressed: () => null, icon: const Icon(Icons.arrow_forward_outlined), label: const Text("Check Orders")),
-                  TextButton.icon(onPressed: () => null, icon: const Icon(Icons.arrow_forward_outlined), label: const Text("Get Print")),
-                  TextButton.icon(onPressed: () => null, icon: const Icon(Icons.arrow_forward_outlined), label: const Text("Go back")),
+                  Text(
+                    "Order Summary - ",
+                    style: AppTheme.lightTheme.textTheme.headline4,
+                  ),
+                  Text(
+                    "#23232323",
+                    style: AppTheme.lightTheme.textTheme.headline6,
+                  ),
                 ],
               ),
-            ),
-            SizedBox(
-              width: SizeConfig.screenWidth * 0.6,
-              child: PrimaryButton(
-                text: "Go back",
-                press: () => Get.offAll(() => OrderEntryHomeScreen()),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  "We are recived order from your, we are processing it. We'll send it to you shortly",
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-          ],
+              Container(
+                margin: kEdgeInsetSymmetric(h: 0, v: 20),
+                child: Column(
+                  children: const [
+                    ColumnItem(
+                      title: "User ID",
+                      value: "121212",
+                    ),
+                    ColumnItem(
+                      title: "User Name",
+                      value: "121212",
+                    ),
+                    ColumnItem(
+                      title: "Order Number",
+                      value: "121212",
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                margin: kEdgeInsetTLRB(b: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    PrimaryOutlineButton(
+                        press: () => launchURL("${Address.orderedItems}/31512d2a1d4a2a5860bc785d27d1f752ef2a0cd919b417e7899c79ae4fc690d6&token=${UserSessionManager.shared.customerToken}&number=423160354"), text: "View Order"),
+                    PrimaryOutlineButton(press: () => launchURL("${Address.printOrderItems}?number=423160354"), text: "Product List"),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: SizeConfig.screenWidth * 0.6,
+                child: PrimaryButton(
+                  text: "Go back",
+                  press: () => Get.offAll(() => OrderEntryHomeScreen()),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
       ),
     );
   }
@@ -87,21 +103,29 @@ class ColumnItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: kEdgeInset(v: 10),
+      padding: kEdgeInsetSymmetric(h: 30),
       child: Row(
         children: [
           Expanded(
             flex: 2,
             child: Text(
               title,
-              style: AppTheme.lightTheme.textTheme.headline4,
+              style: AppTheme.lightTheme.textTheme.headline6,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              "   :  ",
+              textAlign: TextAlign.center,
+              style: AppTheme.lightTheme.textTheme.headline6,
             ),
           ),
           Expanded(
             flex: 2,
             child: Text(
-              ": $value",
-              style: AppTheme.lightTheme.textTheme.headline4,
+              value,
+              textAlign: TextAlign.right,
+              style: AppTheme.lightTheme.textTheme.headline6,
             ),
           ),
         ],

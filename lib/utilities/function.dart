@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../exceptions/default.exception.dart';
 import '../exceptions/internet_failed.exception.dart';
@@ -221,3 +222,11 @@ String prepareNotes(String userId, String countryId) {
     return "shopping|dsc|mobile app|unknown|$device";
   }
 }
+
+Future<void> launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw "Could not launch $url";
+    }
+  }

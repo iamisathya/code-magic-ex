@@ -1,7 +1,8 @@
 const String encodetype = "base64";
 const String encodeValue = "Mjk3MDQ2NjoxMjM0";
-
+const String baseDscTh = "https://dsc-th.unicity.com/";
 class Address {
+  static const String baseDscTh = "https://hydra.unicity.net/v5a/";
   static const String baseUrl = "https://hydra.unicity.net/v5a/";
   static const String loginTokens = "/loginTokens";
   static const String customerData = "/customers/{id}";
@@ -22,16 +23,18 @@ class Address {
   static const String allDsc = "ALL/DSC/";
   static const String allDscPath = "ALL/DSC";
   static const String dictionary = "dictionary/publish";
-  static const String dscHome = "https://dsc-th.unicity.com/";
-  static const String resource = "https://dsc-th.unicity.com/data/";
-  static const String poOrder = "https://dsc-th.unicity.com/po_1.php";
+  static const String dscHome = "$baseDscTh/";
+  static const String resource = "$baseDscTh/data/";
+  static const String poOrder = "$baseDscTh/po_1.php";
   static const String validateIdCard = "api/unishop/v1/th/validate_address/idcard";
   static const String verifyEnroll = "THA/THA_DSC_Enroll_ValidationV2.asp";
   static const String validateEmail = "ALL/Email_Validation.asp";
   static const String cashCoupon = "unishop-fn-misc/cashcoupon_quota/";
-  static const String inventoryPrint = "https://dsc-th.unicity.com/administrator/print/inventory.php?user_id";
+  static const String inventoryPrint = "$baseDscTh/administrator/print/inventory.php?user_id";
   static const String period = "period.asp";
   static const String clearOrderCache = "etlV2/cache/clearAll";
   static const String orderVerify = "ALL/DSC/THA/barcode/order_verify.php";
   static const String sendOrderOnline = "ALL/DSC/THA/email/send_order_online_TH.php";
+  static const String printOrderItems = "$baseDscTh/administrator/print/ordertranitems.php";
+  static const String orderedItems = "$baseDscTh/invoice.php?link=https://hydra.unicity.net/v5a/orders";
 }

@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/constants/font_weights.dart';
 import 'package:flutter/material.dart';
 import '../../../utilities/constants.dart';
 
@@ -25,17 +26,34 @@ class AppTheme {
       color: Colors.black,
     ),
     textTheme: const TextTheme(
-      headline6: TextStyle(
+      headline1: TextStyle(
         color: Colors.black,
-        fontSize: 20.0,
+        fontSize: 34.0,
       ),
-      subtitle2: TextStyle(
-        color: Colors.black87,
-        fontSize: 16.0,
+      headline2: TextStyle(
+        color: Colors.black,
+        fontSize: 28.0,
+      ),
+      headline3: TextStyle(
+        color: Colors.black,
+        fontSize: 24.0,
       ),
       headline4: TextStyle(
         color: Colors.black,
+        fontSize: 20.0,
+      ),
+      headline5: TextStyle(
+        color: Colors.black,
+        fontSize: 18.0,
+      ),
+      headline6: TextStyle(
+        fontWeight: AppFontWeight.bold,
+        color: Colors.black,
         fontSize: 16.0,
+      ),
+      subtitle2: TextStyle(
+        color: Colors.black,
+        fontSize: 18.0,
       ),
     ),
   );
