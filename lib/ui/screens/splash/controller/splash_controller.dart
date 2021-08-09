@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:code_magic_ex/ui/screens/order_entry/screens/order_complete/order_complete.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -62,7 +61,7 @@ class SplashController extends GetxController {
       UserSessionManager.shared.getProfilePictureFromDB();
       UserSessionManager.shared.getCustomerIdInfoFromDB();
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
-      Get.offAll(() => OrderComplete());
+      Get.offAll(() => OrderEntryHomeScreen());
     } else {
       Get.offAll(() => LoginScreen());
     }

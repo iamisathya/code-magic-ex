@@ -27,7 +27,6 @@ import '../../../../api/config/api_service.dart';
 import '../../../../api/config/member_class.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/general_models.dart';
-import '../order_entry.dart';
 
 class OrderEntryCheckoutController extends GetxController {
   RxDouble totalCartPrice = 0.0.obs;
@@ -74,8 +73,8 @@ class OrderEntryCheckoutController extends GetxController {
         final List<dynamic> response = await Future.wait(
             [getPeriodResponse(), proceedPlaceOrder(context)]);
         final periodResponse = response[0] as String;
-        final orderPlaceResponse = response[1] as bool;
-        if (orderPlaceResponse != false && periodResponse != "") {
+        final orderPlaceResponse = response[1] as PlaceOrder?;
+        if (orderPlaceResponse != null && periodResponse != "") {
           final GetPeriodLogResponse? periodLogResponse =
               await getPeriodLog(periodResponse);
           if (periodLogResponse != null) {
@@ -84,7 +83,10 @@ class OrderEntryCheckoutController extends GetxController {
             }
           }
         }
-        Get.offAll(() => OrderComplete());
+        if (orderPlaceResponse != null) {
+          Get.offAll(() => OrderComplete(),
+              transition: Transition.cupertino, arguments: orderPlaceResponse);
+        }
       }
       _sendingMsgProgressBar.hide();
     } on DioError catch (e) {
@@ -146,44 +148,42 @@ class OrderEntryCheckoutController extends GetxController {
 
   PurchaseLogRequestData? prepareRequestPaylod() {
     try {
-    final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
-    final List<ProductLineItem> checkoutItems = checkoutProducts
-        .map((element) => ProductLineItem(
-            quantity: element.quantity.toString(),
-            item: Customer(
-                href:
-                    "https://hydra.unicity.net/v5a/items?id.unicity=${element.itemCode}")))
-        .toList();
+      final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
+      final List<ProductLineItem> checkoutItems = checkoutProducts
+          .map((element) => ProductLineItem(
+              quantity: element.quantity.toString(),
+              item: Customer(
+                  href:
+                      "https://hydra.unicity.net/v5a/items?id.unicity=${element.itemCode}")))
+          .toList();
 
-    final PurchaseLogRequestData requestData = PurchaseLogRequestData(
-        customer: Customer(
-            href:
-                "https://hydra.unicity.net/v5a/customers?unicity=${usedInfo.id.unicity.toString()}"),
-        lines: ProductLines(items: checkoutItems),
-        shipToAddress: UserShipToAddress(
-            city: usedInfo.mainAddress.city,
-            state: usedInfo.mainAddress.state,
-            address1: usedInfo.mainAddress.address1,
-            zip: usedInfo.mainAddress.zip,
-            country: "TH"),
-        shipToEmail:
-            usedInfo.email.isNotEmpty ? usedInfo.email : "none@unicity.com",
-        shipToName: ShipToName(
-            firstName: usedInfo.humanName.firstName,
-            lastName: usedInfo.humanName.lastName),
-        shipToPhone: usedInfo.homePhone,
-        shippingMethod: Customer(
-            href:
-                "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"),
-        notes: prepareNotes(usedInfo.id.unicity.toString(), "TH"),
-        terms: ProductTerms(period: getCurrentPeriod()),
-        transactions: Transactions(items: [
-          TransactionItem(
-              amount: 6000.toString(), method: "Cash", type: "record")
-        ]));
-    return requestData;
-
-
+      final PurchaseLogRequestData requestData = PurchaseLogRequestData(
+          customer: Customer(
+              href:
+                  "https://hydra.unicity.net/v5a/customers?unicity=${usedInfo.id.unicity.toString()}"),
+          lines: ProductLines(items: checkoutItems),
+          shipToAddress: UserShipToAddress(
+              city: usedInfo.mainAddress.city,
+              state: usedInfo.mainAddress.state,
+              address1: usedInfo.mainAddress.address1,
+              zip: usedInfo.mainAddress.zip,
+              country: "TH"),
+          shipToEmail:
+              usedInfo.email.isNotEmpty ? usedInfo.email : "none@unicity.com",
+          shipToName: ShipToName(
+              firstName: usedInfo.humanName.firstName,
+              lastName: usedInfo.humanName.lastName),
+          shipToPhone: usedInfo.homePhone,
+          shippingMethod: Customer(
+              href:
+                  "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"),
+          notes: prepareNotes(usedInfo.id.unicity.toString(), "TH"),
+          terms: ProductTerms(period: getCurrentPeriod()),
+          transactions: Transactions(items: [
+            TransactionItem(
+                amount: 6000.toString(), method: "Cash", type: "record")
+          ]));
+      return requestData;
     } catch (err) {
       LoggerService.instance.e(err.toString());
       return null;
@@ -193,8 +193,9 @@ class OrderEntryCheckoutController extends GetxController {
   Future<void> getPurchaseLog(int periodLog) async {
     try {
       final payload = prepareRequestPaylod();
-      if(payload == null){
-        throw Exception('Somthing went wrong while preparing PurchaseLogRequestData');
+      if (payload == null) {
+        throw Exception(
+            'Somthing went wrong while preparing PurchaseLogRequestData');
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
@@ -209,11 +210,11 @@ class OrderEntryCheckoutController extends GetxController {
     }
   }
 
-  Future<bool> proceedPlaceOrder(BuildContext context) async {
+  Future<PlaceOrder?> proceedPlaceOrder(BuildContext context) async {
+    PlaceOrder? response;
     try {
       final String enrollResponse = jsonEncode(prepareRequestPaylod());
-      final PlaceOrder response =
-          await ApiService.shared().getPlaceOrders(enrollResponse);
+      response = await ApiService.shared().getPlaceOrders(enrollResponse);
       if (response.taxedAs != "") {
         // * firing all api's at once
         await Future.wait([
@@ -222,15 +223,15 @@ class OrderEntryCheckoutController extends GetxController {
           sendOrderOnline(response)
         ]);
       }
-      return false;
+      return response;
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
-      return false;
+      return response;
     } catch (err) {
       LoggerService.instance.e(err.toString());
       renderErrorSnackBar(title: "Error!", subTitle: err.toString());
-      return false;
+      return response;
     }
   }
 

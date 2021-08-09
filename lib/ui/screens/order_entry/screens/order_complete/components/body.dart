@@ -1,5 +1,6 @@
-import 'package:code_magic_ex/api/api_address.dart';
-import 'package:code_magic_ex/utilities/function.dart';
+
+import 'package:code_magic_ex/models/user_info.dart';
+import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_complete.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,13 +10,17 @@ import '../../../../../../../styles/edge_insets.dart';
 import '../../../../../../../ui/global/theme/app_theme.dart';
 import '../../../../../../../ui/global/widgets/primary_button.dart';
 import '../../../../../../../ui/global/widgets/primary_button_outline.dart';
+import '../../../../../../utilities/extensions.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../../utilities/size_config.dart';
 import '../../../order_entry.dart';
 
 class Body extends StatelessWidget {
+  final OrderCompleteController controller = Get.put(OrderCompleteController());
+
   @override
   Widget build(BuildContext context) {
+    UserInfo info = UserSessionManager.shared.userInfo!;
     return SingleChildScrollView(
       child: Container(
         margin: kEdgeInset(v: 12),
@@ -34,7 +39,7 @@ class Body extends StatelessWidget {
                     style: AppTheme.lightTheme.textTheme.headline4,
                   ),
                   Text(
-                    "#23232323",
+                    "#${controller.orderResponse.id.unicity.retrieveOrderId()}",
                     style: AppTheme.lightTheme.textTheme.headline6,
                   ),
                 ],
@@ -49,18 +54,18 @@ class Body extends StatelessWidget {
               Container(
                 margin: kEdgeInsetSymmetric(h: 0, v: 20),
                 child: Column(
-                  children: const [
+                  children: [
                     ColumnItem(
                       title: "User ID",
-                      value: "121212",
+                      value: info.id.unicity.toString(),
                     ),
                     ColumnItem(
                       title: "User Name",
-                      value: "121212",
+                      value: info.humanName.fullName,
                     ),
                     ColumnItem(
                       title: "Order Number",
-                      value: "121212",
+                      value: controller.orderResponse.id.unicity.retrieveOrderId(),
                     ),
                   ],
                 ),
@@ -71,8 +76,11 @@ class Body extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     PrimaryOutlineButton(
-                        press: () => launchURL("${Address.orderedItems}/31512d2a1d4a2a5860bc785d27d1f752ef2a0cd919b417e7899c79ae4fc690d6&token=${UserSessionManager.shared.customerToken}&number=423160354"), text: "View Order"),
-                    PrimaryOutlineButton(press: () => launchURL("${Address.printOrderItems}?number=423160354"), text: "Product List"),
+                        press: () => controller.viewOrder(),
+                        text: "View Order"),
+                    PrimaryOutlineButton(
+                        press: () => controller.openProductList(),
+                        text: "Product List"),
                   ],
                 ),
               ),

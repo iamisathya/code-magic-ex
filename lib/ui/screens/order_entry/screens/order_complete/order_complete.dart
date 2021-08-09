@@ -1,14 +1,14 @@
+import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_complete.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../../../api/api_address.dart';
 import '../../../../../constants/colors.dart';
 import '../../../../../ui/global/widgets/transparent_app_bar.dart';
-import '../../../../../utilities/function.dart';
 import '../../../../../utilities/size_config.dart';
-import '../../../../../utilities/user_session.dart';
 import 'components/body.dart';
 
 class OrderComplete extends StatelessWidget {
+  final OrderCompleteController controller = Get.put(OrderCompleteController());
   static const String routeName = '/orderComplete';
 
   @override
@@ -25,13 +25,11 @@ class OrderComplete extends StatelessWidget {
   List<Widget> _renderActionBar(BuildContext context) {
     return <Widget>[
       IconButton(
-        icon: const Icon(
-          Icons.qr_code_2_outlined,
-        ),
-        tooltip: 'open qr code',
-        onPressed: () => launchURL(
-            "${Address.baseDscTh}/barcode/?href=31512d2a1d4a2a5860bc785d27d1f752ef2a0cd919b417e7899c79ae4fc690d6&token=${UserSessionManager.shared.customerToken.token}&user=${UserSessionManager.shared.userInfo!.id.unicity}"),
-      ),
+          icon: const Icon(
+            Icons.qr_code_2_outlined,
+          ),
+          tooltip: 'open qr code',
+          onPressed: () => controller.openBarCode()),
     ];
   }
 }
