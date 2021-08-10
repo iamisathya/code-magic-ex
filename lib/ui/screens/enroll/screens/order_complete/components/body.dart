@@ -34,11 +34,11 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Enroll Summary - ",
+                  "Enroll Successfull ",
                   style: AppTheme.lightTheme.textTheme.headline4,
                 ),
                 Text(
-                  "controller",
+                  " #${info.id.unicity.toString()}",
                   style: AppTheme.lightTheme.textTheme.headline6,
                 ),
               ],
@@ -58,9 +58,9 @@ class Body extends StatelessWidget {
                     title: "User ID",
                     value: info.id.unicity.toString(),
                   ),
-                  ColumnItem(
-                    title: "User Name",
-                    value: info.humanName.fullName,
+                  const ColumnItem(
+                    title: "Order ID",
+                    value: "123455",
                   ),
                 ],
               ),
@@ -73,7 +73,7 @@ class Body extends StatelessWidget {
                   SizedBox(
                     width: SizeConfig.screenWidth * 0.4,
                     child: PrimaryButton(
-                      text: "Go back",
+                      text: "Close",
                       press: () => Get.offAll(() => EnrollHomeScreen()),
                     ),
                   ),

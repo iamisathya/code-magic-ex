@@ -327,6 +327,23 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
+  Future<String> logEnrollerData(type, data) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'type': type};
+    final _data = {'data': data};
+    final _result = await _dio.fetch<String>(_setStreamType<String>(Options(
+            method: 'POST',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            contentType: 'application/x-www-form-urlencoded')
+        .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
   Future<String> logPurchaseOrder(
       type, data, customerID, period, periodLog) async {
     const _extra = <String, dynamic>{};
@@ -512,6 +529,59 @@ class _MemberCallsService implements MemberCallsService {
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = VerifyOrderResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<GovtIdVerify> enrollValidation(
+      language,
+      firstName,
+      lastName,
+      firstNameTh,
+      lastNameTh,
+      gender,
+      maritalStatus,
+      birthDate,
+      quantity,
+      address1,
+      address2,
+      country,
+      zip,
+      email,
+      mobilePhone,
+      homePhone,
+      password) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = {
+      'language': language,
+      'firstName': firstName,
+      'lastName': lastName,
+      'firstName@th': firstNameTh,
+      'lastName@th': lastNameTh,
+      'gender': gender,
+      'maritalStatus': maritalStatus,
+      'birthDate': birthDate,
+      'product[0][quantity]': quantity,
+      'address1': address1,
+      'address2': address2,
+      'country': country,
+      'zip': zip,
+      'email': email,
+      'mobilePhone': mobilePhone,
+      'homePhone': homePhone,
+      'password': password
+    };
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GovtIdVerify>(Options(
+                method: 'POST',
+                headers: <String, dynamic>{},
+                extra: _extra,
+                contentType: 'application/x-www-form-urlencoded')
+            .compose(_dio.options, 'ALL/DSC/THA/barcode/order_verify.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GovtIdVerify.fromJson(_result.data!);
     return value;
   }
 

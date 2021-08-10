@@ -116,15 +116,19 @@ abstract class MemberCallsService {
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=0000
   @POST(Address.period)
   @FormUrlEncoded()
-  Future<String> getPeriodResponse(
-      @Field("country") String country,
-      @Field("joinPeriod") String joinPeriod,
-      @Field("system") String system);
+  Future<String> getPeriodResponse(@Field("country") String country,
+      @Field("joinPeriod") String joinPeriod, @Field("system") String system);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=0000
   @GET(Address.validOrders)
   Future<GetPeriodLogResponse> getPeriodLog(@Query("type") String type,
       @Field("data") String data, @Field("customerID") String customerID);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=purchaseLog
+  @POST(Address.validOrders)
+  @FormUrlEncoded()
+  Future<String> logEnrollerData(
+      @Query("type") String type, @Field("data") String data);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=purchaseLog
   @POST(Address.validOrders)
@@ -198,6 +202,28 @@ abstract class MemberCallsService {
   @POST(Address.orderVerify)
   @FormUrlEncoded()
   Future<VerifyOrderResponse> verifyOrder(@Body() PlaceOrder data);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/order_verify.php
+  @POST(Address.orderVerify)
+  @FormUrlEncoded()
+  Future<GovtIdVerify> enrollValidation(
+      @Field("language") String language,
+      @Field("firstName") String firstName,
+      @Field("lastName") String lastName,
+      @Field("firstName@th") String firstNameTh,
+      @Field("lastName@th") String lastNameTh,
+      @Field("gender") String gender,
+      @Field("maritalStatus") String maritalStatus,
+      @Field("birthDate") String birthDate,
+      @Field("product[0][quantity]") String quantity,
+      @Field("address1") String address1,
+      @Field("address2") String address2,
+      @Field("country") String country,
+      @Field("zip") String zip,
+      @Field("email") String email,
+      @Field("mobilePhone") String mobilePhone,
+      @Field("homePhone") String homePhone,
+      @Field("password") String password);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/email/send_order_online_TH.php
   @POST(Address.sendOrderOnline)

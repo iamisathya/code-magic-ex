@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:code_magic_ex/models/enrollee_user_data.dart';
+import 'package:code_magic_ex/ui/screens/enroll/bloc/enroll_confirmation_controller.dart';
 import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/home.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -90,6 +92,8 @@ class EnrollController extends GetxController {
     const DropdownMenuItem(value: "th", child: Text("Thailand")),
   ];
 
+  late EnrolleeUserData enroleeData;
+
   final ProgressBar _sendingMsgProgressBar = ProgressBar();
 
   @override
@@ -97,7 +101,7 @@ class EnrollController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     idCardNumberController.text =
-        "1981156516516"; // valid: 4568767867811 invalid: 1981156516516
+        "1981156516516"; // valid: 5994200922960 invalid: 1981156516516
     enrollIdController.text = "108357166";
     sponsorIdController.text = "108357166";
     zipCodeController.text = "AAAAA";
@@ -254,6 +258,23 @@ class EnrollController extends GetxController {
   }
 
   Future<void> verifyEnrollForm(BuildContext context) async {
+    enroleeData = EnrolleeUserData(
+        firstName: firstNameEnController.text,
+        lastName: lastNameEnController.text,
+        firstNameTh: firstNameThController.text,
+        lastNameTh: lastNameThController.text,
+        gender: userGender.value,
+        maritalStatus: maritalStatus.value,
+        dateOfBirth: birthDateController.text,
+        mainAddress: mainAddressController.text,
+        city: "city",
+        country: country.value,
+        zipCode: zipCodeController.text,
+        email: emailAddressController.text,
+        mobileNumber: mobileNumberController.text,
+        phoneNumber: phoneNumberController.text,
+        taxId: idCardNumberController.text,
+        password: "2222");
     try {
       _sendingMsgProgressBar.show(context);
       final response = await MemberCallsService.init().verifyEnrollForm(
@@ -287,6 +308,9 @@ class EnrollController extends GetxController {
         });
         errorMessages.clear();
         errorMessages.addAll(enrollResponse.message);
+      } else {
+        Get.to(() => EnrollConfirmation(),
+            transition: Transition.cupertino, arguments: enroleeData);
       }
       _sendingMsgProgressBar.hide();
       update();

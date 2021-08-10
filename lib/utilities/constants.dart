@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -213,6 +215,7 @@ String kUploadFileId = "207";
 String kCurrentLanguage = "English";
 String kPeriodLog = "periodLog";
 String kPurchaseLog = "purchaseLog";
+String kEnrollerLog = "enrollerLog";
 
 String kCountry = "TH";
 String kSystem = "DSC";
@@ -265,3 +268,5 @@ class Currencies {
 
 // ! delete later
 const String kLoginToken = "fb8f3763-c423-4066-82eb-4666181fb607";
+
+String kCurrentOS = Platform.isIOS ? "iOS" : "Android";

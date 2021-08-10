@@ -1,0 +1,82 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'enrollee_user_data.g.dart';
+
+@JsonSerializable()
+class EnrolleeUserData {
+  @JsonKey(name: "firstName")
+  String firstName;
+  @JsonKey(name: "lastName")
+  String lastName;
+  @JsonKey(name: 'firstNameTh')
+  String firstNameTh;
+  @JsonKey(name: 'lastNameTh')
+  String lastNameTh;
+  @JsonKey(name: 'gender')
+  String gender;
+  @JsonKey(name: 'maritalStatus')
+  String maritalStatus;
+  @JsonKey(name: 'dateOfBirth')
+  String dateOfBirth;
+  @JsonKey(name: 'mainAddress')
+  String mainAddress;
+  @JsonKey(name: 'city')
+  String city;
+  @JsonKey(name: 'country')
+  String country;
+  @JsonKey(name: 'zipCode')
+  String zipCode;
+  @JsonKey(name: 'email')
+  String email;
+  @JsonKey(name: 'mobileNumber')
+  String mobileNumber;
+  @JsonKey(name: 'phoneNumber')
+  String phoneNumber;
+  @JsonKey(name: 'password')
+  String password;
+  @JsonKey(name: 'taxId')
+  String taxId;
+
+  EnrolleeUserData({
+    required this.firstName,
+    required this.lastName,
+    required this.firstNameTh,
+    required this.lastNameTh,
+    required this.gender,
+    required this.maritalStatus,
+    required this.dateOfBirth,
+    required this.mainAddress,
+    required this.city,
+    required this.country,
+    required this.zipCode,
+    required this.email,
+    required this.mobileNumber,
+    required this.phoneNumber,
+    required this.password,
+    required this.taxId,
+  });
+
+  Map<String, dynamic> toMap() => {
+        'firstName': firstName,
+        'lastName': lastName,
+        'firstNameTh': firstNameTh,
+        'lastNameTh': lastNameTh,
+        'gender': gender,
+        'maritalStatus': maritalStatus,
+        'dateOfBirth': dateOfBirth,
+        'mainAddress': mainAddress,
+        'city': city,
+        'country': country,
+        'zipCode': zipCode,
+        'email': email,
+        'mobileNumber': mobileNumber,
+        'phoneNumber': phoneNumber,
+        'password': password,
+        'taxId': taxId,
+      };
+
+  factory EnrolleeUserData.fromJson(Map<String, dynamic> json) =>
+      _$EnrolleeUserDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EnrolleeUserDataToJson(this);
+}
