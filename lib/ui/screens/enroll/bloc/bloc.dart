@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/home.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -111,6 +112,8 @@ class EnrollController extends GetxController {
   }
 
   Future<void> verifyEnrollerSponsor(BuildContext context) async {
+    Get.to(() => EnrollConfirmation(), transition: Transition.cupertino);
+    return;
     if (enrollIdController.text.isEmpty) {
       _renderErrorSnackBar("Enroller ID empty", "Please enter valid enroller");
       return;

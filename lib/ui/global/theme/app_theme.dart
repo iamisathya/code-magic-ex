@@ -20,7 +20,7 @@ class AppTheme {
       secondary: Colors.red,
     ),
     cardTheme: const CardTheme(
-      color: Colors.black,
+      color: Colors.white,
     ),
     iconTheme: const IconThemeData(
       color: Colors.black,

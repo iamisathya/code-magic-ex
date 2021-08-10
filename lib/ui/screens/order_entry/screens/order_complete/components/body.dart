@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserInfo info = UserSessionManager.shared.userInfo!;
+    final UserInfo info = UserSessionManager.shared.userInfo!;
     return SingleChildScrollView(
       child: Container(
         margin: kEdgeInset(v: 12),

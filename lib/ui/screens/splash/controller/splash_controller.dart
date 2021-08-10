@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/home.dart';
+import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -14,7 +16,6 @@ import '../../../../utilities/function.dart';
 import '../../../../utilities/key_value_storage.dart';
 import '../../../../utilities/user_session.dart';
 import '../../login/login.dart';
-import '../../order_entry/order_entry.dart';
 
 class SplashController extends GetxController {
   Timer? _timer;
@@ -61,7 +62,7 @@ class SplashController extends GetxController {
       UserSessionManager.shared.getProfilePictureFromDB();
       UserSessionManager.shared.getCustomerIdInfoFromDB();
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
-      Get.offAll(() => OrderEntryHomeScreen());
+      Get.offAll(() => EnrollConfirmation());
     } else {
       Get.offAll(() => LoginScreen());
     }

@@ -34,3 +34,7 @@ Border kBorderAll({double w = 2.0, Color c = kMainColor}) =>
 
 BoxDecoration kTableHeaderTileBox =
     BoxDecoration(color: kMainColor, border: Border.all(width: 0.5));
+
+
+RoundedRectangleBorder kRoundedBorder({double radius = 10}) =>
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius));

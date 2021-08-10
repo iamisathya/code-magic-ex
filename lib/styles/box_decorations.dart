@@ -21,3 +21,8 @@ BoxDecoration kCheckoutDecoration({Color c = Colors.white, double r = 15}) =>
       color: c,
       borderRadius: BorderRadius.circular(r),
     );
+
+BoxDecoration kEnrollHeader = const BoxDecoration(
+    borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
+    color: kMainColor);

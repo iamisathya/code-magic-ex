@@ -9,11 +9,13 @@ class PrimaryButton extends StatelessWidget {
     required this.press,
     this.loading = false,
     this.showIcon = false,
+    this.color = kMainColor,
   }) : super();
   final String text;
   final Function press;
   final bool loading;
   final bool showIcon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class PrimaryButton extends StatelessWidget {
                       size: 16, color: Colors.white)
                   : const SizedBox(),
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(kMainColor),
+                  backgroundColor: MaterialStateProperty.all(color),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0)))),
