@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/home.dart';
+import 'package:code_magic_ex/ui/screens/enroll/screens/order_complete/enroll_complete.dart';
 import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -62,7 +63,7 @@ class SplashController extends GetxController {
       UserSessionManager.shared.getProfilePictureFromDB();
       UserSessionManager.shared.getCustomerIdInfoFromDB();
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
-      Get.offAll(() => EnrollConfirmation());
+      Get.offAll(() => EnrollComplete());
     } else {
       Get.offAll(() => LoginScreen());
     }

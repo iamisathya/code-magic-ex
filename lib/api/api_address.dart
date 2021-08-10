@@ -2,7 +2,7 @@ const String encodetype = "base64";
 const String encodeValue = "Mjk3MDQ2NjoxMjM0";
 const String baseDscTh = "https://dsc-th.unicity.com/";
 class Address {
-  static const String baseDscTh = "https://hydra.unicity.net/v5a/";
+  static const String baseDscTh = "https://dsc-th.unicity.com/";
   static const String baseUrl = "https://hydra.unicity.net/v5a/";
   static const String loginTokens = "/loginTokens";
   static const String customerData = "/customers/{id}";
@@ -36,5 +36,5 @@ class Address {
   static const String orderVerify = "ALL/DSC/THA/barcode/order_verify.php";
   static const String sendOrderOnline = "ALL/DSC/THA/email/send_order_online_TH.php";
   static const String printOrderItems = "$baseDscTh/administrator/print/ordertranitems.php";
-  static const String orderedItems = "$baseDscTh/invoice.php?link=https://hydra.unicity.net/v5a/orders";
+  static const String orderedItems = "${baseDscTh}invoice.php?link=https://hydra.unicity.net/v5a/orders";
 }
