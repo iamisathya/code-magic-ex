@@ -84,40 +84,25 @@ class Body extends StatelessWidget {
                         top: 10,
                         selectedValue: controller.provience.value,
                         items: controller.provinceDropdownItems,
-                        onChanged: (String val) {
-                          if (controller.provience.value != val) {
-                            controller.area.value = "";
-                            controller.subArea.value = "";
-                            controller.provience.value = val;
-                            controller.getAmphuresByProvince();
-                          }
-                        }),
+                        onChanged: (String val) =>
+                            controller.onProvienceChange(val)),
                     _renderTextField(
                         ctlr: controller.mainAddressController,
-                        label: "Address"),
+                        label: "Address1"),
                     _renderDropdownButton(
                         label: "Area",
                         top: 10,
                         selectedValue: controller.area.value,
                         items: controller.areaDropdownItems,
-                        onChanged: (String val) {
-                          if (controller.area.value != val) {
-                            controller.subArea.value = "";
-                            controller.area.value = val;
-                            controller.getDistrictsByAmphur();
-                          }
-                        }),
+                        onChanged: (String val) =>
+                            controller.onAreaChange(val)),
                     _renderDropdownButton(
                         label: "Sub-Area",
                         top: 10,
                         selectedValue: controller.subArea.value,
                         items: controller.subAreaDropdownItems,
-                        onChanged: (String val) {
-                          if (controller.subArea.value != val) {
-                            controller.subArea.value = val;
-                            controller.getZipcodeByDistricts();
-                          }
-                        }),
+                        onChanged: (String val) =>
+                            controller.onSubAreaChange(val)),
                     _renderDropdownButton(
                         label: "Country",
                         top: 10,

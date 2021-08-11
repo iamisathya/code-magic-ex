@@ -72,8 +72,8 @@ class EnrollController extends GetxController {
 
   List<DropdownMenuItem<String>> statusDropdownItems = [
     const DropdownMenuItem(value: "", child: Text("Select Status")),
-    const DropdownMenuItem(value: "single", child: Text("Single")),
-    const DropdownMenuItem(value: "married", child: Text("Married")),
+    const DropdownMenuItem(value: "Single", child: Text("Single")),
+    const DropdownMenuItem(value: "Married", child: Text("Married")),
   ];
 
   RxList<DropdownMenuItem<String>> provinceDropdownItems = [
@@ -165,6 +165,30 @@ class EnrollController extends GetxController {
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
       update();
+    }
+  }
+
+  void onProvienceChange(String value) {
+    if (provience.value != value) {
+      area.value = "";
+      subArea.value = "";
+      provience.value = value;
+      getAmphuresByProvince();
+    }
+  }
+
+  void onAreaChange(String value) {
+    if (area.value != value) {
+      subArea.value = "";
+      area.value = value;
+      getDistrictsByAmphur();
+    }
+  }
+
+  void onSubAreaChange(String value) {
+    if (subArea.value != value) {
+      subArea.value = value;
+      getZipcodeByDistricts();
     }
   }
 
@@ -269,7 +293,8 @@ class EnrollController extends GetxController {
         gender: userGender.value,
         maritalStatus: maritalStatus.value,
         dateOfBirth: birthDateController.text,
-        mainAddress: mainAddressController.text,
+        mainAddress1: mainAddressController.text,
+        mainAddress2: "${area.value} ${subArea.value}",
         city: "city",
         country: country.value,
         zipCode: zipCodeController.text,
@@ -278,7 +303,7 @@ class EnrollController extends GetxController {
         phoneNumber: phoneNumberController.text,
         taxId: idCardNumberController.text,
         password: "2222");
-        print(enroleeData.toJson());
+    print(enroleeData.toJson());
     try {
       _sendingMsgProgressBar.show(context);
       final response = await MemberCallsService.init().verifyEnrollForm(
@@ -291,6 +316,7 @@ class EnrollController extends GetxController {
           maritalStatus.value,
           birthDateController.text,
           mainAddressController.text,
+          "${area.value} ${subArea.value}",
           "city",
           country.value,
           zipCodeController.text,

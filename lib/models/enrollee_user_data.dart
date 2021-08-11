@@ -18,8 +18,10 @@ class EnrolleeUserData {
   String maritalStatus;
   @JsonKey(name: 'dateOfBirth')
   String dateOfBirth;
-  @JsonKey(name: 'mainAddress')
-  String mainAddress;
+  @JsonKey(name: 'mainAddress1')
+  String mainAddress1;
+  @JsonKey(name: 'mainAddress2')
+  String mainAddress2;
   @JsonKey(name: 'city')
   String city;
   @JsonKey(name: 'country')
@@ -45,7 +47,8 @@ class EnrolleeUserData {
     required this.gender,
     required this.maritalStatus,
     required this.dateOfBirth,
-    required this.mainAddress,
+    required this.mainAddress1,
+    required this.mainAddress2,
     required this.city,
     required this.country,
     required this.zipCode,
@@ -64,7 +67,8 @@ class EnrolleeUserData {
         'gender': gender,
         'maritalStatus': maritalStatus,
         'dateOfBirth': dateOfBirth,
-        'mainAddress': mainAddress,
+        'mainAddress1': mainAddress1,
+        'mainAddress2': mainAddress2,
         'city': city,
         'country': country,
         'zipCode': zipCode,

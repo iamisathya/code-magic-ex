@@ -147,6 +147,7 @@ abstract class MemberCallsService {
   Future<dynamic> verifyEnrollForm(
     @Field("language") String language,
     @Field("firstName") String firstName,
+    @Field("lastName") String lastName,
     @Field("firstName@th") String firstNameTh,
     @Field("lastName@th: ") String lastNameTh,
     @Field("gender") String gender,

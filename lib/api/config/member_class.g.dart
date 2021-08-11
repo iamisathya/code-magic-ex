@@ -370,6 +370,7 @@ class _MemberCallsService implements MemberCallsService {
   Future<dynamic> verifyEnrollForm(
       language,
       firstName,
+      lastName,
       firstNameTh,
       lastNameTh,
       gender,
@@ -389,6 +390,7 @@ class _MemberCallsService implements MemberCallsService {
     final _data = {
       'language': language,
       'firstName': firstName,
+      'lastName': lastName,
       'firstName@th': firstNameTh,
       'lastName@th: ': lastNameTh,
       'gender': gender,
