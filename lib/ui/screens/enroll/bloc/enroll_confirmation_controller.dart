@@ -16,6 +16,7 @@ import 'package:code_magic_ex/models/place_order.dart'
         Transactions;
 import 'package:code_magic_ex/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
+import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -26,6 +27,8 @@ import 'package:get/get.dart';
 
 class EnrollConfirmationController extends GetxController {
   late EnrolleeUserData enroleeData;
+
+  final ProgressBar _sendingMsgProgressBar = ProgressBar();
 
   @override
   void onInit() {
@@ -132,9 +135,13 @@ class EnrollConfirmationController extends GetxController {
     }
   }
 
-  Future<void> getPurchaseLog(int periodLog) async {
+  Future<void> getPurchaseLog(BuildContext context) async {
     try {
+      _sendingMsgProgressBar.show(context);
       final payload = prepareRequestPaylod();
+      print(payload!.toJson());
+      _sendingMsgProgressBar.hide();
+      return;
       if (payload == null) {
         throw Exception(
             'Somthing went wrong while preparing PurchaseLogRequestData');
@@ -145,6 +152,7 @@ class EnrollConfirmationController extends GetxController {
         jsonUser,
       );
     } catch (err) {
+      _sendingMsgProgressBar.hide();
       LoggerService.instance.e(err.toString());
     }
   }

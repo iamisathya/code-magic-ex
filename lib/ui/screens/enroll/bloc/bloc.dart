@@ -104,7 +104,12 @@ class EnrollController extends GetxController {
         "1981156516516"; // valid: 5994200922960 invalid: 1981156516516
     enrollIdController.text = "108357166";
     sponsorIdController.text = "108357166";
-    zipCodeController.text = "AAAAA";
+    firstNameThController.text = "ทดสอบ";
+    lastNameThController.text = "บัญชี";
+    firstNameEnController.text = "Test";
+    lastNameEnController.text = "Account";
+    // userGender.value = "Male";
+    // maritalStatus.value = "Married";
   }
 
   void onChangeBirthDay(DateTime date) {
@@ -116,8 +121,6 @@ class EnrollController extends GetxController {
   }
 
   Future<void> verifyEnrollerSponsor(BuildContext context) async {
-    Get.to(() => EnrollConfirmation(), transition: Transition.cupertino);
-    return;
     if (enrollIdController.text.isEmpty) {
       _renderErrorSnackBar("Enroller ID empty", "Please enter valid enroller");
       return;
@@ -275,6 +278,7 @@ class EnrollController extends GetxController {
         phoneNumber: phoneNumberController.text,
         taxId: idCardNumberController.text,
         password: "2222");
+        print(enroleeData.toJson());
     try {
       _sendingMsgProgressBar.show(context);
       final response = await MemberCallsService.init().verifyEnrollForm(

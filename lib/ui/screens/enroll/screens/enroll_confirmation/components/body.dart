@@ -9,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Body extends StatelessWidget {
-  final EnrollConfirmationController controller = Get.put(EnrollConfirmationController());
-  
+  final EnrollConfirmationController controller =
+      Get.put(EnrollConfirmationController());
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -20,10 +21,6 @@ class Body extends StatelessWidget {
         children: [
           _starterKit(),
           SizedBox(height: SizeConfig.screenHeight * 0.01),
-          renderUserCard("Enroller", "12312312", "This is name"),
-          SizedBox(height: SizeConfig.screenHeight * 0.01),
-          renderUserCard("Sponsor", "12312312", "This is name"),
-          SizedBox(height: SizeConfig.screenHeight * 0.01),
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.0),
@@ -32,6 +29,12 @@ class Body extends StatelessWidget {
               _renderCardHeader("BA inforations"),
               Column(
                 children: [
+                  renderUserCard("Enroller", "12312312", "This is name"),
+                  const Divider(thickness: 1,),
+                  SizedBox(height: SizeConfig.screenHeight * 0.01),
+                  renderUserCard("Sponsor", "12312312", "This is name"),
+                  const Divider(thickness: 1,),
+                  SizedBox(height: SizeConfig.screenHeight * 0.01),
                   _renderUserInfo("First Name(Thai)", "ทดสอบ"),
                   _renderUserInfo("Last Name(Thai)", "บัญชีผู้ใช้"),
                   _renderUserInfo("Last Name(English)", "Test"),
@@ -50,9 +53,13 @@ class Body extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-            PrimaryButton(press: () => controller.onCancel(), text: "Cancel", color: Colors.red),
-            PrimaryButton(press: () => null, text: "Confirm"),
-          ],),
+              PrimaryButton(
+                  press: () => controller.onCancel(),
+                  text: "Cancel",
+                  color: Colors.red),
+              PrimaryButton(press: () => controller.getPurchaseLog(context), text: "Confirm"),
+            ],
+          ),
           SizedBox(height: SizeConfig.screenHeight * 0.04),
         ],
       ),
@@ -139,36 +146,32 @@ class Body extends StatelessWidget {
     );
   }
 
-  Card renderUserCard(String title, String id, String name) {
-    return Card(
-      shape: kRoundedBorder(),
-      child: Column(
-        children: [
-          _renderCardHeader(title),
-          Padding(
-            padding: kEdgeInsetTLRB(t: 16, b: 8, l: 16, r: 16),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _renderCardCell("$title ID", TextAlign.left),
-                const SizedBox(width: 10, child: Text(" : ")),
-                _renderCardCell(id, TextAlign.right),
-              ],
-            ),
+  Column renderUserCard(String title, String id, String name) {
+    return Column(
+      children: [
+        Padding(
+          padding: kEdgeInsetTLRB(t: 16, b: 8, l: 16, r: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _renderCardCell("$title ID", TextAlign.left),
+              const SizedBox(width: 10, child: Text(" : ")),
+              _renderCardCell(id, TextAlign.right),
+            ],
           ),
-          Padding(
-            padding: kEdgeInsetTLRB(t: 8, b: 16, l: 16, r: 16),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _renderCardCell("$title Name", TextAlign.left),
-                const SizedBox(width: 10, child: Text(" : ")),
-                _renderCardCell(name, TextAlign.right),
-              ],
-            ),
+        ),
+        Padding(
+          padding: kEdgeInsetTLRB(t: 8, b: 16, l: 16, r: 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _renderCardCell("$title Name", TextAlign.left),
+              const SizedBox(width: 10, child: Text(" : ")),
+              _renderCardCell(name, TextAlign.right),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

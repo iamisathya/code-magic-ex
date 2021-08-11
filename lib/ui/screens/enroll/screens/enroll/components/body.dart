@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
                       label: controller.govtIdVerifyButton.value,
                       onPress: () => controller.verifyGovtIdNumber(context)),
                 ]),
-                const SizedBox(height: 30),
+              const SizedBox(height: 30),
               if (controller.isGovtIdSuccess.value == true)
                 Column(
                   children: [
@@ -80,20 +80,17 @@ class Body extends StatelessWidget {
                           )
                         : const SizedBox()),
                     _renderDropdownButton(
-                        label: "Gender",
-                        top: 10,
-                        selectedValue: controller.userGender.value,
-                        items: controller.genderDropdownItems,
-                        onChanged: (String val) =>
-                            controller.userGender.value = val),
-                    _renderDropdownButton(
                         label: "Choose Province",
                         top: 10,
                         selectedValue: controller.provience.value,
                         items: controller.provinceDropdownItems,
                         onChanged: (String val) {
-                          controller.provience.value = val;
-                          controller.getAmphuresByProvince();
+                          if (controller.provience.value != val) {
+                            controller.area.value = "";
+                            controller.subArea.value = "";
+                            controller.provience.value = val;
+                            controller.getAmphuresByProvince();
+                          }
                         }),
                     _renderTextField(
                         ctlr: controller.mainAddressController,
@@ -104,8 +101,11 @@ class Body extends StatelessWidget {
                         selectedValue: controller.area.value,
                         items: controller.areaDropdownItems,
                         onChanged: (String val) {
-                          controller.area.value = val;
-                          controller.getDistrictsByAmphur();
+                          if (controller.area.value != val) {
+                            controller.subArea.value = "";
+                            controller.area.value = val;
+                            controller.getDistrictsByAmphur();
+                          }
                         }),
                     _renderDropdownButton(
                         label: "Sub-Area",
@@ -113,8 +113,10 @@ class Body extends StatelessWidget {
                         selectedValue: controller.subArea.value,
                         items: controller.subAreaDropdownItems,
                         onChanged: (String val) {
-                          controller.subArea.value = val;
-                          controller.getZipcodeByDistricts();
+                          if (controller.subArea.value != val) {
+                            controller.subArea.value = val;
+                            controller.getZipcodeByDistricts();
+                          }
                         }),
                     _renderDropdownButton(
                         label: "Country",
@@ -122,7 +124,7 @@ class Body extends StatelessWidget {
                         selectedValue: controller.country.value,
                         items: controller.countryDropdownItems,
                         onChanged: (String val) =>
-                            controller.userGender.value = val),
+                            controller.country.value = val),
                     _renderTextField(
                         ctlr: controller.lastNameEnController,
                         label: "Zip code",
