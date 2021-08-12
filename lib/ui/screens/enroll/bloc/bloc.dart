@@ -265,6 +265,8 @@ class EnrollController extends GetxController {
     try {
       final List<AmphurItem> allAmphures = await MemberCallsService.init()
           .getAmphuresByProvince("getAmphuresByProvince", provience.value);
+          areaDropdownItems.clear();
+          areaDropdownItems.add(const DropdownMenuItem(value: "", child: Text("Select Area")));
       for (final amphure in allAmphures) {
         areaDropdownItems.add(DropdownMenuItem(
             value: amphure.amphurId, child: Text(amphure.amphurNameEn)));
@@ -285,6 +287,8 @@ class EnrollController extends GetxController {
     try {
       final List<DisctrictItem> allDistricts = await MemberCallsService.init()
           .getDistrictsByAmphur("getDistrictsByAmphur", area.value);
+          subAreaDropdownItems.clear();
+          subAreaDropdownItems.add(const DropdownMenuItem(value: "", child: Text("Select Sub-Area")));
       for (final district in allDistricts) {
         subAreaDropdownItems.add(DropdownMenuItem(
             value: district.districtCode,

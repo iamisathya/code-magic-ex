@@ -111,7 +111,7 @@ class Body extends StatelessWidget {
                         onChanged: (String val) =>
                             controller.country.value = val),
                     _renderTextField(
-                        ctlr: controller.lastNameEnController,
+                        ctlr: controller.zipCodeController,
                         label: "Zip code",
                         enabled: false),
                     _renderTextField(
