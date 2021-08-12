@@ -63,6 +63,8 @@ class EnrollController extends GetxController {
   RxBool isGovtIdVerified = false.obs;
   RxString enrollerSponsorVerifyButton = "Verify Enroller".obs;
   RxString govtIdVerifyButton = "Verify ID".obs;
+  String enrollerName = "";
+  String sponsorName = "";
 
   List<DropdownMenuItem<String>> genderDropdownItems = [
     const DropdownMenuItem(value: "", child: Text("Select Gender")),
@@ -160,14 +162,18 @@ class EnrollController extends GetxController {
         enrollerProfile = await ApiService.shared().getCustomerInfo(
             Parsing.intFrom(enrollIdController.text)!, "customer");
         sponserProfile = enrollerProfile;
+        enrollerName = enrollerProfile.items[0].humanName.fullName;
+        sponsorName = enrollerProfile.items[0].humanName.fullName;
       } else {
         // * Calling sponser validation
         sponserProfile = await ApiService.shared().getCustomerInfo(
             Parsing.intFrom(enrollIdController.text)!, "customer");
+        enrollerName = sponserProfile.items[0].humanName.fullName;
 
         // * Calling enroller validation
         enrollerProfile = await ApiService.shared().getCustomerInfo(
             Parsing.intFrom(sponsorIdController.text)!, "customer");
+        sponsorName = enrollerProfile.items[0].humanName.fullName;
       }
       enrollerSponsorVerifyButton.value = "Verified";
       isEnrollerIdSuccess.value = true;
@@ -264,8 +270,9 @@ class EnrollController extends GetxController {
     try {
       final List<AmphurItem> allAmphures = await MemberCallsService.init()
           .getAmphuresByProvince("getAmphuresByProvince", provience.value);
-          areaDropdownItems.clear();
-          areaDropdownItems.add(const DropdownMenuItem(value: "", child: Text("Select Area")));
+      areaDropdownItems.clear();
+      areaDropdownItems
+          .add(const DropdownMenuItem(value: "", child: Text("Select Area")));
       for (final amphure in allAmphures) {
         areaDropdownItems.add(DropdownMenuItem(
             value: amphure.amphurId, child: Text(amphure.amphurNameEn)));
@@ -286,8 +293,9 @@ class EnrollController extends GetxController {
     try {
       final List<DisctrictItem> allDistricts = await MemberCallsService.init()
           .getDistrictsByAmphur("getDistrictsByAmphur", area.value);
-          subAreaDropdownItems.clear();
-          subAreaDropdownItems.add(const DropdownMenuItem(value: "", child: Text("Select Sub-Area")));
+      subAreaDropdownItems.clear();
+      subAreaDropdownItems.add(
+          const DropdownMenuItem(value: "", child: Text("Select Sub-Area")));
       for (final district in allDistricts) {
         subAreaDropdownItems.add(DropdownMenuItem(
             value: district.districtCode,
@@ -319,6 +327,10 @@ class EnrollController extends GetxController {
 
   Future<void> verifyEnrollForm(BuildContext context) async {
     enroleeData = EnrolleeUserData(
+        enrollerId: enrollIdController.text,
+        enrollerName: enrollerName,
+        sponsorId: sponsorIdController.text,
+        sponsorName: sponsorName,
         firstName: firstNameEnController.text,
         lastName: lastNameEnController.text,
         firstNameTh: firstNameThController.text,

@@ -29,21 +29,32 @@ class Body extends StatelessWidget {
               _renderCardHeader("BA inforations"),
               Column(
                 children: [
-                  renderUserCard("Enroller", "12312312", "This is name"),
-                  const Divider(thickness: 1,),
+                  renderUserCard("Enroller", controller.enroleeData.enrollerId,
+                      controller.enroleeData.enrollerName),
+                  const Divider(
+                    thickness: 1,
+                  ),
                   SizedBox(height: SizeConfig.screenHeight * 0.01),
-                  renderUserCard("Sponsor", "12312312", "This is name"),
-                  const Divider(thickness: 1,),
+                  renderUserCard("Sponsor", controller.enroleeData.sponsorId,
+                      controller.enroleeData.sponsorName),
+                  const Divider(
+                    thickness: 1,
+                  ),
                   SizedBox(height: SizeConfig.screenHeight * 0.01),
-                  _renderUserInfo("First Name(Thai)", "ทดสอบ"),
-                  _renderUserInfo("Last Name(Thai)", "บัญชีผู้ใช้"),
-                  _renderUserInfo("Last Name(English)", "Test"),
-                  _renderUserInfo("First Name(English)", "Account"),
+                  _renderUserInfo(
+                      "First Name(Thai)", controller.enroleeData.firstNameTh),
+                  _renderUserInfo(
+                      "Last Name(Thai)", controller.enroleeData.lastNameTh),
+                  _renderUserInfo(
+                      "First Name(English)", controller.enroleeData.firstName),
+                  _renderUserInfo(
+                      "Last Name(English)", controller.enroleeData.lastName),
                   _renderUserInfo("Address",
-                      "ทดสอบ Sub-Areaวังบูรพาภิรมย์ Areaพระนคร กรุงเทพมหานคร 10200"),
-                  _renderUserInfo("Email", "no@unicity.com"),
-                  _renderUserInfo("Phone", "009900909"),
-                  _renderUserInfo("Mobile", "0099009900"),
+                      "${controller.enroleeData.mainAddress1} ${controller.enroleeData.mainAddress2}, ${controller.enroleeData.zipCode}"),
+                  _renderUserInfo("Email", controller.enroleeData.email),
+                  _renderUserInfo("Phone", controller.enroleeData.phoneNumber),
+                  _renderUserInfo(
+                      "Mobile", controller.enroleeData.mobileNumber),
                   SizedBox(height: SizeConfig.screenHeight * 0.01),
                 ],
               ),
@@ -57,7 +68,9 @@ class Body extends StatelessWidget {
                   press: () => controller.onCancel(),
                   text: "Cancel",
                   color: Colors.red),
-              PrimaryButton(press: () => controller.getPurchaseLog(context), text: "Confirm"),
+              PrimaryButton(
+                  press: () => controller.getPurchaseLog(context),
+                  text: "Confirm"),
             ],
           ),
           SizedBox(height: SizeConfig.screenHeight * 0.04),

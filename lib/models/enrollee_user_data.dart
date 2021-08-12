@@ -12,6 +12,15 @@ class EnrolleeUserData {
   String firstNameTh;
   @JsonKey(name: 'lastNameTh')
   String lastNameTh;
+  @JsonKey(name: 'enrollerId')
+  String enrollerId;
+  @JsonKey(name: 'enrollerName')
+  String enrollerName;
+  @JsonKey(name: 'sponsorId')
+  String sponsorId;
+  @JsonKey(name: 'sponsorName')
+  String sponsorName;
+
   @JsonKey(name: 'gender')
   String gender;
   @JsonKey(name: 'maritalStatus')
@@ -44,6 +53,10 @@ class EnrolleeUserData {
     required this.lastName,
     required this.firstNameTh,
     required this.lastNameTh,
+    required this.enrollerId,
+    required this.enrollerName,
+    required this.sponsorId,
+    required this.sponsorName,
     required this.gender,
     required this.maritalStatus,
     required this.dateOfBirth,
@@ -64,6 +77,10 @@ class EnrolleeUserData {
         'lastName': lastName,
         'firstNameTh': firstNameTh,
         'lastNameTh': lastNameTh,
+        'enrollerId': enrollerId,
+        'enrollerName': enrollerName,
+        'sponsorId': sponsorId,
+        'sponsorName': sponsorName,
         'gender': gender,
         'maritalStatus': maritalStatus,
         'dateOfBirth': dateOfBirth,
