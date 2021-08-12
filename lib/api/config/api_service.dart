@@ -159,6 +159,10 @@ abstract class MemberCalls2Service {
   Future<OrderCalculationResponse> orderCalculation(
       @Body() RequestOrderCalculation request);
 
+  //? Example: https://member-calls2.unicity.com/etlV2/user/forceResetPassword/257461866
+  @POST("${Address.forceResetPassword}/{id}")
+  Future<PasswordResetResponse> forceResetPassword(@Path("id") String id);
+
   //? Example: https://member-calls2.unicity.com/unishop-fn-misc/cashcoupon_quota/2970466?pv=25
   @GET("${Address.cashCoupon}/2970466")
   Future<CashCouponResponse> getCashCoupon(@Query('pv') String pv);

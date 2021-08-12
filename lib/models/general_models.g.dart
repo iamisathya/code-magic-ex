@@ -66,3 +66,16 @@ Map<String, dynamic> _$SendOrderOnlineResponseToJson(
     <String, dynamic>{
       'status': instance.status,
     };
+
+PasswordResetResponse _$PasswordResetResponseFromJson(
+    Map<String, dynamic> json) {
+  return PasswordResetResponse(
+    affectedRows: json['affectedRows'] as int,
+  );
+}
+
+Map<String, dynamic> _$PasswordResetResponseToJson(
+        PasswordResetResponse instance) =>
+    <String, dynamic>{
+      'affectedRows': instance.affectedRows,
+    };

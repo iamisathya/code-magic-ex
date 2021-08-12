@@ -37,4 +37,5 @@ class Address {
   static const String sendOrderOnline = "ALL/DSC/THA/email/send_order_online_TH.php";
   static const String printOrderItems = "$baseDscTh/administrator/print/ordertranitems.php";
   static const String orderedItems = "${baseDscTh}invoice.php?link=https://hydra.unicity.net/v5a/orders";
+  static const String forceResetPassword = "etlV2/user/forceResetPassword";
 }

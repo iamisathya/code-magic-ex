@@ -77,3 +77,18 @@ class SendOrderOnlineResponse {
 
   Map<String, dynamic> toJson() => _$SendOrderOnlineResponseToJson(this);
 }
+
+@JsonSerializable()
+class PasswordResetResponse {
+  @JsonKey(name: "affectedRows")
+  int affectedRows;
+
+  PasswordResetResponse({
+    required this.affectedRows,
+  });
+
+  factory PasswordResetResponse.fromJson(Map<String, dynamic> json) =>
+      _$PasswordResetResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PasswordResetResponseToJson(this);
+}
