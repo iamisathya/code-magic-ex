@@ -120,14 +120,19 @@ class EnrollController extends GetxController {
 
   Future<DateTime?> renderDatePicker(BuildContext context) {
     final DateTime selectedDate;
+    final DateTime currentDate = DateTime.now();
+    final DateTime mimimumDate =
+        DateTime(currentDate.year - 18, currentDate.month, currentDate.day);
     if (birthDateController.text != "") {
       final selcted = DateFormat("yyyy-MM-dd").parse(birthDateController.text);
       selectedDate = DateTime(selcted.year, selcted.month, selcted.day);
     } else {
-      selectedDate = DateTime.now();
+      selectedDate = mimimumDate;
     }
     return DatePicker.showDatePicker(context,
-        currentTime: selectedDate, onConfirm: (date) => onChangeBirthDay(date));
+        maxTime: mimimumDate,
+        currentTime: selectedDate,
+        onConfirm: (date) => onChangeBirthDay(date));
   }
 
   void onChangeBirthDay(DateTime date) {
