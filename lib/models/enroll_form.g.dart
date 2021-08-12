@@ -15,22 +15,20 @@ EnrollForm _$EnrollFormFromJson(Map<String, dynamic> json) {
     shipToAddress:
         ShipToAddress.fromJson(json['shipToAddress'] as Map<String, dynamic>),
     shipToEmail: json['shipToEmail'] as String,
-    shipToName: ShipToName.fromJson(json['shipToName'] as Map<String, dynamic>),
+    shipToName:
+        ShipToNameEnroll.fromJson(json['shipToName'] as Map<String, dynamic>),
     shipToPhone: json['shipToPhone'] as String,
     shipToTime: json['shipToTime'],
-    source: Source.fromJson(json['source'] as Map<String, dynamic>),
+    source: SourceEnroll.fromJson(json['source'] as Map<String, dynamic>),
     type: json['type'],
-    customer: Customer.fromJson(json['customer'] as Map<String, dynamic>),
-    lines: ProductLines.fromJson(json['lines'] as Map<String, dynamic>),
-    transactions:
-        Transactions.fromJson(json['transactions'] as Map<String, dynamic>),
+    customer: CustomerInfo.fromJson(json['customer'] as Map<String, dynamic>),
+    lines: ProductLinesEnroll.fromJson(json['lines'] as Map<String, dynamic>),
+    transactions: TransactionsEnroll.fromJson(
+        json['transactions'] as Map<String, dynamic>),
     terms: Terms.fromJson(json['terms'] as Map<String, dynamic>),
     dateCreated: json['dateCreated'] as String,
     currency: json['currency'] as String,
     giftReceipt: json['giftReceipt'] as bool,
-    taxedAs: json['taxedAs'] as String,
-    addedLines:
-        AddedLineItems.fromJson(json['added_lines'] as Map<String, dynamic>),
     id: IdTypeString.fromJson(json['id'] as Map<String, dynamic>),
     href: json['href'] as String,
   );
@@ -50,13 +48,11 @@ Map<String, dynamic> _$EnrollFormToJson(EnrollForm instance) =>
       'type': instance.type,
       'lines': instance.lines,
       'transactions': instance.transactions,
-      'customer': instance.customer,
       'terms': instance.terms,
       'dateCreated': instance.dateCreated,
       'currency': instance.currency,
       'giftReceipt': instance.giftReceipt,
-      'taxedAs': instance.taxedAs,
-      'added_lines': instance.addedLines,
+      'customer': instance.customer,
       'id': instance.id,
       'href': instance.href,
     };
@@ -97,21 +93,21 @@ Map<String, dynamic> _$ShipToAddressToJson(ShipToAddress instance) =>
       'address2': instance.address2,
     };
 
-ShipToName _$ShipToNameFromJson(Map<String, dynamic> json) {
-  return ShipToName(
+ShipToNameEnroll _$ShipToNameEnrollFromJson(Map<String, dynamic> json) {
+  return ShipToNameEnroll(
     firstName: json['firstName'] as String,
     lastName: json['lastName'] as String,
   );
 }
 
-Map<String, dynamic> _$ShipToNameToJson(ShipToName instance) =>
+Map<String, dynamic> _$ShipToNameEnrollToJson(ShipToNameEnroll instance) =>
     <String, dynamic>{
       'firstName': instance.firstName,
       'lastName': instance.lastName,
     };
 
-Customer _$CustomerFromJson(Map<String, dynamic> json) {
-  return Customer(
+CustomerInfo _$CustomerInfoFromJson(Map<String, dynamic> json) {
+  return CustomerInfo(
     mainAddress:
         ShipToAddress.fromJson(json['mainAddress'] as Map<String, dynamic>),
     humanName:
@@ -121,14 +117,14 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) {
     birthDate: json['birthDate'] as String,
     maritalStatus: json['maritalStatus'] as String,
     email: json['email'] as String,
-    taxTerms: TaxTerms.fromJson(json['taxTerms'] as Map<String, dynamic>),
+    taxTerms: TaxTermsEnroll.fromJson(json['taxTerms'] as Map<String, dynamic>),
     homePhone: json['homePhone'] as String,
     mobilePhone: json['mobilePhone'] as String,
     entryPeriod: json['entryPeriod'] as String,
     gender: json['gender'] as String,
-    password: Password.fromJson(json['password'] as Map<String, dynamic>),
+    password: PasswordEnroll.fromJson(json['password'] as Map<String, dynamic>),
     type: json['type'] as String,
-    source: Source.fromJson(json['source'] as Map<String, dynamic>),
+    source: SourceEnroll.fromJson(json['source'] as Map<String, dynamic>),
     businessEntity:
         BusinessEntity.fromJson(json['businessEntity'] as Map<String, dynamic>),
     status: json['status'] as String,
@@ -138,7 +134,8 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$CustomerToJson(Customer instance) => <String, dynamic>{
+Map<String, dynamic> _$CustomerInfoToJson(CustomerInfo instance) =>
+    <String, dynamic>{
       'mainAddress': instance.mainAddress,
       'humanName': instance.humanName,
       'enroller': instance.enroller,
@@ -161,13 +158,14 @@ Map<String, dynamic> _$CustomerToJson(Customer instance) => <String, dynamic>{
       'token': instance.token,
     };
 
-TaxTerms _$TaxTermsFromJson(Map<String, dynamic> json) {
-  return TaxTerms(
+TaxTermsEnroll _$TaxTermsEnrollFromJson(Map<String, dynamic> json) {
+  return TaxTermsEnroll(
     taxId: json['taxId'] as String,
   );
 }
 
-Map<String, dynamic> _$TaxTermsToJson(TaxTerms instance) => <String, dynamic>{
+Map<String, dynamic> _$TaxTermsEnrollToJson(TaxTermsEnroll instance) =>
+    <String, dynamic>{
       'taxId': instance.taxId,
     };
 
@@ -183,13 +181,14 @@ Map<String, dynamic> _$EnrollerToJson(Enroller instance) => <String, dynamic>{
       'id': instance.id,
     };
 
-Password _$PasswordFromJson(Map<String, dynamic> json) {
-  return Password(
+PasswordEnroll _$PasswordEnrollFromJson(Map<String, dynamic> json) {
+  return PasswordEnroll(
     value: json['value'] as String,
   );
 }
 
-Map<String, dynamic> _$PasswordToJson(Password instance) => <String, dynamic>{
+Map<String, dynamic> _$PasswordEnrollToJson(PasswordEnroll instance) =>
+    <String, dynamic>{
       'value': instance.value,
     };
 
@@ -236,16 +235,6 @@ Map<String, dynamic> _$IdToJson(Id instance) => <String, dynamic>{
       'unicity': instance.unicity,
     };
 
-HumanName _$HumanNameFromJson(Map<String, dynamic> json) {
-  return HumanName(
-    fullName: json['fullName'] as String,
-  );
-}
-
-Map<String, dynamic> _$HumanNameToJson(HumanName instance) => <String, dynamic>{
-      'fullName': instance.fullName,
-    };
-
 HumanNameFull _$HumanNameFullFromJson(Map<String, dynamic> json) {
   return HumanNameFull(
     firstName: json['firstName'] as String,
@@ -283,24 +272,19 @@ Terms _$TermsFromJson(Map<String, dynamic> json) {
     tax: Tax.fromJson(json['tax'] as Map<String, dynamic>),
     taxableTotal: (json['taxableTotal'] as num).toDouble(),
     total: json['total'] as int,
-    discountDisplay:
-        Discount.fromJson(json['discountDisplay'] as Map<String, dynamic>),
     period: json['period'] as String,
-    weight: (json['weight'] as num).toDouble(),
   );
 }
 
 Map<String, dynamic> _$TermsToJson(Terms instance) => <String, dynamic>{
       'discount': instance.discount,
       'freight': instance.freight,
+      'period': instance.period,
       'pv': instance.pv,
       'subtotal': instance.subtotal,
       'tax': instance.tax,
       'taxableTotal': instance.taxableTotal,
       'total': instance.total,
-      'discountDisplay': instance.discountDisplay,
-      'period': instance.period,
-      'weight': instance.weight,
     };
 
 Discount _$DiscountFromJson(Map<String, dynamic> json) {
@@ -323,15 +307,15 @@ Map<String, dynamic> _$AggregateToJson(Aggregate instance) => <String, dynamic>{
       'aggregate': instance.aggregate,
     };
 
-Transactions _$TransactionsFromJson(Map<String, dynamic> json) {
-  return Transactions(
+TransactionsEnroll _$TransactionsEnrollFromJson(Map<String, dynamic> json) {
+  return TransactionsEnroll(
     items: (json['items'] as List<dynamic>?)
         ?.map((e) => TransactionItems.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
-Map<String, dynamic> _$TransactionsToJson(Transactions instance) =>
+Map<String, dynamic> _$TransactionsEnrollToJson(TransactionsEnroll instance) =>
     <String, dynamic>{
       'items': instance.items,
     };
@@ -365,8 +349,8 @@ Map<String, dynamic> _$FreightToJson(Freight instance) => <String, dynamic>{
       'amount': instance.amount,
     };
 
-Source _$SourceFromJson(Map<String, dynamic> json) {
-  return Source(
+SourceEnroll _$SourceEnrollFromJson(Map<String, dynamic> json) {
+  return SourceEnroll(
     agent: json['agent'] as String,
     campaign: json['campaign'],
     medium: json['medium'] as String,
@@ -376,7 +360,8 @@ Source _$SourceFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$SourceToJson(Source instance) => <String, dynamic>{
+Map<String, dynamic> _$SourceEnrollToJson(SourceEnroll instance) =>
+    <String, dynamic>{
       'agent': instance.agent,
       'campaign': instance.campaign,
       'medium': instance.medium,
@@ -422,15 +407,15 @@ Map<String, dynamic> _$MainTermsToJson(MainTerms instance) => <String, dynamic>{
       'weight': instance.weight,
     };
 
-ProductLines _$ProductLinesFromJson(Map<String, dynamic> json) {
-  return ProductLines(
+ProductLinesEnroll _$ProductLinesEnrollFromJson(Map<String, dynamic> json) {
+  return ProductLinesEnroll(
     items: (json['items'] as List<dynamic>)
         .map((e) => ProductLineItems.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
-Map<String, dynamic> _$ProductLinesToJson(ProductLines instance) =>
+Map<String, dynamic> _$ProductLinesEnrollToJson(ProductLinesEnroll instance) =>
     <String, dynamic>{
       'items': instance.items,
     };
@@ -462,15 +447,15 @@ Map<String, dynamic> _$ProductItemBaseInfoToJson(
       'id': instance.id,
     };
 
-ProductTerms _$ProductTermsFromJson(Map<String, dynamic> json) {
-  return ProductTerms(
+ProductTermsEnroll _$ProductTermsEnrollFromJson(Map<String, dynamic> json) {
+  return ProductTermsEnroll(
     priceEach: json['priceEach'] as int,
     subtotal: json['subtotal'] as int,
     discount: Discount.fromJson(json['discount'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$ProductTermsToJson(ProductTerms instance) =>
+Map<String, dynamic> _$ProductTermsEnrollToJson(ProductTermsEnroll instance) =>
     <String, dynamic>{
       'priceEach': instance.priceEach,
       'subtotal': instance.subtotal,
