@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:code_magic_ex/models/enrollee_user_data.dart';
-import 'package:code_magic_ex/ui/screens/enroll/bloc/enroll_confirmation_controller.dart';
 import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/home.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
