@@ -535,6 +535,25 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
+  Future<VerifyOrderResponse> verifyEnrollOrder(data) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(data.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<VerifyOrderResponse>(Options(
+                method: 'POST',
+                headers: <String, dynamic>{},
+                extra: _extra,
+                contentType: 'application/x-www-form-urlencoded')
+            .compose(_dio.options, 'ALL/DSC/THA/barcode/order_verify.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = VerifyOrderResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<GovtIdVerify> enrollValidation(
       language,
       firstName,

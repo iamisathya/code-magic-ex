@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/models/enroll_form.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -203,6 +204,11 @@ abstract class MemberCallsService {
   @POST(Address.orderVerify)
   @FormUrlEncoded()
   Future<VerifyOrderResponse> verifyOrder(@Body() PlaceOrder data);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/order_verify.php
+  @POST(Address.orderVerify)
+  @FormUrlEncoded()
+  Future<VerifyOrderResponse> verifyEnrollOrder(@Body() EnrollForm data);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/order_verify.php
   @POST(Address.orderVerify)

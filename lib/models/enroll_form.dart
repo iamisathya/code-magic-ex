@@ -21,15 +21,15 @@ class EnrollForm {
   @JsonKey(name: "shipToTime")
   dynamic shipToTime;
   @JsonKey(name: "source")
-  dynamic source;
+  Source source;
   @JsonKey(name: "type")
   dynamic type;
-  @JsonKey(name: "customer")
-  Customer customer;
   @JsonKey(name: "lines")
   ProductLines lines;
   @JsonKey(name: "transactions")
   Transactions transactions;
+  @JsonKey(name: "customer")
+  Customer customer;
   @JsonKey(name: "terms")
   Terms terms;
   @JsonKey(name: "dateCreated")
@@ -166,24 +166,49 @@ class ShipToName {
 
 @JsonSerializable()
 class Customer {
-  Enroller enroller;
-  String href;
+  ShipToAddress mainAddress;
   HumanNameFull humanName;
-  IdTypeString id;
-  Sponsor sponsor;
-  String status;
+  Enroller enroller;
+  Enroller sponsor;
+  String birthDate;
+  String maritalStatus;
+  String email;
   TaxTerms taxTerms;
+  String homePhone;
+  String mobilePhone;
+  String entryPeriod;
+  String gender;
+  Password password;
   String type;
+  Source source;
+  BusinessEntity businessEntity;
+  String status;
+  IdTypeString id;
+  String href;
+  String token;
 
-  Customer(
-      {required this.enroller,
-      required this.href,
-      required this.humanName,
-      required this.id,
-      required this.sponsor,
-      required this.status,
-      required this.taxTerms,
-      required this.type});
+  Customer({
+    required this.mainAddress,
+    required this.humanName,
+    required this.enroller,
+    required this.sponsor,
+    required this.birthDate,
+    required this.maritalStatus,
+    required this.email,
+    required this.taxTerms,
+    required this.homePhone,
+    required this.mobilePhone,
+    required this.entryPeriod,
+    required this.gender,
+    required this.password,
+    required this.type,
+    required this.source,
+    required this.businessEntity,
+    required this.status,
+    required this.id,
+    required this.href,
+    required this.token,
+  });
 
   factory Customer.fromJson(Map<String, dynamic> json) =>
       _$CustomerFromJson(json);
@@ -218,6 +243,19 @@ class Enroller {
   Map<String, dynamic> toJson() => _$EnrollerToJson(this);
 }
 
+@JsonSerializable(explicitToJson: true)
+class Password {
+  @JsonKey(name: "value")
+  String value;
+
+  Password({required this.value});
+
+  factory Password.fromJson(Map<String, dynamic> json) =>
+      _$PasswordFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PasswordToJson(this);
+}
+
 @JsonSerializable()
 class Tax {
   double amount;
@@ -228,6 +266,18 @@ class Tax {
       _$TaxFromJson(json);
 
   Map<String, dynamic> toJson() => _$TaxToJson(this);
+}
+
+@JsonSerializable()
+class BusinessEntity {
+  String legalType;
+
+  BusinessEntity({required this.legalType});
+
+  factory BusinessEntity.fromJson(Map<String, dynamic> json) =>
+      _$BusinessEntityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BusinessEntityToJson(this);
 }
 
 @JsonSerializable()
@@ -268,44 +318,21 @@ class HumanName {
 class HumanNameFull {
   String firstName;
   String lastName;
-  String fullName;
-  @JsonKey(name: "fullName@th")
-  String fullNameTh;
+  @JsonKey(name: "firstName@th")
+  String firstNameTh;
+  @JsonKey(name: "lastName@th")
+  String lastNameTh;
 
   HumanNameFull(
       {required this.firstName,
       required this.lastName,
-      required this.fullName,
-      required this.fullNameTh});
+      required this.firstNameTh,
+      required this.lastNameTh});
 
   factory HumanNameFull.fromJson(Map<String, dynamic> json) =>
       _$HumanNameFullFromJson(json);
 
   Map<String, dynamic> toJson() => _$HumanNameFullToJson(this);
-}
-
-@JsonSerializable()
-class CompleteHumanName {
-  @JsonKey(name: "firstName")
-  String firstName;
-  @JsonKey(name: "lastName")
-  String lastName;
-  @JsonKey(name: "fullName")
-  String fullName;
-  @JsonKey(name: "fullName@th")
-  String fullNameTh;
-
-  CompleteHumanName({
-    required this.firstName,
-    required this.lastName,
-    required this.fullName,
-    required this.fullNameTh,
-  });
-
-  factory CompleteHumanName.fromJson(Map<String, dynamic> json) =>
-      _$CompleteHumanNameFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CompleteHumanNameToJson(this);
 }
 
 @JsonSerializable()
@@ -381,14 +408,12 @@ class Aggregate {
   Map<String, dynamic> toJson() => _$AggregateToJson(this);
 }
 
-@JsonSerializable()
+@JsonSerializable(nullable: true)
 class Transactions {
-  List<TransactionItems> items;
-  Discount aggregate;
-
+  List<TransactionItems>? items;
+  
   Transactions({
-    required this.items,
-    required this.aggregate,
+    required this.items,  
   });
 
   factory Transactions.fromJson(Map<String, dynamic> json) =>
@@ -435,6 +460,36 @@ class Freight {
       _$FreightFromJson(json);
 
   Map<String, dynamic> toJson() => _$FreightToJson(this);
+}
+
+@JsonSerializable()
+class Source {
+  @JsonKey(name: 'agent')
+  String agent;
+  @JsonKey(name: 'campaign')
+  dynamic campaign;
+  @JsonKey(name: 'medium')
+  String medium;
+  @JsonKey(name: 'platform')
+  String platform;
+  @JsonKey(name: 'referrer')
+  dynamic referrer;
+  @JsonKey(name: 'version')
+  dynamic version;
+
+  Source(
+      {required this.agent,
+      required this.campaign,
+      required this.medium,
+      required this.platform,
+      required this.referrer,
+      required this.version});
+
+
+  factory Source.fromJson(Map<String, dynamic> json) =>
+      _$SourceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SourceToJson(this);
 }
 
 @JsonSerializable()
@@ -501,13 +556,10 @@ class ProductLineItems {
   ProductItemBaseInfo item;
   @JsonKey(name: "quantity")
   int quantity;
-  @JsonKey(name: "terms")
-  ProductTerms terms;
 
   ProductLineItems({
     required this.item,
     required this.quantity,
-    required this.terms,
   });
 
   factory ProductLineItems.fromJson(Map<String, dynamic> json) =>
