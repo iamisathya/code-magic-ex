@@ -347,7 +347,7 @@ class EnrollController extends GetxController {
         mobileNumber: mobileNumberController.text,
         phoneNumber: phoneNumberController.text,
         taxId: idCardNumberController.text,
-        password: "2222");
+        password: idCardNumberController.text);
     print(enroleeData.toJson());
     try {
       _sendingMsgProgressBar.show(context);

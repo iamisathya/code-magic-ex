@@ -20,7 +20,6 @@ class EnrolleeUserData {
   String sponsorId;
   @JsonKey(name: 'sponsorName')
   String sponsorName;
-
   @JsonKey(name: 'gender')
   String gender;
   @JsonKey(name: 'maritalStatus')
