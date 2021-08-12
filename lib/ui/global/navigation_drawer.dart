@@ -16,7 +16,8 @@ class NavigationDrawer extends StatelessWidget {
         okText: 'Yes',
         cancelText: 'No');
     if (isConfirmed == false) return;
-    FirebaseAnalytics().logEvent(name: 'log_out',parameters: {'type': "normal_signout"});
+    FirebaseAnalytics()
+        .logEvent(name: 'log_out', parameters: {'type': "normal_signout"});
     UserSessionManager.shared.removeUserInfoFromDB();
     final route = MaterialPageRoute(builder: (context) => LoginScreen());
     Navigator.of(context).pushAndRemoveUntil(route, (_) => false);
@@ -32,8 +33,9 @@ class NavigationDrawer extends StatelessWidget {
         children: <Widget>[
           _createDrawerHeader(),
           _createDrawerBodyItem(
-            selected:
-                currentRoute == ScreenPaths.mainHome || currentRoute == "/" || currentRoute == null,
+            selected: currentRoute == ScreenPaths.mainHome ||
+                currentRoute == "/" ||
+                currentRoute == null,
             icon: Icons.home_outlined,
             text: 'Home',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.mainHome),
@@ -109,13 +111,15 @@ Widget _createDrawerHeader() {
           child: CircleAvatar(
             radius: 50.0,
             backgroundColor: const Color(0xFF778899),
-            backgroundImage: NetworkImage(UserSessionManager.shared.profilePicture!.sizes[0].media), // for Network image
+            backgroundImage: NetworkImage(UserSessionManager
+                .shared.profilePicture!.sizes[0].media), // for Network image
           ),
         ),
         Positioned(
             bottom: 38.0,
             left: 16.0,
-            child: Text(UserSessionManager.shared.userInfo!.id.unicity.toString(),
+            child: Text(
+                UserSessionManager.shared.userInfo!.id.unicity.toString(),
                 style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 12.0,
@@ -136,11 +140,15 @@ Widget _createDrawerBodyItem(
     required String text,
     required GestureTapCallback onTap,
     required bool selected}) {
+  final color = selected ? Colors.white : Colors.black;
   return ListTile(
     selectedTileColor: kMainColor,
     selected: selected,
-    leading: Icon(icon),
-    title: Text(text),
+    leading: Icon(icon, color: color),
+    title: Text(
+      text,
+      style: TextStyle(color: color),
+    ),
     onTap: onTap,
   );
 }
