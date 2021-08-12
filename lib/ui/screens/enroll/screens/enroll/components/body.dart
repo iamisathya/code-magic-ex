@@ -4,6 +4,7 @@ import 'package:code_magic_ex/ui/screens/enroll/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../../utilities/extensions.dart';
 
@@ -230,10 +231,7 @@ class Body extends StatelessWidget {
             child: TextField(
               controller: controller.birthDateController,
               readOnly: true,
-              onTap: () {
-                DatePicker.showDatePicker(context,
-                    onConfirm: (date) => controller.onChangeBirthDay(date));
-              },
+              onTap: () => controller.renderDatePicker(context),
               decoration: kTextInputDecoration(hintText: "D.O.B"),
             )),
       ]),
@@ -299,8 +297,9 @@ class Body extends StatelessWidget {
   }
 
   Padding _errorText(String text) => Padding(
-        padding: const EdgeInsets.all(4.0),
-        child:
-            Text(text, style: const TextStyle(color: Colors.red, fontSize: 16)),
+        padding: const EdgeInsets.all(8.0),
+        child: Text(text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.red, fontSize: 16)),
       );
 }

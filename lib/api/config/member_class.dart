@@ -149,7 +149,7 @@ abstract class MemberCallsService {
     @Field("firstName") String firstName,
     @Field("lastName") String lastName,
     @Field("firstName@th") String firstNameTh,
-    @Field("lastName@th: ") String lastNameTh,
+    @Field("lastName@th") String lastNameTh,
     @Field("gender") String gender,
     @Field("maritalStatus") String maritalStatus,
     @Field("birthDate") String birthDate,

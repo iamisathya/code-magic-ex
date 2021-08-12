@@ -392,7 +392,7 @@ class _MemberCallsService implements MemberCallsService {
       'firstName': firstName,
       'lastName': lastName,
       'firstName@th': firstNameTh,
-      'lastName@th: ': lastNameTh,
+      'lastName@th': lastNameTh,
       'gender': gender,
       'maritalStatus': maritalStatus,
       'birthDate': birthDate,

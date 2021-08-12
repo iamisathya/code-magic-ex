@@ -7,6 +7,7 @@ import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/home
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/config/api_service.dart';
@@ -105,11 +106,28 @@ class EnrollController extends GetxController {
     enrollIdController.text = "108357166";
     sponsorIdController.text = "108357166";
     firstNameThController.text = "ทดสอบ";
-    lastNameThController.text = "บัญชี";
+    lastNameThController.text = "สาธยา";
     firstNameEnController.text = "Test";
     lastNameEnController.text = "Account";
     // userGender.value = "Male";
     // maritalStatus.value = "Married";
+    mainAddressController.text = "Main Address";
+    zipCodeController.text = "14000";
+    emailAddressController.text = "nomail@unicity.com";
+    phoneNumberController.text = "990099009";
+    mobileNumberController.text = "9900990099";
+  }
+
+  Future<DateTime?> renderDatePicker(BuildContext context) {
+    final DateTime selectedDate;
+    if (birthDateController.text != "") {
+      final selcted = DateFormat("yyyy-MM-dd").parse(birthDateController.text);
+      selectedDate = DateTime(selcted.year, selcted.month, selcted.day);
+    } else {
+      selectedDate = DateTime.now();
+    }
+    return DatePicker.showDatePicker(context,
+        currentTime: selectedDate, onConfirm: (date) => onChangeBirthDay(date));
   }
 
   void onChangeBirthDay(DateTime date) {
@@ -214,6 +232,13 @@ class EnrollController extends GetxController {
       govtIdVerifyButton.value = "Verified";
       isGovtIdSuccess.value = true;
       isSubmitting(false);
+      Timer(const Duration(milliseconds: 20), () {
+        scrollController.animateTo(
+          750,
+          curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 500),
+        );
+      });
       _sendingMsgProgressBar.hide();
       update();
     } catch (err) {
