@@ -351,7 +351,7 @@ class EnrollController extends GetxController {
           birthDateController.text,
           mainAddressController.text,
           "${area.value} ${subArea.value}",
-          "city",
+          area.value,
           country.value,
           zipCodeController.text,
           emailAddressController.text,
@@ -373,6 +373,7 @@ class EnrollController extends GetxController {
         errorMessages.clear();
         errorMessages.addAll(enrollResponse.message);
       } else {
+        errorMessages.clear();
         Get.to(() => EnrollConfirmation(),
             transition: Transition.cupertino, arguments: enroleeData);
       }
