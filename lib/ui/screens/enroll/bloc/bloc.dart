@@ -122,7 +122,7 @@ class EnrollController extends GetxController {
     final DateTime selectedDate;
     final DateTime currentDate = DateTime.now();
     final DateTime mimimumDate =
-        DateTime(currentDate.year - 18, currentDate.month, currentDate.day);
+        DateTime(currentDate.year - 18, currentDate.month, currentDate.day - 1);
     if (birthDateController.text != "") {
       final selcted = DateFormat("yyyy-MM-dd").parse(birthDateController.text);
       selectedDate = DateTime(selcted.year, selcted.month, selcted.day);

@@ -1,5 +1,6 @@
 import 'package:code_magic_ex/constants/colors.dart';
 import 'package:code_magic_ex/styles/input_decorations.dart';
+import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
 import 'package:code_magic_ex/ui/screens/enroll/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -71,11 +72,11 @@ class Body extends StatelessWidget {
                     _renderDatePicker("Birth Day", context),
                     Obx(() => controller.isUnderAgeLimit.value
                         ? Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            padding: const EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
                             child: Text(
                                 "Applicant must be 18 years or older. (DD/MM/YYYY)",
                                 style:
-                                    Theme.of(context).textTheme.cardItemTitle),
+                                    AppTheme.darkTheme.textTheme.subtitle1),
                           )
                         : const SizedBox()),
                     _renderDropdownButton(
