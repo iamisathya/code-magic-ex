@@ -213,9 +213,10 @@ class SalesReportController extends GetxController {
               update();
               Navigator.pop(context);
             },
+            shape: kRoundedBorder(),
             selected: filterMethod.value == "order",
-            selectedTileColor: kPrimaryColor,
-            title: const Text("By Order"),
+            selectedTileColor: kMainColor,
+            title: Text("By Order", style: TextStyle(color: filterMethod.value == "order" ? Colors.white : Colors.black)),
           ),
         ),
         PopupMenuItem<String>(
@@ -228,8 +229,9 @@ class SalesReportController extends GetxController {
               update();
               Navigator.pop(context);
             },
-            selectedTileColor: kPrimaryColor,
-            title: const Text("By Item"),
+            shape: kRoundedBorder(),
+            selectedTileColor: kMainColor,
+            title: Text("By Item", style: TextStyle(color: filterMethod.value == "item" ? Colors.white : Colors.black)),
           ),
         ),
         PopupMenuItem<String>(
@@ -242,8 +244,9 @@ class SalesReportController extends GetxController {
               Navigator.pop(context);
               update();
             },
-            selectedTileColor: kPrimaryColor,
-            title: const Text("RMAs"),
+            shape: kRoundedBorder(),
+            selectedTileColor: kMainColor,
+            title: Text("RMAs", style: TextStyle(color: filterMethod.value == "rma" ? Colors.white : Colors.black)),
           ),
         )
       ],

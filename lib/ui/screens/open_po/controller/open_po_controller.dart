@@ -264,7 +264,7 @@ class OpenPoController extends GetxController {
             },
             selected: filterMethod.value == "6",
             selectedTileColor: kMainColor,
-            title: const Text("6 Months"),
+            title: Text("6 Months", style: TextStyle(color: filterMethod.value == "6" ? Colors.white : Colors.black)),
           ),
         ),
         PopupMenuItem<String>(
@@ -280,7 +280,7 @@ class OpenPoController extends GetxController {
               getAllOpenPo();
             },
             selectedTileColor: kMainColor,
-            title: const Text("All"),
+            title: Text("All", style: TextStyle(color: filterMethod.value == "12" ? Colors.white : Colors.black)),
           ),
         ),
       ],
