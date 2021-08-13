@@ -1,7 +1,5 @@
-import 'package:code_magic_ex/models/user_info.dart';
 import 'package:code_magic_ex/ui/screens/enroll/bloc/enroll_complete_controller.dart';
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -19,7 +17,6 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserInfo info = UserSessionManager.shared.userInfo!;
     return SingleChildScrollView(
       child: Container(
         height: Get.height,
@@ -38,7 +35,7 @@ class Body extends StatelessWidget {
                   style: AppTheme.lightTheme.textTheme.headline4,
                 ),
                 Text(
-                  " #${controller.orderId}",
+                  " #${controller.orderNumber.value}",
                   style: AppTheme.lightTheme.textTheme.headline6,
                 ),
               ],
@@ -54,10 +51,14 @@ class Body extends StatelessWidget {
               margin: kEdgeInsetSymmetric(h: 0, v: 20),
               child: Column(
                 children: [
-                  ColumnItem(
+                  Obx(() => ColumnItem(
+                    title: "Order ID",
+                    value: controller.orderNumber.value,
+                  )),
+                  Obx(() => ColumnItem(
                     title: "User ID",
-                    value: controller.newUserId,
-                  ),
+                    value: controller.userId.value,
+                  )),
                 ],
               ),
             ),

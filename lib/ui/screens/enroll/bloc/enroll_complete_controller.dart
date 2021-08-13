@@ -1,11 +1,15 @@
 import 'package:code_magic_ex/api/api_address.dart';
+import 'package:code_magic_ex/models/enroll_form.dart';
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:get/get.dart';
 
+import '../../../../utilities/extensions.dart';
+
 class EnrollCompleteController extends GetxController {
-  EnrollForm enrollSuccessResponse = "";
-  RxString orderId = "";
+  late EnrollForm enrollSuccessResponse;
+  RxString orderNumber = "".obs;
+  RxString userId = "".obs;
 
   @override
   void onInit() {
@@ -13,7 +17,8 @@ class EnrollCompleteController extends GetxController {
     final dynamic data = Get.arguments;
     if (data != null) {
       enrollSuccessResponse = data as EnrollForm;
-      newUserId.value = enrollSuccessResponse.id.unicity.retrieveOrderId();
+      orderNumber.value = enrollSuccessResponse.id.unicity.retrieveOrderId();
+      userId.value = enrollSuccessResponse.customer.id.unicity;
     }
   }
 
