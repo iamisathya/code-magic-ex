@@ -6,7 +6,6 @@ import 'package:code_magic_ex/models/enroll_form.dart';
 import 'package:code_magic_ex/models/enroll_log_request_data.dart';
 import 'package:code_magic_ex/models/enrollee_user_data.dart';
 import 'package:code_magic_ex/models/general_models.dart';
-import 'package:code_magic_ex/models/govt_id_verify.dart';
 import 'package:code_magic_ex/models/place_order.dart'
     hide
         Customer,
@@ -19,6 +18,7 @@ import 'package:code_magic_ex/models/place_order.dart'
 import 'package:code_magic_ex/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
+import 'package:code_magic_ex/ui/screens/enroll/screens/order_complete/enroll_complete.dart';
 import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/function.dart';
@@ -189,6 +189,7 @@ class EnrollConfirmationController extends GetxController {
     try {
       await MemberCallsService.init().verifyEnrollOrder(placeOrde);
       await forceResetPassword();
+      Get.offNamedUntil(EnrollComplete.routeName, ModalRoute.withName('/enrollHome'));
     } on DioError catch (e) {
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
     } catch (err) {
