@@ -4,19 +4,22 @@ import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:get/get.dart';
 
 class EnrollCompleteController extends GetxController {
-  String newUserHrefCode = "";
+  EnrollForm enrollSuccessResponse = "";
+  RxString orderId = "";
 
   @override
   void onInit() {
     super.onInit();
     final dynamic data = Get.arguments;
     if (data != null) {
-      newUserHrefCode = data as String;
+      enrollSuccessResponse = data as EnrollForm;
+      newUserId.value = enrollSuccessResponse.id.unicity.retrieveOrderId();
     }
   }
 
   void viewOrder() {
+    final String hrefCode = getUniqueId(enrollSuccessResponse.href);
     launchURL(
-        "${Address.orderedItems}/$newUserHrefCode&token=${UserSessionManager.shared.customerToken.token}");
+        "${Address.orderedItems}/$hrefCode&token=${UserSessionManager.shared.customerToken.token}");
   }
 }

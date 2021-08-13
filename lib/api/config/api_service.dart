@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:code_magic_ex/models/enroll_form.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -131,6 +132,15 @@ abstract class ApiService {
   //? "notes": "batch XXYY by First Last", "transactions": {"items": [{"amount": "this.terms.total","type": "record","method": "Cash"}]}}
   @POST(Address.orders)
   Future<PlaceOrder> getPlaceOrders(@Body() String request);
+
+  //? Example: https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/orders
+  //? Body
+  //? {"customer":{"mainAddress":{"city":"กรุงเทพมหานคร   ","country":"TH","state":"","zip":"10200","address1":"Ratchaprop ","address2":"\n                                Sub-Area\n                                พระบรมมหาราชวัง\n                                    Area\n                                พระนคร"},"humanName":{"firstName":"Test","lastName":"Domain","firstName@th":"ทดสอบ","lastName@th":"โดเมน"},"enroller":{"href":"https://hydra.unicity.net/v5a/customers?id.unicity=108357166"},
+  //? "sponsor":{"href":"https://hydra.unicity.net/v5a/customers?id.unicity=108357166"},"birthDate":"2000-12-01","maritalStatus":"Single","email":"nomail@unicity.com","taxTerms":{"taxId":"4480426014170"},"homePhone":"990099009","mobilePhone":"9900990099","entryPeriod":"2021-08","gender":"male","password":{"value":"4480426014170"},"type":"Associate","source":{"agent":"MLBS-DSCTools-TH","campaign":null,"medium":"Internet","platform":"Mac OS","referrer":null,"version":null}},
+  //? "lines":{"items":[{"item":{"href":"https://hydra.unicity.net/v5a/items?id.unicity=20817"},"quantity":1}]},"shipToName":{"firstName":"Test","lastName":"Domain"},"shipToPhone":"990099009","shipToEmail":"nomail@unicity.com","notes":"enrollment|dsc|pc web|tha||108357166|","shipToAddress":{"city":"1","country":"TH","state":"","address1":"Ratchaprop ","address2":"\n                                Sub-Area\n                                พระบรมมหาราชวัง\n                                    Area\n                                พระนคร","zip":""},
+  //? "shippingMethod":{"href":"https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"},"transactions":{"items":[{"amount":"this.terms.total","type":"record","method":"Cash"}]},"terms":{"period":"2021-08"},"source":{"agent":"MLBS-DSCTools-TH","campaign":null,"medium":"Internet","platform":"Mac OS","referrer":null,"version":null}}
+  @POST(Address.orders)
+  Future<EnrollForm> placeEnrollOrder(@Body() String request);
 }
 
 @RestApi(baseUrl: Address.memberCalls2Base)

@@ -43,7 +43,6 @@ Map<String, dynamic> _$EnrollLogRequestDataToJson(
 
 Customer _$CustomerFromJson(Map<String, dynamic> json) {
   return Customer(
-    href: json['href'] as String,
     mainAddress:
         MainAddress.fromJson(json['mainAddress'] as Map<String, dynamic>),
     humanName: HumanName.fromJson(json['humanName'] as Map<String, dynamic>),
@@ -64,7 +63,6 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$CustomerToJson(Customer instance) => <String, dynamic>{
-      'href': instance.href,
       'mainAddress': instance.mainAddress,
       'humanName': instance.humanName,
       'enroller': instance.enroller,

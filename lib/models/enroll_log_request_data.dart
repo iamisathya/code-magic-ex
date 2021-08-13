@@ -63,8 +63,8 @@ class EnrollLogRequestData {
 
 @JsonSerializable()
 class Customer {
-  @JsonKey(name: "href")
-  String href;
+  // @JsonKey(name: "href")
+  // String href;
   @JsonKey(name: "mainAddress")
   MainAddress mainAddress;
   @JsonKey(name: "humanName")
@@ -97,7 +97,7 @@ class Customer {
   Source source;
 
   Customer(
-      {required this.href,
+      {
       required this.mainAddress,
       required this.humanName,
       required this.enroller,

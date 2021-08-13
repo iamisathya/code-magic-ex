@@ -69,7 +69,7 @@ class Body extends StatelessWidget {
                   text: "Cancel",
                   color: Colors.red),
               PrimaryButton(
-                  press: () => controller.verifyOrder(),
+                  press: () => controller.proceedOrderPlace(context),
                   text: "Confirm"),
             ],
           ),

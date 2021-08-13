@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
                   style: AppTheme.lightTheme.textTheme.headline4,
                 ),
                 Text(
-                  " #${info.id.unicity.toString()}",
+                  " #${controller.orderId}",
                   style: AppTheme.lightTheme.textTheme.headline6,
                 ),
               ],
@@ -56,11 +56,7 @@ class Body extends StatelessWidget {
                 children: [
                   ColumnItem(
                     title: "User ID",
-                    value: info.id.unicity.toString(),
-                  ),
-                  const ColumnItem(
-                    title: "Order ID",
-                    value: "123455",
+                    value: controller.newUserId,
                   ),
                 ],
               ),

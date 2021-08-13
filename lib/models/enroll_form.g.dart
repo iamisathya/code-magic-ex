@@ -423,7 +423,7 @@ Map<String, dynamic> _$ProductLinesEnrollToJson(ProductLinesEnroll instance) =>
 ProductLineItems _$ProductLineItemsFromJson(Map<String, dynamic> json) {
   return ProductLineItems(
     item: ProductItemBaseInfo.fromJson(json['item'] as Map<String, dynamic>),
-    quantity: json['quantity'] as int,
+    quantity: json['quantity'] as String,
   );
 }
 

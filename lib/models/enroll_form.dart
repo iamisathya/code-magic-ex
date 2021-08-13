@@ -529,7 +529,7 @@ class ProductLineItems {
   @JsonKey(name: "item")
   ProductItemBaseInfo item;
   @JsonKey(name: "quantity")
-  int quantity;
+  String quantity;
 
   ProductLineItems({
     required this.item,
