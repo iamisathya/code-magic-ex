@@ -9,7 +9,7 @@ import '../../../global/widgets/search_view_button.dart';
 import '../controller/inventory_controller.dart';
 
 class Body extends StatelessWidget {
-  InventoryController controller = Get.find();
+  final InventoryController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {

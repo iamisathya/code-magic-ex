@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
-import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/home.dart';
+
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';

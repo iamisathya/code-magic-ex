@@ -5,8 +5,6 @@ import 'package:code_magic_ex/ui/screens/enroll/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../utilities/extensions.dart';
-
 class Body extends StatelessWidget {
   final EnrollController controller = Get.put(EnrollController());
 

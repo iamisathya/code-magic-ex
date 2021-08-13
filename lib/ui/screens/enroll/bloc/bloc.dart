@@ -348,7 +348,6 @@ class EnrollController extends GetxController {
         phoneNumber: phoneNumberController.text,
         taxId: idCardNumberController.text,
         password: idCardNumberController.text);
-    print(enroleeData.toJson());
     try {
       _sendingMsgProgressBar.show(context);
       final response = await MemberCallsService.init().verifyEnrollForm(
