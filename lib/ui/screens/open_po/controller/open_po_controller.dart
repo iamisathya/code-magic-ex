@@ -1,4 +1,6 @@
+import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -226,19 +228,19 @@ class OpenPoController extends GetxController {
       case OpenPoTypes.totalPv:
         if (isAscending) {
           _tempOpenPlaceOrders
-              .sort((a, b) => a.orderTotalPv.compareTo(b.orderTotalPv));
+              .sort((a, b) => NumberFormat().parse(a.orderTotalPv).compareTo(NumberFormat().parse(b.orderTotalPv)));
         } else {
           _tempOpenPlaceOrders
-              .sort((b, a) => a.orderTotalPv.compareTo(b.orderTotalPv));
+              .sort((b, a) => NumberFormat().parse(a.orderTotalPv).compareTo(NumberFormat().parse(b.orderTotalPv)));
         }
         break;
       case OpenPoTypes.totalPrice:
         if (isAscending) {
           _tempOpenPlaceOrders
-              .sort((a, b) => a.orderTotalPrice.compareTo(b.orderTotalPrice));
+              .sort((a, b) => NumberFormat().parse(a.orderTotalPrice).compareTo(NumberFormat().parse(b.orderTotalPrice)));
         } else {
           _tempOpenPlaceOrders
-              .sort((b, a) => a.orderTotalPrice.compareTo(b.orderTotalPrice));
+              .sort((b, a) => NumberFormat().parse(a.orderTotalPrice).compareTo(NumberFormat().parse(b.orderTotalPrice)));
         }
         break;
       default:
