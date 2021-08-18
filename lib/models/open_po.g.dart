@@ -15,12 +15,12 @@ OpenPO _$OpenPOFromJson(Map<String, dynamic> json) {
     orderDate: json['order_date'] as String,
     orderTime: json['order_time'] as String,
     orderStatus: json['order_status'] as String,
-    iconAttachment: json['icon_attachment'] as String,
+    iconAttachment: json['order_attachment'] as String,
   );
 }
 
 Map<String, dynamic> _$OpenPOToJson(OpenPO instance) => <String, dynamic>{
-      'icon_attachment': instance.iconAttachment,
+      'order_attachment': instance.iconAttachment,
       'order_date': instance.orderDate,
       'order_dscid': instance.orderDscid,
       'order_opid': instance.orderOpid,

@@ -155,7 +155,7 @@ class Body extends StatelessWidget {
             180,
             Alignment.center,
             _renderStatusButton(
-                context, currentItem.orderStatus.retrieveOrderStatus()),
+                context, currentItem.orderStatus),
           ),
           _renderDataCellWidget(
               180,
@@ -210,12 +210,15 @@ class Body extends StatelessWidget {
   Container _renderStatusButton(BuildContext context, String status) {
     if (status == "0") {
       return _renderEachStatusButton(context, "Pending", kPendingColor);
-    } else if (status == "4") {
-      return _renderEachStatusButton(context, "Approved", kApprovedColor);
-    } else if (status == "2") {
+    } else if (status == "1") {
+      return _renderEachStatusButton(context, "Deleted", Colors.red);
+    }else if (status == "2") {
       return _renderEachStatusButton(context, "Unknown", kSecondaryColor);
-    }
-    return _renderEachStatusButton(context, "Deleted", Colors.red);
+    }  else if (status == "3") {
+      return _renderEachStatusButton(context, "Processing", kMainColor);
+    } else {
+      return _renderEachStatusButton(context, "Completed", Colors.green);
+    }    
   }
 
   Container _renderEachStatusButton(

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -124,32 +125,32 @@ class InventoryController extends GetxController {
       case InventorySortTypes.quantityOnHand:
         if (isAscending) {
           tempInventoryRecords.value.items
-              .sort((a, b) => a.quantityOnHand.compareTo(b.quantityOnHand));
+              .sort((a, b) => NumberFormat().parse(a.quantityOnHand).compareTo(NumberFormat().parse(b.quantityOnHand)));
         } else {
           tempInventoryRecords.value.items
-              .sort((b, a) => a.quantityOnHand.compareTo(b.quantityOnHand));
+              .sort((b, a) => NumberFormat().parse(a.quantityOnHand).compareTo(NumberFormat().parse(b.quantityOnHand)));
         }
         break;
       case InventorySortTypes.totalAccumulatedPrice:
         if (isAscending) {
           tempInventoryRecords.value.items.sort((a, b) =>
-              (a.quantityOnHand * a.terms.priceEach.toInt())
-                  .compareTo(b.quantityOnHand * a.terms.priceEach.toInt()));
+              (Parsing.intFrom(a.quantityOnHand)! * a.terms.priceEach.toInt())
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! * b.terms.priceEach.toInt()));
         } else {
           tempInventoryRecords.value.items.sort((b, a) =>
-              (a.quantityOnHand * a.terms.priceEach.toInt())
-                  .compareTo(b.quantityOnHand * b.terms.priceEach.toInt()));
+              (Parsing.intFrom(a.quantityOnHand)! * a.terms.priceEach.toInt())
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! * b.terms.priceEach.toInt()));
         }
         break;
       case InventorySortTypes.totalPV:
         if (isAscending) {
           tempInventoryRecords.value.items.sort((a, b) =>
-              (a.quantityOnHand * a.terms.pvEach.toInt())
-                  .compareTo(b.quantityOnHand * b.terms.pvEach.toInt()));
+              (Parsing.intFrom(a.quantityOnHand)! * a.terms.pvEach.toInt())
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! * b.terms.pvEach.toInt()));
         } else {
           tempInventoryRecords.value.items.sort((b, a) =>
-              (a.quantityOnHand * a.terms.pvEach.toInt())
-                  .compareTo(b.quantityOnHand * b.terms.pvEach.toInt()));
+              (Parsing.intFrom(a.quantityOnHand)! * a.terms.pvEach.toInt())
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! * b.terms.pvEach.toInt()));
         }
         break;
       default:

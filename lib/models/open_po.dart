@@ -4,7 +4,7 @@ part 'open_po.g.dart';
 
 @JsonSerializable()
 class OpenPO {
-  @JsonKey(name: "icon_attachment")
+  @JsonKey(name: "order_attachment")
   String iconAttachment;
   @JsonKey(name: "order_date")
   String orderDate;

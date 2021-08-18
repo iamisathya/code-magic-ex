@@ -1,3 +1,5 @@
+import 'package:code_magic_ex/utilities/core/parsing.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
@@ -47,10 +49,12 @@ class Body extends StatelessWidget {
   }
 
   List<Widget> _getTitleWidget() {
-    final String totalPrice =
+    String totalPrice =
         calculateTotalPrice(controller.tempInventoryRecords.value, 'price');
-    final String totalPv =
+        totalPrice = NumberFormat().format(Parsing.intFrom(totalPrice));
+    String totalPv =
         calculateTotalPrice(controller.tempInventoryRecords.value, 'pv');
+        totalPv = NumberFormat().format(Parsing.intFrom(totalPv));
 
     return [
       _renderTableHeader(
