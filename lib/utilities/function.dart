@@ -49,7 +49,7 @@ void renderErrorSnackBar(
 
 String calculateTotalAmount({required String quantity, required double price}) {
   try {
-    return (double.parse(quantity) * price).toInt().toString();
+    return NumberFormat().format((double.parse(quantity) * price).toInt());
   } catch (e) {
     return price.toString();
   }
