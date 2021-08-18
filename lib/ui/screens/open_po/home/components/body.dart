@@ -179,10 +179,11 @@ class Body extends StatelessWidget {
   }
 
   IconButton _renderAttachement(BuildContext context, OpenPO currentItem) {
+    final String attchmentName = currentItem.iconAttachment.retrieveAttachementName();
     final String url =
-        "${Address.resource}${currentItem.iconAttachment.retrieveAttachementName()}";
+        "${Address.resource}$attchmentName";
     return IconButton(
-        onPressed: () => Get.to(() => WebivewHomeScreen(url: url)),
+        onPressed: () => Get.to(() => WebivewHomeScreen(url: url, title: attchmentName)),
         icon: const Icon(Icons.attach_file, color: kMainColor));
   }
 
