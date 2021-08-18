@@ -177,7 +177,7 @@ void renderGetSnackbar(
     String message = "Unexpcted error occured. Please try later!",
     SnackBarType type = SnackBarType.success}) {
   final Color color = type == SnackBarType.success
-      ? kPrimaryColor
+      ? kMainColor
       : type == SnackBarType.error
           ? Colors.red
           : Colors.yellow;

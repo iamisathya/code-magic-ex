@@ -401,9 +401,9 @@ class EnrollController extends GetxController {
       title,
       message,
       titleText: Text(title,
-          style: const TextStyle(color: kPrimaryColor, fontSize: 16)),
+          style: const TextStyle(color: kMainColor, fontSize: 16)),
       messageText: Text(message,
-          style: const TextStyle(color: kPrimaryColor, fontSize: 14)),
+          style: const TextStyle(color: kMainColor, fontSize: 14)),
       backgroundColor: Colors.white,
       borderColor: kPrimaryLightColor,
       animationDuration: const Duration(milliseconds: 300),
@@ -412,7 +412,7 @@ class EnrollController extends GetxController {
       borderWidth: 2,
       icon: const Icon(
         Icons.error_outline,
-        color: kPrimaryColor,
+        color: kMainColor,
       ),
     );
   }

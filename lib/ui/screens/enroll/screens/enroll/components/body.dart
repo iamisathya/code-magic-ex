@@ -143,13 +143,13 @@ class Body extends StatelessWidget {
       height: 60,
       width: Get.width,
       decoration: BoxDecoration(
-          border: Border.all(width: 2, color: kMainColor),
+          border: Border.all(width: 2, color: AppColor.kMainColor),
           borderRadius: const BorderRadius.all(Radius.circular(8.0))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          Icon(Icons.person_outline_outlined, size: 30, color: kMainColor),
-          Text("Information", style: TextStyle(color: kMainColor))
+          Icon(Icons.person_outline_outlined, size: 30, color: AppColor.kMainColor),
+          Text("Information", style: TextStyle(color: AppColor.kMainColor))
         ],
       ),
     );
@@ -190,7 +190,7 @@ class Body extends StatelessWidget {
               enabled: enabled,
               controller: ctlr,
               style: const TextStyle(fontSize: 18),
-              cursorColor: kMainColor,
+              cursorColor: AppColor.kMainColor,
               decoration: kTextInputDecoration(helperText: helperText))
         ],
       ),
@@ -209,7 +209,7 @@ class Body extends StatelessWidget {
                 onPress();
               },
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(kMainColor),
+                  backgroundColor: MaterialStateProperty.all(AppColor.kMainColor),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0),
