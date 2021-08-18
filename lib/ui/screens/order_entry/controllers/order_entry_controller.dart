@@ -104,8 +104,12 @@ class OrderEntryTableController extends GetxController {
 
     await getCashCoupon(context);
     _sendingMsgProgressBar.hide();
-    final Map<String, dynamic> intentData = {"products": checkoutProducts, "user": passedUser};
-    Get.to(() => CheckoutPage(), transition: Transition.cupertino, arguments: intentData);
+    final Map<String, dynamic> intentData = {
+      "products": checkoutProducts,
+      "user": passedUser
+    };
+    Get.to(() => CheckoutPage(),
+        transition: Transition.cupertino, arguments: intentData);
   }
 
   Future<bool> validateEmail(BuildContext context) async {
@@ -229,6 +233,8 @@ class OrderEntryTableController extends GetxController {
           onPressRemove(itemCode);
         } else {
           target.quantity = target.quantity - 1;
+          target.totalPrice = target.quantity * target.itemPrice;
+          target.totalPv = target.quantity * target.itemPv;
         }
       }
     }
