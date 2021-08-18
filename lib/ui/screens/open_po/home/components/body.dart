@@ -70,23 +70,25 @@ class Body extends StatelessWidget {
 
   List<Widget> _getTitleWidget() {
     return [
-      _renderTableHeader("P/O Number", OpenPoTypes.poNumber, 200),
-      _renderTableHeader("Date", OpenPoTypes.date, 180),
-      _renderTableHeader("Time", OpenPoTypes.time, 180),
-      _renderTableHeader("Total PV", OpenPoTypes.totalPv, 180),
-      _renderTableHeader("Total Price", OpenPoTypes.totalPrice, 180),
-      _renderTableHeader("Status", OpenPoTypes.status, 180),
-      _renderTableHeader("Attachment", OpenPoTypes.attachment, 180),
+      _renderTableHeader("P/O Number", OpenPoTypes.poNumber, 200, false),
+      _renderTableHeader("Date", OpenPoTypes.date, 180, true),
+      _renderTableHeader("Time", OpenPoTypes.time, 180, true),
+      _renderTableHeader("Total PV", OpenPoTypes.totalPv, 180, true),
+      _renderTableHeader("Total Price", OpenPoTypes.totalPrice, 180, true),
+      _renderTableHeader("Status", OpenPoTypes.status, 180, false),
+      _renderTableHeader("Attachment", OpenPoTypes.attachment, 180, false),
     ];
   }
 
-  TextButton _renderTableHeader(String title, OpenPoTypes type, double width) {
+  TextButton _renderTableHeader(String title, OpenPoTypes type, double width, bool sorting) {
     return TextButton(
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero,
       ),
       onPressed: () {
-        controller.onSortCulumn(type);
+        if(sorting) {
+          controller.onSortCulumn(type);
+        }
       },
       child: _getTitleItemWidget(
         '$title ${controller.currentType == type ? (controller.isAscending ? '↓' : '↑') : ''}',
