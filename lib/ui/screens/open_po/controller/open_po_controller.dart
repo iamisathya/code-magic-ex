@@ -1,4 +1,3 @@
-import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
