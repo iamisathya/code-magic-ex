@@ -98,9 +98,9 @@ class Body extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(currentItem.catalogSlideContent.content.description)),
         _renderDataCell(
-            100, currentItem.terms.pvEach.toString(), Alignment.centerRight),
+            100, NumberFormat().format(currentItem.terms.pvEach), Alignment.centerRight),
         _renderDataCell(
-            100, currentItem.terms.priceEach.toString(), Alignment.centerRight),
+            100, NumberFormat().format(currentItem.terms.priceEach), Alignment.centerRight),
         _renderDataCell(180, currentItem.quantityOnHand, Alignment.centerRight),
         _renderDataCell(
             340,

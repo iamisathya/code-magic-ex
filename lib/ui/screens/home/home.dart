@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/translations/localization_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,8 +22,9 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   }
 
   Future<void> _changeLanguage(String lang) async {
-    final locale = Locale(lang, 'US');
-    Get.updateLocale(locale);
+    // final locale = Locale(lang, 'US');
+    // Get.updateLocale(locale);
+    LocalizationService().changeLocale(lang);
     // translationBloc.setappLanguageStream(lang);
     await UserSessionManager.shared.setCurrentLanguage(lang);
     Navigator.pop(context, lang);

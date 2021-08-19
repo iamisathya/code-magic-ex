@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 
 import 'bloc/main_bloc.dart';
 import 'translations/bloc.dart';
-import 'translations/translations.dart';
+import 'translations/localization_service.dart';
 import 'ui/global/routes.dart';
 import 'ui/global/theme/app_theme.dart';
 import 'ui/global/theme/bloc.dart';
@@ -79,10 +79,8 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: themeBloc.getThemeMode,
-            translations: AppTranslations(),
-            locale: const Locale(
-                'en', 'US'), // translations will be displayed in that locale
-            fallbackLocale: const Locale('en', 'UK'),
+            // translations: AppTranslations(),
+            // fallbackLocale: const Locale('en', 'UK'),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             // locale: Locale(translationBloc.getCurrentLanguage, ''),
@@ -91,6 +89,11 @@ class MyApp extends StatelessWidget {
             navigatorObservers: [
               FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
             ],
+            locale: LocalizationService.locale,
+            fallbackLocale: LocalizationService.fallbackLocale,
+            translations: LocalizationService(),
+            defaultTransition: Transition.cupertino,
+            enableLog: true,
             getPages: routers,
           );
         });

@@ -200,7 +200,8 @@ Future<String?> readFileByte(String filePath) async {
     final List<int> imageBytes = audioFile.readAsBytesSync();
     base64Image = base64Encode(imageBytes);
   } catch (e) {
-    FirebaseCrashlytics.instance.log("Error while reading base64 from file path:$e");
+    FirebaseCrashlytics.instance
+        .log("Error while reading base64 from file path:$e");
     debugPrint('Error while reading base64 from file path:$e');
   }
   return base64Image;
@@ -215,7 +216,7 @@ String getCurrentPeriod() {
 }
 
 String prepareNotes(String userId, String countryId) {
-  final String device = Platform.isAndroid ? "android": "ios";
+  final String device = Platform.isAndroid ? "android" : "ios";
   try {
     return "shopping|dsc|mobile app|tha||$userId|$device";
   } catch (e) {
@@ -224,9 +225,15 @@ String prepareNotes(String userId, String countryId) {
 }
 
 Future<void> launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw "Could not launch $url";
-    }
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw "Could not launch $url";
   }
+}
+
+String currency(BuildContext context) {
+  final Locale locale = Localizations.localeOf(context);
+  final format = NumberFormat.simpleCurrency(locale: locale.toString());
+  return format.currencySymbol;
+}
