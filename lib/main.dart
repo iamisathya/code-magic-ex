@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //  ThemeController.to.getThemeModeFromStore();
     return GetMaterialApp(
       title: 'DSC Tools',
       theme: AppTheme.lightTheme,
@@ -82,6 +83,9 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.cupertino,
       enableLog: true,
       getPages: AppRoutes.routes,
+      // theme: AppThemes.lightTheme,
+      // darkTheme: AppThemes.darkTheme,
+      // themeMode: themeBloc.getThemeMode,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: LocalizationService.locales,
       locale: Locale(UserSessionManager.shared.currentLocale.language, UserSessionManager.shared.currentLocale.location),
