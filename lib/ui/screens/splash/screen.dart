@@ -25,22 +25,22 @@ class SplashScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               AnimatedShowUp(
-                delay: 500,
+                delay: 300,
                 child: Text(
                   "UNICITY",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: kMainColor,
-                      fontSize: 50,
+                      fontSize: 70,
                       fontWeight: FontWeight.w700),
                 ),
               ),
               AnimatedShowUp(
-                delay: 1000,
+                delay: 700,
                 child: Text(
                   "OFFICE",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: kMainColor, fontSize: 40),
+                  style: TextStyle(color: kMainColor, fontSize: 55),
                 ),
               ),
             ],
