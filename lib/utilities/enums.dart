@@ -54,3 +54,11 @@ enum SnackBarType {
   waring,
   success,
 }
+
+enum LocaleTypes {
+  en,
+  th,
+  lo,
+  km,
+  ms,
+}

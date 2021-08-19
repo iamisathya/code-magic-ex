@@ -27,7 +27,7 @@ Future<void> main() async {
   //* Ensure initialization of Widgets.
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await dotenv.load(); 
+  await dotenv.load();
 
   await KeyValueStorageManager.setStorage();
   UserSessionManager.shared.getLoginStatusFromDB();
@@ -37,8 +37,8 @@ Future<void> main() async {
 
   // //* disable collecting in debug mode
   // if (dotenv.env['DEBUG'] == 'True') {
-    await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+  await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
+  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   // }
 
   //* Pass all uncaught errors from the framework to Crashlytics.
@@ -52,6 +52,7 @@ Future<void> main() async {
       errorAndStacktrace.last as StackTrace,
     );
   }).sendPort);
+  UserSessionManager.shared.getCurrentLanguage();
 
   //* If you want to catch errors that occur in zones, you can pass FirebaseCrashlytics.instance.recordError to the second parameter of runZonedGuarded
   runZonedGuarded(() {
@@ -70,32 +71,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MainStreamBuilder(
-        themeBloc: themeBloc.appThemeStream,
-        translationBloc: translationBloc.appLanguageStream,
-        builder: (context) {
-          return GetMaterialApp(
-            title: 'DSC Tools',
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: themeBloc.getThemeMode,
-            // translations: AppTranslations(),
-            // fallbackLocale: const Locale('en', 'UK'),
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            // locale: Locale(translationBloc.getCurrentLanguage, ''),
-            routes: routes,
-            home: SplashScreen(),
-            navigatorObservers: [
-              FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
-            ],
-            locale: LocalizationService.locale,
-            fallbackLocale: LocalizationService.fallbackLocale,
-            translations: LocalizationService(),
-            defaultTransition: Transition.cupertino,
-            enableLog: true,
-            getPages: routers,
-          );
-        });
+    return GetMaterialApp(
+      title: 'DSC Tools',
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: themeBloc.getThemeMode,
+      routes: routes,
+      home: SplashScreen(),
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+      ],
+      defaultTransition: Transition.cupertino,
+      enableLog: true,
+      getPages: routers,
+      // locale: Locale(translationBloc.getCurrentLanguage, ''),
+      // fallbackLocale: const Locale('en', 'UK'),
+      // translations: AppTranslations(),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: LocalizationService.locales,
+      locale: Locale(UserSessionManager.shared.currentLocale.language, UserSessionManager.shared.currentLocale.location),
+      fallbackLocale: LocalizationService.fallbackLocale,
+      translations: LocalizationService(),
+    );
   }
 }

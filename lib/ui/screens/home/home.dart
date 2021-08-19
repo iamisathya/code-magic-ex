@@ -1,4 +1,8 @@
+import 'package:code_magic_ex/models/locale.dart';
 import 'package:code_magic_ex/translations/localization_service.dart';
+import 'package:code_magic_ex/utilities/enums.dart';
+import 'package:code_magic_ex/utilities/function.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,13 +25,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     super.initState();
   }
 
-  Future<void> _changeLanguage(String lang) async {
+  Future<void> _changeLanguage(LocaleTypes type) async {
     // final locale = Locale(lang, 'US');
     // Get.updateLocale(locale);
-    LocalizationService().changeLocale(lang);
+    LocalizationService().changeLocale(describeEnum(type));
     // translationBloc.setappLanguageStream(lang);
-    await UserSessionManager.shared.setCurrentLanguage(lang);
-    Navigator.pop(context, lang);
+    await UserSessionManager.shared.setCurrentLanguage(getLocale(type));
+    Navigator.pop(context, describeEnum(type));
   }
 
   Future<void> _showPopupMenu(BuildContext context) async {
@@ -48,7 +52,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               icon: Icon(Icons.language_outlined),
             ),
             title: const Text("English"),
-            onTap: () => _changeLanguage("en"),
+            onTap: () => _changeLanguage(LocaleTypes.en),
           ),
         ),
         PopupMenuItem<String>(
@@ -63,7 +67,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               icon: Icon(Icons.language_outlined),
             ),
             title: const Text("Thai"),
-            onTap: () => _changeLanguage("th"),
+            onTap: () => _changeLanguage(LocaleTypes.th),
           ),
         )
       ],

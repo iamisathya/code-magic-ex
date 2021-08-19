@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:code_magic_ex/models/locale.dart';
+
 import '../models/profile_picture.dart';
 import '../models/user_id.dart';
 import '../models/user_info.dart';
@@ -18,6 +20,8 @@ class UserSessionManager {
 
   static UserInfo? _emptyUserInfo() => null;
   static UserId? _emptyCustomerIdInfo() => null;
+  static LocaleModel _defaultLocale() =>
+      LocaleModel(language: 'en', location: "US");
   static ProfilePicture? _emptyProfilePictureData() => null;
   static CustomerToken _emptyCustomerTokenData() => CustomerToken(
       href: "",
@@ -26,7 +30,8 @@ class UserSessionManager {
       customer: CustomerHref(href: ""));
   static ThemeTypes resetThemeData() => ThemeTypes.light;
   ThemeTypes currentTheme = resetThemeData();
-  String currentLanguage = 'en';
+  String currentLanguage = "en";
+  LocaleModel currentLocale = _defaultLocale();
 
   int? selectedId;
   CustomerToken customerToken = _emptyCustomerTokenData();
@@ -121,17 +126,41 @@ class UserSessionManager {
     return false;
   }
 
-  Future<bool> setCurrentLanguage(String language) async {
+  Future<bool> setCurrentLanguage(LocaleModel locale) async {
     try {
       await KeyValueStorageManager.setString(
-          KeyValueStorageKeys.currentLanguage, language);
-      currentLanguage = language;
+          KeyValueStorageKeys.appLanguage, json.encode(locale.toMap()));
+      currentLocale = locale;
+      currentLanguage = locale.language;
       return true;
     } catch (error) {
-      LoggerService.instance
-          .e('Session - Set User Info into DB - Error : ${error.toString()}');
+      LoggerService.instance.e(
+          'Session - Set Current Locale into DB - Error : ${error.toString()}');
     }
     return false;
+  }
+
+  void getCurrentLanguage() {
+    try {
+      final data =
+          KeyValueStorageManager.getString(KeyValueStorageKeys.appLanguage);
+      if (null == data || data.isEmpty) {
+        currentLocale = _defaultLocale();
+      } else {
+        final Map<String, dynamic> jsonData =
+            json.decode(data) as Map<String, dynamic>;
+        if (jsonData.isEmpty) {
+          currentLocale = _defaultLocale();
+        }
+        currentLocale = LocaleModel.fromJson(jsonData);
+        currentLanguage = currentLocale.language;
+      }
+    } catch (error) {
+      LoggerService.instance.e(
+          'Session - Get current locale - Error : ${error.toString()}');
+      currentLocale = _defaultLocale();
+      currentLanguage = "en";
+    }
   }
 
   void setUserInfoFromDB() {

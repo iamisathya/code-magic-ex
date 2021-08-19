@@ -9,10 +9,10 @@ import 'th_TH.dart';
 
 class LocalizationService extends Translations {
   // Default locale
-  static const locale = Locale('en', 'US');
+  static const locale = Locale('th', 'TH');
 
   // fallbackLocale saves the day when the locale gets in trouble
-  static const fallbackLocale = Locale('th', 'TH');
+  static const fallbackLocale = Locale('en', 'US');
 
   // Supported languages
   // Needs to be same order with locales

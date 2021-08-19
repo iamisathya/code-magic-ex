@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:code_magic_ex/models/locale.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -236,4 +237,23 @@ String currency(BuildContext context) {
   final Locale locale = Localizations.localeOf(context);
   final format = NumberFormat.simpleCurrency(locale: locale.toString());
   return format.currencySymbol;
+}
+
+
+
+LocaleModel getLocale(LocaleTypes type) {
+  switch (type) {
+    case LocaleTypes.en:
+      return LocaleModel(language: "en", location: "US");
+    case LocaleTypes.th:
+      return LocaleModel(language: "th", location: "TH");
+    case LocaleTypes.lo:
+      return LocaleModel(language: "lo", location: "LA");
+    case LocaleTypes.km:
+      return LocaleModel(language: "km", location: "KH");
+    case LocaleTypes.ms:
+      return LocaleModel(language: "ms", location: "MY");    
+    default:
+      return LocaleModel(language: "en", location: "US");
+  }
 }
