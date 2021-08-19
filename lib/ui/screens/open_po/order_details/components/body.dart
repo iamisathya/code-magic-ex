@@ -32,14 +32,14 @@ class Body extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _renderRowItem(
-                "DSC Information", controller.openPlaceOrderId.orderDscid),
-            _renderRowItem("Date", controller.openPlaceOrderId.orderDate),
-            _renderRowItem("DSC Name", controller.openPlaceOrderId.createBy),
+                "dsc_info".tr, controller.openPlaceOrderId.orderDscid),
+            _renderRowItem("date".tr, controller.openPlaceOrderId.orderDate),
+            _renderRowItem("dsc_name".tr, controller.openPlaceOrderId.createBy),
             _renderProductCards(context),
             _renderDividerPadding(),
             renderTextField(
               ctlr: commentCtrl,
-              label: "Comment",
+              label: "comment".tr,
               minLines: 1,
               enabled: false,
             ),
@@ -70,7 +70,7 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              "Total PV: ",
+              "${"totalpv".tr}: ",
               style: Theme.of(context).textTheme.productTitle,
             ),
             Text(
@@ -86,7 +86,7 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              "Total Price: ",
+              "${"totalprice".tr}: ",
               style: Theme.of(context).textTheme.productTitle,
             ),
             Text(
@@ -133,7 +133,7 @@ class Body extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  "Product Code : ",
+                  "${"itemcode".tr} : ",
                   style: Theme.of(context).textTheme.caption,
                 ),
                 Text(
@@ -146,9 +146,9 @@ class Body extends StatelessWidget {
           const Divider(
             color: Colors.grey,
           ),
-          _renderCardItemRow("Qty Order	", ": ${item.productQty}", context),
-          _renderCardItemRow("PV", ": ${item.totalPv}", context),
-          _renderCardItemRow("Item Price", ": ${item.productPrice}", context),
+          _renderCardItemRow("qty_order".tr, ": ${item.productQty}", context),
+          _renderCardItemRow("pv".tr, ": ${item.totalPv}", context),
+          _renderCardItemRow("itemprice".tr, ": ${item.productPrice}", context),
           const Divider(
             color: Colors.grey,
           ),
@@ -156,10 +156,10 @@ class Body extends StatelessWidget {
             children: [
               Expanded(
                   child: _renderCardItemBottomRow(
-                      "Total PV :", item.totalPv.toString(), context, 16)),
+                      "${"totalpv".tr} :", item.totalPv.toString(), context, 16)),
               Expanded(
                   child: _renderCardItemBottomRow(
-                      "Total Price :", " ${item.totalPrice}", context, 0)),
+                      "${"totalprice".tr} :", item.totalPrice, context, 0)),
             ],
           ),
         ],

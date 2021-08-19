@@ -18,7 +18,7 @@ class OpenPOHomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: TransAppBar(
-          title: "PO List",
+          title: "list_po".tr,
           action: _renderActionBar(context),
         ),
         drawer: NavigationDrawer(),

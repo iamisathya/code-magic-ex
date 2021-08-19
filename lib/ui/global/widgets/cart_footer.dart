@@ -31,13 +31,13 @@ class CartFooter extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    _renderText("Total Price: ", context),
+                    _renderText("${"totalprice".tr} : ", context),
                     _renderText(totalCartPrice.toString(), context),
                   ],
                 ),
                 Row(
                   children: [
-                    _renderText("Total PV: ", context),
+                    _renderText("${"totalpv".tr} : ", context),
                     _renderText(totalCartPv.toString(), context),
                   ],
                 ),
@@ -49,7 +49,7 @@ class CartFooter extends StatelessWidget {
                   primary: kMainColor,
                   padding: kEdgeA12()),
               onPressed: () => onPressed(),
-              child: const Text("Place Order"),
+              child: Text("place_order".tr),
             ),
           ],
         ));

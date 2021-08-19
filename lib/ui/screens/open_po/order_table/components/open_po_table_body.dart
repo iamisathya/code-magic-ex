@@ -31,13 +31,13 @@ class OpenPoTableBody extends StatelessWidget {
 
   List<Widget> _getTitleWidget(BuildContext context) {
     return [
-      _getTitleItemWidget("Item Code", 180, context),
-      _getTitleItemWidget("Product Name", 300, context),
-      _getTitleItemWidget("Qty Order", 150, context),
-      _getTitleItemWidget("PV", 150, context),
-      _getTitleItemWidget("Item Price", 200, context),
-      _getTitleItemWidget("Total PV", 200, context),
-      _getTitleItemWidget("Total Price", 200, context),
+      _getTitleItemWidget("itemcode".tr, 180, context),
+      _getTitleItemWidget("product_name".tr, 300, context),
+      _getTitleItemWidget("qty_order".tr, 150, context),
+      _getTitleItemWidget("pv".tr, 150, context),
+      _getTitleItemWidget("itemprice".tr, 200, context),
+      _getTitleItemWidget("totalpv".tr, 200, context),
+      _getTitleItemWidget("totalprice".tr, 200, context),
       _getTitleItemWidget("Remove", 120, context),
     ];
   }

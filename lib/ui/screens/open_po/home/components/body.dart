@@ -70,13 +70,13 @@ class Body extends StatelessWidget {
 
   List<Widget> _getTitleWidget() {
     return [
-      _renderTableHeader("P/O Number", OpenPoTypes.poNumber, 200, false),
-      _renderTableHeader("Date", OpenPoTypes.date, 180, true),
-      _renderTableHeader("Time", OpenPoTypes.time, 180, true),
-      _renderTableHeader("Total PV", OpenPoTypes.totalPv, 180, true),
-      _renderTableHeader("Total Price", OpenPoTypes.totalPrice, 180, true),
-      _renderTableHeader("Status", OpenPoTypes.status, 180, false),
-      _renderTableHeader("Attachment", OpenPoTypes.attachment, 180, false),
+      _renderTableHeader("po_number".tr, OpenPoTypes.poNumber, 200, false),
+      _renderTableHeader("date".tr, OpenPoTypes.date, 180, true),
+      _renderTableHeader("time".tr, OpenPoTypes.time, 180, true),
+      _renderTableHeader("totalpv".tr, OpenPoTypes.totalPv, 180, true),
+      _renderTableHeader("totalprice".tr, OpenPoTypes.totalPrice, 180, true),
+      _renderTableHeader("status".tr, OpenPoTypes.status, 180, false),
+      _renderTableHeader("attachment".tr, OpenPoTypes.attachment, 180, false),
     ];
   }
 
