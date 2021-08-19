@@ -7,6 +7,7 @@ import 'controller/splash_controller.dart';
 
 class SplashScreen extends StatelessWidget {
   final SplashController controller = Get.put(SplashController());
+  static const String routeName = '/';
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
@@ -265,7 +265,7 @@ class OpenPoController extends GetxController {
             },
             selected: filterMethod.value == "6",
             selectedTileColor: kMainColor,
-            title: Text("6 Months", style: TextStyle(color: filterMethod.value == "6" ? Colors.white : Colors.black)),
+            title: Text("month6".tr, style: TextStyle(color: filterMethod.value == "6" ? Colors.white : Colors.black)),
           ),
         ),
         PopupMenuItem<String>(
@@ -281,7 +281,7 @@ class OpenPoController extends GetxController {
               getAllOpenPo();
             },
             selectedTileColor: kMainColor,
-            title: Text("All", style: TextStyle(color: filterMethod.value == "12" ? Colors.white : Colors.black)),
+            title: Text("monthall".tr, style: TextStyle(color: filterMethod.value == "12" ? Colors.white : Colors.black)),
           ),
         ),
       ],
