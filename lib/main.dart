@@ -11,8 +11,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
-import 'bloc/main_bloc.dart';
-import 'translations/bloc.dart';
 import 'translations/localization_service.dart';
 import 'ui/global/routes.dart';
 import 'ui/global/theme/app_theme.dart';
@@ -83,10 +81,7 @@ class MyApp extends StatelessWidget {
       ],
       defaultTransition: Transition.cupertino,
       enableLog: true,
-      getPages: routers,
-      // locale: Locale(translationBloc.getCurrentLanguage, ''),
-      // fallbackLocale: const Locale('en', 'UK'),
-      // translations: AppTranslations(),
+      getPages: AppRoutes.routes,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: LocalizationService.locales,
       locale: Locale(UserSessionManager.shared.currentLocale.language, UserSessionManager.shared.currentLocale.location),
