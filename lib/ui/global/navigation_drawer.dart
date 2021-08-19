@@ -1,5 +1,7 @@
+import 'package:code_magic_ex/ui/screens/settings/settings.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../utilities/constants.dart';
 import '../../utilities/user_session.dart';
@@ -33,15 +35,7 @@ class NavigationDrawer extends StatelessWidget {
         children: <Widget>[
           _createDrawerHeader(),
           _createDrawerBodyItem(
-            selected: currentRoute == ScreenPaths.mainHome ||
-                currentRoute == "/" ||
-                currentRoute == null,
-            icon: Icons.home_outlined,
-            text: 'Home',
-            onTap: () => Navigator.pushNamed(context, ScreenPaths.mainHome),
-          ),
-          _createDrawerBodyItem(
-            selected: currentRoute == ScreenPaths.openPO,
+            selected: currentRoute == ScreenPaths.openPO || currentRoute == null || currentRoute == "/",
             icon: Icons.trending_up_sharp,
             text: 'Open PO',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.openPO),
@@ -82,7 +76,13 @@ class NavigationDrawer extends StatelessWidget {
             selected: currentRoute == ScreenPaths.barcode,
             icon: Icons.qr_code_2_outlined,
             text: 'Barcode',
-            onTap: () => Navigator.pushNamed(context, ScreenPaths.barcode),
+            onTap: () => Navigator.pushNamed(context, ScreenPaths.easyShipReport),
+          ),
+          _createDrawerBodyItem(
+            selected: currentRoute == ScreenPaths.settings,
+            icon: Icons.settings,
+            text: 'Settings',
+            onTap: () => Get.to(() => SettingsPage()),
           ),
           _createDrawerBodyItem(
             selected: false,

@@ -1,3 +1,5 @@
+import 'package:code_magic_ex/ui/screens/settings/settings.dart';
+
 import '../screens/barcode/home.dart';
 import '../screens/easy_ship/home.dart';
 import '../screens/enroll/enroll.dart';
@@ -22,4 +24,5 @@ class ScreenPaths {
   static const String barcode = BarcodeHomeScreen.routeName;
   static const String webview = WebivewHomeScreen.routeName;
   static const String checkout = CheckoutPage.routeName;
+  static const String settings = SettingsPage.routeName;
 }
