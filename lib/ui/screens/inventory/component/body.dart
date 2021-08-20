@@ -32,10 +32,7 @@ class Body extends StatelessWidget {
   }
 
   Widget _getBodyWidget(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(color: Colors.white),
-      height: Get.height,
-      child: HorizontalDataTable(
+    return HorizontalDataTable(
         leftHandSideColumnWidth: 140,
         rightHandSideColumnWidth: 1200,
         isFixedHeader: true,
@@ -44,7 +41,7 @@ class Body extends StatelessWidget {
         rightSideItemBuilder: _generateRightHandSideColumnRow,
         itemCount: controller.tempInventoryRecords.value.items.length,
         rowSeparatorWidget: kDivider(),
-      ),
+      
     );
   }
 
@@ -82,7 +79,7 @@ class Body extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
       alignment: Alignment.center,
       decoration: BoxDecoration(border: Border.all(width: 0.5)),
-      child: Text(currentItem.item.id.unicity),
+      child: Text(currentItem.item.id.unicity, style: Theme.of(context).textTheme.button),
     );
   }
 
@@ -96,7 +93,7 @@ class Body extends StatelessWidget {
             decoration: BoxDecoration(border: Border.all(width: 0.5)),
             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
             alignment: Alignment.center,
-            child: Text(currentItem.catalogSlideContent.content.description)),
+            child: Text(currentItem.catalogSlideContent.content.description, style: Theme.of(context).textTheme.subtitle2)),
         _renderDataCell(
             100, NumberFormat().format(currentItem.terms.pvEach), Alignment.centerRight),
         _renderDataCell(
@@ -152,7 +149,7 @@ class Body extends StatelessWidget {
   }
 
   Container _renderDataCell(
-      double width, String titleText, Alignment textAlign) {
+      double width, String titleText, Alignment textAlign, ) {
     return Container(
       width: width,
       height: 65,
@@ -163,7 +160,7 @@ class Body extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           titleText,
-          style: const TextStyle(color: Colors.black),
+          style: Theme.of(Get.context!).textTheme.subtitle2
         ),
       ),
     );

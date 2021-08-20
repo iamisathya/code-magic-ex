@@ -10,7 +10,7 @@ class Globals {
 //https://docs.google.com/spreadsheets/d/1oS7iJ6ocrZBA53SxRfKF0CG9HAaXeKtzvsTBhgG4Zzk/edit?usp=sharing
 
   static final List<MenuOptionsModel> languageOptions = [
-    MenuOptionsModel(key: "en", value: "English"), //English
-    MenuOptionsModel(key: "th", value: "Thai"), //Chinese
+    MenuOptionsModel(title: "English", value: "en"), //English
+    MenuOptionsModel(title: "Thai", value: "th"), //Thai
   ];
 }

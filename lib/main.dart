@@ -1,19 +1,21 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:code_magic_ex/controllers/theme_controller.dart';
+import 'package:code_magic_ex/translations/translations.dart';
 import 'package:code_magic_ex/ui/global/routers.dart';
+import 'package:code_magic_ex/ui/global/theme/app_themes.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-import 'translations/localization_service.dart';
+import 'controllers/global_controllers.dart';
 import 'ui/global/routes.dart';
-import 'ui/global/theme/app_theme.dart';
 import 'ui/global/theme/bloc.dart';
 import 'ui/screens/splash/screen.dart';
 import 'utilities/connectivity.dart';
@@ -26,6 +28,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await dotenv.load();
+  await GetStorage.init();
+  Get.put<ThemeController>(ThemeController());
+  Get.put<LanguageController>(LanguageController());
 
   await KeyValueStorageManager.setStorage();
   UserSessionManager.shared.getLoginStatusFromDB();
@@ -69,28 +74,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  ThemeController.to.getThemeModeFromStore();
-    return GetMaterialApp(
-      title: 'DSC Tools',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: themeBloc.getThemeMode,
-      routes: routes,
-      home: SplashScreen(),
-      navigatorObservers: [
-        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
-      ],
-      defaultTransition: Transition.cupertino,
-      enableLog: true,
-      getPages: AppRoutes.routes,
-      // theme: AppThemes.lightTheme,
-      // darkTheme: AppThemes.darkTheme,
-      // themeMode: themeBloc.getThemeMode,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: LocalizationService.locales,
-      locale: Locale(UserSessionManager.shared.currentLocale.language, UserSessionManager.shared.currentLocale.location),
-      fallbackLocale: LocalizationService.fallbackLocale,
-      translations: LocalizationService(),
-    );
+    ThemeController.to.getThemeModeFromStore();
+    return GetBuilder<LanguageController>(
+        builder: (languageController) => GetMaterialApp(
+              title: 'DSC Tools',
+              routes: routes,
+              home: SplashScreen(),
+              navigatorObservers: [
+                FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+              ],
+              defaultTransition: Transition.cupertino,
+              enableLog: true,
+              getPages: AppRoutes.routes,
+              theme: AppThemes.lightTheme,
+              darkTheme: AppThemes.darkTheme,
+              themeMode: themeBloc.getThemeMode,
+              locale: languageController.getLocale,
+              fallbackLocale: languageController.fallbackLocale,
+              translations: AppTranslations(),
+            ));
   }
 }

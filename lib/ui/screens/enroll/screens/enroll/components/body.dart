@@ -209,7 +209,6 @@ class Body extends StatelessWidget {
                 onPress();
               },
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(AppColor.kMainColor),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0),

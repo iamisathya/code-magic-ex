@@ -53,7 +53,6 @@ class Body extends StatelessWidget {
 
   Widget _getBodyWidget() {
     return Container(
-      decoration: const BoxDecoration(color: Colors.white),
       height: Get.height,
       child: HorizontalDataTable(
         leftHandSideColumnWidth: 200,

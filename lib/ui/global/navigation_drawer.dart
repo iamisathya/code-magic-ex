@@ -3,7 +3,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../utilities/constants.dart';
 import '../../utilities/user_session.dart';
 import '../screens/login/login.dart';
 import 'router.dart';
@@ -33,7 +32,7 @@ class NavigationDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          _createDrawerHeader(),
+          _createDrawerHeader(context),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.openPO || currentRoute == null || currentRoute == "/",
             icon: Icons.trending_up_sharp,
@@ -82,7 +81,10 @@ class NavigationDrawer extends StatelessWidget {
             selected: currentRoute == ScreenPaths.settings,
             icon: Icons.settings,
             text: 'Settings',
-            onTap: () => Get.to(() => SettingsPage()),
+            onTap: () => {
+              Get.back(),
+              Get.to(() => SettingsPage())
+            },
           ),
           _createDrawerBodyItem(
             selected: false,
@@ -90,9 +92,8 @@ class NavigationDrawer extends StatelessWidget {
             text: 'Signout',
             onTap: () => _didMenuPressed(context),
           ),
-          ListTile(
-            title: const Text('App version 1.0.0'),
-            onTap: () {},
+          const ListTile(
+            title: Text('App version 1.0.0'),
           ),
         ],
       ),
@@ -100,17 +101,15 @@ class NavigationDrawer extends StatelessWidget {
   }
 }
 
-Widget _createDrawerHeader() {
+Widget _createDrawerHeader(BuildContext context) {
   return DrawerHeader(
       margin: EdgeInsets.zero,
       padding: EdgeInsets.zero,
-      decoration: const BoxDecoration(color: Colors.white),
       child: Stack(children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 12.0),
           child: CircleAvatar(
             radius: 50.0,
-            backgroundColor: const Color(0xFF778899),
             backgroundImage: NetworkImage(UserSessionManager
                 .shared.profilePicture!.sizes[0].media), // for Network image
           ),
@@ -120,18 +119,13 @@ Widget _createDrawerHeader() {
             left: 16.0,
             child: Text(
                 UserSessionManager.shared.userInfo!.id.unicity.toString(),
-                style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w500))),
+                style: Theme.of(context).textTheme.bodyText2,
+                )),
         Positioned(
             bottom: 12.0,
             left: 16.0,
             child: Text(UserSessionManager.shared.userInfo!.humanName.fullName,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500))),
+                )),
       ]));
 }
 
@@ -140,14 +134,11 @@ Widget _createDrawerBodyItem(
     required String text,
     required GestureTapCallback onTap,
     required bool selected}) {
-  final color = selected ? Colors.white : Colors.black;
   return ListTile(
-    selectedTileColor: kMainColor,
     selected: selected,
-    leading: Icon(icon, color: color),
+    leading: Icon(icon),
     title: Text(
       text,
-      style: TextStyle(color: color),
     ),
     onTap: onTap,
   );

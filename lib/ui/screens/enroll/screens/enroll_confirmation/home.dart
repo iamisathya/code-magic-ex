@@ -13,7 +13,6 @@ class EnrollConfirmation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.kPageBackground,
         appBar: TransAppBar(
           title: "Enroll Confirmation",
           action: _renderActionBar(context),

@@ -13,26 +13,20 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
-        SizedBox(
+        const SizedBox(
           width: double.infinity,
           height: double.infinity,
-          child: Container(
-            color: Colors.white,
-          ),
         ),
         Align(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               AnimatedShowUp(
                 delay: 300,
                 child: Text(
                   "UNICITY",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: kMainColor,
-                      fontSize: 70,
-                      fontWeight: FontWeight.w700),
+                  style: Theme.of(context).textTheme.headline4,
                 ),
               ),
               AnimatedShowUp(
@@ -40,7 +34,7 @@ class SplashScreen extends StatelessWidget {
                 child: Text(
                   "OFFICE",
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: kMainColor, fontSize: 55),
+                  style: Theme.of(context).textTheme.headline2,
                 ),
               ),
             ],

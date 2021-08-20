@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:code_magic_ex/constants/globals.dart';
+import 'package:code_magic_ex/models/menu_option_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,7 +12,13 @@ class LanguageController extends GetxController {
   final language = "".obs;
   final store = GetStorage();
 
+  // fallbackLocale saves the day when the locale gets in trouble
+  Locale get fallbackLocale => Locale('en', 'US');
+
   String get currentLanguage => language.value;
+
+  MenuOptionsModel get currentOption => Globals.languageOptions
+      .firstWhere((element) => element.value == language.value);
 
   @override
   void onReady() {
@@ -25,7 +32,7 @@ class LanguageController extends GetxController {
       String _deviceLanguage = ui.window.locale.toString();
       _deviceLanguage =
           _deviceLanguage.substring(0, 2); //only get 1st 2 characters
-      debugPrint(ui.window.locale.toString());
+      debugPrint(_deviceLanguage);
       updateLanguage(_deviceLanguage);
     }
   }

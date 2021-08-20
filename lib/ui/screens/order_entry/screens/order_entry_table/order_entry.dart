@@ -19,7 +19,7 @@ class OrderEntryTable extends StatelessWidget {
       controller.loadInventoryRecords(context);
     });
     return Scaffold(
-        backgroundColor: kPageBackground,
+        
         appBar: TransAppBar(
           title: controller.passedUser.fullName,
           subTitle: controller.passedUser.userId,

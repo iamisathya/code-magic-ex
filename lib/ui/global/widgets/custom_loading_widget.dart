@@ -29,7 +29,6 @@ class CustomLoadingWidget extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: LinearProgressIndicator(
-              backgroundColor: kMainColor,
               valueColor: AlwaysStoppedAnimation(Colors.white),
               minHeight: 5,
             ),

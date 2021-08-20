@@ -1,16 +1,19 @@
+import 'package:code_magic_ex/constants/font_weights.dart';
 import 'package:flutter/material.dart';
 
 class AppThemes {
   AppThemes._();
 
-  static const Color dodgerBlue = Color.fromRGBO(29, 161, 242, 1);
+  static const Color dodgerBlue = Color(0xFF204CDC);
   static const Color whiteLilac = Color.fromRGBO(248, 250, 252, 1);
+  
   static const Color blackPearl = Color.fromRGBO(30, 31, 43, 1);
   static const Color brinkPink = Color.fromRGBO(255, 97, 136, 1);
   static const Color juneBud = Color.fromRGBO(186, 215, 97, 1);
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color nevada = Color.fromRGBO(105, 109, 119, 1);
   static const Color ebonyClay = Color.fromRGBO(40, 42, 58, 1);
+  static const Color greyColor = Colors.grey;
 
   static String font1 = "ProductSans";
   static String font2 = "Roboto";
@@ -20,7 +23,7 @@ class AppThemes {
 
   //Background Colors
   static const Color _lightBackgroundColor = whiteLilac;
-  static const Color _lightBackgroundAppBarColor = _lightPrimaryColor;
+  static const Color _lightBackgroundAppBarColor = whiteLilac;
   static const Color _lightBackgroundSecondaryColor = white;
   static const Color _lightBackgroundAlertColor = blackPearl;
   static const Color _lightBackgroundActionTextColor = white;
@@ -28,6 +31,7 @@ class AppThemes {
 
   //Text Colors
   static const Color _lightTextColor = Colors.black;
+  static const Color _greyColor = greyColor;
 
 
   //Border Color
@@ -36,16 +40,19 @@ class AppThemes {
   //Icon Color
   static const Color _lightIconColor = nevada;
 
+  //Caption Colors
+  static const Color _lightCaptionColor = nevada;
+
   //form input colors
   static const Color _lightBorderActiveColor = _lightPrimaryColor;
   static const Color _lightBorderErrorColor = brinkPink;
 
   //constants color range for dark theme
-  static const Color _darkPrimaryColor = dodgerBlue;
+  static const Color _darkPrimaryColor = whiteLilac;
 
   //Background Colors
   static const Color _darkBackgroundColor = ebonyClay;
-  static const Color _darkBackgroundAppBarColor = _darkPrimaryColor;
+  static const Color _darkBackgroundAppBarColor = ebonyClay;
   static const Color _darkBackgroundSecondaryColor =
       Color.fromRGBO(0, 0, 0, .6);
   static const Color _darkBackgroundAlertColor = blackPearl;
@@ -54,6 +61,9 @@ class AppThemes {
 
   //Text Colors
   static const Color _darkTextColor = Colors.white;
+
+  //Caption Colors
+  static const Color _darkCaptionColor = nevada;
 
   //Border Color
   static const Color _darkBorderColor = nevada;
@@ -74,7 +84,7 @@ class AppThemes {
         fontSize: 15.0, color: _lightTextColor, fontWeight: FontWeight.w600),
     headline6: TextStyle(fontSize: 16.0, color: _lightTextColor),
     subtitle1: TextStyle(fontSize: 16.0, color: _lightTextColor),
-    caption: TextStyle(fontSize: 12.0, color: _lightBackgroundAppBarColor),
+    caption: TextStyle(fontSize: 12.0, color: _lightCaptionColor),
   );
 
   //the light theme
@@ -87,7 +97,7 @@ class AppThemes {
     ),
     appBarTheme: const AppBarTheme(
       color: _lightBackgroundAppBarColor,
-      iconTheme: IconThemeData(color: _lightTextColor),
+      iconTheme: IconThemeData(color: _lightPrimaryColor),
       textTheme: _lightTextTheme,
     ),
     colorScheme: const ColorScheme.light(
@@ -102,7 +112,7 @@ class AppThemes {
       color: _lightIconColor,
     ),
     popupMenuTheme:
-        const PopupMenuThemeData(color: _lightBackgroundAppBarColor),
+        const PopupMenuThemeData(color: _lightBackgroundColor),
     textTheme: _lightTextTheme,
     buttonTheme: ButtonThemeData(
         shape: RoundedRectangleBorder(
@@ -134,8 +144,9 @@ class AppThemes {
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
       fillColor: _lightBackgroundSecondaryColor,
+
       //focusColor: _lightBorderActiveColor,
-    ),
+    ), textSelectionTheme: TextSelectionThemeData(cursorColor: Colors.grey[300]),
   );
 
 //text theme for dark theme
@@ -153,14 +164,18 @@ class AppThemes {
       fontWeight: FontWeight.w100);*/
 
   static const TextTheme _darkTextTheme = TextTheme(
-    headline1: TextStyle(fontSize: 20.0, color: _darkTextColor),
-    bodyText1: TextStyle(fontSize: 16.0, color: _darkTextColor),
-    bodyText2: TextStyle(fontSize: 14.0, color: Colors.grey),
-    button: TextStyle(
-        fontSize: 15.0, color: _darkTextColor, fontWeight: FontWeight.w600),
-    headline6: TextStyle(fontSize: 16.0, color: _darkTextColor),
-    subtitle1: TextStyle(fontSize: 16.0, color: _darkTextColor),
-    caption: TextStyle(fontSize: 12.0, color: _darkBackgroundAppBarColor),
+    headline1: TextStyle(fontSize: 96.0, color: _darkTextColor, letterSpacing: -1.5, fontWeight: AppFontWeight.light),
+    headline2: TextStyle(fontSize: 60.0, color: _darkTextColor, letterSpacing: -0.5, fontWeight: AppFontWeight.light),
+    headline3: TextStyle(fontSize: 48.0, color: _darkTextColor, letterSpacing: 0, fontWeight: AppFontWeight.regular),
+    headline4: TextStyle(fontSize: 34.0, color: _darkTextColor, letterSpacing: 0.25, fontWeight: AppFontWeight.regular),
+    headline5: TextStyle(fontSize: 24.0, color: _darkTextColor, letterSpacing: 0, fontWeight: AppFontWeight.regular),
+    headline6: TextStyle(fontSize: 20.0, color: _darkTextColor, letterSpacing: 0.15, fontWeight: AppFontWeight.medium),
+    bodyText1: TextStyle(fontSize: 16.0, color: _darkTextColor, letterSpacing: 0.5, fontWeight: AppFontWeight.regular),
+    bodyText2: TextStyle(fontSize: 14.0, color: _greyColor, letterSpacing: 0.25, fontWeight: AppFontWeight.regular),
+    button: TextStyle(fontSize: 14.0, color: _darkTextColor, fontWeight: AppFontWeight.medium, letterSpacing: 1.25, ),
+    subtitle1: TextStyle(fontSize: 16.0, color: _darkTextColor, letterSpacing: 0.15, fontWeight: AppFontWeight.regular),
+    subtitle2: TextStyle(fontSize: 14.0, color: _darkTextColor, letterSpacing: 0.1, fontWeight: AppFontWeight.medium),
+    caption: TextStyle(fontSize: 12.0, color: _darkCaptionColor, letterSpacing: 0.4, fontWeight: AppFontWeight.regular),
   );
 
   //the dark theme
@@ -168,7 +183,6 @@ class AppThemes {
     brightness: Brightness.dark,
     //primarySwatch: _darkPrimaryColor, //cant be Color on MaterialColor so it can compute different shades.
     accentColor: _darkPrimaryColor, //prefix icon color form input on focus
-
     fontFamily: font1,
     scaffoldBackgroundColor: _darkBackgroundColor,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -192,7 +206,7 @@ class AppThemes {
     iconTheme: const IconThemeData(
       color: _darkIconColor, //_darkIconColor,
     ),
-    popupMenuTheme: const PopupMenuThemeData(color: _darkBackgroundAppBarColor),
+    popupMenuTheme: const PopupMenuThemeData(color: _darkBackgroundAppBarColor,),
     textTheme: _darkTextTheme,
     buttonTheme: ButtonThemeData(
         shape: RoundedRectangleBorder(
@@ -201,9 +215,10 @@ class AppThemes {
         buttonColor: _darkPrimaryColor,
         textTheme: ButtonTextTheme.primary),
     unselectedWidgetColor: _darkPrimaryColor,
+    canvasColor: _lightBackgroundAlertColor,
     inputDecorationTheme: const InputDecorationTheme(
       prefixStyle: TextStyle(color: _darkIconColor),
-      //labelStyle: TextStyle(color: nevada),
+      labelStyle: TextStyle(color: nevada),
       border: OutlineInputBorder(
           borderRadius: BorderRadius.all(
         Radius.circular(8.0),
