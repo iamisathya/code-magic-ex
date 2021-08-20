@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'en_US.dart';
-import 'km_KH.dart';
-import 'lo_LA.dart';
-import 'ms_MY.dart';
-import 'th_TH.dart';
+import 'en.dart';
+import 'km.dart';
+import 'lo.dart';
+import 'ms.dart';
+import 'th.dart';
 
 class LocalizationService extends Translations {
   // Default locale

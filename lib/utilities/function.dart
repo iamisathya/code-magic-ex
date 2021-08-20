@@ -28,7 +28,7 @@ import 'user_session.dart';
 
 void renderErrorSnackBar(
     {String title = "", String subTitle = "", bool isError = true}) {
-  final Color c = isError == true ? Colors.red : kMainColor;
+  final Color c = isError == true ? Theme.of(Get.context!).colorScheme.onError : Theme.of(Get.context!).colorScheme.primary;
   return Get.snackbar(
     title,
     subTitle,

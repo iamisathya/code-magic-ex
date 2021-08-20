@@ -61,6 +61,7 @@ class AppThemes {
         brightness: Brightness.light,
       ),
     ),
+    snackBarTheme: const SnackBarThemeData(backgroundColor: Color(0xffffffff), elevation: 10, shape: Border()),
     textTheme: const TextTheme(
       headline1: TextStyle(
         color: Color(0x8a000000),
