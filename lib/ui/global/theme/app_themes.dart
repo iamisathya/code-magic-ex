@@ -77,14 +77,18 @@ class AppThemes {
 
   //text theme for light theme
   static const TextTheme _lightTextTheme = TextTheme(
-    headline1: TextStyle(fontSize: 20.0, color: _lightTextColor),
-    bodyText1: TextStyle(fontSize: 16.0, color: _lightTextColor),
-    bodyText2: TextStyle(fontSize: 14.0, color: Colors.grey),
-    button: TextStyle(
-        fontSize: 15.0, color: _lightTextColor, fontWeight: FontWeight.w600),
-    headline6: TextStyle(fontSize: 16.0, color: _lightTextColor),
-    subtitle1: TextStyle(fontSize: 16.0, color: _lightTextColor),
-    caption: TextStyle(fontSize: 12.0, color: _lightCaptionColor),
+    headline1: TextStyle(fontSize: 96.0, color: _lightTextColor, letterSpacing: -1.5, fontWeight: AppFontWeight.light),
+    headline2: TextStyle(fontSize: 60.0, color: _lightTextColor, letterSpacing: -0.5, fontWeight: AppFontWeight.light),
+    headline3: TextStyle(fontSize: 48.0, color: _lightTextColor, letterSpacing: 0, fontWeight: AppFontWeight.regular),
+    headline4: TextStyle(fontSize: 34.0, color: _lightTextColor, letterSpacing: 0.25, fontWeight: AppFontWeight.regular),
+    headline5: TextStyle(fontSize: 24.0, color: _lightTextColor, letterSpacing: 0, fontWeight: AppFontWeight.regular),
+    headline6: TextStyle(fontSize: 20.0, color: _lightPrimaryColor, letterSpacing: 0.15, fontWeight: AppFontWeight.medium),
+    bodyText1: TextStyle(fontSize: 16.0, color: _lightTextColor, letterSpacing: 0.5, fontWeight: AppFontWeight.regular),
+    bodyText2: TextStyle(fontSize: 14.0, color: _greyColor, letterSpacing: 0.25, fontWeight: AppFontWeight.regular),
+    button: TextStyle(fontSize: 14.0, color: _lightTextColor, fontWeight: AppFontWeight.medium, letterSpacing: 1.25, ),
+    subtitle1: TextStyle(fontSize: 16.0, color: _lightTextColor, letterSpacing: 0.15, fontWeight: AppFontWeight.regular),
+    subtitle2: TextStyle(fontSize: 14.0, color: _lightTextColor, letterSpacing: 0.1, fontWeight: AppFontWeight.medium),
+    caption: TextStyle(fontSize: 12.0, color: _lightCaptionColor, letterSpacing: 0.4, fontWeight: AppFontWeight.regular),
   );
 
   //the light theme
@@ -94,6 +98,7 @@ class AppThemes {
     scaffoldBackgroundColor: _lightBackgroundColor,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: _lightPrimaryColor,
+      foregroundColor: Colors.white
     ),
     appBarTheme: const AppBarTheme(
       color: _lightBackgroundAppBarColor,
@@ -112,7 +117,7 @@ class AppThemes {
       color: _lightIconColor,
     ),
     popupMenuTheme:
-        const PopupMenuThemeData(color: _lightBackgroundColor),
+        const PopupMenuThemeData(color: _lightBackgroundColor, elevation: 10),
     textTheme: _lightTextTheme,
     buttonTheme: ButtonThemeData(
         shape: RoundedRectangleBorder(

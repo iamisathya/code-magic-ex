@@ -1,3 +1,5 @@
+import 'package:code_magic_ex/constants/globals.dart';
+import 'package:code_magic_ex/models/menu_option_model.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,6 @@ import '../../../../models/open_order_id.dart';
 import '../../../../models/open_po.dart';
 import '../../../../models/open_po_details.dart';
 import '../../../../utilities/Logger/logger.dart';
-import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../global/widgets/overlay_progress.dart';
@@ -32,7 +33,8 @@ class OpenPoController extends GetxController {
   RxInt totalCartPv = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
 
-  final Rx<InventoryRecords> _inventoryRecords = InventoryRecords(items: []).obs;
+  final Rx<InventoryRecords> _inventoryRecords =
+      InventoryRecords(items: []).obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
   RxList<OpenPO> allOpenPlaceOrders = List<OpenPO>.filled(0, OpenPO()).obs;
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
@@ -226,20 +228,24 @@ class OpenPoController extends GetxController {
         break;
       case OpenPoTypes.totalPv:
         if (isAscending) {
-          _tempOpenPlaceOrders
-              .sort((a, b) => NumberFormat().parse(a.orderTotalPv).compareTo(NumberFormat().parse(b.orderTotalPv)));
+          _tempOpenPlaceOrders.sort((a, b) => NumberFormat()
+              .parse(a.orderTotalPv)
+              .compareTo(NumberFormat().parse(b.orderTotalPv)));
         } else {
-          _tempOpenPlaceOrders
-              .sort((b, a) => NumberFormat().parse(a.orderTotalPv).compareTo(NumberFormat().parse(b.orderTotalPv)));
+          _tempOpenPlaceOrders.sort((b, a) => NumberFormat()
+              .parse(a.orderTotalPv)
+              .compareTo(NumberFormat().parse(b.orderTotalPv)));
         }
         break;
       case OpenPoTypes.totalPrice:
         if (isAscending) {
-          _tempOpenPlaceOrders
-              .sort((a, b) => NumberFormat().parse(a.orderTotalPrice).compareTo(NumberFormat().parse(b.orderTotalPrice)));
+          _tempOpenPlaceOrders.sort((a, b) => NumberFormat()
+              .parse(a.orderTotalPrice)
+              .compareTo(NumberFormat().parse(b.orderTotalPrice)));
         } else {
-          _tempOpenPlaceOrders
-              .sort((b, a) => NumberFormat().parse(a.orderTotalPrice).compareTo(NumberFormat().parse(b.orderTotalPrice)));
+          _tempOpenPlaceOrders.sort((b, a) => NumberFormat()
+              .parse(a.orderTotalPrice)
+              .compareTo(NumberFormat().parse(b.orderTotalPrice)));
         }
         break;
       default:
@@ -251,41 +257,28 @@ class OpenPoController extends GetxController {
     await showMenu(
       context: context,
       position: const RelativeRect.fromLTRB(100, 105, 0, 100),
-      items: [
-        PopupMenuItem<String>(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          value: "6",
-          child: ListTile(
-            shape: kRoundedBorder(),
-            onTap: () {
-              filterMethod = "6".obs;
-              update();
-              Navigator.pop(context);
-              getAllOpenPo();
-            },
-            selected: filterMethod.value == "6",
-            selectedTileColor: kMainColor,
-            title: Text("month6".tr, style: TextStyle(color: filterMethod.value == "6" ? Colors.white : Colors.black)),
-          ),
-        ),
-        PopupMenuItem<String>(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          value: "12",
-          child: ListTile(
-            shape: kRoundedBorder(),
-            selected: filterMethod.value == "12",
-            onTap: () {
-              filterMethod = "12".obs;
-              update();
-              Navigator.pop(context);
-              getAllOpenPo();
-            },
-            selectedTileColor: kMainColor,
-            title: Text("monthall".tr, style: TextStyle(color: filterMethod.value == "12" ? Colors.white : Colors.black)),
-          ),
-        ),
-      ],
+      items: Globals.openPoMonths
+          .map((element) => _renderPopupMenuItem(context, element))
+          .toList(),
       elevation: 8.0,
+    );
+  }
+
+  PopupMenuItem<String> _renderPopupMenuItem(
+      BuildContext context, MenuOptionsModel text) {
+    return PopupMenuItem<String>(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      value: text.value,
+      child: ListTile(
+        onTap: () {
+          filterMethod = text.value.obs;
+          update();
+          Navigator.pop(context);
+          getAllOpenPo();
+        },
+        selected: filterMethod.value == text.value,
+        title: Text(text.title.tr),
+      ),
     );
   }
 

@@ -4,15 +4,9 @@ import '../../global/navigation_drawer.dart';
 import '../../global/widgets/transparent_app_bar.dart';
 import 'components/body.dart';
 
-class BarcodeHomeScreen extends StatefulWidget {
+class BarcodeHomeScreen extends StatelessWidget {
   static const String routeName = '/barcodeHomePage';
-
-  @override
-  _BarcodeHomeScreenState createState() => _BarcodeHomeScreenState();
-}
-
-class _BarcodeHomeScreenState extends State<BarcodeHomeScreen> {
-  TextEditingController searchConntroller = TextEditingController();
+  static TextEditingController searchConntroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

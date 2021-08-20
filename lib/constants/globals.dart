@@ -1,4 +1,5 @@
 import 'package:code_magic_ex/models/menu_option_model.dart';
+import 'package:get/get.dart';
 
 class Globals {
   Globals._();
@@ -13,4 +14,9 @@ class Globals {
     MenuOptionsModel(title: "English", value: "en"), //English
     MenuOptionsModel(title: "Thai", value: "th"), //Thai
   ];
+
+  static final RxList<MenuOptionsModel> openPoMonths = [
+    MenuOptionsModel(title: "month6", value: "6"), //English
+    MenuOptionsModel(title: "monthall", value: "12"), //Thai
+  ].obs;
 }

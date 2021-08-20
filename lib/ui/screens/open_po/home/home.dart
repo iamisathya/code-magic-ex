@@ -26,9 +26,8 @@ class OpenPOHomeScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
             elevation: 0.0,
             heroTag: "add_open_po_order",
-            backgroundColor: kMainColor,
             onPressed: controller.onAddOrderTap,
-            child: const Icon(Icons.add, color: Colors.white)));
+            child: const Icon(Icons.add)));
   }
 
   List<Widget> _renderActionBar(BuildContext context) {

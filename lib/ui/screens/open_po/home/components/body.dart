@@ -52,18 +52,15 @@ class Body extends StatelessWidget {
   }
 
   Widget _getBodyWidget() {
-    return Container(
-      height: Get.height,
-      child: HorizontalDataTable(
-        leftHandSideColumnWidth: 200,
-        rightHandSideColumnWidth: 1080,
-        isFixedHeader: true,
-        headerWidgets: _getTitleWidget(),
-        leftSideItemBuilder: _generateFirstColumnRow,
-        rightSideItemBuilder: _generateRightHandSideColumnRow,
-        itemCount: controller.currentItemsLength,
-        rowSeparatorWidget: kRowDivider,
-      ),
+    return HorizontalDataTable(
+      leftHandSideColumnWidth: 200,
+      rightHandSideColumnWidth: 1080,
+      isFixedHeader: true,
+      headerWidgets: _getTitleWidget(),
+      leftSideItemBuilder: _generateFirstColumnRow,
+      rightSideItemBuilder: _generateRightHandSideColumnRow,
+      itemCount: controller.currentItemsLength,
+      rowSeparatorWidget: kRowDivider,
     );
   }
 
@@ -79,13 +76,14 @@ class Body extends StatelessWidget {
     ];
   }
 
-  TextButton _renderTableHeader(String title, OpenPoTypes type, double width, bool sorting) {
+  TextButton _renderTableHeader(
+      String title, OpenPoTypes type, double width, bool sorting) {
     return TextButton(
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero,
       ),
       onPressed: () {
-        if(sorting) {
+        if (sorting) {
           controller.onSortCulumn(type);
         }
       },
@@ -125,7 +123,7 @@ class Body extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
           alignment: Alignment.center,
           decoration: BoxDecoration(border: Border.all(width: 0.5)),
-          child: Text(currentItem.orderOpid),
+          child: Text(currentItem.orderOpid, style: Theme.of(context).textTheme.subtitle2),
         ));
   }
 
@@ -143,7 +141,7 @@ class Body extends StatelessWidget {
               decoration: BoxDecoration(border: Border.all(width: 0.5)),
               padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
               alignment: Alignment.center,
-              child: Text(currentItem.orderDate)),
+              child: Text(currentItem.orderDate, style: Theme.of(context).textTheme.subtitle2,)),
           _renderDataCell(index, 180, currentItem.orderTime,
               Alignment.centerRight, "value"),
           _renderDataCell(index, 180, currentItem.orderTotalPv,
@@ -153,8 +151,7 @@ class Body extends StatelessWidget {
           _renderDataCellWidget(
             180,
             Alignment.center,
-            _renderStatusButton(
-                context, currentItem.orderStatus),
+            _renderStatusButton(context, currentItem.orderStatus),
           ),
           _renderDataCellWidget(
               180,
@@ -180,11 +177,12 @@ class Body extends StatelessWidget {
   }
 
   IconButton _renderAttachement(BuildContext context, OpenPO currentItem) {
-    final String attchmentName = currentItem.iconAttachment.retrieveAttachementName();
-    final String url =
-        "${Address.resource}$attchmentName";
+    final String attchmentName =
+        currentItem.iconAttachment.retrieveAttachementName();
+    final String url = "${Address.resource}$attchmentName";
     return IconButton(
-        onPressed: () => Get.to(() => WebivewHomeScreen(url: url, title: attchmentName)),
+        onPressed: () =>
+            Get.to(() => WebivewHomeScreen(url: url, title: attchmentName)),
         icon: const Icon(Icons.attach_file, color: kMainColor));
   }
 
@@ -200,7 +198,7 @@ class Body extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           titleText,
-          style: TextStyle(color: type == 'link' ? kMainColor : Colors.black),
+          style: Theme.of(Get.context!).textTheme.subtitle1,
         ),
       ),
     );
@@ -211,13 +209,13 @@ class Body extends StatelessWidget {
       return _renderEachStatusButton(context, "Pending", kPendingColor);
     } else if (status == "1") {
       return _renderEachStatusButton(context, "Deleted", Colors.red);
-    }else if (status == "2") {
+    } else if (status == "2") {
       return _renderEachStatusButton(context, "Unknown", kSecondaryColor);
-    }  else if (status == "3") {
+    } else if (status == "3") {
       return _renderEachStatusButton(context, "Processing", kMainColor);
     } else {
       return _renderEachStatusButton(context, "Completed", Colors.green);
-    }    
+    }
   }
 
   Container _renderEachStatusButton(

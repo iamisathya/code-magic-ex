@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -155,7 +156,7 @@ class Body extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
       alignment: Alignment.centerLeft,
       decoration: BoxDecoration(border: Border.all(width: 0.5)),
-      child: Text(currentItem.creator.humanName.fullName),
+      child: Text(currentItem.creator.humanName.fullName, style: Theme.of(context).textTheme.subtitle2),
     );
   }
 
@@ -169,7 +170,7 @@ class Body extends StatelessWidget {
             decoration: BoxDecoration(border: Border.all(width: 0.5)),
             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
             alignment: Alignment.center,
-            child: Text(currentItem.customer.id.unicity)),
+            child: Text(currentItem.customer.id.unicity, style: Theme.of(context).textTheme.subtitle2)),
         _renderDataCell(index, 200, currentItem.customer.humanName.fullName,
             Alignment.centerLeft, "value", "", context),
         _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../utilities/constants.dart';
 import '../../../utilities/size_config.dart';
 
 class CustomLoadingWidget extends StatelessWidget {
@@ -29,7 +28,6 @@ class CustomLoadingWidget extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: LinearProgressIndicator(
-              valueColor: AlwaysStoppedAnimation(Colors.white),
               minHeight: 5,
             ),
           ),

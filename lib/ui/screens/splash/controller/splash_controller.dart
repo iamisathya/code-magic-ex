@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
+import 'package:code_magic_ex/ui/screens/open_po/home/home.dart';
 
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -62,7 +63,7 @@ class SplashController extends GetxController {
       UserSessionManager.shared.getProfilePictureFromDB();
       UserSessionManager.shared.getCustomerIdInfoFromDB();
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
-      Get.offAll(() => EnrollHomeScreen());
+      Get.offAll(() => OpenPOHomeScreen());
     } else {
       Get.offAll(() => LoginScreen());
     }

@@ -75,7 +75,7 @@ class NavigationDrawer extends StatelessWidget {
             selected: currentRoute == ScreenPaths.barcode,
             icon: Icons.qr_code_2_outlined,
             text: 'Barcode',
-            onTap: () => Navigator.pushNamed(context, ScreenPaths.easyShipReport),
+            onTap: () => Navigator.pushNamed(context, ScreenPaths.barcode),
           ),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.settings,
