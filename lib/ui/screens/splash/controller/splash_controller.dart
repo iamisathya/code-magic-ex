@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
-import 'package:code_magic_ex/ui/screens/open_po/home/home.dart';
-
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -17,6 +14,7 @@ import '../../../../utilities/function.dart';
 import '../../../../utilities/key_value_storage.dart';
 import '../../../../utilities/user_session.dart';
 import '../../login/login.dart';
+import '../../open_po/home/home.dart';
 
 class SplashController extends GetxController {
   Timer? _timer;

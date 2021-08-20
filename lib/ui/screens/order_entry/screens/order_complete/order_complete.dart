@@ -1,10 +1,10 @@
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_complete.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../constants/colors.dart';
 import '../../../../../ui/global/widgets/transparent_app_bar.dart';
 import '../../../../../utilities/size_config.dart';
+import '../../controllers/order_complete.dart';
 import 'components/body.dart';
 
 class OrderComplete extends StatelessWidget {

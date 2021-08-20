@@ -1,5 +1,6 @@
-import 'package:code_magic_ex/models/menu_option_model.dart';
 import 'package:get/get.dart';
+
+import '../models/menu_option_model.dart';
 
 class Globals {
   Globals._();

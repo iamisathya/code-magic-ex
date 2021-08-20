@@ -1,10 +1,10 @@
-import 'package:code_magic_ex/ui/screens/enroll/bloc/enroll_complete_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../constants/colors.dart';
 import '../../../../../ui/global/widgets/transparent_app_bar.dart';
 import '../../../../../utilities/size_config.dart';
+import '../../bloc/enroll_complete_controller.dart';
 import 'components/body.dart';
 
 class EnrollComplete extends StatelessWidget {

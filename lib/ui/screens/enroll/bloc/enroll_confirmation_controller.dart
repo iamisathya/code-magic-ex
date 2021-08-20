@@ -1,11 +1,5 @@
 import 'dart:convert';
 
-import 'package:code_magic_ex/api/config/api_service.dart';
-import 'package:code_magic_ex/api/config/member_class.dart';
-import 'package:code_magic_ex/models/enroll_form.dart';
-import 'package:code_magic_ex/models/enroll_log_request_data.dart';
-import 'package:code_magic_ex/models/enrollee_user_data.dart';
-import 'package:code_magic_ex/models/general_models.dart';
 import 'package:code_magic_ex/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
@@ -17,6 +11,13 @@ import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../api/config/api_service.dart';
+import '../../../../api/config/member_class.dart';
+import '../../../../models/enroll_form.dart';
+import '../../../../models/enroll_log_request_data.dart';
+import '../../../../models/enrollee_user_data.dart';
+import '../../../../models/general_models.dart';
 
 class EnrollConfirmationController extends GetxController {
   late EnrolleeUserData enroleeData;

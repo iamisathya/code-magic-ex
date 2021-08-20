@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utilities/constants.dart';
-import '../../../../utilities/images.dart';
-import '../../../global/widgets/custom_empty_widget.dart';
-import '../../../global/widgets/custom_error_widget.dart';
-import '../../../global/widgets/custom_loading_widget.dart';
 import '../controller/controller.dart';
 
 class Body extends StatelessWidget {
@@ -13,65 +9,33 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _createSearchView(context),
-        Expanded(child: _buildChild(context))
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(36.0),
+      child: _createSearchView(context),
     );
-  }
-
-  Widget _buildChild(BuildContext context) {
-    if (controller.bardcodeTextField.text.isEmpty) {
-      return const CustomErrorWidget(
-        svgIcon: kImageThinking,
-        showMessage: false,
-      );
-    } else if (controller.loading.value) {
-      return const CustomLoadingWidget(
-        svgIcon: kImageSearch,
-      );
-    } else if (controller.errorMessage.value.isNotEmpty) {
-      return const CustomErrorWidget(
-        svgIcon: kImageServerDown,
-      );
-    }
-    if (!controller.isInvalidOrderId.value) {
-      return const CustomEmptyWidget(
-        svgIcon: kImageNotFound,
-      );
-    } else {
-      return const CustomEmptyWidget(
-        svgIcon: kImageBlankPage,
-      );
-    }
   }
 
   //Create a SearchView
   Widget _createSearchView(BuildContext context) {
-    return Row(
+    return Column(
       children: [
         Flexible(
           child: Container(
             margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-                border: Border.all(width: 2, color: kMainColor),
-                borderRadius: const BorderRadius.all(Radius.circular(8.0))),
             child: TextField(
               controller: controller.bardcodeTextField,
-              cursorColor: kMainColor,
-              decoration: InputDecoration(
-                hoverColor: kMainColor,
+              decoration: const InputDecoration(
                 hintText: "Search",
+                helperText: "Please enter order number",
                 focusedBorder: InputBorder.none,
-                prefixIcon: const Icon(Icons.search, color: kMainColor),
-                hintStyle: TextStyle(color: Colors.grey[300]),
+                prefixIcon: Icon(Icons.search),
               ),
             ),
           ),
         ),
+        const SizedBox(height: 30),
         SizedBox(
-          width: 66,
+          width: 100,
           height: 50,
           child: Padding(
             padding: const EdgeInsets.only(right: 8),

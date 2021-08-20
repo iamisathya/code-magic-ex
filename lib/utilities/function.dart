@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:code_magic_ex/models/locale.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -18,6 +17,7 @@ import '../exceptions/not_found.exception.dart';
 import '../exceptions/time_out.exception.dart';
 import '../exceptions/unauthorised.exception.dart';
 import '../models/inventory_records.dart';
+import '../models/locale.dart';
 import '../ui/global/widgets/overlay_progress.dart';
 import '../ui/screens/login/login.dart';
 import 'Logger/logger.dart';

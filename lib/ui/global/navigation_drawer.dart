@@ -1,10 +1,10 @@
-import 'package:code_magic_ex/ui/screens/settings/settings.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utilities/user_session.dart';
 import '../screens/login/login.dart';
+import '../screens/settings/settings.dart';
 import 'router.dart';
 import 'widgets/confirmation_dialog.dart';
 

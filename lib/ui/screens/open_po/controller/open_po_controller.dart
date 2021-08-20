@@ -1,5 +1,3 @@
-import 'package:code_magic_ex/constants/globals.dart';
-import 'package:code_magic_ex/models/menu_option_model.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +8,10 @@ import 'package:printing/printing.dart';
 
 import '../../../../api/api_address.dart';
 import '../../../../api/config/member_class.dart';
+import '../../../../constants/globals.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/inventory_records.dart';
+import '../../../../models/menu_option_model.dart';
 import '../../../../models/open_order_id.dart';
 import '../../../../models/open_po.dart';
 import '../../../../models/open_po_details.dart';

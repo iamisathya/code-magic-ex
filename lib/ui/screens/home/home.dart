@@ -1,12 +1,11 @@
-import 'package:code_magic_ex/models/locale.dart';
-import 'package:code_magic_ex/translations/localization_service.dart';
-import 'package:code_magic_ex/utilities/enums.dart';
-import 'package:code_magic_ex/utilities/function.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../translations/localization_service.dart';
 import '../../../utilities/constants.dart';
+import '../../../utilities/enums.dart';
+import '../../../utilities/function.dart';
 import '../../../utilities/user_session.dart';
 import '../../global/navigation_drawer.dart';
 import '../../global/theme/bloc.dart';
@@ -100,7 +99,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         drawer: NavigationDrawer(),
         body: Center(
           child: Column(
-            children: [
+            children: const [
               Text("DASHBOARD"),
             ],
           ),

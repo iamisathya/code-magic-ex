@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:code_magic_ex/models/enroll_form.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../models/cash_coupon_response.dart';
+import '../../models/enroll_form.dart';
 import '../../models/find_customer.dart';
 import '../../models/general_models.dart';
 import '../../models/guest_user_info.dart';

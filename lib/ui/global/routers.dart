@@ -1,17 +1,18 @@
-import 'package:code_magic_ex/ui/screens/barcode/home.dart';
-import 'package:code_magic_ex/ui/screens/easy_ship/home.dart';
-import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
-import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/home.dart';
-import 'package:code_magic_ex/ui/screens/enroll/screens/order_complete/enroll_complete.dart';
-import 'package:code_magic_ex/ui/screens/home/home.dart';
-import 'package:code_magic_ex/ui/screens/login/login.dart';
-import 'package:code_magic_ex/ui/screens/open_po/home/home.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/order_entry.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/screens/checkout/checkout_screen.dart';
-import 'package:code_magic_ex/ui/screens/sales_reports/home.dart';
-import 'package:code_magic_ex/ui/screens/splash/screen.dart';
-import 'package:code_magic_ex/ui/screens/webview/webview.dart';
 import 'package:get/get.dart';
+
+import '../screens/barcode/home.dart';
+import '../screens/easy_ship/home.dart';
+import '../screens/enroll/enroll.dart';
+import '../screens/enroll/screens/enroll_confirmation/home.dart';
+import '../screens/enroll/screens/order_complete/enroll_complete.dart';
+import '../screens/home/home.dart';
+import '../screens/login/login.dart';
+import '../screens/open_po/home/home.dart';
+import '../screens/order_entry/order_entry.dart';
+import '../screens/order_entry/screens/checkout/checkout_screen.dart';
+import '../screens/sales_reports/home.dart';
+import '../screens/splash/screen.dart';
+import '../screens/webview/webview.dart';
 
 class AppRoutes {
   AppRoutes._(); //this is to prevent anyone from instantiating this object

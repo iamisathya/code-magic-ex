@@ -1,15 +1,14 @@
-import 'package:code_magic_ex/ui/screens/enroll/bloc/enroll_complete_controller.dart';
-import 'package:code_magic_ex/ui/screens/enroll/enroll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../../styles/edge_insets.dart';
-import '../../../../../../../ui/global/theme/app_theme.dart';
 import '../../../../../../../ui/global/widgets/primary_button.dart';
 import '../../../../../../../ui/global/widgets/primary_button_outline.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../../utilities/size_config.dart';
+import '../../../bloc/enroll_complete_controller.dart';
+import '../../../enroll.dart';
 
 class Body extends StatelessWidget {
   final EnrollCompleteController controller =
@@ -30,13 +29,11 @@ class Body extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Enroll Successfull ",
-                  style: AppTheme.lightTheme.textTheme.headline4,
                 ),
                 Text(
                   " #${controller.orderNumber.value}",
-                  style: AppTheme.lightTheme.textTheme.headline6,
                 ),
               ],
             ),
@@ -52,13 +49,13 @@ class Body extends StatelessWidget {
               child: Column(
                 children: [
                   Obx(() => ColumnItem(
-                    title: "Order ID",
-                    value: controller.orderNumber.value,
-                  )),
+                        title: "Order ID",
+                        value: controller.orderNumber.value,
+                      )),
                   Obx(() => ColumnItem(
-                    title: "User ID",
-                    value: controller.userId.value,
-                  )),
+                        title: "User ID",
+                        value: controller.userId.value,
+                      )),
                 ],
               ),
             ),
@@ -109,14 +106,12 @@ class ColumnItem extends StatelessWidget {
             flex: 2,
             child: Text(
               title,
-              style: AppTheme.lightTheme.textTheme.headline6,
             ),
           ),
-          Expanded(
+          const Expanded(
             child: Text(
               " : ",
               textAlign: TextAlign.center,
-              style: AppTheme.lightTheme.textTheme.headline6,
             ),
           ),
           Expanded(
@@ -124,7 +119,6 @@ class ColumnItem extends StatelessWidget {
             child: Text(
               value,
               textAlign: TextAlign.right,
-              style: AppTheme.lightTheme.textTheme.headline6,
             ),
           ),
         ],

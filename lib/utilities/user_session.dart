@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:code_magic_ex/models/locale.dart';
+import '../models/locale.dart';
 
 import '../models/profile_picture.dart';
 import '../models/user_id.dart';

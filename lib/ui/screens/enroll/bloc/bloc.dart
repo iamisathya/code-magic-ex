@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:code_magic_ex/models/enrollee_user_data.dart';
-import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/home.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +12,7 @@ import '../../../../api/config/member_class.dart';
 import '../../../../models/amphur_item.dart';
 import '../../../../models/district_item.dart';
 import '../../../../models/enroll_response.dart';
+import '../../../../models/enrollee_user_data.dart';
 import '../../../../models/govt_id_verify.dart';
 import '../../../../models/guest_user_info.dart';
 import '../../../../models/provience_item.dart';
@@ -24,6 +23,7 @@ import '../../../../utilities/core/parsing.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
 import '../../../global/widgets/overlay_progress.dart';
+import '../screens/enroll_confirmation/home.dart';
 
 class EnrollController extends GetxController {
   ScrollController scrollController = ScrollController();

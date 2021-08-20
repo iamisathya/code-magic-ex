@@ -1,5 +1,3 @@
-import 'package:code_magic_ex/ui/screens/settings/settings.dart';
-
 import '../screens/barcode/home.dart';
 import '../screens/easy_ship/home.dart';
 import '../screens/enroll/enroll.dart';
@@ -10,6 +8,7 @@ import '../screens/open_po/home/home.dart';
 import '../screens/order_entry/order_entry.dart';
 import '../screens/order_entry/screens/checkout/checkout_screen.dart';
 import '../screens/sales_reports/home.dart';
+import '../screens/settings/settings.dart';
 import '../screens/webview/webview.dart';
 
 class ScreenPaths {

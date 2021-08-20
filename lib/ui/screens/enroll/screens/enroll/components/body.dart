@@ -1,9 +1,9 @@
-import 'package:code_magic_ex/constants/colors.dart';
-import 'package:code_magic_ex/styles/input_decorations.dart';
-import 'package:code_magic_ex/ui/global/theme/app_theme.dart';
-import 'package:code_magic_ex/ui/screens/enroll/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../constants/colors.dart';
+import '../../../../../../styles/input_decorations.dart';
+import '../../../bloc/bloc.dart';
 
 class Body extends StatelessWidget {
   final EnrollController controller = Get.put(EnrollController());
@@ -69,12 +69,11 @@ class Body extends StatelessWidget {
                             controller.maritalStatus.value = val)),
                     _renderDatePicker("Birth Day", context),
                     Obx(() => controller.isUnderAgeLimit.value
-                        ? Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
+                        ? const Padding(
+                            padding: EdgeInsets.only(
+                                bottom: 8.0, left: 8.0, right: 8.0),
                             child: Text(
-                                "Applicant must be 18 years or older. (DD/MM/YYYY)",
-                                style:
-                                    AppTheme.darkTheme.textTheme.subtitle1),
+                                "Applicant must be 18 years or older. (DD/MM/YYYY)"),
                           )
                         : const SizedBox()),
                     _renderDropdownButton(
@@ -148,7 +147,8 @@ class Body extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          Icon(Icons.person_outline_outlined, size: 30, color: AppColor.kMainColor),
+          Icon(Icons.person_outline_outlined,
+              size: 30, color: AppColor.kMainColor),
           Text("Information", style: TextStyle(color: AppColor.kMainColor))
         ],
       ),
@@ -211,8 +211,8 @@ class Body extends StatelessWidget {
               style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ))),
+                borderRadius: BorderRadius.circular(12.0),
+              ))),
               child: Text(label))),
     );
   }

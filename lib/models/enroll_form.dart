@@ -383,7 +383,7 @@ class Aggregate {
   Map<String, dynamic> toJson() => _$AggregateToJson(this);
 }
 
-@JsonSerializable(nullable: true)
+@JsonSerializable()
 class TransactionsEnroll {
   List<TransactionItems>? items;
 

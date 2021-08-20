@@ -1,4 +1,3 @@
-import 'package:code_magic_ex/api/api_address.dart';
 import 'package:code_magic_ex/models/place_order.dart'
     hide
         Customer,
@@ -11,6 +10,8 @@ import 'package:code_magic_ex/models/place_order.dart'
 import 'package:code_magic_ex/utilities/function.dart';
 import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:get/get.dart';
+
+import '../../../../api/api_address.dart';
 
 class OrderCompleteController extends GetxController {
   late PlaceOrder orderResponse;

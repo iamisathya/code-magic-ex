@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'dart:isolate';
 
-import 'package:code_magic_ex/controllers/theme_controller.dart';
-import 'package:code_magic_ex/translations/translations.dart';
-import 'package:code_magic_ex/ui/global/routers.dart';
-import 'package:code_magic_ex/ui/global/theme/app_themes.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,7 +11,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'controllers/global_controllers.dart';
+import 'controllers/theme_controller.dart';
+import 'translations/translations.dart';
+import 'ui/global/routers.dart';
 import 'ui/global/routes.dart';
+import 'ui/global/theme/app_themes.dart';
 import 'ui/global/theme/bloc.dart';
 import 'ui/screens/splash/screen.dart';
 import 'utilities/connectivity.dart';

@@ -1,12 +1,13 @@
-import 'package:code_magic_ex/styles/box_decorations.dart';
-import 'package:code_magic_ex/styles/edge_insets.dart';
-import 'package:code_magic_ex/styles/sized_box.dart';
-import 'package:code_magic_ex/ui/global/widgets/primary_button.dart';
-import 'package:code_magic_ex/ui/screens/enroll/bloc/enroll_confirmation_controller.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../styles/box_decorations.dart';
+import '../../../../../../styles/edge_insets.dart';
+import '../../../../../../styles/sized_box.dart';
+import '../../../../../../utilities/constants.dart';
+import '../../../../../../utilities/size_config.dart';
+import '../../../../../global/widgets/primary_button.dart';
+import '../../../bloc/enroll_confirmation_controller.dart';
 
 class Body extends StatelessWidget {
   final EnrollConfirmationController controller =

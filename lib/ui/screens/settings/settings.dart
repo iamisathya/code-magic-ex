@@ -1,12 +1,12 @@
-import 'package:code_magic_ex/constants/globals.dart';
-import 'package:code_magic_ex/controllers/global_controllers.dart';
-import 'package:code_magic_ex/controllers/theme_controller.dart';
-import 'package:code_magic_ex/models/menu_option_model.dart';
-import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../constants/globals.dart';
+import '../../../controllers/global_controllers.dart';
+import '../../../controllers/theme_controller.dart';
+import '../../../models/menu_option_model.dart';
+import '../../global/widgets/transparent_app_bar.dart';
 
 
 class SettingsPage extends StatelessWidget {

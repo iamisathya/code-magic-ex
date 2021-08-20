@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/models/enroll_form.dart';
+import '../../models/enroll_form.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';

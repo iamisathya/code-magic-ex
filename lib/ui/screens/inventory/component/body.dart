@@ -1,10 +1,10 @@
-import 'package:code_magic_ex/utilities/core/parsing.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 import '../../../../utilities/constants.dart';
+import '../../../../utilities/core/parsing.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
 import '../../../global/widgets/search_view_button.dart';

@@ -1,18 +1,17 @@
 
-import 'package:code_magic_ex/models/user_info.dart';
-import 'package:code_magic_ex/ui/screens/order_entry/controllers/order_complete.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../../styles/edge_insets.dart';
-import '../../../../../../../ui/global/theme/app_theme.dart';
 import '../../../../../../../ui/global/widgets/primary_button.dart';
 import '../../../../../../../ui/global/widgets/primary_button_outline.dart';
+import '../../../../../../models/user_info.dart';
 import '../../../../../../utilities/extensions.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../../utilities/size_config.dart';
+import '../../../../../../utilities/user_session.dart';
+import '../../../controllers/order_complete.dart';
 import '../../../order_entry.dart';
 
 class Body extends StatelessWidget {
@@ -34,13 +33,11 @@ class Body extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Order Summary - ",
-                    style: AppTheme.lightTheme.textTheme.headline4,
                   ),
                   Text(
                     "#${controller.orderResponse.id.unicity.retrieveOrderId()}",
-                    style: AppTheme.lightTheme.textTheme.headline6,
                   ),
                 ],
               ),
@@ -118,14 +115,12 @@ class ColumnItem extends StatelessWidget {
             flex: 2,
             child: Text(
               title,
-              style: AppTheme.lightTheme.textTheme.headline6,
             ),
           ),
-          Expanded(
+          const Expanded(
             child: Text(
               "   :  ",
               textAlign: TextAlign.center,
-              style: AppTheme.lightTheme.textTheme.headline6,
             ),
           ),
           Expanded(
@@ -133,7 +128,6 @@ class ColumnItem extends StatelessWidget {
             child: Text(
               value,
               textAlign: TextAlign.right,
-              style: AppTheme.lightTheme.textTheme.headline6,
             ),
           ),
         ],

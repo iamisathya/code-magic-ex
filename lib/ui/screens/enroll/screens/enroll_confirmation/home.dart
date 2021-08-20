@@ -1,10 +1,9 @@
-import 'package:code_magic_ex/constants/colors.dart';
-import 'package:code_magic_ex/ui/global/widgets/transparent_app_bar.dart';
-import 'package:code_magic_ex/ui/screens/enroll/bloc/enroll_confirmation_controller.dart';
-import 'package:code_magic_ex/ui/screens/enroll/screens/enroll_confirmation/components/body.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../global/widgets/transparent_app_bar.dart';
+import '../../bloc/enroll_confirmation_controller.dart';
+import 'components/body.dart';
 
 class EnrollConfirmation extends StatelessWidget {
   final EnrollConfirmationController controller = Get.put(EnrollConfirmationController());
