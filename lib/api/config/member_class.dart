@@ -1,4 +1,3 @@
-import '../../models/enroll_form.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -6,6 +5,7 @@ import 'package:retrofit/retrofit.dart';
 import '../../models/amphur_item.dart';
 import '../../models/district_item.dart';
 import '../../models/easy_ship_reports.dart';
+import '../../models/enroll_form.dart';
 import '../../models/general_models.dart';
 import '../../models/govt_id_verify.dart';
 import '../../models/open_order_id.dart';

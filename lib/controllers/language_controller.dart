@@ -13,7 +13,7 @@ class LanguageController extends GetxController {
   final store = GetStorage();
 
   // fallbackLocale saves the day when the locale gets in trouble
-  Locale get fallbackLocale => Locale('en', 'US');
+  Locale get fallbackLocale => const Locale('en', 'US');
 
   String get currentLanguage => language.value;
 
