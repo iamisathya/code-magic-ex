@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilities/constants.dart';
 import '../../../utilities/size_config.dart';
 
 class PrimaryOutlineButton extends StatelessWidget {

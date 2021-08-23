@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utilities/constants.dart';
 
 class DafultAlertDialog extends StatelessWidget {
   final Color bgColor;

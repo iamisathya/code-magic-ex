@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../constants/colors.dart';
 import '../../../../../../styles/input_decorations.dart';
 import '../../../bloc/bloc.dart';
 

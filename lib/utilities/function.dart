@@ -21,7 +21,6 @@ import '../models/locale.dart';
 import '../ui/global/widgets/overlay_progress.dart';
 import '../ui/screens/login/login.dart';
 import 'Logger/logger.dart';
-import 'constants.dart';
 import 'core/parsing.dart';
 import 'enums.dart';
 import 'user_session.dart';

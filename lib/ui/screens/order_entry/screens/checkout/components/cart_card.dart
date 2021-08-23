@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../../models/cart_products.dart';
-import '../../../../../../utilities/constants.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../../utilities/size_config.dart';
 
