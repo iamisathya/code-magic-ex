@@ -97,6 +97,7 @@ class NavigationDrawer extends StatelessWidget {
             text: 'Signout',
             onTap: () => _didMenuPressed(context),
           ),
+          const Divider(thickness: 1),
           ListTile(
             title: FutureBuilder<PackageInfo>(
                 future: _packageInfo(),
@@ -128,7 +129,7 @@ Widget _createDrawerHeader(BuildContext context) {
         Padding(
           padding: const EdgeInsets.only(left: 12.0),
           child: CircleAvatar(
-            radius: 50.0,
+            radius: 44.0,
             backgroundImage: NetworkImage(UserSessionManager
                 .shared.profilePicture!.sizes[0].media), // for Network image
           ),
@@ -145,6 +146,7 @@ Widget _createDrawerHeader(BuildContext context) {
             left: 16.0,
             child: Text(
               UserSessionManager.shared.userInfo!.humanName.fullName,
+              style: Theme.of(context).textTheme.headline6,
             )),
       ]));
 }
