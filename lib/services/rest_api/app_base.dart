@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../utilities/connectivity.dart';
-import '../../utilities/core/parsing.dart';
+import '../../utilities/parsing.dart';
 import 'exceptions.dart';
 
 abstract class RestApiNepBaseService {

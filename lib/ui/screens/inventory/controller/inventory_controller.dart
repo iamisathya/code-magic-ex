@@ -18,7 +18,7 @@ import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
 import '../../../../models/inventory_records.dart';
 import '../../../../utilities/constants.dart';
-import '../../../../utilities/core/parsing.dart';
+import '../../../../utilities/parsing.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
 import '../../../global/widgets/overlay_progress.dart';

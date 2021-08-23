@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../resources/font_weights.dart';
+import '../../../styles/font_weights.dart';
 
 class ConfirmationDialog {
   ConfirmationDialog._();

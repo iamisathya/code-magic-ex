@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:code_magic_ex/constants/globals.dart';
 import 'package:code_magic_ex/models/country_info.dart';
 import 'package:code_magic_ex/ui/screens/open_po/home/home.dart';
-import 'package:code_magic_ex/utilities/Logger/logger.dart';
+import 'package:code_magic_ex/utilities/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';

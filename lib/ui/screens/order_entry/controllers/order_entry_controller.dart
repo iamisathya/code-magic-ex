@@ -14,7 +14,7 @@ import '../../../../models/inventory_records.dart';
 import '../../../../models/order_calc_response.dart';
 import '../../../../models/radio_button_value.dart';
 import '../../../../models/user_minimal_data.dart';
-import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/logger.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../global/navigation_drawer.dart';
+import '../../../navigation/navigation_drawer.dart';
 import '../../global/widgets/transparent_app_bar.dart';
 import 'screens/home/components/body.dart';
 

@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../models/order_list_rmas.dart';
 import '../../../../utilities/constants.dart';
-import '../../../../utilities/core/parsing.dart';
+import '../../../../utilities/parsing.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/images.dart';

@@ -12,7 +12,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../../../api/config/api_service.dart';
 import '../../../../models/user_info.dart';
 import '../../../../models/user_token.dart';
-import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/logger.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/user_session.dart';
 import '../../login/login.dart';

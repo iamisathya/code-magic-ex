@@ -11,9 +11,9 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../api/config/member_class.dart';
 import '../../../../models/easy_ship_reports.dart';
-import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/logger.dart';
 import '../../../../utilities/constants.dart';
-import '../../../../utilities/core/parsing.dart';
+import '../../../../utilities/parsing.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/user_session.dart';

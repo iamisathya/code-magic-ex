@@ -1,4 +1,4 @@
-import '../utilities/Logger/logger.dart';
+import '../utilities/logger.dart';
 
 class ServiceUnavailableException implements Exception {
   final String message;

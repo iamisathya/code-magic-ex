@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../screens/barcode/home.dart';
-import '../screens/easy_ship/home.dart';
-import '../screens/enroll/enroll.dart';
-import '../screens/home/home.dart';
-import '../screens/inventory/home.dart';
-import '../screens/login/login.dart';
-import '../screens/open_po/home/home.dart';
-import '../screens/order_entry/order_entry.dart';
-import '../screens/order_entry/screens/checkout/checkout_screen.dart';
-import '../screens/sales_reports/home.dart';
-import '../screens/webview/webview.dart';
+import '../ui/screens/barcode/home.dart';
+import '../ui/screens/easy_ship/home.dart';
+import '../ui/screens/enroll/enroll.dart';
+import '../ui/screens/home/home.dart';
+import '../ui/screens/inventory/home.dart';
+import '../ui/screens/login/login.dart';
+import '../ui/screens/open_po/home/home.dart';
+import '../ui/screens/order_entry/order_entry.dart';
+import '../ui/screens/order_entry/screens/checkout/checkout_screen.dart';
+import '../ui/screens/sales_reports/home.dart';
+import '../ui/screens/webview/webview.dart';
 import 'router.dart';
 
 Map<String, WidgetBuilder> get routes {

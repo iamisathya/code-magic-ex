@@ -16,7 +16,7 @@ import '../../../../models/open_po_create_order_response.dart';
 import '../../../../models/user_info.dart';
 import '../../../../models/user_minimal_data.dart';
 import '../../../../models/validate_order.dart';
-import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/logger.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';

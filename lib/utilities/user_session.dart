@@ -7,7 +7,7 @@ import '../models/profile_picture.dart';
 import '../models/user_id.dart';
 import '../models/user_info.dart';
 import '../models/user_token.dart';
-import 'Logger/logger.dart';
+import 'logger.dart';
 import 'function.dart';
 import 'key_value_storage.dart';
 

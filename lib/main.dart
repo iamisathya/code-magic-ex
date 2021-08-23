@@ -13,10 +13,9 @@ import 'package:get_storage/get_storage.dart';
 import 'controllers/global_controllers.dart';
 import 'controllers/theme_controller.dart';
 import 'translations/translations.dart';
-import 'ui/global/routers.dart';
-import 'ui/global/routes.dart';
+import 'navigation/routers.dart';
+import 'navigation/routes.dart';
 import 'ui/global/theme/app_themes.dart';
-import 'ui/global/theme/bloc.dart';
 import 'ui/screens/splash/screen.dart';
 import 'utilities/connectivity.dart';
 import 'utilities/key_value_storage.dart';
@@ -88,7 +87,6 @@ class MyApp extends StatelessWidget {
               getPages: AppRoutes.routes,
               theme: AppThemes.lightTheme,
               darkTheme: AppThemes.darkTheme,
-              themeMode: themeBloc.getThemeMode,
               locale: languageController.getLocale,
               fallbackLocale: languageController.fallbackLocale,
               translations: AppTranslations(),

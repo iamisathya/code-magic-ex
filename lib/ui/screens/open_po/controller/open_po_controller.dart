@@ -15,7 +15,7 @@ import '../../../../models/menu_option_model.dart';
 import '../../../../models/open_order_id.dart';
 import '../../../../models/open_po.dart';
 import '../../../../models/open_po_details.dart';
-import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/logger.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../global/widgets/overlay_progress.dart';

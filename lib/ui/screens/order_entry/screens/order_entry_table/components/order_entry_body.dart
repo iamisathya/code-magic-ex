@@ -4,7 +4,7 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 import '../../../../../../models/inventory_records.dart';
 import '../../../../../../utilities/constants.dart';
-import '../../../../../../utilities/core/parsing.dart';
+import '../../../../../../utilities/parsing.dart';
 import '../../../../../../utilities/extensions.dart';
 import '../../../../../global/widgets/common_button.dart';
 import '../../../../../global/widgets/counter_view.dart';

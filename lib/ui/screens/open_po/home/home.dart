@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/size_config.dart';
-import '../../../global/navigation_drawer.dart';
+import '../../../../navigation/navigation_drawer.dart';
 import '../../../global/widgets/transparent_app_bar.dart';
 import '../controller/open_po_controller.dart';
 import 'components/body.dart';

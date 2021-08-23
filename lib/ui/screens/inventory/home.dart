@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utilities/constants.dart';
-import '../../global/navigation_drawer.dart';
+import '../../../navigation/navigation_drawer.dart';
 import '../../global/widgets/transparent_app_bar.dart';
 import 'component/body.dart';
 import 'controller/inventory_controller.dart';

@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../api/config/member_class.dart';
 import '../../../../models/order_lines.dart';
-import '../../../../utilities/Logger/logger.dart';
+import '../../../../utilities/logger.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/widgets/overlay_progress.dart';
 
