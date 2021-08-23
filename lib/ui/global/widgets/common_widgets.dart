@@ -23,7 +23,7 @@ Container renderTextField(
             maxLines: maxLines,
             minLines: minLines,
             style: const TextStyle(fontSize: 18),
-            cursorColor: kMainColor,
+            cursorColor: Theme.of(Get.context!).colorScheme.primary,
             decoration: enabled == false
                 ? kDisabledTextInputDecoration(
                     helperText: helperText, hintText: hintText)

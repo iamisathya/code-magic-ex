@@ -49,7 +49,7 @@ class DafultAlertDialog extends StatelessWidget {
           onPressed: () => onPostivePressed,
           child: Text(
             positiveBtnText,
-            style: const TextStyle(color: kMainColor),
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
           ),
         ),
       ],

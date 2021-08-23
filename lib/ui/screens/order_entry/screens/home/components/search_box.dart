@@ -19,7 +19,7 @@ class SearchBox extends StatelessWidget {
           MaterialButton(
             shape: kRoundedRectangleBorder8(),
             disabledColor: Colors.grey,
-            color: kMainColor,
+            color: Theme.of(context).colorScheme.primary,
             onPressed: () => controller.searchUserBySearchQuery(context),
             height: 55,
             child:

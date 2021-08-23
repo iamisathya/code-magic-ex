@@ -18,10 +18,10 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        iconTheme: const IconThemeData(color: kMainColor),
-        title: const Text(
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
+        title: Text(
           "Order Details",
-          style: TextStyle(color: kMainColor),
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
         actions: _renderActionBar(context),
       ),

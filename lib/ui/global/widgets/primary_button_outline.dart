@@ -25,16 +25,16 @@ class PrimaryOutlineButton extends StatelessWidget {
             child: FlatButton.icon(
               icon: Text(text,
                   style: TextStyle(
-                    color: kMainColor,
+                    color: Theme.of(context).colorScheme.primary,
                     fontSize: getProportionateScreenWidth(14),
                   )),
               label: showIcon
-                  ? const Icon(Icons.arrow_forward,
-                      size: 16, color: kMainColor)
+                  ? Icon(Icons.arrow_forward,
+                      size: 16, color: Theme.of(context).colorScheme.primary)
                   : const SizedBox(),
               shape: RoundedRectangleBorder(
-                  side: const BorderSide(
-                      color: kMainColor, width: 3),
+                  side: BorderSide(
+                      color: Theme.of(context).colorScheme.primary, width: 3),
                   borderRadius: BorderRadius.circular(50)),
               onPressed: () => press(),
             ));

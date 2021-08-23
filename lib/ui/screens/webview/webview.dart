@@ -53,8 +53,8 @@ class _WebivewHomeScreenState extends State<WebivewHomeScreen> {
             },
           ),
           if (isLoading)
-            const LinearProgressIndicator(
-              color: kMainColor,
+            LinearProgressIndicator(
+              color: Theme.of(context).colorScheme.primary,
             )
           else
             Stack(),

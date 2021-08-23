@@ -44,7 +44,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           value: "EN",
           child: ListTile(
             shape: kRoundedBorder(),
-            selectedTileColor: kMainColor,
+            selectedTileColor: Theme.of(context).colorScheme.primary,
             selected: currentLang == "en",
             leading: const IconButton(
               onPressed: null,
@@ -59,7 +59,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           value: "TH",
           child: ListTile(
             shape: kRoundedBorder(),
-            selectedTileColor: kMainColor,
+            selectedTileColor: Theme.of(context).colorScheme.primary,
             selected: currentLang == "th",
             leading: const IconButton(
               onPressed: null,

@@ -401,18 +401,20 @@ class EnrollController extends GetxController {
       title,
       message,
       titleText: Text(title,
-          style: const TextStyle(color: kMainColor, fontSize: 16)),
+          style: TextStyle(
+              color: Theme.of(Get.context!).colorScheme.primary, fontSize: 16)),
       messageText: Text(message,
-          style: const TextStyle(color: kMainColor, fontSize: 14)),
+          style: TextStyle(
+              color: Theme.of(Get.context!).colorScheme.primary, fontSize: 14)),
       backgroundColor: Colors.white,
       borderColor: kPrimaryLightColor,
       animationDuration: const Duration(milliseconds: 300),
       snackPosition: SnackPosition.BOTTOM,
       borderRadius: 10.0,
       borderWidth: 2,
-      icon: const Icon(
+      icon: Icon(
         Icons.error_outline,
-        color: kMainColor,
+        color: Theme.of(Get.context!).colorScheme.primary,
       ),
     );
   }

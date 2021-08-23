@@ -28,19 +28,20 @@ import 'user_session.dart';
 
 void renderErrorSnackBar(
     {String title = "", String subTitle = "", bool isError = true}) {
-  final Color c = isError == true ? Theme.of(Get.context!).colorScheme.onError : Theme.of(Get.context!).colorScheme.primary;
+  final Color c = Theme.of(Get.context!).colorScheme.onPrimary;
+  // isError == true ? Theme.of(Get.context!).colorScheme.onError : Theme.of(Get.context!).colorScheme.primary;
   return Get.snackbar(
     title,
     subTitle,
     titleText: Text(title,
         style: TextStyle(color: c, fontSize: 16, fontWeight: FontWeight.bold)),
     messageText: Text(subTitle, style: TextStyle(color: c, fontSize: 14)),
-    backgroundColor: Colors.white,
+    backgroundColor:  Theme.of(Get.context!).colorScheme.background,
     borderColor: c,
     animationDuration: const Duration(milliseconds: 300),
     snackPosition: SnackPosition.BOTTOM,
     borderRadius: 10.0,
-    borderWidth: 2,
+    borderWidth: 1,
     icon: Icon(
       Icons.error_outline,
       color: c,
@@ -178,7 +179,7 @@ void renderGetSnackbar(
     String message = "Unexpcted error occured. Please try later!",
     SnackBarType type = SnackBarType.success}) {
   final Color color = type == SnackBarType.success
-      ? kMainColor
+      ? Theme.of(Get.context!).accentColor
       : type == SnackBarType.error
           ? Colors.red
           : Colors.yellow;

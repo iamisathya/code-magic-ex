@@ -128,7 +128,7 @@ class OrderEntryBody extends StatelessWidget {
     return ElevatedButton(
         onPressed: () => {},
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(kMainColor)),
+            backgroundColor: MaterialStateProperty.all(Theme.of(Get.context!).colorScheme.primary)),
         child: const Text("Clear"));
   }
 

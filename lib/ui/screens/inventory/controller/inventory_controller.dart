@@ -196,7 +196,7 @@ class InventoryController extends GetxController {
             },
             shape: kRoundedBorder(),
             selected: filterMethod.value == describeEnum(StockTypes.onHand),
-            selectedTileColor: kMainColor,
+            selectedTileColor: Theme.of(context).colorScheme.primary,
             title: Text("On Hand", style: TextStyle(color: filterMethod.value == describeEnum(StockTypes.onHand) ? Colors.white : Colors.black)),
           ),
         ),
@@ -209,7 +209,7 @@ class InventoryController extends GetxController {
               onTapFilterInventory(context, StockTypes.outOfStock);
             },
             shape: kRoundedBorder(),
-            selectedTileColor: kMainColor,
+            selectedTileColor: Theme.of(context).colorScheme.primary,
             title: Text("Out Of Stock", style: TextStyle(color: filterMethod.value == describeEnum(StockTypes.outOfStock) ? Colors.white : Colors.black)),
           ),
         ),

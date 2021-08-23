@@ -78,7 +78,7 @@ class SignForm extends StatelessWidget {
               enabled: enabled,
               controller: ctlr,
               style: const TextStyle(fontSize: 18),
-              cursorColor: kMainColor,
+              cursorColor: Theme.of(Get.context!).colorScheme.primary,
               decoration: kTextInputDecoration(
                   helperText: helperText, hintText: hintText))
         ],

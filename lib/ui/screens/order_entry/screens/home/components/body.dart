@@ -34,10 +34,10 @@ class Body extends StatelessWidget {
   Widget _getSearchResult(BuildContext context) {
     return ListView.builder(
         itemCount: controller.searchResultsOfUserInfo.length,
-        itemBuilder: (context, i) => _renderResultItem(i));
+        itemBuilder: (context, i) => _renderResultItem(i, context));
   }
 
-  Widget _renderResultItem(int i) {
+  Widget _renderResultItem(int i, BuildContext context) {
     final SearchedUserInfo currentItem = controller.searchResultsOfUserInfo[i];
     return Card(
       color: Colors.white,
@@ -47,10 +47,10 @@ class Body extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
-          leading: const Icon(Icons.person_search_outlined, color: kMainColor),
+          leading: Icon(Icons.person_search_outlined, color: Theme.of(context).colorScheme.primary),
           title: Text(currentItem.id.unicity.toString()),
           subtitle: Text(currentItem.humanName.fullName),
-          trailing: const Icon(Icons.arrow_forward_ios, color: kMainColor),
+          trailing: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.primary),
           onTap: () => controller.onClickOpenOrderEntry(currentItem),
         ),
       ),

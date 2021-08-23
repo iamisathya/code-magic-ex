@@ -29,9 +29,9 @@ class EasyShipHomeScreen extends StatelessWidget {
 
   IconButton _appBarActions() {
     return IconButton(
-      icon: const Icon(
+      icon: Icon(
         Icons.open_in_new_outlined,
-        color: kMainColor,
+        color: Theme.of(Get.context!).colorScheme.primary,
       ),
       tooltip: 'Export as xlsl',
       onPressed: controller.onTapExportExcellSheet,

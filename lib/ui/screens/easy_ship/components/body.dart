@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
@@ -16,11 +17,10 @@ import '../bloc/bloc.dart';
 class Body extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());
   final TextEditingController searchConntroller = TextEditingController();
-  
 
   @override
   Widget build(BuildContext context) {
-    searchConntroller.text = "2970466";
+    if (kReleaseMode) searchConntroller.text = "2970466";
     return SafeArea(
         child: GetBuilder<EasyShipController>(
             init: EasyShipController(),
@@ -61,14 +61,15 @@ class Body extends StatelessWidget {
         children: [
           Flexible(child: SearchViewWidget(controller: searchConntroller)),
           MaterialButton(
-            shape: kRoundedRectangleBorder8(),
             disabledColor: Colors.grey,
-            color: kMainColor,
+            color: Theme.of(context).colorScheme.primary,
             onPressed: () {
               if (searchConntroller.text.isNotEmpty) {
                 controller.getAllOrderlines(userId: searchConntroller.text);
               } else {
-                renderErrorSnackBar(title: "Search field empty!", subTitle: "Please enter user id to search.");
+                renderErrorSnackBar(
+                    title: "Search field empty!",
+                    subTitle: "Please enter user id to search.");
               }
             },
             height: 55,
@@ -127,7 +128,8 @@ class Body extends StatelessWidget {
   Widget _getTitleItemWidget(String label, double width) {
     return Container(
       decoration: BoxDecoration(
-          color: kMainColor, border: Border.all(width: 0.5)),
+          color: Theme.of(Get.context!).colorScheme.primary,
+          border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -143,7 +145,8 @@ class Body extends StatelessWidget {
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     final currentItem = controller.getEasyShipReports[index];
-    final color = currentItem.itemName == "Total" ? kWhiteSmokeColor : Colors.white;
+    final color =
+        currentItem.itemName == "Total" ? kWhiteSmokeColor : Colors.white;
     return Container(
       width: 180,
       height: 65,
@@ -156,7 +159,8 @@ class Body extends StatelessWidget {
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
     final currentItem = controller.getEasyShipReports[index];
-    final color = currentItem.itemName == "Total" ? kWhiteSmokeColor : Colors.white;
+    final color =
+        currentItem.itemName == "Total" ? kWhiteSmokeColor : Colors.white;
     return Row(
       children: <Widget>[
         _renderDataCell(150, color, currentItem.pvDate),

@@ -13,12 +13,12 @@ class SearchViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = controller.text.isNotEmpty ? kMainColor : Colors.grey;
+    final Color color = controller.text.isNotEmpty ? Theme.of(context).colorScheme.primary : Colors.grey;
     return Container(
         margin: const EdgeInsets.only(right: 16),
         child: TextField(
           keyboardType: TextInputType.number,
-          cursorColor: kMainColor,
+          cursorColor: Theme.of(context).colorScheme.primary,
           controller: controller,
           decoration: InputDecoration(
             fillColor: Colors.white,
@@ -31,7 +31,7 @@ class SearchViewWidget extends StatelessWidget {
             suffixIcon: IconButton(
                 onPressed: controller.text.isNotEmpty ? controller.clear : null,
                 color: color,
-                icon: const Icon(Icons.clear, color: kMainColor,)),
+                icon: Icon(Icons.clear, color: Theme.of(context).colorScheme.primary,)),
             hintStyle: TextStyle(color: Colors.grey[300]),
           ),
         ));

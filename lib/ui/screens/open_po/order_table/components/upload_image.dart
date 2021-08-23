@@ -47,9 +47,9 @@ void renderBottomSheet(BuildContext context) {
                     alignment: Alignment.center,
                     width: 80,
                     height: 63,
-                    child: const Icon(
+                    child: Icon(
                       Icons.image,
-                      color: kMainColor,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ))
             ]),

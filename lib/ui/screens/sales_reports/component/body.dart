@@ -85,10 +85,10 @@ class Body extends StatelessWidget {
           "Order ID", EasyShipSortTypes.orderId, Alignment.center, 140),
       _renderTableHeader("Date", EasyShipSortTypes.date, Alignment.center, 140),
       _renderTableHeader("Time", EasyShipSortTypes.time, Alignment.center, 140),
-      _renderTableHeader(
-          "Total ${controller.totalAmount}", EasyShipSortTypes.total, Alignment.centerRight, 150),
-      _renderTableHeader(
-          "Total PV ${controller.totalVolume}", EasyShipSortTypes.totalPV, Alignment.centerRight, 150),
+      _renderTableHeader("Total ${controller.totalAmount}",
+          EasyShipSortTypes.total, Alignment.centerRight, 150),
+      _renderTableHeader("Total PV ${controller.totalVolume}",
+          EasyShipSortTypes.totalPV, Alignment.centerRight, 150),
       _getTitleItemWidget('Barcode', 100, Alignment.center),
     ];
   }
@@ -107,10 +107,10 @@ class Body extends StatelessWidget {
           "RMA", EasyShipSortTypes.orderId, Alignment.center, 140),
       _renderTableHeader(
           "Original", EasyShipSortTypes.orderId, Alignment.center, 140),
-      _renderTableHeader(
-          "Total ${controller.totalAmount}", EasyShipSortTypes.total, Alignment.centerRight, 150),
-      _renderTableHeader(
-          "Total PV ${controller.totalVolume}", EasyShipSortTypes.totalPV, Alignment.centerRight, 150),
+      _renderTableHeader("Total ${controller.totalAmount}",
+          EasyShipSortTypes.total, Alignment.centerRight, 150),
+      _renderTableHeader("Total PV ${controller.totalVolume}",
+          EasyShipSortTypes.totalPV, Alignment.centerRight, 150),
     ];
   }
 
@@ -132,8 +132,8 @@ class Body extends StatelessWidget {
 
   Widget _getTitleItemWidget(String label, double width, Alignment alignment) {
     return Container(
-      decoration: BoxDecoration(
-          color: kMainColor, border: Border.all(width: 0.5)),
+      decoration:
+          BoxDecoration(color: Theme.of(Get.context!).colorScheme.primary, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -155,7 +155,8 @@ class Body extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
       alignment: Alignment.centerLeft,
       decoration: BoxDecoration(border: Border.all(width: 0.5)),
-      child: Text(currentItem.creator.humanName.fullName, style: Theme.of(context).textTheme.subtitle2),
+      child: Text(currentItem.creator.humanName.fullName,
+          style: Theme.of(context).textTheme.subtitle2),
     );
   }
 
@@ -169,7 +170,8 @@ class Body extends StatelessWidget {
             decoration: BoxDecoration(border: Border.all(width: 0.5)),
             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
             alignment: Alignment.center,
-            child: Text(currentItem.customer.id.unicity, style: Theme.of(context).textTheme.subtitle2)),
+            child: Text(currentItem.customer.id.unicity,
+                style: Theme.of(context).textTheme.subtitle2)),
         _renderDataCell(index, 200, currentItem.customer.humanName.fullName,
             Alignment.centerLeft, "value", "", context),
         _renderDataCell(index, 140, currentItem.id.unicity.retrieveOrderId(),
@@ -240,7 +242,7 @@ class Body extends StatelessWidget {
       alignment: textAlign,
       child: GestureDetector(
         onTap: () {
-          if(type == 'link') {
+          if (type == 'link') {
             controller.proceedToPrint(context, orderHref: href);
           }
         },
@@ -248,7 +250,8 @@ class Body extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             titleText,
-            style: TextStyle(color: type == 'link' ? Colors.blue : Colors.black),
+            style:
+                TextStyle(color: type == 'link' ? Colors.blue : Colors.black),
           ),
         ),
       ),
@@ -316,8 +319,9 @@ class Body extends StatelessWidget {
 
   InputDecoration _renderInputDecoration(String hintText, String label) {
     return InputDecoration(
-      border: const OutlineInputBorder(
-          borderSide: BorderSide(color: kMainColor)),
+      border: OutlineInputBorder(
+          borderSide:
+              BorderSide(color: Theme.of(Get.context!).colorScheme.primary)),
       hintText: hintText,
       labelText: label,
     );

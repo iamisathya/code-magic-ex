@@ -46,7 +46,7 @@ class CartFooter extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   shape: kRoundedBorder(radius: 20),
-                  primary: kMainColor,
+                  primary: Theme.of(context).colorScheme.primary,
                   padding: kEdgeA12()),
               onPressed: () => onPressed(),
               child: Text("place_order".tr),

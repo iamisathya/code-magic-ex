@@ -22,7 +22,7 @@ class SearchRadioOptions extends StatelessWidget {
                   child: RadioListTile(
                     contentPadding: const EdgeInsets.all(0),
                     title: Text(data.name),
-                    activeColor: kMainColor,
+                    activeColor: Theme.of(context).colorScheme.primary,
                     groupValue: controller.seletedOption.value.index,
                     value: data.index,
                     onChanged: (val) => controller.onChangedSearchType(data),

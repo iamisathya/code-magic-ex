@@ -61,7 +61,7 @@ class Body extends StatelessWidget {
                 child: Column(
                   children: [
                     _renderUserInfo(context, "Payment with", ""),
-                    _renderPayementOptions(),
+                    _renderPayementOptions(context),
                   ],
                 ),
               ),
@@ -119,7 +119,7 @@ class Body extends StatelessWidget {
         ));
   }
 
-  Widget _renderPayementOptions() {
+  Widget _renderPayementOptions(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -139,7 +139,7 @@ class Body extends StatelessWidget {
                             data.name,
                             style: const TextStyle(fontSize: 15),
                           ),
-                          activeColor: kMainColor,
+                          activeColor: Theme.of(context).colorScheme.primary,
                           groupValue: controller.seletedOption.value.index,
                           value: data.index,
                           onChanged: (val) =>

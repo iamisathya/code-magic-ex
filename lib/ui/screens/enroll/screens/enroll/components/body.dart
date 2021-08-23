@@ -142,14 +142,17 @@ class Body extends StatelessWidget {
       height: 60,
       width: Get.width,
       decoration: BoxDecoration(
-          border: Border.all(width: 2, color: AppColor.kMainColor),
+          border: Border.all(
+              width: 2, color: Theme.of(Get.context!).colorScheme.primary),
           borderRadius: const BorderRadius.all(Radius.circular(8.0))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Icon(Icons.person_outline_outlined,
-              size: 30, color: AppColor.kMainColor),
-          Text("Information", style: TextStyle(color: AppColor.kMainColor))
+              size: 30, color: Theme.of(Get.context!).colorScheme.primary),
+          Text("Information",
+              style:
+                  TextStyle(color: Theme.of(Get.context!).colorScheme.primary))
         ],
       ),
     );
@@ -190,7 +193,7 @@ class Body extends StatelessWidget {
               enabled: enabled,
               controller: ctlr,
               style: const TextStyle(fontSize: 18),
-              cursorColor: AppColor.kMainColor,
+              cursorColor: Theme.of(Get.context!).colorScheme.primary,
               decoration: kTextInputDecoration(helperText: helperText))
         ],
       ),

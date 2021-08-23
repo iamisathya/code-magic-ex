@@ -97,7 +97,7 @@ class Body extends StatelessWidget {
   Widget _getTitleItemWidget(String label, double width) {
     return Container(
       decoration:
-          BoxDecoration(color: kMainColor, border: Border.all(width: 0.5)),
+          BoxDecoration(color: Theme.of(Get.context!).colorScheme.primary, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -183,7 +183,7 @@ class Body extends StatelessWidget {
     return IconButton(
         onPressed: () =>
             Get.to(() => WebivewHomeScreen(url: url, title: attchmentName)),
-        icon: const Icon(Icons.attach_file, color: kMainColor));
+        icon: Icon(Icons.attach_file, color: Theme.of(context).colorScheme.primary));
   }
 
   Container _renderDataCell(int index, double width, String titleText,
@@ -212,7 +212,7 @@ class Body extends StatelessWidget {
     } else if (status == "2") {
       return _renderEachStatusButton(context, "Unknown", kSecondaryColor);
     } else if (status == "3") {
-      return _renderEachStatusButton(context, "Processing", kMainColor);
+      return _renderEachStatusButton(context, "Processing", Theme.of(context).colorScheme.primary);
     } else {
       return _renderEachStatusButton(context, "Completed", Colors.green);
     }

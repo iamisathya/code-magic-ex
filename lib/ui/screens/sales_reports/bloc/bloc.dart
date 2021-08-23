@@ -215,7 +215,7 @@ class SalesReportController extends GetxController {
             },
             shape: kRoundedBorder(),
             selected: filterMethod.value == "order",
-            selectedTileColor: kMainColor,
+            selectedTileColor: Theme.of(context).colorScheme.primary,
             title: Text("By Order", style: TextStyle(color: filterMethod.value == "order" ? Colors.white : Colors.black)),
           ),
         ),
@@ -230,7 +230,7 @@ class SalesReportController extends GetxController {
               Navigator.pop(context);
             },
             shape: kRoundedBorder(),
-            selectedTileColor: kMainColor,
+            selectedTileColor: Theme.of(context).colorScheme.primary,
             title: Text("By Item", style: TextStyle(color: filterMethod.value == "item" ? Colors.white : Colors.black)),
           ),
         ),
@@ -245,7 +245,7 @@ class SalesReportController extends GetxController {
               update();
             },
             shape: kRoundedBorder(),
-            selectedTileColor: kMainColor,
+            selectedTileColor: Theme.of(context).colorScheme.primary,
             title: Text("RMAs", style: TextStyle(color: filterMethod.value == "rma" ? Colors.white : Colors.black)),
           ),
         )

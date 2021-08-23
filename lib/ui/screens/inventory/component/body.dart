@@ -134,7 +134,7 @@ class Body extends StatelessWidget {
   Widget _getTitleItemWidget(String label, double width, Alignment alignment) {
     return Container(
       decoration:
-          BoxDecoration(color: kMainColor, border: Border.all(width: 0.5)),
+          BoxDecoration(color: Theme.of(Get.context!).colorScheme.primary, border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
