@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:package_info/package_info.dart';
 
 import '../ui/global/widgets/confirmation_dialog.dart';
 import '../ui/screens/login/login.dart';
@@ -25,6 +26,11 @@ class NavigationDrawer extends StatelessWidget {
     return;
   }
 
+  Future<PackageInfo> _packageInfo() async {
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    return packageInfo;
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentRoute = ModalRoute.of(context)!.settings.name;
@@ -34,7 +40,9 @@ class NavigationDrawer extends StatelessWidget {
         children: <Widget>[
           _createDrawerHeader(context),
           _createDrawerBodyItem(
-            selected: currentRoute == ScreenPaths.openPO || currentRoute == null || currentRoute == "/",
+            selected: currentRoute == ScreenPaths.openPO ||
+                currentRoute == null ||
+                currentRoute == "/",
             icon: Icons.trending_up_sharp,
             text: 'Open PO',
             onTap: () => Navigator.pushNamed(context, ScreenPaths.openPO),
@@ -81,10 +89,7 @@ class NavigationDrawer extends StatelessWidget {
             selected: currentRoute == ScreenPaths.settings,
             icon: Icons.settings,
             text: 'Settings',
-            onTap: () => {
-              Get.back(),
-              Get.to(() => SettingsPage())
-            },
+            onTap: () => {Get.back(), Get.to(() => SettingsPage())},
           ),
           _createDrawerBodyItem(
             selected: false,
@@ -92,8 +97,22 @@ class NavigationDrawer extends StatelessWidget {
             text: 'Signout',
             onTap: () => _didMenuPressed(context),
           ),
-          const ListTile(
-            title: Text('App version 1.0.0'),
+          ListTile(
+            title: FutureBuilder<PackageInfo>(
+                future: _packageInfo(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<PackageInfo> snapshot) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10, top: 5),
+                        child: Text('App version  : ${snapshot.data?.version}'),
+                      ),
+                      Text('Build number : ${snapshot.data?.buildNumber}')
+                    ],
+                  );
+                }),
           ),
         ],
       ),
@@ -118,14 +137,15 @@ Widget _createDrawerHeader(BuildContext context) {
             bottom: 38.0,
             left: 16.0,
             child: Text(
-                UserSessionManager.shared.userInfo!.id.unicity.toString(),
-                style: Theme.of(context).textTheme.bodyText2,
-                )),
+              UserSessionManager.shared.userInfo!.id.unicity.toString(),
+              style: Theme.of(context).textTheme.bodyText2,
+            )),
         Positioned(
             bottom: 12.0,
             left: 16.0,
-            child: Text(UserSessionManager.shared.userInfo!.humanName.fullName,
-                )),
+            child: Text(
+              UserSessionManager.shared.userInfo!.humanName.fullName,
+            )),
       ]));
 }
 

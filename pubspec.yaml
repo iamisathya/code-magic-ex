@@ -59,6 +59,7 @@ dependencies:
   logger: ^1.0.0
   lottie: ^1.0.1
   open_file: ^3.2.1
+  package_info: ^2.0.2
   path_provider: ^2.0.2
   pdf: ^3.4.2
   permission_handler: ^8.1.2
