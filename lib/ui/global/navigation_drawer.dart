@@ -42,7 +42,7 @@ class NavigationDrawer extends StatelessWidget {
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.enroll,
             icon: Icons.mode_edit_sharp,
-            text: 'Enroll',
+            text: 'enroll'.tr,
             onTap: () => Navigator.pushNamed(context, ScreenPaths.enroll),
           ),
           _createDrawerBodyItem(
@@ -67,7 +67,7 @@ class NavigationDrawer extends StatelessWidget {
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.easyShipReport,
             icon: Icons.share_outlined,
-            text: 'Easyship Report',
+            text: 'easyship'.tr,
             onTap: () =>
                 Navigator.pushNamed(context, ScreenPaths.easyShipReport),
           ),

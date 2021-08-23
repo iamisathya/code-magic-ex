@@ -29,8 +29,8 @@ class Body extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Enroll Successfull ",
+                Text(
+                  "reg_success".tr,
                 ),
                 Text(
                   " #${controller.orderNumber.value}",
@@ -49,7 +49,7 @@ class Body extends StatelessWidget {
               child: Column(
                 children: [
                   Obx(() => ColumnItem(
-                        title: "Order ID",
+                        title: "orderid".tr,
                         value: controller.orderNumber.value,
                       )),
                   Obx(() => ColumnItem(
@@ -67,7 +67,7 @@ class Body extends StatelessWidget {
                   SizedBox(
                     width: SizeConfig.screenWidth * 0.4,
                     child: PrimaryButton(
-                      text: "Close",
+                      text: "close".tr,
                       press: () => Get.offAll(() => EnrollHomeScreen()),
                     ),
                   ),
@@ -75,7 +75,7 @@ class Body extends StatelessWidget {
                     width: SizeConfig.screenWidth * 0.4,
                     child: PrimaryOutlineButton(
                         press: () => controller.viewOrder(),
-                        text: "View Order"),
+                        text: "vieworder".tr),
                   )
                 ],
               ),

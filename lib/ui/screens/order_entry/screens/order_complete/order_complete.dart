@@ -17,7 +17,7 @@ class OrderComplete extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.kBackground,
       appBar: TransAppBar(
-          title: "Order Complete", action: _renderActionBar(context)),
+          title: "ordercomplete".tr, action: _renderActionBar(context)),
       body: SafeArea(child: Body()),
     );
   }

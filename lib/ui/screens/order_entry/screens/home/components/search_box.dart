@@ -23,7 +23,7 @@ class SearchBox extends StatelessWidget {
             onPressed: () => controller.searchUserBySearchQuery(context),
             height: 55,
             child:
-                Text('Search', style: Theme.of(context).textTheme.tableHeader),
+                Text('search'.tr, style: Theme.of(context).textTheme.tableHeader),
           ),
         ],
       ),

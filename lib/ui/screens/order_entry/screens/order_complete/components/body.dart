@@ -61,7 +61,7 @@ class Body extends StatelessWidget {
                       value: info.humanName.fullName,
                     ),
                     ColumnItem(
-                      title: "Order Number",
+                      title: "order_number".tr,
                       value: controller.orderResponse.id.unicity.retrieveOrderId(),
                     ),
                   ],
@@ -74,17 +74,17 @@ class Body extends StatelessWidget {
                   children: [
                     PrimaryOutlineButton(
                         press: () => controller.viewOrder(),
-                        text: "View Order"),
+                        text: "vieworder".tr),
                     PrimaryOutlineButton(
                         press: () => controller.openProductList(),
-                        text: "Product List"),
+                        text: "print_doc".tr),
                   ],
                 ),
               ),
               SizedBox(
                 width: SizeConfig.screenWidth * 0.6,
                 child: PrimaryButton(
-                  text: "Go back",
+                  text: "back".tr,
                   press: () => Get.offAll(() => OrderEntryHomeScreen()),
                 ),
               ),

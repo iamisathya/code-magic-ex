@@ -18,7 +18,7 @@ class EasyShipHomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: TransAppBar(
-          title: "Easy Ship",
+          title: "easyship".tr,
           action: [
             _appBarActions(),
           ],

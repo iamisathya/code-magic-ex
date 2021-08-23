@@ -1,7 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/core/parsing.dart';
@@ -55,18 +56,18 @@ class Body extends StatelessWidget {
 
     return [
       _renderTableHeader(
-          "Item Code", InventorySortTypes.itemCode, Alignment.center, 140),
+          "itemcode".tr, InventorySortTypes.itemCode, Alignment.center, 140),
       _renderTableHeader(
-          "Item Name", InventorySortTypes.itemName, Alignment.center, 280),
+          "itemname".tr, InventorySortTypes.itemName, Alignment.center, 280),
       _renderTableHeader(
-          "PV", InventorySortTypes.pv, Alignment.centerRight, 100),
+          "pv".tr, InventorySortTypes.pv, Alignment.centerRight, 100),
       _renderTableHeader(
-          "Price", InventorySortTypes.price, Alignment.centerRight, 100),
-      _renderTableHeader("Quantity On Hand", InventorySortTypes.quantityOnHand,
+          "price".tr, InventorySortTypes.price, Alignment.centerRight, 100),
+      _renderTableHeader("ctotal".tr, InventorySortTypes.quantityOnHand,
           Alignment.centerRight, 180),
-      _renderTableHeader("Total Accumlated Price ($totalPrice)",
+      _renderTableHeader("${"total_price_title".tr} ${"($totalPrice)"}",
           InventorySortTypes.totalAccumulatedPrice, Alignment.centerRight, 340),
-      _renderTableHeader("Total PV ($totalPv)", InventorySortTypes.totalPV,
+      _renderTableHeader("${"totalpv".tr} ${"($totalPv)"}", InventorySortTypes.totalPV,
           Alignment.centerRight, 200),
     ];
   }

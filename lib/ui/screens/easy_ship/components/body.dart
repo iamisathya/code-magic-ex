@@ -74,7 +74,7 @@ class Body extends StatelessWidget {
             },
             height: 55,
             child:
-                Text('Search', style: Theme.of(context).textTheme.tableHeader),
+                Text('search'.tr, style: Theme.of(context).textTheme.tableHeader),
           ),
         ],
       ),
@@ -100,12 +100,12 @@ class Body extends StatelessWidget {
 
   List<Widget> _getTitleWidget() {
     return [
-      _renderTableHeader("Order Number", EasyShipTypes.orderNumber, 180),
-      _renderTableHeader("Period", EasyShipTypes.period, 150),
-      _renderTableHeader("Product Name", EasyShipTypes.productName, 300),
-      _renderTableHeader("Item Code", EasyShipTypes.itemCode, 150),
-      _renderTableHeader("PV", EasyShipTypes.pv, 150),
-      _renderTableHeader("Price", EasyShipTypes.price, 150),
+      _renderTableHeader("order_number".tr, EasyShipTypes.orderNumber, 180),
+      _renderTableHeader("period".tr, EasyShipTypes.period, 150),
+      _renderTableHeader("product_name".tr, EasyShipTypes.productName, 300),
+      _renderTableHeader("itemcode".tr, EasyShipTypes.itemCode, 150),
+      _renderTableHeader("pv".tr, EasyShipTypes.pv, 150),
+      _renderTableHeader("price".tr, EasyShipTypes.price, 150),
     ];
   }
 

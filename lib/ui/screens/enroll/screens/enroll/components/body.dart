@@ -18,10 +18,10 @@ class Body extends StatelessWidget {
             children: [
               _renderInfoMessage(),
               _renderTextField(
-                  ctlr: controller.enrollIdController, label: "Enroller ID"),
+                  ctlr: controller.enrollIdController, label: "enroller".tr),
               _renderTextField(
                 ctlr: controller.sponsorIdController,
-                label: "Sponosr ID",
+                label: "sponsor".tr,
               ),
               _renderSubmitButton(
                   label: controller.enrollerSponsorVerifyButton.value,
@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
                   _renderInformationHeader(),
                   _renderTextField(
                       ctlr: controller.idCardNumberController,
-                      label: "ID Card Number"),
+                      label: "id_card".tr),
                   _renderSubmitButton(
                       label: controller.govtIdVerifyButton.value,
                       onPress: () => controller.verifyGovtIdNumber(context)),
@@ -42,16 +42,16 @@ class Body extends StatelessWidget {
                   children: [
                     _renderTextField(
                         ctlr: controller.firstNameThController,
-                        label: "First Name(Thai)"),
+                        label: "first_name_th".tr),
                     _renderTextField(
                         ctlr: controller.lastNameThController,
-                        label: "Last Name(Thai)"),
+                        label: "last_name_th".tr),
                     _renderTextField(
                         ctlr: controller.firstNameEnController,
-                        label: "First Name(En)"),
+                        label: "first_name_en".tr),
                     _renderTextField(
                         ctlr: controller.lastNameEnController,
-                        label: "Last Name(En)"),
+                        label: "last_name_en".tr),
                     Obx(() => _renderDropdownButton(
                         label: "Gender",
                         top: 10,
@@ -66,17 +66,17 @@ class Body extends StatelessWidget {
                         items: controller.statusDropdownItems,
                         onChanged: (String val) =>
                             controller.maritalStatus.value = val)),
-                    _renderDatePicker("Birth Day", context),
+                    _renderDatePicker("birth_day".tr, context),
                     Obx(() => controller.isUnderAgeLimit.value
-                        ? const Padding(
-                            padding: EdgeInsets.only(
+                        ? Padding(
+                            padding: const EdgeInsets.only(
                                 bottom: 8.0, left: 8.0, right: 8.0),
                             child: Text(
-                                "Applicant must be 18 years or older. (DD/MM/YYYY)"),
+                                "years20".tr),
                           )
                         : const SizedBox()),
                     _renderDropdownButton(
-                        label: "Choose Province",
+                        label: "province".tr,
                         top: 10,
                         selectedValue: controller.provience.value,
                         items: controller.provinceDropdownItems,
@@ -84,23 +84,23 @@ class Body extends StatelessWidget {
                             controller.onProvienceChange(val)),
                     _renderTextField(
                         ctlr: controller.mainAddressController,
-                        label: "Address1"),
+                        label: "address1".tr),
                     _renderDropdownButton(
-                        label: "Area",
+                        label: "area".tr,
                         top: 10,
                         selectedValue: controller.area.value,
                         items: controller.areaDropdownItems,
                         onChanged: (String val) =>
                             controller.onAreaChange(val)),
                     _renderDropdownButton(
-                        label: "Sub-Area",
+                        label: "sub_area".tr,
                         top: 10,
                         selectedValue: controller.subArea.value,
                         items: controller.subAreaDropdownItems,
                         onChanged: (String val) =>
                             controller.onSubAreaChange(val)),
                     _renderDropdownButton(
-                        label: "Country",
+                        label: "country".tr,
                         top: 10,
                         selectedValue: controller.country.value,
                         items: controller.countryDropdownItems,
@@ -108,22 +108,22 @@ class Body extends StatelessWidget {
                             controller.country.value = val),
                     _renderTextField(
                         ctlr: controller.zipCodeController,
-                        label: "Zip code",
+                        label: "zip".tr,
                         enabled: false),
                     _renderTextField(
                         ctlr: controller.emailAddressController,
-                        label: "Email"),
+                        label: "email".tr),
                     _renderTextField(
                         ctlr: controller.phoneNumberController,
-                        helperText: "* Please enter phone Thailand Only",
-                        label: "Phone"),
+                        helperText: "* pleasephone".tr,
+                        label: "phone".tr),
                     _renderTextField(
                         ctlr: controller.mobileNumberController,
-                        helperText: "* Please enter mobile phone Thailand Only",
-                        label: "Mobile"),
+                        helperText: "* pleasephone".tr,
+                        label: "mobilephone".tr),
                     const SizedBox(height: 30),
                     _renderSubmitButton(
-                        label: "Verify All",
+                        label: "verify_all".tr,
                         onPress: () => controller.verifyEnrollForm(context)),
                     if (controller.errorMessages.isNotEmpty) _renderErrorBox(),
                   ],
@@ -161,17 +161,17 @@ class Body extends StatelessWidget {
     return Container(
         padding: const EdgeInsets.all(8),
         child: Row(
-          children: const [
-            Icon(
+          children: [
+            const Icon(
               Icons.warning,
               color: Colors.red,
             ),
             Flexible(
               child: Padding(
-                padding: EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.only(left: 8),
                 child: Text(
-                    "Please contact Unicity if you experience any problems with this application or if you have any questions",
-                    style: TextStyle(color: Colors.red)),
+                    "more_info".tr,
+                    style: const TextStyle(color: Colors.red)),
               ),
             )
           ],

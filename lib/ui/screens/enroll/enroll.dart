@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../global/navigation_drawer.dart';
 import '../../global/widgets/transparent_app_bar.dart';
@@ -11,8 +12,8 @@ class EnrollHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const TransAppBar(
-          title: "Enroll",
+        appBar: TransAppBar(
+          title: "enroll".tr,
         ),
         drawer: NavigationDrawer(),
         body: Body());

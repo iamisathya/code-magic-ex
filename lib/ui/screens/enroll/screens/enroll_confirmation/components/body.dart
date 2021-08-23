@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Column(children: [
-              _renderCardHeader("BA inforations"),
+              _renderCardHeader("dsc_info".tr),
               Column(
                 children: [
                   renderUserCard("Enroller", controller.enroleeData.enrollerId,
@@ -43,19 +43,19 @@ class Body extends StatelessWidget {
                   ),
                   SizedBox(height: SizeConfig.screenHeight * 0.01),
                   _renderUserInfo(
-                      "First Name(Thai)", controller.enroleeData.firstNameTh),
+                      "first_name_th".tr, controller.enroleeData.firstNameTh),
                   _renderUserInfo(
-                      "Last Name(Thai)", controller.enroleeData.lastNameTh),
+                      "last_name_th".tr, controller.enroleeData.lastNameTh),
                   _renderUserInfo(
-                      "First Name(English)", controller.enroleeData.firstName),
+                      "first_name_en".tr, controller.enroleeData.firstName),
                   _renderUserInfo(
-                      "Last Name(English)", controller.enroleeData.lastName),
+                      "last_name_en".tr, controller.enroleeData.lastName),
                   _renderUserInfo("Address",
                       "${controller.enroleeData.mainAddress1} ${controller.enroleeData.mainAddress2}, ${controller.enroleeData.zipCode}"),
-                  _renderUserInfo("Email", controller.enroleeData.email),
-                  _renderUserInfo("Phone", controller.enroleeData.phoneNumber),
+                  _renderUserInfo("email".tr, controller.enroleeData.email),
+                  _renderUserInfo("phone".tr, controller.enroleeData.phoneNumber),
                   _renderUserInfo(
-                      "Mobile", controller.enroleeData.mobileNumber),
+                      "mobilephone".tr, controller.enroleeData.mobileNumber),
                   SizedBox(height: SizeConfig.screenHeight * 0.01),
                 ],
               ),
@@ -99,7 +99,7 @@ class Body extends StatelessWidget {
       shape: kRoundedBorder(),
       child: Column(
         children: [
-          _renderCardHeader("Starter Kit"),
+          _renderCardHeader("enroll_pickup".tr),
           Padding(
             padding: kEdgeInsetTLRB(t: 16, b: 8, l: 16, r: 16),
             child: Row(
@@ -116,9 +116,9 @@ class Body extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _renderCardCell("Product Name", TextAlign.left),
+                _renderCardCell("product_name".tr, TextAlign.left),
                 kHyphenSizedBox(),
-                _renderCardCell("Starter Kit", TextAlign.right),
+                _renderCardCell("enroll_pickup".tr, TextAlign.right),
               ],
             ),
           ),
@@ -127,7 +127,7 @@ class Body extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _renderCardCell("Quantity", TextAlign.left),
+                _renderCardCell("quantity".tr, TextAlign.left),
                 kHyphenSizedBox(),
                 _renderCardCell("1", TextAlign.right),
               ],
@@ -138,7 +138,7 @@ class Body extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _renderCardCell("Price", TextAlign.left),
+                _renderCardCell("price".tr, TextAlign.left),
                 kHyphenSizedBox(),
                 _renderCardCell("`123123`", TextAlign.right),
               ],
@@ -149,7 +149,7 @@ class Body extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _renderCardCell("PV", TextAlign.left),
+                _renderCardCell("pv".tr, TextAlign.left),
                 kHyphenSizedBox(),
                 _renderCardCell("123123", TextAlign.right),
               ],
