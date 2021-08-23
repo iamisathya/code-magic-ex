@@ -14,7 +14,6 @@ import '../../../../models/user_info.dart';
 import '../../../../models/user_token.dart';
 import '../../../../utilities/Logger/logger.dart';
 import '../../../../utilities/function.dart';
-import '../../../../utilities/key_value_storage.dart';
 import '../../../../utilities/user_session.dart';
 import '../../login/login.dart';
 import '../../open_po/home/home.dart';
@@ -34,24 +33,6 @@ class SplashController extends GetxController {
       logoStyle.value = FlutterLogoStyle.horizontal;
       fetchCustomerData();
     });
-    getCurrentMarketConfig();
-    debugPrint(
-        " USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.loginTokens)}");
-  }
-
-  Future<void> initialiseApp() async {
-    await getCurrentMarketConfig();
-  }
-
-  Future<void> getCurrentMarketConfig() async {
-    try {
-      final currentMarket = await store.read('current_market');
-      if(currentMarket != null) {
-        Globals.currentMarket = Markets.fromJson(currentMarket);
-      }
-    } catch(err) {
-      debugPrint(err.toString());
-    }
   }
 
   Future<void> fetchCustomerData() async {
@@ -62,6 +43,7 @@ class SplashController extends GetxController {
         final UserInfo responseUserInfo = await ApiService.shared()
             .getCustomerData(UserSessionManager.shared.customerUniqueId);
         await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
+        await getCurrentMarketConfig();
         _didSplashCompleted(responseUserInfo.id.unicity.toString());
       } else {
         FirebaseAnalytics().logEvent(name: 'log_out',parameters: {'type': "session_expire"});
@@ -70,6 +52,17 @@ class SplashController extends GetxController {
     } on DioError catch (e) {
       returnResponse(e.response!);
     } catch (err) {
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
+  Future<void> getCurrentMarketConfig() async {
+    try {
+      final currentMarket = await store.read('current_market');
+      if(currentMarket != null) {
+        Globals.currentMarket = Markets.fromJson(currentMarket as Map<String, dynamic>);
+      }
+    } catch(err) {
       LoggerService.instance.e(err.toString());
     }
   }
