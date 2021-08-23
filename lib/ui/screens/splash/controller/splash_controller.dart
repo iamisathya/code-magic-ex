@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:code_magic_ex/constants/globals.dart';
+import 'package:code_magic_ex/models/country_info.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../../api/config/api_service.dart';
 import '../../../../models/user_info.dart';
@@ -17,6 +20,7 @@ import '../../login/login.dart';
 import '../../open_po/home/home.dart';
 
 class SplashController extends GetxController {
+  final store = GetStorage();
   Timer? _timer;
   Rx<FlutterLogoStyle> logoStyle = FlutterLogoStyle.markOnly.obs;
   final CustomerToken customerToken =
@@ -30,8 +34,24 @@ class SplashController extends GetxController {
       logoStyle.value = FlutterLogoStyle.horizontal;
       fetchCustomerData();
     });
+    getCurrentMarketConfig();
     debugPrint(
         " USER KVSM : ${KeyValueStorageManager.getString(KeyValueStorageKeys.loginTokens)}");
+  }
+
+  Future<void> initialiseApp() async {
+    await getCurrentMarketConfig();
+  }
+
+  Future<void> getCurrentMarketConfig() async {
+    try {
+      final currentMarket = await store.read('current_market');
+      if(currentMarket != null) {
+        Globals.currentMarket = Markets.fromJson(currentMarket);
+      }
+    } catch(err) {
+      debugPrint(err.toString());
+    }
   }
 
   Future<void> fetchCustomerData() async {

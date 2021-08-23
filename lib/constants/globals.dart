@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/models/country_info.dart';
 import 'package:get/get.dart';
 
 import '../models/menu_option_model.dart';
@@ -20,4 +21,6 @@ class Globals {
     MenuOptionsModel(title: "month6", value: "6"), //English
     MenuOptionsModel(title: "monthall", value: "12"), //Thai
   ].obs;
+
+  static Markets? currentMarket;
 }

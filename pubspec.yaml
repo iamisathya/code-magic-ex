@@ -100,6 +100,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+    - assets/json/
     - assets/images/
     - assets/lottie/
     - assets/animated/    

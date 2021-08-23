@@ -1,8 +1,15 @@
+import 'dart:convert';
+
+import 'package:code_magic_ex/constants/globals.dart';
+import 'package:code_magic_ex/models/country_info.dart';
+import 'package:code_magic_ex/utilities/Logger/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../api/api_address.dart';
@@ -22,6 +29,8 @@ import '../../../global/widgets/overlay_progress.dart';
 import '../../home/home.dart';
 
 class LoginController extends GetxController {
+  final store = GetStorage();
+  
   final TextEditingController userIdController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -39,7 +48,7 @@ class LoginController extends GetxController {
   void onInit() {
     super.onInit();
     final dynamic data = Get.arguments;
-    if(data != null) {
+    if (data != null) {
       isSessionExpired.value = data as bool;
     }
   }
@@ -53,7 +62,7 @@ class LoginController extends GetxController {
     }
   }
 
-  String? inputValidate({required String value, required  bool isPassword}) {
+  String? inputValidate({required String value, required bool isPassword}) {
     if (value.isEmpty) {
       return isPassword ? kPassNullError : kUserIdNullError;
     }
@@ -96,18 +105,27 @@ class LoginController extends GetxController {
       await UserSessionManager.shared.setLoginTokenIntoDB(customerToken);
 
       //*  getCustomerData from api
-      final UserInfo responseUserInfo =
-          await ApiService.shared().getCustomerData(UserSessionManager.shared.customerUniqueId);
+      final UserInfo responseUserInfo = await ApiService.shared()
+          .getCustomerData(UserSessionManager.shared.customerUniqueId);
 
       //*  getCustomerData from api
-      final ProfilePicture profilePicture =
-          await ApiService.shared().getProfilePicture(UserSessionManager.shared.customerUniqueId);
+      final Markets? currentMarket =
+          await getMarketConfig(responseUserInfo.mainAddress.country.toLowerCase());
+
+      if (currentMarket == null) throw "Your market is not supported";
+
+      //*  getCustomerData from api
+      final ProfilePicture profilePicture = await ApiService.shared()
+          .getProfilePicture(UserSessionManager.shared.customerUniqueId);
 
       //*  getCustomerData from api
       final UserId userResponse =
           await MemberCallsService.init().getUserId(kUserId, "2970466");
 
       //*  Storing user info to db
+      await store.write('current_market', currentMarket);
+      Globals.currentMarket = currentMarket;
+      
       UserSessionManager.shared.customerId = userResponse.customerId;
       UserSessionManager.shared.customerCode = userResponse.customerCode;
       UserSessionManager.shared.customerPoCode = userResponse.customerPoCode;
@@ -122,6 +140,22 @@ class LoginController extends GetxController {
       onDioError(e, _sendingMsgProgressBar, errorMessage);
     } catch (err) {
       onCatchError(err, _sendingMsgProgressBar, errorMessage);
+    }
+  }
+
+  Future<Markets?> getMarketConfig(String country) async {
+    try {
+      final String response =
+          await rootBundle.loadString('assets/json/market_config.json');
+      final data = await json.decode(response);
+      if (data != null) {
+        final marketInfo = AllMarkets.fromJson(data as Map<String, dynamic>);
+        return marketInfo.markets
+            .firstWhere((market) => market.code == country);
+      }
+    } catch (err) {
+      LoggerService.instance.e(err.toString());
+      return null;
     }
   }
 }

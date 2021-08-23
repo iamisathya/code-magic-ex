@@ -55,6 +55,7 @@ class OpenPoController extends GetxController {
     super.onInit();
     FirebaseAnalytics().setCurrentScreen(screenName: "open_po");
     _generateEmptyCart();
+    print(Globals.currentMarket!.code);
   }
 
   void _generateEmptyCart() {
