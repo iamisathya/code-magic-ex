@@ -5,9 +5,9 @@ part 'country_info.g.dart';
 @JsonSerializable()
 class AllMarkets {
   @JsonKey(name: "markets")
-   List<Markets> markets;
-  
-  AllMarkets({ required this.markets});
+  List<Markets> markets;
+
+  AllMarkets({required this.markets});
 
   factory AllMarkets.fromJson(Map<String, dynamic> json) =>
       _$AllMarketsFromJson(json);
@@ -29,6 +29,8 @@ class Markets {
   String isoCode;
   @JsonKey(name: "defaultLanguage")
   String defaultLanguage;
+  @JsonKey(name: "currency")
+  String currency;
 
   Markets(
       {required this.name,
@@ -36,7 +38,8 @@ class Markets {
       required this.languageIso,
       required this.code,
       required this.isoCode,
-      required this.defaultLanguage});
+      required this.defaultLanguage,
+      required this.currency});
 
   factory Markets.fromJson(Map<String, dynamic> json) =>
       _$MarketsFromJson(json);
@@ -46,18 +49,18 @@ class Markets {
 
 @JsonSerializable()
 class Languages {
-  @JsonKey(name: "code")
-  String code;
-  @JsonKey(name: "name")
-  String name;
+  @JsonKey(name: "value")
+  String value;
+  @JsonKey(name: "title")
+  String title;
   @JsonKey(name: "transText")
   String transText;
   @JsonKey(name: "countryName")
   String countryName;
 
   Languages(
-      {required this.code,
-      required this.name,
+      {required this.value,
+      required this.title,
       required this.transText,
       required this.countryName});
 

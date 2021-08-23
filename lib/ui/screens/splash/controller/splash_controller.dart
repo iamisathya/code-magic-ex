@@ -59,6 +59,7 @@ class SplashController extends GetxController {
   Future<void> getCurrentMarketConfig() async {
     try {
       final currentMarket = await store.read('current_market');
+      print((currentMarket));
       if(currentMarket != null) {
         Globals.currentMarket = Markets.fromJson(currentMarket as Map<String, dynamic>);
       }

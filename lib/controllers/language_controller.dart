@@ -1,11 +1,11 @@
 import 'dart:ui' as ui;
 
+import 'package:code_magic_ex/models/country_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../constants/globals.dart';
-import '../models/menu_option_model.dart';
 
 class LanguageController extends GetxController {
   static LanguageController get to => Get.find();
@@ -17,7 +17,7 @@ class LanguageController extends GetxController {
 
   String get currentLanguage => language.value;
 
-  MenuOptionsModel get currentOption => Globals.languageOptions
+  Languages get currentOption => Globals.currentMarket!.languages
       .firstWhere((element) => element.value == language.value);
 
   @override

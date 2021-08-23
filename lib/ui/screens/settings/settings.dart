@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/models/country_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,7 +51,7 @@ class SettingsPage extends StatelessWidget {
               subtitle: const Text(
                 "Change app language",
               ),
-              trailing: DropdownButton<MenuOptionsModel>(
+              trailing: DropdownButton<Languages>(
                 value: languageController.currentOption,
                 icon: const Icon(Icons.arrow_drop_down),
                 iconSize: 36,
@@ -62,9 +63,9 @@ class SettingsPage extends StatelessWidget {
                   await languageController.updateLanguage(option!.value);
                   Get.forceAppUpdate();
                 },
-                items: Globals.languageOptions
-                    .map<DropdownMenuItem<MenuOptionsModel>>((MenuOptionsModel option) {
-                  return DropdownMenuItem<MenuOptionsModel>(
+                items: Globals.currentMarket!.languages
+                    .map<DropdownMenuItem<Languages>>((Languages option) {
+                  return DropdownMenuItem<Languages>(
                     value: option,
                     child: Text(option.title),
                   );

@@ -30,6 +30,7 @@ Markets _$MarketsFromJson(Map<String, dynamic> json) {
     code: json['code'] as String,
     isoCode: json['isoCode'] as String,
     defaultLanguage: json['defaultLanguage'] as String,
+    currency: json['currency'] as String,
   );
 }
 
@@ -40,20 +41,21 @@ Map<String, dynamic> _$MarketsToJson(Markets instance) => <String, dynamic>{
       'code': instance.code,
       'isoCode': instance.isoCode,
       'defaultLanguage': instance.defaultLanguage,
+      'currency': instance.currency,
     };
 
 Languages _$LanguagesFromJson(Map<String, dynamic> json) {
   return Languages(
-    code: json['code'] as String,
-    name: json['name'] as String,
+    value: json['value'] as String,
+    title: json['title'] as String,
     transText: json['transText'] as String,
     countryName: json['countryName'] as String,
   );
 }
 
 Map<String, dynamic> _$LanguagesToJson(Languages instance) => <String, dynamic>{
-      'code': instance.code,
-      'name': instance.name,
+      'value': instance.value,
+      'title': instance.title,
       'transText': instance.transText,
       'countryName': instance.countryName,
     };
