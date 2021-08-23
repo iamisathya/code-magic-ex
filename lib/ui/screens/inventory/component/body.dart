@@ -1,4 +1,5 @@
 
+import 'package:code_magic_ex/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
@@ -65,9 +66,9 @@ class Body extends StatelessWidget {
           "price".tr, InventorySortTypes.price, Alignment.centerRight, 100),
       _renderTableHeader("ctotal".tr, InventorySortTypes.quantityOnHand,
           Alignment.centerRight, 180),
-      _renderTableHeader("${"total_price_title".tr} ${"($totalPrice)"}",
+      _renderTableHeader("${"total_price_title".tr} ${"($totalPrice ${Globals.currency})"}",
           InventorySortTypes.totalAccumulatedPrice, Alignment.centerRight, 340),
-      _renderTableHeader("${"totalpv".tr} ${"($totalPv)"}", InventorySortTypes.totalPV,
+      _renderTableHeader("${"totalpv".tr} ${"($totalPv ${Globals.currency})"}", InventorySortTypes.totalPV,
           Alignment.centerRight, 200),
     ];
   }
