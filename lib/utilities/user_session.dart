@@ -2,14 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import '../models/locale.dart';
-
 import '../models/profile_picture.dart';
 import '../models/user_id.dart';
 import '../models/user_info.dart';
 import '../models/user_token.dart';
-import 'logger.dart';
 import 'function.dart';
 import 'key_value_storage.dart';
+import 'logger.dart';
 
 enum ThemeTypes { light, dark }
 

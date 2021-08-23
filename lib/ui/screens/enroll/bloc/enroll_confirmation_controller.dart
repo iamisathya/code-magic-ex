@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/config/api_service.dart';
-import '../../../../api/config/member_class.dart';
 import '../../../../models/enroll_form.dart';
 import '../../../../models/enroll_log_request_data.dart';
 import '../../../../models/enrollee_user_data.dart';

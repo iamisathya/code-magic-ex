@@ -6,9 +6,9 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../utilities/constants.dart';
-import '../../../../utilities/parsing.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
+import '../../../../utilities/parsing.dart';
 import '../../../global/widgets/search_view_button.dart';
 import '../controller/inventory_controller.dart';
 

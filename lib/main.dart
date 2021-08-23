@@ -12,9 +12,9 @@ import 'package:get_storage/get_storage.dart';
 
 import 'controllers/global_controllers.dart';
 import 'controllers/theme_controller.dart';
-import 'translations/translations.dart';
 import 'navigation/routers.dart';
 import 'navigation/routes.dart';
+import 'translations/translations.dart';
 import 'ui/global/theme/app_themes.dart';
 import 'ui/screens/splash/screen.dart';
 import 'utilities/connectivity.dart';

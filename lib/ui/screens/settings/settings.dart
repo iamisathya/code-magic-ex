@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../constants/globals.dart';
 import '../../../controllers/global_controllers.dart';
 import '../../../controllers/theme_controller.dart';
-import '../../../models/menu_option_model.dart';
 import '../../global/widgets/transparent_app_bar.dart';
 
 

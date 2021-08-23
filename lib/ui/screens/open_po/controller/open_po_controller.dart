@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../api/api_address.dart';
-import '../../../../api/config/member_class.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/inventory_records.dart';
@@ -15,9 +15,9 @@ import '../../../../models/menu_option_model.dart';
 import '../../../../models/open_order_id.dart';
 import '../../../../models/open_po.dart';
 import '../../../../models/open_po_details.dart';
-import '../../../../utilities/logger.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
+import '../../../../utilities/logger.dart';
 import '../../../global/widgets/overlay_progress.dart';
 import '../../webview/webview.dart';
 import '../order_details/partner_order_details.dart';

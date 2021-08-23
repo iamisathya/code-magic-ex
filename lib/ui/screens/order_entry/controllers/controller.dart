@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/config/api_service.dart';
-import '../../../../api/config/member_class.dart';
 import '../../../../models/find_customer.dart';
 import '../../../../models/search_customer.dart';
 import '../../../../models/search_reponse_by_href.dart';
 import '../../../../models/user_minimal_data.dart';
+import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/parsing.dart';
-import '../../../../utilities/function.dart';
 import '../../../global/widgets/overlay_progress.dart';
 import '../screens/order_entry_table/order_entry.dart';
 

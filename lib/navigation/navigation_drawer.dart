@@ -2,11 +2,11 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../utilities/user_session.dart';
+import '../ui/global/widgets/confirmation_dialog.dart';
 import '../ui/screens/login/login.dart';
 import '../ui/screens/settings/settings.dart';
+import '../utilities/user_session.dart';
 import 'router.dart';
-import '../ui/global/widgets/confirmation_dialog.dart';
 
 class NavigationDrawer extends StatelessWidget {
   Future<void> _didMenuPressed(BuildContext context) async {

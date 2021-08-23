@@ -24,7 +24,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/config/api_service.dart';
-import '../../../../api/config/member_class.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/general_models.dart';
 

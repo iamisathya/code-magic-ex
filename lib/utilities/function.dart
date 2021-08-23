@@ -20,9 +20,9 @@ import '../models/inventory_records.dart';
 import '../models/locale.dart';
 import '../ui/global/widgets/overlay_progress.dart';
 import '../ui/screens/login/login.dart';
+import 'enums.dart';
 import 'logger.dart';
 import 'parsing.dart';
-import 'enums.dart';
 import 'user_session.dart';
 
 void renderErrorSnackBar(

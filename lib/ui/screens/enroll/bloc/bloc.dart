@@ -8,7 +8,6 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/config/api_service.dart';
-import '../../../../api/config/member_class.dart';
 import '../../../../models/amphur_item.dart';
 import '../../../../models/district_item.dart';
 import '../../../../models/enroll_response.dart';
@@ -17,11 +16,11 @@ import '../../../../models/govt_id_verify.dart';
 import '../../../../models/guest_user_info.dart';
 import '../../../../models/provience_item.dart';
 import '../../../../models/zip_code_response.dart';
-import '../../../../utilities/logger.dart';
 import '../../../../utilities/constants.dart';
-import '../../../../utilities/parsing.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
+import '../../../../utilities/logger.dart';
+import '../../../../utilities/parsing.dart';
 import '../../../global/widgets/overlay_progress.dart';
 import '../screens/enroll_confirmation/home.dart';
 

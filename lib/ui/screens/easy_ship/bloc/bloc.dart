@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:code_magic_ex/api/config/api_service.dart';
 import 'package:excel/excel.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/get.dart';
@@ -9,13 +10,12 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../api/config/member_class.dart';
 import '../../../../models/easy_ship_reports.dart';
-import '../../../../utilities/logger.dart';
 import '../../../../utilities/constants.dart';
-import '../../../../utilities/parsing.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
+import '../../../../utilities/logger.dart';
+import '../../../../utilities/parsing.dart';
 import '../../../../utilities/user_session.dart';
 
 class EasyShipController extends GetxController {

@@ -15,7 +15,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
-import '../../../../api/config/member_class.dart';
 import '../../../../api/request/request_customer_token.dart';
 import '../../../../models/profile_picture.dart';
 import '../../../../models/user_id.dart';

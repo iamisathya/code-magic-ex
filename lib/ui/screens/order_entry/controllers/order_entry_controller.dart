@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/config/api_service.dart';
-import '../../../../api/config/member_class.dart';
 import '../../../../api/request/request_order_calculation.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/cash_coupon_response.dart';
@@ -14,10 +13,10 @@ import '../../../../models/inventory_records.dart';
 import '../../../../models/order_calc_response.dart';
 import '../../../../models/radio_button_value.dart';
 import '../../../../models/user_minimal_data.dart';
-import '../../../../utilities/logger.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
+import '../../../../utilities/logger.dart';
 import '../../../global/widgets/overlay_progress.dart';
 import '../screens/checkout/checkout_screen.dart';
 
