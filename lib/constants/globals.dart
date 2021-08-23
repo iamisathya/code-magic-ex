@@ -23,4 +23,5 @@ class Globals {
   ].obs;
 
   static Markets? currentMarket;
+  static String currency = "";
 }
