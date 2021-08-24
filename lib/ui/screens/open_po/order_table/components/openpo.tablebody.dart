@@ -8,7 +8,7 @@ import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/parsing.dart';
 import '../../../../global/widgets/common_button.dart';
 import '../../../../global/widgets/counter_view.dart';
-import '../../controller/open_po_table_controller.dart';
+import '../../controller/openpo.table.controller.dart';
 
 class OpenPoTableBody extends StatelessWidget {
   final OpenPoTableController controller;

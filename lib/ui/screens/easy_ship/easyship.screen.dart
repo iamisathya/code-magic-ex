@@ -5,8 +5,8 @@ import '../../../navigation/navigation_drawer.dart';
 import '../../../utilities/constants.dart';
 import '../../../utilities/size_config.dart';
 import '../../global/widgets/transparent_app_bar.dart';
-import 'bloc/bloc.dart';
 import 'components/body.dart';
+import 'controller/easyship.controller.dart';
 
 class EasyShipHomeScreen extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());

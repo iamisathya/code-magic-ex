@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../utilities/constants.dart';
-import '../../../controllers/controller.dart';
+import '../../../controllers/main.controller.dart';
 
 class SearchRadioOptions extends StatelessWidget {
   final OrderEntryController controller = Get.put(OrderEntryController());

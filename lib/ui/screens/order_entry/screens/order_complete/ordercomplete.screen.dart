@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../constants/colors.dart';
 import '../../../../../ui/global/widgets/transparent_app_bar.dart';
 import '../../../../../utilities/size_config.dart';
-import '../../controllers/order_complete.dart';
+import '../../controllers/ordercomplete.controller.dart';
 import 'components/body.dart';
 
 class OrderComplete extends StatelessWidget {

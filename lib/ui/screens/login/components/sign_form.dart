@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/size_config.dart';
 import '../../../global/widgets/primary_button.dart';
-import '../controller/login_controller.dart';
+import '../controller/login.controller.dart';
 
 class SignForm extends StatelessWidget {
   final LoginController controller = Get.put(LoginController());

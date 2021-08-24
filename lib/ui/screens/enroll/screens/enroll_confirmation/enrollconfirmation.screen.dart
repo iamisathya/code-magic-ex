@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../global/widgets/transparent_app_bar.dart';
-import '../../bloc/enroll_confirmation_controller.dart';
+import '../../bloc/enrollconfirmation.controller.dart';
 import 'components/body.dart';
 
 class EnrollConfirmation extends StatelessWidget {

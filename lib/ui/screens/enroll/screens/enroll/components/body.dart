@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../styles/input_decorations.dart';
-import '../../../bloc/bloc.dart';
+import '../../../bloc/enrollhome.controller.dart';
 
 class Body extends StatelessWidget {
   final EnrollController controller = Get.put(EnrollController());

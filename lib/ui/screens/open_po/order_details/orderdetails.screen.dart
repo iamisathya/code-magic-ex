@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utilities/constants.dart';
-import '../controller/open_po_controller.dart';
+import '../controller/openpo.controller.dart';
 import 'components/body.dart';
 
 class PurchaseOrderDetailsPage extends StatelessWidget {

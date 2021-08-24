@@ -16,7 +16,7 @@ import 'navigation/routers.dart';
 import 'navigation/routes.dart';
 import 'translations/translations.dart';
 import 'ui/global/theme/app_themes.dart';
-import 'ui/screens/splash/screen.dart';
+import 'ui/screens/splash/splash.screen.dart';
 import 'utilities/connectivity.dart';
 import 'utilities/key_value_storage.dart';
 import 'utilities/user_session.dart';

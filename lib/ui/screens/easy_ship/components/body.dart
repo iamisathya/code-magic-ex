@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/screens/easy_ship/controller/easyship.controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,7 @@ import '../../../global/widgets/custom_empty_widget.dart';
 import '../../../global/widgets/custom_error_widget.dart';
 import '../../../global/widgets/custom_loading_widget.dart';
 import '../../../global/widgets/search_view.dart';
-import '../bloc/bloc.dart';
+
 
 class Body extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());

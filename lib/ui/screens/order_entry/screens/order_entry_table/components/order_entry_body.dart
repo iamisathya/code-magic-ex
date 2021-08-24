@@ -8,7 +8,7 @@ import '../../../../../../utilities/extensions.dart';
 import '../../../../../../utilities/parsing.dart';
 import '../../../../../global/widgets/common_button.dart';
 import '../../../../../global/widgets/counter_view.dart';
-import '../../../controllers/order_entry_controller.dart';
+import '../../../controllers/orderentry.controller.dart';
 
 class OrderEntryBody extends StatelessWidget {
   final OrderEntryTableController controller =

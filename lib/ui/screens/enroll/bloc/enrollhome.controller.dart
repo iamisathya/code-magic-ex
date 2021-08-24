@@ -22,7 +22,7 @@ import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/parsing.dart';
 import '../../../global/widgets/overlay_progress.dart';
-import '../screens/enroll_confirmation/home.dart';
+import '../screens/enroll_confirmation/enrollconfirmation.screen.dart';
 
 class EnrollController extends GetxController {
   ScrollController scrollController = ScrollController();

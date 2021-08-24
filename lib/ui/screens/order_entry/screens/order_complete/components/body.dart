@@ -11,8 +11,8 @@ import '../../../../../../utilities/extensions.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../../utilities/size_config.dart';
 import '../../../../../../utilities/user_session.dart';
-import '../../../controllers/order_complete.dart';
-import '../../../order_entry.dart';
+import '../../../controllers/ordercomplete.controller.dart';
+import '../../../orderentry.screen.dart';
 
 class Body extends StatelessWidget {
   final OrderCompleteController controller = Get.put(OrderCompleteController());

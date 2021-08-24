@@ -12,7 +12,7 @@ import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/parsing.dart';
 import '../../../global/widgets/overlay_progress.dart';
-import '../screens/order_entry_table/order_entry.dart';
+import '../screens/order_entry_table/orderentrytable.screen.dart';
 
 class OrderEntryController extends GetxController {
   RxInt selectedTab = 0.obs;

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 
 import '../ui/global/widgets/confirmation_dialog.dart';
-import '../ui/screens/login/login.dart';
-import '../ui/screens/settings/settings.dart';
+import '../ui/screens/login/login.screen.dart';
+import '../ui/screens/settings/settings.screen.dart';
 import '../utilities/user_session.dart';
 import 'router.dart';
 

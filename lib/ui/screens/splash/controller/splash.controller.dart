@@ -15,8 +15,8 @@ import '../../../../models/user_token.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/user_session.dart';
-import '../../login/login.dart';
-import '../../open_po/home/home.dart';
+import '../../login/login.screen.dart';
+import '../../open_po/home/home.screen.dart';
 
 class SplashController extends GetxController {
   final store = GetStorage();

@@ -7,7 +7,7 @@ import '../../../../../../styles/sized_box.dart';
 import '../../../../../../utilities/constants.dart';
 import '../../../../../../utilities/size_config.dart';
 import '../../../../../global/widgets/primary_button.dart';
-import '../../../bloc/enroll_confirmation_controller.dart';
+import '../../../bloc/enrollconfirmation.controller.dart';
 
 class Body extends StatelessWidget {
   final EnrollConfirmationController controller =

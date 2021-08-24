@@ -18,7 +18,7 @@ import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../global/widgets/overlay_progress.dart';
-import '../screens/checkout/checkout_screen.dart';
+import '../screens/checkout/checkout.screen.dart';
 
 class OrderEntryTableController extends GetxController {
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;

@@ -21,7 +21,7 @@ import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/widgets/overlay_progress.dart';
-import '../home/home.dart';
+import '../home/home.screen.dart';
 import '../order_table/components/upload_image.dart';
 
 class OpenPoTableController extends GetxController {

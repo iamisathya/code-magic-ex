@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../utilities/constants.dart';
 import '../../../../../utilities/size_config.dart';
 import '../../../../global/widgets/transparent_app_bar.dart';
-import '../../controllers/order_entry_checkout_controller.dart';
+import '../../controllers/orderentry.checkout.controller.dart';
 import 'components/body.dart';
 
 class CheckoutPage extends StatelessWidget {

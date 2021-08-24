@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:code_magic_ex/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
 import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/ui/screens/enroll/screens/order_complete/enroll_complete.dart';
+import 'package:code_magic_ex/ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
 import 'package:code_magic_ex/utilities/logger.dart';
 import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:code_magic_ex/utilities/function.dart';

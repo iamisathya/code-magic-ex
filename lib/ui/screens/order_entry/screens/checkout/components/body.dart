@@ -7,7 +7,7 @@ import '../../../../../../utilities/extensions.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../../utilities/size_config.dart';
 import '../../../../../global/widgets/primary_button.dart';
-import '../../../controllers/order_entry_checkout_controller.dart';
+import '../../../controllers/orderentry.checkout.controller.dart';
 import 'cart_card.dart';
 
 class Body extends StatelessWidget {

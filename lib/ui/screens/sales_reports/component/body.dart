@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/screens/sales_reports/controller/salesreports.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,6 @@ import '../../../../utilities/parsing.dart';
 import '../../../global/widgets/custom_empty_widget.dart';
 import '../../../global/widgets/custom_error_widget.dart';
 import '../../../global/widgets/custom_loading_widget.dart';
-import '../bloc/bloc.dart';
 
 class Body extends StatelessWidget {
   final SalesReportController controller = Get.put(SalesReportController());

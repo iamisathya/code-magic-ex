@@ -3,28 +3,28 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utilities/constants.dart';
-import '../../../global/widgets/cart_footer.dart';
-import '../../../global/widgets/transparent_app_bar.dart';
-import '../controller/open_po_table_controller.dart';
-import 'components/open_po_table_body.dart';
+import '../../../../../utilities/constants.dart';
+import '../../../../global/widgets/cart_footer.dart';
+import '../../../../global/widgets/transparent_app_bar.dart';
+import '../../controllers/orderentry.controller.dart';
+import 'components/order_entry_body.dart';
 
-class OpenPoTable extends StatelessWidget {
-  static const String routeName = '/openPoTable';
-  final OpenPoTableController controller = Get.put(OpenPoTableController());
-
+class OrderEntryTable extends StatelessWidget {
+  static const String routeName = '/orderEntryTablePage';
+  final OrderEntryTableController controller =
+      Get.put(OrderEntryTableController());
   @override
   Widget build(BuildContext context) {
-    // wait till widget build
-    Timer(const Duration(milliseconds: 100), () {
+     Timer(const Duration(milliseconds: 100), () {
       controller.loadInventoryRecords(context);
     });
     return Scaffold(
+        
         appBar: TransAppBar(
           title: controller.passedUser.fullName,
           subTitle: controller.passedUser.userId,
         ),
-        body: OpenPoTableBody(controller: controller),
+        body: OrderEntryBody(),
         bottomNavigationBar: BottomAppBar(
             color: kPageBackground,
             child: Obx(() => CartFooter(

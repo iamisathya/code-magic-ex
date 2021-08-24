@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../../utilities/constants.dart';
 import '../../../../../../utilities/extensions.dart';
 import '../../../../../global/widgets/search_view.dart';
-import '../../../controllers/controller.dart';
+import '../../../controllers/main.controller.dart';
 
 class SearchBox extends StatelessWidget {
   final OrderEntryController controller = Get.put(OrderEntryController());

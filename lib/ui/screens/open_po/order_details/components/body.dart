@@ -7,7 +7,7 @@ import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/widgets/common_widgets.dart';
 import '../../../../global/widgets/custom_loading_widget.dart';
-import '../../controller/open_po_controller.dart';
+import '../../controller/openpo.controller.dart';
 
 class Body extends StatelessWidget {
   final OpenPoController controller = Get.put(OpenPoController());

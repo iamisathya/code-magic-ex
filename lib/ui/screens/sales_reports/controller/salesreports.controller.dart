@@ -181,6 +181,7 @@ class SalesReportController extends GetxController {
     } on DioError catch (e) {
       onDioError(e, _sendingMsgProgressBar, errorMessage);
     } catch (err) {
+      loading(false);
       onCatchError(err, _sendingMsgProgressBar, errorMessage);
     }
   }

@@ -19,9 +19,9 @@ import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/logger.dart';
 import '../../../global/widgets/overlay_progress.dart';
-import '../../webview/webview.dart';
-import '../order_details/partner_order_details.dart';
-import '../order_table/order_table.dart';
+import '../../webview/webview.screen.dart';
+import '../order_details/orderdetails.screen.dart';
+import '../order_table/ordertable.screen.dart';
 
 class OpenPoController extends GetxController {
   TextEditingController commentController = TextEditingController();

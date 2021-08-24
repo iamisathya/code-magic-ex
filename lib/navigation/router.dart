@@ -1,15 +1,15 @@
-import '../ui/screens/barcode/home.dart';
-import '../ui/screens/easy_ship/home.dart';
-import '../ui/screens/enroll/enroll.dart';
+import '../ui/screens/barcode/barcode.screen.dart';
+import '../ui/screens/easy_ship/easyship.screen.dart';
+import '../ui/screens/enroll/enrollhome.screen.dart';
 import '../ui/screens/home/home.dart';
-import '../ui/screens/inventory/home.dart';
-import '../ui/screens/login/login.dart';
-import '../ui/screens/open_po/home/home.dart';
-import '../ui/screens/order_entry/order_entry.dart';
-import '../ui/screens/order_entry/screens/checkout/checkout_screen.dart';
-import '../ui/screens/sales_reports/home.dart';
-import '../ui/screens/settings/settings.dart';
-import '../ui/screens/webview/webview.dart';
+import '../ui/screens/inventory/inventory.screen.dart';
+import '../ui/screens/login/login.screen.dart';
+import '../ui/screens/open_po/home/home.screen.dart';
+import '../ui/screens/order_entry/orderentry.screen.dart';
+import '../ui/screens/order_entry/screens/checkout/checkout.screen.dart';
+import '../ui/screens/sales_reports/salesreports.screen.dart';
+import '../ui/screens/settings/settings.screen.dart';
+import '../ui/screens/webview/webview.screen.dart';
 
 class ScreenPaths {
   static const String loginHome = LoginScreen.routeName;

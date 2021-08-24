@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utilities/constants.dart';
-import '../controller/controller.dart';
+import '../controller/barcode.controller.dart';
 
 class Body extends StatelessWidget {
   final BarcodeController controller = Get.put(BarcodeController());

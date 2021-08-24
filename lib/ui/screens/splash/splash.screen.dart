@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../global/widgets/animated_show_up.dart';
-import 'controller/splash_controller.dart';
+import 'controller/splash.controller.dart';
 
 class SplashScreen extends StatelessWidget {
   final SplashController controller = Get.put(SplashController());

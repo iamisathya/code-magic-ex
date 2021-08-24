@@ -5,7 +5,7 @@ import '../../../navigation/navigation_drawer.dart';
 import '../../../utilities/constants.dart';
 import '../../global/widgets/transparent_app_bar.dart';
 import 'component/body.dart';
-import 'controller/inventory_controller.dart';
+import 'controller/inventory.controller.dart';
 
 class InventoryHomeScreen extends StatelessWidget {
   static const String routeName = '/inventoryHomePage';
@@ -16,7 +16,7 @@ class InventoryHomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: TransAppBar(
-          title: "itemcode".tr,
+          title: "Inventory",
           action: _renderActionBar(context),
         ),
         drawer: NavigationDrawer(),

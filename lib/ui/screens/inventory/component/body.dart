@@ -10,7 +10,7 @@ import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/parsing.dart';
 import '../../../global/widgets/search_view_button.dart';
-import '../controller/inventory_controller.dart';
+import '../controller/inventory.controller.dart';
 
 class Body extends StatelessWidget {
   final InventoryController controller = Get.find();

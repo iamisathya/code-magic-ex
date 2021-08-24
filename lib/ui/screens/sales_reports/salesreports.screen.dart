@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/screens/sales_reports/controller/salesreports.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,7 +6,6 @@ import '../../../navigation/navigation_drawer.dart';
 import '../../../utilities/constants.dart';
 import '../../../utilities/size_config.dart';
 import '../../global/widgets/transparent_app_bar.dart';
-import 'bloc/bloc.dart';
 import 'component/body.dart';
 
 class SalesReportsHomeScreen extends StatelessWidget {

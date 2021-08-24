@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../global/widgets/common_widgets.dart';
 import '../../../../global/widgets/primary_button.dart';
-import '../../controller/open_po_table_controller.dart';
+import '../../controller/openpo.table.controller.dart';
 
 void renderBottomSheet(BuildContext context) {
   final OpenPoTableController controller = Get.put(OpenPoTableController());

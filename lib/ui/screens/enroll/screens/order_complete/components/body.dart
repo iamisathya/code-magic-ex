@@ -7,8 +7,8 @@ import '../../../../../../../ui/global/widgets/primary_button.dart';
 import '../../../../../../../ui/global/widgets/primary_button_outline.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../../utilities/size_config.dart';
-import '../../../bloc/enroll_complete_controller.dart';
-import '../../../enroll.dart';
+import '../../../bloc/enrollcomplete.controller.dart';
+import '../../../enrollhome.screen.dart';
 
 class Body extends StatelessWidget {
   final EnrollCompleteController controller =

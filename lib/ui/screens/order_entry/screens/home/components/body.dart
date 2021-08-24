@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../../models/search_reponse_by_href.dart';
 import '../../../../../../utilities/constants.dart';
 import '../../../../../../utilities/extensions.dart';
-import '../../../controllers/controller.dart';
+import '../../../controllers/main.controller.dart';
 import 'search_box.dart';
 import 'top_tabs.dart';
 

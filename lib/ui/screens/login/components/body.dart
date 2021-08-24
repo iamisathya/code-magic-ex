@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utilities/size_config.dart';
-import '../controller/login_controller.dart';
+import '../controller/login.controller.dart';
 import 'sign_form.dart';
 
 class Body extends StatelessWidget {
