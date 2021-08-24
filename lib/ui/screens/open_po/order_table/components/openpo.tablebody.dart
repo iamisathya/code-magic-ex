@@ -13,7 +13,7 @@ import '../../controller/openpo.table.controller.dart';
 class OpenPoTableBody extends StatelessWidget {
   final OpenPoTableController controller;
   const OpenPoTableBody({required this.controller});
-      
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -128,7 +128,8 @@ class OpenPoTableBody extends StatelessWidget {
     return ElevatedButton(
         onPressed: () => {},
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Theme.of(Get.context!).colorScheme.primary)),
+            backgroundColor: MaterialStateProperty.all(
+                Theme.of(Get.context!).colorScheme.primary)),
         child: const Text("Clear"));
   }
 

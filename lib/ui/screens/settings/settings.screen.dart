@@ -8,7 +8,6 @@ import '../../../controllers/global_controllers.dart';
 import '../../../controllers/theme_controller.dart';
 import '../../global/widgets/transparent_app_bar.dart';
 
-
 class SettingsPage extends StatelessWidget {
   static const String routeName = '/settings';
 
@@ -16,7 +15,7 @@ class SettingsPage extends StatelessWidget {
   final LanguageController languageController = Get.put(LanguageController());
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const TransAppBar(
         title: "Settings",

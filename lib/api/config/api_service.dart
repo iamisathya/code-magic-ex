@@ -157,7 +157,6 @@ abstract class ApiService {
   Future<EnrollForm> placeEnrollOrder(@Body() String request);
 }
 
-
 @RestApi(baseUrl: Address.memberCallsBase)
 abstract class MemberCallsService {
   factory MemberCallsService(Dio dio, {String baseUrl}) = _MemberCallsService;

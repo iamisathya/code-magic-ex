@@ -53,7 +53,8 @@ class Body extends StatelessWidget {
                   _renderUserInfo("Address",
                       "${controller.enroleeData.mainAddress1} ${controller.enroleeData.mainAddress2}, ${controller.enroleeData.zipCode}"),
                   _renderUserInfo("email".tr, controller.enroleeData.email),
-                  _renderUserInfo("phone".tr, controller.enroleeData.phoneNumber),
+                  _renderUserInfo(
+                      "phone".tr, controller.enroleeData.phoneNumber),
                   _renderUserInfo(
                       "mobilephone".tr, controller.enroleeData.mobileNumber),
                   SizedBox(height: SizeConfig.screenHeight * 0.01),

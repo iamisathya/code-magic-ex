@@ -6,10 +6,11 @@ part 'guest_user_info.g.dart';
 class GuestUserInfoList {
   @JsonKey(name: "items")
   List<GuestUserInfo> items;
-  
+
   GuestUserInfoList({required this.items});
 
-  factory GuestUserInfoList.fromJson(Map<String, dynamic> json) => _$GuestUserInfoListFromJson(json);
+  factory GuestUserInfoList.fromJson(Map<String, dynamic> json) =>
+      _$GuestUserInfoListFromJson(json);
 
   Map<String, dynamic> toJson() => _$GuestUserInfoListToJson(this);
 }
@@ -28,8 +29,8 @@ class GuestUserInfo {
   String type;
   int unicity;
 
-  GuestUserInfo({
-      required this.businessEntity,
+  GuestUserInfo(
+      {required this.businessEntity,
       required this.customerSite,
       required this.entryPeriod,
       required this.href,
@@ -53,7 +54,7 @@ class GuestUserInfo {
         'href': href,
         'humanName': humanName,
         'id': id,
-        'joinDate': joinDate,        
+        'joinDate': joinDate,
         'status': status,
         'subscriptions': subscriptions,
         'type': type,

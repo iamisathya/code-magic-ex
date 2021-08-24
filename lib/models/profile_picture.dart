@@ -18,8 +18,7 @@ class ProfilePicture {
 
   Map<String, dynamic> toJson() => _$ProfilePictureToJson(this);
 
-    Map<String, dynamic> toMap() =>
-      {'sizes': sizes, 'href': href};
+  Map<String, dynamic> toMap() => {'sizes': sizes, 'href': href};
 }
 
 @JsonSerializable()

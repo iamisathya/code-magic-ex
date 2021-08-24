@@ -35,7 +35,7 @@ void renderErrorSnackBar(
     titleText: Text(title,
         style: TextStyle(color: c, fontSize: 16, fontWeight: FontWeight.bold)),
     messageText: Text(subTitle, style: TextStyle(color: c, fontSize: 14)),
-    backgroundColor:  Theme.of(Get.context!).colorScheme.background,
+    backgroundColor: Theme.of(Get.context!).colorScheme.background,
     borderColor: c,
     animationDuration: const Duration(milliseconds: 300),
     snackPosition: SnackPosition.BOTTOM,
@@ -239,8 +239,6 @@ String currency(BuildContext context) {
   return format.currencySymbol;
 }
 
-
-
 LocaleModel getLocale(LocaleTypes type) {
   switch (type) {
     case LocaleTypes.en:
@@ -252,7 +250,7 @@ LocaleModel getLocale(LocaleTypes type) {
     case LocaleTypes.km:
       return LocaleModel(language: "km", location: "KH");
     case LocaleTypes.ms:
-      return LocaleModel(language: "ms", location: "MY");    
+      return LocaleModel(language: "ms", location: "MY");
     default:
       return LocaleModel(language: "en", location: "US");
   }

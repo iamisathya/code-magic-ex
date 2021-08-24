@@ -233,7 +233,7 @@ class CompleteHumanThName {
     this.fullName = "",
     this.firstNameTh = "",
     this.lastNameTh = "",
-    this.fullNameTh = "", 
+    this.fullNameTh = "",
   });
 
   factory CompleteHumanThName.fromJson(Map<String, dynamic> json) =>

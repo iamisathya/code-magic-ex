@@ -11,7 +11,8 @@ class AnimatedShowUp extends StatefulWidget {
   _AnimatedShowUpState createState() => _AnimatedShowUpState();
 }
 
-class _AnimatedShowUpState extends State<AnimatedShowUp> with TickerProviderStateMixin {
+class _AnimatedShowUpState extends State<AnimatedShowUp>
+    with TickerProviderStateMixin {
   late AnimationController _animController;
   late Animation<Offset> _animOffset;
 
@@ -19,8 +20,8 @@ class _AnimatedShowUpState extends State<AnimatedShowUp> with TickerProviderStat
   void initState() {
     super.initState();
 
-    _animController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    _animController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
     final curve =
         CurvedAnimation(curve: Curves.decelerate, parent: _animController);
     _animOffset =

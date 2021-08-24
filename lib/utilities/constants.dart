@@ -110,7 +110,8 @@ RoundedRectangleBorder kRoundedRectangleBorder8() {
 
 OutlineInputBorder kFocusedOutlineInputBorder() {
   return OutlineInputBorder(
-    borderSide: BorderSide(color: Theme.of(Get.context!).colorScheme.primary, width: 3.0),
+    borderSide: BorderSide(
+        color: Theme.of(Get.context!).colorScheme.primary, width: 3.0),
     borderRadius: const BorderRadius.all(Radius.circular(12.0)),
   );
 }

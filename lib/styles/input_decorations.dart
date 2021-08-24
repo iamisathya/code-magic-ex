@@ -71,7 +71,8 @@ InputDecoration kBorderNone = const InputDecoration(border: InputBorder.none);
 
 InputDecoration kInputDecoration(String hintText, String label) {
   return InputDecoration(
-    border: const OutlineInputBorder(borderSide: BorderSide(color: AppColor.kMainColor)),
+    border: const OutlineInputBorder(
+        borderSide: BorderSide(color: AppColor.kMainColor)),
     hintText: hintText,
     labelText: label,
   );

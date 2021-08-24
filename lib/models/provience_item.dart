@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'provience_item.g.dart';
@@ -43,7 +42,8 @@ class ProvinceItem {
     required this.geoId,
   });
 
-  factory ProvinceItem.fromJson(Map<String, dynamic> json) => _$ProvinceItemFromJson(json);
+  factory ProvinceItem.fromJson(Map<String, dynamic> json) =>
+      _$ProvinceItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProvinceItemToJson(this);
 }

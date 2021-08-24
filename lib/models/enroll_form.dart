@@ -340,15 +340,16 @@ class Terms {
   double taxableTotal;
   int total;
 
-  Terms(
-      {required this.discount,
-      required this.freight,
-      required this.pv,
-      required this.subtotal,
-      required this.tax,
-      required this.taxableTotal,
-      required this.total,
-      required this.period,});
+  Terms({
+    required this.discount,
+    required this.freight,
+    required this.pv,
+    required this.subtotal,
+    required this.tax,
+    required this.taxableTotal,
+    required this.total,
+    required this.period,
+  });
 
   factory Terms.fromJson(Map<String, dynamic> json) => _$TermsFromJson(json);
 

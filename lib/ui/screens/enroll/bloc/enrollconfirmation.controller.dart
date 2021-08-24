@@ -53,7 +53,9 @@ class EnrollConfirmationController extends GetxController {
         if (resposne != null) {
           verifyOrder(resposne);
           await forceResetPassword();
-           Get.offNamedUntil(EnrollComplete.routeName, ModalRoute.withName('/enrollHome'), arguments: resposne);
+          Get.offNamedUntil(
+              EnrollComplete.routeName, ModalRoute.withName('/enrollHome'),
+              arguments: resposne);
         }
       }
       _sendingMsgProgressBar.hide();
@@ -108,9 +110,8 @@ class EnrollConfirmationController extends GetxController {
                   firstName: usedInfo.humanName.firstName,
                   lastName: usedInfo.humanName.lastName,
                   firstNameTh: usedInfo.humanName.fullNameTh,
-                  lastNameTh: usedInfo.humanName.fullNameTh), 
-
-               enroller: CustomerHref(
+                  lastNameTh: usedInfo.humanName.fullNameTh),
+              enroller: CustomerHref(
                   href:
                       "https://hydra.unicity.net/v5a/customers?id.unicity=${enroleeData.enrollerId}"),
               sponsor: CustomerHref(
@@ -120,7 +121,7 @@ class EnrollConfirmationController extends GetxController {
               maritalStatus: enroleeData.maritalStatus,
               email: enroleeData.email,
               taxTerms: TaxTerms(taxId: enroleeData.taxId),
-              homePhone: enroleeData.phoneNumber,             
+              homePhone: enroleeData.phoneNumber,
               mobilePhone: enroleeData.mobileNumber,
               entryPeriod: getCurrentPeriod(),
               gender: enroleeData.gender,
@@ -134,7 +135,7 @@ class EnrollConfirmationController extends GetxController {
           shipToPhone: usedInfo.homePhone,
           shipToEmail:
               usedInfo.email.isNotEmpty ? usedInfo.email : "none@unicity.com",
-              notes: prepareNotes(usedInfo.id.unicity.toString(), "TH"),
+          notes: prepareNotes(usedInfo.id.unicity.toString(), "TH"),
           shipToAddress: UserShipToAddress(
               city: usedInfo.mainAddress.city,
               country: "TH",
@@ -143,7 +144,8 @@ class EnrollConfirmationController extends GetxController {
               address2: usedInfo.mainAddress.address2,
               zip: usedInfo.mainAddress.zip),
           shippingMethod: CustomerHref(
-              href:"https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"),
+              href:
+                  "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"),
           transactions: Transactions(items: [
             TransactionItem(
                 amount: "this.terms.total", method: "Cash", type: "record")

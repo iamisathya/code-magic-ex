@@ -1,4 +1,3 @@
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'amphur_item.g.dart';
@@ -26,8 +25,9 @@ class AmphurItem {
     required this.gioId,
     required this.provinceId,
   });
-  
-  factory AmphurItem.fromJson(Map<String, dynamic> json) => _$AmphurItemFromJson(json);
+
+  factory AmphurItem.fromJson(Map<String, dynamic> json) =>
+      _$AmphurItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$AmphurItemToJson(this);
 }

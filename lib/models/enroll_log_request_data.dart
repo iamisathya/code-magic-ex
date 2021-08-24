@@ -97,8 +97,7 @@ class Customer {
   Source source;
 
   Customer(
-      {
-      required this.mainAddress,
+      {required this.mainAddress,
       required this.humanName,
       required this.enroller,
       required this.sponsor,

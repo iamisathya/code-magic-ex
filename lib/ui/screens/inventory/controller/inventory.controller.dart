@@ -124,33 +124,39 @@ class InventoryController extends GetxController {
         break;
       case InventorySortTypes.quantityOnHand:
         if (isAscending) {
-          tempInventoryRecords.value.items
-              .sort((a, b) => NumberFormat().parse(a.quantityOnHand).compareTo(NumberFormat().parse(b.quantityOnHand)));
+          tempInventoryRecords.value.items.sort((a, b) => NumberFormat()
+              .parse(a.quantityOnHand)
+              .compareTo(NumberFormat().parse(b.quantityOnHand)));
         } else {
-          tempInventoryRecords.value.items
-              .sort((b, a) => NumberFormat().parse(a.quantityOnHand).compareTo(NumberFormat().parse(b.quantityOnHand)));
+          tempInventoryRecords.value.items.sort((b, a) => NumberFormat()
+              .parse(a.quantityOnHand)
+              .compareTo(NumberFormat().parse(b.quantityOnHand)));
         }
         break;
       case InventorySortTypes.totalAccumulatedPrice:
         if (isAscending) {
           tempInventoryRecords.value.items.sort((a, b) =>
               (Parsing.intFrom(a.quantityOnHand)! * a.terms.priceEach.toInt())
-                  .compareTo(Parsing.intFrom(b.quantityOnHand)! * b.terms.priceEach.toInt()));
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! *
+                      b.terms.priceEach.toInt()));
         } else {
           tempInventoryRecords.value.items.sort((b, a) =>
               (Parsing.intFrom(a.quantityOnHand)! * a.terms.priceEach.toInt())
-                  .compareTo(Parsing.intFrom(b.quantityOnHand)! * b.terms.priceEach.toInt()));
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! *
+                      b.terms.priceEach.toInt()));
         }
         break;
       case InventorySortTypes.totalPV:
         if (isAscending) {
           tempInventoryRecords.value.items.sort((a, b) =>
               (Parsing.intFrom(a.quantityOnHand)! * a.terms.pvEach.toInt())
-                  .compareTo(Parsing.intFrom(b.quantityOnHand)! * b.terms.pvEach.toInt()));
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! *
+                      b.terms.pvEach.toInt()));
         } else {
           tempInventoryRecords.value.items.sort((b, a) =>
               (Parsing.intFrom(a.quantityOnHand)! * a.terms.pvEach.toInt())
-                  .compareTo(Parsing.intFrom(b.quantityOnHand)! * b.terms.pvEach.toInt()));
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! *
+                      b.terms.pvEach.toInt()));
         }
         break;
       default:
@@ -197,7 +203,11 @@ class InventoryController extends GetxController {
             shape: kRoundedBorder(),
             selected: filterMethod.value == describeEnum(StockTypes.onHand),
             selectedTileColor: Theme.of(context).colorScheme.primary,
-            title: Text("On Hand", style: TextStyle(color: filterMethod.value == describeEnum(StockTypes.onHand) ? Colors.white : Colors.black)),
+            title: Text("On Hand",
+                style: TextStyle(
+                    color: filterMethod.value == describeEnum(StockTypes.onHand)
+                        ? Colors.white
+                        : Colors.black)),
           ),
         ),
         PopupMenuItem<String>(
@@ -210,7 +220,12 @@ class InventoryController extends GetxController {
             },
             shape: kRoundedBorder(),
             selectedTileColor: Theme.of(context).colorScheme.primary,
-            title: Text("Out Of Stock", style: TextStyle(color: filterMethod.value == describeEnum(StockTypes.outOfStock) ? Colors.white : Colors.black)),
+            title: Text("Out Of Stock",
+                style: TextStyle(
+                    color: filterMethod.value ==
+                            describeEnum(StockTypes.outOfStock)
+                        ? Colors.white
+                        : Colors.black)),
           ),
         ),
       ],

@@ -155,8 +155,8 @@ class UserSessionManager {
         currentLanguage = currentLocale.language;
       }
     } catch (error) {
-      LoggerService.instance.e(
-          'Session - Get current locale - Error : ${error.toString()}');
+      LoggerService.instance
+          .e('Session - Get current locale - Error : ${error.toString()}');
       currentLocale = _defaultLocale();
       currentLanguage = "en";
     }

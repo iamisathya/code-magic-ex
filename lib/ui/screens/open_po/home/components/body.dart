@@ -96,8 +96,9 @@ class Body extends StatelessWidget {
 
   Widget _getTitleItemWidget(String label, double width) {
     return Container(
-      decoration:
-          BoxDecoration(color: Theme.of(Get.context!).colorScheme.primary, border: Border.all(width: 0.5)),
+      decoration: BoxDecoration(
+          color: Theme.of(Get.context!).colorScheme.primary,
+          border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -123,7 +124,8 @@ class Body extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
           alignment: Alignment.center,
           decoration: BoxDecoration(border: Border.all(width: 0.5)),
-          child: Text(currentItem.orderOpid, style: Theme.of(context).textTheme.subtitle2),
+          child: Text(currentItem.orderOpid,
+              style: Theme.of(context).textTheme.subtitle2),
         ));
   }
 
@@ -141,7 +143,10 @@ class Body extends StatelessWidget {
               decoration: BoxDecoration(border: Border.all(width: 0.5)),
               padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
               alignment: Alignment.center,
-              child: Text(currentItem.orderDate, style: Theme.of(context).textTheme.subtitle2,)),
+              child: Text(
+                currentItem.orderDate,
+                style: Theme.of(context).textTheme.subtitle2,
+              )),
           _renderDataCell(index, 180, currentItem.orderTime,
               Alignment.centerRight, "value"),
           _renderDataCell(index, 180, currentItem.orderTotalPv,
@@ -183,7 +188,8 @@ class Body extends StatelessWidget {
     return IconButton(
         onPressed: () =>
             Get.to(() => WebivewHomeScreen(url: url, title: attchmentName)),
-        icon: Icon(Icons.attach_file, color: Theme.of(context).colorScheme.primary));
+        icon: Icon(Icons.attach_file,
+            color: Theme.of(context).colorScheme.primary));
   }
 
   Container _renderDataCell(int index, double width, String titleText,
@@ -212,7 +218,8 @@ class Body extends StatelessWidget {
     } else if (status == "2") {
       return _renderEachStatusButton(context, "Unknown", kSecondaryColor);
     } else if (status == "3") {
-      return _renderEachStatusButton(context, "Processing", Theme.of(context).colorScheme.primary);
+      return _renderEachStatusButton(
+          context, "Processing", Theme.of(context).colorScheme.primary);
     } else {
       return _renderEachStatusButton(context, "Completed", Colors.green);
     }

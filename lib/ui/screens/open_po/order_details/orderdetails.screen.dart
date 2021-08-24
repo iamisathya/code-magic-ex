@@ -31,13 +31,14 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
 
   List<Widget> _renderActionBar(BuildContext context) {
     return <Widget>[
-      if (controller.wasAttachementExists()) IconButton(
-        icon: const Icon(
-          Icons.attach_file_outlined
-        ),
-        tooltip: 'Attachement',
-        onPressed: controller.onTapOpenAttchment,
-      ) else const SizedBox(),
+      if (controller.wasAttachementExists())
+        IconButton(
+          icon: const Icon(Icons.attach_file_outlined),
+          tooltip: 'Attachement',
+          onPressed: controller.onTapOpenAttchment,
+        )
+      else
+        const SizedBox(),
       IconButton(
         icon: const Icon(
           Icons.print_outlined,

@@ -13,7 +13,6 @@ class ValidateOrder {
   @JsonKey(name: "success")
   String success;
 
-
   ValidateOrder({
     required this.country,
     required this.dsc,

@@ -155,8 +155,8 @@ class Body extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                  child: _renderCardItemBottomRow(
-                      "${"totalpv".tr} :", item.totalPv.toString(), context, 16)),
+                  child: _renderCardItemBottomRow("${"totalpv".tr} :",
+                      item.totalPv.toString(), context, 16)),
               Expanded(
                   child: _renderCardItemBottomRow(
                       "${"totalprice".tr} :", item.totalPrice, context, 0)),

@@ -11,17 +11,24 @@ class UserId {
   @JsonKey(name: "cus_pocode")
   String customerPoCode;
 
-  UserId({required this.customerId, required this.customerCode, required this.customerPoCode});
+  UserId(
+      {required this.customerId,
+      required this.customerCode,
+      required this.customerPoCode});
 
-  factory UserId.fromJson(Map<String, dynamic> json) =>
-      _$UserIdFromJson(json);
+  factory UserId.fromJson(Map<String, dynamic> json) => _$UserIdFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserIdToJson(this);
 
-  Map<String, dynamic> toMap() =>
-      {'customerCode': customerCode, 'customerId': customerId, 'customerPoCode': customerPoCode};
+  Map<String, dynamic> toMap() => {
+        'customerCode': customerCode,
+        'customerId': customerId,
+        'customerPoCode': customerPoCode
+      };
 
-  
-  Map<String, dynamic> toOriginalMap() =>
-      {'cus_code': customerCode, 'cus_id': customerId, 'cus_pocode': customerPoCode};
+  Map<String, dynamic> toOriginalMap() => {
+        'cus_code': customerCode,
+        'cus_id': customerId,
+        'cus_pocode': customerPoCode
+      };
 }

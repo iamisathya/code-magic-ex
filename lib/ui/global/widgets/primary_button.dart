@@ -20,7 +20,8 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? CircularProgressIndicator(color: Theme.of(context).colorScheme.primary)
+        ? CircularProgressIndicator(
+            color: Theme.of(context).colorScheme.primary)
         : SizedBox(
             width: getProportionateScreenWidth(150),
             height: getProportionateScreenHeight(56),

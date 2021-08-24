@@ -5,7 +5,6 @@ import '../../../navigation/navigation_drawer.dart';
 import '../../global/widgets/transparent_app_bar.dart';
 import 'screens/enroll/components/body.dart';
 
-
 class EnrollHomeScreen extends StatelessWidget {
   static const String routeName = '/enrollHomePage';
 

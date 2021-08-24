@@ -66,8 +66,8 @@ extension AppStyles on TextTheme {
       color: Colors.blue,
       fontWeight: FontWeight.bold);
 
-  TextStyle get checkoutText =>
-      const TextStyle(fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w500);
+  TextStyle get checkoutText => const TextStyle(
+      fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w500);
 
   TextStyle get cartFooter =>
       const TextStyle(fontSize: 16.0, color: Colors.black);
