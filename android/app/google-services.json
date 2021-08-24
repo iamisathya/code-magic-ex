@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "253724517387",
+    "project_id": "dsc-tools",
+    "storage_bucket": "dsc-tools.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253724517387:android:b8046d8f51a97491aa930e",
+        "android_client_info": {
+          "package_name": "com.unicity.dsctools"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253724517387-1pifrgbhced1b1eret04stjlb4rfemlm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.unicity.dsctools",
+            "certificate_hash": "561e54282e98b5e4a954df0ea6971d64cf9c623b"
+          }
+        },
+        {
+          "client_id": "253724517387-hebekgt7316icm231b0ho3vrnk4tlh1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDznqzBwoPyRJ6L4hJEejyeyN049MWOgvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253724517387-hebekgt7316icm231b0ho3vrnk4tlh1i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "253724517387-cig0jn9aolvq9vm5eblktbkm8esb6jjn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.unicity.dsctools"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
