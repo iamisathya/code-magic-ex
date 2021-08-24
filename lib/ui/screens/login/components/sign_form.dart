@@ -1,148 +1,101 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'package:code_magic_ex/ui/global/router.dart';
-import 'package:code_magic_ex/ui/screens/login/bloc.dart';
-import 'package:code_magic_ex/ui/screens/login/state.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/ui/global/widgets/custom_surfix_icon.dart';
-import 'package:code_magic_ex/ui/global/widgets/default_button.dart';
-import 'package:code_magic_ex/utilities/keyboard.dart';
-import 'package:code_magic_ex/utilities/size_config.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/size_config.dart';
+import '../../../global/widgets/primary_button.dart';
+import '../controller/login.controller.dart';
 
-class SignForm extends StatefulWidget {
-  @override
-  _SignFormState createState() => _SignFormState();
-}
-
-class _SignFormState extends State<SignForm> {
-  final TextEditingController _userIdController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  late String email = kReleaseMode ? "" : "2970466";
-  late String password = kReleaseMode ? "" : "1234";
-  bool remember = false;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  void _onPressContinue() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      loginBloc.getLoginTokens(context);
-      KeyboardUtil.hideKeyboard(context);
-      // Navigator.pushNamed(context, MainHomeScreen.routeName);
-    }
-  }
+class SignForm extends StatelessWidget {
+  final LoginController controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
     if (!kReleaseMode) {
-      _userIdController.text = "2970466";
-      _passwordController.text = "1234";
+      controller.userIdController.text = "2970466";
+      controller.passwordController.text = "1234";
     }
-    return StreamBuilder<LoginPageState>(
-        stream: loginBloc.state,
-        builder: (context, snapshot) {
-          return Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                buildUserIdFormField(),
-                SizedBox(height: getProportionateScreenHeight(30)),
-                buildPasswordFormField(),
-                SizedBox(height: getProportionateScreenHeight(30)),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: remember,
-                      activeColor: Colors.blueAccent,
-                      onChanged: (value) {
-                        setState(() {
-                          remember = value!;
-                        });
-                      },
-                    ),
-                    const Text("Remember me"),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () =>
-                          Navigator.pushNamed(context, ScreenPaths.mainHome),
-                      child: const Text(
-                        "Forgot Password",
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                    )
-                  ],
+    return Form(
+      key: controller.formKey,
+      child: Column(
+        children: [
+          _renderTextField(
+              ctlr: controller.userIdController,
+              label: "User ID",
+              hintText: "Enter your user id"),
+          // buildUserIdFormField(),
+          SizedBox(height: getProportionateScreenHeight(10)),
+          _renderTextField(
+              ctlr: controller.passwordController,
+              label: "Password",
+              isPassword: true,
+              hintText: "Enter your password"),
+          // buildPasswordFormField(),
+          SizedBox(height: getProportionateScreenHeight(10)),
+          Row(
+            children: [
+              Obx(() => Checkbox(
+                  value: controller.remember.value,
+                  activeColor: Colors.blueAccent,
+                  onChanged: (value) => controller.remember.value = value!)),
+              const Text("Remember me"),
+              const Spacer(),
+              GestureDetector(
+                onTap: () => controller.openMailConfirmationDialog(context),
+                child: const Text(
+                  "Forgot Password",
+                  style: TextStyle(decoration: TextDecoration.underline),
                 ),
-                SizedBox(height: getProportionateScreenHeight(20)),
-                DefaultButton(
-                  loading: snapshot.hasData && snapshot.data!.isLoading,
-                  text: "Continue",
-                  press: () => _onPressContinue(),
-                ),
-              ],
-            ),
-          );
-        });
-  }
-
-  TextFormField buildPasswordFormField() {
-    return TextFormField(
-      obscureText: true,
-      onSaved: (newValue) => password = newValue!,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return kPassNullError;
-        }
-        return null;
-      },
-      controller: _passwordController,
-      decoration: const InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blueGrey),
-        ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blueGrey),
-        ),
-        labelStyle: TextStyle(color: Colors.grey),
-        labelText: "Password",
-        hintText: "Enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+              )
+            ],
+          ),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          PrimaryButton(
+              text: "Continue",
+              press: () => controller.onPressContinue(context)),
+        ],
       ),
     );
   }
 
-  TextFormField buildUserIdFormField() {
-    return TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue!,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return kUserIdNullError;
-        }
-      },
-      controller: _userIdController,
-      decoration: const InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blueGrey),
+  Container _renderTextField(
+      {TextEditingController? ctlr,
+      bool enabled = true,
+      String label = "",
+      String hintText = "",
+      bool isPassword = false,
+      String helperText = ""}) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      child: Column(
+        children: [
+          _renderLabel(label),
+          TextFormField(
+              validator: (value) => controller.inputValidate(
+                  value: value!, isPassword: isPassword),
+              obscureText: isPassword,
+              enabled: enabled,
+              controller: ctlr,
+              style: const TextStyle(fontSize: 18),
+              cursorColor: Theme.of(Get.context!).colorScheme.primary,
+              decoration: kTextInputDecoration(
+                  helperText: helperText, hintText: hintText))
+        ],
+      ),
+    );
+  }
+
+  Padding _renderLabel(String label) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10, left: 8),
+      child: SizedBox(
+        width: Get.width,
+        child: Text(
+          label,
+          textAlign: TextAlign.left,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
         ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blueGrey),
-        ),
-        labelStyle: TextStyle(color: Colors.grey),
-        labelText: "User ID",
-        hintText: "Enter your user id",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Account.svg"),
       ),
     );
   }

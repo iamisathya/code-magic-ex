@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:code_magic_ex/models/common_methods.dart';
+import 'common_methods.dart';
 
 part 'inventory_movement_records.g.dart';
 

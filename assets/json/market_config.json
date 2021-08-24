@@ -1,0 +1,147 @@
+{"markets" : [     
+    {
+      "name": "Australia",
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Australia" }],
+      "languageISO": ["eng"],
+      "code": "au",
+      "isoCode": "AUS",
+      "defaultLanguage": "en",
+      "currency": "$"
+    },
+    {
+      "name": "Hong Kong",
+      "languages": [
+        { "value": "hk", "title": "Chainees", "transText": "繁體", "countryName": "Indonesia" },
+        { "value": "en", "title": "English", "transText": "繁體", "countryName": "Indonesia" }
+      ],
+      "languageISO": ["eng", "chi"],
+      "code": "hk",
+      "isoCode": "HKG",
+      "warehouse": "1-Hong Kong",
+      "defaultLanguage": "hk",
+      "currency": "$"
+    },
+    {
+      "name": "Indonesia",
+      "languages": [
+        { "value": "id", "title": "Indonesian", "transText": "BAHASA", "countryName": "Indonesia" },
+        { "value": "en", "title": "English", "transText": "English", "countryName": "Indonesia" }
+      ],
+      "languageISO": ["eng", "ind"],
+      "code": "id",
+      "isoCode": "IDN",
+      "warehouse": "1-Online",
+      "defaultLanguage": "id",
+      "currency": "Rp"
+    },
+    {
+      "name": "Japan",
+      "languages": [
+        { "value": "jp", "title": "Japaneese", "transText": "日本", "countryName": "日本語" },
+        { "value": "en", "title": "English", "transText": "English", "countryName": "Thailand" }
+      ],
+      "languageISO": ["eng", "jpn"],
+      "code": "jp",
+      "isoCode": "JPN",
+      "warehouse": "1-JPN MAIN",
+      "defaultLanguage": "jp",
+      "currency": "¥"
+    },
+    {
+      "name": "Cambodia",
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Combodia" }],
+      "languageISO": ["eng"],
+      "code": "kh",
+      "isoCode": "KHM",
+      "warehouse": "99-Temp",
+      "defaultLanguage": "en",
+      "currency": "៛"
+    },
+    {
+      "name": "Laos",
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Laos" }],
+      "languageISO": ["eng"],
+      "code": "la",
+      "isoCode": "LAO",
+      "warehouse": "1-Laos",
+      "defaultLanguage": "en",
+      "currency": "₭"
+    },
+    {
+      "name": "Malaysia",
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Malaysia" }],
+      "languageISO": ["eng"],
+      "code": "my",
+      "isoCode": "MMR",
+      "warehouse": "1-Online",
+      "defaultLanguage": "en",
+      "currency": "RM"
+    },
+    {
+      "name": "New Zealand",
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "New Zealand" }],
+      "languageISO": ["eng"],
+      "code": "nz",
+      "isoCode": "NZL",
+      "warehouse": "1-Online",
+      "defaultLanguage": "en",
+      "currency": "$"
+    },
+    {
+      "name": "Philippines",
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Philippines" }],
+      "languageISO": ["eng"],
+      "code": "ph",
+      "isoCode": "PHL",
+      "warehouse": "1-Philippines Warehouse",
+      "defaultLanguage": "en",
+      "currency": "₱"
+    },
+    {
+      "name": "Singapore",
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Singapore" }],
+      "languageISO": ["eng"],
+      "code": "sg",
+      "isoCode": "SGP",
+      "warehouse": "3-Online",
+      "defaultLanguage": "en",
+      "currency": "$"
+    },
+    {
+      "name": "Thailand",
+      "languages": [
+        { "value": "th", "title": "Thai", "transText": "ภาษาไทย", "countryName": "ประเทศไทย" },
+        { "value": "en", "title": "English", "transText": "English", "countryName": "Thailand" }
+      ],
+      "languageISO": ["eng"],
+      "code": "th",
+      "isoCode": "THA",
+      "warehouse": "906-Online",
+      "defaultLanguage": "th",
+      "currency": "฿"
+    },
+    {
+      "name": "Taiwan",
+      "languages": [
+        { "value": "tw", "title": "Taiwan", "transText": "台灣", "countryName": "台灣" },
+        { "value": "en", "title": "English", "transText": "English", "countryName": "Taiwan" }
+      ],
+      "languageISO": ["eng"],
+      "code": "tw",
+      "isoCode": "twn",
+      "warehouse": "906-Online",
+      "defaultLanguage": "tw",
+      "currency": "$"
+    },
+    {
+      "name": "Vietnam",
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Vietnam" }],
+      "languageISO": ["eng"],
+      "code": "vn",
+      "isoCode": "VNM",
+      "warehouse": "1-Hanoi",
+      "defaultLanguage": "en",
+      "currency": "₫"
+    }
+  ]
+}

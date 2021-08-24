@@ -31,7 +31,7 @@ PlaceOrder _$PlaceOrderFromJson(Map<String, dynamic> json) {
     taxedAs: json['taxedAs'] as String,
     addedLines:
         AddedLineItems.fromJson(json['added_lines'] as Map<String, dynamic>),
-    id: Id.fromJson(json['id'] as Map<String, dynamic>),
+    id: IdTypeString.fromJson(json['id'] as Map<String, dynamic>),
     href: json['href'] as String,
   );
 }
@@ -161,6 +161,16 @@ Map<String, dynamic> _$EnrollerToJson(Enroller instance) => <String, dynamic>{
       'humanName': instance.humanName,
     };
 
+Tax _$TaxFromJson(Map<String, dynamic> json) {
+  return Tax(
+    amount: (json['amount'] as num).toDouble(),
+  );
+}
+
+Map<String, dynamic> _$TaxToJson(Tax instance) => <String, dynamic>{
+      'amount': instance.amount,
+    };
+
 Sponsor _$SponsorFromJson(Map<String, dynamic> json) {
   return Sponsor(
     href: json['href'] as String,
@@ -242,16 +252,31 @@ Map<String, dynamic> _$IdTypeStringToJson(IdTypeString instance) =>
 
 Terms _$TermsFromJson(Map<String, dynamic> json) {
   return Terms(
-    priceEach: json['priceEach'] as int,
-    subtotal: json['subtotal'] as int,
     discount: Discount.fromJson(json['discount'] as Map<String, dynamic>),
+    freight: Discount.fromJson(json['freight'] as Map<String, dynamic>),
+    pv: json['pv'] as int,
+    subtotal: json['subtotal'] as int,
+    tax: Tax.fromJson(json['tax'] as Map<String, dynamic>),
+    taxableTotal: (json['taxableTotal'] as num).toDouble(),
+    total: json['total'] as int,
+    discountDisplay:
+        Discount.fromJson(json['discountDisplay'] as Map<String, dynamic>),
+    period: json['period'] as String,
+    weight: (json['weight'] as num).toDouble(),
   );
 }
 
 Map<String, dynamic> _$TermsToJson(Terms instance) => <String, dynamic>{
-      'priceEach': instance.priceEach,
-      'subtotal': instance.subtotal,
       'discount': instance.discount,
+      'freight': instance.freight,
+      'pv': instance.pv,
+      'subtotal': instance.subtotal,
+      'tax': instance.tax,
+      'taxableTotal': instance.taxableTotal,
+      'total': instance.total,
+      'discountDisplay': instance.discountDisplay,
+      'period': instance.period,
+      'weight': instance.weight,
     };
 
 Discount _$DiscountFromJson(Map<String, dynamic> json) {
@@ -266,7 +291,7 @@ Map<String, dynamic> _$DiscountToJson(Discount instance) => <String, dynamic>{
 
 Aggregate _$AggregateFromJson(Map<String, dynamic> json) {
   return Aggregate(
-    aggregate: json['aggregate'] as int,
+    aggregate: Discount.fromJson(json['aggregate'] as Map<String, dynamic>),
   );
 }
 
@@ -279,7 +304,7 @@ Transactions _$TransactionsFromJson(Map<String, dynamic> json) {
     items: (json['items'] as List<dynamic>)
         .map((e) => TransactionItems.fromJson(e as Map<String, dynamic>))
         .toList(),
-    aggregate: Aggregate.fromJson(json['aggregate'] as Map<String, dynamic>),
+    aggregate: Discount.fromJson(json['aggregate'] as Map<String, dynamic>),
   );
 }
 

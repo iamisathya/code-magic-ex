@@ -1,19 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:code_magic_ex/models/common_methods.dart';
+import 'common_methods.dart';
 
 part 'order_list_rmas.g.dart';
 
 @JsonSerializable()
 class OrdersAndRmas {
   @JsonKey(name: "orders")
-  List<AllOrders> orders;
+  final List<AllOrders> orders;
   @JsonKey(name: "rmas")
-  List<AllRma> rmas;
+  final List<AllRma> rmas;
 
-  OrdersAndRmas({
-    required this.orders,
-    required this.rmas,
+  const OrdersAndRmas({
+    this.orders = const <AllOrders>[],
+    this.rmas = const <AllRma>[],
   });
 
   factory OrdersAndRmas.fromJson(Map<String, dynamic> json) =>
@@ -25,37 +25,37 @@ class OrdersAndRmas {
 @JsonSerializable()
 class RmaItem {
   @JsonKey(name: "creator")
-  CommonHumanNameObject creator;
+  final CommonHumanNameObject creator;
   @JsonKey(name: "customer")
-  CustomerDetails customer;
+  final CustomerDetails customer;
   @JsonKey(name: "currency")
-  String currency;
+  final String currency;
   @JsonKey(name: "order")
-  OrderData order;
+  final OrderData order;
   @JsonKey(name: "terms")
-  Terms terms;
+  final Terms terms;
   @JsonKey(name: "dateCreated")
-  String dateCreated;
+  final String dateCreated;
   @JsonKey(name: "id")
-  CommonIdAndIota id;
+  final CommonIdAndIota id;
   @JsonKey(name: "shipToName")
-  CommonShipToNameFull shipToName;
+  final CommonShipToNameFull shipToName;
   @JsonKey(name: "type")
-  String type;
+  final String type;
   @JsonKey(name: "href")
-  String href;
+  final String href;
 
-  RmaItem({
-    required this.creator,
-    required this.customer,
-    required this.currency,
-    required this.order,
-    required this.terms,
-    required this.dateCreated,
-    required this.id,
-    required this.shipToName,
-    required this.type,
-    required this.href,
+  const RmaItem({
+    this.creator = const CommonHumanNameObject(),
+    this.customer = const CustomerDetails(),
+    this.currency = "",
+    this.order = const OrderData(),
+    this.terms = const Terms(),
+    this.dateCreated = "",
+    this.id = const CommonIdAndIota(),
+    this.shipToName = const CommonShipToNameFull(),
+    this.type = "",
+    this.href = "",
   });
 
   factory RmaItem.fromJson(Map<String, dynamic> json) =>
@@ -67,13 +67,13 @@ class RmaItem {
 @JsonSerializable()
 class OrderData {
   @JsonKey(name: "id")
-  CommonIdAndIota id;
+  final CommonIdAndIota id;
   @JsonKey(name: "href")
-  String href;
+  final String href;
 
-  OrderData({
-    required this.id,
-    required this.href,
+  const OrderData({
+    this.id = const CommonIdAndIota(),
+    this.href = "",
   });
 
   factory OrderData.fromJson(Map<String, dynamic> json) =>
@@ -85,10 +85,10 @@ class OrderData {
 @JsonSerializable()
 class AllOrders {
   @JsonKey(name: "items")
-  List<OrderItem> items;
+  final List<OrderItem> items;
 
-  AllOrders({
-    required this.items,
+  const AllOrders({
+    this.items = const <OrderItem>[],
   });
 
   factory AllOrders.fromJson(Map<String, dynamic> json) =>
@@ -100,10 +100,10 @@ class AllOrders {
 @JsonSerializable()
 class AllRma {
   @JsonKey(name: "items")
-  List<RmaItem> items;
+  final List<RmaItem> items;
 
-  AllRma({
-    required this.items,
+  const AllRma({
+    this.items = const <RmaItem>[],
   });
 
   factory AllRma.fromJson(Map<String, dynamic> json) => _$AllRmaFromJson(json);
@@ -114,40 +114,40 @@ class AllRma {
 @JsonSerializable()
 class OrderItem {
   @JsonKey(name: "creator")
-  CommonHumanNameObject creator;
+  final CommonHumanNameObject creator;
   @JsonKey(name: "currency")
-  String currency;
+  final String currency;
   @JsonKey(name: "customer")
-  CustomerDetails customer;
+  final CustomerDetails customer;
   @JsonKey(name: "dateCreated")
-  String dateCreated;
+  final String dateCreated;
   @JsonKey(name: "id")
-  CommonIdAndIota id;
+  final CommonIdAndIota id;
   @JsonKey(name: "terms")
-  Terms terms;
+  final Terms terms;
   @JsonKey(name: "shipToName")
-  CommonShipToNameFull shipToName;
+  final CommonShipToNameFull shipToName;
   @JsonKey(name: "source")
-  Map<String, dynamic> source;
+  final Map<String, dynamic> source;
   @JsonKey(name: "type")
-  String type;
+  final String type;
   @JsonKey(name: "paymentStatus")
-  String paymentStatus;
+  final String paymentStatus;
   @JsonKey(name: "href")
-  String href;
+  final String href;
 
-  OrderItem({
-    required this.creator,
-    required this.currency,
-    required this.customer,
-    required this.dateCreated,
-    required this.id,
-    required this.terms,
-    required this.shipToName,
-    required this.source,
-    required this.type,
-    required this.paymentStatus,
-    required this.href,
+  const OrderItem({
+    this.creator = const CommonHumanNameObject(),
+    this.currency = "",
+    this.customer = const CustomerDetails(),
+    this.dateCreated = "",
+    this.id = const CommonIdAndIota(),
+    this.terms = const Terms(),
+    this.shipToName =  const CommonShipToNameFull(),
+    this.source = const <String, dynamic>{},
+    this.type = "",
+    this.paymentStatus = "",
+    this.href = "",
   });
 
   factory OrderItem.fromJson(Map<String, dynamic> json) =>
@@ -159,16 +159,16 @@ class OrderItem {
 @JsonSerializable()
 class CustomerDetails {
   @JsonKey(name: "id")
-  CommonIdTypeString id;
+  final CommonIdTypeString id;
   @JsonKey(name: "humanName")
-  CompleteHumanThName humanName;
+  final CompleteHumanThName humanName;
   @JsonKey(name: "href")
-  String href;
+  final String href;
 
-  CustomerDetails({
-    required this.id,
-    required this.humanName,
-    required this.href,
+  const CustomerDetails({
+    this.id = const CommonIdTypeString(),
+    this.humanName = const CompleteHumanThName(),
+    this.href = "",
   });
 
   factory CustomerDetails.fromJson(Map<String, dynamic> json) =>
@@ -180,13 +180,13 @@ class CustomerDetails {
 @JsonSerializable()
 class Terms {
   @JsonKey(name: "total")
-  double total;
+  final double total;
   @JsonKey(name: "pv")
-  int pv;
+  final int pv;
 
-  Terms({
-    required this.total,
-    required this.pv,
+  const Terms({
+    this.total = 0.0,
+    this.pv = 0,
   });
 
   factory Terms.fromJson(Map<String, dynamic> json) => _$TermsFromJson(json);

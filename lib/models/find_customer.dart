@@ -1,5 +1,6 @@
-import 'package:code_magic_ex/models/common_methods.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'common_methods.dart';
 
 part 'find_customer.g.dart';
 
@@ -44,6 +45,8 @@ class CustomerData {
   String status;
   @JsonKey(name: "type")
   String type;
+  @JsonKey(name: "email")
+  String email;
   @JsonKey(name: "entryPeriod")
   String entryPeriod;
   @JsonKey(name: "subscriptions")
@@ -60,6 +63,7 @@ class CustomerData {
     required this.joinDate,
     required this.status,
     required this.type,
+    required this.email,
     required this.entryPeriod,
     required this.subscriptions,
   });

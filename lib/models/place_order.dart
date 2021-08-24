@@ -43,7 +43,7 @@ class PlaceOrder {
   @JsonKey(name: "added_lines")
   AddedLineItems addedLines;
   @JsonKey(name: "id")
-  Id id;
+  IdTypeString id;
   @JsonKey(name: "href")
   String href;
 
@@ -223,6 +223,18 @@ class Enroller {
 }
 
 @JsonSerializable()
+class Tax {
+  double amount;
+
+  Tax({required this.amount});
+
+  factory Tax.fromJson(Map<String, dynamic> json) =>
+      _$TaxFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TaxToJson(this);
+}
+
+@JsonSerializable()
 class Sponsor {
   String href;
   Id id;
@@ -318,15 +330,28 @@ class IdTypeString {
 
 @JsonSerializable()
 class Terms {
-  int priceEach;
+ Discount discount;
+  Discount freight;
+  int pv;
   int subtotal;
-  Discount discount;
+  Tax tax;
+  double taxableTotal;
+  int total;
+  Discount discountDisplay;
+  String period;
+  double weight;
 
-  Terms({
-    required this.priceEach,
-    required this.subtotal,
-    required this.discount,
-  });
+  Terms(
+      {required this.discount,
+      required this.freight,
+      required this.pv,
+      required this.subtotal,
+      required this.tax,
+      required this.taxableTotal,
+      required this.total,
+      required this.discountDisplay,
+      required this.period,
+      required this.weight});
 
   factory Terms.fromJson(Map<String, dynamic> json) => _$TermsFromJson(json);
 
@@ -349,7 +374,7 @@ class Discount {
 
 @JsonSerializable()
 class Aggregate {
-  int aggregate;
+  Discount aggregate;
 
   Aggregate({
     required this.aggregate,
@@ -364,7 +389,7 @@ class Aggregate {
 @JsonSerializable()
 class Transactions {
   List<TransactionItems> items;
-  Aggregate aggregate;
+  Discount aggregate;
 
   Transactions({
     required this.items,

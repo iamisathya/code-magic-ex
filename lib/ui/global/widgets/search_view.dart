@@ -1,4 +1,5 @@
 //Create a SearchView
+import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class SearchViewWidget extends StatelessWidget {
@@ -12,25 +13,25 @@ class SearchViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = controller.text.isNotEmpty ? Colors.blue : Colors.grey;
+    final Color color = controller.text.isNotEmpty ? Theme.of(context).colorScheme.primary : Colors.grey;
     return Container(
         margin: const EdgeInsets.only(right: 16),
-        decoration: BoxDecoration(
-            border: Border.all(),
-            borderRadius: const BorderRadius.all(Radius.circular(8.0))),
         child: TextField(
           keyboardType: TextInputType.number,
-          cursorColor: Colors.grey[300],
+          cursorColor: Theme.of(context).colorScheme.primary,
           controller: controller,
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(16),
+            fillColor: Colors.white,
+            filled: true,
+            isDense: true,
+            contentPadding: const EdgeInsets.all(20.0),
+            focusedBorder: kFocusedOutlineInputBorder(),
+            border: kOutlineInputBorder(),
             hintText: hintText,
-            focusedBorder: InputBorder.none,
-            // prefixIcon: const Icon(Icons.search, color: Colors.grey),
             suffixIcon: IconButton(
                 onPressed: controller.text.isNotEmpty ? controller.clear : null,
                 color: color,
-                icon: const Icon(Icons.clear)),
+                icon: Icon(Icons.clear, color: Theme.of(context).colorScheme.primary,)),
             hintStyle: TextStyle(color: Colors.grey[300]),
           ),
         ));
