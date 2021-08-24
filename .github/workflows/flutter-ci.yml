@@ -44,8 +44,8 @@ jobs:
     - name: upload artifact to Firebase App Distribution
       uses: wzieba/Firebase-Distribution-Github-Action@v1
       with:
-        appId: 1:253724517387:android:b8046d8f51a97491aa930e
-        token: 1//0gn-xmS3tOP5oCgYIARAAGBASNwF-L9IruyhIfC0LZlJ-hhPMcaiSTk6Rm7METRBu6Zd0SLKtIQKsbttreB5kmSOAhyu8ciwc9B0
+        appId: ${{ secrets.FIREBASE_APP_ID }}
+        token: ${{ secrets.FIREBASE_TOKEN }}
         groups: testers
         file: app/outputs/apk/release/app-release.apk
     
