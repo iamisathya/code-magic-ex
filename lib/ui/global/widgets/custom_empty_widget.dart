@@ -14,9 +14,7 @@ class CustomEmptyWidget extends StatelessWidget {
     return Container(
         height: SizeConfig.screenHeight,
         alignment: FractionalOffset.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           SvgPicture.asset(
             svgIcon,
             width: SizeConfig.screenWidth * 0.8,

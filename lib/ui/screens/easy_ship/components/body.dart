@@ -14,7 +14,6 @@ import '../../../global/widgets/custom_error_widget.dart';
 import '../../../global/widgets/custom_loading_widget.dart';
 import '../../../global/widgets/search_view.dart';
 
-
 class Body extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());
   final TextEditingController searchConntroller = TextEditingController();
@@ -74,8 +73,8 @@ class Body extends StatelessWidget {
               }
             },
             height: 55,
-            child:
-                Text('search'.tr, style: Theme.of(context).textTheme.tableHeader),
+            child: Text('search'.tr,
+                style: Theme.of(context).textTheme.tableHeader),
           ),
         ],
       ),

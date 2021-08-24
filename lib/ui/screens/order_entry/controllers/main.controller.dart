@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -128,16 +127,14 @@ class OrderEntryController extends GetxController {
     errorMessage(e.error.toString());
     final message = _getErrorMessage(e.response!.data);
     renderErrorSnackBar(
-        title: "${e.response!.statusCode} Error!",
-        subTitle: message);
+        title: "${e.response!.statusCode} Error!", subTitle: message);
     returnResponse(e.response!);
   }
 
   void _onCatchError(Object err) {
     errorMessage(err.toString());
     renderErrorSnackBar(
-        title: "Error!",
-        subTitle: "Error while getting user details!");
+        title: "Error!", subTitle: "Error while getting user details!");
     LoggerService.instance.e(err.toString());
     _sendingMsgProgressBar.hide();
   }

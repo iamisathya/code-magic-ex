@@ -228,8 +228,7 @@ class Tax {
 
   Tax({required this.amount});
 
-  factory Tax.fromJson(Map<String, dynamic> json) =>
-      _$TaxFromJson(json);
+  factory Tax.fromJson(Map<String, dynamic> json) => _$TaxFromJson(json);
 
   Map<String, dynamic> toJson() => _$TaxToJson(this);
 }
@@ -330,7 +329,7 @@ class IdTypeString {
 
 @JsonSerializable()
 class Terms {
- Discount discount;
+  Discount discount;
   Discount freight;
   int pv;
   int subtotal;

@@ -8,13 +8,12 @@ import '../../controllers/orderentry.checkout.controller.dart';
 import 'components/body.dart';
 
 class CheckoutPage extends StatelessWidget {
-    static const String routeName = '/checkoutPage';
+  static const String routeName = '/checkoutPage';
   final OrderEntryCheckoutController controller =
       Get.put(OrderEntryCheckoutController());
 
-
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: kBackground,

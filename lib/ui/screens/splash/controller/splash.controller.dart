@@ -46,7 +46,8 @@ class SplashController extends GetxController {
         await getCurrentMarketConfig();
         _didSplashCompleted(responseUserInfo.id.unicity.toString());
       } else {
-        FirebaseAnalytics().logEvent(name: 'log_out',parameters: {'type': "session_expire"});
+        FirebaseAnalytics()
+            .logEvent(name: 'log_out', parameters: {'type': "session_expire"});
         Get.offAll(() => LoginScreen());
       }
     } on DioError catch (e) {
@@ -59,11 +60,12 @@ class SplashController extends GetxController {
   Future<void> getCurrentMarketConfig() async {
     try {
       final currentMarket = await store.read('current_market');
-      if(currentMarket != null) {
-        Globals.currentMarket = Markets.fromJson(currentMarket as Map<String, dynamic>);
+      if (currentMarket != null) {
+        Globals.currentMarket =
+            Markets.fromJson(currentMarket as Map<String, dynamic>);
         Globals.currency = Globals.currentMarket!.currency;
       }
-    } catch(err) {
+    } catch (err) {
       LoggerService.instance.e(err.toString());
     }
   }

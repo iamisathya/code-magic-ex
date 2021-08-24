@@ -67,4 +67,3 @@ void renderBottomSheet(BuildContext context) {
     backgroundColor: Colors.white,
   );
 }
-

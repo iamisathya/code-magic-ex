@@ -39,7 +39,7 @@ class AppThemes {
     unselectedWidgetColor: const Color(0x8a000000),
     disabledColor: const Color(0x61000000),
     buttonColor: const Color(0xffe0e0e0),
-    toggleableActiveColor:const  Color(0xff1b3ab1),
+    toggleableActiveColor: const Color(0xff1b3ab1),
     secondaryHeaderColor: const Color(0xffe9edfc),
     backgroundColor: const Color(0xffa6b6f2),
     dialogBackgroundColor: const Color(0xffffffff),
@@ -370,7 +370,8 @@ class AppThemes {
         fontStyle: FontStyle.normal,
       ),
       filled: false,
-      fillColor: Color(0x00000000), floatingLabelBehavior: FloatingLabelBehavior.auto,
+      fillColor: Color(0x00000000),
+      floatingLabelBehavior: FloatingLabelBehavior.auto,
       errorBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: Color(0xff000000),
@@ -499,7 +500,12 @@ class AppThemes {
         style: BorderStyle.none,
       ),
       borderRadius: BorderRadius.all(Radius.circular(0.0)),
-    )), textSelectionTheme: const TextSelectionThemeData(cursorColor: Color(0xff4285f4), selectionColor: Color(0xffa6b6f2), selectionHandleColor: Color(0xff7a91eb),),
+    )),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: Color(0xff4285f4),
+      selectionColor: Color(0xffa6b6f2),
+      selectionHandleColor: Color(0xff7a91eb),
+    ),
   );
 
   //the dark theme

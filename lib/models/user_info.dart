@@ -6,10 +6,11 @@ part 'user_info.g.dart';
 class UserInfoList {
   @JsonKey(name: "items")
   List<UserInfo> items;
-  
+
   UserInfoList({required this.items});
 
-  factory UserInfoList.fromJson(Map<String, dynamic> json) => _$UserInfoListFromJson(json);
+  factory UserInfoList.fromJson(Map<String, dynamic> json) =>
+      _$UserInfoListFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserInfoListToJson(this);
 }
@@ -77,54 +78,54 @@ class UserInfo {
       required this.type,
       required this.unicity});
 
-      // UserInfo()
-      // : achievementsHistory = CollectHrefFromMap(href: ""),
-      //   businessEntity = BusinessEntity(legalType: ""),
-      //   coapplicant = Coapplicant(
-      //       details: CoapplicantDetails(
-      //           humanName:
-      //               SortHumanName(firstName: "", fullName: "", lastName: ""))),
-      //   cumulativeMetricsProfile = CollectHrefFromMap(href: ""),
-      //   customerSite = CollectHrefFromMap(href: ""),
-      //   draftBankAccounts = CollectHrefFromMap(href: ""),
-      //   email = "",
-      //   enroller = EnrollerOrSponser(
-      //       href: "",
-      //       humanName: HumanNameEn(
-      //           firstName: "", lastName: "", fullName: "", fullNameEn: ""),
-      //       id: Id(unicity: "")),
-      //   entryPeriod = "",
-      //   homePhone = "",
-      //   href = "",
-      //   humanName = HumanName(
-      //       fullName: "", lastName: "", firstName: "", fullNameTh: ""),
-      //   id = Id(unicity: ""),
-      //   joinDate = "",
-      //   loginAssociations = CollectHrefFromMap(href: ""),
-      //   mainAddress = MainAddress(
-      //       address1: "",
-      //       address2: "",
-      //       city: "",
-      //       country: "",
-      //       state: "",
-      //       zip: ""),
-      //   metricsProfile = CollectHrefFromMap(href: ""),
-      //   metricsProfileHistory = CollectHrefFromMap(href: ""),
-      //   orders = CollectHrefFromMap(href: ""),
-      //   profilePicture = CollectHrefFromMap(href: ""),
-      //   rights = [],
-      //   sponsor = EnrollerOrSponser(
-      //       href: "",
-      //       humanName: HumanNameEn(
-      //           firstName: "", fullName: "", fullNameEn: "", lastName: ""),
-      //       id: Id(unicity: "")),
-      //   statements = CollectHrefFromMap(href: ""),
-      //   status = "",
-      //   subscriptions = [],
-      //   taxTerms = TaxTerms(taxId: ""),
-      //   type = "",
-      //   unicity = 0,
-      //   sponsoredCustomers = CollectHrefFromMap(href: "");
+  // UserInfo()
+  // : achievementsHistory = CollectHrefFromMap(href: ""),
+  //   businessEntity = BusinessEntity(legalType: ""),
+  //   coapplicant = Coapplicant(
+  //       details: CoapplicantDetails(
+  //           humanName:
+  //               SortHumanName(firstName: "", fullName: "", lastName: ""))),
+  //   cumulativeMetricsProfile = CollectHrefFromMap(href: ""),
+  //   customerSite = CollectHrefFromMap(href: ""),
+  //   draftBankAccounts = CollectHrefFromMap(href: ""),
+  //   email = "",
+  //   enroller = EnrollerOrSponser(
+  //       href: "",
+  //       humanName: HumanNameEn(
+  //           firstName: "", lastName: "", fullName: "", fullNameEn: ""),
+  //       id: Id(unicity: "")),
+  //   entryPeriod = "",
+  //   homePhone = "",
+  //   href = "",
+  //   humanName = HumanName(
+  //       fullName: "", lastName: "", firstName: "", fullNameTh: ""),
+  //   id = Id(unicity: ""),
+  //   joinDate = "",
+  //   loginAssociations = CollectHrefFromMap(href: ""),
+  //   mainAddress = MainAddress(
+  //       address1: "",
+  //       address2: "",
+  //       city: "",
+  //       country: "",
+  //       state: "",
+  //       zip: ""),
+  //   metricsProfile = CollectHrefFromMap(href: ""),
+  //   metricsProfileHistory = CollectHrefFromMap(href: ""),
+  //   orders = CollectHrefFromMap(href: ""),
+  //   profilePicture = CollectHrefFromMap(href: ""),
+  //   rights = [],
+  //   sponsor = EnrollerOrSponser(
+  //       href: "",
+  //       humanName: HumanNameEn(
+  //           firstName: "", fullName: "", fullNameEn: "", lastName: ""),
+  //       id: Id(unicity: "")),
+  //   statements = CollectHrefFromMap(href: ""),
+  //   status = "",
+  //   subscriptions = [],
+  //   taxTerms = TaxTerms(taxId: ""),
+  //   type = "",
+  //   unicity = 0,
+  //   sponsoredCustomers = CollectHrefFromMap(href: "");
 
   factory UserInfo.fromJson(Map<String, dynamic> json) =>
       _$UserInfoFromJson(json);

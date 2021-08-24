@@ -6,7 +6,8 @@ import '../../bloc/enrollconfirmation.controller.dart';
 import 'components/body.dart';
 
 class EnrollConfirmation extends StatelessWidget {
-  final EnrollConfirmationController controller = Get.put(EnrollConfirmationController());
+  final EnrollConfirmationController controller =
+      Get.put(EnrollConfirmationController());
   static const String routeName = '/enrollHomePage';
 
   @override
@@ -22,9 +23,7 @@ class EnrollConfirmation extends StatelessWidget {
   List<Widget> _renderActionBar(BuildContext context) {
     return <Widget>[
       IconButton(
-        icon: const Icon(
-          Icons.mode_edit_outline_outlined
-        ),
+        icon: const Icon(Icons.mode_edit_outline_outlined),
         tooltip: 'Edit',
         onPressed: () => controller.onCancel(),
       ),

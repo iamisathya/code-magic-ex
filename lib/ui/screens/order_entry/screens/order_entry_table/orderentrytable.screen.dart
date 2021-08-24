@@ -15,11 +15,10 @@ class OrderEntryTable extends StatelessWidget {
       Get.put(OrderEntryTableController());
   @override
   Widget build(BuildContext context) {
-     Timer(const Duration(milliseconds: 100), () {
+    Timer(const Duration(milliseconds: 100), () {
       controller.loadInventoryRecords(context);
     });
     return Scaffold(
-        
         appBar: TransAppBar(
           title: controller.passedUser.fullName,
           subTitle: controller.passedUser.userId,

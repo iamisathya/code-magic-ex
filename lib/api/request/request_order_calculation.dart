@@ -31,7 +31,11 @@ class Order {
   @JsonKey(name: "shippingMethod")
   ShippingMethod shippingMethod;
 
-  Order({required this.lines, required this.customer, required this.shipToAddress, required this.shippingMethod });
+  Order(
+      {required this.lines,
+      required this.customer,
+      required this.shipToAddress,
+      required this.shippingMethod});
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 
@@ -43,7 +47,7 @@ class Lines {
   @JsonKey(name: "items")
   List<LineItem> items;
 
-  Lines({required this.items });
+  Lines({required this.items});
 
   factory Lines.fromJson(Map<String, dynamic> json) => _$LinesFromJson(json);
 

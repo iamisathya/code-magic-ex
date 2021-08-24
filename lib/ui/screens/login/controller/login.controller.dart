@@ -27,10 +27,9 @@ import '../../../../utilities/user_session.dart';
 import '../../../global/widgets/confirmation_dialog.dart';
 import '../../../global/widgets/overlay_progress.dart';
 
-
 class LoginController extends GetxController {
   final store = GetStorage();
-  
+
   final TextEditingController userIdController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -109,8 +108,8 @@ class LoginController extends GetxController {
           .getCustomerData(UserSessionManager.shared.customerUniqueId);
 
       //*  getCustomerData from api
-      final Markets? currentMarket =
-          await getMarketConfig(responseUserInfo.mainAddress.country.toLowerCase());
+      final Markets? currentMarket = await getMarketConfig(
+          responseUserInfo.mainAddress.country.toLowerCase());
 
       if (currentMarket == null) throw "Your market is not supported";
 
@@ -126,7 +125,7 @@ class LoginController extends GetxController {
       await store.write('current_market', currentMarket);
       Globals.currentMarket = currentMarket;
       Globals.currency = currentMarket.currency;
-      
+
       UserSessionManager.shared.customerId = userResponse.customerId;
       UserSessionManager.shared.customerCode = userResponse.customerCode;
       UserSessionManager.shared.customerPoCode = userResponse.customerPoCode;

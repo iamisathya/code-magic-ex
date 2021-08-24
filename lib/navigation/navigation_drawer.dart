@@ -101,8 +101,8 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
             title: FutureBuilder<PackageInfo>(
                 future: _packageInfo(),
-                builder:
-                    (BuildContext context, AsyncSnapshot<PackageInfo> snapshot) {
+                builder: (BuildContext context,
+                    AsyncSnapshot<PackageInfo> snapshot) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

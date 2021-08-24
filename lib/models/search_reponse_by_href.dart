@@ -23,7 +23,6 @@ class SearchedUserInfo {
   @JsonKey(name: "joinDate")
   String joinDate;
 
-
   SearchedUserInfo({
     required this.id,
     required this.humanName,

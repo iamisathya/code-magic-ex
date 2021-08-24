@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class DafultAlertDialog extends StatelessWidget {
   final Color bgColor;
   final String title;

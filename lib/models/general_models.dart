@@ -62,7 +62,6 @@ class VerifyOrderResponse {
   Map<String, dynamic> toJson() => _$VerifyOrderResponseToJson(this);
 }
 
-
 @JsonSerializable()
 class SendOrderOnlineResponse {
   @JsonKey(name: "status")

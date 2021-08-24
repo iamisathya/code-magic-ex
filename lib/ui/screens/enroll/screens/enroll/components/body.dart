@@ -71,8 +71,7 @@ class Body extends StatelessWidget {
                         ? Padding(
                             padding: const EdgeInsets.only(
                                 bottom: 8.0, left: 8.0, right: 8.0),
-                            child: Text(
-                                "years20".tr),
+                            child: Text("years20".tr),
                           )
                         : const SizedBox()),
                     _renderDropdownButton(
@@ -169,8 +168,7 @@ class Body extends StatelessWidget {
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.only(left: 8),
-                child: Text(
-                    "more_info".tr,
+                child: Text("more_info".tr,
                     style: const TextStyle(color: Colors.red)),
               ),
             )

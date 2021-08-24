@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -62,7 +61,8 @@ class Body extends StatelessWidget {
                     ),
                     ColumnItem(
                       title: "order_number".tr,
-                      value: controller.orderResponse.id.unicity.retrieveOrderId(),
+                      value:
+                          controller.orderResponse.id.unicity.retrieveOrderId(),
                     ),
                   ],
                 ),

@@ -25,10 +25,13 @@ class CustomErrorWidget extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          if (showMessage == true) const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text("Sorry! something went wrong."),
-                ) else const SizedBox(),
+          if (showMessage == true)
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text("Sorry! something went wrong."),
+            )
+          else
+            const SizedBox(),
         ]));
   }
 }

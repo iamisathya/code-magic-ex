@@ -9,7 +9,6 @@ enum EasyShipSortTypes {
   totalPV
 }
 
-
 enum InventorySortTypes {
   itemCode,
   itemName,
@@ -20,10 +19,7 @@ enum InventorySortTypes {
   totalPV
 }
 
-enum StockTypes {
-  onHand,
-  outOfStock
-}
+enum StockTypes { onHand, outOfStock }
 
 enum OpenPoTypes {
   poNumber,
@@ -40,14 +36,7 @@ enum CartUpdate {
   decreament,
 }
 
-enum EasyShipTypes {
-  orderNumber,
-  period,
-  productName,
-  itemCode,
-  pv,
-  price
-}
+enum EasyShipTypes { orderNumber, period, productName, itemCode, pv, price }
 
 enum SnackBarType {
   error,

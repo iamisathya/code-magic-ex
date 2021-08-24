@@ -21,8 +21,7 @@ class ConfirmationDialog {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             title: Text(title,
-                style: const TextStyle(
-                    fontWeight: AppFontWeight.bold)),
+                style: const TextStyle(fontWeight: AppFontWeight.bold)),
             content: Text(message),
             actions: <Widget>[
               TextButton(

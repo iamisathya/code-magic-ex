@@ -1,4 +1,3 @@
-
 import 'package:code_magic_ex/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,25 +34,24 @@ class Body extends StatelessWidget {
 
   Widget _getBodyWidget(BuildContext context) {
     return HorizontalDataTable(
-        leftHandSideColumnWidth: 140,
-        rightHandSideColumnWidth: 1200,
-        isFixedHeader: true,
-        headerWidgets: _getTitleWidget(),
-        leftSideItemBuilder: _generateFirstColumnRow,
-        rightSideItemBuilder: _generateRightHandSideColumnRow,
-        itemCount: controller.tempInventoryRecords.value.items.length,
-        rowSeparatorWidget: kDivider(),
-      
+      leftHandSideColumnWidth: 140,
+      rightHandSideColumnWidth: 1200,
+      isFixedHeader: true,
+      headerWidgets: _getTitleWidget(),
+      leftSideItemBuilder: _generateFirstColumnRow,
+      rightSideItemBuilder: _generateRightHandSideColumnRow,
+      itemCount: controller.tempInventoryRecords.value.items.length,
+      rowSeparatorWidget: kDivider(),
     );
   }
 
   List<Widget> _getTitleWidget() {
     String totalPrice =
         calculateTotalPrice(controller.tempInventoryRecords.value, 'price');
-        totalPrice = NumberFormat().format(Parsing.intFrom(totalPrice));
+    totalPrice = NumberFormat().format(Parsing.intFrom(totalPrice));
     String totalPv =
         calculateTotalPrice(controller.tempInventoryRecords.value, 'pv');
-        totalPv = NumberFormat().format(Parsing.intFrom(totalPv));
+    totalPv = NumberFormat().format(Parsing.intFrom(totalPv));
 
     return [
       _renderTableHeader(
@@ -66,10 +64,13 @@ class Body extends StatelessWidget {
           "price".tr, InventorySortTypes.price, Alignment.centerRight, 100),
       _renderTableHeader("ctotal".tr, InventorySortTypes.quantityOnHand,
           Alignment.centerRight, 180),
-      _renderTableHeader("${"total_price_title".tr} ${"($totalPrice ${Globals.currency})"}",
-          InventorySortTypes.totalAccumulatedPrice, Alignment.centerRight, 340),
-      _renderTableHeader("${"totalpv".tr} ${"($totalPv ${Globals.currency})"}", InventorySortTypes.totalPV,
-          Alignment.centerRight, 200),
+      _renderTableHeader(
+          "${"total_price_title".tr} ${"($totalPrice ${Globals.currency})"}",
+          InventorySortTypes.totalAccumulatedPrice,
+          Alignment.centerRight,
+          340),
+      _renderTableHeader("${"totalpv".tr} ${"($totalPv ${Globals.currency})"}",
+          InventorySortTypes.totalPV, Alignment.centerRight, 200),
     ];
   }
 
@@ -81,7 +82,8 @@ class Body extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
       alignment: Alignment.center,
       decoration: BoxDecoration(border: Border.all(width: 0.5)),
-      child: Text(currentItem.item.id.unicity, style: Theme.of(context).textTheme.button),
+      child: Text(currentItem.item.id.unicity,
+          style: Theme.of(context).textTheme.button),
     );
   }
 
@@ -95,11 +97,12 @@ class Body extends StatelessWidget {
             decoration: BoxDecoration(border: Border.all(width: 0.5)),
             padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
             alignment: Alignment.center,
-            child: Text(currentItem.catalogSlideContent.content.description, style: Theme.of(context).textTheme.subtitle2)),
-        _renderDataCell(
-            100, NumberFormat().format(currentItem.terms.pvEach), Alignment.centerRight),
-        _renderDataCell(
-            100, NumberFormat().format(currentItem.terms.priceEach), Alignment.centerRight),
+            child: Text(currentItem.catalogSlideContent.content.description,
+                style: Theme.of(context).textTheme.subtitle2)),
+        _renderDataCell(100, NumberFormat().format(currentItem.terms.pvEach),
+            Alignment.centerRight),
+        _renderDataCell(100, NumberFormat().format(currentItem.terms.priceEach),
+            Alignment.centerRight),
         _renderDataCell(180, currentItem.quantityOnHand, Alignment.centerRight),
         _renderDataCell(
             340,
@@ -135,8 +138,9 @@ class Body extends StatelessWidget {
 
   Widget _getTitleItemWidget(String label, double width, Alignment alignment) {
     return Container(
-      decoration:
-          BoxDecoration(color: Theme.of(Get.context!).colorScheme.primary, border: Border.all(width: 0.5)),
+      decoration: BoxDecoration(
+          color: Theme.of(Get.context!).colorScheme.primary,
+          border: Border.all(width: 0.5)),
       width: width,
       height: 56,
       padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -151,7 +155,10 @@ class Body extends StatelessWidget {
   }
 
   Container _renderDataCell(
-      double width, String titleText, Alignment textAlign, ) {
+    double width,
+    String titleText,
+    Alignment textAlign,
+  ) {
     return Container(
       width: width,
       height: 65,
@@ -160,10 +167,8 @@ class Body extends StatelessWidget {
       alignment: textAlign,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text(
-          titleText,
-          style: Theme.of(Get.context!).textTheme.subtitle2
-        ),
+        child:
+            Text(titleText, style: Theme.of(Get.context!).textTheme.subtitle2),
       ),
     );
   }

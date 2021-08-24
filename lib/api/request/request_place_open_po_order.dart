@@ -22,16 +22,16 @@ class RequestPlaceOpenPoOrder {
   @JsonKey(name: 'po_img')
   String base64Image;
 
-  RequestPlaceOpenPoOrder(
-      {required this.comment,
-      required this.customerId,
-      required this.customeDscId,
-      required this.poId,
-      required this.totalPv,
-      required this.totalPrice,
-      required this.customerName,
-      required this.item,
-      required this.base64Image,
+  RequestPlaceOpenPoOrder({
+    required this.comment,
+    required this.customerId,
+    required this.customeDscId,
+    required this.poId,
+    required this.totalPv,
+    required this.totalPrice,
+    required this.customerName,
+    required this.item,
+    required this.base64Image,
   });
 
   factory RequestPlaceOpenPoOrder.fromJson(Map<String, dynamic> json) =>
@@ -39,4 +39,3 @@ class RequestPlaceOpenPoOrder {
 
   Map<String, dynamic> toJson() => _$RequestPlaceOpenPoOrderToJson(this);
 }
-

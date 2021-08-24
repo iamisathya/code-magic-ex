@@ -35,8 +35,7 @@ class OrderCompleteController extends GetxController {
         "${Address.orderedItems}/31512d2a1d4a2a5860bc785d27d1f752ef2a0cd919b417e7899c79ae4fc690d6&token=${UserSessionManager.shared.customerToken.token}&number=423160354");
   }
 
-    void openProductList() {
-    launchURL(
-        "${Address.printOrderItems}?number=423160354");
+  void openProductList() {
+    launchURL("${Address.printOrderItems}?number=423160354");
   }
 }

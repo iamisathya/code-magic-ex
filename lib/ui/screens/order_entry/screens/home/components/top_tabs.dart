@@ -16,7 +16,7 @@ class SearchRadioOptions extends StatelessWidget {
                 child: Container(
                   margin: kEdgeA8(),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                      color: Colors.white,
                       border: kBorderAll(w: 3),
                       borderRadius: kBorderRadius(w: 12)),
                   child: RadioListTile(

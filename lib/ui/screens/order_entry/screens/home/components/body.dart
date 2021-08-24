@@ -47,10 +47,12 @@ class Body extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListTile(
-          leading: Icon(Icons.person_search_outlined, color: Theme.of(context).colorScheme.primary),
+          leading: Icon(Icons.person_search_outlined,
+              color: Theme.of(context).colorScheme.primary),
           title: Text(currentItem.id.unicity.toString()),
           subtitle: Text(currentItem.humanName.fullName),
-          trailing: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.primary),
+          trailing: Icon(Icons.arrow_forward_ios,
+              color: Theme.of(context).colorScheme.primary),
           onTap: () => controller.onClickOpenOrderEntry(currentItem),
         ),
       ),

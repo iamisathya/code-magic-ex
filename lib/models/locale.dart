@@ -5,7 +5,7 @@ part 'locale.g.dart';
 @JsonSerializable()
 class LocaleModel {
   String language;
-  String location;  
+  String location;
 
   LocaleModel({required this.language, required this.location});
 
@@ -14,6 +14,5 @@ class LocaleModel {
 
   Map<String, dynamic> toJson() => _$LocaleModelToJson(this);
 
-  Map<String, dynamic> toMap() =>
-      {'language': language, 'location': location};
+  Map<String, dynamic> toMap() => {'language': language, 'location': location};
 }

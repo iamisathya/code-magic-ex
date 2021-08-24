@@ -143,7 +143,7 @@ class OrderItem {
     this.dateCreated = "",
     this.id = const CommonIdAndIota(),
     this.terms = const Terms(),
-    this.shipToName =  const CommonShipToNameFull(),
+    this.shipToName = const CommonShipToNameFull(),
     this.source = const <String, dynamic>{},
     this.type = "",
     this.paymentStatus = "",

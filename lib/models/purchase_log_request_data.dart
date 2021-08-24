@@ -78,7 +78,8 @@ class ProductLines {
 
   ProductLines({required this.items});
 
-  factory ProductLines.fromJson(Map<String, dynamic> json) => _$ProductLinesFromJson(json);
+  factory ProductLines.fromJson(Map<String, dynamic> json) =>
+      _$ProductLinesFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductLinesToJson(this);
 }
@@ -92,7 +93,8 @@ class ProductLineItem {
 
   ProductLineItem({required this.item, required this.quantity});
 
-  factory ProductLineItem.fromJson(Map<String, dynamic> json) => _$ProductLineItemFromJson(json);
+  factory ProductLineItem.fromJson(Map<String, dynamic> json) =>
+      _$ProductLineItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductLineItemToJson(this);
 }
@@ -147,7 +149,8 @@ class ProductTerms {
     required this.period,
   });
 
-  factory ProductTerms.fromJson(Map<String, dynamic> json) => _$ProductTermsFromJson(json);
+  factory ProductTerms.fromJson(Map<String, dynamic> json) =>
+      _$ProductTermsFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductTermsToJson(this);
 }
