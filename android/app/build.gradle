@@ -42,6 +42,30 @@ def getRootProjectExtOrCoreProperty(name, firebaseCoreProject) {
 
 android {
     compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    // def versionPropsFile = file('version.properties')
+
+    // if (versionPropsFile.canRead()) {
+    //     def Properties versionProps = new Properties()
+
+    //     versionProps.load(new FileInputStream(versionPropsFile))
+
+    //     def code = versionProps['VERSION_CODE'].toInteger() + 1
+
+    //     versionProps['VERSION_CODE']=code.toString()
+    //     versionProps.store(versionPropsFile.newWriter(), null)
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.1"
+        minSdkVersion 14
+        targetSdkVersion 18
+    }
+    // }
+    // else {
+    //     throw new GradleException("Could not read version.properties!")
+    // }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
