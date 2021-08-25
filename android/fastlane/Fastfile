@@ -22,7 +22,7 @@ platform :android do
       build_type: 'Release'
   )
   lane :android_beta_app do
-      increament_verion_code(
+      increment_version_code(
           gradle_file_path: "./app/build.gradle"
       )
       firebase_app_distribution(
