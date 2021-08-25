@@ -22,9 +22,6 @@ platform :android do
       build_type: 'Release'
   )
   lane :android_beta_app do
-      increment_version_code(
-          gradle_file_path: "./app/build.gradle"
-      )
       firebase_app_distribution(
           app: ENV["FIREBASE_APP_ID"],
           firebase_cli_token: ENV["FIREBASE_TOKEN"],
