@@ -16,7 +16,7 @@
 default_platform(:android)
 
 platform :android do
-  desc "Submit a new beta build to Firebase App Distribution"
+  desc "Submit a new android beta build to Firebase App Distribution"
   gradle(
       task: 'assemble',
       build_type: 'Release'
