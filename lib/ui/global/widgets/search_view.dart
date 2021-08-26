@@ -23,12 +23,6 @@ class SearchViewWidget extends StatelessWidget {
           cursorColor: Theme.of(context).colorScheme.primary,
           controller: controller,
           decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            isDense: true,
-            contentPadding: const EdgeInsets.all(20.0),
-            focusedBorder: kFocusedOutlineInputBorder(),
-            border: kOutlineInputBorder(),
             hintText: hintText,
             suffixIcon: IconButton(
                 onPressed: controller.text.isNotEmpty ? controller.clear : null,

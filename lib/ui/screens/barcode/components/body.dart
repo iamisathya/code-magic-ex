@@ -27,7 +27,6 @@ class Body extends StatelessWidget {
               decoration: const InputDecoration(
                 hintText: "Search",
                 helperText: "Please enter order number",
-                focusedBorder: InputBorder.none,
                 prefixIcon: Icon(Icons.search),
               ),
             ),
