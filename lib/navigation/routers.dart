@@ -1,3 +1,4 @@
+import 'package:code_magic_ex/ui/screens/settings/settings.screen.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -38,5 +39,6 @@ class AppRoutes {
     GetPage(name: MainHomeScreen.routeName, page: () => MainHomeScreen()),
     GetPage(name: LoginScreen.routeName, page: () => LoginScreen()),
     GetPage(name: CheckoutPage.routeName, page: () => CheckoutPage()),
+    GetPage(name: SettingsPage.routeName, page: () => SettingsPage()),
   ];
 }

@@ -31,6 +31,16 @@ class NavigationDrawer extends StatelessWidget {
     return packageInfo;
   }
 
+  void onSelectItem(String path) {
+    Get.back();
+    Get.offNamed(path);
+  }
+
+  void onSelectSettings() {
+    Get.back();
+    Get.to(() => SettingsPage());
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentRoute = ModalRoute.of(context)!.settings.name;
@@ -45,51 +55,49 @@ class NavigationDrawer extends StatelessWidget {
                 currentRoute == "/",
             icon: Icons.trending_up_sharp,
             text: 'Open PO',
-            onTap: () => Navigator.pushNamed(context, ScreenPaths.openPO),
-          ),
+            onTap: () => onSelectItem(ScreenPaths.openPO)),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.enroll,
             icon: Icons.mode_edit_sharp,
             text: 'enroll'.tr,
-            onTap: () => Navigator.pushNamed(context, ScreenPaths.enroll),
+            onTap: () => onSelectItem(ScreenPaths.enroll),
           ),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.orderEntry,
             icon: Icons.shopping_cart_outlined,
             text: 'Order Entry',
-            onTap: () => Navigator.pushNamed(context, ScreenPaths.orderEntry),
+            onTap: () => onSelectItem(ScreenPaths.orderEntry),
           ),
           const Divider(thickness: 1),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.inventory,
             icon: Icons.inventory_2,
             text: 'Inventory',
-            onTap: () => Navigator.pushNamed(context, ScreenPaths.inventory),
+            onTap: () => onSelectItem(ScreenPaths.inventory),
           ),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.salesReport,
             icon: Icons.receipt_outlined,
             text: 'Sales Report',
-            onTap: () => Navigator.pushNamed(context, ScreenPaths.salesReport),
+            onTap: () => onSelectItem(ScreenPaths.salesReport),
           ),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.easyShipReport,
             icon: Icons.share_outlined,
             text: 'easyship'.tr,
-            onTap: () =>
-                Navigator.pushNamed(context, ScreenPaths.easyShipReport),
+            onTap: () => onSelectItem(ScreenPaths.easyShipReport),
           ),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.barcode,
             icon: Icons.qr_code_2_outlined,
             text: 'Barcode',
-            onTap: () => Navigator.pushNamed(context, ScreenPaths.barcode),
+            onTap: () => onSelectItem(ScreenPaths.barcode),
           ),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.settings,
             icon: Icons.settings,
             text: 'Settings',
-            onTap: () => {Get.back(), Get.to(() => SettingsPage())},
+            onTap: () => onSelectSettings(),
           ),
           _createDrawerBodyItem(
             selected: false,
