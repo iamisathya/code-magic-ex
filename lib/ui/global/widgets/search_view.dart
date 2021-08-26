@@ -1,5 +1,5 @@
 //Create a SearchView
-import 'package:code_magic_ex/utilities/constants.dart';
+import 'package:dsc_tools/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class SearchViewWidget extends StatelessWidget {

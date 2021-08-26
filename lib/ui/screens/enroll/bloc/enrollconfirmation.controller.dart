@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:code_magic_ex/models/user_info.dart'
+import 'package:dsc_tools/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
-import 'package:code_magic_ex/ui/global/widgets/overlay_progress.dart';
-import 'package:code_magic_ex/ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
-import 'package:code_magic_ex/utilities/logger.dart';
-import 'package:code_magic_ex/utilities/constants.dart';
-import 'package:code_magic_ex/utilities/function.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
+import 'package:dsc_tools/ui/global/widgets/overlay_progress.dart';
+import 'package:dsc_tools/ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
+import 'package:dsc_tools/utilities/logger.dart';
+import 'package:dsc_tools/utilities/constants.dart';
+import 'package:dsc_tools/utilities/function.dart';
+import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

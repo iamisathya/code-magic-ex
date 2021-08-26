@@ -1,6 +1,6 @@
 {
-    "name": "code_magic_ex",
-    "short_name": "code_magic_ex",
+    "name": "dsc_tools",
+    "short_name": "dsc_tools",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

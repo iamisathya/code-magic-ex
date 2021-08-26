@@ -14,7 +14,6 @@ class EnrollComplete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: AppColor.kBackground,
       appBar: const TransAppBar(title: "Enroll Complete"),

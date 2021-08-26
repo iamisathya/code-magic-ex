@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/ui/screens/sales_reports/controller/salesreports.controller.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/controller/salesreports.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +14,6 @@ class SalesReportsHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: TransAppBar(

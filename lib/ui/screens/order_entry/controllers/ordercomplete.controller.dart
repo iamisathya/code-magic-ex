@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/models/place_order.dart'
+import 'package:dsc_tools/models/place_order.dart'
     hide
         Customer,
         ShipToAddress,
@@ -7,8 +7,8 @@ import 'package:code_magic_ex/models/place_order.dart'
         ProductLines,
         ProductTerms,
         Transactions;
-import 'package:code_magic_ex/utilities/function.dart';
-import 'package:code_magic_ex/utilities/user_session.dart';
+import 'package:dsc_tools/utilities/function.dart';
+import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/api_address.dart';

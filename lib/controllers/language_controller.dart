@@ -1,6 +1,6 @@
 import 'dart:ui' as ui;
 
-import 'package:code_magic_ex/models/country_info.dart';
+import 'package:dsc_tools/models/country_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

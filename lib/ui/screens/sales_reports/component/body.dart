@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/ui/screens/sales_reports/controller/salesreports.controller.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/controller/salesreports.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';

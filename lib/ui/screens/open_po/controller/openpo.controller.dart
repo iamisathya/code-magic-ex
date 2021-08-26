@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/api/config/api_service.dart';
+import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';

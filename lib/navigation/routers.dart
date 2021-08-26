@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/ui/screens/settings/settings.screen.dart';
+import 'package:dsc_tools/ui/screens/settings/settings.screen.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';

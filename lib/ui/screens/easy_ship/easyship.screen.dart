@@ -14,7 +14,6 @@ class EasyShipHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: TransAppBar(

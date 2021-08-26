@@ -15,7 +15,6 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Container(
       margin: kEdgeInsetSymmetric(h: 8, v: 0),
       child: Column(

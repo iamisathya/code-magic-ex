@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:code_magic_ex/constants/globals.dart';
-import 'package:code_magic_ex/models/country_info.dart';
+import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/models/country_info.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';

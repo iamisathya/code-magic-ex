@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/ui/screens/easy_ship/controller/easyship.controller.dart';
+import 'package:dsc_tools/ui/screens/easy_ship/controller/easyship.controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

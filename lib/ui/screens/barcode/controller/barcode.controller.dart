@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/api/config/api_service.dart';
+import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.unicity.dsctools">
    <application
-        android:label="code_magic_ex"
+        android:label="DSC Tools"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

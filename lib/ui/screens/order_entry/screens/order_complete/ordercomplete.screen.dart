@@ -13,7 +13,6 @@ class OrderComplete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: AppColor.kBackground,
       appBar: TransAppBar(
