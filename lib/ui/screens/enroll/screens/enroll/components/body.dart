@@ -23,6 +23,7 @@ class Body extends StatelessWidget {
                 ctlr: controller.sponsorIdController,
                 label: "sponsor".tr,
               ),
+              const SizedBox(height: 30),
               _renderSubmitButton(
                   label: controller.enrollerSponsorVerifyButton.value,
                   onPress: () => controller.verifyEnrollerSponsor(context)),
@@ -32,11 +33,12 @@ class Body extends StatelessWidget {
                   _renderTextField(
                       ctlr: controller.idCardNumberController,
                       label: "id_card".tr),
+                  const SizedBox(height: 20),
                   _renderSubmitButton(
                       label: controller.govtIdVerifyButton.value,
                       onPress: () => controller.verifyGovtIdNumber(context)),
                 ]),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               if (controller.isGovtIdSuccess.value == true)
                 Column(
                   children: [
@@ -182,7 +184,7 @@ class Body extends StatelessWidget {
       String label = "",
       String helperText = ""}) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
         children: [
           _renderLabel(label),
@@ -190,8 +192,7 @@ class Body extends StatelessWidget {
               enabled: enabled,
               controller: ctlr,
               style: const TextStyle(fontSize: 18),
-              cursorColor: Theme.of(Get.context!).colorScheme.primary,
-              decoration: kTextInputDecoration(helperText: helperText))
+              cursorColor: Theme.of(Get.context!).colorScheme.primary)
         ],
       ),
     );
