@@ -48,6 +48,7 @@ class Body extends StatelessWidget {
     } else if (controller.isEasyShipReportsEmpty) {
       return const CustomEmptyWidget(
         svgIcon: kImageEmptyBox,
+        message: "No matching records found",
       );
     } else {
       return _getBodyWidget();

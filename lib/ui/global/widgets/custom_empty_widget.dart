@@ -5,9 +5,11 @@ import '../../../utilities/size_config.dart';
 class CustomEmptyWidget extends StatelessWidget {
   const CustomEmptyWidget({
     required this.svgIcon,
+    this.message =  "Sorry! No data found.",
   }) : super();
 
   final String svgIcon;
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,9 @@ class CustomEmptyWidget extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text("Sorry! No data found."),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(message),
           ),
         ]));
   }
