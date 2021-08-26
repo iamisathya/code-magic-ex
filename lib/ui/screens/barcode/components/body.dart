@@ -10,48 +10,53 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(36.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 36),
       child: _createSearchView(context),
     );
   }
 
   //Create a SearchView
   Widget _createSearchView(BuildContext context) {
-    return Column(
-      children: [
-        Flexible(
-          child: Container(
-            margin: const EdgeInsets.all(8),
-            child: TextField(
-              controller: controller.bardcodeTextField,
-              decoration: const InputDecoration(
-                hintText: "Search",
-                helperText: "Please enter order number",
-                prefixIcon: Icon(Icons.search),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 30),
-        SizedBox(
-          width: 100,
-          height: 50,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Container(
-              decoration: kCircular8,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.arrow_forward_outlined,
-                  color: Colors.white,
+    return Form(
+        key: controller.formKey,
+        child: Column(
+          children: [
+            Flexible(
+              child: TextFormField(
+                controller: controller.bardcodeTextField,
+                decoration: const InputDecoration(
+                  hintText: "Search",
+                  prefixIcon: Icon(Icons.search),
                 ),
-                tooltip: 'Find easy ship',
-                onPressed: () => controller.getBarcodePath(context),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (!(value!.isNotEmpty && value.length > 3)) {
+                    return "Barcode should not be empty!";
+                  }
+                  return null;
+                },
               ),
             ),
-          ),
-        ),
-      ],
-    );
+            const SizedBox(height: 30),
+            SizedBox(
+              width: 100,
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Container(
+                  decoration: kCircular8,
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.arrow_forward_outlined,
+                      color: Colors.white,
+                    ),
+                    tooltip: 'Find easy ship',
+                    onPressed: () => controller.getBarcodePath(context),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
