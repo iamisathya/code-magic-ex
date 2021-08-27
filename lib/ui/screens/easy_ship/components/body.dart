@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/widgets/primary_button.dart';
 import 'package:dsc_tools/ui/screens/easy_ship/controller/easyship.controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -61,22 +62,20 @@ class Body extends StatelessWidget {
       child: Row(
         children: [
           Flexible(child: SearchViewWidget(controller: searchConntroller)),
-          MaterialButton(
-            disabledColor: Colors.grey,
-            color: Theme.of(context).colorScheme.primary,
-            onPressed: () {
-              if (searchConntroller.text.isNotEmpty) {
-                controller.getAllOrderlines(userId: searchConntroller.text);
-              } else {
-                renderErrorSnackBar(
-                    title: "Search field empty!",
-                    subTitle: "Please enter user id to search.");
-              }
-            },
-            height: 55,
-            child: Text('search'.tr,
-                style: Theme.of(context).textTheme.tableHeader),
-          ),
+          SizedBox(
+              width: 100,
+              child: PrimaryButton(
+                press: () {
+                  if (searchConntroller.text.isNotEmpty) {
+                    controller.getAllOrderlines(userId: searchConntroller.text);
+                  } else {
+                    renderErrorSnackBar(
+                        title: "Search field empty!",
+                        subTitle: "Please enter user id to search.");
+                  }
+                },
+                text: "Cancel",
+              ))
         ],
       ),
     );

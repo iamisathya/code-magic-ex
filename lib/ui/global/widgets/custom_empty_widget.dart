@@ -5,7 +5,7 @@ import '../../../utilities/size_config.dart';
 class CustomEmptyWidget extends StatelessWidget {
   const CustomEmptyWidget({
     required this.svgIcon,
-    this.message =  "Sorry! No data found.",
+    this.message = "Sorry! No data found.",
   }) : super();
 
   final String svgIcon;

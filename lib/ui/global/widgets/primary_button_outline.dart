@@ -19,23 +19,19 @@ class PrimaryOutlineButton extends StatelessWidget {
     return loading
         ? const CircularProgressIndicator(color: Colors.blueAccent)
         : SizedBox(
-            width: getProportionateScreenWidth(150),
-            height: getProportionateScreenHeight(56),
-            child: FlatButton.icon(
-              icon: Text(text,
+            width: getProportionateScreenWidth(100),
+            height: getProportionateScreenHeight(54),
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                      color: Theme.of(context).colorScheme.primary, width: 2),
+                  borderRadius: BorderRadius.circular(10)),
+              onPressed: () => press(),
+              child: Text(text,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: getProportionateScreenWidth(14),
                   )),
-              label: showIcon
-                  ? Icon(Icons.arrow_forward,
-                      size: 16, color: Theme.of(context).colorScheme.primary)
-                  : const SizedBox(),
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                      color: Theme.of(context).colorScheme.primary, width: 3),
-                  borderRadius: BorderRadius.circular(50)),
-              onPressed: () => press(),
             ));
   }
 }

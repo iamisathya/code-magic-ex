@@ -8,13 +8,11 @@ class PrimaryButton extends StatelessWidget {
     required this.text,
     required this.press,
     this.loading = false,
-    this.showIcon = false,
     this.color = kMainColor,
   }) : super();
   final String text;
   final Function press;
   final bool loading;
-  final bool showIcon;
   final Color color;
 
   @override
@@ -23,24 +21,8 @@ class PrimaryButton extends StatelessWidget {
         ? CircularProgressIndicator(
             color: Theme.of(context).colorScheme.primary)
         : SizedBox(
-            width: getProportionateScreenWidth(150),
-            height: getProportionateScreenHeight(56),
-            child: ElevatedButton.icon(
-              icon: Text(text,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: getProportionateScreenWidth(14),
-                  )),
-              label: showIcon
-                  ? const Icon(Icons.arrow_forward,
-                      size: 16, color: Colors.white)
-                  : const SizedBox(),
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(color),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)))),
-              onPressed: () => press(),
-            ));
+            width: getProportionateScreenWidth(100),
+            height: getProportionateScreenHeight(54),
+            child: ElevatedButton(onPressed: () => press(), child: Text(text)));
   }
 }

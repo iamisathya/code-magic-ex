@@ -52,12 +52,8 @@ class AppThemes {
       height: 36,
       padding: EdgeInsets.only(top: 0, bottom: 0, left: 16, right: 16),
       shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: Color(0xff000000),
-          width: 0,
-          style: BorderStyle.none,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(2.0)),
+        side: BorderSide(color: Color(0xff000000), width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
       ),
       alignedDropdown: false,
       buttonColor: Color(0xffe0e0e0),
@@ -114,8 +110,8 @@ class AppThemes {
         fontStyle: FontStyle.normal,
       ),
       headline6: TextStyle(
-        color: Color(0xdd000000),
-        fontSize: null,
+        color: Color(0XFF8B8B8B),
+        fontSize: 18,
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
       ),
@@ -349,7 +345,7 @@ class AppThemes {
       ),
       errorMaxLines: null,
       isDense: false,
-      contentPadding: EdgeInsets.only(top: 20, bottom: 20, left: 12, right: 12),
+      contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
       isCollapsed: false,
       prefixStyle: TextStyle(
         color: Color(0xdd000000),
@@ -371,53 +367,47 @@ class AppThemes {
       ),
       filled: false,
       fillColor: Color(0x00000000),
-      floatingLabelBehavior: FloatingLabelBehavior.auto,
+      floatingLabelBehavior: FloatingLabelBehavior.always,
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: Color(0xffd32f2f),
-          width: 2,
-          style: BorderStyle.solid,
         ),
+        gapPadding: 10,
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: Color(0xFF204CDC),
-          width: 2,
-          style: BorderStyle.solid,
         ),
+        gapPadding: 10,
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: Color(0xffd32f2f),
-          width: 2,
-          style: BorderStyle.solid,
         ),
+        gapPadding: 10,
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
       ),
       disabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: Color(0xFF204CDC),
-          width: 2,
-          style: BorderStyle.solid,
         ),
+        gapPadding: 10,
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: Color(0xFF204CDC),
-          width: 2,
-          style: BorderStyle.solid,
         ),
+        gapPadding: 10,
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
       ),
       border: OutlineInputBorder(
         borderSide: BorderSide(
           color: Color(0xFF204CDC),
-          width: 2,
-          style: BorderStyle.solid,
         ),
+        gapPadding: 10,
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
       ),
     ),
@@ -550,7 +540,8 @@ class AppThemes {
     buttonTheme: const ButtonThemeData(
       padding: EdgeInsets.only(left: 16, right: 16),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(2.0)),
+        side: BorderSide(color: Color(0xff64ffda), width: 2),
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
       ),
       buttonColor: Color(0xff546e7a),
       disabledColor: Color(0x61ffffff),
@@ -796,7 +787,7 @@ class AppThemes {
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
       ),
-      contentPadding: EdgeInsets.only(top: 12, bottom: 12),
+      contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
       prefixStyle: TextStyle(
         color: Color(0xffffffff),
         fontWeight: FontWeight.w400,
@@ -812,6 +803,7 @@ class AppThemes {
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
       ),
+      floatingLabelBehavior: FloatingLabelBehavior.always,
       fillColor: Color(0x00000000),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
