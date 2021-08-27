@@ -144,10 +144,18 @@ class OrderEntryBody extends StatelessWidget {
           FocusNode fieldFocusNode,
           VoidCallback onFieldSubmitted) {
         return TextField(
-          textAlign: TextAlign.center,
-          cursorColor: Colors.black,
           decoration: InputDecoration(
-              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(left: 20, right: 10),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Color(0xFF204CDC),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  style: BorderStyle.none,
+                ),
+              ),
               suffixIcon: (itemCode != "")
                   ? IconButton(
                       onPressed: () {
@@ -159,7 +167,6 @@ class OrderEntryBody extends StatelessWidget {
                   : const SizedBox()),
           controller: fieldTextEditingController,
           focusNode: fieldFocusNode,
-          style: const TextStyle(fontWeight: FontWeight.bold),
         );
       },
       displayStringForOption: _displayStringForOption,

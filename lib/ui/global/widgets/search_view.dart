@@ -22,6 +22,7 @@ class SearchViewWidget extends StatelessWidget {
           controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
+            contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
             suffixIcon: IconButton(
                 onPressed: () =>
                     controller.text.isNotEmpty ? controller.clear() : null,

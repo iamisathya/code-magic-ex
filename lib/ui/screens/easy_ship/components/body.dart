@@ -74,7 +74,7 @@ class Body extends StatelessWidget {
                         subTitle: "Please enter user id to search.");
                   }
                 },
-                text: "Cancel",
+                text: "Search",
               ))
         ],
       ),

@@ -75,7 +75,7 @@ OutlineInputBorder outlineInputBorder() {
 BoxDecoration normalBoxDecoration() {
   return BoxDecoration(
       color: kWhiteSmokeColor,
-      border: Border.all(color: kMainColor, width: 3),
+      border: Border.all(color: kMainColor, width: 2),
       borderRadius: const BorderRadius.all(Radius.circular(8.0)));
 }
 
@@ -111,7 +111,7 @@ RoundedRectangleBorder kRoundedRectangleBorder8() {
 OutlineInputBorder kFocusedOutlineInputBorder() {
   return OutlineInputBorder(
     borderSide: BorderSide(
-        color: Theme.of(Get.context!).colorScheme.primary, width: 3.0),
+        color: Theme.of(Get.context!).colorScheme.primary, width: 2.0),
     borderRadius: const BorderRadius.all(Radius.circular(12.0)),
   );
 }
@@ -157,7 +157,7 @@ InputDecoration kDisabledTextInputDecoration(
     fillColor: Colors.white,
     filled: true,
     isDense: true,
-    contentPadding: const EdgeInsets.all(20.0),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
     focusedBorder: kFocusedOutlineInputBorder(),
     enabledBorder: kFocusedOutlineInputBorder(),
     disabledBorder: kFocusedOutlineInputBorder(),

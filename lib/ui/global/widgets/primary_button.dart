@@ -21,7 +21,7 @@ class PrimaryButton extends StatelessWidget {
         ? CircularProgressIndicator(
             color: Theme.of(context).colorScheme.primary)
         : SizedBox(
-            width: getProportionateScreenWidth(100),
+            width: getProportionateScreenWidth(120),
             height: getProportionateScreenHeight(54),
             child: ElevatedButton(onPressed: () => press(), child: Text(text)));
   }

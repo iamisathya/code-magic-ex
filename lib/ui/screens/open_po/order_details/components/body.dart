@@ -1,3 +1,4 @@
+import 'package:dsc_tools/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -71,11 +72,11 @@ class Body extends StatelessWidget {
           children: [
             Text(
               "${"totalpv".tr}: ",
-              style: Theme.of(context).textTheme.productTitle,
+              style: TextStyle(fontSize: getProportionateScreenWidth(16)),
             ),
             Text(
               controller.openPlaceOrderId.orderTotalPv,
-              style: Theme.of(context).textTheme.productTitle,
+              style: TextStyle(fontSize: getProportionateScreenWidth(16)),
             ),
           ],
         ),
@@ -87,11 +88,11 @@ class Body extends StatelessWidget {
           children: [
             Text(
               "${"totalprice".tr}: ",
-              style: Theme.of(context).textTheme.productTitle,
+              style: TextStyle(fontSize: getProportionateScreenWidth(16)),
             ),
             Text(
               controller.openPlaceOrderId.orderTotalPrice,
-              style: Theme.of(context).textTheme.productTitle,
+              style: TextStyle(fontSize: getProportionateScreenWidth(16)),
             ),
           ],
         ),
@@ -173,11 +174,9 @@ class Body extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-              child: Text(title,
-                  style: Theme.of(context).textTheme.cardItemTitle)),
+              child: Text(title, style: Theme.of(context).textTheme.subtitle2)),
           Expanded(
-              child:
-                  Text(value, style: Theme.of(context).textTheme.cardItemTitle))
+              child: Text(value, style: Theme.of(context).textTheme.subtitle2))
         ],
       ),
     );
@@ -191,10 +190,9 @@ class Body extends StatelessWidget {
         children: [
           SizedBox(
               width: 100,
-              child: Text(title,
-                  style: Theme.of(context).textTheme.cardItemTitle)),
+              child: Text(title, style: Theme.of(context).textTheme.subtitle2)),
           Expanded(
-              child: Text(value, style: Theme.of(context).textTheme.button))
+              child: Text(value, style: Theme.of(context).textTheme.subtitle2))
         ],
       ),
     );
@@ -208,7 +206,7 @@ class Body extends StatelessWidget {
           Expanded(child: Text(title)),
           Expanded(
               child: Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(8),
             decoration: normalBoxDecoration(),
             child: Text(value),
           )),

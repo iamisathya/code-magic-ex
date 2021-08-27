@@ -297,7 +297,7 @@ class Body extends StatelessWidget {
           ),
           SizedBox(
             width: 66,
-            height: 60,
+            height: 54,
             child: Padding(
               padding: const EdgeInsets.only(left: 8),
               child: Container(
@@ -320,6 +320,7 @@ class Body extends StatelessWidget {
 
   InputDecoration _renderInputDecoration(String hintText, String label) {
     return InputDecoration(
+      contentPadding: const EdgeInsets.only(left: 20, right: 10, top: 15, bottom: 15),
       border: OutlineInputBorder(
           borderSide:
               BorderSide(color: Theme.of(Get.context!).colorScheme.primary)),

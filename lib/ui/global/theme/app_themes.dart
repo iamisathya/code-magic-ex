@@ -345,7 +345,7 @@ class AppThemes {
       ),
       errorMaxLines: null,
       isDense: false,
-      contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+      contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 15),
       isCollapsed: false,
       prefixStyle: TextStyle(
         color: Color(0xdd000000),
@@ -787,7 +787,7 @@ class AppThemes {
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
       ),
-      contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+      contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 15),
       prefixStyle: TextStyle(
         color: Color(0xffffffff),
         fontWeight: FontWeight.w400,
