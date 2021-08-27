@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/country_info.dart';
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/services/firebase/analyitcs.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +71,11 @@ class SplashController extends GetxController {
     }
   }
 
+  Future<void> _setAppAnalytics() async {
+    await AppAnalytics.setUserId(UserSessionManager.shared.customerId);
+    await AppAnalytics.setUserId(UserSessionManager.shared.userInfo!.type);
+  }
+
   Future<void> _didSplashCompleted(String userId) async {
     if (customerToken.token != "" && UserSessionManager.shared.isUserLoggedIn) {
       UserSessionManager.shared.setUserInfoFromDB();
@@ -77,6 +83,7 @@ class SplashController extends GetxController {
       UserSessionManager.shared.getProfilePictureFromDB();
       UserSessionManager.shared.getCustomerIdInfoFromDB();
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
+      await _setAppAnalytics();
       Get.offAll(() => OpenPOHomeScreen());
     } else {
       Get.offAll(() => LoginScreen());

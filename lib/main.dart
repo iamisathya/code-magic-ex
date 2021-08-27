@@ -44,7 +44,6 @@ Future<void> main() async {
     await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
-  FirebaseCrashlytics.instance.crash();
 
   //* Pass all uncaught errors from the framework to Crashlytics.
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
