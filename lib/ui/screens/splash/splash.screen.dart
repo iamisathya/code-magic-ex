@@ -2,8 +2,8 @@ import 'package:dsc_tools/constants/font_weights.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../global/widgets/animated_show_up.dart';
 import '../../../utilities/size_config.dart';
+import '../../global/widgets/animated_show_up.dart';
 import 'controller/splash.controller.dart';
 
 class SplashScreen extends StatelessWidget {

@@ -110,7 +110,7 @@ class AppThemes {
         fontStyle: FontStyle.normal,
       ),
       headline6: TextStyle(
-        color: Color(0XFF8B8B8B),
+        color: Color(0xff8b8b8b),
         fontSize: 18,
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,

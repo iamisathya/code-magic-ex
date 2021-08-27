@@ -7,7 +7,6 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
-import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/images.dart';
 import '../../../global/widgets/custom_empty_widget.dart';
