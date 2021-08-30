@@ -1,7 +1,7 @@
+import 'package:dsc_tools/ui/global/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utilities/constants.dart';
 import '../controller/barcode.controller.dart';
 
 class Body extends StatelessWidget {
@@ -24,37 +24,23 @@ class Body extends StatelessWidget {
             Flexible(
               child: TextFormField(
                 controller: controller.bardcodeTextField,
-                decoration: const InputDecoration(
-                  hintText: "Search",
-                  prefixIcon: Icon(Icons.search),
-                ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (!(value!.isNotEmpty && value.length > 3)) {
-                    return "Barcode should not be empty!";
+                    return "Barcode number should not be empty!";
                   }
                   return null;
                 },
+                decoration: const InputDecoration(
+                  labelText: "Search",
+                  prefixIcon: Icon(Icons.search),
+                ),
               ),
             ),
             const SizedBox(height: 30),
-            SizedBox(
-              width: 100,
-              height: 50,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: Container(
-                  decoration: kCircular8,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.arrow_forward_outlined,
-                      color: Colors.white,
-                    ),
-                    tooltip: 'Find easy ship',
-                    onPressed: () => controller.getBarcodePath(context),
-                  ),
-                ),
-              ),
+            PrimaryButton(
+              press: () => controller.getBarcodePath(context),
+              text: "Search",
             ),
           ],
         ));

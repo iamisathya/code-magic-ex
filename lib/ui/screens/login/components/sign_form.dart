@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utilities/constants.dart';
 import '../../../../utilities/size_config.dart';
 import '../../../global/widgets/primary_button.dart';
 import '../controller/login.controller.dart';
@@ -25,7 +24,7 @@ class SignForm extends StatelessWidget {
               label: "User ID",
               hintText: "Enter your user id"),
           // buildUserIdFormField(),
-          SizedBox(height: getProportionateScreenHeight(10)),
+          SizedBox(height: getProportionateScreenHeight(30)),
           _renderTextField(
               ctlr: controller.passwordController,
               label: "Password",
@@ -64,38 +63,23 @@ class SignForm extends StatelessWidget {
       bool enabled = true,
       String label = "",
       String hintText = "",
-      bool isPassword = false,
-      String helperText = ""}) {
+      bool isPassword = false}) {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       child: Column(
         children: [
-          _renderLabel(label),
           TextFormField(
-              validator: (value) => controller.inputValidate(
-                  value: value!, isPassword: isPassword),
-              obscureText: isPassword,
-              enabled: enabled,
-              controller: ctlr,
-              style: const TextStyle(fontSize: 18),
-              cursorColor: Theme.of(Get.context!).colorScheme.primary,
-              decoration: kTextInputDecoration(
-                  helperText: helperText, hintText: hintText))
+            validator: (value) =>
+                controller.inputValidate(value: value!, isPassword: isPassword),
+            obscureText: isPassword,
+            enabled: enabled,
+            controller: ctlr,
+            decoration: const InputDecoration(
+              labelText: "Password",
+              hintText: "Re-enter your password",
+            ),
+          )
         ],
-      ),
-    );
-  }
-
-  Padding _renderLabel(String label) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10, left: 8),
-      child: SizedBox(
-        width: Get.width,
-        child: Text(
-          label,
-          textAlign: TextAlign.left,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-        ),
       ),
     );
   }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../../constants/colors.dart';
 import '../../../../../ui/global/widgets/transparent_app_bar.dart';
-import '../../../../../utilities/size_config.dart';
 import '../../controllers/ordercomplete.controller.dart';
 import 'components/body.dart';
 
@@ -13,7 +12,6 @@ class OrderComplete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: AppColor.kBackground,
       appBar: TransAppBar(

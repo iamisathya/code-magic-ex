@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/ui/screens/sales_reports/controller/salesreports.controller.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/controller/salesreports.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -297,7 +297,7 @@ class Body extends StatelessWidget {
           ),
           SizedBox(
             width: 66,
-            height: 60,
+            height: 54,
             child: Padding(
               padding: const EdgeInsets.only(left: 8),
               child: Container(
@@ -320,6 +320,7 @@ class Body extends StatelessWidget {
 
   InputDecoration _renderInputDecoration(String hintText, String label) {
     return InputDecoration(
+      contentPadding: const EdgeInsets.only(left: 20, right: 10, top: 15, bottom: 15),
       border: OutlineInputBorder(
           borderSide:
               BorderSide(color: Theme.of(Get.context!).colorScheme.primary)),

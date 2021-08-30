@@ -40,10 +40,10 @@ Future<void> main() async {
   ConnectivityManager.shared.doInitialCheck();
 
   // //* disable collecting in debug mode
-  // if (dotenv.env['DEBUG'] == 'True') {
-  await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
-  await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
-  // }
+  if (dotenv.env['DEBUG'] == 'True') {
+    await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+  }
 
   //* Pass all uncaught errors from the framework to Crashlytics.
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;

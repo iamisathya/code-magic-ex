@@ -1,7 +1,8 @@
-import 'package:code_magic_ex/constants/font_weights.dart';
+import 'package:dsc_tools/constants/font_weights.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../utilities/size_config.dart';
 import '../../global/widgets/animated_show_up.dart';
 import 'controller/splash.controller.dart';
 
@@ -11,6 +12,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: Stack(children: [
         const SizedBox(

@@ -1,5 +1,4 @@
 //Create a SearchView
-import 'package:code_magic_ex/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class SearchViewWidget extends StatelessWidget {
@@ -20,16 +19,19 @@ class SearchViewWidget extends StatelessWidget {
         margin: const EdgeInsets.only(right: 16),
         child: TextField(
           keyboardType: TextInputType.number,
-          cursorColor: Theme.of(context).colorScheme.primary,
           controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
+            contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
             suffixIcon: IconButton(
-                onPressed: controller.text.isNotEmpty ? controller.clear : null,
+                onPressed: () =>
+                    controller.text.isNotEmpty ? controller.clear() : null,
                 color: color,
                 icon: Icon(
                   Icons.clear,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: controller.text.isNotEmpty
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).highlightColor,
                 )),
             hintStyle: TextStyle(color: Colors.grey[300]),
           ),

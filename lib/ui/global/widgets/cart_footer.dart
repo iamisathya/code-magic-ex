@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../utilities/constants.dart';
 import '../../../utilities/extensions.dart';
+import 'primary_button.dart';
 
 class CartFooter extends StatelessWidget {
   final Function onPressed;
@@ -43,14 +44,8 @@ class CartFooter extends StatelessWidget {
                 ),
               ],
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  shape: kRoundedBorder(radius: 20),
-                  primary: Theme.of(context).colorScheme.primary,
-                  padding: kEdgeA12()),
-              onPressed: () => onPressed(),
-              child: Text("place_order".tr),
-            ),
+            PrimaryButton(
+                text: "place_order".tr, press: () => onPressed())
           ],
         ));
   }

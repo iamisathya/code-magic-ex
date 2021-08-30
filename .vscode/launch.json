@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "code_magic_ex",
+            "name": "dsctools",
             "request": "launch",
             "type": "dart",
         },
         {
-            "name": "code_magic_ex (profile mode)",
+            "name": "dsctools (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"

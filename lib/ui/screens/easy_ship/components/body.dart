@@ -1,4 +1,5 @@
-import 'package:code_magic_ex/ui/screens/easy_ship/controller/easyship.controller.dart';
+import 'package:dsc_tools/ui/global/widgets/primary_button.dart';
+import 'package:dsc_tools/ui/screens/easy_ship/controller/easyship.controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,6 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
-import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/images.dart';
 import '../../../global/widgets/custom_empty_widget.dart';
@@ -61,22 +61,20 @@ class Body extends StatelessWidget {
       child: Row(
         children: [
           Flexible(child: SearchViewWidget(controller: searchConntroller)),
-          MaterialButton(
-            disabledColor: Colors.grey,
-            color: Theme.of(context).colorScheme.primary,
-            onPressed: () {
-              if (searchConntroller.text.isNotEmpty) {
-                controller.getAllOrderlines(userId: searchConntroller.text);
-              } else {
-                renderErrorSnackBar(
-                    title: "Search field empty!",
-                    subTitle: "Please enter user id to search.");
-              }
-            },
-            height: 55,
-            child: Text('search'.tr,
-                style: Theme.of(context).textTheme.tableHeader),
-          ),
+          SizedBox(
+              width: 100,
+              child: PrimaryButton(
+                press: () {
+                  if (searchConntroller.text.isNotEmpty) {
+                    controller.getAllOrderlines(userId: searchConntroller.text);
+                  } else {
+                    renderErrorSnackBar(
+                        title: "Search field empty!",
+                        subTitle: "Please enter user id to search.");
+                  }
+                },
+                text: "Search",
+              ))
         ],
       ),
     );

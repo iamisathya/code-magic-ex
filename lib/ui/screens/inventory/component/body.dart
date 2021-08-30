@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/constants/globals.dart';
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';

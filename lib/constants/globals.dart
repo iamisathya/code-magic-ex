@@ -1,4 +1,4 @@
-import 'package:code_magic_ex/models/country_info.dart';
+import 'package:dsc_tools/models/country_info.dart';
 import 'package:get/get.dart';
 
 import '../models/menu_option_model.dart';

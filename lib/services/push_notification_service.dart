@@ -1,5 +1,5 @@
 // import 'dart:io';
-// import 'package:code_magic_ex/utilities/user_session.dart';
+// import 'package:dsctools/utilities/user_session.dart';
 // import 'package:edukshema/services/rest_api/client.dart';
 // import 'package:edukshema/utilities/user_session.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
