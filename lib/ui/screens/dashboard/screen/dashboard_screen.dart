@@ -1,4 +1,5 @@
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
+import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,9 +37,14 @@ class Body extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SvgPicture.asset(kUnicityLogoIcon,
-                                          height: 20,
-                                          semanticsLabel: "unicity logo"),
+                                      Text(
+                                        'UNICITY',
+                                        style: TextStyle(
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.w600,
+                                            foreground: Paint()
+                                              ..shader = linearGradient),
+                                      ),
                                       const SizedBox(
                                         width: 17.5,
                                       ),
