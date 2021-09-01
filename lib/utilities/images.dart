@@ -16,6 +16,31 @@ const kImageOrderComplete = 'assets/images/order_confirm.svg';
 //* Icons
 const kIconProduct = 'assets/icons/Product.svg';
 const kIconTrash = 'assets/icons/Trash.svg';
+const kProfileIcon = 'assets/icons/tabs/profile.svg';
+const kProfileActiveIcon = 'assets/icons/tabs/profile_active.svg';
+const kDashboardIcon = 'assets/icons/tabs/dashboard.svg';
+const kDashboardActiveIcon = 'assets/icons/tabs/dashboard_active.svg';
+const kEasyshipIcon = 'assets/icons/tabs/easyship.svg';
+const kEasyshipActiveIcon = 'assets/icons/tabs/easyship_active.png.svg';
+const kCartIcon = 'assets/icons/tabs/cart.svg';
+const kLeaderboardIcon = 'assets/icons/tabs/leaderboard.svg';
+const kLeaderboardActiveIcon = 'assets/icons/tabs/leaderboard_active.svg';
+// * dashboard
+const kArrowIcon = 'assets/icons/dashboard/arrow.svg';
+const kBarcodeIcon = 'assets/icons/dashboard/barcode.svg';
+const kBarcodeActiveIcon = 'assets/icons/dashboard/barcode_active.svg';
+const kCameraIcon = 'assets/icons/dashboard/camera.svg';
+const kEasyShipIcon = 'assets/icons/dashboard/easyship_dashboard.svg';
+const kEnrollIcon = 'assets/icons/dashboard/enroll.svg';
+const kInventoryIcon = 'assets/icons/dashboard/inventory.svg';
+const kOpenPoIcon = 'assets/icons/dashboard/open_po.svg';
+const kOrderEntryIcon = 'assets/icons/dashboard/order_entry.svg';
+const kOrderEntryActiveIcon = 'assets/icons/dashboard/order_entry_active.svg';
+const kSalesReportIcon = 'assets/icons/dashboard/sales_report.svg';
+const kSettingsIcon = 'assets/icons/dashboard/settings.svg';
+const kSignOutIcon = 'assets/icons/dashboard/sign_out.svg';
+const kUnicityLogoIcon = 'assets/icons/dashboard/unicity_logo.svg';
+const kDscLogoIcon = 'assets/icons/dashboard/dsc_logo.svg';
 // * splash
 const kSplashImage = 'assets/images/splash.jpg';
 // * animated

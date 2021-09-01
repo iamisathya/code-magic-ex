@@ -4,6 +4,7 @@ import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/country_info.dart';
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/services/firebase/analyitcs.dart';
+import 'package:dsc_tools/ui/screens/home/home.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,8 @@ class SplashController extends GetxController {
     if (_timer != null) return;
     _timer = Timer(const Duration(seconds: 2), () {
       logoStyle.value = FlutterLogoStyle.horizontal;
-      fetchCustomerData();
+      Get.offAll(() => MainHomeScreen());
+      // fetchCustomerData();
     });
   }
 
@@ -84,7 +86,7 @@ class SplashController extends GetxController {
       UserSessionManager.shared.getCustomerIdInfoFromDB();
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
       await _setAppAnalytics();
-      Get.offAll(() => OpenPOHomeScreen());
+      Get.offAll(() => MainHomeScreen());
     } else {
       Get.offAll(() => LoginScreen());
     }

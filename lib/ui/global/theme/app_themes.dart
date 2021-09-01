@@ -46,17 +46,34 @@ class AppThemes {
     indicatorColor: const Color(0xff2148de),
     hintColor: const Color(0x8a000000),
     errorColor: const Color(0xffd32f2f),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        minimumSize: MaterialStateProperty.all<Size>(
+          const Size(100,40)
+        ),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(2.0),
+                side: BorderSide.none)),
+        backgroundColor: MaterialStateProperty.all<Color>(
+          const Color(0xFF1C9CFC),
+        ), //button color
+        foregroundColor: MaterialStateProperty.all<Color>(
+          const Color(0xFFFFFFFF),
+        ), //text (and icon)
+      ),
+    ),
     buttonTheme: const ButtonThemeData(
       textTheme: ButtonTextTheme.normal,
       minWidth: 88,
-      height: 36,
+      height: 40,
       padding: EdgeInsets.only(top: 0, bottom: 0, left: 16, right: 16),
       shape: RoundedRectangleBorder(
-        side: BorderSide(color: Color(0xff000000), width: 2),
-        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        side: BorderSide.none,
+        borderRadius: BorderRadius.all(Radius.circular(2.0)),
       ),
       alignedDropdown: false,
-      buttonColor: Color(0xffe0e0e0),
+      buttonColor: Color(0xff1C9CFC),
       disabledColor: Color(0x61000000),
       highlightColor: Color(0x29000000),
       splashColor: Color(0x1f000000),
@@ -496,6 +513,18 @@ class AppThemes {
       selectionColor: Color(0xffa6b6f2),
       selectionHandleColor: Color(0xff7a91eb),
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: const Color(0xFF1C9CFC),
+      elevation: 10,
+      selectedLabelStyle:
+          const TextStyle(color: Color(0xFFA67926), fontSize: 14.0),
+      unselectedLabelStyle: TextStyle(color: Colors.grey[600], fontSize: 12.0),
+      selectedItemColor: const Color(0xFF000000),
+      unselectedItemColor: const Color(0xFFE3E8ED),
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+    ),
   );
 
   //the dark theme
@@ -877,6 +906,18 @@ class AppThemes {
       cursorColor: Color(0xff4285f4),
       selectionColor: Color(0xff64ffda),
       selectionHandleColor: Color(0xff1de9b6),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: const Color(0xFF1C9CFC),
+      elevation: 10,
+      selectedLabelStyle:
+          const TextStyle(color: Color(0xFFA67926), fontSize: 14.0),
+      unselectedLabelStyle: TextStyle(color: Colors.grey[600], fontSize: 12.0),
+      selectedItemColor: const Color(0xFF000000),
+      unselectedItemColor: const Color(0xFFE3E8ED),
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
     ),
   );
 }
