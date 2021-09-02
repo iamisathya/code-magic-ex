@@ -41,9 +41,11 @@ const kAddPoIcon = 'assets/icons/add_po-icon.svg';
 const kSearchIcon = 'assets/icons/search_icon.svg';
 const kInformationIcon = 'assets/icons/information_icon.svg';
 const kCameraInactiveIcon = 'assets/icons/camera_icon_inactive.svg';
+const kAttachmentInactiveIcon = 'assets/icons/attachment_icon_inactive.svg';
 const kFileIcon = 'assets/icons/file_icon.svg';
 const kPrintIcon = 'assets/icons/print_icon.svg';
 const kForwardIcon = 'assets/icons/forward_icon.svg';
+const kPoAttachmentIcon = 'assets/icons/attachment_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';

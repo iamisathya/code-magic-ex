@@ -1,10 +1,12 @@
 import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../api/api_address.dart';
@@ -24,7 +26,7 @@ import '../order_details/orderdetails.screen.dart';
 import '../order_table/ordertable.screen.dart';
 
 class OpenPoController extends GetxController {
-  RxInt currentTab = 0.obs;
+  final RxInt _currentTab = 0.obs;
   RxList<String> availableMonthSlots = ["All", "6 Month", "12 Month"].obs;
   TextEditingController commentController = TextEditingController();
 
@@ -57,6 +59,7 @@ class OpenPoController extends GetxController {
     super.onInit();
     FirebaseAnalytics().setCurrentScreen(screenName: "open_po");
     _generateEmptyCart();
+    getAllOpenPo();
     // debugPrint(Globals.currentMarket!.code);
   }
 
@@ -64,6 +67,41 @@ class OpenPoController extends GetxController {
     for (var i = 0; i < 40; i++) {
       final CartProductsItem item = CartProductsItem();
       cartProducts.add(item);
+    }
+  }
+
+  set currentTab(int index) => _currentTab.value = index;
+  int get currentTab => _currentTab.value;
+
+  void openDialog(BuildContext context, String attchmentName) => showDialog(
+        context: context,
+        barrierColor: Colors.black87,
+        builder: (BuildContext context) {
+          final String url = "${Address.resource}$attchmentName";
+          return Dialog(
+            child: PhotoView(
+              tightMode: true,
+              imageProvider: NetworkImage(url),
+              heroAttributes: PhotoViewHeroAttributes(tag: url),
+            ),
+          );
+        },
+      );
+
+  String getStatusIcon(String orderStatus) {
+    switch (orderStatus) {
+      case "0":
+        return kPendingImage;
+      case "1":
+        return kPendingImage; // Deleted
+      case "2":
+        return kWarningImage;
+      case "3":
+        return kWarningImage; //Processing
+      case "4":
+        return kApprovalImage;
+      default:
+        return kWarningImage;
     }
   }
 
@@ -171,30 +209,12 @@ class OpenPoController extends GetxController {
   }
 
   Future<void> getAllOpenPo() async {
-    loading(true);
     try {
       final List<OpenPO> allOpenPO = await MemberCallsService.init()
-          .getAllOpenPo("106", filterMethod.value, "2970466");
+          .getAllOpenPo("106", filterMethod.value, Globals.userId);
       _tempOpenPlaceOrders = allOpenPO.obs;
-      allOpenPO.insert(
-          0,
-          OpenPO(
-              orderDscid: "DSC ID",
-              iconAttachment: "Attachment",
-              orderDate: "Date",
-              orderOpid: "P/O Number",
-              orderStatus: "Status",
-              orderTime: "Time",
-              orderTotalPrice: "Totol Price",
-              orderTotalPv: "Total PV"));
-      allOpenPlaceOrders(allOpenPO);
-      loading(false);
-      update();
     } catch (err) {
-      loading(false);
-      errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
-      update();
     }
   }
 

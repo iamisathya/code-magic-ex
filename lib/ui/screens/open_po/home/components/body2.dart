@@ -24,9 +24,9 @@ class Body2 extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     "PO List",
-                    style: TextStyle(fontSize: 24),
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                   GestureDetector(
                     onTap: () => Get.to(() => AddProducts()),
@@ -46,29 +46,33 @@ class Body2 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Flexible(
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: controller.availableMonthSlots
-                            .mapIndexed((String type, int index) => Text(
-                                  type,
-                                  style: TextStyle(
-                                      fontSize:
-                                          controller.currentTab.value == index
-                                              ? 14
-                                              : 12,
-                                      fontWeight:
-                                          controller.currentTab.value == index
-                                              ? FontWeight.w500
-                                              : null),
-                                ))
-                            .toList()),
+                    child: Obx(
+                      () => Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: controller.availableMonthSlots
+                              .mapIndexed((String type, int index) =>
+                                  GestureDetector(
+                                    onTap: () => controller.currentTab = index,
+                                    child: Text(
+                                      type,
+                                      style: controller.currentTab == index
+                                          ? Theme.of(context)
+                                              .textTheme
+                                              .bodyText1
+                                          : Theme.of(context)
+                                              .textTheme
+                                              .bodyText2,
+                                    ),
+                                  ))
+                              .toList()),
+                    ),
                   ),
                   Flexible(
                       child: GestureDetector(
-                        onTap: () => Get.to(() => SearchProducts()),
-                        child: SvgPicture.asset(kSearchIcon,
-                            height: 20, semanticsLabel: "Search PO list"),
-                      )),
+                    onTap: () => Get.to(() => SearchProducts()),
+                    child: SvgPicture.asset(kSearchIcon,
+                        height: 20, semanticsLabel: "Search PO list"),
+                  )),
                 ],
               ),
             ),
@@ -80,13 +84,15 @@ class Body2 extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Container(
                   color: const Color(0xFFF5F5F5),
-                  child: ListView.builder(
+                  child: Obx(() => ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 10,
+                      itemCount: controller.openPlaceOrders.length,
                       itemBuilder: (BuildContext ctxt, int index) {
-                        return POItem();
-                      }),
+                        return POItem(
+                            openPo: controller.openPlaceOrders[index],
+                            controller: controller);
+                      })),
                 ),
               ))
         ],
