@@ -1,4 +1,5 @@
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/order_success.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/images.dart';
@@ -137,7 +138,7 @@ class Body extends StatelessWidget {
 
   Widget _renderMenuOption(String title, String icon) {
     return GestureDetector(
-      onTap: () => Get.to(() => OpenPOHomeScreen()),
+      onTap: () => Get.to(() => OrderSuccess()),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 24),
         child: Row(

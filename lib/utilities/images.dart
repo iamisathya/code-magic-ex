@@ -18,7 +18,7 @@ const kApprovalImage = 'assets/images/approval_image.svg';
 const kWarningImage = 'assets/images/warning_image.svg';
 const kAddMoreProductsImage = 'assets/images/add_more_products_image.svg';
 const kOrderSuccessImage = 'assets/images/order_success_image.svg';
-const kOrderWaringImage = 'assets/images/order_waring_image.svg';
+const kOrderWaringImage = 'assets/images/order_warning_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 
