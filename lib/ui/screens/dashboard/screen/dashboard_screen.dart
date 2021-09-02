@@ -2,6 +2,7 @@ import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
 import 'package:dsc_tools/ui/screens/dashboard/components/dashboard.header.dart';
 import 'package:dsc_tools/ui/screens/dashboard/components/menu.option.dart';
 import 'package:dsc_tools/ui/screens/dashboard/components/profile.image.dart';
+import 'package:dsc_tools/ui/screens/dashboard/controller/dashboard.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
@@ -9,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Body extends StatelessWidget {
+  final DashboardController controller = Get.put(DashboardController());
+  static const String routeName = '/dashboardHomePage';
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -91,12 +95,14 @@ class Body extends StatelessWidget {
               const SizedBox(
                 height: 88,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: SignOutButton(
                   title: "Sign Out",
                   fontSize: 24,
                   height: 54,
+                  onPress: () => controller.onLogout(context),
                 ),
               ),
               const SizedBox(
