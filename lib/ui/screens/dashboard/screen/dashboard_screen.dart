@@ -1,6 +1,5 @@
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/order_success.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +124,14 @@ class Body extends StatelessWidget {
               const SizedBox(
                 height: 88,
               ),
-              SignOutButton(),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: SignOutButton(
+                  title: "Sign Out",
+                  fontSize: 24,
+                  height: 54,
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
