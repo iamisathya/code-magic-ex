@@ -1,8 +1,10 @@
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -135,6 +137,7 @@ class Body extends StatelessWidget {
 
   Widget _renderMenuOption(String title, String icon) {
     return GestureDetector(
+      onTap: () => Get.to(() => OpenPOHomeScreen()),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 24),
         child: Row(

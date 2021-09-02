@@ -13,6 +13,16 @@ const kImageBlankPage = 'assets/images/blank_page.svg';
 const kImageSearch = 'assets/images/search.svg';
 const kImageSearchSecendary = 'assets/images/search_two.svg';
 const kImageOrderComplete = 'assets/images/order_confirm.svg';
+const kPendingImage = 'assets/images/pending_image.svg';
+const kApprovalImage = 'assets/images/approval_image.svg';
+const kWarningImage = 'assets/images/warning_image.svg';
+const kAddMoreProductsImage = 'assets/images/add_more_products_image.svg';
+const kOrderSuccessImage = 'assets/images/order_success_image.svg';
+const kOrderWaringImage = 'assets/images/order_waring_image.svg';
+// app_bar
+const kUnicityGradientImage = 'assets/images/unicity_logo.png';
+
+
 //* Icons
 const kIconProduct = 'assets/icons/Product.svg';
 const kIconTrash = 'assets/icons/Trash.svg';
@@ -25,6 +35,15 @@ const kEasyshipActiveIcon = 'assets/icons/tabs/easyship_active.png.svg';
 const kCartIcon = 'assets/icons/tabs/cart.svg';
 const kLeaderboardIcon = 'assets/icons/tabs/leaderboard.svg';
 const kLeaderboardActiveIcon = 'assets/icons/tabs/leaderboard_active.svg';
+const kEnIcon = 'assets/icons/en.svg';
+const kAddPoIcon = 'assets/icons/add_po-icon.svg';
+const kSearchIcon = 'assets/icons/search_icon.svg';
+const kInformationIcon = 'assets/icons/information_icon.svg';
+const kCameraInactiveIcon = 'assets/icons/camera_icon_inactive.svg';
+const kFileIcon = 'assets/icons/file_icon.svg';
+const kPrintIcon = 'assets/icons/print_icon.svg';
+const kForwardIcon = 'assets/icons/forward_icon.svg';
+
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';
 const kBarcodeIcon = 'assets/icons/dashboard/barcode.svg';
@@ -41,6 +60,7 @@ const kSettingsIcon = 'assets/icons/dashboard/settings.svg';
 const kSignOutIcon = 'assets/icons/dashboard/sign_out.svg';
 const kUnicityLogoIcon = 'assets/icons/dashboard/unicity_logo.svg';
 const kDscLogoIcon = 'assets/icons/dashboard/dsc_logo.svg';
+
 // * splash
 const kSplashImage = 'assets/images/splash.jpg';
 // * animated

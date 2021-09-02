@@ -1,11 +1,10 @@
+import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/body2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../navigation/navigation_drawer.dart';
 import '../../../../utilities/constants.dart';
-import '../../../global/widgets/transparent_app_bar.dart';
 import '../controller/openpo.controller.dart';
-import 'components/body.dart';
 
 class OpenPOHomeScreen extends StatelessWidget {
   final OpenPoController controller = Get.put(OpenPoController());
@@ -15,12 +14,8 @@ class OpenPOHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
-        appBar: TransAppBar(
-          title: "list_po".tr,
-          action: _renderActionBar(context),
-        ),
-        drawer: NavigationDrawer(),
-        body: Body(),
+        appBar: OpenPoAppBar(),
+        body: Body2(),
         floatingActionButton: FloatingActionButton(
             elevation: 0.0,
             heroTag: "add_open_po_order",

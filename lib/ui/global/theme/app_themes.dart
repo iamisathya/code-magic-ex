@@ -22,7 +22,7 @@ class AppThemes {
       900: Color(0xff070e2c)
     }),
     brightness: Brightness.light,
-    primaryColor: const Color(0xff2148dd),
+    primaryColor: const Color(0xFF1C9CFC),
     primaryColorBrightness: Brightness.dark,
     primaryColorLight: const Color(0xffd3daf8),
     primaryColorDark: const Color(0xff142b85),
@@ -46,6 +46,16 @@ class AppThemes {
     indicatorColor: const Color(0xff2148de),
     hintColor: const Color(0x8a000000),
     errorColor: const Color(0xffd32f2f),
+    appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(color: Color(0xFF000000), fontSize: 18),
+      backgroundColor: Color(0xFFFFFFFF),
+      iconTheme: IconThemeData(
+        color: Colors.black, //change your color here
+      ),
+    ),
+    cardTheme: const CardTheme(
+      color: Color(0xFFFFFFFF),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all<Size>(
@@ -73,14 +83,14 @@ class AppThemes {
         borderRadius: BorderRadius.all(Radius.circular(2.0)),
       ),
       alignedDropdown: false,
-      buttonColor: Color(0xff1C9CFC),
+      buttonColor: Color(0xFF1C9CFC),
       disabledColor: Color(0x61000000),
       highlightColor: Color(0x29000000),
       splashColor: Color(0x1f000000),
       focusColor: Color(0x1f000000),
       hoverColor: Color(0x0a000000),
       colorScheme: ColorScheme(
-        primary: Color(0xff2148dd),
+        primary: Color(0xff1C9CFC),
         primaryVariant: Color(0xff142b85),
         secondary: Color(0xff2148de),
         secondaryVariant: Color(0xff142b85),
@@ -490,7 +500,7 @@ class AppThemes {
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
       ),
-      secondarySelectedColor: Color(0x3d2148dd),
+      secondarySelectedColor: Color(0x3D1C9CFC),
       selectedColor: Color(0x3d000000),
       shape: StadiumBorder(
           side: BorderSide(

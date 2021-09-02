@@ -24,6 +24,8 @@ import '../order_details/orderdetails.screen.dart';
 import '../order_table/ordertable.screen.dart';
 
 class OpenPoController extends GetxController {
+  RxInt currentTab = 0.obs;
+  RxList<String> availableMonthSlots = ["All", "6 Month", "12 Month"].obs;
   TextEditingController commentController = TextEditingController();
 
   RxString filterMethod = "6".obs;
@@ -55,7 +57,7 @@ class OpenPoController extends GetxController {
     super.onInit();
     FirebaseAnalytics().setCurrentScreen(screenName: "open_po");
     _generateEmptyCart();
-    debugPrint(Globals.currentMarket!.code);
+    // debugPrint(Globals.currentMarket!.code);
   }
 
   void _generateEmptyCart() {

@@ -3,28 +3,43 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
 class SignOutButton extends StatelessWidget {
+  final double fontSize;
+  final String title;
+  final double height;
+  final Color bgColor;
+  final Color fgColor;
+  final VoidCallback? onPress;
+  final String icon;
+  const SignOutButton(
+      {this.fontSize = 14,
+      this.title = "Button",
+      this.height = 40,
+      this.bgColor = const Color(0xFFFFB74F),
+      this.fgColor = const Color(0xFF000000),
+      this.icon = kSignOutIcon,
+      this.onPress});
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ElevatedButton(
-        style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all<Size>(const Size(100, 54)),
-            backgroundColor: MaterialStateProperty.all<Color>(
-              const Color(0xFFFFB74F),
-            ),
-            foregroundColor: MaterialStateProperty.all<Color>(
-              const Color(0xFF000000),
-            ),
-            textStyle: MaterialStateProperty.all<TextStyle?>(
-                const TextStyle(fontSize: 20))),
-        onPressed: () {},
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          const Text("Sign Out"),
-          SvgPicture.asset(kSignOutIcon, height: 20),
-        ]),
-      ),
+    return ElevatedButton(
+      style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all<Size>(Size(100, height)),
+          backgroundColor: MaterialStateProperty.all<Color>(
+            bgColor,
+          ),
+          foregroundColor: MaterialStateProperty.all<Color>(
+            fgColor,
+          ),
+          textStyle: MaterialStateProperty.all<TextStyle?>(
+              TextStyle(fontSize: fontSize))),
+      onPressed: () => onPress!(),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(title),
+        SvgPicture.asset(
+          icon,
+          width: 20,
+        ),
+      ]),
     );
   }
 }
