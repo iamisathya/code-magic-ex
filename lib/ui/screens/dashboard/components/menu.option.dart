@@ -25,7 +25,7 @@ class MenuOption extends StatelessWidget {
             Expanded(
                 child: Text(
               optionTitle,
-              style: const TextStyle(fontSize: 18),
+              style: Theme.of(context).textTheme.headline6,
             )),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),

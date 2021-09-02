@@ -41,13 +41,12 @@ class Body extends StatelessWidget {
                           Text(
                               UserSessionManager
                                   .shared.userInfo!.humanName.fullName,
-                              style: const TextStyle(fontSize: 24)),
+                              style: Theme.of(context).textTheme.headline4),
                           const SizedBox(height: 10),
                           Text(
                               UserSessionManager.shared.userInfo!.id.unicity
                                   .toString(),
-                              style: const TextStyle(
-                                  fontSize: 13, color: Color(0xFF606975))),
+                              style: Theme.of(context).textTheme.subtitle2),
                         ],
                       ),
                     )
