@@ -86,7 +86,7 @@ class OpenPODetailsPage extends StatelessWidget {
               const SizedBox(
                 height: 34,
               ),
-              TotalPrice(),
+              const TotalPrice(),
               const SizedBox(
                 height: 30,
               ),
