@@ -36,7 +36,7 @@ class MainHomeScreen extends StatelessWidget {
                 activeIcon: SvgPicture.asset(kOrderEntryActiveIcon, height: 22),
                 label: 'Order Entry'),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(kEasyshipIcon, height: 22),
+                icon: SvgPicture.asset(kEasyShipTabIcon, height: 22),
                 activeIcon: SvgPicture.asset(kEasyshipActiveIcon, height: 22),
                 label: 'Easyship Report'),
             BottomNavigationBarItem(

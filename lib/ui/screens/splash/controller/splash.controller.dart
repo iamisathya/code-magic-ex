@@ -33,8 +33,8 @@ class SplashController extends GetxController {
     if (_timer != null) return;
     _timer = Timer(const Duration(seconds: 2), () {
       logoStyle.value = FlutterLogoStyle.horizontal;
-      Get.offAll(() => MainHomeScreen());
-      // fetchCustomerData();
+      // Get.offAll(() => MainHomeScreen());
+      fetchCustomerData();
     });
   }
 

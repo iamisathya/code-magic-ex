@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/order_success.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/images.dart';
+import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -31,30 +33,15 @@ class Body extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(30.0),
                             child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SvgPicture.asset(kSettingsIcon,
                                     height: 20, semanticsLabel: "settings"),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'UNICITY',
-                                        style: TextStyle(
-                                            fontSize: 24.0,
-                                            fontWeight: FontWeight.w600,
-                                            foreground: Paint()
-                                              ..shader = linearGradient),
-                                      ),
-                                      const SizedBox(
-                                        width: 17.5,
-                                      ),
-                                      SvgPicture.asset(kDscLogoIcon,
-                                          height: 20,
-                                          semanticsLabel: "dsc logo"),
-                                    ],
-                                  ),
+                                Image.asset(
+                                  kUnicityGradientImage,
+                                  fit: BoxFit.cover,
+                                  width: 190,
+                                  semanticLabel: "unicity logo",
                                 ),
                                 const SizedBox(),
                               ],
@@ -71,18 +58,26 @@ class Body extends StatelessWidget {
                               fit: StackFit.expand,
                               children: [
                                 Container(
-                                  height: 100,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(25)),
-                                      color: const Color(0xFFE3E8ED),
-                                      border: Border.all(
-                                          color: const Color(0xFFFFFFFF),
-                                          width: 2)),
-                                  child: SvgPicture.asset(kDscLogoIcon,
-                                      height: 120),
-                                ),
+                                    height: 100,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(25)),
+                                        color: const Color(0xFFE3E8ED),
+                                        border: Border.all(
+                                            color: const Color(0xFFFFFFFF),
+                                            width: 2)),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(26.0),
+                                      child: CachedNetworkImage(
+                                        imageUrl: UserSessionManager.shared
+                                            .profilePicture!.sizes[0].media,
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                        height: 100,
+                                        width: 100,
+                                      ),
+                                    )),
                                 Positioned(
                                     bottom: -5,
                                     left: -5,
@@ -95,11 +90,15 @@ class Body extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          const Text("Wangyibo",
-                              style: TextStyle(fontSize: 24)),
+                          Text(
+                              UserSessionManager
+                                  .shared.userInfo!.humanName.fullName,
+                              style: const TextStyle(fontSize: 24)),
                           const SizedBox(height: 10),
-                          const Text("85851997",
-                              style: TextStyle(
+                          Text(
+                              UserSessionManager.shared.userInfo!.id.unicity
+                                  .toString(),
+                              style: const TextStyle(
                                   fontSize: 13, color: Color(0xFF606975))),
                         ],
                       ),
@@ -117,7 +116,7 @@ class Body extends StatelessWidget {
                   _renderMenuOption("Order Entry", kOrderEntryIcon),
                   _renderMenuOption("Inventory", kInventoryIcon),
                   _renderMenuOption("Sales Report", kSalesReportIcon),
-                  _renderMenuOption("Easyship Report", kEasyshipIcon),
+                  _renderMenuOption("Easyship Report", kEasyShipMenuIcon),
                   _renderMenuOption("Barcode", kBarcodeIcon),
                 ],
               ),
@@ -144,7 +143,7 @@ class Body extends StatelessWidget {
 
   Widget _renderMenuOption(String title, String icon) {
     return GestureDetector(
-      onTap: () => Get.to(() => OrderSuccess()),
+      onTap: () => Get.to(() => OpenPOHomeScreen()),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 24),
         child: Row(
