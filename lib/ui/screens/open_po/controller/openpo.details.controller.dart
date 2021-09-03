@@ -5,16 +5,37 @@ import 'package:dsc_tools/ui/screens/open_po/order_details/orderdetails.screen.d
 import 'package:dsc_tools/utilities/logger.dart';
 import 'package:get/get.dart';
 
-class OpenPoController extends GetxController {
+class OpenPoDetailsController extends GetxController {
   String currentPoNumber = "";
+  String passedOrderNumber = "";
+  String poOrderAttachment = "";
 
   OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    final dynamic data = Get.arguments;
+    if (data != null) {
+      passedOrderNumber = data as String;
+    }
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    if (passedOrderNumber.isNotEmpty) {
+      getOpenPlaceOrderDetails(passedOrderNumber);
+    }
+  }
+
   Future<void> getOpenPlaceOrderDetails(String ponumber) async {
     try {
       // * Getting order id from getOpenOrderId API - 203
+      poOrderAttachment =
+          await MemberCallsService.init().getPoOrderAttachment("getAttachment", ponumber);      
       openPlaceOrderId =
           await MemberCallsService.init().getOpenOrderId("203", ponumber);
       currentPoNumber = openPlaceOrderId.orderId;
@@ -23,7 +44,6 @@ class OpenPoController extends GetxController {
           await MemberCallsService.init()
               .getOpenOrderDetails("204", openPlaceOrderId.orderId);
       openPlaceOrderDetails = detailsResponse.obs;
-      Get.to(PurchaseOrderDetailsPage());
     } catch (err) {
       LoggerService.instance.e(err.toString());
     }

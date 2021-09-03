@@ -1,17 +1,24 @@
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
+import 'package:dsc_tools/ui/screens/open_po/controller/openpo.details.controller.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'po_ordered_item.dart';
 import 'total_price_container.dart';
 
 class OpenPODetailsPage extends StatelessWidget {
+  final OpenPoDetailsController controller = Get.put(OpenPoDetailsController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("BKM 2021-08-W002",
-              style: TextStyle(fontSize: 18, color: Color(0xFF000000)))),
+          title: Text(controller.openPlaceOrderId.orderOpid,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: const Color(0xFF000000)))),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -31,11 +38,13 @@ class OpenPODetailsPage extends StatelessWidget {
                               width: double.infinity,
                               color: Colors.white,
                               height: 40,
-                              child: const Center(
+                              child: Center(
                                   child: Text(
-                                "0001",
-                                style: TextStyle(
-                                    color: Color(0xFF9999A4), fontSize: 14),
+                                controller.openPlaceOrderId.orderDscid,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle2!
+                                    .copyWith(color: const Color(0xFF9999A4)),
                               )),
                             ),
                           ),
@@ -47,11 +56,13 @@ class OpenPODetailsPage extends StatelessWidget {
                               width: double.infinity,
                               color: Colors.white,
                               height: 40,
-                              child: const Center(
+                              child: Center(
                                   child: Text(
-                                "2021-11-16",
-                                style: TextStyle(
-                                    color: Color(0xFF9999A4), fontSize: 14),
+                                controller.openPlaceOrderId.orderDate,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle2!
+                                    .copyWith(color: const Color(0xFF9999A4)),
                               )),
                             ),
                           )
@@ -65,11 +76,13 @@ class OpenPODetailsPage extends StatelessWidget {
                         width: double.infinity,
                         color: Colors.white,
                         height: 40,
-                        child: const Center(
+                        child: Center(
                             child: Text(
-                          "Thailand TEST DSC",
-                          style:
-                              TextStyle(color: Color(0xFF9999A4), fontSize: 14),
+                          controller.openPlaceOrderId.createBy,
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle2!
+                              .copyWith(color: const Color(0xFF9999A4)),
                         )),
                       ),
                     ),
@@ -86,7 +99,9 @@ class OpenPODetailsPage extends StatelessWidget {
               const SizedBox(
                 height: 34,
               ),
-              const TotalPrice(),
+              TotalPrice(
+                  totalPrice: controller.openPlaceOrderId.orderTotalPrice,
+                  totalPv: controller.openPlaceOrderId.orderTotalPv),
               const SizedBox(
                 height: 30,
               ),

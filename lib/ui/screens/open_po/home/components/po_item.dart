@@ -19,7 +19,7 @@ class POItem extends StatelessWidget {
         openPo.iconAttachment.retrieveAttachementName();
     return Stack(children: [
       GestureDetector(
-        onTap: () => Get.to(() => OpenPODetailsPage()),
+        onTap: () => Get.to(() => OpenPODetailsPage(), arguments: openPo.orderOpid),
         child: Card(
             margin: const EdgeInsets.symmetric(vertical: 10),
             child: Column(

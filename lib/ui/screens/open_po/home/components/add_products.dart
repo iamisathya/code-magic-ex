@@ -73,8 +73,8 @@ class AddProducts extends StatelessWidget {
                           child: const Center(
                               child: Text(
                             "Thailand TEST DSC",
-                            style:
-                                TextStyle(color: Color(0xFF9999A4), fontSize: 14),
+                            style: TextStyle(
+                                color: Color(0xFF9999A4), fontSize: 14),
                           )),
                         ),
                       ),
@@ -118,8 +118,8 @@ class AddProducts extends StatelessWidget {
                                               hintStyle: TextStyle(
                                                   fontSize: 12,
                                                   color: Color(0xFF9EA9B9)),
-                                              suffixIcon:
-                                                  Icon(Icons.keyboard_arrow_down),
+                                              suffixIcon: Icon(
+                                                  Icons.keyboard_arrow_down),
                                               fillColor: Color(0xFFFFFFFF),
                                               filled: true,
                                               border: InputBorder.none,
@@ -147,7 +147,8 @@ class AddProducts extends StatelessWidget {
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     color: Color(0xFF000000),
-                                                    fontWeight: FontWeight.w500),
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                               ),
                                             );
                                           }),
@@ -159,7 +160,8 @@ class AddProducts extends StatelessWidget {
                       height: 40, semanticsLabel: "Add more products"),
                 ),
                 const SizedBox(height: 34),
-                const TotalPrice(bgColor: Color(0xFFECFBF2)),
+                const TotalPrice(
+                    totalPrice: "", totalPv: "", bgColor: Color(0xFFECFBF2)),
                 const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.only(

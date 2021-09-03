@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 class TotalPrice extends StatelessWidget {
   final Color bgColor;
-  const TotalPrice({ this.bgColor = const Color(0xFFF5F5F5)});
+  final String totalPrice;
+  final String totalPv;
+  const TotalPrice(
+      {this.bgColor = const Color(0xFFF5F5F5),
+      required this.totalPrice,
+      required this.totalPv});
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +20,20 @@ class TotalPrice extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   "Total PV:",
-                  style: TextStyle(fontSize: 14, color: Color(0xFF384250)),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2!
+                      .copyWith(color: const Color(0xFF384250)),
                 ),
                 Text(
-                  "40 PV",
-                  style: TextStyle(fontSize: 14, color: Color(0xFF384250)),
+                  "$totalPv PV",
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2!
+                      .copyWith(color: const Color(0xFF384250)),
                 ),
               ],
             ),
@@ -35,14 +46,20 @@ class TotalPrice extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   "Total Price:",
-                  style: TextStyle(fontSize: 14, color: Color(0xFF384250)),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2!
+                      .copyWith(color: const Color(0xFF384250)),
                 ),
                 Text(
-                  "6,000 THB",
-                  style: TextStyle(fontSize: 14, color: Color(0xFF384250)),
+                  "$totalPrice THB",
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2!
+                      .copyWith(color: const Color(0xFF384250)),
                 ),
               ],
             )
