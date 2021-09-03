@@ -576,6 +576,20 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
+  Future<String> getPoOrderAttachment(type, sid) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'type': type, r'sid': sid};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
   Future<GetPeriodLogResponse> getPeriodLog(type, data, customerID) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'type': type};

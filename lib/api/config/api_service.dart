@@ -252,6 +252,10 @@ abstract class MemberCallsService {
   Future<String> getPeriodResponse(@Field("country") String country,
       @Field("joinPeriod") String joinPeriod, @Field("system") String system);
 
+  //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=getAttachment&sid=BKM%202021-08-W002
+  @GET(Address.validOrders)
+  Future<String> getPoOrderAttachment(@Query("type") String type, @Query("sid") String sid);
+
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=0000
   @GET(Address.validOrders)
   Future<GetPeriodLogResponse> getPeriodLog(@Query("type") String type,
