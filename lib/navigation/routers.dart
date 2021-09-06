@@ -39,20 +39,21 @@ class AppRoutes {
     GetPage(
         name: OrderEntryHomeScreen.routeName,
         page: () => OrderEntryHomeScreen()),
-    GetPage(name: OpenPOHomeScreen.routeName, page: () => OpenPOHomeScreen()),
     GetPage(name: MainHomeScreen.routeName, page: () => MainHomeScreen()),
     GetPage(name: LoginScreen.routeName, page: () => LoginScreen()),
     GetPage(name: CheckoutPage.routeName, page: () => CheckoutPage()),
     GetPage(name: SettingsPage.routeName, page: () => SettingsPage()),
     GetPage(
-      name: OpenPODetailsPage.routeName,
-      page: () => OpenPODetailsPage(),
-      binding: AppBindings(),
-    ),
+        name: OpenPOHomeScreen.routeName,
+        page: () => OpenPOHomeScreen(),
+        binding: OpenPoOrderListBindings()),
     GetPage(
-      name: CreateOpenPoOrder.routeName,
-      page: () => CreateOpenPoOrder(),
-      binding: CreateOpenPoOrderBindings(),
-    ),
+        name: OpenPODetailsPage.routeName,
+        page: () => OpenPODetailsPage(),
+        binding: AppBindings()),
+    GetPage(
+        name: CreateOpenPoOrder.routeName,
+        page: () => CreateOpenPoOrder(),
+        binding: CreateOpenPoOrderBindings()),
   ];
 }

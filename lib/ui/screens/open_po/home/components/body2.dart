@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/open_po/controller/openpo.controller.dart';
+import 'package:dsc_tools/ui/screens/open_po/controller/openpo.list.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/add_products.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/po_item.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/search_products.dart';
@@ -8,9 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../../../../../utilities/extensions.dart';
 
-class Body2 extends StatelessWidget {
-  final OpenPoController controller = Get.put(OpenPoController());
-
+class Body2 extends GetView<OpenPoListController> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -52,16 +50,18 @@ class Body2 extends StatelessWidget {
                           children: controller.availableMonthSlots
                               .mapIndexed((String type, int index) =>
                                   GestureDetector(
-                                    onTap: () => controller.currentTab = index,
+                                    onTap: () =>
+                                        controller.currentTab.value = index,
                                     child: Text(
                                       type,
-                                      style: controller.currentTab == index
-                                          ? Theme.of(context)
-                                              .textTheme
-                                              .bodyText1
-                                          : Theme.of(context)
-                                              .textTheme
-                                              .bodyText2,
+                                      style:
+                                          controller.currentTab.value == index
+                                              ? Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1
+                                              : Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText2,
                                     ),
                                   ))
                               .toList()),
@@ -84,15 +84,27 @@ class Body2 extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Container(
                   color: const Color(0xFFF5F5F5),
-                  child: Obx(() => ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: controller.openPlaceOrders.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        return POItem(
-                            openPo: controller.openPlaceOrders[index],
-                            controller: controller);
-                      })),
+                  child: controller.obx(
+                    (openPoList) => ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: openPoList!.length,
+                        itemBuilder: (BuildContext ctxt, int index) {
+                          return POItem(
+                              openPo: openPoList[index],
+                              controller: controller);
+                        }),
+                    onLoading: const Center(
+                        child: CircularProgressIndicator()), // optional
+                    onError: (error) => Center(
+                      // optional
+                      child: Text(
+                        'Error: $error',
+                        style: const TextStyle(fontSize: 18),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
                 ),
               ))
         ],

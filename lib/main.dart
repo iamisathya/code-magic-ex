@@ -30,6 +30,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AppBindings().dependencies();
   CreateOpenPoOrderBindings().dependencies();
+  OpenPoOrderListBindings().dependencies();
   await Firebase.initializeApp();
   await dotenv.load();
   await GetStorage.init();

@@ -13,25 +13,9 @@ class OpenPOHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: kWhiteSmokeColor,
-        appBar: OpenPoAppBar(),
-        body: Body2(),
-        floatingActionButton: FloatingActionButton(
-            elevation: 0.0,
-            heroTag: "add_open_po_order",
-            onPressed: controller.onAddOrderTap,
-            child: const Icon(Icons.add)));
-  }
-
-  List<Widget> _renderActionBar(BuildContext context) {
-    return <Widget>[
-      IconButton(
-        icon: const Icon(
-          Icons.sort,
-        ),
-        tooltip: 'Sort types',
-        onPressed: () => controller.showPopupMenu(context),
-      ),
-    ];
+      backgroundColor: kWhiteSmokeColor,
+      appBar: OpenPoAppBar(),
+      body: Body2(),
+    );
   }
 }

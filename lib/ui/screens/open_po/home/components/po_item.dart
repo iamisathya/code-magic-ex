@@ -1,5 +1,6 @@
 import 'package:dsc_tools/models/open_po.dart';
 import 'package:dsc_tools/ui/screens/open_po/controller/openpo.controller.dart';
+import 'package:dsc_tools/ui/screens/open_po/controller/openpo.list.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/open_po_details.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import '../../../../../utilities/extensions.dart';
 
 class POItem extends StatelessWidget {
   final OpenPO openPo;
-  final OpenPoController controller;
+  final OpenPoListController controller;
 
   const POItem({required this.openPo, required this.controller});
 
