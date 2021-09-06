@@ -3,6 +3,7 @@ import 'package:dsc_tools/ui/screens/dashboard/components/dashboard.header.dart'
 import 'package:dsc_tools/ui/screens/dashboard/components/menu.option.dart';
 import 'package:dsc_tools/ui/screens/dashboard/components/profile.image.dart';
 import 'package:dsc_tools/ui/screens/dashboard/controller/dashboard.controller.dart';
+import 'package:dsc_tools/ui/screens/inventory/inventory.screen.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
@@ -77,7 +78,7 @@ class Body extends StatelessWidget {
                   MenuOption(
                       icon: kInventoryIcon,
                       optionTitle: "Inventory",
-                      onPress: () => Get.to(() => OpenPOHomeScreen())),
+                      onPress: () => Get.to(() => InventoryHomeScreen())),
                   MenuOption(
                       icon: kSalesReportIcon,
                       optionTitle: "Sales Report",
