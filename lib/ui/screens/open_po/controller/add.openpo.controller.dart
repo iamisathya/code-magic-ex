@@ -223,7 +223,7 @@ class CreateOpenPoOrderController extends GetxController
           totalPrice: totalCartPv.value.toString(),
           totalPv: totalCartPrice.value.toString(),
           customerName: UserSessionManager.shared.userInfo!.humanName.fullName,
-          base64Image: "data:image/png;base64,${selectedImageBaes64!}",
+          base64Image: selectedImageBaes64!.isNotEmpty ? "data:image/png;base64,${selectedImageBaes64!}" : "",
           item: _collectOrderData());
       final OpenPOCreateOrderResponse reponse =
           await MemberCallsService.init().placeOrder(kPlaceOrder, request);
