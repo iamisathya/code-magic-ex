@@ -19,6 +19,7 @@ class OpenPoListController extends GetxController
     NameValueType(name: "12 Month", value: "12")
   ].obs;
   RxString filterMethod = "all".obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -34,6 +35,7 @@ class OpenPoListController extends GetxController
   }
 
   Future<void> getAllOpenPo() async {
+    isLoading.toggle();
     try {
       final List<OpenPO> allOpenPlaceOrders = await MemberCallsService.init()
           .getAllOpenPo("106", filterMethod.value, Globals.userId);
@@ -42,7 +44,9 @@ class OpenPoListController extends GetxController
       } else {
         change([], status: RxStatus.empty());
       }
+      isLoading.toggle();
     } catch (err) {
+      isLoading.toggle();
       change(null, status: RxStatus.error(err.toString()));
       LoggerService.instance.e(err.toString());
     }

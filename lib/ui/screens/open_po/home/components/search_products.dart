@@ -44,46 +44,41 @@ class _SearchAppBarState extends State<SearchProducts> {
         ),
       ]),
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                height: 80,
-                color: Color(0xFFF5F5F5),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 17, horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "Search History",
-                        style:
-                            TextStyle(fontSize: 14, color: Color(0xFF000000)),
-                      ),
-                      Text(
-                        "Clear all",
-                        style:
-                            TextStyle(fontSize: 14, color: Color(0xFFFE5D7C)),
-                      )
-                    ],
-                  ),
+        child: Column(
+          children: [
+            Container(
+              height: 80,
+              color: const Color(0xFFF5F5F5),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 17, horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      "Search History",
+                      style: TextStyle(fontSize: 14, color: Color(0xFF000000)),
+                    ),
+                    Text(
+                      "Clear all",
+                      style: TextStyle(fontSize: 14, color: Color(0xFFFE5D7C)),
+                    )
+                  ],
                 ),
               ),
-              const SizedBox(height: 10),
-              ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 20,
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                      child: Text("Bios Life Complete (60pkt)"),
-                    );
-                  }),
-            ],
-          ),
+            ),
+            const SizedBox(height: 10),
+            ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 20,
+                itemBuilder: (BuildContext ctxt, int index) {
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    child: Text("Bios Life Complete (60pkt)"),
+                  );
+                }),
+          ],
         ),
       ),
     );
