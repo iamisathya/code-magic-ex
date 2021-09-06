@@ -1,13 +1,20 @@
+import 'package:dsc_tools/models/cart_products.dart';
+import 'package:dsc_tools/models/inventory_records.dart';
+import 'package:dsc_tools/models/open_po_details.dart';
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
+import 'package:dsc_tools/ui/screens/open_po/controller/add.openpo.controller.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import 'po_cart_item.dart';
 import 'po_ordered_item.dart';
 import 'total_price_container.dart';
 
-class AddProducts extends StatelessWidget {
+class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
+  static const String routeName = '/createOpenPoOrder';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,14 +91,15 @@ class AddProducts extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                ListView.builder(
+                Obx(() => ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: 3,
+                    itemCount: controller.cartProducts.length,
                     itemBuilder: (BuildContext ctxt, int index) {
-                      return const Text("Uncomment below line");
-                      // return const PoOrderedItem(item: OpenPlaceOrderDetails(),);
-                    }),
+                      final CartProductsItem item =
+                          controller.cartProducts[index];
+                      return PoCartItem(item: item);
+                    })),
                 GestureDetector(
                   onTap: () => showModalBottomSheet(
                       isScrollControlled: true,
@@ -104,7 +112,7 @@ class AddProducts extends StatelessWidget {
                             minChildSize: 0.2,
                             maxChildSize: 0.75,
                             expand: false,
-                            builder: (_, controller) => Column(
+                            builder: (_, ctrl) => Column(
                                   children: <Widget>[
                                     Container(
                                       height: 60,
@@ -136,20 +144,34 @@ class AddProducts extends StatelessWidget {
                                     const SizedBox(height: 20),
                                     Expanded(
                                       child: ListView.builder(
-                                          controller: controller,
-                                          itemCount: 20,
+                                          controller: ctrl,
+                                          itemCount: controller.inventoryRecords
+                                              .value.items.length,
                                           itemBuilder:
                                               (BuildContext ctxt, int index) {
-                                            return const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 30, vertical: 10),
-                                              child: Text(
-                                                "17532 Pre-filter Catridge Ultra",
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: Color(0xFF000000),
-                                                    fontWeight:
-                                                        FontWeight.w500),
+                                            final InventoryRecordItems item =
+                                                controller.inventoryRecords
+                                                    .value.items[index];
+                                            return GestureDetector(
+                                              onTap: () {
+                                                controller.addItemToCart(item);
+                                                Navigator.pop(context);
+                                              },
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 30,
+                                                        vertical: 10),
+                                                child: Text(
+                                                  item.catalogSlideContent
+                                                      .content.description,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle2!
+                                                      .copyWith(
+                                                          color: const Color(
+                                                              0xFF000000)),
+                                                ),
                                               ),
                                             );
                                           }),
@@ -161,8 +183,10 @@ class AddProducts extends StatelessWidget {
                       height: 40, semanticsLabel: "Add more products"),
                 ),
                 const SizedBox(height: 34),
-                const TotalPrice(
-                    totalPrice: "", totalPv: "", bgColor: Color(0xFFECFBF2)),
+                Obx(() => TotalPrice(
+                    totalPrice: controller.totalCartPrice.value.toString(),
+                    totalPv: controller.totalCartPv.value.toString(),
+                    bgColor: const Color(0xFFECFBF2))),
                 const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.only(

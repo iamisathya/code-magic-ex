@@ -46,6 +46,9 @@ const kFileIcon = 'assets/icons/file_icon.svg';
 const kPrintIcon = 'assets/icons/print_icon.svg';
 const kForwardIcon = 'assets/icons/forward_icon.svg';
 const kPoAttachmentIcon = 'assets/icons/attachment_icon.svg';
+const kPlusIcon = 'assets/icons/plus_icon.svg';
+const kMinusIcon = 'assets/icons/minus_icon.svg';
+const kMultiplyIcon = 'assets/icons/multiply_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';

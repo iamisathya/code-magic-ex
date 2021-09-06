@@ -29,7 +29,7 @@ class Body2 extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   GestureDetector(
-                    onTap: () => Get.to(() => AddProducts()),
+                    onTap: () => Get.to(() => CreateOpenPoOrder()),
                     child: SvgPicture.asset(kAddPoIcon,
                         height: 40, semanticsLabel: "Add PO"),
                   ),
