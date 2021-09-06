@@ -89,7 +89,8 @@ class AddProducts extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: 3,
                     itemBuilder: (BuildContext ctxt, int index) {
-                      return PoOrderedItem();
+                      return const Text("Uncomment below line");
+                      // return const PoOrderedItem(item: OpenPlaceOrderDetails(),);
                     }),
                 GestureDetector(
                   onTap: () => showModalBottomSheet(

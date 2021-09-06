@@ -25,7 +25,7 @@ class ProgressBar {
               Positioned.fill(
                 child: Align(
                   child: Image.asset(
-                    kAnimatedLoader,
+                    kAnimatedLoader2,
                     height: 100.0,
                     width: 100.0,
                   ),

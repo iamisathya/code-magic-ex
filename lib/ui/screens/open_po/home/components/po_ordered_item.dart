@@ -1,6 +1,10 @@
+import 'package:dsc_tools/models/open_po_details.dart';
 import 'package:flutter/material.dart';
 
 class PoOrderedItem extends StatelessWidget {
+  final OpenPlaceOrderDetails item;
+  const PoOrderedItem({required this.item});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +21,7 @@ class PoOrderedItem extends StatelessWidget {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(width: 0.5),
-                      color: const Color(0xFFD0D0CF),
+                      color: const Color(0xFFF5F5F5),
                       borderRadius: BorderRadius.circular(2),
                     ),
                     height: 40,
@@ -40,10 +44,13 @@ class PoOrderedItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(2),
                     ),
                     height: 40,
-                    child: const Center(
+                    child: Center(
                         child: Text(
-                      "17762",
-                      style: TextStyle(color: Color(0xFF9999A4), fontSize: 14),
+                      item.productId,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(color: const Color(0xFF384250)),
                     )),
                   ),
                 )
@@ -61,32 +68,16 @@ class PoOrderedItem extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(2),
                     ),
-                    child: const Center(
+                    child: Center(
                         child: Text(
-                      "	เดลี่ โปรดิวส์",
-                      style: TextStyle(color: Color(0xFF9999A4), fontSize: 14),
+                      item.productName,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(color: const Color(0xFF384250)),
                     )),
                   ),
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Flexible(
-                  child: Container(
-                    width: double.infinity,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 0.5),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(2),
-                    ),
-                    child: const Center(
-                        child: Text(
-                      "0001",
-                      style: TextStyle(color: Color(0xFF9999A4), fontSize: 14),
-                    )),
-                  ),
-                )
               ],
             ),
             const SizedBox(height: 10),
@@ -101,10 +92,13 @@ class PoOrderedItem extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(2),
                     ),
-                    child: const Center(
+                    child: Center(
                         child: Text(
-                      "25 PV | 1,590 THB",
-                      style: TextStyle(color: Color(0xFF9999A4), fontSize: 14),
+                      "${item.productPv} PV | ${item.productPrice} THB",
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(color: const Color(0xFF384250)),
                     )),
                   ),
                 ),
@@ -120,10 +114,13 @@ class PoOrderedItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(2),
                     ),
                     height: 40,
-                    child: const Center(
+                    child: Center(
                         child: Text(
-                      "1",
-                      style: TextStyle(color: Color(0xFF9999A4), fontSize: 14),
+                      item.productQty,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(color: const Color(0xFF384250)),
                     )),
                   ),
                 )

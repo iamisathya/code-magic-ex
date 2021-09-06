@@ -1,4 +1,7 @@
+import 'package:dsc_tools/ui/screens/open_po/controller/openpo.details.controller.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/open_po_details.dart';
 import 'package:dsc_tools/ui/screens/settings/settings.screen.dart';
+import 'package:dsc_tools/utilities/bindings.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -40,5 +43,10 @@ class AppRoutes {
     GetPage(name: LoginScreen.routeName, page: () => LoginScreen()),
     GetPage(name: CheckoutPage.routeName, page: () => CheckoutPage()),
     GetPage(name: SettingsPage.routeName, page: () => SettingsPage()),
+    GetPage(
+      name: OpenPODetailsPage.routeName,
+      page: () => OpenPODetailsPage(),
+      binding: AppBindings(),
+    ),
   ];
 }

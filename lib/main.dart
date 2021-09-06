@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:dsc_tools/utilities/bindings.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,6 +28,7 @@ import 'utilities/user_session.dart';
 Future<void> main() async {
   //* Ensure initialization of Widgets.
   WidgetsFlutterBinding.ensureInitialized();
+  AppBindings().dependencies();
   await Firebase.initializeApp();
   await dotenv.load();
   await GetStorage.init();

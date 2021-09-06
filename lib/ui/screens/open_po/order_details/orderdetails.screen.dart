@@ -45,7 +45,7 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
         ),
         tooltip: 'Print',
         onPressed: () => controller.proceedToPrint(context,
-            orderId: controller.currentPoNumber),
+            orderId: controller.openPlaceOrderId.orderOpid),
       ),
     ];
   }

@@ -67,3 +67,4 @@ const kDscLogoIcon = 'assets/icons/dashboard/dsc_logo.svg';
 const kSplashImage = 'assets/images/splash.jpg';
 // * animated
 const kAnimatedLoader = 'assets/animated/spinner.gif';
+const kAnimatedLoader2 = 'assets/animated/spinner2.gif';
