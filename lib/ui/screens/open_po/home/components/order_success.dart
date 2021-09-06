@@ -7,7 +7,7 @@ class OrderSuccess extends StatelessWidget {
   final String distributorId;
   final String poNumber;
 
-  const OrderSuccess({this.isSuccess = true, this.distributorId = "102915181", this.poNumber = "BKM 2021-08-W002"});
+  const OrderSuccess({this.isSuccess = true, this.distributorId = "", this.poNumber = ""});
 
   @override
   Widget build(BuildContext context) {

@@ -34,7 +34,13 @@ class SignOutButton extends StatelessWidget {
               TextStyle(fontSize: fontSize))),
       onPressed: () => onPress!(),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(title),
+        Expanded(
+          child: Text(
+            title,
+            softWrap: false,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
         SvgPicture.asset(
           icon,
           width: 20,

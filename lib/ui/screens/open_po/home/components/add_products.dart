@@ -1,6 +1,6 @@
 import 'package:dsc_tools/models/cart_products.dart';
 import 'package:dsc_tools/models/inventory_records.dart';
-import 'package:dsc_tools/models/open_po_details.dart';
+
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
 import 'package:dsc_tools/ui/screens/open_po/controller/add.openpo.controller.dart';
 import 'package:dsc_tools/utilities/images.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'po_cart_item.dart';
-import 'po_ordered_item.dart';
+
 import 'total_price_container.dart';
 
 class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
@@ -191,18 +191,18 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                 Padding(
                   padding: const EdgeInsets.only(
                       top: 10, left: 20, right: 20, bottom: 5),
-                  child: SignOutButton(
-                      title: "Image S__46776363.png",
-                      onPress: () {},
+                  child: Obx(() => SignOutButton(
+                      title: controller.selectedFileName.value,
+                      onPress: () => controller.selectSource(),
                       bgColor: const Color(0xFFFFFFFF),
-                      icon: kFileIcon),
+                      icon: kFileIcon)),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
                       top: 5, left: 20, right: 20, bottom: 10),
                   child: SignOutButton(
                     title: "Place Order",
-                    onPress: () {},
+                    onPress: () => controller.validateOrder(context),
                     bgColor: const Color(0xFF1C9CFC),
                     fgColor: const Color(0xFFFFFFFF),
                     icon: kForwardIcon,
