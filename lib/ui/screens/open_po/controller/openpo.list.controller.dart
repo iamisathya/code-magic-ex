@@ -1,6 +1,7 @@
 import 'package:dsc_tools/api/api_address.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/models/general_models.dart';
 import 'package:dsc_tools/models/open_po.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/logger.dart';
@@ -12,14 +13,24 @@ import 'package:photo_view/photo_view.dart';
 class OpenPoListController extends GetxController
     with StateMixin<List<OpenPO>> {
   RxInt currentTab = 0.obs;
-  RxList<String> availableMonthSlots = ["All", "6 Month", "12 Month"].obs;
-  RxString filterMethod = "6".obs;
+  RxList<NameValueType> availableMonthSlots = [
+    NameValueType(name: "All", value: "all"),
+    NameValueType(name: "6 Month", value: "6"),
+    NameValueType(name: "12 Month", value: "12")
+  ].obs;
+  RxString filterMethod = "all".obs;
 
   @override
   void onInit() {
     FirebaseAnalytics().setCurrentScreen(screenName: "open_po");
     getAllOpenPo();
     super.onInit();
+  }
+
+  void onChangeMonthType(int index) {
+    currentTab.value = index;
+    filterMethod.value = availableMonthSlots[index].value;
+    getAllOpenPo();
   }
 
   Future<void> getAllOpenPo() async {

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/models/general_models.dart';
 import 'package:dsc_tools/ui/screens/open_po/controller/openpo.list.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/add_products.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/po_item.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../../../../../utilities/extensions.dart';
 
-class Body2 extends GetView<OpenPoListController> {
+class OpenPoOrderList extends GetView<OpenPoListController> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -48,12 +49,11 @@ class Body2 extends GetView<OpenPoListController> {
                       () => Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: controller.availableMonthSlots
-                              .mapIndexed((String type, int index) =>
+                              .mapIndexed((NameValueType type, int index) =>
                                   GestureDetector(
-                                    onTap: () =>
-                                        controller.currentTab.value = index,
+                                    onTap: () => controller.onChangeMonthType(index),
                                     child: Text(
-                                      type,
+                                      type.name,
                                       style:
                                           controller.currentTab.value == index
                                               ? Theme.of(context)

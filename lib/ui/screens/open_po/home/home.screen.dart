@@ -1,5 +1,5 @@
 import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/body2.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/open_po_order_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +15,7 @@ class OpenPOHomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteSmokeColor,
       appBar: OpenPoAppBar(),
-      body: Body2(),
+      body: OpenPoOrderList(),
     );
   }
 }

@@ -91,3 +91,14 @@ class PasswordResetResponse {
 
   Map<String, dynamic> toJson() => _$PasswordResetResponseToJson(this);
 }
+
+@JsonSerializable()
+class NameValueType {
+  String name;
+  String value;
+
+  NameValueType({
+    required this.name,
+    required this.value,
+  });
+}
