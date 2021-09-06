@@ -102,9 +102,6 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                                   openPo: openPoList[index],
                                   controller: controller);
                             }),
-
-                        onLoading: const Center(
-                            child: CircularProgressIndicator()), // optional
                         onEmpty: const Text('No data found'),
                         onError: (error) => Center(
                           // optional

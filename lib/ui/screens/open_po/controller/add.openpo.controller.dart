@@ -32,6 +32,7 @@ class CreateOpenPoOrderController extends GetxController
   XFile uploadFile = XFile("");
   RxString selectedFileName = "".obs;
   String? selectedImageBaes64 = "";
+  RxBool isLoading = false.obs;
   final ImagePicker _picker = ImagePicker();
 
   @override
@@ -41,18 +42,22 @@ class CreateOpenPoOrderController extends GetxController
   }
 
   Future<void> loadInventoryProducts() async {
+    isLoading.toggle();
     const String type = "item";
     const String userId =
         "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
       inventoryRecords.value =
           await ApiService.shared().getInventoryRecords(userId, type);
+      isLoading.toggle();
     } on DioError catch (e) {
+      isLoading.toggle();
       final String message = getErrorMessage(e.response!.data);
       renderErrorSnackBar(
           title: "${e.response!.statusCode} Error!", subTitle: message);
       returnResponse(e.response!);
     } catch (err) {
+      isLoading.toggle();
       LoggerService.instance.e(err.toString());
     }
   }
@@ -176,7 +181,8 @@ class CreateOpenPoOrderController extends GetxController
 
   Future<void> validateOrder(BuildContext context) async {
     if (cartProducts.isEmpty) {
-      SnackbarUtil.showError(message: "Please select products to proceed with checkout!");
+      SnackbarUtil.showError(
+          message: "Please select products to proceed with checkout!");
       return;
     }
     confirmOrder(context);
@@ -184,6 +190,7 @@ class CreateOpenPoOrderController extends GetxController
 
   Future<void> confirmOrder(BuildContext context) async {
     try {
+      isLoading.toggle();
       final dynamic reponse =
           await MemberCallsService.init().valiadateOrder("TH", "BKM");
       final jsonResponse = jsonDecode(reponse.toString());
@@ -193,9 +200,11 @@ class CreateOpenPoOrderController extends GetxController
         placeOrder(orderResponse.message, context);
       }
     } on DioError catch (e) {
+      isLoading.toggle();
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
+      isLoading.toggle();
       LoggerService.instance.e(err.toString());
     }
   }
@@ -223,19 +232,31 @@ class CreateOpenPoOrderController extends GetxController
           totalPrice: totalCartPv.value.toString(),
           totalPv: totalCartPrice.value.toString(),
           customerName: UserSessionManager.shared.userInfo!.humanName.fullName,
-          base64Image: selectedImageBaes64!.isNotEmpty ? "data:image/png;base64,${selectedImageBaes64!}" : "",
+          base64Image: selectedImageBaes64!.isNotEmpty
+              ? "data:image/png;base64,${selectedImageBaes64!}"
+              : "",
           item: _collectOrderData());
       final OpenPOCreateOrderResponse reponse =
           await MemberCallsService.init().placeOrder(kPlaceOrder, request);
+      isLoading.toggle();
       if (reponse.success == true) {
-        Get.off(() => OrderSuccess(distributorId: Globals.userId, poNumber: reponse.poId,));
+        Get.off(() => OrderSuccess(
+              distributorId: Globals.userId,
+              poNumber: reponse.poId,
+            ));
       } else {
-        Get.off(() => OrderSuccess(distributorId: Globals.userId, poNumber: reponse.poId, isSuccess: false,));
+        Get.off(() => OrderSuccess(
+              distributorId: Globals.userId,
+              poNumber: reponse.poId,
+              isSuccess: false,
+            ));
       }
     } on DioError catch (e) {
+      isLoading.toggle();
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
+      isLoading.toggle();
       LoggerService.instance.e(err.toString());
     }
   }

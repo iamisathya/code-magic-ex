@@ -24,6 +24,8 @@ class OpenPoDetailsController extends GetxController
   OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
+    
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -36,6 +38,7 @@ class OpenPoDetailsController extends GetxController
   }
 
   Future<void> getOpenPlaceOrderDetails(String ponumber) async {
+    isLoading.toggle();
     try {
       // * Getting order id from getOpenOrderId API - 203
       poOrderAttachment =
@@ -46,8 +49,10 @@ class OpenPoDetailsController extends GetxController
       final List<OpenPlaceOrderDetails> detailsResponse =
           await api.getOpenOrderDetails("204", openPlaceOrderId.orderId);
       openPlaceOrderDetails = detailsResponse.obs;
+      isLoading.toggle();
       change(openPlaceOrderDetails, status: RxStatus.success());
     } catch (err) {
+      isLoading.toggle();
       change(null, status: RxStatus.error());
       LoggerService.instance.e(err.toString());
     }
@@ -55,13 +60,14 @@ class OpenPoDetailsController extends GetxController
 
   Future<void> proceedToPrint(BuildContext context,
       {required String orderId}) async {
+        isLoading.toggle();
     final String imgUrl = "${Address.poOrder}?order_id=$orderId";
     final Dio dio = Dio();
     final response = await dio.get(imgUrl);
     // * removing background from html document
     final removedBackground =
         response.toString().replaceAll('background: rgb(204,204,204);', '');
-
+    isLoading.toggle();
     await Printing.layoutPdf(
         dynamicLayout: false,
         onLayout: (PdfPageFormat format) async => Printing.convertHtml(
