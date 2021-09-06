@@ -40,7 +40,7 @@ class OpenPoListController extends GetxController
       if (allOpenPlaceOrders.isNotEmpty) {
         change(allOpenPlaceOrders, status: RxStatus.success());
       } else {
-        change(null, status: RxStatus.empty());
+        change([], status: RxStatus.empty());
       }
     } catch (err) {
       change(null, status: RxStatus.error(err.toString()));

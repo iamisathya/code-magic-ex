@@ -51,7 +51,8 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                           children: controller.availableMonthSlots
                               .mapIndexed((NameValueType type, int index) =>
                                   GestureDetector(
-                                    onTap: () => controller.onChangeMonthType(index),
+                                    onTap: () =>
+                                        controller.onChangeMonthType(index),
                                     child: Text(
                                       type.name,
                                       style:
@@ -94,8 +95,10 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                               openPo: openPoList[index],
                               controller: controller);
                         }),
+
                     onLoading: const Center(
                         child: CircularProgressIndicator()), // optional
+                    onEmpty: const Text('No data found'),
                     onError: (error) => Center(
                       // optional
                       child: Text(
