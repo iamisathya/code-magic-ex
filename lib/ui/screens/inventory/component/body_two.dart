@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import 'grand_total_price.dart';
 import 'inventory_item.dart';
+import 'page_title.dart';
 import 'tool_bar.dart';
 import 'user_address.dart';
 
@@ -16,15 +17,7 @@ class Body2 extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            height: 70,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Center(
-                  child: Text("Inventory",
-                      style: Theme.of(context).textTheme.headline4)),
-            ),
-          ),
+          PageTitle(),
           InventoryToolBar(),
           UserAddress(),
           const SizedBox(height: 10),
