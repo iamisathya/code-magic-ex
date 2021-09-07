@@ -35,10 +35,16 @@ class InventoryToolBar extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SvgPicture.asset(kPrintIcon,
-                      width: 20, semanticsLabel: 'print icon'),
-                  SvgPicture.asset(kDownloadIcon,
-                      width: 20, semanticsLabel: 'download icon'),
+                  GestureDetector(
+                    onTap: () => controller.onTapPrint(),
+                    child: SvgPicture.asset(kPrintIcon,
+                        width: 20, semanticsLabel: 'print icon'),
+                  ),
+                  GestureDetector(
+                    onTap: () => controller.onTapExportExcellSheet(),
+                    child: SvgPicture.asset(kDownloadIcon,
+                        width: 20, semanticsLabel: 'download icon'),
+                  ),
                   GestureDetector(
                     onTap: () => Get.to(() => SearchProducts()),
                     child: SvgPicture.asset(kSearchIcon,
