@@ -49,6 +49,9 @@ const kPoAttachmentIcon = 'assets/icons/attachment_icon.svg';
 const kPlusIcon = 'assets/icons/plus_icon.svg';
 const kMinusIcon = 'assets/icons/minus_icon.svg';
 const kMultiplyIcon = 'assets/icons/multiply_icon.svg';
+const kDownloadIcon = 'assets/icons/download_icon.svg';
+const kTableViewIcon = 'assets/icons/table_view_icon.svg';
+const kCardViewIcon = 'assets/icons/card_view_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';
