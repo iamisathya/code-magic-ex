@@ -51,3 +51,8 @@ enum LocaleTypes {
   km,
   ms,
 }
+
+enum DateSelectorType {
+  startDate, 
+  endDate
+}

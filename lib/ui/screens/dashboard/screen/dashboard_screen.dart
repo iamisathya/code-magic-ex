@@ -5,6 +5,7 @@ import 'package:dsc_tools/ui/screens/dashboard/components/profile.image.dart';
 import 'package:dsc_tools/ui/screens/dashboard/controller/dashboard.controller.dart';
 import 'package:dsc_tools/ui/screens/inventory/inventory.screen.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class Body extends StatelessWidget {
                   MenuOption(
                       icon: kSalesReportIcon,
                       optionTitle: "Sales Report",
-                      onPress: () => Get.to(() => OpenPOHomeScreen())),
+                      onPress: () => Get.to(() => SalesReportsHomeScreen())),
                   MenuOption(
                       icon: kEasyShipMenuIcon,
                       optionTitle: "Easyship Report",

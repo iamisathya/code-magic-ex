@@ -19,7 +19,7 @@ class Body2 extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          PageTitle(),
+          const PageTitle(title: "Inventory"),
           InventoryToolBar(),
           UserAddress(),
           const SizedBox(height: 10),

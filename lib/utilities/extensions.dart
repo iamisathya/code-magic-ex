@@ -32,6 +32,19 @@ extension OrderId on String {
       return this;
     }
   }
+  
+  String retrieveBarcode() {
+    // <a href=\"https://dsc-th.unicity.com/invoice.php?link=https://hydra.unicity.net/v5a/orders/31512d2a1d4a2a5860bc785d27d1f7525477d2ced9d2f1fac6c0ddf622ee02f2&token=ad4e6c2d-aad2-473b-8686-b02b2fc903d0\" target=\"_blank\">423177348</a>
+    const start = ">";
+    const end = "</a>";
+    final startIndex = indexOf(start);
+    final endIndex = indexOf(end, startIndex + start.length);
+    try {
+      return substring(startIndex + start.length, endIndex);
+    } catch (e) {
+      return this;
+    }
+  }
 }
 
 extension DateFormater on String {
