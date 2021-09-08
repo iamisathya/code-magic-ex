@@ -1,6 +1,10 @@
+import 'package:dsc_tools/ui/screens/inventory/controller/inventory.home.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GrandTotal extends StatelessWidget {
+  final InventoryHomeController controller = Get.put(InventoryHomeController());
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +35,7 @@ class GrandTotal extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
                   child: Text(
-                    "35,487,935 THB",
+                    "${controller.grandTotalPrice} THB",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2!
@@ -65,7 +69,7 @@ class GrandTotal extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 13),
                     child: Text(
-                      "560,436 PV",
+                      "${controller.grandTotalPv} PV",
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2!

@@ -52,6 +52,9 @@ const kMultiplyIcon = 'assets/icons/multiply_icon.svg';
 const kDownloadIcon = 'assets/icons/download_icon.svg';
 const kTableViewIcon = 'assets/icons/table_view_icon.svg';
 const kCardViewIcon = 'assets/icons/card_view_icon.svg';
+const kSortIcon = 'assets/icons/sort_icon.svg';
+const kArrowUpIcon = 'assets/icons/arrow_up_icon.svg';
+const kArrowDownIcon = 'assets/icons/arrow_down_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';

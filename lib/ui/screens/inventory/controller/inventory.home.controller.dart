@@ -5,12 +5,15 @@ import 'package:dsc_tools/api/api_address.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dsc_tools/models/general_models.dart';
 import 'package:dsc_tools/models/inventory_records.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/logger.dart';
+import 'package:dsc_tools/utilities/parsing.dart';
 import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
@@ -31,14 +34,19 @@ class InventoryHomeController extends GetxController {
 
   Rx<NameValueType> activeStockType =
       NameValueType(name: "On Hand", value: "onHand").obs;
+      
   Rx<NameValueType> currentViewType =
       NameValueType(name: "Card View", value: "card").obs;
 
   RxBool isLoading = false.obs;
+  RxString grandTotalPrice = "".obs;
+  RxString grandTotalPv = "".obs;
 
   TextEditingController searchController = TextEditingController();
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
+  InventorySortTypes currentType = InventorySortTypes.itemCode;
+  bool isAscending = true;
 
   @override
   void onInit() {
@@ -56,6 +64,7 @@ class InventoryHomeController extends GetxController {
           await ApiService.shared().getInventoryRecords(userId, type);
       tempInventoryRecords.value.items =
           List.from(inventoryRecords.value.items);
+      calculateTotal(); 
       isLoading.toggle();
     } on DioError catch (e) {
       isLoading.toggle();
@@ -66,6 +75,15 @@ class InventoryHomeController extends GetxController {
       isLoading.toggle();
       LoggerService.instance.e(err.toString());
     }
+  }
+
+  void calculateTotal() {
+    final String totalPrice =
+        calculateTotalPrice(tempInventoryRecords.value, 'price');
+    grandTotalPrice.value = NumberFormat().format(Parsing.intFrom(totalPrice)).toString();
+    final String totalPv =
+        calculateTotalPrice(tempInventoryRecords.value, 'pv');
+    grandTotalPv.value = NumberFormat().format(Parsing.intFrom(totalPv)).toString();
   }
 
   void onChangeStockType(String value) {
@@ -203,5 +221,90 @@ class InventoryHomeController extends GetxController {
     } catch (err) {
       LoggerService.instance.e(err.toString());
     }
+  }
+
+
+  void onSortCulumn(InventorySortTypes sortStatus) {
+    currentType = sortStatus;
+    isAscending = !isAscending;
+    switch (sortStatus) {
+      case InventorySortTypes.itemCode:
+        if (isAscending) {
+          tempInventoryRecords.value.items
+              .sort((a, b) => a.item.id.unicity.compareTo(b.item.id.unicity));
+        } else {
+          tempInventoryRecords.value.items
+              .sort((b, a) => a.item.id.unicity.compareTo(b.item.id.unicity));
+        }
+        break;
+      case InventorySortTypes.itemName:
+        if (isAscending) {
+          tempInventoryRecords.value.items.sort((a, b) => a
+              .catalogSlideContent.content.description
+              .compareTo(b.catalogSlideContent.content.description));
+        } else {
+          tempInventoryRecords.value.items.sort((b, a) => a
+              .catalogSlideContent.content.description
+              .compareTo(b.catalogSlideContent.content.description));
+        }
+        break;
+      case InventorySortTypes.pv:
+        if (isAscending) {
+          tempInventoryRecords.value.items
+              .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
+        } else {
+          tempInventoryRecords.value.items
+              .sort((b, a) => a.terms.priceEach.compareTo(b.terms.priceEach));
+        }
+        break;
+      case InventorySortTypes.price:
+        if (isAscending) {
+          tempInventoryRecords.value.items
+              .sort((a, b) => a.terms.priceEach.compareTo(b.terms.priceEach));
+        } else {
+          tempInventoryRecords.value.items
+              .sort((b, a) => a.terms.priceEach.compareTo(b.terms.priceEach));
+        }
+        break;
+      case InventorySortTypes.quantityOnHand:
+        if (isAscending) {
+          tempInventoryRecords.value.items.sort((a, b) => NumberFormat()
+              .parse(a.quantityOnHand)
+              .compareTo(NumberFormat().parse(b.quantityOnHand)));
+        } else {
+          tempInventoryRecords.value.items.sort((b, a) => NumberFormat()
+              .parse(a.quantityOnHand)
+              .compareTo(NumberFormat().parse(b.quantityOnHand)));
+        }
+        break;
+      case InventorySortTypes.totalAccumulatedPrice:
+        if (isAscending) {
+          tempInventoryRecords.value.items.sort((a, b) =>
+              (Parsing.intFrom(a.quantityOnHand)! * a.terms.priceEach.toInt())
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! *
+                      b.terms.priceEach.toInt()));
+        } else {
+          tempInventoryRecords.value.items.sort((b, a) =>
+              (Parsing.intFrom(a.quantityOnHand)! * a.terms.priceEach.toInt())
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! *
+                      b.terms.priceEach.toInt()));
+        }
+        break;
+      case InventorySortTypes.totalPV:
+        if (isAscending) {
+          tempInventoryRecords.value.items.sort((a, b) =>
+              (Parsing.intFrom(a.quantityOnHand)! * a.terms.pvEach.toInt())
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! *
+                      b.terms.pvEach.toInt()));
+        } else {
+          tempInventoryRecords.value.items.sort((b, a) =>
+              (Parsing.intFrom(a.quantityOnHand)! * a.terms.pvEach.toInt())
+                  .compareTo(Parsing.intFrom(b.quantityOnHand)! *
+                      b.terms.pvEach.toInt()));
+        }
+        break;
+      default:
+    }
+    tempInventoryRecords.refresh();
   }
 }

@@ -30,10 +30,19 @@ class UserAddress extends StatelessWidget {
                       .subtitle1!
                       .copyWith(color: const Color(0xFF384250)))),
           Padding(
+            padding: const EdgeInsets.only(bottom: 5.0),
+            child: Text(
+              "Ushop Training ( TH ) 10320",
+              style: Theme.of(context).textTheme.bodyText2,
+              maxLines: 3,
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Text(
-              "Ushop Training ( TH ) 10320, 8th Floor, Le Concorde Towers 202, Rachadaphisek Road Huaykwang Bangkok",
+              "8th Floor, Le Concorde Towers 202, Rachadaphisek Road Huaykwang Bangkok",
               style: Theme.of(context).textTheme.bodyText2,
+              maxLines: 3,
             ),
           ),
           SizedBox(
