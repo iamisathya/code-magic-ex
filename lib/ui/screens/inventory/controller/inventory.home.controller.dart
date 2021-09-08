@@ -34,7 +34,7 @@ class InventoryHomeController extends GetxController {
 
   Rx<NameValueType> activeStockType =
       NameValueType(name: "On Hand", value: "onHand").obs;
-      
+
   Rx<NameValueType> currentViewType =
       NameValueType(name: "Card View", value: "card").obs;
 
@@ -45,6 +45,7 @@ class InventoryHomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
+  Rx<InventoryRecords> searchedProducts = InventoryRecords(items: []).obs;
   InventorySortTypes currentType = InventorySortTypes.itemCode;
   bool isAscending = true;
 
@@ -64,7 +65,8 @@ class InventoryHomeController extends GetxController {
           await ApiService.shared().getInventoryRecords(userId, type);
       tempInventoryRecords.value.items =
           List.from(inventoryRecords.value.items);
-      calculateTotal(); 
+      calculateTotal();
+      tempInventoryRecords.refresh();
       isLoading.toggle();
     } on DioError catch (e) {
       isLoading.toggle();
@@ -80,10 +82,12 @@ class InventoryHomeController extends GetxController {
   void calculateTotal() {
     final String totalPrice =
         calculateTotalPrice(tempInventoryRecords.value, 'price');
-    grandTotalPrice.value = NumberFormat().format(Parsing.intFrom(totalPrice)).toString();
+    grandTotalPrice.value =
+        NumberFormat().format(Parsing.intFrom(totalPrice)).toString();
     final String totalPv =
         calculateTotalPrice(tempInventoryRecords.value, 'pv');
-    grandTotalPv.value = NumberFormat().format(Parsing.intFrom(totalPv)).toString();
+    grandTotalPv.value =
+        NumberFormat().format(Parsing.intFrom(totalPv)).toString();
   }
 
   void onChangeStockType(String value) {
@@ -104,7 +108,7 @@ class InventoryHomeController extends GetxController {
     currentViewType.value =
         viewTypes.firstWhere((element) => element.value == value);
   }
-  
+
   Future onTapExportExcellSheet() async {
     if (await Permission.storage.request().isGranted) {
       // Either the permission was already granted before or the user just granted it.
@@ -211,7 +215,7 @@ class InventoryHomeController extends GetxController {
       final response = await dio.get("${Address.inventoryPrint}=2970466");
       final removedBackground =
           response.toString().replaceAll('background: rgb(204,204,204);', '');
-      
+
       await Printing.layoutPdf(
           dynamicLayout: false,
           onLayout: (PdfPageFormat format) async => Printing.convertHtml(
@@ -222,7 +226,6 @@ class InventoryHomeController extends GetxController {
       LoggerService.instance.e(err.toString());
     }
   }
-
 
   void onSortCulumn(InventorySortTypes sortStatus) {
     currentType = sortStatus;
@@ -306,5 +309,19 @@ class InventoryHomeController extends GetxController {
       default:
     }
     tempInventoryRecords.refresh();
+  }
+
+  void onSearchTextChange(String searchText) {
+    if (searchText.isNotEmpty) {
+      searchedProducts.value.items.clear();
+      searchedProducts.value.items.addAll(inventoryRecords.value.items);
+      searchedProducts.value.items.removeWhere((game) => !game
+          .catalogSlideContent.content.description
+          .toLowerCase()
+          .contains(searchText.toLowerCase()));
+    } else {
+      searchedProducts.value.items.addAll(inventoryRecords.value.items);
+    }
+    searchedProducts.refresh();
   }
 }
