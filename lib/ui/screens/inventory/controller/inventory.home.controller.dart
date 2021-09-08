@@ -91,7 +91,7 @@ class InventoryHomeController extends GetxController {
         stockOptions.firstWhere((element) => element.value == value);
     if (value == "outOfStock") {
       tempInventoryRecords.value.items = tempInventoryRecords.value.items
-          .where((item) => item.quantityOnHand != "0")
+          .where((item) => item.quantityOnHand == "0")
           .toList();
     } else {
       tempInventoryRecords.value.items =

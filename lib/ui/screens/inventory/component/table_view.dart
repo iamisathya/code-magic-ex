@@ -62,7 +62,9 @@ class TableView extends StatelessWidget {
     return GestureDetector(
       onTap: () => controller.onSortCulumn(type),
       child: Container(
-          color: const Color(0xFF5297A6),
+          color: controller.activeStockType.value.value == "onHand"
+              ? const Color(0xFF5297a6)
+              : const Color(0xFFC9A769),
           height: 55,
           width: 180,
           child: Row(
@@ -72,7 +74,7 @@ class TableView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _renderWhiteText(label, context, const Color(0xFFFFFFFF)),
-                  _renderWhiteText(value, context, const Color(0xFFE7BB4A)),
+                  if(controller.activeStockType.value.value == "onHand") _renderWhiteText(value, context, const Color(0xFFE7BB4A)),
                 ],
               ),
               SvgPicture.asset(
@@ -90,7 +92,7 @@ class TableView extends StatelessWidget {
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     final currentItem = controller.tempInventoryRecords.value.items[index];
     final alternativeBgColor =
-        index % 2 == 0 ? const Color(0xFFFFFFFF) : const Color(0xFFF1FAF7);
+        index % 2 == 0 ? const Color(0xFFFFFFFF) : (controller.activeStockType.value.value == "onHand") ? const Color(0xFFF1FAF7) : const Color(0xFFF7F1E9);
     return Container(
       width: 140,
       height: 65,
@@ -111,7 +113,7 @@ class TableView extends StatelessWidget {
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
     final currentItem = controller.tempInventoryRecords.value.items[index];
     final alternativeBgColor =
-        index % 2 == 0 ? const Color(0xFFFFFFFF) : const Color(0xFFF1FAF7);
+        index % 2 == 0 ? const Color(0xFFFFFFFF) : (controller.activeStockType.value.value == "onHand") ? const Color(0xFFF1FAF7) : const Color(0xFFF7F1E9);
     return Row(
       children: <Widget>[
         Container(
@@ -160,7 +162,9 @@ class TableView extends StatelessWidget {
     return GestureDetector(
       onTap: () => controller.onSortCulumn(type),
       child: Container(
-        color: const Color(0xFF5297a6),
+        color: controller.activeStockType.value.value == "onHand"
+            ? const Color(0xFF5297a6)
+            : const Color(0xFFC9A769),
         height: 56,
         width: width,
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [

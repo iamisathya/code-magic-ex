@@ -18,6 +18,6 @@ class InventoryHomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: OpenPoAppBar(),
-        body: SafeArea(child: Body2()));
+        body: Body2());
   }
 }

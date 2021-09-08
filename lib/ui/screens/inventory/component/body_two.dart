@@ -15,6 +15,7 @@ class Body2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displaySize = Get.height - 420;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -29,20 +30,32 @@ class Body2 extends StatelessWidget {
                       children: [
                         GrandTotal(),
                         const SizedBox(height: 10),
-                        Obx(() => ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: controller
-                                .tempInventoryRecords.value.items.length,
-                            itemBuilder: (BuildContext ctxt, int index) {
-                              final InventoryRecordItems item = controller
-                                  .tempInventoryRecords.value.items[index];
-                              return InventoryItem(item: item);
-                            })),
+                        Container(
+                            color: const Color(0xFFFFFFFF),
+                            child: controller
+                                    .tempInventoryRecords.value.items.isEmpty
+                                ? Container(
+                                    height: displaySize,
+                                    alignment: Alignment.center,
+                                    child: const Text("No items found!"),
+                                  )
+                                : Obx(() => ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: controller.tempInventoryRecords
+                                        .value.items.length,
+                                    itemBuilder:
+                                        (BuildContext ctxt, int index) {
+                                      final InventoryRecordItems item =
+                                          controller.tempInventoryRecords.value
+                                              .items[index];
+                                      return InventoryItem(item: item);
+                                    }))),
                       ],
                     )
-                    else 
-                    TableView()
+                  else
+                    SizedBox(height: Get.height - 420, child: TableView())
                 ],
               ))
         ],
