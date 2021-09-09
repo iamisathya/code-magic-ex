@@ -11,10 +11,10 @@ class DashboardHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(kSettingsIcon,
+            color: const Color(0xFF000000),
               height: 20, semanticsLabel: "settings"),
           Image.asset(
             kUnicityGradientImage,
-            fit: BoxFit.cover,
             width: 190,
             semanticLabel: "unicity logo",
           ),

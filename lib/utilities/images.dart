@@ -22,6 +22,7 @@ const kOrderWaringImage = 'assets/images/order_warning_image.svg';
 const kNoRecordFoundImage = 'assets/images/no_record_found_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
+const kUnicityGradient3xImage = 'assets/icons/unicity_logo_3x.png';
 
 
 //* Icons

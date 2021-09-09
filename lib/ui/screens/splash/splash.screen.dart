@@ -1,4 +1,5 @@
 import 'package:dsc_tools/constants/font_weights.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,24 +26,10 @@ class SplashScreen extends StatelessWidget {
             children: [
               AnimatedShowUp(
                 delay: 300,
-                child: Text(
-                  "UNICITY OFFICE",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5!
-                      .copyWith(color: Theme.of(context).colorScheme.primary),
-                ),
-              ),
-              const SizedBox(height: 15),
-              AnimatedShowUp(
-                delay: 700,
-                child: Text(
-                  "DSC Tools",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline2!.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontWeight: AppFontWeight.semiBold),
+                child: Image.asset(
+                  kUnicityGradient3xImage,
+                  width: getProportionateScreenWidth(250),
+                  semanticLabel: "unicity logo",
                 ),
               ),
             ],

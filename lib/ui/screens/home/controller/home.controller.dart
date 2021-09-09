@@ -7,6 +7,10 @@ class HomeController extends GetxController {
   final PageController pageController  = PageController();
    List<Widget> tabPages = [
     Body(),
+    const Center(child: Text("Statistics")),
+    const Center(child: Text("Cart")),
+    const Center(child: Text("Reports")),
+    const Center(child: Text("Records")),
   ];
 
   int get onTabTapped => _currentTabIndex.value;

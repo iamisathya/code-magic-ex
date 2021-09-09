@@ -1,10 +1,14 @@
+import 'package:dsc_tools/ui/global/widgets/scrollable.dart';
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
+import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
 import 'package:dsc_tools/ui/screens/dashboard/components/dashboard.header.dart';
 import 'package:dsc_tools/ui/screens/dashboard/components/menu.option.dart';
 import 'package:dsc_tools/ui/screens/dashboard/components/profile.image.dart';
 import 'package:dsc_tools/ui/screens/dashboard/controller/dashboard.controller.dart';
+import 'package:dsc_tools/ui/screens/enroll/enrollhome.screen.dart';
 import 'package:dsc_tools/ui/screens/inventory/inventory.screen.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
+import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
 import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
@@ -73,11 +77,11 @@ class Body extends StatelessWidget {
                     MenuOption(
                         icon: kEnrollIcon,
                         optionTitle: "Enroll",
-                        onPress: () => Get.to(() => OpenPOHomeScreen())),
+                        onPress: () => Get.to(() => EnrollHomeScreen())),
                     MenuOption(
                         icon: kOrderEntryIcon,
                         optionTitle: "Order Entry",
-                        onPress: () => Get.to(() => OpenPOHomeScreen())),
+                        onPress: () => Get.to(() => OrderEntryHomeScreen())),
                     MenuOption(
                         icon: kInventoryIcon,
                         optionTitle: "Inventory",
@@ -89,11 +93,11 @@ class Body extends StatelessWidget {
                     MenuOption(
                         icon: kEasyShipMenuIcon,
                         optionTitle: "Easyship Report",
-                        onPress: () => Get.to(() => OpenPOHomeScreen())),
+                        onPress: () => Get.to(() => EasyShipHomePage())),
                     MenuOption(
                         icon: kBarcodeIcon,
                         optionTitle: "Barcode",
-                        onPress: () => Get.to(() => OpenPOHomeScreen())),
+                        onPress: () => Get.to(() => BarcodeHomeScreen())),
                   ],
                 ),
                 const SizedBox(
