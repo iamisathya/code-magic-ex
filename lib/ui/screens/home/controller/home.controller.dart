@@ -7,8 +7,6 @@ class HomeController extends GetxController {
   final PageController pageController  = PageController();
    List<Widget> tabPages = [
     Body(),
-    Center(),
-    Center(),
   ];
 
   int get onTabTapped => _currentTabIndex.value;

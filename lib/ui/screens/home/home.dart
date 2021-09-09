@@ -12,6 +12,7 @@ class MainHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFE3E8ED),
       body: PageView(
         controller: controller.pageController,
         children: controller.tabPages,
@@ -22,15 +23,13 @@ class MainHomeScreen extends StatelessWidget {
           currentIndex: controller.onTabTapped,
           items: [
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(kMoreIcon, height: 18),
-              activeIcon: SvgPicture.asset(kMoreActiveIcon, height: 18),
-              label: 'Home',
-            ),
+                icon: SvgPicture.asset(kMoreIcon, height: 18),
+                activeIcon: SvgPicture.asset(kMoreActiveIcon, height: 18),
+                label: 'Home'),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(kStatisticsIcon, height: 22),
-              activeIcon: SvgPicture.asset(kStatisticsActiveIcon, height: 22),
-              label: 'Enroll',
-            ),
+                icon: SvgPicture.asset(kStatisticsIcon, height: 22),
+                activeIcon: SvgPicture.asset(kStatisticsActiveIcon, height: 22),
+                label: 'Enroll'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(kCartIcon, height: 22),
                 activeIcon: SvgPicture.asset(kCartActiveIcon, height: 22),
