@@ -57,12 +57,15 @@ class Languages {
   String transText;
   @JsonKey(name: "countryName")
   String countryName;
+  @JsonKey(name: "icon")
+  String icon;
 
   Languages(
       {required this.value,
       required this.title,
       required this.transText,
-      required this.countryName});
+      required this.countryName,
+      required this.icon});
 
   factory Languages.fromJson(Map<String, dynamic> json) =>
       _$LanguagesFromJson(json);

@@ -1,7 +1,7 @@
 {"markets" : [     
     {
       "name": "Australia",
-      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Australia" }],
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Australia", "icon": "en.svg" }],
       "languageISO": ["eng"],
       "code": "au",
       "isoCode": "AUS",
@@ -11,8 +11,8 @@
     {
       "name": "Hong Kong",
       "languages": [
-        { "value": "hk", "title": "Chainees", "transText": "繁體", "countryName": "Indonesia" },
-        { "value": "en", "title": "English", "transText": "繁體", "countryName": "Indonesia" }
+        { "value": "hk", "title": "Chainees", "transText": "繁體", "countryName": "Indonesia", "icon": "en.svg" },
+        { "value": "en", "title": "English", "transText": "繁體", "countryName": "Indonesia", "icon": "en.svg" }
       ],
       "languageISO": ["eng", "chi"],
       "code": "hk",
@@ -24,8 +24,8 @@
     {
       "name": "Indonesia",
       "languages": [
-        { "value": "id", "title": "Indonesian", "transText": "BAHASA", "countryName": "Indonesia" },
-        { "value": "en", "title": "English", "transText": "English", "countryName": "Indonesia" }
+        { "value": "id", "title": "Indonesian", "transText": "BAHASA", "countryName": "Indonesia", "icon": "en.svg" },
+        { "value": "en", "title": "English", "transText": "English", "countryName": "Indonesia", "icon": "en.svg" }
       ],
       "languageISO": ["eng", "ind"],
       "code": "id",
@@ -37,8 +37,8 @@
     {
       "name": "Japan",
       "languages": [
-        { "value": "jp", "title": "Japaneese", "transText": "日本", "countryName": "日本語" },
-        { "value": "en", "title": "English", "transText": "English", "countryName": "Thailand" }
+        { "value": "jp", "title": "Japaneese", "transText": "日本", "countryName": "日本語", "icon": "en.svg" },
+        { "value": "en", "title": "English", "transText": "English", "countryName": "Thailand", "icon": "en.svg" }
       ],
       "languageISO": ["eng", "jpn"],
       "code": "jp",
@@ -49,7 +49,7 @@
     },
     {
       "name": "Cambodia",
-      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Combodia" }],
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Combodia", "icon": "en.svg" }],
       "languageISO": ["eng"],
       "code": "kh",
       "isoCode": "KHM",
@@ -59,7 +59,7 @@
     },
     {
       "name": "Laos",
-      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Laos" }],
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Laos", "icon": "en.svg" }],
       "languageISO": ["eng"],
       "code": "la",
       "isoCode": "LAO",
@@ -69,7 +69,7 @@
     },
     {
       "name": "Malaysia",
-      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Malaysia" }],
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Malaysia", "icon": "en.svg" }],
       "languageISO": ["eng"],
       "code": "my",
       "isoCode": "MMR",
@@ -79,7 +79,7 @@
     },
     {
       "name": "New Zealand",
-      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "New Zealand" }],
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "New Zealand", "icon": "en.svg" }],
       "languageISO": ["eng"],
       "code": "nz",
       "isoCode": "NZL",
@@ -89,7 +89,7 @@
     },
     {
       "name": "Philippines",
-      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Philippines" }],
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Philippines", "icon": "en.svg" }],
       "languageISO": ["eng"],
       "code": "ph",
       "isoCode": "PHL",
@@ -99,7 +99,7 @@
     },
     {
       "name": "Singapore",
-      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Singapore" }],
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Singapore", "icon": "en.svg" }],
       "languageISO": ["eng"],
       "code": "sg",
       "isoCode": "SGP",
@@ -110,8 +110,8 @@
     {
       "name": "Thailand",
       "languages": [
-        { "value": "th", "title": "Thai", "transText": "ภาษาไทย", "countryName": "ประเทศไทย" },
-        { "value": "en", "title": "English", "transText": "English", "countryName": "Thailand" }
+        { "value": "th", "title": "Thai", "transText": "ภาษาไทย", "countryName": "ประเทศไทย", "icon": "th.svg"},
+        { "value": "en", "title": "English", "transText": "English", "countryName": "Thailand", "icon": "en.svg" }
       ],
       "languageISO": ["eng"],
       "code": "th",
@@ -123,8 +123,8 @@
     {
       "name": "Taiwan",
       "languages": [
-        { "value": "tw", "title": "Taiwan", "transText": "台灣", "countryName": "台灣" },
-        { "value": "en", "title": "English", "transText": "English", "countryName": "Taiwan" }
+        { "value": "tw", "title": "Taiwan", "transText": "台灣", "countryName": "台灣", "icon": "en.svg" },
+        { "value": "en", "title": "English", "transText": "English", "countryName": "Taiwan", "icon": "en.svg" }
       ],
       "languageISO": ["eng"],
       "code": "tw",
@@ -135,7 +135,7 @@
     },
     {
       "name": "Vietnam",
-      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Vietnam" }],
+      "languages": [{ "value": "en", "title": "English", "transText": "English", "countryName": "Vietnam", "icon": "en.svg" }],
       "languageISO": ["eng"],
       "code": "vn",
       "isoCode": "VNM",

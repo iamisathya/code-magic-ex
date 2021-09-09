@@ -22,26 +22,26 @@ class MainHomeScreen extends StatelessWidget {
           currentIndex: controller.onTabTapped,
           items: [
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(kDashboardIcon, height: 18),
-              activeIcon: SvgPicture.asset(kDashboardActiveIcon, height: 18),
+              icon: SvgPicture.asset(kMoreIcon, height: 18),
+              activeIcon: SvgPicture.asset(kMoreActiveIcon, height: 18),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(kLeaderboardIcon, height: 22),
-              activeIcon: SvgPicture.asset(kLeaderboardActiveIcon, height: 22),
+              icon: SvgPicture.asset(kStatisticsIcon, height: 22),
+              activeIcon: SvgPicture.asset(kStatisticsActiveIcon, height: 22),
               label: 'Enroll',
             ),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(kCartIcon, height: 22),
-                activeIcon: SvgPicture.asset(kOrderEntryActiveIcon, height: 22),
+                activeIcon: SvgPicture.asset(kCartActiveIcon, height: 22),
                 label: 'Order Entry'),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(kEasyShipTabIcon, height: 22),
-                activeIcon: SvgPicture.asset(kEasyshipActiveIcon, height: 22),
+                icon: SvgPicture.asset(kRecordsIcon, height: 22),
+                activeIcon: SvgPicture.asset(kRecordsActivecon, height: 22),
                 label: 'Easyship Report'),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(kProfileIcon, height: 22),
-                activeIcon: SvgPicture.asset(kProfileActiveIcon, height: 22),
+                icon: SvgPicture.asset(kReportsIcon, height: 22),
+                activeIcon: SvgPicture.asset(kReportsActiveIcon, height: 22),
                 label: 'Profile')
           ],
         ),

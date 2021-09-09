@@ -50,6 +50,7 @@ Languages _$LanguagesFromJson(Map<String, dynamic> json) {
     title: json['title'] as String,
     transText: json['transText'] as String,
     countryName: json['countryName'] as String,
+    icon: json['icon'] as String,
   );
 }
 
@@ -58,4 +59,5 @@ Map<String, dynamic> _$LanguagesToJson(Languages instance) => <String, dynamic>{
       'title': instance.title,
       'transText': instance.transText,
       'countryName': instance.countryName,
+      'icon': instance.icon,
     };
