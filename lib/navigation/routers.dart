@@ -1,6 +1,7 @@
 import 'package:dsc_tools/ui/screens/open_po/controller/openpo.details.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/add_products.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/open_po_details.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/component/print_report.dart';
 import 'package:dsc_tools/ui/screens/settings/settings.screen.dart';
 import 'package:dsc_tools/utilities/bindings.dart';
 import 'package:get/get.dart';
@@ -55,5 +56,8 @@ class AppRoutes {
         name: CreateOpenPoOrder.routeName,
         page: () => CreateOpenPoOrder(),
         binding: CreateOpenPoOrderBindings()),
+    GetPage(
+        name: PrintSalesReport.routeName,
+        page: () => PrintSalesReport()),
   ];
 }

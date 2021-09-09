@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../../../utilities/extensions.dart';
 
 import 'grand_total.dart';
+import 'print_report.dart';
 
 class SalesReportItem extends StatelessWidget {
   final SalesReportHomeController controller =
@@ -46,10 +47,14 @@ class SalesReportItem extends StatelessWidget {
               ),
             ],
           ),
-          _renderEachRow(
-              context, "BA Number: ${item.customer.id.unicity}", "Barcode: xxxxxx"),
-          _renderOrderIdRow(context, "Order ID: ", item.id.unicity.retrieveOrderId(),
-              "Date: ${item.dateCreated.asDDMMYYYY}", item.href),
+          _renderEachRow(context, "BA Number: ${item.customer.id.unicity}",
+              "Barcode: xxxxxx"),
+          _renderOrderIdRow(
+              context,
+              "Order ID: ",
+              item.id.unicity.retrieveOrderId(),
+              "Date: ${item.dateCreated.asDDMMYYYY}",
+              item.href),
           _renderEachRow(context, "Record: ${item.creator.humanName.fullName}",
               "Time: ${item.dateCreated.asHHMMA}"),
           GrandTotal(
@@ -61,8 +66,9 @@ class SalesReportItem extends StatelessWidget {
     );
   }
 
-  Widget _renderOrderIdRow(
-      BuildContext context, String title1, String value1, String value2, String href) {
+  Widget _renderOrderIdRow(BuildContext context, String title1, String value1,
+      String value2, String href) {
+    final Map<String, dynamic> args = {"orderId": value1, "href": href};
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Row(
@@ -75,7 +81,8 @@ class SalesReportItem extends StatelessWidget {
                     .bodyText2!
                     .copyWith(color: const Color(0xFF505050))),
             GestureDetector(
-                onTap: () => controller.proceedToPrint(context, orderHref: href),
+                // onTap: () => controller.proceedToPrint(context, orderHref: href),
+                onTap: () => Get.to(() => PrintSalesReport(), arguments: args),
                 child: Text(value1,
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
                         color: const Color(0xFF1C9CFC),
