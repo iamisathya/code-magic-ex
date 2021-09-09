@@ -1,5 +1,6 @@
 import 'package:dsc_tools/models/order_list_rmas.dart';
 import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
+import 'package:dsc_tools/ui/screens/inventory/component/no_record_found.dart';
 import 'package:dsc_tools/ui/screens/inventory/component/page_title.dart';
 import 'package:dsc_tools/ui/screens/sales_reports/component/option_bar.dart';
 import 'package:dsc_tools/ui/screens/sales_reports/controller/salesreports.home.controller.dart';
@@ -51,6 +52,9 @@ class Body2 extends StatelessWidget {
                   })),
             ],
           ),
+        if (!controller.isLoading.value &&
+            controller.allOrdersAndRmas.value.orders.isEmpty)
+          NoRecordFound()
       ]),
     );
   }
