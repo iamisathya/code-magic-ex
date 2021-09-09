@@ -211,11 +211,12 @@ class InventoryHomeController extends GetxController {
 
   Future<void> onTapPrint() async {
     try {
+      isLoading.toggle();
       final Dio dio = Dio();
       final response = await dio.get("${Address.inventoryPrint}=2970466");
       final removedBackground =
           response.toString().replaceAll('background: rgb(204,204,204);', '');
-
+      isLoading.toggle();
       await Printing.layoutPdf(
           dynamicLayout: false,
           onLayout: (PdfPageFormat format) async => Printing.convertHtml(
@@ -223,6 +224,7 @@ class InventoryHomeController extends GetxController {
                 html: removedBackground,
               ));
     } catch (err) {
+      isLoading.toggle();
       LoggerService.instance.e(err.toString());
     }
   }
