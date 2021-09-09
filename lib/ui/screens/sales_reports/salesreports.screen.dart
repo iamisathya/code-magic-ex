@@ -1,15 +1,15 @@
 import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/controller/salesreports.controller.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 
-import '../../../navigation/navigation_drawer.dart';
 import '../../../utilities/constants.dart';
-import 'component/body.dart';
 import 'component/body2.dart';
+import 'controller/salesreports.home.controller.dart';
 
 class SalesReportsHomeScreen extends StatelessWidget {
-  final SalesReportController controller = Get.put(SalesReportController());
+  final SalesReportHomeController controller = Get.put(SalesReportHomeController());
   static const String routeName = '/salesReportsHomePage';
 
   @override
@@ -17,7 +17,9 @@ class SalesReportsHomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
         appBar: OpenPoAppBar(),
-        drawer: NavigationDrawer(),
-        body: Body2());
+        body: Obx(() => LoadingOverlay(
+            isLoading: controller.isLoading.value,
+            progressIndicator: const Loader(),
+            child: Body2())));
   }
 }
