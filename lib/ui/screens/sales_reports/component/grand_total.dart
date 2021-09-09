@@ -1,13 +1,15 @@
-import 'package:dsc_tools/utilities/parsing.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../utilities/parsing.dart';
 
 class GrandTotal extends StatelessWidget {
   final String totalPrice;
   final String totalPv;
   final String status;
 
-  const GrandTotal({required this.totalPrice, required this.totalPv, required this.status});
+  const GrandTotal(
+      {required this.totalPrice, required this.totalPv, required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,9 @@ class GrandTotal extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
           decoration: BoxDecoration(
-              color: status == "Unknown" ? const Color(0xFFFFE7EB) :const Color(0xFFF1FAF7), //FFE7EB error color
+              color: status == "Unknown"
+                  ? const Color(0xFFFFE7EB)
+                  : const Color(0xFFF1FAF7), //FFE7EB error color
               borderRadius: const BorderRadius.all(Radius.circular(3.0))),
           height: 40,
           child: Row(
@@ -44,7 +48,9 @@ class GrandTotal extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
           decoration: BoxDecoration(
-              color: status == "Unknown" ? const Color(0xFFFFE7EB) :const Color(0xFFF1FAF7), //FFE7EB error color
+              color: status == "Unknown"
+                  ? const Color(0xFFFFE7EB)
+                  : const Color(0xFFF1FAF7), //FFE7EB error color
               borderRadius: const BorderRadius.all(Radius.circular(3.0))),
           height: 40,
           child: Row(

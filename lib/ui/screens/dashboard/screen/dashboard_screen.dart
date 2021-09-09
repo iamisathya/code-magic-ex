@@ -1,19 +1,20 @@
-import 'package:dsc_tools/ui/global/widgets/scrollable.dart';
-import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
-import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
-import 'package:dsc_tools/ui/screens/dashboard/components/dashboard.header.dart';
-import 'package:dsc_tools/ui/screens/dashboard/components/menu.option.dart';
-import 'package:dsc_tools/ui/screens/dashboard/components/profile.image.dart';
-import 'package:dsc_tools/ui/screens/dashboard/controller/dashboard.controller.dart';
-import 'package:dsc_tools/ui/screens/enroll/enrollhome.screen.dart';
-import 'package:dsc_tools/ui/screens/inventory/inventory.screen.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
-import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../utilities/images.dart';
+import '../../../../utilities/user_session.dart';
+import '../../../global/widgets/scrollable.dart';
+import '../../../global/widgets/sign_out_button.dart';
+import '../../barcode/barcode.screen.dart';
+import '../../enroll/enrollhome.screen.dart';
+import '../../inventory/inventory.screen.dart';
+import '../../open_po/home/home.screen.dart';
+import '../../order_entry/orderentry.screen.dart';
+import '../../sales_reports/salesreports.screen.dart';
+import '../components/dashboard.header.dart';
+import '../components/menu.option.dart';
+import '../components/profile.image.dart';
+import '../controller/dashboard.controller.dart';
 
 class Body extends StatelessWidget {
   final DashboardController controller = Get.put(DashboardController());

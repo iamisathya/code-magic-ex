@@ -1,10 +1,10 @@
-import 'package:dsc_tools/ui/global/widgets/sign_out_button.dart';
-import 'package:dsc_tools/ui/screens/open_po/controller/openpo.details.controller.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../../utilities/images.dart';
+import '../../../../global/widgets/sign_out_button.dart';
+import '../../controller/openpo.details.controller.dart';
 import 'loader.dart';
 import 'po_ordered_item.dart';
 import 'total_price_container.dart';

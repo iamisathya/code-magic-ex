@@ -24,7 +24,6 @@ const kNoRecordFoundImage = 'assets/images/no_record_found_image.svg';
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityGradient3xImage = 'assets/icons/unicity_logo_3x.png';
 
-
 //* Icons
 const kIconProduct = 'assets/icons/Product.svg';
 const kIconTrash = 'assets/icons/Trash.svg';

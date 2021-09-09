@@ -1,6 +1,4 @@
-import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +8,7 @@ import 'package:photo_view/photo_view.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../api/api_address.dart';
+import '../../../../api/config/api_service.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/inventory_records.dart';
@@ -19,6 +18,7 @@ import '../../../../models/open_po.dart';
 import '../../../../models/open_po_details.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
+import '../../../../utilities/images.dart';
 import '../../../../utilities/logger.dart';
 import '../../../global/widgets/overlay_progress.dart';
 import '../../webview/webview.screen.dart';

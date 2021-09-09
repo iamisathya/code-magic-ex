@@ -1,7 +1,7 @@
-import 'package:dsc_tools/ui/global/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../global/widgets/primary_button.dart';
 import '../controller/barcode.controller.dart';
 
 class Body extends StatelessWidget {

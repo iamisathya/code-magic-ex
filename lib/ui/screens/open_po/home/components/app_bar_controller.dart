@@ -1,8 +1,9 @@
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/controllers/language_controller.dart';
-import 'package:dsc_tools/models/country_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../constants/globals.dart';
+import '../../../../../controllers/language_controller.dart';
+import '../../../../../models/country_info.dart';
 
 class AppBarController extends GetxController {
   final LanguageController languageController = Get.put(LanguageController());

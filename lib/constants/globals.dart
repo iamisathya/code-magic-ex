@@ -1,8 +1,8 @@
-import 'package:dsc_tools/models/country_info.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:get/get.dart';
 
+import '../models/country_info.dart';
 import '../models/menu_option_model.dart';
+import '../utilities/user_session.dart';
 
 class Globals {
   Globals._();
@@ -25,5 +25,6 @@ class Globals {
 
   static Markets? currentMarket;
   static String currency = "";
-  static String userId = UserSessionManager.shared.userInfo!.id.unicity.toString();
+  static String userId =
+      UserSessionManager.shared.userInfo!.id.unicity.toString();
 }

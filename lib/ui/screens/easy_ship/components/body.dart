@@ -1,5 +1,3 @@
-import 'package:dsc_tools/ui/global/widgets/primary_button.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/controller/easyship.controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +10,9 @@ import '../../../../utilities/images.dart';
 import '../../../global/widgets/custom_empty_widget.dart';
 import '../../../global/widgets/custom_error_widget.dart';
 import '../../../global/widgets/custom_loading_widget.dart';
+import '../../../global/widgets/primary_button.dart';
 import '../../../global/widgets/search_view.dart';
+import '../controller/easyship.controller.dart';
 
 class Body extends StatelessWidget {
   final EasyShipController controller = Get.put(EasyShipController());

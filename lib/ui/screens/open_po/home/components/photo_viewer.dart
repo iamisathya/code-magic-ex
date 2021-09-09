@@ -13,6 +13,5 @@ class PhotoViewer extends StatelessWidget {
         heroAttributes: const PhotoViewHeroAttributes(tag: "someTag"),
       ),
     );
-    ;
   }
 }

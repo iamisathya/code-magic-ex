@@ -1,15 +1,16 @@
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/api_address.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/models/open_order_id.dart';
-import 'package:dsc_tools/models/open_po_details.dart';
-import 'package:dsc_tools/utilities/logger.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:printing/printing.dart';
+
+import '../../../../api/api_address.dart';
+import '../../../../api/config/api_service.dart';
+import '../../../../models/open_order_id.dart';
+import '../../../../models/open_po_details.dart';
+import '../../../../utilities/logger.dart';
 
 class OpenPoDetailsController extends GetxController
     with StateMixin<List<OpenPlaceOrderDetails>> {
@@ -24,7 +25,7 @@ class OpenPoDetailsController extends GetxController
   OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
-    
+
   RxBool isLoading = false.obs;
 
   @override
@@ -60,7 +61,7 @@ class OpenPoDetailsController extends GetxController
 
   Future<void> proceedToPrint(BuildContext context,
       {required String orderId}) async {
-        isLoading.toggle();
+    isLoading.toggle();
     final String imgUrl = "${Address.poOrder}?order_id=$orderId";
     final Dio dio = Dio();
     final response = await dio.get(imgUrl);

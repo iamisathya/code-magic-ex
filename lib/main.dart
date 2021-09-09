@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:isolate';
 
-import 'package:dsc_tools/utilities/bindings.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,6 +17,7 @@ import 'navigation/routes.dart';
 import 'translations/translations.dart';
 import 'ui/global/theme/app_themes.dart';
 import 'ui/screens/splash/splash.screen.dart';
+import 'utilities/bindings.dart';
 import 'utilities/connectivity.dart';
 import 'utilities/key_value_storage.dart';
 import 'utilities/user_session.dart';

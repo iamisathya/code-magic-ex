@@ -1,5 +1,6 @@
-import 'package:dsc_tools/models/open_po_details.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../models/open_po_details.dart';
 
 class PoOrderedItem extends StatelessWidget {
   final OpenPlaceOrderDetails item;

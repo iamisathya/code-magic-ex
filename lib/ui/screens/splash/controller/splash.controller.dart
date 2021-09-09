@@ -1,10 +1,6 @@
 import 'dart:async';
 
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/country_info.dart';
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/services/firebase/analyitcs.dart';
-import 'package:dsc_tools/ui/screens/home/home.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +8,16 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../../api/config/api_service.dart';
+import '../../../../constants/globals.dart';
+import '../../../../models/country_info.dart';
 import '../../../../models/user_info.dart';
 import '../../../../models/user_token.dart';
+import '../../../../services/firebase/analyitcs.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/user_session.dart';
+import '../../home/home.dart';
 import '../../login/login.screen.dart';
-import '../../open_po/home/home.screen.dart';
 
 class SplashController extends GetxController {
   final store = GetStorage();

@@ -2,25 +2,25 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/api/request/request_place_open_po_order.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/cart_products.dart';
-import 'package:dsc_tools/models/inventory_records.dart';
-import 'package:dsc_tools/models/open_po_create_order_response.dart';
-import 'package:dsc_tools/models/validate_order.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/order_success.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
-import 'package:dsc_tools/utilities/constants.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/function.dart';
-import 'package:dsc_tools/utilities/logger.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../../api/config/api_service.dart';
+import '../../../../api/request/request_place_open_po_order.dart';
+import '../../../../constants/globals.dart';
+import '../../../../models/cart_products.dart';
+import '../../../../models/inventory_records.dart';
+import '../../../../models/open_po_create_order_response.dart';
+import '../../../../models/validate_order.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/function.dart';
+import '../../../../utilities/logger.dart';
+import '../../../../utilities/snackbar.dart';
+import '../../../../utilities/user_session.dart';
+import '../home/components/order_success.dart';
 
 class CreateOpenPoOrderController extends GetxController
     with StateMixin<List<InventoryRecords>> {

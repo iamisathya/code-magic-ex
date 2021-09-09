@@ -1,6 +1,7 @@
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../utilities/images.dart';
 
 class NoRecordFound extends StatelessWidget {
   @override
@@ -11,9 +12,7 @@ class NoRecordFound extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(kNoRecordFoundImage,
-              width: 255,
-              height: 225,
-              semanticsLabel: 'no records found'),
+              width: 255, height: 225, semanticsLabel: 'no records found'),
           Padding(
             padding: const EdgeInsets.all(25.0),
             child: Text(

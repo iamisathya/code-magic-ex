@@ -1,6 +1,7 @@
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../utilities/images.dart';
 
 class DashboardHeader extends StatelessWidget {
   @override
@@ -11,8 +12,9 @@ class DashboardHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(kSettingsIcon,
-            color: const Color(0xFF000000),
-              height: 20, semanticsLabel: "settings"),
+              color: const Color(0xFF000000),
+              height: 20,
+              semanticsLabel: "settings"),
           Image.asset(
             kUnicityGradientImage,
             width: 190,

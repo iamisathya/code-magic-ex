@@ -1,10 +1,11 @@
-import 'package:dsc_tools/ui/screens/inventory/controller/inventory.home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/inventory.home.controller.dart';
+
 class GrandTotal extends StatelessWidget {
   final InventoryHomeController controller = Get.put(InventoryHomeController());
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,9 +1,9 @@
-import 'package:dsc_tools/controllers/language_controller.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../controllers/language_controller.dart';
+import '../../../../../utilities/images.dart';
 import 'app_bar_controller.dart';
 
 class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {

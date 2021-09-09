@@ -1,7 +1,8 @@
-import 'package:dsc_tools/ui/screens/sales_reports/controller/print.salesreport.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../controller/print.salesreport.controller.dart';
 
 class SaleReportBody extends StatelessWidget {
   final PrintSalesReportController controller =

@@ -52,7 +52,4 @@ enum LocaleTypes {
   ms,
 }
 
-enum DateSelectorType {
-  startDate, 
-  endDate
-}
+enum DateSelectorType { startDate, endDate }

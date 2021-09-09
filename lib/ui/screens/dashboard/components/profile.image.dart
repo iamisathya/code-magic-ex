@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../utilities/images.dart';
+import '../../../../utilities/user_session.dart';
 
 class ProfileImage extends StatelessWidget {
   @override

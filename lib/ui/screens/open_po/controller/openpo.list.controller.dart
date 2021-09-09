@@ -1,14 +1,15 @@
-import 'package:dsc_tools/api/api_address.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/general_models.dart';
-import 'package:dsc_tools/models/open_po.dart';
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/logger.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
+
+import '../../../../api/api_address.dart';
+import '../../../../api/config/api_service.dart';
+import '../../../../constants/globals.dart';
+import '../../../../models/general_models.dart';
+import '../../../../models/open_po.dart';
+import '../../../../utilities/images.dart';
+import '../../../../utilities/logger.dart';
 
 class OpenPoListController extends GetxController
     with StateMixin<List<OpenPO>> {

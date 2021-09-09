@@ -1,11 +1,12 @@
-import 'package:dsc_tools/models/inventory_records.dart';
-import 'package:dsc_tools/ui/screens/inventory/controller/inventory.home.controller.dart';
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/parsing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../models/inventory_records.dart';
+import '../../../../utilities/images.dart';
+import '../../../../utilities/parsing.dart';
+import '../controller/inventory.home.controller.dart';
 
 class InventoryItem extends StatelessWidget {
   final InventoryHomeController controller = Get.put(InventoryHomeController());
@@ -24,7 +25,9 @@ class InventoryItem extends StatelessWidget {
       width: double.infinity,
       height: 340,
       decoration: BoxDecoration(
-          color: controller.activeStockType.value.value == "onHand" ? const Color(0xFFF1FAF7): const Color(0xFFF7F1E9),
+          color: controller.activeStockType.value.value == "onHand"
+              ? const Color(0xFFF1FAF7)
+              : const Color(0xFFF7F1E9),
           borderRadius: const BorderRadius.all(Radius.circular(3.0))),
       child: Column(
         children: [

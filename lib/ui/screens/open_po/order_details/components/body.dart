@@ -1,4 +1,3 @@
-import 'package:dsc_tools/utilities/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +5,7 @@ import '../../../../../models/open_po_details.dart';
 import '../../../../../utilities/constants.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
+import '../../../../../utilities/size_config.dart';
 import '../../../../global/widgets/common_widgets.dart';
 import '../../../../global/widgets/custom_loading_widget.dart';
 import '../../controller/openpo.controller.dart';

@@ -1,9 +1,9 @@
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../constants/globals.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';

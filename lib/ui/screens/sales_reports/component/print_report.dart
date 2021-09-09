@@ -1,9 +1,9 @@
-import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/controller/print.salesreport.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../open_po/home/components/loader.dart';
+import '../controller/print.salesreport.controller.dart';
 import 'sales_report_body.dart';
 
 class PrintSalesReport extends StatelessWidget {

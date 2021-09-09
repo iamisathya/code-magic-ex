@@ -1,10 +1,10 @@
-import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/open_po_order_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utilities/constants.dart';
 import '../controller/openpo.controller.dart';
+import 'components/app_bar.dart';
+import 'components/open_po_order_list.dart';
 
 class OpenPOHomeScreen extends StatelessWidget {
   final OpenPoController controller = Get.put(OpenPoController());

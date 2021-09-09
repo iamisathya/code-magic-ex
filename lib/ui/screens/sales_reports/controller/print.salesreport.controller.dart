@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/api_address.dart';
-import 'package:dsc_tools/utilities/logger.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
+
+import '../../../../api/api_address.dart';
+import '../../../../utilities/logger.dart';
+import '../../../../utilities/user_session.dart';
 
 class PrintSalesReportController extends GetxController {
   RxBool isLoading = false.obs;
@@ -13,7 +14,7 @@ class PrintSalesReportController extends GetxController {
   RxString orderHref = "".obs;
   RxString orderId = "".obs;
   final String printUrl = ""
-        "${Address.dscHome}invoice.php?token=${UserSessionManager.shared.customerToken.token}";
+      "${Address.dscHome}invoice.php?token=${UserSessionManager.shared.customerToken.token}";
 
   @override
   void onInit() {

@@ -1,7 +1,8 @@
-import 'package:dsc_tools/models/inventory_records.dart';
-import 'package:dsc_tools/ui/screens/inventory/controller/inventory.home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../models/inventory_records.dart';
+import '../controller/inventory.home.controller.dart';
 
 class SearchProducts extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class SearchProducts extends StatefulWidget {
 
 class _SearchAppBarState extends State<SearchProducts> {
   final InventoryHomeController controller = Get.put(InventoryHomeController());
-  
+
   Widget appBarTitle = const Text("");
   Icon actionIcon = const Icon(Icons.search);
   @override
@@ -27,8 +28,10 @@ class _SearchAppBarState extends State<SearchProducts> {
                     transform: Matrix4.translationValues(0.0, 0.0, 0.0),
                     child: TextField(
                       controller: controller.searchController,
-                      onChanged: (String text) => controller.onSearchTextChange(text),
-                      style: const TextStyle(color: Color(0xFF9EA9B9), fontSize: 14),
+                      onChanged: (String text) =>
+                          controller.onSearchTextChange(text),
+                      style: const TextStyle(
+                          color: Color(0xFF9EA9B9), fontSize: 14),
                       decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.search),
                           border: InputBorder.none,
@@ -80,9 +83,11 @@ class _SearchAppBarState extends State<SearchProducts> {
                 shrinkWrap: true,
                 itemCount: controller.searchedProducts.value.items.length,
                 itemBuilder: (BuildContext ctxt, int index) {
-                  final InventoryRecordItems item = controller.searchedProducts.value.items[index];
+                  final InventoryRecordItems item =
+                      controller.searchedProducts.value.items[index];
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
                     child: Text(item.catalogSlideContent.content.description),
                   );
                 })),

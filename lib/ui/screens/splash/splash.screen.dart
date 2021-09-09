@@ -1,8 +1,7 @@
-import 'package:dsc_tools/constants/font_weights.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../utilities/images.dart';
 import '../../../utilities/size_config.dart';
 import '../../global/widgets/animated_show_up.dart';
 import 'controller/splash.controller.dart';

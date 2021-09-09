@@ -1,5 +1,6 @@
-import 'package:dsc_tools/utilities/size_config.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utilities/size_config.dart';
 
 class TransAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -19,7 +20,8 @@ class TransAppBar extends StatelessWidget implements PreferredSizeWidget {
         actions: action,
         title: Column(children: [
           Text(
-            title, style: TextStyle(fontSize: getProportionateScreenWidth(16)),
+            title,
+            style: TextStyle(fontSize: getProportionateScreenWidth(16)),
           ),
           if (subTitle != "")
             Text(subTitle, style: Theme.of(context).textTheme.subtitle1),

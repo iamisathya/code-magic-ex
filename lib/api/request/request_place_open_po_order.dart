@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'request_place_open_po_order.g.dart';
 
 @JsonSerializable(explicitToJson: true)

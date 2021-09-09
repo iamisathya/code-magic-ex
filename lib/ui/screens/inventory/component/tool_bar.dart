@@ -1,9 +1,10 @@
-import 'package:dsc_tools/ui/screens/inventory/component/search_inventory.dart';
-import 'package:dsc_tools/ui/screens/inventory/controller/inventory.home.controller.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../utilities/images.dart';
+import '../controller/inventory.home.controller.dart';
+import 'search_inventory.dart';
 
 class InventoryToolBar extends StatelessWidget {
   final InventoryHomeController controller = Get.put(InventoryHomeController());

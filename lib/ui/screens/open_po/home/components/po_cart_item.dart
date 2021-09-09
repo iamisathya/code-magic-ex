@@ -1,13 +1,15 @@
-import 'package:dsc_tools/models/cart_products.dart';
-import 'package:dsc_tools/ui/screens/open_po/controller/add.openpo.controller.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../models/cart_products.dart';
+import '../../../../../utilities/enums.dart';
+import '../../../../../utilities/images.dart';
+import '../../controller/add.openpo.controller.dart';
+
 class PoCartItem extends StatelessWidget {
-  final CreateOpenPoOrderController controller = Get.put(CreateOpenPoOrderController());
+  final CreateOpenPoOrderController controller =
+      Get.put(CreateOpenPoOrderController());
   final CartProductsItem item;
   PoCartItem({required this.item});
 
@@ -131,12 +133,14 @@ class PoCartItem extends StatelessWidget {
                       children: [
                         GestureDetector(
                           behavior: HitTestBehavior.translucent,
-                          onTap: () => controller.onUpdateQuantity(CartUpdate.decreament, item.itemCode),
+                          onTap: () => controller.onUpdateQuantity(
+                              CartUpdate.decreament, item.itemCode),
                           child: SizedBox(
                             width: 50,
                             height: 30,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20.0),
                               child: SvgPicture.asset(kMinusIcon,
                                   height: 10,
                                   width: 10,
@@ -156,17 +160,19 @@ class PoCartItem extends StatelessWidget {
                         ),
                         GestureDetector(
                           behavior: HitTestBehavior.translucent,
-                          onTap: () => controller.onUpdateQuantity(CartUpdate.increament, item.itemCode),
+                          onTap: () => controller.onUpdateQuantity(
+                              CartUpdate.increament, item.itemCode),
                           child: SizedBox(
-                             width: 50,
+                            width: 50,
                             height: 30,
                             child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: SvgPicture.asset(kPlusIcon,
-                                height: 10,
-                                width: 10,
-                                semanticsLabel: "plus_icon"),
-                          ),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: SvgPicture.asset(kPlusIcon,
+                                  height: 10,
+                                  width: 10,
+                                  semanticsLabel: "plus_icon"),
+                            ),
                           ),
                         ),
                       ],

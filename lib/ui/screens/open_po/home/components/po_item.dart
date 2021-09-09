@@ -1,12 +1,12 @@
-import 'package:dsc_tools/models/open_po.dart';
-import 'package:dsc_tools/ui/screens/open_po/controller/openpo.controller.dart';
-import 'package:dsc_tools/ui/screens/open_po/controller/openpo.list.controller.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/open_po_details.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../../models/open_po.dart';
 import '../../../../../utilities/extensions.dart';
+import '../../../../../utilities/images.dart';
+import '../../controller/openpo.list.controller.dart';
+import 'open_po_details.dart';
 
 class POItem extends StatelessWidget {
   final OpenPO openPo;
@@ -20,7 +20,8 @@ class POItem extends StatelessWidget {
         openPo.iconAttachment.retrieveAttachementName();
     return Stack(children: [
       GestureDetector(
-        onTap: () => Get.to(() => OpenPODetailsPage(), arguments: openPo.orderOpid),
+        onTap: () =>
+            Get.to(() => OpenPODetailsPage(), arguments: openPo.orderOpid),
         child: Card(
             margin: const EdgeInsets.symmetric(vertical: 10),
             child: Column(

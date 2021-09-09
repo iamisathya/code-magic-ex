@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/country_info.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/home.screen.dart';
-import 'package:dsc_tools/utilities/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
@@ -16,6 +12,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
 import '../../../../api/request/request_customer_token.dart';
+import '../../../../constants/globals.dart';
+import '../../../../models/country_info.dart';
 import '../../../../models/profile_picture.dart';
 import '../../../../models/user_id.dart';
 import '../../../../models/user_info.dart';
@@ -23,9 +21,11 @@ import '../../../../models/user_token.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/keyboard.dart';
+import '../../../../utilities/logger.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/widgets/confirmation_dialog.dart';
 import '../../../global/widgets/overlay_progress.dart';
+import '../../open_po/home/home.screen.dart';
 
 class LoginController extends GetxController {
   final store = GetStorage();

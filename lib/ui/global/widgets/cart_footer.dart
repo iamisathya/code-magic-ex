@@ -44,8 +44,7 @@ class CartFooter extends StatelessWidget {
                 ),
               ],
             ),
-            PrimaryButton(
-                text: "place_order".tr, press: () => onPressed())
+            PrimaryButton(text: "place_order".tr, press: () => onPressed())
           ],
         ));
   }

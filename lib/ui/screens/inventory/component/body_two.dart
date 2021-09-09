@@ -1,12 +1,12 @@
-import 'package:dsc_tools/models/inventory_records.dart';
-import 'package:dsc_tools/ui/screens/inventory/component/table_view.dart';
-import 'package:dsc_tools/ui/screens/inventory/controller/inventory.home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../models/inventory_records.dart';
+import '../controller/inventory.home.controller.dart';
 import 'grand_total_price.dart';
 import 'inventory_item.dart';
 import 'page_title.dart';
+import 'table_view.dart';
 import 'tool_bar.dart';
 import 'user_address.dart';
 

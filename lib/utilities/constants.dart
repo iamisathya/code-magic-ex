@@ -157,7 +157,8 @@ InputDecoration kDisabledTextInputDecoration(
     fillColor: Colors.white,
     filled: true,
     isDense: true,
-    contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+    contentPadding:
+        const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
     focusedBorder: kFocusedOutlineInputBorder(),
     enabledBorder: kFocusedOutlineInputBorder(),
     disabledBorder: kFocusedOutlineInputBorder(),

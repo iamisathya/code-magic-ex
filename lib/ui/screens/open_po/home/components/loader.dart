@@ -1,5 +1,6 @@
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../utilities/images.dart';
 
 class Loader extends StatelessWidget {
   const Loader(

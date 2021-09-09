@@ -1,15 +1,16 @@
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/ui/screens/inventory/controller/inventory.home.controller.dart';
-import 'package:dsc_tools/utilities/constants.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/function.dart';
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/parsing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../constants/globals.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/function.dart';
+import '../../../../utilities/images.dart';
+import '../../../../utilities/parsing.dart';
+import '../controller/inventory.home.controller.dart';
 
 class TableView extends StatelessWidget {
   final InventoryHomeController controller = Get.put(InventoryHomeController());
@@ -74,7 +75,8 @@ class TableView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _renderWhiteText(label, context, const Color(0xFFFFFFFF)),
-                  if(controller.activeStockType.value.value == "onHand") _renderWhiteText(value, context, const Color(0xFFE7BB4A)),
+                  if (controller.activeStockType.value.value == "onHand")
+                    _renderWhiteText(value, context, const Color(0xFFE7BB4A)),
                 ],
               ),
               SvgPicture.asset(
@@ -91,8 +93,11 @@ class TableView extends StatelessWidget {
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     final currentItem = controller.tempInventoryRecords.value.items[index];
-    final alternativeBgColor =
-        index % 2 == 0 ? const Color(0xFFFFFFFF) : (controller.activeStockType.value.value == "onHand") ? const Color(0xFFF1FAF7) : const Color(0xFFF7F1E9);
+    final alternativeBgColor = index % 2 == 0
+        ? const Color(0xFFFFFFFF)
+        : (controller.activeStockType.value.value == "onHand")
+            ? const Color(0xFFF1FAF7)
+            : const Color(0xFFF7F1E9);
     return Container(
       width: 140,
       height: 65,
@@ -112,8 +117,11 @@ class TableView extends StatelessWidget {
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
     final currentItem = controller.tempInventoryRecords.value.items[index];
-    final alternativeBgColor =
-        index % 2 == 0 ? const Color(0xFFFFFFFF) : (controller.activeStockType.value.value == "onHand") ? const Color(0xFFF1FAF7) : const Color(0xFFF7F1E9);
+    final alternativeBgColor = index % 2 == 0
+        ? const Color(0xFFFFFFFF)
+        : (controller.activeStockType.value.value == "onHand")
+            ? const Color(0xFFF1FAF7)
+            : const Color(0xFFF7F1E9);
     return Row(
       children: <Widget>[
         Container(

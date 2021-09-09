@@ -1,13 +1,15 @@
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../../utilities/images.dart';
 
 class OrderSuccess extends StatelessWidget {
   final bool isSuccess;
   final String distributorId;
   final String poNumber;
 
-  const OrderSuccess({this.isSuccess = true, this.distributorId = "", this.poNumber = ""});
+  const OrderSuccess(
+      {this.isSuccess = true, this.distributorId = "", this.poNumber = ""});
 
   @override
   Widget build(BuildContext context) {
