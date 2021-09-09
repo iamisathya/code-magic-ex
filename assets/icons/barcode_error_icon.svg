@@ -1,0 +1,15 @@
+<svg width="51" height="22" viewBox="0 0 51 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M25.5 1H20V4.66667M44.5 1H50V4.66667M25.5 21H20V17.3333M44.5 21H50V17.3333" stroke="#384250" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="26.999" y="5" width="1" height="12" rx="0.5" fill="#384250"/>
+<rect x="24.9998" y="5" width="1" height="12" rx="0.5" fill="#384250"/>
+<rect x="40.9991" y="5" width="1" height="12" rx="0.5" fill="#384250"/>
+<rect x="29.9993" y="5" width="1" height="12" rx="0.5" fill="#384250"/>
+<rect x="43.9994" y="5" width="1" height="12" rx="0.5" fill="#384250"/>
+<rect x="33.9988" y="5" width="1" height="12" rx="0.5" fill="#384250"/>
+<rect x="35.9993" y="5" width="1" height="12" rx="0.5" fill="#384250"/>
+<rect x="37.9993" y="5" width="1" height="12" rx="0.5" fill="#384250"/>
+<rect x="22.7271" y="9" width="24.5455" height="4" fill="#FE5D7C"/>
+<circle cx="7.5" cy="11.5" r="7.5" fill="#FE5D7C"/>
+<path d="M7.5 6.9998C8.06 6.9998 8.5 7.36471 8.5 7.8419L8.5 12.2863C8.5 12.7542 8.06 13.1284 7.5 13.1284C6.94 13.1284 6.5 12.7635 6.5 12.2863L6.5 7.8419C6.5 7.36471 6.932 6.9998 7.5 6.9998Z" fill="white"/>
+<path d="M7.5 13.9571C8.052 13.9571 8.5 14.4147 8.5 14.9786C8.5 15.5424 8.052 16 7.5 16C6.948 16 6.5 15.5424 6.5 14.9786C6.5 14.4147 6.948 13.9571 7.5 13.9571Z" fill="white"/>
+</svg>
