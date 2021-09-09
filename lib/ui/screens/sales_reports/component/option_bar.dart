@@ -24,7 +24,7 @@ class OptionBar extends StatelessWidget {
           Row(
             children: [
               GestureDetector(
-                onTap: () => null,
+                onTap: () => controller.proceedToPrint(context, orderHref: ""),
                 child: Text("Print",
                     style: Theme.of(context)
                         .textTheme

@@ -9,7 +9,8 @@ import 'component/body2.dart';
 import 'controller/salesreports.home.controller.dart';
 
 class SalesReportsHomeScreen extends StatelessWidget {
-  final SalesReportHomeController controller = Get.put(SalesReportHomeController());
+  final SalesReportHomeController controller =
+      Get.put(SalesReportHomeController());
   static const String routeName = '/salesReportsHomePage';
 
   @override
@@ -18,7 +19,8 @@ class SalesReportsHomeScreen extends StatelessWidget {
         backgroundColor: kWhiteSmokeColor,
         appBar: OpenPoAppBar(),
         body: Obx(() => LoadingOverlay(
-            isLoading: controller.isLoading.value,
+            isLoading:
+                controller.isLoading.value || controller.isPrinting.value,
             progressIndicator: const Loader(),
             child: Body2())));
   }

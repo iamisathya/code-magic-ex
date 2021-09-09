@@ -42,6 +42,7 @@ class SalesReportHomeController extends GetxController {
       NameValueType(name: "By Order", value: "order").obs;
 
   RxBool isLoading = false.obs;
+  RxBool isPrinting = false.obs;
 
   Future<void> getAllSalesReports() async {
     if (startDate.value.isAfter(endDate.value)) {
@@ -119,8 +120,10 @@ class SalesReportHomeController extends GetxController {
     final String imgUrl =
         "${Address.dscHome}invoice.php?link=$orderHref&token=${UserSessionManager.shared.customerToken.token}";
     try {
+      isPrinting.toggle();
       final Dio dio = Dio();
       final response = await dio.get(imgUrl);
+      isPrinting.toggle();
       await Printing.layoutPdf(
           dynamicLayout: false,
           onLayout: (PdfPageFormat format) async => Printing.convertHtml(
@@ -128,6 +131,7 @@ class SalesReportHomeController extends GetxController {
                 html: response.data.toString(),
               ));
     } catch (err) {
+      isPrinting.toggle();
       LoggerService.instance.e(err.toString());
     }
   }
