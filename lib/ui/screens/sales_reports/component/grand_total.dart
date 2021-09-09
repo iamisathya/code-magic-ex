@@ -1,4 +1,6 @@
+import 'package:dsc_tools/utilities/parsing.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class GrandTotal extends StatelessWidget {
   final String totalPrice;
@@ -29,7 +31,7 @@ class GrandTotal extends StatelessWidget {
                     .copyWith(color: const Color(0xFF000000)),
               ),
               Text(
-                "$totalPrice THB",
+                "${NumberFormat().format(Parsing.intFrom(totalPrice))} THB",
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
@@ -56,7 +58,7 @@ class GrandTotal extends StatelessWidget {
                     .copyWith(color: const Color(0xFF000000)),
               ),
               Text(
-                "$totalPv PV",
+                "${NumberFormat().format(Parsing.intFrom(totalPv))} PV",
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
