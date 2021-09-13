@@ -1,4 +1,6 @@
+import 'package:dsc_tools/ui/screens/open_po/controller/openpo.search.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SearchProducts extends StatefulWidget {
   @override
@@ -6,6 +8,8 @@ class SearchProducts extends StatefulWidget {
 }
 
 class _SearchAppBarState extends State<SearchProducts> {
+  OpenPoSearchController controller = Get.put(OpenPoSearchController());
+
   Widget appBarTitle = const Text("AppBar Title");
   Icon actionIcon = const Icon(Icons.search);
   @override
@@ -20,19 +24,25 @@ class _SearchAppBarState extends State<SearchProducts> {
                 actionIcon = const Icon(Icons.close);
                 appBarTitle = Transform(
                     transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-                    child: const TextField(
-                      style: TextStyle(color: Color(0xFF9EA9B9), fontSize: 14),
+                    child: TextField(
+                      controller: controller.searchTextController,
+                      style: const TextStyle(
+                          color: Color(0xFF9EA9B9), fontSize: 14),
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search),
                           border: InputBorder.none,
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(color: Color(0xFF9EA9B9)),
                           ),
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Find Products...",
-                          hintStyle: TextStyle(
+                          suffixIcon: GestureDetector(
+                            onTap: () => controller.addSearchItem(
+                                controller.searchTextController.text),
+                            child: const Icon(Icons.search),
+                          ),
+                          hintStyle: const TextStyle(
                               color: Color(0xFF9EA9B9), fontSize: 14)),
                     ));
               } else {
@@ -54,30 +64,42 @@ class _SearchAppBarState extends State<SearchProducts> {
                     const EdgeInsets.symmetric(vertical: 17, horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "Search History",
                       style: TextStyle(fontSize: 14, color: Color(0xFF000000)),
                     ),
-                    Text(
-                      "Clear all",
-                      style: TextStyle(fontSize: 14, color: Color(0xFFFE5D7C)),
+                    GestureDetector(
+                      onTap: () => controller.clearHistory(),
+                      child: const Text(
+                        "Clear all",
+                        style:
+                            TextStyle(fontSize: 14, color: Color(0xFFFE5D7C)),
+                      ),
                     )
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            ListView.builder(
+            Obx(() => ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 20,
+                itemCount: controller.searchHistory.length,
                 itemBuilder: (BuildContext ctxt, int index) {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                    child: Text("Bios Life Complete (60pkt)"),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
+                    child: GestureDetector(
+                      onTap: () => controller.searchOrder(controller.searchHistory[index]),
+                      child: Text(controller.searchHistory[index],
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle2!
+                              .copyWith(color: const Color(0xFF606975))),
+                    ),
                   );
-                }),
+                })),
           ],
         ),
       ),

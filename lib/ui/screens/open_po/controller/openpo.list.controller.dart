@@ -21,6 +21,7 @@ class OpenPoListController extends GetxController
   ].obs;
   RxString filterMethod = "all".obs;
   RxBool isLoading = false.obs;
+  List<OpenPO> openPlaceOrders = [];
 
   @override
   void onInit() {
@@ -40,6 +41,7 @@ class OpenPoListController extends GetxController
     try {
       final List<OpenPO> allOpenPlaceOrders = await MemberCallsService.init()
           .getAllOpenPo("106", filterMethod.value, Globals.userId);
+      openPlaceOrders = allOpenPlaceOrders;
       if (allOpenPlaceOrders.isNotEmpty) {
         change(allOpenPlaceOrders, status: RxStatus.success());
       } else {
