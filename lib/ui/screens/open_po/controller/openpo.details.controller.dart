@@ -19,10 +19,10 @@ class OpenPoDetailsController extends GetxController
   OpenPoDetailsController({required this.api});
 
   String currentPoNumber = "";
-  String passedOrderNumber = "";
+  RxString passedOrderNumber = "".obs;
   String poOrderAttachment = "";
 
-  OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
+  OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();  
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
 
@@ -32,8 +32,8 @@ class OpenPoDetailsController extends GetxController
   void onInit() {
     final dynamic data = Get.arguments;
     if (data != null) {
-      passedOrderNumber = data as String;
-      getOpenPlaceOrderDetails(passedOrderNumber);
+      passedOrderNumber.value = data as String;
+      getOpenPlaceOrderDetails(passedOrderNumber.value);
     }
     super.onInit();
   }

@@ -182,7 +182,7 @@ class CreateOpenPoOrderController extends GetxController
   Future<void> validateOrder(BuildContext context) async {
     if (cartProducts.isEmpty) {
       SnackbarUtil.showError(
-          message: "Please select products to proceed with checkout!");
+          message: "Please add products to proceed with checkout!");
       return;
     }
     confirmOrder(context);

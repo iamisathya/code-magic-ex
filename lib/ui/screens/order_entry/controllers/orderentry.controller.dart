@@ -91,7 +91,7 @@ class OrderEntryTableController extends GetxController {
     if (checkoutProducts.isEmpty) {
       renderErrorSnackBar(
           title: "Empty cart!",
-          subTitle: "Please select products to proceed with checkout!");
+          subTitle: "Please add products to proceed with checkout!");
       return;
     }
     _sendingMsgProgressBar.show(context);

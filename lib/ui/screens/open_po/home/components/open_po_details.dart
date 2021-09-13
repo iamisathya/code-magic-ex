@@ -17,11 +17,11 @@ class OpenPODetailsPage extends GetView<OpenPoDetailsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(controller.openPlaceOrderId.orderOpid,
+          title: Obx(() => Text(controller.passedOrderNumber.value,
               style: Theme.of(context)
                   .textTheme
                   .headline6!
-                  .copyWith(color: const Color(0xFF000000)))),
+                  .copyWith(color: const Color(0xFF000000))))),
       body: Obx(
         () => LoadingOverlay(
           isLoading: controller.isLoading.value,
