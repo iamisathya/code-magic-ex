@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/sales_report_response_item.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -385,6 +386,17 @@ abstract class MemberCallsService {
     @Field("pv") String pv,
     @Field("amount") int amount,
   );
+
+  //? Example: https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=4&datepicker1=2021-09-13&datepicker2=2021-09-13&token=daac50bb-9e17-4d31-b824-c7841f03d1eb&lang=th&id=100280466&action=1
+  @GET(Address.validOrders)
+  Future<List<dynamic>> getSalesReports(
+      @Query('type') String type,
+      @Query('datepicker1') String datepicker1,
+      @Query('datepicker2') String datepicker2,
+      @Query('token') String token,
+      @Query('lang') String lang,
+      @Query('id') String id,
+      @Query('action') String action);
 }
 
 @RestApi(baseUrl: Address.memberCalls2Base)

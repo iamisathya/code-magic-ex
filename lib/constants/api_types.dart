@@ -11,6 +11,7 @@ class ApiConstants {
   String kCurrentLanguage = "English";
   String kPeriodLog = "periodLog";
   String kPurchaseLog = "purchaseLog";
+  String kSalesReportType = "4";
 
   String kCountry = "TH";
   String kSystem = "DSC";

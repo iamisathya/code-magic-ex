@@ -217,6 +217,7 @@ String kCurrentLanguage = "English";
 String kPeriodLog = "periodLog";
 String kPurchaseLog = "purchaseLog";
 String kEnrollerLog = "enrollerLog";
+String kSalesReportType = "4";
 
 String kCountry = "TH";
 String kSystem = "DSC";

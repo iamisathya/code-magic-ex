@@ -59,6 +59,7 @@ class LanguageController extends GetxController {
 // updates the language stored
   Future<void> updateLanguage(String value) async {
     language.value = value;
+    Globals.defaultLanguage = value;
     await store.write('language', value);
     if (getLocale != null) {
       Get.updateLocale(getLocale!);

@@ -915,6 +915,33 @@ class _MemberCallsService implements MemberCallsService {
     return value;
   }
 
+  @override
+  Future<List<SalesReportResponseItem>> getSalesReports(
+      type, datepicker1, datepicker2, token, lang, id, action) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'type': type,
+      r'datepicker1': datepicker1,
+      r'datepicker2': datepicker2,
+      r'token': token,
+      r'lang': lang,
+      r'id': id,
+      r'action': action
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<SalesReportResponseItem>>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) =>
+            SalesReportResponseItem.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
