@@ -916,7 +916,7 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
-  Future<List<SalesReportResponseItem>> getSalesReports(
+  Future<List<SalesReportOrderItem>> getSalesReports(
       type, datepicker1, datepicker2, token, lang, id, action) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -930,14 +930,66 @@ class _MemberCallsService implements MemberCallsService {
     };
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<List<SalesReportResponseItem>>(
+        _setStreamType<List<SalesReportOrderItem>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
         .map((dynamic i) =>
-            SalesReportResponseItem.fromJson(i as Map<String, dynamic>))
+            SalesReportOrderItem.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<List<SalesReportRmaItem>> getSalesRmaReports(
+      type, datepicker1, datepicker2, token, lang, id, action) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'type': type,
+      r'datepicker1': datepicker1,
+      r'datepicker2': datepicker2,
+      r'token': token,
+      r'lang': lang,
+      r'id': id,
+      r'action': action
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<SalesReportRmaItem>>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) =>
+            SalesReportRmaItem.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<List<SalesReportItemItem>> getSalesItemReports(
+      type, datepicker1, datepicker2, token, action) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'type': type,
+      r'datepicker1': datepicker1,
+      r'datepicker2': datepicker2,
+      r'token': token,
+      r'action': action
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<SalesReportItemItem>>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) =>
+            SalesReportItemItem.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

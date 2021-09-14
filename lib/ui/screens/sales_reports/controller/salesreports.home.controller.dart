@@ -1,6 +1,11 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/models/sales_report_item_item.dart';
+import 'package:dsc_tools/models/sales_report_order_item.dart';
+import 'package:dsc_tools/models/sales_report_rma_item.dart';
+import 'package:dsc_tools/utilities/constants.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -35,6 +40,9 @@ class SalesReportHomeController extends GetxController {
     NameValueType(name: "RMAs", value: "rma")
   ].obs;
   Rx<OrdersAndRmas> allOrdersAndRmas = const OrdersAndRmas().obs;
+  RxList<SalesReportOrderItem> allSalesReports = <SalesReportOrderItem>[].obs;
+  RxList<SalesReportRmaItem> allSalesRmaReports = <SalesReportRmaItem>[].obs;
+  RxList<SalesReportItemItem> allSalesItemReports = <SalesReportItemItem>[].obs;
   RxInt totalAmount = 0.obs;
   RxInt totalVolume = 0.obs;
 
@@ -44,27 +52,62 @@ class SalesReportHomeController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isPrinting = false.obs;
 
+  String get activeTab => activeStockType.value.value;
+  int get activeListLength => activeStockType.value.value == "order"
+      ? allSalesReports.length
+      : activeStockType.value.value == "rma"
+          ? allSalesRmaReports.length
+          : allSalesItemReports.length;
+
+  RxList<Object> get activeLists => activeStockType.value.value == "order"
+      ? allSalesReports
+      : activeStockType.value.value == "rma"
+          ? allSalesRmaReports
+          : allSalesItemReports;
+
   Future<void> getAllSalesReports() async {
     if (startDate.value.isAfter(endDate.value)) {
       SnackbarUtil.showError(
           message: "Start date should be lower than end date!");
       return;
     }
+    final String actionType = activeStockType.value.value == "order"
+        ? "1"
+        : activeStockType.value.value == "item"
+            ? "2"
+            : "3";
     isLoading.toggle();
     final String startingFrom =
         DateFormat('yyyy-MM-dd').format(startDate.value).toString();
     final String endingTill =
         DateFormat('yyyy-MM-dd').format(endDate.value).toString();
 
-    const String type = "order,rma";
-    const String userId =
-        "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
-    final String duration = "[$startingFrom;$endingTill]";
-
     try {
-      allOrdersAndRmas.value = await ApiService.clientNoLogger()
-          .getOrdersAndRmas(userId, duration, type);
-      calulateValue();
+      if (activeStockType.value.value == "order") {
+        allSalesReports.value = await MemberCallsService.init().getSalesReports(
+            kSalesReportType,
+            startingFrom,
+            endingTill,
+            UserSessionManager.shared.customerToken.token,
+            'th',
+            Globals.userId,
+            actionType);
+      } else if (activeStockType.value.value == "item") {
+        allSalesItemReports.value = await MemberCallsService.init()
+            .getSalesItemReports(kSalesReportType, startingFrom, endingTill,
+                UserSessionManager.shared.customerToken.token, actionType);
+      } else if (activeStockType.value.value == "rma") {
+        allSalesRmaReports.value = await MemberCallsService.init()
+            .getSalesRmaReports(
+                kSalesReportType,
+                startingFrom,
+                endingTill,
+                UserSessionManager.shared.customerToken.token,
+                'th',
+                Globals.userId,
+                actionType);
+      }
+      // calulateValue();
       isLoading.toggle();
     } on DioError catch (e) {
       isLoading.toggle();
@@ -80,10 +123,10 @@ class SalesReportHomeController extends GetxController {
 
   void calulateValue() {
     if (activeStockType.value.value == "order") {
-      totalVolume = allOrdersAndRmas.value.orders[0].items
-          .fold(0.obs, (sum, item) => sum + item.terms.pv);
-      totalAmount = allOrdersAndRmas.value.orders[0].items
-          .fold(0.obs, (sum, item) => sum + Parsing.intFrom(item.terms.total)!);
+      totalVolume =
+          allSalesReports.fold(0.obs, (sum, item) => sum + item.totalPv);
+      totalAmount = allSalesReports.fold(
+          0.obs, (sum, item) => sum + Parsing.intFrom(item.totalPv)!);
     } else {
       totalVolume = allOrdersAndRmas.value.rmas[0].items
           .fold(0.obs, (sum, item) => sum + item.terms.pv);

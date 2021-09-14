@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'sales_report_response_item.g.dart';
+part 'sales_report_order_item.g.dart';
 
 @JsonSerializable()
-class SalesReportResponseItem {
+class SalesReportOrderItem {
   @JsonKey(name: "inputdata")
   String inputData;
   @JsonKey(name: "customer")
@@ -23,7 +23,7 @@ class SalesReportResponseItem {
   @JsonKey(name: "barcode")
   String barcode;
 
-  SalesReportResponseItem(
+  SalesReportOrderItem(
       {required this.inputData,
       required this.customer,
       required this.name,
@@ -34,10 +34,10 @@ class SalesReportResponseItem {
       required this.totalPv,
       required this.barcode});
 
-  factory SalesReportResponseItem.fromJson(Map<String, dynamic> json) =>
-      _$SalesReportResponseItemFromJson(json);
+  factory SalesReportOrderItem.fromJson(Map<String, dynamic> json) =>
+      _$SalesReportOrderItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SalesReportResponseItemToJson(this);
+  Map<String, dynamic> toJson() => _$SalesReportOrderItemToJson(this);
 
   Map<String, dynamic> toMap() => {
         'inputData': inputData,

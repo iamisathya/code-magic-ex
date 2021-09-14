@@ -1,20 +1,19 @@
+import 'package:dsc_tools/models/sales_report_item_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../../../models/order_list_rmas.dart';
-import '../../../../utilities/extensions.dart';
 import '../../../../utilities/images.dart';
 import '../controller/salesreports.home.controller.dart';
 import 'grand_total.dart';
 import 'print_report.dart';
 
-class SalesReportItem extends StatelessWidget {
+class SalesReportEachItemItem extends StatelessWidget {
   final SalesReportHomeController controller =
       Get.put(SalesReportHomeController());
-  final OrderItem item;
+  final SalesReportItemItem item;
 
-  SalesReportItem({required this.item});
+  SalesReportEachItemItem({required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class SalesReportItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: Text(item.customer.humanName.fullName,
+                child: Text(item.description,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context)
@@ -36,10 +35,7 @@ class SalesReportItem extends StatelessWidget {
               ),
               SizedBox(
                 width: 70,
-                child: SvgPicture.asset(
-                  item.paymentStatus == "Unknown"
-                      ? kBarcodeErrorIcon
-                      : kBarcodeSuccessIcon,
+                child: SvgPicture.asset(kBarcodeSuccessIcon,                      
                   height: 25,
                   width: 50,
                   semanticsLabel: "barcode",
@@ -47,20 +43,20 @@ class SalesReportItem extends StatelessWidget {
               ),
             ],
           ),
-          _renderEachRow(context, "BA Number: ${item.customer.id.unicity}",
+          _renderEachRow(context, "BA Number: ${item.itemCode}",
               "Barcode: xxxxxx"),
           _renderOrderIdRow(
               context,
               "Order ID: ",
-              item.id.unicity.retrieveOrderId(),
-              "Date: ${item.dateCreated.asDDMMYYYY}",
-              item.href),
-          _renderEachRow(context, "Record: ${item.creator.humanName.fullName}",
-              "Time: ${item.dateCreated.asHHMMA}"),
+              item.pv.toString(),
+              "Date: ${item.pv.toString}",
+              item.pv.toString()),
+          _renderEachRow(
+              context, "Record: ${item.totalPv}", "Time: ${item.totalPv}"),
           GrandTotal(
-              status: item.paymentStatus,
-              totalPrice: "${item.terms.total}",
-              totalPv: "${item.terms.total}"),
+              status: "Success",
+              totalPrice: item.totalPv,
+              totalPv: item.totalPv.toString()),
         ],
       ),
     );

@@ -1,7 +1,9 @@
+import 'package:dsc_tools/models/sales_report_item_item.dart';
+import 'package:dsc_tools/models/sales_report_order_item.dart';
+import 'package:dsc_tools/models/sales_report_rma_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../models/order_list_rmas.dart';
 import '../../../../utilities/images.dart';
 import '../../../global/widgets/sign_out_button.dart';
 import '../../inventory/component/no_record_found.dart';
@@ -9,7 +11,9 @@ import '../../inventory/component/page_title.dart';
 import '../controller/salesreports.home.controller.dart';
 import 'date_selector.dart';
 import 'option_bar.dart';
-import 'sales_report.item.dart';
+import 'sales_report.item.item.dart';
+import 'sales_report.order.item.dart';
+import 'sales_report.rma.item.dart';
 import 'tool_bar.dart';
 
 class Body2 extends StatelessWidget {
@@ -33,7 +37,7 @@ class Body2 extends StatelessWidget {
           ),
         ),
         if (!controller.isLoading.value &&
-            controller.allOrdersAndRmas.value.orders.isNotEmpty)
+            controller.activeListLength != 0)
           Column(
             children: [
               Padding(
@@ -43,12 +47,20 @@ class Body2 extends StatelessWidget {
               Obx(() => ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount:
-                      controller.allOrdersAndRmas.value.orders[0].items.length,
+                  itemCount: controller.activeListLength,
                   itemBuilder: (BuildContext ctxt, int index) {
-                    final OrderItem item = controller
-                        .allOrdersAndRmas.value.orders[0].items[index];
-                    return SalesReportItem(item: item);
+                    if (controller.activeTab == "order") {
+                      final SalesReportOrderItem item =
+                          controller.allSalesReports[index];
+                      return SalesReportEachOrderItem(item: item);
+                    } else if (controller.activeTab == "rma") {
+                      final SalesReportRmaItem item =
+                          controller.allSalesRmaReports[index];
+                      return SalesReportEachRmaItem(item: item);
+                    }
+                    final SalesReportItemItem item =
+                        controller.allSalesItemReports[index];
+                    return SalesReportEachItemItem(item: item);
                   })),
             ],
           ),

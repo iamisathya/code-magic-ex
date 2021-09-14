@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sales_report_response_item.dart';
+part of 'sales_report_order_item.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SalesReportResponseItem _$SalesReportResponseItemFromJson(
-    Map<String, dynamic> json) {
-  return SalesReportResponseItem(
+SalesReportOrderItem _$SalesReportOrderItemFromJson(Map<String, dynamic> json) {
+  return SalesReportOrderItem(
     inputData: json['inputdata'] as String,
     customer: json['customer'] as String,
     name: json['name'] as String,
@@ -21,8 +20,8 @@ SalesReportResponseItem _$SalesReportResponseItemFromJson(
   );
 }
 
-Map<String, dynamic> _$SalesReportResponseItemToJson(
-        SalesReportResponseItem instance) =>
+Map<String, dynamic> _$SalesReportOrderItemToJson(
+        SalesReportOrderItem instance) =>
     <String, dynamic>{
       'inputdata': instance.inputData,
       'customer': instance.customer,
