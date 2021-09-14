@@ -21,7 +21,7 @@ class SalesReportRmaItem {
   @JsonKey(name: "total")
   String total;
   @JsonKey(name: "totalpv")
-  int totalPv;
+  String totalPv;
 
   SalesReportRmaItem(
       {required this.inputData,

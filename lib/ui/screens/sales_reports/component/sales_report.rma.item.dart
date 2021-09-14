@@ -49,8 +49,8 @@ class SalesReportEachRmaItem extends StatelessWidget {
           ),
           _renderEachRow(
               context,
-              "BA Number: ${item.rmaOrderNumber.retrieveUserIdFromUrl()}",
-              "Barcode: xxxxxx"),
+              "BA Number: ${item.customer}",
+              "Barcode: ${item.rmaOrderNumber.retrieveBarcode()}"),
           _renderOrderIdRow(
               context,
               "Order ID: ",

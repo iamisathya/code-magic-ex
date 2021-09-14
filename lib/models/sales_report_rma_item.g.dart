@@ -16,7 +16,7 @@ SalesReportRmaItem _$SalesReportRmaItemFromJson(Map<String, dynamic> json) {
     date: json['date'] as String,
     time: json['time'] as String,
     total: json['total'] as String,
-    totalPv: json['totalpv'] as int,
+    totalPv: json['totalpv'] as String,
   );
 }
 
