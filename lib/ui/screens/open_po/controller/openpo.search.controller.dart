@@ -1,5 +1,6 @@
 import 'package:dsc_tools/models/open_po.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/open_po_details.dart';
+import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -25,6 +26,8 @@ class OpenPoSearchController extends GetxController {
         orElse: () => OpenPO());
     if (order.orderOpid.isNotEmpty) {
       Get.to(() => OpenPODetailsPage(), arguments: order.orderOpid);
+    } else {
+      SnackbarUtil.showWarning(message: "Sorry no orders found with order id: $orderId");
     }
   }
 
@@ -40,20 +43,17 @@ class OpenPoSearchController extends GetxController {
   // Gets current language stored
   RxList<String> get getSearchHistory {
     final history = store.read('openpo_search_history');
-    debugPrint(history);
     if (history != null) {
-      final  local = history as List<dynamic>;
-      local.map((e) => searchHistory.add(e as String));
+      final  local = history as RxList<String>;
+      searchHistory.addAll(local);
     }
-    searchHistory.refresh();
-    update();
     return searchHistory;
   }
 
   // clear all search history
   Future<void> clearHistory() async {
     searchHistory.clear();
-    await store.write('openpo_search_history', <String>[].obs);
+    await store.remove('openpo_search_history');
     update();
   }
 }
