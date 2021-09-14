@@ -2,6 +2,8 @@ import 'package:dsc_tools/ui/screens/open_po/controller/openpo.search.controller
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'search_bar_field.dart';
+
 class SearchProducts extends StatefulWidget {
   @override
   _SearchAppBarState createState() => _SearchAppBarState();
@@ -15,37 +17,20 @@ class _SearchAppBarState extends State<SearchProducts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: false, title: appBarTitle, actions: <Widget>[
+      appBar: AppBar(
+        leadingWidth: 15, 
+        centerTitle: false, title: appBarTitle, actions: <Widget>[
         IconButton(
           icon: actionIcon,
           onPressed: () {
             setState(() {
               if (actionIcon.icon == Icons.search) {
                 actionIcon = const Icon(Icons.close);
-                appBarTitle = Transform(
-                    transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-                    child: TextField(
-                      controller: controller.searchTextController,
-                      style: const TextStyle(
-                          color: Color(0xFF9EA9B9), fontSize: 14),
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xFF9EA9B9)),
-                          ),
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                          hintText: "Find Products...",
-                          suffixIcon: GestureDetector(
-                            onTap: () => controller.addSearchItem(
-                                controller.searchTextController.text),
-                            child: const Icon(Icons.search),
-                          ),
-                          hintStyle: const TextStyle(
-                              color: Color(0xFF9EA9B9), fontSize: 14)),
-                    ));
+                appBarTitle = SearchBarField(
+                    onTap: (String value) => controller.addSearchItem(value),
+                    searchTextController: controller.searchTextController);
               } else {
+                controller.searchTextController.text = "";
                 actionIcon = const Icon(Icons.search);
                 appBarTitle = const Text("AppBar Title");
               }
@@ -91,7 +76,8 @@ class _SearchAppBarState extends State<SearchProducts> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 10, horizontal: 20),
                     child: GestureDetector(
-                      onTap: () => controller.searchOrder(controller.searchHistory[index]),
+                      onTap: () => controller
+                          .searchOrder(controller.searchHistory[index]),
                       child: Text(controller.searchHistory[index],
                           style: Theme.of(context)
                               .textTheme

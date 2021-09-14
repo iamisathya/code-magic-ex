@@ -33,9 +33,10 @@ class OpenPoSearchController extends GetxController {
 
   // Retrieves and Sets language based on device settings
   Future<void> addSearchItem(String value) async {
+    if (value.isEmpty) return;
     final isFound = searchHistory.contains(value);
     searchOrder(value);
-    if (value.isEmpty || isFound) return;
+    if (isFound) return;
     searchHistory.add(value);
     await store.write('openpo_search_history', searchHistory);
     update();
@@ -45,7 +46,8 @@ class OpenPoSearchController extends GetxController {
   RxList<String> get getSearchHistory {
     final history = store.read('openpo_search_history');
     if (history != null) {
-      final  local = history as RxList<String>;
+      final local = RxList<String>.from(history as List<dynamic>);
+      // final  local = history as RxList<String>;
       searchHistory.addAll(local);
     }
     return searchHistory;
