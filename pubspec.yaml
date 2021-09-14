@@ -101,12 +101,7 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
-  fonts:
-    - family: MavenPro
-      fonts:
-        - asset: assets/fonts/MavenPro-Regular.ttf
-        - weight: 400
+  uses-material-design: true  
   assets:
     - assets/icons/
     - assets/icons/tabs/
@@ -116,6 +111,11 @@ flutter:
     - assets/lottie/
     - assets/animated/
     - .env
+  fonts:
+    - family: MavenPro
+      fonts:
+        - asset: assets/fonts/MavenPro-Regular.ttf
+          weight: 400
       
   # To add assets to your application, add an assets section, like this:
   # assets:

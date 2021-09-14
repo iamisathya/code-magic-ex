@@ -40,7 +40,7 @@ class OpenPoSearchController extends GetxController {
   // Gets current language stored
   RxList<String> get getSearchHistory {
     final history = store.read('openpo_search_history');
-    print(history);
+    debugPrint(history);
     if (history != null) {
       final  local = history as List<dynamic>;
       local.map((e) => searchHistory.add(e as String));
