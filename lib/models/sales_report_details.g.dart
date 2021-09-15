@@ -189,9 +189,9 @@ BillToAddress _$BillToAddressFromJson(Map<String, dynamic> json) {
   return BillToAddress(
     address1: json['address1'] as String,
     address2: json['address2'] as String,
-    city: json['city'] as String,
-    zip: json['zip'] as String,
-    country: json['country'] as String,
+    city: json['city'] as String?,
+    zip: json['zip'] as String?,
+    country: json['country'] as String?,
   );
 }
 
@@ -300,13 +300,15 @@ Map<String, dynamic> _$CommonIdTypeStringToJson(CommonIdTypeString instance) =>
 Id _$IdFromJson(Map<String, dynamic> json) {
   return Id(
     unicity: json['unicity'] as String,
-    label: json['label'] as String,
+    label: json['label'] as String?,
+    href: json['href'] as String?,
   );
 }
 
 Map<String, dynamic> _$IdToJson(Id instance) => <String, dynamic>{
       'unicity': instance.unicity,
       'label': instance.label,
+      'href': instance.href,
     };
 
 ShippingMethod _$ShippingMethodFromJson(Map<String, dynamic> json) {

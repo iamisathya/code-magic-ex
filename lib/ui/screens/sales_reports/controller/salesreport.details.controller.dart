@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class SalesReportDetailsController extends GetxController {
   RxString orderCode = "".obs;
+  RxString orderNumber = "".obs;
   RxBool isLoading = false.obs;
   SalesReportDetails? salesReportDetails;
 
@@ -12,7 +13,9 @@ class SalesReportDetailsController extends GetxController {
   void onInit() {
     final dynamic data = Get.arguments;
     if (data != null) {
-      orderCode.value = data as String;
+      final args = data as Map<String, dynamic>;
+      orderCode.value = args["orderCode"] as String;
+      orderNumber.value = args["orderId"] as String;
       getOpenPlaceOrderDetails(orderCode.value);
     }
     super.onInit();

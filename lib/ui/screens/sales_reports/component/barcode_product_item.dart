@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BarcodeProductItem extends StatelessWidget {
-  final  Items item;
+  final Items item;
 
-  BarcodeProductItem({required this.item});
+  const BarcodeProductItem({required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,9 @@ class BarcodeProductItem extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Bio-C 300 TH",
+                Text(item.catalogSlide.content.description,
                     style: Theme.of(context).textTheme.bodyText1),
-                Text("Scanned:3/3",
+                Text("Scanned:${item.quantityDetails.quantityBackordered}/${item.quantity}",
                     style: Theme.of(context).textTheme.bodyText2)
               ],
             ),

@@ -291,18 +291,18 @@ class BillToAddress {
   @JsonKey(name: "address2")
   String address2;
   @JsonKey(name: "city")
-  String city;
+  String? city;
   @JsonKey(name: "zip")
-  String zip;
+  String? zip;
   @JsonKey(name: "country")
-  String country;
+  String? country;
 
   BillToAddress({
     required this.address1,
     required this.address2,
-    required this.city,
-    required this.zip,
-    required this.country,
+    this.city,
+    this.zip,
+    this.country,
   });
 
   factory BillToAddress.fromJson(Map<String, dynamic> json) =>
@@ -443,11 +443,14 @@ class Id {
   @JsonKey(name: "unicity")
   String unicity;
   @JsonKey(name: "label")
-  String label;
+  String? label;
+  @JsonKey(name: "href")
+  String? href;
 
   Id({
     required this.unicity,
-    required this.label,
+    this.label,
+    this.href,
   });
 
   factory Id.fromJson(Map<String, dynamic> json) => _$IdFromJson(json);
@@ -534,6 +537,7 @@ class ShipmentItem {
 
 @JsonSerializable()
 class Lines {
+  @JsonKey(name: "items")
   List<Items> items;
 
   Lines({required this.items});
@@ -545,10 +549,15 @@ class Lines {
 
 @JsonSerializable()
 class Items {
+  @JsonKey(name: "item")
   LineItem item;
+  @JsonKey(name: "catalogSlide")
   CatalogSlide catalogSlide;
+  @JsonKey(name: "terms")
   Terms terms;
+  @JsonKey(name: "quantity")
   int quantity;
+  @JsonKey(name: "quantityDetails")
   QuantityDetails quantityDetails;
 
   Items(
@@ -565,10 +574,15 @@ class Items {
 
 @JsonSerializable()
 class SingleLineItem {
+  @JsonKey(name: "item")
   LineItem item;
+  @JsonKey(name: "catalogSlide")
   CatalogSlide catalogSlide;
+  @JsonKey(name: "terms")
   Terms terms;
+  @JsonKey(name: "quantity")
   int quantity;
+  @JsonKey(name: "quantityDetails")
   QuantityDetails quantityDetails;
 
   SingleLineItem(
@@ -585,7 +599,9 @@ class SingleLineItem {
 
 @JsonSerializable()
 class LineItem {
+  @JsonKey(name: "id")
   Id id;
+  @JsonKey(name: "href")
   String href;
 
   LineItem({required this.id, required this.href});
@@ -598,6 +614,7 @@ class LineItem {
 
 @JsonSerializable()
 class IdString {
+  @JsonKey(name: "unicity")
   String unicity;
 
   IdString({required this.unicity});
@@ -610,6 +627,7 @@ class IdString {
 
 @JsonSerializable()
 class CatalogSlide {
+  @JsonKey(name: "content")
   Content content;
 
   CatalogSlide({required this.content});
@@ -622,6 +640,7 @@ class CatalogSlide {
 
 @JsonSerializable()
 class Content {
+  @JsonKey(name: "description")
   String description;
 
   Content({required this.description});
@@ -634,9 +653,13 @@ class Content {
 
 @JsonSerializable()
 class Terms {
+  @JsonKey(name: "priceEach")
   int priceEach;
+  @JsonKey(name: "pvEach")
   int pvEach;
+  @JsonKey(name: "taxablePriceEach")
   double taxablePriceEach;
+  @JsonKey(name: "tax")
   Tax tax;
 
   Terms(
@@ -652,8 +675,11 @@ class Terms {
 
 @JsonSerializable()
 class Tax {
+  @JsonKey(name: "aggregate")
   Aggregate aggregate;
+  @JsonKey(name: "amount")
   double amount;
+  @JsonKey(name: "percentage")
   int percentage;
 
   Tax(
@@ -667,6 +693,7 @@ class Tax {
 
 @JsonSerializable()
 class Aggregate {
+  @JsonKey(name: "amount")
   double amount;
 
   Aggregate({required this.amount});
@@ -679,6 +706,7 @@ class Aggregate {
 
 @JsonSerializable()
 class QuantityDetails {
+  @JsonKey(name: "quantityBackordered")
   int quantityBackordered;
 
   QuantityDetails({required this.quantityBackordered});

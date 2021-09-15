@@ -19,7 +19,7 @@ class SalesReportEachOrderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => controller.gotoDetailsPage(item.orderNumber),
+      onTap: () => controller.gotoDetailsPage(item),
       child: Container(
         padding: const EdgeInsets.all(20.0),
         child: Column(

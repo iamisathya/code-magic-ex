@@ -16,7 +16,7 @@ class SalesReportOrderDetials extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Obx(() => Text(controller.orderCode.value,
+            title: Obx(() => Text("Order Number: ${controller.orderNumber.value}",
                 style: Theme.of(context)
                     .textTheme
                     .headline6!
