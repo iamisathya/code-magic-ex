@@ -18,6 +18,10 @@ class SalesReportDetailsController extends GetxController {
     super.onInit();
   }
 
+  int get listSize => salesReportDetails?.lines.items.length ?? 0;
+  
+  List<Items> get products => salesReportDetails?.lines.items ?? [];
+
   Future<void> getOpenPlaceOrderDetails(String orderCode) async {
     isLoading.toggle();
     try {

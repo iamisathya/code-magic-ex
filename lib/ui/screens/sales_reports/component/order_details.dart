@@ -1,3 +1,4 @@
+import 'package:dsc_tools/models/sales_report_details.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
 import 'package:dsc_tools/ui/screens/sales_reports/controller/salesreport.details.controller.dart';
 import 'package:dsc_tools/utilities/images.dart';
@@ -120,9 +121,10 @@ class SalesReportOrderDetials extends StatelessWidget {
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: 10,
+                        itemCount: controller.listSize,
                         itemBuilder: (BuildContext ctxt, int index) {
-                          return BarcodeProductItem();
+                          final Items item = controller.products[index];
+                          return BarcodeProductItem(item: item);
                         }),
                   )
                 ],

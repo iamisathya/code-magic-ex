@@ -1,8 +1,13 @@
+import 'package:dsc_tools/models/sales_report_details.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BarcodeProductItem extends StatelessWidget {
+  final  Items item;
+
+  BarcodeProductItem({required this.item});
+
   @override
   Widget build(BuildContext context) {
     return Container(

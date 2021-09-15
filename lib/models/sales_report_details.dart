@@ -18,6 +18,8 @@ class SalesReportDetails {
   String fulfillmentStatus;
   @JsonKey(name: "invoice")
   Invoice invoice;
+  @JsonKey(name: "lines")
+  Lines lines;
   @JsonKey(name: "market")
   String market;
   @JsonKey(name: "dateCreated")
@@ -51,6 +53,7 @@ class SalesReportDetails {
     required this.customer,
     required this.fulfillmentStatus,
     required this.invoice,
+    required this.lines,
     required this.market,
     required this.dateCreated,
     required this.id,
