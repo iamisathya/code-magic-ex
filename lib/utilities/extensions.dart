@@ -71,6 +71,19 @@ extension OrderId on String {
       return this;
     }
   }
+
+  String retrieveOrderCodeFromUrl() {
+    // <a href=\"https://dsc-th.unicity.com/barcode?lang=th&href=31512d2a1d4a2a5860bc785d27d1f75242aefdebb44a852efed13fe78f817c45&token=daac50bb-9e17-4d31-b824-c7841f03d1eb&user=100280466\" target=\"_blank\"><span class=\"glyphicon glyphicon-ok-circle\" style=\"width: 16px;color:green;\" ></span></a>
+    const start = "orders/";
+    const end = "&token";
+    final startIndex = indexOf(start);
+    final endIndex = indexOf(end, startIndex + start.length);
+    try {
+      return substring(startIndex + start.length, endIndex);
+    } catch (e) {
+      return this;
+    }
+  }
 }
 
 extension DateFormater on String {

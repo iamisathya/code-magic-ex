@@ -68,6 +68,9 @@ const kStatisticsActiveIcon = 'assets/icons/tabs/statistics_active_icon.svg';
 const kStatisticsIcon = 'assets/icons/tabs/statistics_icon.svg';
 const kMoreActiveIcon = 'assets/icons/tabs/more_active_icon.svg';
 const kMoreIcon = 'assets/icons/tabs/more_icon.svg';
+const kBarcodePlainIcon = 'assets/icons/barcode_icon.svg';
+const kWarningIcon = 'assets/icons/warning_icon.svg';
+const kSuccessIcon = 'assets/icons/success_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';

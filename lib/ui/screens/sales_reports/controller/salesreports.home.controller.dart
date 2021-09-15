@@ -5,6 +5,7 @@ import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/sales_report_item_item.dart';
 import 'package:dsc_tools/models/sales_report_order_item.dart';
 import 'package:dsc_tools/models/sales_report_rma_item.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/component/order_details.dart';
 import 'package:dsc_tools/utilities/constants.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
@@ -294,5 +295,10 @@ class SalesReportHomeController extends GetxController {
     if (createdFile != null) {
       OpenFile.open(createdFile.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");
     }
+  }
+
+  void gotoDetailsPage(String orderNumber) {
+    Get.to(() => SalesReportOrderDetials(),
+        arguments: orderNumber.retrieveOrderCodeFromUrl());
   }
 }

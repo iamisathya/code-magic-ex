@@ -45,4 +45,5 @@ class Address {
   static const String orderedItems =
       "${baseDscTh}invoice.php?link=https://hydra.unicity.net/v5a/orders";
   static const String forceResetPassword = "etlV2/user/forceResetPassword";
+  static const String salesOrderDetails = "orders/{orderCode}";
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/sales_report_details.dart';
 import 'package:dsc_tools/models/sales_report_item_item.dart';
 import 'package:dsc_tools/models/sales_report_order_item.dart';
 import 'package:dsc_tools/models/sales_report_rma_item.dart';
@@ -158,6 +159,10 @@ abstract class ApiService {
   //? "shippingMethod":{"href":"https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"},"transactions":{"items":[{"amount":"this.terms.total","type":"record","method":"Cash"}]},"terms":{"period":"2021-08"},"source":{"agent":"MLBS-DSCTools-TH","campaign":null,"medium":"Internet","platform":"Mac OS","referrer":null,"version":null}}
   @POST(Address.orders)
   Future<EnrollForm> placeEnrollOrder(@Body() String request);
+
+  //? Example: https://hydra.unicity.net/v5a/orders/35e960ce25f719c6d12819cc35daab6c7fc1230ca0bb7863bbfb029caa40bb7a
+  @GET(Address.salesOrderDetails)
+  Future<SalesReportDetails> salesReportDetails(@Path('orderCode') String orderCode);
 }
 
 @RestApi(baseUrl: Address.memberCallsBase)
