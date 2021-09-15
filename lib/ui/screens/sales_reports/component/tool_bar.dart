@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../../utilities/images.dart';
 import '../../inventory/component/search_inventory.dart';
 import '../controller/salesreports.home.controller.dart';
+import 'search_open_po.dart';
 
 class SalesReportToolBar extends StatelessWidget {
   final SalesReportHomeController controller =
@@ -40,7 +41,7 @@ class SalesReportToolBar extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: GestureDetector(
-                      onTap: () => Get.to(() => SearchProducts()),
+                      onTap: () => Get.to(() => SearchSalesReport()),
                       child: SvgPicture.asset(kSearchIcon,
                           width: 20, semanticsLabel: 'search icon'),
                     ),

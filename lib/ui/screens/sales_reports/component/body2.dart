@@ -65,7 +65,7 @@ class Body2 extends StatelessWidget {
             ],
           ),
         if (!controller.isLoading.value &&
-            controller.allOrdersAndRmas.value.orders.isEmpty)
+            controller.activeListLength == 0)
           NoRecordFound()
       ]),
     );

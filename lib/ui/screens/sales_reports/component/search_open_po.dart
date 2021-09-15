@@ -1,16 +1,16 @@
-import 'package:dsc_tools/ui/screens/open_po/controller/openpo.search.controller.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/search_bar_field.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/controller/search_sales_products.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'search_bar_field.dart';
 
-class SearchProducts extends StatefulWidget {
+class SearchSalesReport extends StatefulWidget {
   @override
   _SearchAppBarState createState() => _SearchAppBarState();
 }
 
-class _SearchAppBarState extends State<SearchProducts> {
-  OpenPoSearchController controller = Get.put(OpenPoSearchController());
+class _SearchAppBarState extends State<SearchSalesReport> {
+  SalesReportSearchController controller = Get.put(SalesReportSearchController());
 
   Widget appBarTitle = const Text("AppBar Title");
   Icon actionIcon = const Icon(Icons.search);
