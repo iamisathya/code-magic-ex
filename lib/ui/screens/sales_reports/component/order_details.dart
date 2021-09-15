@@ -22,7 +22,8 @@ class SalesReportOrderDetials extends StatelessWidget {
                   .textTheme
                   .headline6!
                   .copyWith(color: const Color(0xFF000000))))),
-      body: Obx(() => LoadingOverlay(
+      body: Obx(
+        () => LoadingOverlay(
           isLoading: controller.isLoading.value,
           progressIndicator: const Loader(),
           child: SingleChildScrollView(
@@ -55,63 +56,61 @@ class SalesReportOrderDetials extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    decoration: BoxDecoration(
-                        color: const Color(0xFFFFFFFF),
-                        border: Border.all(
-                            color: const Color(0xFFD0D0CF), width: 0.5),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(3.0))),
-                    margin: const EdgeInsets.only(
-                        left: 20.0, right: 20.0, top: 20.0),
-                    child: Container(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFFFFFFF),
+                      border: Border.all(
+                          color: const Color(0xFFD0D0CF), width: 0.5),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(3.0))),
+                  margin:
+                      const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(kWarningIcon,
-                                        height: 25,
-                                        width: 25,
-                                        semanticsLabel: 'warning icon'),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20.0),
-                                      child: Text("Scan: 0",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2),
-                                    )
-                                  ],
-                                ),
-                                Text("Qty: 1",
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2)
+                                SvgPicture.asset(kWarningIcon,
+                                    height: 25,
+                                    width: 25,
+                                    semanticsLabel: 'warning icon'),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20.0),
+                                  child: Text("Scan: 0",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2),
+                                )
                               ],
                             ),
-                            Container(
-                              padding:
-                                  const EdgeInsets.only(top: 10, bottom: 5),
-                              alignment: Alignment.centerLeft,
-                              child: Text("Promo Free Sanitizer Spray TH",
-                                  textAlign: TextAlign.left,
-                                  style: Theme.of(context).textTheme.bodyText2),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Code: 19236",
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2),
-                                Text("Remains: 1",
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2)
-                              ],
-                            ),
+                            Text("Qty: 1",
+                                style: Theme.of(context).textTheme.bodyText2)
                           ],
-                        ))),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(top: 10, bottom: 5),
+                          alignment: Alignment.centerLeft,
+                          child: Text("Promo Free Sanitizer Spray TH",
+                              textAlign: TextAlign.left,
+                              style: Theme.of(context).textTheme.bodyText2),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Code: 19236",
+                                style: Theme.of(context).textTheme.bodyText2),
+                            Text("Remains: 1",
+                                style: Theme.of(context).textTheme.bodyText2)
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Container(
                   margin: const EdgeInsets.only(
                       left: 20, right: 20, top: 5, bottom: 20),
@@ -126,30 +125,36 @@ class SalesReportOrderDetials extends StatelessWidget {
                 ),
               ],
             ),
-          ))),
-      bottomNavigationBar: Container(
-        height: 90,
-        color: const Color(0xFFE3E8ED),
-        padding: const EdgeInsets.all(20.0),
-        child: Row(
-          children: <Widget>[
-            Flexible(
-              child: PlainButton(
-                buttonColor: const Color(0xFFFFBF3A),
-                title: 'Cancel',
-                titleColor: const Color(0xFF000000),
-                onTap: () => null,
-              ),
-            ),
-            const SizedBox(width: 10),
-            Flexible(
-              child: PlainButton(
-                title: 'Save',
-                onTap: () => null,
-              ),
-            ),
-          ],
+          ),
         ),
+      ),
+      bottomNavigationBar: Obx(
+        () => controller.isLoading.value
+            ? const SizedBox()
+            : Container(
+                height: 90,
+                color: const Color(0xFFE3E8ED),
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    Flexible(
+                      child: PlainButton(
+                        buttonColor: const Color(0xFFFFBF3A),
+                        title: 'Cancel',
+                        titleColor: const Color(0xFF000000),
+                        onTap: () => null,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Flexible(
+                      child: PlainButton(
+                        title: 'Save',
+                        onTap: () => null,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
       ),
     );
   }
