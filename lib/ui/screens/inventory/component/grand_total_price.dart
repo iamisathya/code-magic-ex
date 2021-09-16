@@ -1,16 +1,18 @@
 import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../controller/inventory.home.controller.dart';
+import '../../../../utilities/extensions.dart';
 
 class GrandTotal extends StatelessWidget {
-  final InventoryHomeController controller = Get.put(InventoryHomeController());
+  final String totalPrice;
+  final String totalPv;
+
+  const GrandTotal({required this.totalPrice, required this.totalPv});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF4D7483),
+      color: const Color(0xFF5297A6),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(children: [
@@ -37,7 +39,7 @@ class GrandTotal extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
                   child: Text(
-                    "${controller.grandTotalPrice} ${Globals.currency}",
+                    "${totalPrice.format()} ${Globals.currency}",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2!
@@ -71,7 +73,7 @@ class GrandTotal extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 13),
                     child: Text(
-                      "${controller.grandTotalPv} PV",
+                      "$totalPv PV",
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2!

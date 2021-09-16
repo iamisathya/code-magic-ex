@@ -20,16 +20,19 @@ class Body2 extends StatelessWidget {
       child: Column(
         children: [
           const PageTitle(title: "Inventory"),
-          InventoryToolBar(),
+          InventoryToolBar(
+              onTapExport: () => controller.onTapExportExcellSheet(),
+              onTapPrint: () => controller.onTapPrint()),
           UserAddress(),
-          const SizedBox(height: 10),
+          Container(height: 10, color: const Color(0xFFCBCBCD)),
           Obx(() => Column(
                 children: [
                   if (controller.currentViewType.value.value == "card")
                     Column(
                       children: [
-                        GrandTotal(),
-                        const SizedBox(height: 10),
+                        GrandTotal(
+                            totalPrice: controller.grandTotalPrice.value,
+                            totalPv: controller.grandTotalPv.value),
                         Container(
                             color: const Color(0xFFFFFFFF),
                             child: controller

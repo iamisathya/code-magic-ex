@@ -9,6 +9,15 @@ import 'search_inventory.dart';
 class InventoryToolBar extends StatelessWidget {
   final InventoryHomeController controller = Get.put(InventoryHomeController());
 
+  final bool hideSearch;
+  final VoidCallback onTapPrint;
+  final VoidCallback onTapExport;
+
+  InventoryToolBar(
+      {this.hideSearch = false,
+      required this.onTapPrint,
+      required this.onTapExport});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,20 +46,20 @@ class InventoryToolBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
-                    onTap: () => controller.onTapPrint(),
+                    onTap: () => onTapPrint(),
                     child: SvgPicture.asset(kPrintIcon,
                         width: 20, semanticsLabel: 'print icon'),
                   ),
                   GestureDetector(
-                    onTap: () => controller.onTapExportExcellSheet(),
+                    onTap: () => onTapExport(),
                     child: SvgPicture.asset(kDownloadIcon,
                         width: 20, semanticsLabel: 'download icon'),
                   ),
-                  GestureDetector(
-                    onTap: () => Get.to(() => SearchProducts()),
-                    child: SvgPicture.asset(kSearchIcon,
-                        width: 20, semanticsLabel: 'search icon'),
-                  ),
+                  if (hideSearch == true) const SizedBox(width: 0) else GestureDetector(
+                          onTap: () => Get.to(() => SearchProducts()),
+                          child: SvgPicture.asset(kSearchIcon,
+                              width: 20, semanticsLabel: 'search icon'),
+                        ),
                 ],
               )),
         ],

@@ -1,5 +1,7 @@
+import 'package:dsc_tools/utilities/parsing.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 extension BoolParsing on String {
   bool parseBool() {
@@ -10,6 +12,16 @@ extension BoolParsing on String {
 extension NumberParsing on String {
   double toDouble() {
     return double.tryParse(this) ?? 0.0;
+  }
+  int toInt() {
+    return int.tryParse(this) ?? 0;
+  }
+}
+
+
+extension FormatNumber on String {
+  String format() {
+    return NumberFormat().format(Parsing.intFrom(this));
   }
 }
 

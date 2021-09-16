@@ -48,10 +48,10 @@ class InventoryItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Padding(
+                Container(
+                  height: 165,
                   padding: const EdgeInsets.all(20.0),
-                  child: SvgPicture.asset(kPrintIcon,
-                      height: 125, semanticsLabel: 'print icon'),
+                  child: const Icon(Icons.image_not_supported_outlined, size: 125),
                 ),
                 Container(
                   height: 105,
@@ -96,7 +96,7 @@ class InventoryItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                          "${item.terms.pvEach} PV | ${NumberFormat().format(item.terms.priceEach.toInt())}  ${Globals.currency}",
+                          "${item.terms.pvEach} PV | ${NumberFormat().format(item.terms.priceEach.toInt())} ${Globals.currency}",
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2!
