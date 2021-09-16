@@ -1,6 +1,6 @@
-import '../../../../constants/globals.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../constants/globals.dart';
 import '../../../../utilities/extensions.dart';
 
 class GrandTotal extends StatelessWidget {

@@ -1,6 +1,6 @@
-import '../../../../../constants/globals.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../constants/globals.dart';
 import '../../../../../models/open_po_details.dart';
 
 class PoOrderedItem extends StatelessWidget {

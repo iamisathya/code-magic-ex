@@ -1,11 +1,9 @@
-import '../../../../constants/globals.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../constants/globals.dart';
 import '../../../../models/inventory_records.dart';
-import '../../../../utilities/images.dart';
 import '../../../../utilities/parsing.dart';
 import '../controller/inventory.home.controller.dart';
 

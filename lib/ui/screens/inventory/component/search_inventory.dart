@@ -1,7 +1,8 @@
-import '../controller/inventory.search.controller.dart';
-import '../../open_po/home/components/search_bar_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../open_po/home/components/search_bar_field.dart';
+import '../controller/inventory.search.controller.dart';
 
 class SearchProducts extends StatefulWidget {
   @override

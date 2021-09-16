@@ -1,5 +1,6 @@
-import '../../../../../constants/globals.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../constants/globals.dart';
 
 class TotalPrice extends StatelessWidget {
   final Color bgColor;

@@ -1,8 +1,8 @@
 
-import '../../../../models/inventory_records.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../../models/inventory_records.dart';
 import 'inventory.home.controller.dart';
 
 class InventorySearchResultController extends GetxController {

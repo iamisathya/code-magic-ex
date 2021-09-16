@@ -1,11 +1,11 @@
 import 'package:collection/collection.dart';
-import '../../../../models/inventory_records.dart';
-import '../component/inventory_search_result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../../models/inventory_records.dart';
 import '../../../../utilities/snackbar.dart';
+import '../component/inventory_search_result.dart';
 import 'inventory.home.controller.dart';
 
 class InventorySearchController extends GetxController {

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import '../../../../constants/globals.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide FormData, MultipartFile;
@@ -10,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../api/config/api_service.dart';
 import '../../../../api/request/request_place_open_po_order.dart';
+import '../../../../constants/globals.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/inventory_records.dart';
 import '../../../../models/open_po_create_order_response.dart';

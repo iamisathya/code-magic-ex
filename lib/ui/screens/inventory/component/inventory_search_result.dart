@@ -1,13 +1,13 @@
-import '../controller/inventory.search.result.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../utilities/extensions.dart';
 import '../../open_po/home/components/app_bar.dart';
+import '../controller/inventory.search.result.controller.dart';
 import 'grand_total_price.dart';
 import 'inventory_item.dart';
 import 'page_title.dart';
 import 'tool_bar.dart';
-import '../../../../utilities/extensions.dart';
 
 class InventorySearchResult extends StatelessWidget {
   final InventorySearchResultController controller =
