@@ -1,11 +1,11 @@
-import 'package:dsc_tools/models/sales_report_item_item.dart';
-import 'package:dsc_tools/models/sales_report_order_item.dart';
-import 'package:dsc_tools/models/sales_report_rma_item.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/controller/salesreport.search.result.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../models/sales_report_item_item.dart';
+import '../../../../models/sales_report_order_item.dart';
+import '../../../../models/sales_report_rma_item.dart';
+import '../../open_po/home/components/app_bar.dart';
+import '../controller/salesreport.search.result.controller.dart';
 import 'option_bar.dart';
 import 'sales_report.item.item.dart';
 import 'sales_report.order.item.dart';

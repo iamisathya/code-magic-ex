@@ -1,12 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/sales_report_item_item.dart';
-import 'package:dsc_tools/models/sales_report_order_item.dart';
-import 'package:dsc_tools/models/sales_report_rma_item.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/component/order_details.dart';
-import 'package:dsc_tools/utilities/constants.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -16,13 +10,18 @@ import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:printing/printing.dart';
-import 'package:pdf/widgets.dart' as pw;
 
 import '../../../../api/config/api_service.dart';
+import '../../../../constants/globals.dart';
 import '../../../../models/general_models.dart';
 import '../../../../models/order_list_rmas.dart';
+import '../../../../models/sales_report_item_item.dart';
+import '../../../../models/sales_report_order_item.dart';
+import '../../../../models/sales_report_rma_item.dart';
+import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
@@ -30,6 +29,7 @@ import '../../../../utilities/logger.dart';
 import '../../../../utilities/parsing.dart';
 import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
+import '../component/order_details.dart';
 import 'salesreport.search.result.controller.dart';
 
 class SalesReportHomeController extends GetxController {

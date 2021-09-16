@@ -1,7 +1,7 @@
-import 'package:dsc_tools/ui/screens/open_po/controller/openpo.search.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/openpo.search.controller.dart';
 import 'search_bar_field.dart';
 
 class SearchProducts extends StatefulWidget {

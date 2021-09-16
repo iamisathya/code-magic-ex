@@ -1,9 +1,9 @@
-import 'package:dsc_tools/models/sales_report_item_item.dart';
-import 'package:dsc_tools/models/sales_report_order_item.dart';
-import 'package:dsc_tools/models/sales_report_rma_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../models/sales_report_item_item.dart';
+import '../../../../models/sales_report_order_item.dart';
+import '../../../../models/sales_report_rma_item.dart';
 import '../../../../utilities/images.dart';
 import '../../../global/widgets/sign_out_button.dart';
 import '../../inventory/component/no_record_found.dart';

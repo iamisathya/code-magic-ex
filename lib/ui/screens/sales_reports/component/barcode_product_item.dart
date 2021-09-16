@@ -1,7 +1,8 @@
-import 'package:dsc_tools/models/sales_report_details.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../models/sales_report_details.dart';
+import '../../../../utilities/images.dart';
 
 class BarcodeProductItem extends StatelessWidget {
   final Items item;

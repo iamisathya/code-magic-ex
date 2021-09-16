@@ -1,20 +1,21 @@
 import 'dart:io';
 
-import 'package:dsc_tools/models/sales_report_item_item.dart';
-import 'package:dsc_tools/models/sales_report_order_item.dart';
-import 'package:dsc_tools/models/sales_report_rma_item.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/component/order_details.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:excel/excel.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:printing/printing.dart';
-import 'package:path/path.dart';
-import 'package:pdf/widgets.dart' as pw;
+
+import '../../../../models/sales_report_item_item.dart';
+import '../../../../models/sales_report_order_item.dart';
+import '../../../../models/sales_report_rma_item.dart';
 import '../../../../utilities/extensions.dart';
+import '../../../../utilities/snackbar.dart';
+import '../component/order_details.dart';
 
 class SalesReportSearchResultController extends GetxController {
   RxString searchKey = "".obs;

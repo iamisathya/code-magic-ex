@@ -1,7 +1,8 @@
-import 'package:dsc_tools/ui/screens/open_po/home/components/search_bar_field.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/controller/search_sales_products.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../open_po/home/components/search_bar_field.dart';
+import '../controller/search_sales_products.dart';
 
 
 class SearchSalesReport extends StatefulWidget {

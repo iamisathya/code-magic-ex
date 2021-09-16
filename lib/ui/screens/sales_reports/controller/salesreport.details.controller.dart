@@ -1,7 +1,8 @@
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/models/sales_report_details.dart';
-import 'package:dsc_tools/utilities/logger.dart';
 import 'package:get/get.dart';
+
+import '../../../../api/config/api_service.dart';
+import '../../../../models/sales_report_details.dart';
+import '../../../../utilities/logger.dart';
 
 class SalesReportDetailsController extends GetxController {
   RxString orderCode = "".obs;
