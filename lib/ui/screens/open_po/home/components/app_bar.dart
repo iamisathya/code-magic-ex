@@ -12,8 +12,6 @@ class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String iconPath =
-        "assets/icons/languages/${languageController.currentOption.icon}";
     return AppBar(
       centerTitle: false,
       titleSpacing: 0.0,
@@ -22,19 +20,15 @@ class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
         GestureDetector(
           onTap: () => controller.showPopupMenu(context),
           child: SizedBox(
-            width: 65,
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    languageController.currentOption.value.toUpperCase(),
-                    style: const TextStyle(color: Colors.black, fontSize: 14),
-                  ),
-                ),
-                SvgPicture.asset(iconPath,
-                    height: 20, semanticsLabel: "change language"),
-              ],
+            width: 100,
+            child: Container(
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                languageController.currentOption.title.toUpperCase(),
+                style: const TextStyle(color: Colors.black, fontSize: 14),
+                maxLines: 1,
+              ),
             ),
           ),
         )
