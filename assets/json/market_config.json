@@ -118,7 +118,8 @@
       "isoCode": "THA",
       "warehouse": "906-Online",
       "defaultLanguage": "th",
-      "currency": "฿"
+      "currencyCode": "฿",
+      "currency": "THB"
     },
     {
       "name": "Taiwan",

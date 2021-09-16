@@ -7,6 +7,12 @@ extension BoolParsing on String {
   }
 }
 
+extension NumberParsing on String {
+  double toDouble() {
+    return double.tryParse(this) ?? 0.0;
+  }
+}
+
 extension OrderId on String {
   String retrieveOrderId() {
     try {

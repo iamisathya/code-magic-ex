@@ -1,7 +1,9 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../utilities/parsing.dart';
+import '../../../../utilities/extensions.dart';
 
 class GrandTotal extends StatelessWidget {
   final String totalPrice;
@@ -13,6 +15,7 @@ class GrandTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(totalPrice);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(children: [
@@ -35,7 +38,7 @@ class GrandTotal extends StatelessWidget {
                     .copyWith(color: const Color(0xFF000000)),
               ),
               Text(
-                "${NumberFormat().format(Parsing.intFrom(totalPrice))} THB",
+                "$totalPrice ${Globals.currency}",
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
@@ -64,7 +67,7 @@ class GrandTotal extends StatelessWidget {
                     .copyWith(color: const Color(0xFF000000)),
               ),
               Text(
-                "${NumberFormat().format(Parsing.intFrom(totalPv))} PV",
+                "$totalPv PV",
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
