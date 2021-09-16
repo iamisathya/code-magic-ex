@@ -18,7 +18,7 @@ class _SearchAppBarState extends State<SearchSalesReport> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leadingWidth: 15,
+          leadingWidth: 25,
           centerTitle: false,
           title: appBarTitle,
           actions: <Widget>[

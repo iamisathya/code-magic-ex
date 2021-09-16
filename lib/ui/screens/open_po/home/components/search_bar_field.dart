@@ -20,7 +20,7 @@ class SearchBarField extends StatelessWidget {
                 borderSide: BorderSide(color: Color(0xFF9EA9B9)),
               ),
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                  const EdgeInsets.symmetric(vertical: 20),
               enabledBorder: InputBorder.none,
               errorBorder: InputBorder.none,
               disabledBorder: InputBorder.none,

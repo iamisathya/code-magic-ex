@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../utilities/images.dart';
-import '../../inventory/component/search_inventory.dart';
 import '../controller/salesreports.home.controller.dart';
 import 'search_open_po.dart';
 
