@@ -147,12 +147,14 @@ class SalesReportHomeController extends GetxController {
       DatePicker.showDatePicker(context,
           currentTime: startDate.value,
           maxTime: DateTime.now().subtract(const Duration(days: 1)),
+          minTime: DateTime.now().subtract(const Duration(days: 365)),
           onConfirm: (date) {
         startDate.value = date;
       });
     } else {
       DatePicker.showDatePicker(context,
           currentTime: endDate.value,
+          minTime: DateTime.now().subtract(const Duration(days: 364)),
           maxTime: DateTime.now(), onConfirm: (date) {
         endDate.value = date;
       });
