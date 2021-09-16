@@ -47,8 +47,12 @@ class SalesReportEachRmaItem extends StatelessWidget {
               ),
             ],
           ),
-          _renderEachRow(context, "BA Number: ${item.customer}",
-              "Barcode: ${item.rmaOrderNumber.retrieveBarcode()}"),
+          _renderBarcodeRow(
+              context,
+              "BA Number: ${item.customer}",
+              "RMA: ",
+              item.rmaOrderNumber.retrieveBarcode(),
+              item.rmaOrderNumber.retrieveHrefCode()),
           _renderOrderIdRow(
               context,
               "Order ID: ",
@@ -70,7 +74,7 @@ class SalesReportEachRmaItem extends StatelessWidget {
 
   Widget _renderOrderIdRow(BuildContext context, String title1, String value1,
       String value2, String href) {
-    final Map<String, dynamic> args = {"orderId": value1, "href": href};
+    final Map<String, dynamic> args = {"orderId": value1, "href": href, "readyUrl": true};
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Row(
@@ -95,6 +99,38 @@ class SalesReportEachRmaItem extends StatelessWidget {
                   .textTheme
                   .bodyText2!
                   .copyWith(color: const Color(0xFF505050))),
+        ],
+      ),
+    );
+  }
+
+  Widget _renderBarcodeRow(BuildContext context, String title1, String title2,
+      String value2, String href) {
+    final Map<String, dynamic> args = {"orderId": value2, "href": href, "readyUrl": true};
+    return Padding(
+      padding: const EdgeInsets.only(top: 15.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title1,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2!
+                  .copyWith(color: const Color(0xFF505050))),
+          Row(children: [
+            Text(title2,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2!
+                    .copyWith(color: const Color(0xFF505050))),
+            GestureDetector(
+                // onTap: () => controller.proceedToPrint(context, orderHref: href),
+                onTap: () => Get.to(() => PrintSalesReport(), arguments: args),
+                child: Text(value2,
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        color: const Color(0xFF1C9CFC),
+                        fontWeight: FontWeight.w600))),
+          ]),
         ],
       ),
     );
