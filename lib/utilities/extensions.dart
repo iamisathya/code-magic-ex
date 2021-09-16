@@ -13,6 +13,12 @@ extension NumberParsing on String {
   }
 }
 
+extension DateParsing on DateTime {
+  String yyyyMMdd() {
+    return DateFormat('yyyy-MM-dd').format(this).toString();
+  }
+}
+
 extension OrderId on String {
   String retrieveOrderId() {
     try {

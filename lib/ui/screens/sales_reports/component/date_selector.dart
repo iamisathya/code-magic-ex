@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../utilities/enums.dart';
+import '../../../../utilities/extensions.dart';
 import '../../../../utilities/images.dart';
 import '../controller/salesreports.home.controller.dart';
 
@@ -36,7 +36,7 @@ class DateSelector extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "Start Date: ${DateFormat('yyyy-MM-dd').format(controller.startDate.value).toString()}",
+                              "Start Date: ${controller.startDate.value.yyyyMMdd()}",
                               style: Theme.of(context)
                                   .textTheme
                                   .subtitle2!
@@ -66,7 +66,7 @@ class DateSelector extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "End Date: ${DateFormat('yyyy-MM-dd').format(controller.endDate.value).toString()}",
+                              "End Date: ${controller.endDate.value.yyyyMMdd()}",
                               style: Theme.of(context)
                                   .textTheme
                                   .subtitle2!
