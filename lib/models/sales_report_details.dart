@@ -206,7 +206,7 @@ class TransactionItems {
   @JsonKey(name: "billToName")
   BillToName billToName;
   @JsonKey(name: "billToPhone")
-  String billToPhone;
+  String? billToPhone;
   @JsonKey(name: "methodDetails")
   MethodDetails methodDetails;
   @JsonKey(name: "amount")
@@ -221,7 +221,7 @@ class TransactionItems {
   TransactionItems({
     required this.billToAddress,
     required this.billToName,
-    required this.billToPhone,
+    this.billToPhone,
     required this.methodDetails,
     required this.amount,
     required this.authorization,

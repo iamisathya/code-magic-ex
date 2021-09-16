@@ -9,6 +9,11 @@ class OptionBar extends StatelessWidget {
   final SalesReportHomeController controller =
       Get.put(SalesReportHomeController());
 
+  final VoidCallback onPrint;
+  final VoidCallback onDownload;
+
+  OptionBar({required this.onPrint, required this.onDownload});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,22 +27,25 @@ class OptionBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () => controller.proceedToPrint(context, orderHref: ""),
-                child: Text("Print",
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1!
-                        .copyWith(color: const Color(0xFF505050))),
-              ),
-              const SizedBox(width: 20),
-              SvgPicture.asset(kPrintIcon,
-                  width: 12,
-                  color: const Color(0xFF505050),
-                  semanticsLabel: 'print'),
-            ],
+          Flexible(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () => onPrint(),
+                  child: Text("Print",
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1!
+                          .copyWith(color: const Color(0xFF505050))),
+                ),
+                const SizedBox(width: 20),
+                SvgPicture.asset(kPrintIcon,
+                    width: 12,
+                    color: const Color(0xFF505050),
+                    semanticsLabel: 'print'),
+              ],
+            ),
           ),
           SizedBox(
             height: 50,
@@ -46,22 +54,25 @@ class OptionBar extends StatelessWidget {
               color: const Color(0xFF000000),
             ),
           ),
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () => controller.onTapExportExcellSheet(),
-                child: Text("Download",
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1!
-                        .copyWith(color: const Color(0xFF505050))),
-              ),
-              const SizedBox(width: 20),
-              SvgPicture.asset(kDownloadIcon,
-                  color: const Color(0xFF505050),
-                  width: 12,
-                  semanticsLabel: 'dowmnload'),
-            ],
+          Flexible(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () => onDownload(),
+                  child: Text("Download",
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1!
+                          .copyWith(color: const Color(0xFF505050))),
+                ),
+                const SizedBox(width: 20),
+                SvgPicture.asset(kDownloadIcon,
+                    color: const Color(0xFF505050),
+                    width: 12,
+                    semanticsLabel: 'dowmnload'),
+              ],
+            ),
           )
         ],
       ),

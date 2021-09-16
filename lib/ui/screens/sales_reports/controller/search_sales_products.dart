@@ -1,6 +1,7 @@
 import 'package:dsc_tools/models/sales_report_item_item.dart';
 import 'package:dsc_tools/models/sales_report_order_item.dart';
 import 'package:dsc_tools/models/sales_report_rma_item.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/component/sales_report_search_result.dart';
 import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
@@ -26,19 +27,22 @@ class SalesReportSearchController extends GetxController {
     final SalesReportOrderItem? orderItem = controller.allSalesReports
         .firstWhereOrNull((order) => order.orderNumber == orderId);
     if (orderItem != null && orderItem.orderNumber.isNotEmpty) {
-      // Get.to(() => OpenPODetailsPage(), arguments: order.orderOpid);
+      final Map<String, dynamic> args = {"type": "order", "data": orderItem};
+      Get.to(() => SalesReportSearchResult(), arguments: args);
       return;
     }
     final SalesReportRmaItem? rmaItem = controller.allSalesRmaReports
         .firstWhereOrNull((order) => order.orderNumber == orderId);
     if (rmaItem != null && rmaItem.orderNumber.isNotEmpty) {
-      // Get.to(() => OpenPODetailsPage(), arguments: order.orderOpid);
+      final Map<String, dynamic> args = {"type": "rma", "data": rmaItem};
+      Get.to(() => SalesReportSearchResult(), arguments: args);
       return;
     }
     final SalesReportItemItem? item = controller.allSalesItemReports
         .firstWhereOrNull((order) => order.itemCode == orderId);
     if (item != null && item.itemCode.isNotEmpty) {
-      // Get.to(() => OpenPODetailsPage(), arguments: order.orderOpid);
+      final Map<String, dynamic> args = {"type": "item", "data": item};
+      Get.to(() => SalesReportSearchResult(), arguments: args);
       return;
     }
     SnackbarUtil.showWarning(

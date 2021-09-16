@@ -36,13 +36,15 @@ class Body2 extends StatelessWidget {
             icon: kArrowIcon,
           ),
         ),
-        if (!controller.isLoading.value &&
-            controller.activeListLength != 0)
+        if (!controller.isLoading.value && controller.activeListLength != 0)
           Column(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                child: OptionBar(),
+                child: OptionBar(
+                    onPrint: () =>
+                        controller.proceedToPrint(context, orderHref: ""),
+                    onDownload: () => controller.onTapExportExcellSheet()),
               ),
               Obx(() => ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
@@ -64,8 +66,7 @@ class Body2 extends StatelessWidget {
                   })),
             ],
           ),
-        if (!controller.isLoading.value &&
-            controller.activeListLength == 0)
+        if (!controller.isLoading.value && controller.activeListLength == 0)
           NoRecordFound()
       ]),
     );
