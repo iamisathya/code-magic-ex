@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/inventory/controller/inventory.search.result.controller.dart';
+import '../controller/inventory.search.result.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

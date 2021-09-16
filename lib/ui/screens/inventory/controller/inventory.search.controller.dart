@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
-import 'package:dsc_tools/models/inventory_records.dart';
-import 'package:dsc_tools/ui/screens/inventory/component/inventory_search_result.dart';
+import '../../../../models/inventory_records.dart';
+import '../component/inventory_search_result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

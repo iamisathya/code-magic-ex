@@ -1,5 +1,5 @@
-import 'package:dsc_tools/ui/screens/inventory/controller/inventory.search.controller.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/search_bar_field.dart';
+import '../controller/inventory.search.controller.dart';
+import '../../open_po/home/components/search_bar_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

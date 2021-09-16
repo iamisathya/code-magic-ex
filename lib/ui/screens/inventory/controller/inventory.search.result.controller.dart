@@ -1,5 +1,5 @@
 
-import 'package:dsc_tools/models/inventory_records.dart';
+import '../../../../models/inventory_records.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

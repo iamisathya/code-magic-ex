@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
+import '../../../global/widgets/plain_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

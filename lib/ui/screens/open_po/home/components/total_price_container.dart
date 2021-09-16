@@ -1,4 +1,4 @@
-import 'package:dsc_tools/constants/globals.dart';
+import '../../../../../constants/globals.dart';
 import 'package:flutter/material.dart';
 
 class TotalPrice extends StatelessWidget {
