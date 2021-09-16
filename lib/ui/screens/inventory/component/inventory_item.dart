@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -95,7 +96,7 @@ class InventoryItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                          "${item.terms.pvEach} PV | ${NumberFormat().format(item.terms.priceEach.toInt())} THB",
+                          "${item.terms.pvEach} PV | ${NumberFormat().format(item.terms.priceEach.toInt())}  ${Globals.currency}",
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2!
@@ -123,7 +124,7 @@ class InventoryItem extends StatelessWidget {
                             .textTheme
                             .bodyText2!
                             .copyWith(color: const Color(0xFF606975))),
-                    Text("$totalPriceString THB",
+                    Text("$totalPriceString  ${Globals.currency}",
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!

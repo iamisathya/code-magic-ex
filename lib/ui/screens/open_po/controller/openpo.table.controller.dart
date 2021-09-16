@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide FormData, MultipartFile;
@@ -189,7 +190,7 @@ class OpenPoTableController extends GetxController {
       quantity: 1,
       price: itemFound.terms.priceEach,
       origin: "TH",
-      currency: "THB",
+      currency:  Globals.currency,
     ); //! Update currency
   }
 

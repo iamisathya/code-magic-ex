@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 
 class TotalPrice extends StatelessWidget {
@@ -55,7 +56,7 @@ class TotalPrice extends StatelessWidget {
                       .copyWith(color: const Color(0xFF384250)),
                 ),
                 Text(
-                  "$totalPrice THB",
+                  "$totalPrice ${Globals.currency}",
                   style: Theme.of(context)
                       .textTheme
                       .subtitle2!

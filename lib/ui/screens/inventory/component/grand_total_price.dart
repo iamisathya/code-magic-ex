@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +37,7 @@ class GrandTotal extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
                   child: Text(
-                    "${controller.grandTotalPrice} THB",
+                    "${controller.grandTotalPrice} ${Globals.currency}",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2!

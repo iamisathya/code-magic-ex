@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../models/open_po_details.dart';
@@ -95,7 +96,7 @@ class PoOrderedItem extends StatelessWidget {
                     ),
                     child: Center(
                         child: Text(
-                      "${item.productPv} PV | ${item.productPrice} THB",
+                      "${item.productPv} PV | ${item.productPrice} ${Globals.currency}",
                       style: Theme.of(context)
                           .textTheme
                           .subtitle2!

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -107,7 +108,7 @@ class PoCartItem extends StatelessWidget {
                     ),
                     child: Center(
                         child: Text(
-                      "${item.itemPv} PV | ${item.itemPrice} THB",
+                      "${item.itemPv} PV | ${item.itemPrice}  ${Globals.currency}",
                       style: Theme.of(context)
                           .textTheme
                           .subtitle2!

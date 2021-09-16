@@ -6,7 +6,8 @@
       "code": "au",
       "isoCode": "AUS",
       "defaultLanguage": "en",
-      "currency": "$"
+      "currencyCode": "$",
+      "currency": "AUD"
     },
     {
       "name": "Hong Kong",
@@ -19,7 +20,8 @@
       "isoCode": "HKG",
       "warehouse": "1-Hong Kong",
       "defaultLanguage": "hk",
-      "currency": "$"
+      "currencyCode": "$",
+      "currency": "HKD"
     },
     {
       "name": "Indonesia",
@@ -32,7 +34,8 @@
       "isoCode": "IDN",
       "warehouse": "1-Online",
       "defaultLanguage": "id",
-      "currency": "Rp"
+      "currencyCode": "Rp",
+      "currency": "IDR"
     },
     {
       "name": "Japan",
@@ -45,7 +48,8 @@
       "isoCode": "JPN",
       "warehouse": "1-JPN MAIN",
       "defaultLanguage": "jp",
-      "currency": "¥"
+      "currencyCode": "¥",
+      "currency": "JPY"
     },
     {
       "name": "Cambodia",
@@ -55,7 +59,8 @@
       "isoCode": "KHM",
       "warehouse": "99-Temp",
       "defaultLanguage": "en",
-      "currency": "៛"
+      "currencyCode": "៛",
+      "currency": "KHR"
     },
     {
       "name": "Laos",
@@ -65,7 +70,8 @@
       "isoCode": "LAO",
       "warehouse": "1-Laos",
       "defaultLanguage": "en",
-      "currency": "₭"
+      "currencyCode": "₭",
+      "currency": "LAK"
     },
     {
       "name": "Malaysia",
@@ -75,7 +81,8 @@
       "isoCode": "MMR",
       "warehouse": "1-Online",
       "defaultLanguage": "en",
-      "currency": "RM"
+      "currencyCode": "RM",
+      "currency": "MYR"
     },
     {
       "name": "New Zealand",
@@ -85,7 +92,8 @@
       "isoCode": "NZL",
       "warehouse": "1-Online",
       "defaultLanguage": "en",
-      "currency": "$"
+      "currencyCode": "$",
+      "currency": "NZD"
     },
     {
       "name": "Philippines",
@@ -95,7 +103,8 @@
       "isoCode": "PHL",
       "warehouse": "1-Philippines Warehouse",
       "defaultLanguage": "en",
-      "currency": "₱"
+      "currencyCode": "₱",
+      "currency": "PHP"
     },
     {
       "name": "Singapore",
@@ -105,7 +114,8 @@
       "isoCode": "SGP",
       "warehouse": "3-Online",
       "defaultLanguage": "en",
-      "currency": "$"
+      "currencyCode": "$",
+      "currency": "SGD"
     },
     {
       "name": "Thailand",
@@ -132,7 +142,8 @@
       "isoCode": "twn",
       "warehouse": "906-Online",
       "defaultLanguage": "tw",
-      "currency": "$"
+      "currencyCode": "$",
+      "currency": "TWD"
     },
     {
       "name": "Vietnam",
@@ -142,7 +153,8 @@
       "isoCode": "VNM",
       "warehouse": "1-Hanoi",
       "defaultLanguage": "en",
-      "currency": "₫"
+      "currencyCode": "₫",
+      "currency": "VND"
     }
   ]
 }
