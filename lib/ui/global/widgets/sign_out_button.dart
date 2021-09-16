@@ -9,6 +9,7 @@ class SignOutButton extends StatelessWidget {
   final double height;
   final Color bgColor;
   final Color fgColor;
+  final Color iconColor;
   final VoidCallback? onPress;
   final String icon;
   const SignOutButton(
@@ -17,6 +18,7 @@ class SignOutButton extends StatelessWidget {
       this.height = 40,
       this.bgColor = const Color(0xFFFFB74F),
       this.fgColor = const Color(0xFF000000),
+      this.iconColor = const Color(0xFF000000),
       this.icon = kSignOutIcon,
       this.onPress});
 
@@ -45,6 +47,7 @@ class SignOutButton extends StatelessWidget {
         SvgPicture.asset(
           icon,
           width: 20,
+          color: iconColor,
         ),
       ]),
     );

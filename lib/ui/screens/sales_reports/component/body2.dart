@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +23,9 @@ class Body2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(children: [
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround, 
+        children: [
         const PageTitle(title: "Sales Report"),
         SalesReportToolBar(),
         DateSelector(),
@@ -31,8 +34,7 @@ class Body2 extends StatelessWidget {
           child: SignOutButton(
             title: "Find Sales Reports",
             onPress: () => controller.getAllSalesReports(),
-            bgColor: const Color(0xFF1C9CFC),
-            fgColor: const Color(0xFFFFFFFF),
+            bgColor: const Color(0xFFFFBF3A),
             icon: kArrowIcon,
           ),
         ),
@@ -67,7 +69,7 @@ class Body2 extends StatelessWidget {
             ],
           ),
         if (!controller.isLoading.value && controller.activeListLength == 0)
-          NoRecordFound()
+          NoRecordFound(),
       ]),
     );
   }
