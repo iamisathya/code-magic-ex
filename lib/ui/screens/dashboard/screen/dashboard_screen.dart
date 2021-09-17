@@ -69,37 +69,60 @@ class Body extends StatelessWidget {
                 const SizedBox(
                   height: 26,
                 ),
-                Column(
-                  children: [
-                    MenuOption(
-                        icon: kOpenPoIcon,
-                        optionTitle: "Open PO",
-                        onPress: () => Get.to(() => OpenPOHomeScreen())),
-                    MenuOption(
-                        icon: kEnrollIcon,
-                        optionTitle: "Enroll",
-                        onPress: () => Get.to(() => EnrollHomeScreen())),
-                    MenuOption(
-                        icon: kOrderEntryIcon,
-                        optionTitle: "Order Entry",
-                        onPress: () => Get.to(() => OrderEntryHomeScreen())),
-                    MenuOption(
-                        icon: kInventoryIcon,
-                        optionTitle: "Inventory",
-                        onPress: () => Get.to(() => InventoryHomeScreen())),
-                    MenuOption(
-                        icon: kSalesReportIcon,
-                        optionTitle: "Sales Report",
-                        onPress: () => Get.to(() => SalesReportsHomeScreen())),
-                    MenuOption(
-                        icon: kEasyShipMenuIcon,
-                        optionTitle: "Easyship Report",
-                        onPress: () => Get.to(() => EasyShipHomePage())),
-                    MenuOption(
-                        icon: kBarcodeIcon,
-                        optionTitle: "Barcode",
-                        onPress: () => Get.to(() => BarcodeHomeScreen())),
-                  ],
+                Obx(
+                  () => Column(
+                    children: [
+                      MenuOption(
+                          icon: kOpenPoIcon,
+                          optionTitle: "Open PO",
+                          onPress: () => Get.to(() => OpenPOHomeScreen())),
+                      MenuOption(
+                          icon: kEnrollIcon,
+                          optionTitle: "Enroll",
+                          onPress: () => Get.to(() => EnrollHomeScreen())),
+                      MenuOption(
+                          icon: kOrderEntryIcon,
+                          optionTitle: "Order Entry",
+                          onPress: () => Get.to(() => OrderEntryHomeScreen())),
+                      MenuOption(
+                          icon: kInventoryIcon,
+                          optionTitle: "Inventory",
+                          onPress: () => Get.to(() => InventoryHomeScreen())),
+                      MenuOption(
+                          icon: kSalesReportIcon,
+                          trailingIcon: controller.isReportOptionShown.value
+                              ? kCrossArrowIcon
+                              : kArrowIcon,
+                          optionTitle: "Report",
+                          onPress: () =>
+                              controller.isReportOptionShown.toggle()),
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 200),
+                        child: Column(
+                          key: UniqueKey(),
+                          children: [
+                            if (controller.isReportOptionShown.value)
+                              Column(children: [
+                                MenuOption(
+                                    optionTitle: "Sales Report",
+                                    onPress: () =>
+                                        Get.to(() => SalesReportsHomeScreen())),
+                                MenuOption(
+                                    optionTitle: "Easyship Report",
+                                    onPress: () =>
+                                        Get.to(() => EasyShipHomePage())),
+                              ])
+                            else
+                              SizedBox(key: UniqueKey()),
+                          ],
+                        ),
+                      ),
+                      MenuOption(
+                          icon: kBarcodeIcon,
+                          optionTitle: "Barcode",
+                          onPress: () => Get.to(() => BarcodeHomeScreen())),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 20,

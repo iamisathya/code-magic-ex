@@ -6,9 +6,10 @@ import '../../../../utilities/images.dart';
 class MenuOption extends StatelessWidget {
   final String optionTitle;
   final String icon;
+  final String trailingIcon;
   final Function? onPress;
 
-  const MenuOption({this.icon = "", this.optionTitle = "", this.onPress});
+  const MenuOption({this.icon = "", this.optionTitle = "", this.trailingIcon = kArrowIcon, this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,10 @@ class MenuOption extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: SvgPicture.asset(icon,
-                  height: 20, width: 20, semanticsLabel: optionTitle),
+              child: icon.isEmpty
+                  ? const SizedBox(width: 20)
+                  : SvgPicture.asset(icon,
+                      height: 20, width: 20, semanticsLabel: optionTitle),
             ),
             Expanded(
                 child: Text(
@@ -30,7 +33,7 @@ class MenuOption extends StatelessWidget {
             )),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: SvgPicture.asset(kArrowIcon,
+              child: SvgPicture.asset(trailingIcon,
                   width: 14, semanticsLabel: 'arrow'),
             ),
           ],

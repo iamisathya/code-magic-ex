@@ -71,6 +71,7 @@ const kMoreIcon = 'assets/icons/tabs/more_icon.svg';
 const kBarcodePlainIcon = 'assets/icons/barcode_icon.svg';
 const kWarningIcon = 'assets/icons/warning_icon.svg';
 const kSuccessIcon = 'assets/icons/success_icon.svg';
+const kCrossArrowIcon = 'assets/icons/cross_arrow_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';

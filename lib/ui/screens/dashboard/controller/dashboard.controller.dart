@@ -6,6 +6,12 @@ import '../../../../utilities/user_session.dart';
 import '../../login/login.screen.dart';
 
 class DashboardController extends GetxController {
+  RxBool isReportOptionShown = false.obs;
+
+  set showReportOptions(bool value) => isReportOptionShown.value = !!isReportOptionShown.value;
+
+  bool get showReportOptions => isReportOptionShown.value;
+
   void onLogout(BuildContext context) {
     FirebaseAnalytics()
         .logEvent(name: 'log_out', parameters: {'type': "normal_signout"});
