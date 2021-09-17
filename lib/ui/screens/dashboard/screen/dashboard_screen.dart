@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/easy_ship/easyship.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -110,7 +111,7 @@ class Body extends StatelessWidget {
                                 MenuOption(
                                     optionTitle: "Easyship Report",
                                     onPress: () =>
-                                        Get.to(() => EasyShipHomePage())),
+                                        Get.to(() => EasyShipHomeScreen())),
                               ])
                             else
                               SizedBox(key: UniqueKey()),

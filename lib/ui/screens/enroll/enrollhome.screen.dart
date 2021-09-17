@@ -1,9 +1,7 @@
+import 'package:dsc_tools/ui/screens/enroll/screens/enroll/components/body2.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
+import 'package:dsc_tools/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../../navigation/navigation_drawer.dart';
-import '../../global/widgets/transparent_app_bar.dart';
-import 'screens/enroll/components/body.dart';
 
 class EnrollHomeScreen extends StatelessWidget {
   static const String routeName = '/enrollHomePage';
@@ -11,10 +9,8 @@ class EnrollHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: TransAppBar(
-          title: "enroll".tr,
-        ),
-        drawer: NavigationDrawer(),
+        backgroundColor: kWhiteSmokeColor,
+        appBar: OpenPoAppBar(),
         body: Body());
   }
 }

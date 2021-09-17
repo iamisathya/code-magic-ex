@@ -1,10 +1,9 @@
+import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../navigation/navigation_drawer.dart';
 import '../../../utilities/constants.dart';
-import '../../global/widgets/transparent_app_bar.dart';
-import 'components/body.dart';
+import 'components/body2.dart';
 import 'controller/easyship.controller.dart';
 
 class EasyShipHomeScreen extends StatelessWidget {
@@ -15,24 +14,7 @@ class EasyShipHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: kWhiteSmokeColor,
-        appBar: TransAppBar(
-          title: "easyship".tr,
-          action: [
-            _appBarActions(),
-          ],
-        ),
-        drawer: NavigationDrawer(),
+        appBar: OpenPoAppBar(),
         body: Body());
-  }
-
-  IconButton _appBarActions() {
-    return IconButton(
-      icon: Icon(
-        Icons.open_in_new_outlined,
-        color: Theme.of(Get.context!).colorScheme.primary,
-      ),
-      tooltip: 'Export as xlsl',
-      onPressed: controller.onTapExportExcellSheet,
-    );
   }
 }

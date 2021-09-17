@@ -1,8 +1,8 @@
+import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
+import 'package:dsc_tools/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../../../navigation/navigation_drawer.dart';
-import '../../global/widgets/transparent_app_bar.dart';
-import 'components/body.dart';
+import 'components/body2.dart';
 
 class BarcodeHomeScreen extends StatelessWidget {
   static const String routeName = '/barcodeHomePage';
@@ -11,10 +11,8 @@ class BarcodeHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const TransAppBar(
-          title: "BarCode",
-        ),
-        drawer: NavigationDrawer(),
+        backgroundColor: kWhiteSmokeColor,
+        appBar: OpenPoAppBar(),
         body: Body());
   }
 }

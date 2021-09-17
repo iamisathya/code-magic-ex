@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/ui/screens/home/home.dart';
+import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,6 @@ import '../../../../utilities/logger.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/widgets/confirmation_dialog.dart';
 import '../../../global/widgets/overlay_progress.dart';
-import '../../open_po/home/home.screen.dart';
 
 class LoginController extends GetxController {
   final store = GetStorage();
@@ -91,7 +92,7 @@ class LoginController extends GetxController {
 
   Future<void> getLoginTokens(BuildContext context) async {
     try {
-      _sendingMsgProgressBar.show(context);
+      loading.toggle();
       analytics.logLogin();
       final RequestPostCustomerToken request = RequestPostCustomerToken(
           namespace: '${Address.baseUrl}customers',
@@ -134,12 +135,14 @@ class LoginController extends GetxController {
       await UserSessionManager.shared.setProfilePictureToDB(profilePicture);
       await UserSessionManager.shared.setCustomerIdInfo(userResponse);
       //*  navigate to home page
-      _sendingMsgProgressBar.hide();
-      Get.off(() => OpenPOHomeScreen(), transition: Transition.cupertino);
+      loading.toggle();
+      Get.off(() => MainHomeScreen(), transition: Transition.cupertino);
     } on DioError catch (e) {
-      onDioError(e, _sendingMsgProgressBar, errorMessage);
+      SnackbarUtil.showError(message: e.response!.data.toString());
+      returnResponse(e.response!);
     } catch (err) {
-      onCatchError(err, _sendingMsgProgressBar, errorMessage);
+      SnackbarUtil.showError(message: "Error while getting user details!");
+      LoggerService.instance.e(err.toString());
     }
   }
 
