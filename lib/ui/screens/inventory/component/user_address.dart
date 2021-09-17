@@ -1,3 +1,5 @@
+import 'package:dsc_tools/constants/globals.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -19,7 +21,7 @@ class UserAddress extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 10.0),
             child: Text(
-              "Date: 18/08/2021 - 14:29 PM",
+              "Date: ${DateFormat('dd/MM/yyyy').format(DateTime.now()).toString()} - ${DateFormat('hh:mm aa').format(DateTime.now()).toString()}",
               style: Theme.of(context).textTheme.bodyText2,
             ),
           ),
@@ -33,7 +35,7 @@ class UserAddress extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 5.0),
             child: Text(
-              "Ushop Training ( TH ) 10320",
+              Globals.userInfo.humanName.fullName,
               style: Theme.of(context).textTheme.bodyText2,
               maxLines: 3,
             ),
@@ -41,7 +43,7 @@ class UserAddress extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Text(
-              "8th Floor, Le Concorde Towers 202, Rachadaphisek Road Huaykwang Bangkok",
+              "${Globals.userInfo.mainAddress.address1}, ${Globals.userInfo.mainAddress.address2}, ${Globals.userInfo.mainAddress.city} ${Globals.userInfo.mainAddress.state} ${Globals.userInfo.mainAddress.zip} - ${Globals.userInfo.mainAddress.country}",
               style: Theme.of(context).textTheme.bodyText2,
               maxLines: 3,
             ),
@@ -54,47 +56,46 @@ class UserAddress extends StatelessWidget {
             ),
           ),
           const Divider(height: 1),
-          Obx(() => SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => controller.onChangeViewType("card"),
-                          child: Text("Card View",
+          Obx(
+            () => SizedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  GestureDetector(
+                      onTap: () => controller.onChangeViewType("card"),
+                      child: Row(
+                        children: [
+                          Text("Card View",
                               style: controller.currentViewType.value.value ==
                                       "card"
                                   ? Theme.of(context).textTheme.subtitle1
                                   : Theme.of(context).textTheme.bodyText2),
-                        ),
-                        const SizedBox(width: 20),
-                        SvgPicture.asset(kCardViewIcon,
-                            color:
-                                controller.currentViewType.value.value == "card"
-                                    ? const Color(0xFF000000)
-                                    : const Color(0xFF606975),
-                            width: 20,
-                            semanticsLabel: 'arrow'),
-                      ],
+                          const SizedBox(width: 20),
+                          SvgPicture.asset(kCardViewIcon,
+                              color: controller.currentViewType.value.value ==
+                                      "card"
+                                  ? const Color(0xFF000000)
+                                  : const Color(0xFF606975),
+                              width: 20,
+                              semanticsLabel: 'arrow'),
+                        ],
+                      )),
+                  SizedBox(
+                    height: 50,
+                    width: 1,
+                    child: Container(
+                      color: const Color(0xFFCBCBCD),
                     ),
-                    SizedBox(
-                      height: 50,
-                      width: 1,
-                      child: Container(
-                        color: const Color(0xFFCBCBCD),
-                      ),
-                    ),
-                    Row(
+                  ),
+                  GestureDetector(
+                    onTap: () => controller.onChangeViewType("table"),
+                    child: Row(
                       children: [
-                        GestureDetector(
-                          onTap: () => controller.onChangeViewType("table"),
-                          child: Text("Table View",
-                              style: controller.currentViewType.value.value ==
-                                      "table"
-                                  ? Theme.of(context).textTheme.subtitle1
-                                  : Theme.of(context).textTheme.bodyText2),
-                        ),
+                        Text("Table View",
+                            style: controller.currentViewType.value.value ==
+                                    "table"
+                                ? Theme.of(context).textTheme.subtitle1
+                                : Theme.of(context).textTheme.bodyText2),
                         const SizedBox(width: 20),
                         SvgPicture.asset(kTableViewIcon,
                             color: controller.currentViewType.value.value ==
@@ -104,10 +105,12 @@ class UserAddress extends StatelessWidget {
                             width: 20,
                             semanticsLabel: 'arrow'),
                       ],
-                    )
-                  ],
-                ),
-              ))
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
