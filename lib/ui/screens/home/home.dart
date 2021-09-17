@@ -14,6 +14,7 @@ class MainHomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFE3E8ED),
       body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: controller.pageController,
         children: controller.tabPages,
       ),
