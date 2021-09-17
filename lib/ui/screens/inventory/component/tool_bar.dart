@@ -55,11 +55,14 @@ class InventoryToolBar extends StatelessWidget {
                     child: SvgPicture.asset(kDownloadIcon,
                         width: 20, semanticsLabel: 'download icon'),
                   ),
-                  if (hideSearch == true) const SizedBox(width: 0) else GestureDetector(
-                          onTap: () => Get.to(() => SearchProducts()),
-                          child: SvgPicture.asset(kSearchIcon,
-                              width: 20, semanticsLabel: 'search icon'),
-                        ),
+                  if (hideSearch == true)
+                    const SizedBox(width: 0)
+                  else
+                    GestureDetector(
+                      onTap: () => Get.to(() => SearchProducts()),
+                      child: SvgPicture.asset(kSearchIcon,
+                          width: 20, semanticsLabel: 'search icon'),
+                    ),
                 ],
               )),
         ],

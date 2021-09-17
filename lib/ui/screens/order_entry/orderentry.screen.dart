@@ -1,7 +1,8 @@
-import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
-import 'package:dsc_tools/ui/screens/order_entry/screens/home/body2.dart';
-import 'package:dsc_tools/utilities/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utilities/constants.dart';
+import '../open_po/home/components/app_bar.dart';
+import 'screens/home/body2.dart';
 
 class OrderEntryHomeScreen extends StatelessWidget {
   static const String routeName = '/orderEntryHomePage';

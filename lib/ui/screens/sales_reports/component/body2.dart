@@ -22,9 +22,8 @@ class Body2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround, 
-        children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         const PageTitle(title: "Sales Report"),
         SalesReportToolBar(),
         DateSelector(),

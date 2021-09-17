@@ -23,7 +23,7 @@ class PrintSalesReportController extends GetxController {
       final Map<String, dynamic> args = data as Map<String, dynamic>;
       isLoading.toggle();
       orderHref.value = "$printUrl&link=${args["href"]}";
-      if(args["readyUrl"] == true) {
+      if (args["readyUrl"] == true) {
         orderHref.value = args["href"] as String;
       }
       orderId.value = "${args["orderId"]}";

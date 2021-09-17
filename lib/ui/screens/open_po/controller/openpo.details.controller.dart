@@ -22,7 +22,7 @@ class OpenPoDetailsController extends GetxController
   RxString passedOrderNumber = "".obs;
   String poOrderAttachment = "";
 
-  OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();  
+  OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
 

@@ -1,12 +1,11 @@
-import 'package:dsc_tools/ui/screens/easy_ship/easyship.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utilities/images.dart';
 import '../../../../utilities/user_session.dart';
-import '../../../global/widgets/scrollable.dart';
 import '../../../global/widgets/sign_out_button.dart';
 import '../../barcode/barcode.screen.dart';
+import '../../easy_ship/easyship.screen.dart';
 import '../../enroll/enrollhome.screen.dart';
 import '../../inventory/inventory.screen.dart';
 import '../../open_po/home/home.screen.dart';

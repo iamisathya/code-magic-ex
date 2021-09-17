@@ -1,7 +1,7 @@
 Before release
 1. flutter format .
-2. 
-
+2. Run fix import command
+3. Re-organise all imports
 
 flutter pub run build_runner build --delete-conflicting-outputs
 

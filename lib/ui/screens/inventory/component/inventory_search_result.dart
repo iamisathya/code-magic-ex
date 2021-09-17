@@ -17,21 +17,26 @@ class InventorySearchResult extends StatelessWidget {
   Widget build(BuildContext context) {
     final totalPrice = controller.itemFound.quantityOnHand.toInt() *
         controller.itemFound.terms.priceEach.toInt();
-    final totalPv =
-        controller.itemFound.quantityOnHand.toInt() * controller.itemFound.terms.pvEach;
+    final totalPv = controller.itemFound.quantityOnHand.toInt() *
+        controller.itemFound.terms.pvEach;
     return Scaffold(
       appBar: OpenPoAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             const PageTitle(title: "Inventory"),
-            InventoryToolBar(onTapExport: () => null, onTapPrint: () => null, hideSearch: true),
+            InventoryToolBar(
+                onTapExport: () => null,
+                onTapPrint: () => null,
+                hideSearch: true),
             Container(height: 10, color: const Color(0xFFCBCBCD)),
             Column(
               children: [
                 Column(
                   children: [
-                    GrandTotal(totalPrice: totalPrice.toString(), totalPv: totalPv.toString()),
+                    GrandTotal(
+                        totalPrice: totalPrice.toString(),
+                        totalPv: totalPv.toString()),
                     Container(
                       color: const Color(0xFFFFFFFF),
                       child: ListView.builder(

@@ -27,7 +27,8 @@ class OpenPoSearchController extends GetxController {
     if (order.orderOpid.isNotEmpty) {
       Get.to(() => OpenPODetailsPage(), arguments: order.orderOpid);
     } else {
-      SnackbarUtil.showWarning(message: "Sorry no orders found with order id: $orderId");
+      SnackbarUtil.showWarning(
+          message: "Sorry no orders found with order id: $orderId");
     }
   }
 

@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import '../../open_po/home/components/search_bar_field.dart';
 import '../controller/search_sales_products.dart';
 
-
 class SearchSalesReport extends StatefulWidget {
   @override
   _SearchAppBarState createState() => _SearchAppBarState();
 }
 
 class _SearchAppBarState extends State<SearchSalesReport> {
-  SalesReportSearchController controller = Get.put(SalesReportSearchController());
+  SalesReportSearchController controller =
+      Get.put(SalesReportSearchController());
 
   Widget appBarTitle = const Text("AppBar Title");
   Icon actionIcon = const Icon(Icons.search);

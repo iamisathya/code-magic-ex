@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/ui/screens/home/home.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +22,10 @@ import '../../../../utilities/constants.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/keyboard.dart';
 import '../../../../utilities/logger.dart';
+import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/widgets/confirmation_dialog.dart';
+import '../../home/home.dart';
 
 class LoginController extends GetxController {
   final store = GetStorage();
@@ -91,7 +91,8 @@ class LoginController extends GetxController {
   Future<void> getLoginTokens(BuildContext context) async {
     try {
       loading.toggle();
-      final String credentials = "${userIdController.text}:${passwordController.text}";
+      final String credentials =
+          "${userIdController.text}:${passwordController.text}";
       final Codec<String, String> stringToBase64 = utf8.fuse(base64);
       analytics.logLogin();
       final RequestPostCustomerToken request = RequestPostCustomerToken(
@@ -139,7 +140,8 @@ class LoginController extends GetxController {
       Get.off(() => MainHomeScreen(), transition: Transition.cupertino);
     } on DioError catch (e) {
       loading.toggle();
-      final String message = getErrorMessageWithKey(e.response!.data, "message");
+      final String message =
+          getErrorMessageWithKey(e.response!.data, "message");
       SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
     } catch (err) {

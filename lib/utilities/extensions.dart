@@ -14,11 +14,11 @@ extension NumberParsing on String {
   double toDouble() {
     return double.tryParse(this) ?? 0.0;
   }
+
   int toInt() {
     return int.tryParse(this) ?? 0;
   }
 }
-
 
 extension FormatNumber on String {
   String format() {

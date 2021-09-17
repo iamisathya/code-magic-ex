@@ -49,7 +49,8 @@ class InventoryItem extends StatelessWidget {
                 Container(
                   height: 165,
                   padding: const EdgeInsets.all(20.0),
-                  child: const Icon(Icons.image_not_supported_outlined, size: 125),
+                  child:
+                      const Icon(Icons.image_not_supported_outlined, size: 125),
                 ),
                 Container(
                   height: 105,

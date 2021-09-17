@@ -1,7 +1,8 @@
-import 'package:dsc_tools/ui/screens/enroll/screens/enroll/components/body2.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
-import 'package:dsc_tools/utilities/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utilities/constants.dart';
+import '../open_po/home/components/app_bar.dart';
+import 'screens/enroll/components/body2.dart';
 
 class EnrollHomeScreen extends StatelessWidget {
   static const String routeName = '/enrollHomePage';

@@ -74,7 +74,11 @@ class SalesReportEachRmaItem extends StatelessWidget {
 
   Widget _renderOrderIdRow(BuildContext context, String title1, String value1,
       String value2, String href) {
-    final Map<String, dynamic> args = {"orderId": value1, "href": href, "readyUrl": true};
+    final Map<String, dynamic> args = {
+      "orderId": value1,
+      "href": href,
+      "readyUrl": true
+    };
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Row(
@@ -106,7 +110,11 @@ class SalesReportEachRmaItem extends StatelessWidget {
 
   Widget _renderBarcodeRow(BuildContext context, String title1, String title2,
       String value2, String href) {
-    final Map<String, dynamic> args = {"orderId": value2, "href": href, "readyUrl": true};
+    final Map<String, dynamic> args = {
+      "orderId": value2,
+      "href": href,
+      "readyUrl": true
+    };
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Row(

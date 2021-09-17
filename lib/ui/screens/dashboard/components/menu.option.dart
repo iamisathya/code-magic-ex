@@ -9,7 +9,11 @@ class MenuOption extends StatelessWidget {
   final String trailingIcon;
   final Function? onPress;
 
-  const MenuOption({this.icon = "", this.optionTitle = "", this.trailingIcon = kArrowIcon, this.onPress});
+  const MenuOption(
+      {this.icon = "",
+      this.optionTitle = "",
+      this.trailingIcon = kArrowIcon,
+      this.onPress});
 
   @override
   Widget build(BuildContext context) {

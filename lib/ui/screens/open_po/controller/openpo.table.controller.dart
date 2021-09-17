@@ -190,7 +190,7 @@ class OpenPoTableController extends GetxController {
       quantity: 1,
       price: itemFound.terms.priceEach,
       origin: "TH",
-      currency:  Globals.currency,
+      currency: Globals.currency,
     ); //! Update currency
   }
 

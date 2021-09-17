@@ -31,7 +31,8 @@ class BarcodeProductItem extends StatelessWidget {
               children: [
                 Text(item.catalogSlide.content.description,
                     style: Theme.of(context).textTheme.bodyText1),
-                Text("Scanned:${item.quantityDetails.quantityBackordered}/${item.quantity}",
+                Text(
+                    "Scanned:${item.quantityDetails.quantityBackordered}/${item.quantity}",
                     style: Theme.of(context).textTheme.bodyText2)
               ],
             ),

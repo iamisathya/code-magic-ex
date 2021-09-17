@@ -35,7 +35,8 @@ class SalesReportEachItemItem extends StatelessWidget {
               ),
               SizedBox(
                 width: 70,
-                child: SvgPicture.asset(kBarcodeSuccessIcon,                      
+                child: SvgPicture.asset(
+                  kBarcodeSuccessIcon,
                   height: 25,
                   width: 50,
                   semanticsLabel: "barcode",
@@ -43,14 +44,10 @@ class SalesReportEachItemItem extends StatelessWidget {
               ),
             ],
           ),
-          _renderEachRow(context, "BA Number: ${item.itemCode}",
-              "Barcode: xxxxxx"),
-          _renderOrderIdRow(
-              context,
-              "Order ID: ",
-              item.pv.toString(),
-              "Date: ${item.pv.toString}",
-              item.pv.toString()),
+          _renderEachRow(
+              context, "BA Number: ${item.itemCode}", "Barcode: xxxxxx"),
+          _renderOrderIdRow(context, "Order ID: ", item.pv.toString(),
+              "Date: ${item.pv.toString}", item.pv.toString()),
           _renderEachRow(
               context, "Record: ${item.totalPv}", "Time: ${item.totalPv}"),
           GrandTotal(

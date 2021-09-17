@@ -1,13 +1,13 @@
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/styles/input_decorations.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../../constants/globals.dart';
 import '../../../../../models/cart_products.dart';
 import '../../../../../models/inventory_records.dart';
+import '../../../../../styles/input_decorations.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/widgets/sign_out_button.dart';
 import '../../controller/add.openpo.controller.dart';
@@ -143,11 +143,13 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                                 child: Obx(
                                   () => ListView.builder(
                                     controller: ctrl,
-                                    itemCount: controller.searchResult.value.items.length,
+                                    itemCount: controller
+                                        .searchResult.value.items.length,
                                     itemBuilder:
                                         (BuildContext ctxt, int index) {
                                       final InventoryRecordItems item =
-                                          controller.searchResult.value.items[index];
+                                          controller
+                                              .searchResult.value.items[index];
                                       return GestureDetector(
                                         onTap: () {
                                           controller.addItemToCart(item);

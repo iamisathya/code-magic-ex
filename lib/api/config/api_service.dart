@@ -162,7 +162,8 @@ abstract class ApiService {
 
   //? Example: https://hydra.unicity.net/v5a/orders/35e960ce25f719c6d12819cc35daab6c7fc1230ca0bb7863bbfb029caa40bb7a
   @GET(Address.salesOrderDetails)
-  Future<SalesReportDetails> salesReportDetails(@Path('orderCode') String orderCode);
+  Future<SalesReportDetails> salesReportDetails(
+      @Path('orderCode') String orderCode);
 }
 
 @RestApi(baseUrl: Address.memberCallsBase)

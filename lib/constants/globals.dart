@@ -1,8 +1,8 @@
-import 'package:dsc_tools/models/user_info.dart';
 import 'package:get/get.dart';
 
 import '../models/country_info.dart';
 import '../models/menu_option_model.dart';
+import '../models/user_info.dart';
 import '../utilities/user_session.dart';
 
 class Globals {

@@ -274,7 +274,7 @@ class CreateOpenPoOrderController extends GetxController
   }
 
   void onSearchTextChange(String searchKey) {
-    if(searchKey == "") {
+    if (searchKey == "") {
       searchResult.value.items = List.from(inventoryRecords.value.items);
       return;
     }
