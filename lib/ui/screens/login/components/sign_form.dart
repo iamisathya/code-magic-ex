@@ -31,28 +31,19 @@ class SignForm extends StatelessWidget {
               isPassword: true,
               hintText: "Enter your password"),
           // buildPasswordFormField(),
-          SizedBox(height: getProportionateScreenHeight(10)),
-          Row(
-            children: [
-              Obx(() => Checkbox(
-                  value: controller.remember.value,
-                  activeColor: Colors.blueAccent,
-                  onChanged: (value) => controller.remember.value = value!)),
-              const Text("Remember me"),
-              const Spacer(),
-              GestureDetector(
+          SizedBox(height: getProportionateScreenHeight(20)),
+          Container(
+              alignment: Alignment.centerRight,
+              child: GestureDetector(
                 onTap: () => controller.openMailConfirmationDialog(context),
                 child: const Text(
                   "Forgot Password",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
-              )
-            ],
-          ),
+              )),
           SizedBox(height: getProportionateScreenHeight(20)),
           PlainButton(
-              title: 'Login',
-              onTap: () => controller.onPressContinue(context)),
+              title: 'Login', onTap: () => controller.onPressContinue(context)),
         ],
       ),
     );
@@ -75,10 +66,10 @@ class SignForm extends StatelessWidget {
             enabled: enabled,
             controller: ctlr,
             decoration: InputDecoration(
-              labelText: label,
-              hintText: hintText,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0)
-            ),
+                labelText: label,
+                hintText: hintText,
+                contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 30.0, vertical: 20.0)),
           )
         ],
       ),

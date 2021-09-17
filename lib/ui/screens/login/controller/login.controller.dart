@@ -69,6 +69,7 @@ class LoginController extends GetxController {
   Future<void> openMailConfirmationDialog(BuildContext context) async {
     final isConfirmed = await ConfirmationDialog.show(
         context: context,
+        title: "Reset password",
         message: 'Are you sure you want reset your password?',
         okText: 'Proceed',
         cancelText: 'No! Thanks.');
