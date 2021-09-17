@@ -25,7 +25,7 @@ import '../home/components/order_success.dart';
 class CreateOpenPoOrderController extends GetxController
     with StateMixin<List<InventoryRecords>> {
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
-  final Rx<InventoryRecords> _searchResult = InventoryRecords(items: []).obs;
+  final Rx<InventoryRecords> searchResult = InventoryRecords(items: []).obs;
   TextEditingController searchProductTextController = TextEditingController();
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
 
@@ -44,12 +44,12 @@ class CreateOpenPoOrderController extends GetxController
   }
 
   int get inventorySize => searchProductTextController.text.isNotEmpty
-      ? _searchResult.value.items.length
+      ? searchResult.value.items.length
       : inventoryRecords.value.items.length;
 
   InventoryRecords get inventoryItems =>
       searchProductTextController.text.isNotEmpty
-          ? _searchResult.value
+          ? searchResult.value
           : inventoryRecords.value;
 
   Future<void> loadInventoryProducts() async {
@@ -60,7 +60,7 @@ class CreateOpenPoOrderController extends GetxController
     try {
       inventoryRecords.value =
           await ApiService.shared().getInventoryRecords(userId, type);
-      // _searchResult.value.items = List.from(inventoryRecords.value.items);
+      searchResult.value.items = List.from(inventoryRecords.value.items);
       isLoading.toggle();
     } on DioError catch (e) {
       isLoading.toggle();
@@ -274,14 +274,16 @@ class CreateOpenPoOrderController extends GetxController
   }
 
   void onSearchTextChange(String searchKey) {
-    _searchResult.value.items.clear();
-    for (final item in inventoryRecords.value.items) {
-      if (item.catalogSlideContent.content.description
-          .toLowerCase()
-          .contains(searchKey)) {
-        _searchResult.value.items.add(item);
-      }
-      _searchResult.refresh();
+    if(searchKey == "") {
+      searchResult.value.items = List.from(inventoryRecords.value.items);
+      return;
     }
+    searchResult.value.items.clear();
+    searchResult.value.items = inventoryRecords.value.items
+        .where((item) => item.catalogSlideContent.content.description
+            .toLowerCase()
+            .contains(searchKey))
+        .toList();
+    searchResult.refresh();
   }
 }

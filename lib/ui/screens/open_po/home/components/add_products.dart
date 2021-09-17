@@ -143,12 +143,11 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                                 child: Obx(
                                   () => ListView.builder(
                                     controller: ctrl,
-                                    itemCount: controller.inventorySize,
+                                    itemCount: controller.searchResult.value.items.length,
                                     itemBuilder:
                                         (BuildContext ctxt, int index) {
                                       final InventoryRecordItems item =
-                                          controller
-                                              .inventoryItems.items[index];
+                                          controller.searchResult.value.items[index];
                                       return GestureDetector(
                                         onTap: () {
                                           controller.addItemToCart(item);
