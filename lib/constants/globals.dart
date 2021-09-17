@@ -1,3 +1,4 @@
+import 'package:dsc_tools/models/user_info.dart';
 import 'package:get/get.dart';
 
 import '../models/country_info.dart';
@@ -27,4 +28,5 @@ class Globals {
   static String currency = "";
   static String userId =
       UserSessionManager.shared.userInfo!.id.unicity.toString();
+  static UserInfo userInfo = UserSessionManager.shared.userInfo!;
 }

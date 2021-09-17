@@ -1,4 +1,6 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/styles/input_decorations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -47,10 +49,10 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                                   width: double.infinity,
                                   color: Colors.white,
                                   height: 40,
-                                  child: const Center(
+                                  child: Center(
                                       child: Text(
-                                    "0001",
-                                    style: TextStyle(
+                                    Globals.userId,
+                                    style: const TextStyle(
                                         color: Color(0xFF9999A4), fontSize: 14),
                                   )),
                                 ),
@@ -63,10 +65,12 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                                   width: double.infinity,
                                   color: Colors.white,
                                   height: 40,
-                                  child: const Center(
+                                  child: Center(
                                       child: Text(
-                                    "2021-11-16",
-                                    style: TextStyle(
+                                    DateFormat('dd-MM-yyyy')
+                                        .format(DateTime.now())
+                                        .toString(),
+                                    style: const TextStyle(
                                         color: Color(0xFF9999A4), fontSize: 14),
                                   )),
                                 ),
@@ -81,10 +85,10 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                             width: double.infinity,
                             color: Colors.white,
                             height: 40,
-                            child: const Center(
+                            child: Center(
                                 child: Text(
-                              "Thailand TEST DSC",
-                              style: TextStyle(
+                              Globals.userInfo.humanName.fullName,
+                              style: const TextStyle(
                                   color: Color(0xFF9999A4), fontSize: 14),
                             )),
                           ),
@@ -173,7 +177,8 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                           ),
                         );
                       },
-                    ),
+                    ).whenComplete(
+                        () => controller.searchProductTextController.text = ""),
                     child: SvgPicture.asset(kAddMoreProductsImage,
                         height: 40, semanticsLabel: "Add more products"),
                   ),

@@ -274,18 +274,14 @@ class CreateOpenPoOrderController extends GetxController
   }
 
   void onSearchTextChange(String searchKey) {
-      _searchResult.value.items.clear();
-      inventoryRecords.value.items.forEach((item) {
-        print(item.catalogSlideContent.content.description
-            .toLowerCase());
-        if (item.catalogSlideContent.content.description
-            .toLowerCase()
-            .contains(searchKey)) {
-          _searchResult.value.items.add(item);
-        }
-      });
-      // print(_searchResult.value.items.length);
-    
-    _searchResult.refresh();
+    _searchResult.value.items.clear();
+    for (final item in inventoryRecords.value.items) {
+      if (item.catalogSlideContent.content.description
+          .toLowerCase()
+          .contains(searchKey)) {
+        _searchResult.value.items.add(item);
+      }
+      _searchResult.refresh();
+    }
   }
 }
