@@ -77,3 +77,16 @@ InputDecoration kInputDecoration(String hintText, String label) {
     labelText: label,
   );
 }
+
+InputDecoration kSearchInventoryTextFieldDec = const InputDecoration(
+    hintText: "Search Products",
+    hintStyle: TextStyle(fontSize: 12, color: Color(0xFF9EA9B9)),
+    suffixIcon: Icon(Icons.keyboard_arrow_down),
+    fillColor: Color(0xFFFFFFFF),
+    filled: true,
+    border: InputBorder.none,
+    focusedBorder: InputBorder.none,
+    enabledBorder: InputBorder.none,
+    errorBorder: InputBorder.none,
+    disabledBorder: InputBorder.none,
+    contentPadding: EdgeInsets.only(left: 15, top: 5, right: 15));

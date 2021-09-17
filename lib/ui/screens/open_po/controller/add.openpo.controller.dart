@@ -25,6 +25,8 @@ import '../home/components/order_success.dart';
 class CreateOpenPoOrderController extends GetxController
     with StateMixin<List<InventoryRecords>> {
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
+  final Rx<InventoryRecords> _searchResult = InventoryRecords(items: []).obs;
+  TextEditingController searchProductTextController = TextEditingController();
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
 
   RxInt totalCartPv = 0.obs;
@@ -41,6 +43,15 @@ class CreateOpenPoOrderController extends GetxController
     super.onInit();
   }
 
+  int get inventorySize => searchProductTextController.text.isNotEmpty
+      ? _searchResult.value.items.length
+      : inventoryRecords.value.items.length;
+
+  InventoryRecords get inventoryItems =>
+      searchProductTextController.text.isNotEmpty
+          ? _searchResult.value
+          : inventoryRecords.value;
+
   Future<void> loadInventoryProducts() async {
     isLoading.toggle();
     const String type = "item";
@@ -49,6 +60,7 @@ class CreateOpenPoOrderController extends GetxController
     try {
       inventoryRecords.value =
           await ApiService.shared().getInventoryRecords(userId, type);
+      // _searchResult.value.items = List.from(inventoryRecords.value.items);
       isLoading.toggle();
     } on DioError catch (e) {
       isLoading.toggle();
@@ -259,5 +271,21 @@ class CreateOpenPoOrderController extends GetxController
       isLoading.toggle();
       LoggerService.instance.e(err.toString());
     }
+  }
+
+  void onSearchTextChange(String searchKey) {
+      _searchResult.value.items.clear();
+      inventoryRecords.value.items.forEach((item) {
+        print(item.catalogSlideContent.content.description
+            .toLowerCase());
+        if (item.catalogSlideContent.content.description
+            .toLowerCase()
+            .contains(searchKey)) {
+          _searchResult.value.items.add(item);
+        }
+      });
+      // print(_searchResult.value.items.length);
+    
+    _searchResult.refresh();
   }
 }

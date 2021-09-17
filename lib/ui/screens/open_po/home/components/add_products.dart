@@ -1,3 +1,4 @@
+import 'package:dsc_tools/styles/input_decorations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -105,90 +106,74 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                       })),
                   GestureDetector(
                     onTap: () => showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: const Color(0xFFF5F5F5),
-                        context: context,
-                        isDismissible: true,
-                        builder: (context) {
-                          return DraggableScrollableSheet(
-                              initialChildSize: 0.4,
-                              minChildSize: 0.2,
-                              maxChildSize: 0.75,
-                              expand: false,
-                              builder: (_, ctrl) => Column(
-                                    children: <Widget>[
-                                      Container(
-                                        height: 60,
-                                        color: const Color(0xFFEAEAEA),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(10.0),
-                                          child: TextField(
-                                            cursorHeight: 15,
-                                            autofocus: true,
-                                            decoration: InputDecoration(
-                                                hintText: "Search Products",
-                                                hintStyle: TextStyle(
-                                                    fontSize: 12,
-                                                    color: Color(0xFF9EA9B9)),
-                                                suffixIcon: Icon(
-                                                    Icons.keyboard_arrow_down),
-                                                fillColor: Color(0xFFFFFFFF),
-                                                filled: true,
-                                                border: InputBorder.none,
-                                                focusedBorder: InputBorder.none,
-                                                enabledBorder: InputBorder.none,
-                                                errorBorder: InputBorder.none,
-                                                disabledBorder:
-                                                    InputBorder.none,
-                                                contentPadding: EdgeInsets.only(
-                                                    left: 15,
-                                                    top: 5,
-                                                    right: 15)),
+                      isScrollControlled: true,
+                      backgroundColor: const Color(0xFFF5F5F5),
+                      context: context,
+                      isDismissible: true,
+                      builder: (context) {
+                        return DraggableScrollableSheet(
+                          initialChildSize: 0.4,
+                          minChildSize: 0.2,
+                          maxChildSize: 0.75,
+                          expand: false,
+                          builder: (_, ctrl) => Column(
+                            children: <Widget>[
+                              Container(
+                                height: 60,
+                                color: const Color(0xFFEAEAEA),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: TextField(
+                                    controller:
+                                        controller.searchProductTextController,
+                                    cursorHeight: 15,
+                                    onChanged: (val) =>
+                                        controller.onSearchTextChange(val),
+                                    autofocus: true,
+                                    decoration: kSearchInventoryTextFieldDec,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              Expanded(
+                                child: Obx(
+                                  () => ListView.builder(
+                                    controller: ctrl,
+                                    itemCount: controller.inventorySize,
+                                    itemBuilder:
+                                        (BuildContext ctxt, int index) {
+                                      final InventoryRecordItems item =
+                                          controller
+                                              .inventoryItems.items[index];
+                                      return GestureDetector(
+                                        onTap: () {
+                                          controller.addItemToCart(item);
+                                          Navigator.pop(context);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 30, vertical: 10),
+                                          child: Text(
+                                            item.catalogSlideContent.content
+                                                .description,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2!
+                                                .copyWith(
+                                                    color: const Color(
+                                                        0xFF000000)),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 20),
-                                      Expanded(
-                                        child: ListView.builder(
-                                            controller: ctrl,
-                                            itemCount: controller
-                                                .inventoryRecords
-                                                .value
-                                                .items
-                                                .length,
-                                            itemBuilder:
-                                                (BuildContext ctxt, int index) {
-                                              final InventoryRecordItems item =
-                                                  controller.inventoryRecords
-                                                      .value.items[index];
-                                              return GestureDetector(
-                                                onTap: () {
-                                                  controller
-                                                      .addItemToCart(item);
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 30,
-                                                      vertical: 10),
-                                                  child: Text(
-                                                    item.catalogSlideContent
-                                                        .content.description,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .subtitle2!
-                                                        .copyWith(
-                                                            color: const Color(
-                                                                0xFF000000)),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                      )
-                                    ],
-                                  ));
-                        }),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                     child: SvgPicture.asset(kAddMoreProductsImage,
                         height: 40, semanticsLabel: "Add more products"),
                   ),
