@@ -26,7 +26,6 @@ import '../../../../utilities/keyboard.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/widgets/confirmation_dialog.dart';
-import '../../../global/widgets/overlay_progress.dart';
 
 class LoginController extends GetxController {
   final store = GetStorage();
@@ -41,8 +40,6 @@ class LoginController extends GetxController {
   RxString errorMessage = "".obs;
   RxBool isSessionExpired = false.obs;
   final FirebaseAnalytics analytics = FirebaseAnalytics();
-
-  final ProgressBar _sendingMsgProgressBar = ProgressBar();
 
   @override
   void onInit() {
@@ -72,9 +69,9 @@ class LoginController extends GetxController {
   Future<void> openMailConfirmationDialog(BuildContext context) async {
     final isConfirmed = await ConfirmationDialog.show(
         context: context,
-        message: 'Are you sure you want to log out?',
-        okText: 'Yes',
-        cancelText: 'No');
+        message: 'Are you sure you want reset your password?',
+        okText: 'Proceed',
+        cancelText: 'No! Thanks.');
     if (isConfirmed == false) return;
     _composeMail();
   }
@@ -93,11 +90,13 @@ class LoginController extends GetxController {
   Future<void> getLoginTokens(BuildContext context) async {
     try {
       loading.toggle();
+      final String credentials = "${userIdController.text}:${passwordController.text}";
+      final Codec<String, String> stringToBase64 = utf8.fuse(base64);
       analytics.logLogin();
       final RequestPostCustomerToken request = RequestPostCustomerToken(
           namespace: '${Address.baseUrl}customers',
           type: kEncodeType,
-          value: kEncodeValue);
+          value: stringToBase64.encode(credentials));
 
       //*  getLoginTokens from api
       final CustomerToken customerToken =
@@ -138,9 +137,12 @@ class LoginController extends GetxController {
       loading.toggle();
       Get.off(() => MainHomeScreen(), transition: Transition.cupertino);
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: e.response!.data.toString());
+      loading.toggle();
+      final String message = getErrorMessageWithKey(e.response!.data, "message");
+      SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
     } catch (err) {
+      loading.toggle();
       SnackbarUtil.showError(message: "Error while getting user details!");
       LoggerService.instance.e(err.toString());
     }

@@ -1,9 +1,9 @@
+import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utilities/size_config.dart';
-import '../../../global/widgets/primary_button.dart';
 import '../controller/login.controller.dart';
 
 class SignForm extends StatelessWidget {
@@ -50,9 +50,9 @@ class SignForm extends StatelessWidget {
             ],
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
-          PrimaryButton(
-              text: "Continue",
-              press: () => controller.onPressContinue(context)),
+          PlainButton(
+              title: 'Login',
+              onTap: () => controller.onPressContinue(context)),
         ],
       ),
     );
@@ -74,9 +74,10 @@ class SignForm extends StatelessWidget {
             obscureText: isPassword,
             enabled: enabled,
             controller: ctlr,
-            decoration: const InputDecoration(
-              labelText: "Password",
-              hintText: "Re-enter your password",
+            decoration: InputDecoration(
+              labelText: label,
+              hintText: hintText,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0)
             ),
           )
         ],

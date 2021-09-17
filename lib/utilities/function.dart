@@ -13,7 +13,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../exceptions/default.exception.dart';
 import '../exceptions/internet_failed.exception.dart';
-import '../exceptions/not_found.exception.dart';
 import '../exceptions/time_out.exception.dart';
 import '../exceptions/unauthorised.exception.dart';
 import '../models/inventory_records.dart';
@@ -93,7 +92,11 @@ dynamic returnResponse(dio.Response response) {
     case 403:
       throw UnauthorisedException(message: response.data.toString());
     case 404:
-      throw NotFoundException(message: response.data.toString());
+      String errorMsg = getErrorMessageWithKey(response.data, "message");
+      if (errorMsg == "Unauthorized") {
+        errorMsg = "Invalid credentials";
+      }
+      throw UnauthorisedException(message: errorMsg);
     case 408:
       throw TimeOutException(message: response.data.toString());
     case 500:
@@ -147,6 +150,12 @@ void showAlertDialog(BuildContext context,
 String getErrorMessage(dynamic error) {
   final mappedObj = error as Map<String, dynamic>;
   return mappedObj["error"]["error_message"].toString();
+}
+
+
+String getErrorMessageWithKey(dynamic error, String key) {
+  final mappedObj = error as Map<String, dynamic>;
+  return mappedObj["error"][key].toString();
 }
 
 void onDioError(DioError e, ProgressBar progressBar, RxString error) {
