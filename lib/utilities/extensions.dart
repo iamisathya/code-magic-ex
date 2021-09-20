@@ -10,7 +10,6 @@ extension BoolParsing on String {
   }
 }
 
-
 extension WidgetOp on Widget {
   Widget addVerticalSpace(double height) {
     return SizedBox(height: height);
@@ -116,6 +115,14 @@ extension OrderId on String {
     final endIndex = indexOf(end, startIndex + start.length);
     try {
       return substring(startIndex + start.length, endIndex);
+    } catch (e) {
+      return this;
+    }
+  }
+
+  String getAfterLastSlash() {
+    try {
+      return substring(lastIndexOf('/') + 1);
     } catch (e) {
       return this;
     }

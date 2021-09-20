@@ -13,6 +13,7 @@ import '../../../../models/country_info.dart';
 import '../../../../models/user_info.dart';
 import '../../../../models/user_token.dart';
 import '../../../../services/firebase/analyitcs.dart';
+import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/user_session.dart';
@@ -44,6 +45,7 @@ class SplashController extends GetxController {
         //*  getCustomerData from api
         final UserInfo responseUserInfo = await ApiService.shared()
             .getCustomerData(UserSessionManager.shared.customerUniqueId);
+        Globals.customerCode = customerToken.customer.href.getAfterLastSlash();
         await UserSessionManager.shared.setUserInfoIntoDB(responseUserInfo);
         await getCurrentMarketConfig();
         _didSplashCompleted(responseUserInfo.id.unicity.toString());

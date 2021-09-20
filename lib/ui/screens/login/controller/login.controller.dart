@@ -19,6 +19,7 @@ import '../../../../models/user_id.dart';
 import '../../../../models/user_info.dart';
 import '../../../../models/user_token.dart';
 import '../../../../utilities/constants.dart';
+import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/keyboard.dart';
 import '../../../../utilities/logger.dart';
@@ -127,6 +128,7 @@ class LoginController extends GetxController {
       await store.write('current_market', currentMarket);
       Globals.currentMarket = currentMarket;
       Globals.currency = currentMarket.currency;
+      Globals.customerCode = customerToken.customer.href.getAfterLastSlash();      
 
       UserSessionManager.shared.customerId = userResponse.customerId;
       UserSessionManager.shared.customerCode = userResponse.customerCode;

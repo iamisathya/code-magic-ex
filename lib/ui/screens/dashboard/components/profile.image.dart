@@ -25,8 +25,8 @@ class ProfileImage extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(26.0),
                 child: CachedNetworkImage(
-                  imageUrl:
-                      UserSessionManager.shared.profilePicture!.sizes[0].media,
+                  imageUrl:  UserSessionManager.shared.profilePicture!.sizes.isNotEmpty ? 
+                      UserSessionManager.shared.profilePicture!.sizes[0].media : "",
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                   height: 100,
                   width: 100,

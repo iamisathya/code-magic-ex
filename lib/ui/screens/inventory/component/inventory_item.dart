@@ -1,4 +1,6 @@
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -49,8 +51,8 @@ class InventoryItem extends StatelessWidget {
                 Container(
                   height: 165,
                   padding: const EdgeInsets.all(20.0),
-                  child:
-                      const Icon(Icons.image_not_supported_outlined, size: 125),
+                  child: SvgPicture.asset(kProductPlaceholderImage,
+                      height: 165, semanticsLabel: 'no records found'),
                 ),
                 Container(
                   height: 105,

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/managed_warehouse.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ import '../../../../api/config/api_service.dart';
 import '../../../../models/general_models.dart';
 import '../../../../models/inventory_records.dart';
 import '../../../../utilities/enums.dart';
+import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/parsing.dart';
@@ -47,23 +49,44 @@ class InventoryHomeController extends GetxController {
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
   Rx<InventoryRecords> searchedProducts = InventoryRecords(items: []).obs;
+  ManagedWarehouses warehouses = ManagedWarehouses(items: []);
   InventorySortTypes currentType = InventorySortTypes.itemCode;
   bool isAscending = true;
 
   @override
   void onInit() {
-    loadInventoryProducts();
+    getManagedWarehouses();
     super.onInit();
   }
 
-  Future<void> loadInventoryProducts() async {
+  Future<void> getManagedWarehouses() async {
     isLoading.toggle();
+    try {
+      warehouses =
+          await ApiService.shared().getManagedWarehouses();
+      if(warehouses.items.isNotEmpty) {
+        await loadInventoryProducts(warehouses.items[0].href.getAfterLastSlash());
+      } else {
+        isLoading.toggle();
+        SnackbarUtil.showError(message: "No warehouses found");
+      }
+    } on DioError catch (e) {
+      isLoading.toggle();
+      final String message = getErrorMessage(e.response!.data);
+      SnackbarUtil.showError(message: message);
+      returnResponse(e.response!);
+    } catch (err) {
+      isLoading.toggle();
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
+
+  Future<void> loadInventoryProducts(String warehouseId) async {    
     const String type = "item";
-    const String userId =
-        "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
       inventoryRecords.value =
-          await ApiService.shared().getInventoryRecords(userId, type);
+          await ApiService.shared().getInventoryRecords(warehouseId, type);
       tempInventoryRecords.value.items =
           List.from(inventoryRecords.value.items);
       calculateTotal();

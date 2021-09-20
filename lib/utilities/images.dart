@@ -20,6 +20,7 @@ const kAddMoreProductsImage = 'assets/images/add_more_products_image.svg';
 const kOrderSuccessImage = 'assets/images/order_success_image.svg';
 const kOrderWaringImage = 'assets/images/order_warning_image.svg';
 const kNoRecordFoundImage = 'assets/images/no_record_found_image.svg';
+const kProductPlaceholderImage = 'assets/images/product_placeholder_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityGradient3xImage = 'assets/icons/unicity_logo_3x.png';
