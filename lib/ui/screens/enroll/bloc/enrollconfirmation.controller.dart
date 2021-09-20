@@ -109,7 +109,7 @@ class EnrollConfirmationController extends GetxController {
               humanName: HumanName(
                   firstName: usedInfo.humanName.firstName,
                   lastName: usedInfo.humanName.lastName,
-                  firstNameTh: usedInfo.humanName.fullNameTh,
+                  firstNameTh: usedInfo.humanName.fullNameTh ?? "",
                   lastNameTh: usedInfo.humanName.fullNameTh),
               enroller: CustomerHref(
                   href:

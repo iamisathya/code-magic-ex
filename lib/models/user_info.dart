@@ -18,13 +18,13 @@ class UserInfoList {
 @JsonSerializable()
 class UserInfo {
   final CollectHrefFromMap achievementsHistory;
-  final BusinessEntity businessEntity;
-  final Coapplicant coapplicant;
+  final BusinessEntity? businessEntity;
+  final Coapplicant? coapplicant;
   final CollectHrefFromMap cumulativeMetricsProfile;
   final CollectHrefFromMap customerSite;
   final CollectHrefFromMap draftBankAccounts;
   final String email;
-  final EnrollerOrSponser enroller;
+  final EnrollerOrSponser? enroller;
   final String entryPeriod;
   final String homePhone;
   final String href;
@@ -38,7 +38,7 @@ class UserInfo {
   final CollectHrefFromMap orders;
   final CollectHrefFromMap profilePicture;
   List<Rights> rights;
-  final EnrollerOrSponser sponsor;
+  final EnrollerOrSponser? sponsor;
   final CollectHrefFromMap sponsoredCustomers;
   final CollectHrefFromMap statements;
   final String status;
@@ -49,13 +49,13 @@ class UserInfo {
 
   UserInfo(
       {required this.achievementsHistory,
-      required this.businessEntity,
-      required this.coapplicant,
+      this.businessEntity,
+      this.coapplicant,
       required this.cumulativeMetricsProfile,
       required this.customerSite,
       required this.draftBankAccounts,
       required this.email,
-      required this.enroller,
+      this.enroller,
       required this.entryPeriod,
       required this.homePhone,
       required this.href,
@@ -69,7 +69,7 @@ class UserInfo {
       required this.orders,
       required this.profilePicture,
       required this.rights,
-      required this.sponsor,
+      this.sponsor,
       required this.sponsoredCustomers,
       required this.statements,
       required this.status,
@@ -198,13 +198,13 @@ class HumanName {
   String lastName;
   String fullName;
   @JsonKey(name: "fullName@th")
-  String fullNameTh;
+  String? fullNameTh;
 
   HumanName(
       {required this.firstName,
       required this.lastName,
       required this.fullName,
-      required this.fullNameTh});
+      this.fullNameTh});
 
   factory HumanName.fromJson(Map<String, dynamic> json) =>
       _$HumanNameFromJson(json);
@@ -218,13 +218,13 @@ class HumanNameEn {
   String lastName;
   String fullName;
   @JsonKey(name: "fullName@en")
-  String fullNameEn;
+  String? fullNameEn;
 
   HumanNameEn(
       {required this.firstName,
       required this.lastName,
       required this.fullName,
-      required this.fullNameEn});
+      this.fullNameEn});
 
   factory HumanNameEn.fromJson(Map<String, dynamic> json) =>
       _$HumanNameEnFromJson(json);

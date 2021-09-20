@@ -23,10 +23,13 @@ UserInfo _$UserInfoFromJson(Map<String, dynamic> json) {
   return UserInfo(
     achievementsHistory: CollectHrefFromMap.fromJson(
         json['achievementsHistory'] as Map<String, dynamic>),
-    businessEntity:
-        BusinessEntity.fromJson(json['businessEntity'] as Map<String, dynamic>),
-    coapplicant:
-        Coapplicant.fromJson(json['coapplicant'] as Map<String, dynamic>),
+    businessEntity: json['businessEntity'] == null
+        ? null
+        : BusinessEntity.fromJson(
+            json['businessEntity'] as Map<String, dynamic>),
+    coapplicant: json['coapplicant'] == null
+        ? null
+        : Coapplicant.fromJson(json['coapplicant'] as Map<String, dynamic>),
     cumulativeMetricsProfile: CollectHrefFromMap.fromJson(
         json['cumulativeMetricsProfile'] as Map<String, dynamic>),
     customerSite: CollectHrefFromMap.fromJson(
@@ -34,8 +37,9 @@ UserInfo _$UserInfoFromJson(Map<String, dynamic> json) {
     draftBankAccounts: CollectHrefFromMap.fromJson(
         json['draftBankAccounts'] as Map<String, dynamic>),
     email: json['email'] as String,
-    enroller:
-        EnrollerOrSponser.fromJson(json['enroller'] as Map<String, dynamic>),
+    enroller: json['enroller'] == null
+        ? null
+        : EnrollerOrSponser.fromJson(json['enroller'] as Map<String, dynamic>),
     entryPeriod: json['entryPeriod'] as String,
     homePhone: json['homePhone'] as String,
     href: json['href'] as String,
@@ -56,8 +60,9 @@ UserInfo _$UserInfoFromJson(Map<String, dynamic> json) {
     rights: (json['rights'] as List<dynamic>)
         .map((e) => Rights.fromJson(e as Map<String, dynamic>))
         .toList(),
-    sponsor:
-        EnrollerOrSponser.fromJson(json['sponsor'] as Map<String, dynamic>),
+    sponsor: json['sponsor'] == null
+        ? null
+        : EnrollerOrSponser.fromJson(json['sponsor'] as Map<String, dynamic>),
     sponsoredCustomers: CollectHrefFromMap.fromJson(
         json['sponsoredCustomers'] as Map<String, dynamic>),
     statements:
@@ -131,7 +136,7 @@ HumanName _$HumanNameFromJson(Map<String, dynamic> json) {
     firstName: json['firstName'] as String,
     lastName: json['lastName'] as String,
     fullName: json['fullName'] as String,
-    fullNameTh: json['fullName@th'] as String,
+    fullNameTh: json['fullName@th'] as String?,
   );
 }
 
@@ -147,7 +152,7 @@ HumanNameEn _$HumanNameEnFromJson(Map<String, dynamic> json) {
     firstName: json['firstName'] as String,
     lastName: json['lastName'] as String,
     fullName: json['fullName'] as String,
-    fullNameEn: json['fullName@en'] as String,
+    fullNameEn: json['fullName@en'] as String?,
   );
 }
 
