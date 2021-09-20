@@ -51,14 +51,14 @@ class SalesReportEachOrderItem extends StatelessWidget {
             ),
             _renderEachRow(
                 context,
-                "BA Number: ${item.barcode.retrieveUserIdFromUrl()}",
-                "Barcode: xxxxxx"),
+                "BA Number: ${item.customer}",
+                "Barcode: ${item.barcodeNumber}"),
             _renderOrderIdRow(
                 context,
                 "Order ID: ",
-                item.orderNumber.retrieveBarcode(),
+                item.orderNumber,
                 "Date: ${item.date}",
-                item.orderNumber.retrieveHrefCode()),
+                item.orderHref),
             _renderEachRow(
                 context, "Record: ${item.inputData}", "Time: ${item.time}"),
             GrandTotal(

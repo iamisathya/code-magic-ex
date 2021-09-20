@@ -12,6 +12,8 @@ class SalesReportOrderItem {
   String name;
   @JsonKey(name: "ordernumber")
   String orderNumber;
+  @JsonKey(name: "orderhref")
+  String orderHref;
   @JsonKey(name: "date")
   String date;
   @JsonKey(name: "time")
@@ -22,17 +24,24 @@ class SalesReportOrderItem {
   int totalPv;
   @JsonKey(name: "barcode")
   String barcode;
+  @JsonKey(name: "barcodenumber")
+  String barcodeNumber;
+  @JsonKey(name: "barcodehref")
+  String barcodeHref;
 
   SalesReportOrderItem(
       {required this.inputData,
       required this.customer,
       required this.name,
       required this.orderNumber,
+      required this.orderHref,
       required this.date,
       required this.time,
       required this.total,
       required this.totalPv,
-      required this.barcode});
+      required this.barcode,
+      required this.barcodeNumber,
+      required this.barcodeHref});
 
   factory SalesReportOrderItem.fromJson(Map<String, dynamic> json) =>
       _$SalesReportOrderItemFromJson(json);
@@ -44,10 +53,13 @@ class SalesReportOrderItem {
         'customer': customer,
         'name': name,
         'orderNumber': orderNumber,
+        'orderHref': orderHref,
         'date': date,
         'time': time,
         'total': total,
         'totalPv': totalPv,
-        'barcode': barcode
+        'barcode': barcode,
+        'barcodeNumber': barcodeNumber,
+        'barcodeHref': barcodeHref,
       };
 }
