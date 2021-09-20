@@ -62,10 +62,10 @@ class InventoryHomeController extends GetxController {
   Future<void> getManagedWarehouses() async {
     isLoading.toggle();
     try {
-      warehouses =
-          await ApiService.shared().getManagedWarehouses();
-      if(warehouses.items.isNotEmpty) {
-        await loadInventoryProducts(warehouses.items[0].href.getAfterLastSlash());
+      warehouses = await ApiService.shared().getManagedWarehouses();
+      if (warehouses.items.isNotEmpty) {
+        await loadInventoryProducts(
+            warehouses.items[0].href.getAfterLastSlash());
       } else {
         isLoading.toggle();
         SnackbarUtil.showError(message: "No warehouses found");
@@ -81,8 +81,7 @@ class InventoryHomeController extends GetxController {
     }
   }
 
-
-  Future<void> loadInventoryProducts(String warehouseId) async {    
+  Future<void> loadInventoryProducts(String warehouseId) async {
     const String type = "item";
     try {
       inventoryRecords.value =
@@ -106,12 +105,10 @@ class InventoryHomeController extends GetxController {
   void calculateTotal() {
     final String totalPrice =
         calculateTotalPrice(tempInventoryRecords.value, 'price');
-    grandTotalPrice.value =
-        NumberFormat().format(Parsing.intFrom(totalPrice)).toString();
     final String totalPv =
         calculateTotalPrice(tempInventoryRecords.value, 'pv');
-    grandTotalPv.value =
-        NumberFormat().format(Parsing.intFrom(totalPv)).toString();
+    grandTotalPrice.value = totalPrice;
+    grandTotalPv.value = totalPv;
   }
 
   void onChangeStockType(String value) {

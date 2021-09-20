@@ -24,13 +24,21 @@ class ProfileImage extends StatelessWidget {
                   border: Border.all(color: const Color(0xFFFFFFFF), width: 2)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(26.0),
-                child: CachedNetworkImage(
-                  imageUrl:  UserSessionManager.shared.profilePicture!.sizes.isNotEmpty ? 
-                      UserSessionManager.shared.profilePicture!.sizes[0].media : "",
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  height: 100,
-                  width: 100,
-                ),
+                child:
+                    UserSessionManager.shared.profilePicture!.sizes.isNotEmpty
+                        ? CachedNetworkImage(
+                            imageUrl: UserSessionManager
+                                .shared.profilePicture!.sizes[0].media,
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                            height: 100,
+                            width: 100,
+                          )
+                        : Image.asset(
+                            kDefaultDistributorImage,
+                            height: 100,
+                            width: 100,
+                          ),
               )),
           Positioned(
               bottom: -5,
