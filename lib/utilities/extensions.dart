@@ -10,6 +10,17 @@ extension BoolParsing on String {
   }
 }
 
+
+extension WidgetOp on Widget {
+  Widget addVerticalSpace(double height) {
+    return SizedBox(height: height);
+  }
+
+  Widget addHorizontalSpace(double width) {
+    return SizedBox(width: width);
+  }
+}
+
 extension NumberParsing on String {
   double toDouble() {
     return double.tryParse(this) ?? 0.0;
