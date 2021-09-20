@@ -9,6 +9,7 @@ class AppThemes {
 
   //the light theme
   static final ThemeData lightTheme = ThemeData(
+      fontFamily: "MavenPro",
       primarySwatch: const MaterialColor(4280371421, {
         50: Color(0xffe9edfc),
         100: Color(0xffd3daf8),

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/widgets/animated_add_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -34,15 +35,11 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                         "PO List",
                         style: Theme.of(context).textTheme.headline4,
                       ),
-                      GestureDetector(
-                        onTap: () => Get.to(() => CreateOpenPoOrder()),
-                        child: SvgPicture.asset(kAddPoIcon,
-                            height: 40, semanticsLabel: "Add PO"),
-                      ),
+                      ShareButton(onPress: () => Get.to(() => CreateOpenPoOrder())),
                     ],
                   ),
                 ),
-              ),
+              ),              
               Container(
                 color: const Color(0xFFE3E8ED),
                 height: 70,
