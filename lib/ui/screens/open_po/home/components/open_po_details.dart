@@ -16,6 +16,7 @@ class OpenPODetailsPage extends GetView<OpenPoDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
           title: Obx(() => Text(controller.passedOrderNumber.value,
               style: Theme.of(context)
@@ -35,7 +36,7 @@ class OpenPODetailsPage extends GetView<OpenPoDetailsController> {
                   children: [
                     Container(
                       height: 130,
-                      color: const Color(0xFF4D7483),
+                      color: const Color(0xFF5297A6),
                       child: Column(
                         children: [
                           Padding(
@@ -144,6 +145,7 @@ class OpenPODetailsPage extends GetView<OpenPoDetailsController> {
                         bgColor: const Color(0xFF1C9CFC),
                         fgColor: const Color(0xFFFFFFFF),
                         icon: kPrintIcon,
+                        iconColor:const Color(0xFFFFFFFF),
                       ),
                     ),
                   ],

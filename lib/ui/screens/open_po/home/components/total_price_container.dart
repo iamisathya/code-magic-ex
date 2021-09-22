@@ -7,7 +7,7 @@ class TotalPrice extends StatelessWidget {
   final String totalPrice;
   final String totalPv;
   const TotalPrice(
-      {this.bgColor = const Color(0xFFF5F5F5),
+      {this.bgColor = const Color(0xFFE3E8ED),
       required this.totalPrice,
       required this.totalPv});
 

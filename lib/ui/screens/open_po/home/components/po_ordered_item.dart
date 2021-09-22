@@ -11,7 +11,7 @@ class PoOrderedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      color: const Color(0xFFF1FAF7),
+      color: const Color(0xFFFFFFFF),
       child: Padding(
         padding: const EdgeInsets.all(30),
         child: Column(
@@ -22,9 +22,9 @@ class PoOrderedItem extends StatelessWidget {
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5),
+                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: const Color(0xFFF5F5F5),
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(3),
                     ),
                     height: 40,
                     child: const Center(
@@ -41,9 +41,9 @@ class PoOrderedItem extends StatelessWidget {
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5),
+                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(3),
                     ),
                     height: 40,
                     child: Center(
@@ -66,9 +66,9 @@ class PoOrderedItem extends StatelessWidget {
                     width: double.infinity,
                     height: 40,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5),
+                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(3),
                     ),
                     child: Center(
                         child: Text(
@@ -90,9 +90,9 @@ class PoOrderedItem extends StatelessWidget {
                     width: double.infinity,
                     height: 40,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5),
+                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(3),
                     ),
                     child: Center(
                         child: Text(
@@ -111,9 +111,9 @@ class PoOrderedItem extends StatelessWidget {
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5),
+                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(3),
                     ),
                     height: 40,
                     child: Center(
