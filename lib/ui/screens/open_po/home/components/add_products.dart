@@ -106,7 +106,7 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                       itemBuilder: (BuildContext ctxt, int index) {
                         final CartProductsItem item =
                             controller.cartProducts[index];
-                        return PoCartItem(item: item);
+                        return PoCartItem(item: item, idx: index);
                       })),
                   GestureDetector(
                     onTap: () => showModalBottomSheet(

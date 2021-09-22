@@ -108,7 +108,7 @@ class OpenPODetailsPage extends GetView<OpenPoDetailsController> {
                         itemCount: controller.openPlaceOrderDetails.length,
                         itemBuilder: (BuildContext ctxt, int index) {
                           return PoOrderedItem(
-                              item: controller.openPlaceOrderDetails[index]);
+                              item: controller.openPlaceOrderDetails[index], idx: index);
                         }),
                     const SizedBox(
                       height: 34,

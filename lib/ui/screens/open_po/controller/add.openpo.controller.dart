@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/managed_warehouse.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,18 +17,19 @@ import '../../../../models/open_po_create_order_response.dart';
 import '../../../../models/validate_order.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
+import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
 import '../home/components/order_success.dart';
-
 class CreateOpenPoOrderController extends GetxController
     with StateMixin<List<InventoryRecords>> {
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   final Rx<InventoryRecords> searchResult = InventoryRecords(items: []).obs;
   TextEditingController searchProductTextController = TextEditingController();
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
+  ManagedWarehouses warehouses = ManagedWarehouses(items: []);
 
   RxInt totalCartPv = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
@@ -39,7 +41,7 @@ class CreateOpenPoOrderController extends GetxController
 
   @override
   void onInit() {
-    loadInventoryProducts();
+    getManagedWarehouses();
     super.onInit();
   }
 
@@ -52,24 +54,41 @@ class CreateOpenPoOrderController extends GetxController
           ? searchResult.value
           : inventoryRecords.value;
 
-  Future<void> loadInventoryProducts() async {
+  
+  Future<void> getManagedWarehouses() async {
     isLoading.toggle();
-    const String type = "item";
-    const String userId =
-        "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
-      inventoryRecords.value =
-          await ApiService.shared().getInventoryRecords(userId, type);
-      searchResult.value.items = List.from(inventoryRecords.value.items);
-      isLoading.toggle();
+      warehouses = await ApiService.shared().getManagedWarehouses();
+      if (warehouses.items.isNotEmpty) {
+        await loadInventoryProducts(
+            warehouses.items[0].href.getAfterLastSlash());
+        isLoading.toggle();
+      } else {
+        isLoading.toggle();
+        SnackbarUtil.showError(message: "No warehouses found");
+      }
     } on DioError catch (e) {
       isLoading.toggle();
       final String message = getErrorMessage(e.response!.data);
-      renderErrorSnackBar(
-          title: "${e.response!.statusCode} Error!", subTitle: message);
+      SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
     } catch (err) {
       isLoading.toggle();
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
+  Future<void> loadInventoryProducts(String warehouseId) async {
+    const String type = "item";
+    try {
+      inventoryRecords.value =
+          await ApiService.shared().getInventoryRecords(warehouseId, type);
+      searchResult.value.items = List.from(inventoryRecords.value.items);    
+    } on DioError catch (e) {
+      final String message = getErrorMessage(e.response!.data);
+      SnackbarUtil.showError(message: "Error! $message");
+      returnResponse(e.response!);
+    } catch (err) {
       LoggerService.instance.e(err.toString());
     }
   }

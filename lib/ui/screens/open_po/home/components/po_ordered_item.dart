@@ -5,7 +5,9 @@ import '../../../../../models/open_po_details.dart';
 
 class PoOrderedItem extends StatelessWidget {
   final OpenPlaceOrderDetails item;
-  const PoOrderedItem({required this.item});
+  final int idx;
+
+  const PoOrderedItem({required this.item, required this.idx});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +29,10 @@ class PoOrderedItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(3),
                     ),
                     height: 40,
-                    child: const Center(
+                    child: Center(
                         child: Text(
-                      "Item 02",
-                      style: TextStyle(color: Color(0xFF384250), fontSize: 14),
+                      "Item ${idx+1}",
+                      style: const TextStyle(color: Color(0xFF384250), fontSize: 14),
                     )),
                   ),
                 ),
