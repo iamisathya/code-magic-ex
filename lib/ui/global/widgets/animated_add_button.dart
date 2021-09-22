@@ -21,11 +21,12 @@ class _ShareButtonState extends State<ShareButton> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.centerRight,
       children: [
         AnimatedContainer(
           duration: const Duration(milliseconds: 350),
           curve: Curves.fastOutSlowIn,
-          width: isOpen ? 154 : 40,
+          width: isOpen ? 144 : 40,
           height: 40,
           decoration: const ShapeDecoration(
             color: Color(0xFFFFBF3A),
@@ -39,28 +40,19 @@ class _ShareButtonState extends State<ShareButton> {
             color: Color(0xFFFFBF3A),
             shape: BoxShape.circle,
           ),
-          child: AnimatedCrossFade(
-            duration: const Duration(milliseconds: 450),
-            firstChild: IconButton(
+          child: IconButton(
               icon: const Icon(Icons.add),
               onPressed: () => _toggleShare(),
             ),
-            secondChild: IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () => _toggleShare(),
-            ),
-            crossFadeState:
-                !isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-          ),
         ),
         AnimatedOpacity(
           duration: const Duration(milliseconds: 450),
           opacity: isOpen ? 1 : 0,
           child: Container(
-              width: 154,
+              width: 144,
               height: 40,
               alignment: Alignment.center,
-              padding: const EdgeInsets.only(left: 40),
+              padding: const EdgeInsets.only(right: 25),
               child: GestureDetector(
                 onTap: () => widget.onPress(),
                 child: Text("Add New PO",

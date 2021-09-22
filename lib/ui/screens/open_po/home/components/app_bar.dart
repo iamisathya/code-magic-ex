@@ -24,7 +24,7 @@ class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
               alignment: Alignment.centerRight,
               padding: const EdgeInsets.all(10.0),
               child: Text(
-                languageController.currentOption.title.toUpperCase(),
+                languageController.currentOption.title,
                 style: const TextStyle(color: Colors.black, fontSize: 14),
                 maxLines: 1,
               ),
