@@ -45,11 +45,11 @@ class _SearchAppBarState extends State<SearchProducts> {
         child: Column(
           children: [
             Container(
-              height: 80,
+              height: 50,
               color: const Color(0xFFF5F5F5),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 17, horizontal: 20),
+                    const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

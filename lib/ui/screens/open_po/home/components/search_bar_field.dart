@@ -12,7 +12,7 @@ class SearchBarField extends StatelessWidget {
         transform: Matrix4.translationValues(0.0, 0.0, 0.0),
         child: TextField(
           controller: searchTextController,
-          style: const TextStyle(color: Color(0xFF9EA9B9), fontSize: 14),
+          style: const TextStyle(fontSize: 14),
           decoration: const InputDecoration(
               border: InputBorder.none,
               focusedBorder: UnderlineInputBorder(
