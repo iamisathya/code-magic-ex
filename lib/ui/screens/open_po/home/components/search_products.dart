@@ -1,4 +1,6 @@
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../controller/openpo.search.controller.dart';
@@ -11,14 +13,15 @@ class SearchProducts extends StatefulWidget {
 
 class _SearchAppBarState extends State<SearchProducts> {
   OpenPoSearchController controller = Get.put(OpenPoSearchController());
+  SvgPicture actionIcon = SvgPicture.asset(kSearchIcon,
+      height: 20, key: const ObjectKey("seachIcon"));
 
-  Widget appBarTitle = const Text("AppBar Title");
-  Icon actionIcon = const Icon(Icons.search);
+  Widget appBarTitle = const Text("");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leadingWidth: 15,
+          titleSpacing: 0,
           centerTitle: false,
           title: appBarTitle,
           actions: <Widget>[
@@ -26,16 +29,13 @@ class _SearchAppBarState extends State<SearchProducts> {
               icon: actionIcon,
               onPressed: () {
                 setState(() {
-                  if (actionIcon.icon == Icons.search) {
-                    actionIcon = const Icon(Icons.close);
+                  if (actionIcon.key == const ObjectKey("seachIcon")) {
                     appBarTitle = SearchBarField(
-                        onTap: (String value) =>
-                            controller.addSearchItem(value),
                         searchTextController: controller.searchTextController);
+                    controller
+                        .addSearchItem(controller.searchTextController.text);
                   } else {
-                    controller.searchTextController.text = "";
-                    actionIcon = const Icon(Icons.search);
-                    appBarTitle = const Text("AppBar Title");
+                    appBarTitle = const Text("");
                   }
                 });
               },

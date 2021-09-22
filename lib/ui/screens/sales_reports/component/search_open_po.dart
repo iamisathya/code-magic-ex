@@ -1,4 +1,6 @@
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../open_po/home/components/search_bar_field.dart';
@@ -13,13 +15,15 @@ class _SearchAppBarState extends State<SearchSalesReport> {
   SalesReportSearchController controller =
       Get.put(SalesReportSearchController());
 
-  Widget appBarTitle = const Text("AppBar Title");
-  Icon actionIcon = const Icon(Icons.search);
+  Widget appBarTitle = const Text("");
+  SvgPicture actionIcon = SvgPicture.asset(kSearchIcon,
+      height: 20, key: const ObjectKey("seachIcon"));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leadingWidth: 25,
+          titleSpacing: 0,
           centerTitle: false,
           title: appBarTitle,
           actions: <Widget>[
@@ -27,16 +31,11 @@ class _SearchAppBarState extends State<SearchSalesReport> {
               icon: actionIcon,
               onPressed: () {
                 setState(() {
-                  if (actionIcon.icon == Icons.search) {
-                    actionIcon = const Icon(Icons.close);
+                  if (actionIcon.key == const ObjectKey("seachIcon")) {
                     appBarTitle = SearchBarField(
-                        onTap: (String value) =>
-                            controller.addSearchItem(value),
                         searchTextController: controller.searchTextController);
                   } else {
                     controller.searchTextController.text = "";
-                    actionIcon = const Icon(Icons.search);
-                    appBarTitle = const Text("AppBar Title");
                   }
                 });
               },

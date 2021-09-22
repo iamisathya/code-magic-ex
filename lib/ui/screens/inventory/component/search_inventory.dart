@@ -1,4 +1,6 @@
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../open_po/home/components/search_bar_field.dart';
@@ -14,12 +16,13 @@ class _SearchAppBarState extends State<SearchProducts> {
       Get.put(InventorySearchController());
 
   Widget appBarTitle = const Text("");
-  Icon actionIcon = const Icon(Icons.search);
+  SvgPicture actionIcon = SvgPicture.asset(kSearchIcon,
+      height: 20, key: const ObjectKey("seachIcon"));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 25,
+        titleSpacing: 0,
         centerTitle: false,
         title: appBarTitle,
         actions: <Widget>[
@@ -27,15 +30,13 @@ class _SearchAppBarState extends State<SearchProducts> {
             icon: actionIcon,
             onPressed: () {
               setState(() {
-                if (actionIcon.icon == Icons.search) {
-                  actionIcon = const Icon(Icons.close);
+                if (actionIcon.key == const ObjectKey("seachIcon")) {
                   appBarTitle = SearchBarField(
-                      onTap: (String value) => controller.addSearchItem(value),
+                      // onTap: (String value) => controller.addSearchItem(value),
                       searchTextController: controller.searchTextController);
+                      controller.addSearchItem(controller.searchTextController.text);
                 } else {
-                  controller.searchTextController.text = "";
-                  actionIcon = const Icon(Icons.search);
-                  appBarTitle = const Text("AppBar Title");
+                  appBarTitle = const Text("");
                 }
               });
             },
