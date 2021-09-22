@@ -27,15 +27,6 @@ class Body2 extends StatelessWidget {
         const PageTitle(title: "Sales Report"),
         SalesReportToolBar(),
         DateSelector(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: SignOutButton(
-            title: "Find Sales Reports",
-            onPress: () => controller.getAllSalesReports(),
-            bgColor: const Color(0xFFFFBF3A),
-            icon: kArrowIcon,
-          ),
-        ),
         if (!controller.isLoading.value && controller.activeListLength != 0)
           Column(
             children: [

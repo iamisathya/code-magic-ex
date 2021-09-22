@@ -14,7 +14,7 @@ class DateSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130,
+      height: 158,
       color: const Color(0xFFF5F5F5),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -25,7 +25,7 @@ class DateSelector extends StatelessWidget {
                   onTap: () => controller.onTapDateSelector(
                       DateSelectorType.startDate, context),
                   child: Container(
-                    height: 40,
+                    height: 54,
                     decoration: BoxDecoration(
                         color: const Color(0xFFFFFFFF),
                         border: Border.all(color: const Color(0xFF384250)),
@@ -55,7 +55,7 @@ class DateSelector extends StatelessWidget {
                   onTap: () => controller.onTapDateSelector(
                       DateSelectorType.endDate, context),
                   child: Container(
-                    height: 40,
+                    height: 54,
                     decoration: BoxDecoration(
                         color: const Color(0xFFFFFFFF),
                         border: Border.all(color: const Color(0xFF384250)),
