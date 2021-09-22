@@ -56,6 +56,7 @@ const kCardViewIcon = 'assets/icons/card_view_icon.svg';
 const kSortIcon = 'assets/icons/sort_icon.svg';
 const kArrowUpIcon = 'assets/icons/arrow_up_icon.svg';
 const kArrowDownIcon = 'assets/icons/arrow_down_icon.svg';
+const kInputArrowDownIcon = 'assets/icons/input_arrow_down_icon.svg';
 const kBarcodeSuccessIcon = 'assets/icons/barcode_success_icon.svg';
 const kBarcodeErrorIcon = 'assets/icons/barcode_error_icon.svg';
 const kEnIcon = 'assets/icons/languages/en.svg';

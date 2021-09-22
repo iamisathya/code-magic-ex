@@ -158,15 +158,13 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 30, vertical: 10),
-                                          child: Text(
-                                            item.catalogSlideContent.content
-                                                .description,
+                                          child: Text("${item.item.id.unicity}  ${item.catalogSlideContent.content.description}",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .subtitle2!
+                                                .subtitle1!
                                                 .copyWith(
                                                     color: const Color(
-                                                        0xFF000000)),
+                                                        0xFF000000), fontWeight: FontWeight.w600),
                                           ),
                                         ),
                                       );
@@ -181,7 +179,8 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                     ).whenComplete(
                         () => controller.searchProductTextController.text = ""),
                     child: SvgPicture.asset(kAddMoreProductsImage,
-                        height: 40, semanticsLabel: "Add more products"),
+                        height: 40,
+                        semanticsLabel: "Add more products"),
                   ),
                   const SizedBox(height: 34),
                   Obx(() => TotalPrice(
@@ -207,6 +206,7 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                       bgColor: const Color(0xFF1C9CFC),
                       fgColor: const Color(0xFFFFFFFF),
                       icon: kForwardIcon,
+                      iconColor: const Color(0xFFFFFFFF),
                     ),
                   ),
                 ],
