@@ -96,9 +96,6 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
                   Obx(() => ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -158,13 +155,16 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 30, vertical: 10),
-                                          child: Text("${item.item.id.unicity}  ${item.catalogSlideContent.content.description}",
+                                          child: Text(
+                                            "${item.item.id.unicity}  ${item.catalogSlideContent.content.description}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .subtitle1!
                                                 .copyWith(
-                                                    color: const Color(
-                                                        0xFF000000), fontWeight: FontWeight.w600),
+                                                    color:
+                                                        const Color(0xFF000000),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                           ),
                                         ),
                                       );
@@ -179,8 +179,7 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                     ).whenComplete(
                         () => controller.searchProductTextController.text = ""),
                     child: SvgPicture.asset(kAddMoreProductsImage,
-                        height: 40,
-                        semanticsLabel: "Add more products"),
+                        height: 40, semanticsLabel: "Add more products"),
                   ),
                   const SizedBox(height: 34),
                   Obx(() => TotalPrice(
@@ -192,7 +191,9 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                     padding: const EdgeInsets.only(
                         top: 10, left: 20, right: 20, bottom: 5),
                     child: Obx(() => SignOutButton(
-                        title: controller.selectedFileName.value,
+                        title: controller.selectedFileName.value.isNotEmpty
+                            ? controller.selectedFileName.value
+                            : "Attach",
                         onPress: () => controller.selectSource(),
                         bgColor: const Color(0xFFFFFFFF),
                         icon: kFileIcon)),
