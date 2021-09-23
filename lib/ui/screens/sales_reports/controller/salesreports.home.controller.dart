@@ -33,8 +33,12 @@ import '../component/order_details.dart';
 import 'salesreport.search.result.controller.dart';
 
 class SalesReportHomeController extends GetxController {
-  Rx<DateTime> startDate = DateTime.now().subtract(const Duration(days: 1)).obs;
-  Rx<DateTime> endDate = DateTime.now().obs;
+  Rx<String> startDateString = "".obs;
+  Rx<String> endDateString = "".obs;
+  late Rx<DateTime>? startDate;
+  late Rx<DateTime>? endDate;
+  RxBool isDateSelected = false.obs;
+  RxBool isDataFetched = false.obs;
 
   RxList<NameValueType> sortOptions = [
     NameValueType(name: "By Order", value: "order"),
@@ -54,6 +58,13 @@ class SalesReportHomeController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isPrinting = false.obs;
 
+  @override
+  void onInit() {
+    startDate = Rx<DateTime>(DateTime.fromMicrosecondsSinceEpoch(100));
+    endDate = Rx<DateTime>(DateTime.fromMicrosecondsSinceEpoch(100));
+    super.onInit();
+  }
+
   String get activeTab => activeStockType.value.value;
   int get activeListLength => activeStockType.value.value == "order"
       ? allSalesReports.length
@@ -68,7 +79,8 @@ class SalesReportHomeController extends GetxController {
           : allSalesItemReports;
 
   Future<void> getAllSalesReports() async {
-    if (startDate.value.isAfter(endDate.value)) {
+    if (startDate == null || endDate == null) return;
+    if (startDate!.value.isAfter(endDate!.value)) {
       SnackbarUtil.showError(
           message: "Start date should be lower than end date!");
       return;
@@ -80,9 +92,9 @@ class SalesReportHomeController extends GetxController {
             : "3";
     isLoading.toggle();
     final String startingFrom =
-        DateFormat('yyyy-MM-dd').format(startDate.value).toString();
+        DateFormat('yyyy-MM-dd').format(startDate!.value).toString();
     final String endingTill =
-        DateFormat('yyyy-MM-dd').format(endDate.value).toString();
+        DateFormat('yyyy-MM-dd').format(endDate!.value).toString();
 
     try {
       if (activeStockType.value.value == "order") {
@@ -109,16 +121,19 @@ class SalesReportHomeController extends GetxController {
                 Globals.userId,
                 actionType);
       }
+      isDataFetched.toggle();
       // calulateValue();
       isLoading.toggle();
     } on DioError catch (e) {
       isLoading.toggle();
+      isDataFetched.toggle();
       final String message = getErrorMessage(e.response!.data);
       renderErrorSnackBar(
           title: "${e.response!.statusCode} Error!", subTitle: message);
       returnResponse(e.response!);
     } catch (err) {
       isLoading.toggle();
+      isDataFetched.toggle();
       LoggerService.instance.e(err.toString());
     }
   }
@@ -145,19 +160,30 @@ class SalesReportHomeController extends GetxController {
   void onTapDateSelector(DateSelectorType type, BuildContext context) {
     if (type == DateSelectorType.startDate) {
       DatePicker.showDatePicker(context,
-          currentTime: startDate.value,
+          currentTime: startDate != null ? startDate!.value : DateTime.now(),
           maxTime: DateTime.now().subtract(const Duration(days: 1)),
           minTime: DateTime.now().subtract(const Duration(days: 365)),
           onConfirm: (date) {
-        startDate.value = date;
+        startDate!.value = date;
+        startDateString.value = startDate!.value.yyyyMMdd();
+        enableFindButton();
       });
     } else {
       DatePicker.showDatePicker(context,
-          currentTime: endDate.value,
+          currentTime: endDate != null ? endDate!.value : DateTime.now(),
           minTime: DateTime.now().subtract(const Duration(days: 364)),
           maxTime: DateTime.now(), onConfirm: (date) {
-        endDate.value = date;
+        endDate!.value = date;
+        endDateString.value = endDate!.value.yyyyMMdd();
+        enableFindButton();
       });
+    }
+  }
+
+  void enableFindButton() {
+    if (startDate?.value.microsecondsSinceEpoch != 100 &&
+        endDate?.value.microsecondsSinceEpoch != 100) {
+      isDateSelected.value = true;
     }
   }
 

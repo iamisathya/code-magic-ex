@@ -27,21 +27,29 @@ class SalesReportsHomeScreen extends StatelessWidget {
             progressIndicator: const Loader(),
             child: Body2()),
       ),
-      floatingActionButton:
-          !controller.isLoading.value && controller.activeListLength == 0
+      floatingActionButton: Obx(() => Container(
+          child: !controller.isLoading.value && controller.activeListLength == 0
               ? Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: SignOutButton(
-                    title: "Find Sales Report",
-                    onPress: () => controller.getAllSalesReports(),
-                    bgColor: const Color(0xFF9EA9B9),
-                    icon: kArrowIcon,
-                    height: 50,
-                    fgColor: const Color(0xFFFFFFFF),
-                    iconColor: const Color(0xFFFFFFFF),
-                  ),
+                  child: Obx(() => SignOutButton(
+                        title: "Find Sales Report",
+                        onPress: () => controller.isDateSelected.value
+                            ? controller.getAllSalesReports()
+                            : null,
+                        bgColor: controller.isDateSelected.value
+                            ? const Color(0xFFFFBF3A)
+                            : const Color(0xFF9EA9B9),
+                        icon: kArrowIcon,
+                        height: 50,
+                        fgColor: controller.isDateSelected.value
+                            ? const Color(0xFF000000)
+                            : const Color(0xFFFFFFFF),
+                        iconColor: controller.isDateSelected.value
+                            ? const Color(0xFF000000)
+                            : const Color(0xFFFFFFFF),
+                      )),
                 )
-              : const SizedBox(),
+              : const SizedBox())),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

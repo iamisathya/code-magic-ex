@@ -22,44 +22,51 @@ class Body2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        const PageTitle(title: "Sales Report"),
-        SalesReportToolBar(),
-        DateSelector(),
-        if (!controller.isLoading.value && controller.activeListLength != 0)
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: OptionBar(
-                    onPrint: () =>
-                        controller.proceedToPrint(context, orderHref: ""),
-                    onDownload: () => controller.onTapExportExcellSheet()),
+      child: Obx(
+        () => Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const PageTitle(title: "Sales Report"),
+            SalesReportToolBar(),
+            DateSelector(),
+            if (!controller.isLoading.value && controller.activeListLength != 0)
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: OptionBar(
+                        onPrint: () =>
+                            controller.proceedToPrint(context, orderHref: ""),
+                        onDownload: () => controller.onTapExportExcellSheet()),
+                  ),
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: controller.activeListLength,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      if (controller.activeTab == "order") {
+                        final SalesReportOrderItem item =
+                            controller.allSalesReports[index];
+                        return SalesReportEachOrderItem(item: item);
+                      } else if (controller.activeTab == "rma") {
+                        final SalesReportRmaItem item =
+                            controller.allSalesRmaReports[index];
+                        return SalesReportEachRmaItem(item: item);
+                      }
+                      final SalesReportItemItem item =
+                          controller.allSalesItemReports[index];
+                      return SalesReportEachItemItem(item: item);
+                    },
+                  ),
+                ],
               ),
-              Obx(() => ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: controller.activeListLength,
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    if (controller.activeTab == "order") {
-                      final SalesReportOrderItem item =
-                          controller.allSalesReports[index];
-                      return SalesReportEachOrderItem(item: item);
-                    } else if (controller.activeTab == "rma") {
-                      final SalesReportRmaItem item =
-                          controller.allSalesRmaReports[index];
-                      return SalesReportEachRmaItem(item: item);
-                    }
-                    final SalesReportItemItem item =
-                        controller.allSalesItemReports[index];
-                    return SalesReportEachItemItem(item: item);
-                  })),
-            ],
-          ),
-        if (!controller.isLoading.value && controller.activeListLength == 0)
-          NoRecordFound(),
-      ]),
+            if (!controller.isLoading.value &&
+                controller.activeListLength == 0 &&
+                controller.isDataFetched.value)
+              NoRecordFound(),
+          ],
+        ),
+      ),
     );
   }
 }
