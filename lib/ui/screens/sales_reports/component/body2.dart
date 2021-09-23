@@ -32,13 +32,10 @@ class Body2 extends StatelessWidget {
             if (!controller.isLoading.value && controller.activeListLength != 0)
               Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: OptionBar(
-                        onPrint: () =>
-                            controller.proceedToPrint(context, orderHref: ""),
-                        onDownload: () => controller.onTapExportExcellSheet()),
-                  ),
+                  OptionBar(
+                      onPrint: () =>
+                          controller.proceedToPrint(context, orderHref: ""),
+                      onDownload: () => controller.onTapExportExcellSheet()),
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

@@ -57,7 +57,7 @@ class DateSelector extends StatelessWidget {
                                   const AppText(
                                       text: "Start Date: ",
                                       color: Color(0xFF606975),
-                                      fontSize: 12),
+                                      fontSize: 10),
                                   AppText(
                                       text: controller.startDateString.value,
                                       color: const Color(0xFF384250)),
@@ -108,7 +108,7 @@ class DateSelector extends StatelessWidget {
                                   const AppText(
                                       text: "End Date: ",
                                       color: Color(0xFF384250),
-                                      fontSize: 12),
+                                      fontSize: 10),
                                   AppText(
                                       text: controller.endDateString.value,
                                       color: const Color(0xFF384250)),

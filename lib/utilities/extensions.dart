@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'enums.dart';
 import 'parsing.dart';
 
 extension BoolParsing on String {
@@ -125,6 +126,16 @@ extension OrderId on String {
       return substring(lastIndexOf('/') + 1);
     } catch (e) {
       return this;
+    }
+  }
+
+  OrderStatus orderStatus() {
+    try {
+      return contains("glyphicon-ok-circle")
+          ? OrderStatus.success
+          : OrderStatus.unknown;
+    } catch (e) {
+      return OrderStatus.unknown;
     }
   }
 }

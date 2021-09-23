@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../models/sales_report_order_item.dart';
-import '../../../../utilities/extensions.dart';
 import '../../../../utilities/images.dart';
 import '../controller/salesreports.home.controller.dart';
 import 'grand_total.dart';
@@ -63,8 +62,8 @@ class SalesReportEachOrderItem extends StatelessWidget {
                 context, "Record: ${item.inputData}", "Time: ${item.time}"),
             GrandTotal(
                 status: item.barcode.contains("glyphicon-ok-circle")
-                    ? "Unknown"
-                    : "Success",
+                    ? "Success"
+                    : "Unknown",
                 totalPrice: item.total,
                 totalPv: item.totalPv.toString()),
           ],

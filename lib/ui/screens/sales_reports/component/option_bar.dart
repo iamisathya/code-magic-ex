@@ -19,6 +19,7 @@ class OptionBar extends StatelessWidget {
     return Container(
       height: 50,
       decoration: const BoxDecoration(
+        color: Color(0xFFFFFFFF),
         border: Border(
           top: BorderSide(width: 0.5),
           bottom: BorderSide(width: 0.5),
