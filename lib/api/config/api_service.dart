@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/barcode_item_response.dart';
+import 'package:dsc_tools/models/barcode_response.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -425,6 +427,20 @@ abstract class MemberCallsService {
       @Query('datepicker2') String datepicker2,
       @Query('token') String token,
       @Query('action') String action);
+
+
+  //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?order=423182123&token=b5eb37c5-5644-492d-b703-817cf58bfa9e&href=31512d2a1d4a2a5860bc785d27d1f7522ad2ddc6de4667f07aa6ac036f67662c
+  @GET(Address.barcodeDetails)
+  Future<BarcodeResponse> getBarcodeDetails(
+      @Header("cookie") String cookie, 
+      @Query('order') String order,
+      @Query('token') String token,
+      @Query('href') String href);
+
+  //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?order=423182123&token=b5eb37c5-5644-492d-b703-817cf58bfa9e&href=31512d2a1d4a2a5860bc785d27d1f7522ad2ddc6de4667f07aa6ac036f67662c
+  @GET(Address.barcodeItems)
+  @FormUrlEncoded()
+  Future<BarCodeItemsResponse> getBarcodeItems(@Body() String request);
 }
 
 @RestApi(baseUrl: Address.memberCalls2Base)
@@ -464,4 +480,115 @@ abstract class MemberCalls2Service {
   //? Example: https://member-calls2.unicity.com/etlV2/cache/clearAll?baId=2970466
   @DELETE(Address.clearOrderCache)
   Future<ClearOrderCacheResponse> clearOrderCache(@Query('baId') String baId);
+}
+
+@RestApi(baseUrl: Address.dscBase)
+abstract class DscCallService {
+  factory DscCallService(Dio dio, {String baseUrl}) = _DscCallService;
+
+  factory DscCallService.init() {
+    final Dio dio = Dio();
+    dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    return DscCallService(dio);
+  }
+
+  // //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
+  // @GET(Address.dscBarcodeItems)
+  // Future<BarCodeResponse> getBarcodeItems(
+  //   @Field("data[terms][discount][amount]") String country,
+  //   @Field("data[terms][period]") String joinPeriod,
+  //   @Field("data[terms][pretotal]") String system,
+  //   @Field("data[terms][tax][amount]") as taxAmount
+  // @Field("data[terms][tax][percentage]") as taxPercentage,
+  // @Field("data[terms][freight][amount]") as freightAmount,
+  // @Field("data[terms][subtotal]") as subtotal,
+  // @Field("data[terms][taxableTotal]") as  taxableTotal,
+  // @Field("data[terms][total]") as total,
+  // @Field("data[terms][pv]") as pv,
+  // @Field("data[transactions][items][0][billToAddress][address1]") as  billToAddressAddress1,
+  // @Field("data[transactions][items][0][billToAddress][address2]") as  billToAddressAddress2,
+  // @Field("data[transactions][items][0][billToAddress][city]") as  billToAddressCity,
+  // @Field("data[transactions][items][0][billToAddress][zip]") as  billToAddressZip,
+  // @Field("data[transactions][items][0][billToAddress][country]") as billToAddressCountry,
+  // @Field("data[transactions][items][0][billToName][fullName]") as  billToNameFullName,
+  // @Field("data[transactions][items][0][billToPhone]") as  billToPhone
+  // @Field("data[transactions][items][0][methodDetails][payer]") as  payer,
+  // @Field("data[transactions][items][0][amount]") as  amount,
+  // @Field("data[transactions][items][0][authorization]") as  authorization,
+  // @Field("data[transactions][items][0][type]") as  type,
+  // @Field("data[transactions][aggregate][amount]") as  aggregateAmount,
+  // @Field("data[creator][humanName][fullName]") as  fullName,
+  // @Field("data[currency]") as currency,
+  // @Field("data[customer][id][unicity]") as id,
+  // @Field("data[customer][taxTerms][taxId]") as taxTermsTaxId,
+  // @Field("data[customer][href]") as  customerHref,
+  // @Field("data[fulfillmentStatus]") as fulfillmentStatus,
+  // @Field("data[invoice][id][unicity]") as invoiceId,
+  // @Field("data[invoice][href]") as invoiceHref,
+  // @Field("data[lines][items][0][item][id][unicity]") as  19852
+  // @Field("data[lines][items][0][item][href]") as  https://hydra.unicity.net/v5a/items/21d4c81c327191b6be5024635ab575d1
+  // @Field("data[lines][items][0][catalogSlide][content][description]") as  Coffee Mix (Bio Reishi Brand)
+  // @Field("data[lines][items][0][terms][priceEach]") as  310
+  // @Field("data[lines][items][0][terms][pvEach]") as  3
+  // @Field("data[lines][items][0][terms][taxablePriceEach]") as  289.72
+  // @Field("data[lines][items][0][terms][tax][aggregate][amount]") as  40.56
+  // @Field("data[lines][items][0][terms][tax][amount]") as  20.28
+  // @Field("data[lines][items][0][terms][tax][percentage]") as  7
+  // @Field("data[lines][items][0][quantity]") as  2
+  // @Field("data[lines][items][0][quantityDetails][quantityBackordered]") as  0
+  // @Field("data[lines][items][1][item][id][unicity]") as  19236
+  // @Field("data[lines][items][1][item][href]") as  https://hydra.unicity.net/v5a/items/92c00b12d7e8f2ef58b48e011c766a79
+  // @Field("data[lines][items][1][catalogSlide][content][description]") as  Super Chlorophyll Powder TH
+  // @Field("data[lines][items][1][terms][priceEach]") as  665
+  // @Field("data[lines][items][1][terms][pvEach]") as  12
+  // @Field("data[lines][items][1][terms][taxablePriceEach]") as  621.5
+  // @Field("data[lines][items][1][terms][tax][aggregate][amount]") as  87
+  // @Field("data[lines][items][1][terms][tax][amount]") as  43.5
+  // @Field("data[lines][items][1][terms][tax][percentage]") as  7
+  // @Field("data[lines][items][1][quantity]") as  2
+  // @Field("data[lines][items][1][quantityDetails][quantityBackordered]") as  0
+  // @Field("data[lines][items][2][item][id][unicity]") as  24726
+  // @Field("data[lines][items][2][item][href]") as  https://hydra.unicity.net/v5a/items/ae188df4a1a9abf0c579cd4becb7b5aa
+  // @Field("data[lines][items][2][catalogSlide][content][description]") as  Bio-C 300 TH
+  // @Field("data[lines][items][2][terms][priceEach]") as  790
+  // @Field("data[lines][items][2][terms][pvEach]") as  10
+  // @Field("data[lines][items][2][terms][taxablePriceEach]") as  738.32
+  // @Field("data[lines][items][2][terms][tax][aggregate][amount]") as  103.36
+  // @Field("data[lines][items][2][terms][tax][amount]") as  51.68
+  // @Field("data[lines][items][2][terms][tax][percentage]") as  7
+  // @Field("data[lines][items][2][quantity]") as  2
+  // @Field("data[lines][items][2][quantityDetails][quantityBackordered]") as  0
+  // @Field("data[lines][items][3][item][id][unicity]") as  31334
+  // @Field("data[lines][items][3][item][href]") as  https://hydra.unicity.net/v5a/items/733f074159b14c7029c387dc9308e14b
+  // @Field("data[lines][items][3][catalogSlide][content][description]") as  Core H TH
+  // @Field("data[lines][items][3][terms][priceEach]") as  820
+  // @Field("data[lines][items][3][terms][pvEach]") as  12
+  // @Field("data[lines][items][3][terms][taxablePriceEach]") as  766.36
+  // @Field("data[lines][items][3][terms][tax][aggregate][amount]") as  107.28
+  // @Field("data[lines][items][3][terms][tax][amount]") as  53.64
+  // @Field("data[lines][items][3][terms][tax][percentage]") as  7
+  // @Field("data[lines][items][3][quantity]") as  2
+  // @Field("data[lines][items][3][quantityDetails][quantityBackordered]") as  0
+  // @Field("data[market]") as market,
+  // @Field("data[dateCreated]") as dateCreated,
+  // @Field("data[id][unicity]") as  idUnicity,
+  // @Field("data[id][label]") as  idLabel,
+  // @Field("data[notes]") as notes,
+  // @Field("data[paymentStatus]") as paymentStatus,
+  // @Field("data[shipToAddress][address1]") as shipToAddressAddress1,
+  // @Field("data[shipToAddress][address2]") as shipToAddressAddress2,
+  // @Field("data[shipToAddress][city]") as  shipToAddressCity,
+  // @Field("data[shipToAddress][state]") as  shipToAddressState,
+  // @Field("data[shipToAddress][zip]") as shipToAddressZip,
+  // @Field("data[shipToAddress][country]") as shipToAddressCountry,
+  // @Field("data[shipToEmail]") as  shipToEmail,
+  // @Field("data[shippingMethod][type]") as shippingMethodType,
+  // @Field("data[shippingMethod][location]") as shippingMethodLocation,
+  // @Field("data[shipToName][firstName]") as shipToNameFirstName,
+  // @Field("data[shipToName][lastName]") as  shipToNameLastName,
+  // @Field("data[shipToName][fullName]") as  shipToNameFullName,
+  // @Field("data[shipToName][fullName@th]") as shipToNameFullNameNative,
+  // @Field("data[shipToPhone]") as shipToPhone,
+  // @Field("data[href]") as href,
+  // );
 }

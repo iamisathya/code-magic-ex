@@ -20,8 +20,12 @@ class Address {
       "/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/orders";
   static const String customersPath = "customers";
   static const String memberCalls2Base = "https://member-calls2.unicity.com/";
+  static const String dscBase = "https://dsc-th.unicity.com/";
   static const String memberCallsBase = "https://member-calls.unicity.com/";
   static const String validOrders = "ALL/DSC/THA/getdata.php";
+  static const String barcodeDetails = "ALL/DSC/THA/barcode/redirect.php";
+  static const String barcodeItems = "ALL/DSC/THA/barcode/check/library/get_items.php";
+  static const String dscBarcodeItems = "barcode/check/library/get_items.php";
   static const String allDsc = "ALL/DSC/";
   static const String allDscPath = "ALL/DSC";
   static const String dictionary = "dictionary/publish";

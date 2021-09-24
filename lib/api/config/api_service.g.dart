@@ -1009,6 +1009,46 @@ class _MemberCallsService implements MemberCallsService {
     return value;
   }
 
+  @override
+  Future<BarcodeResponse> getBarcodeDetails(cookie, order, token, href) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'order': order,
+      r'token': token,
+      r'href': href
+    };
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BarcodeResponse>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{r'cookie': cookie},
+                extra: _extra)
+            .compose(_dio.options, 'ALL/DSC/THA/barcode/redirect.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BarcodeResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<BarCodeItemsResponse> getBarcodeItems(request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BarCodeItemsResponse>(Options(
+                method: 'GET',
+                headers: <String, dynamic>{},
+                extra: _extra,
+                contentType: 'application/x-www-form-urlencoded')
+            .compose(
+                _dio.options, 'ALL/DSC/THA/barcode/check/library/get_items.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BarCodeItemsResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
@@ -1117,6 +1157,29 @@ class _MemberCalls2Service implements MemberCalls2Service {
     final value = ClearOrderCacheResponse.fromJson(_result.data!);
     return value;
   }
+
+  RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
+    if (T != dynamic &&
+        !(requestOptions.responseType == ResponseType.bytes ||
+            requestOptions.responseType == ResponseType.stream)) {
+      if (T == String) {
+        requestOptions.responseType = ResponseType.plain;
+      } else {
+        requestOptions.responseType = ResponseType.json;
+      }
+    }
+    return requestOptions;
+  }
+}
+
+class _DscCallService implements DscCallService {
+  _DscCallService(this._dio, {this.baseUrl}) {
+    baseUrl ??= 'https://dsc-th.unicity.com/';
+  }
+
+  final Dio _dio;
+
+  String? baseUrl;
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
