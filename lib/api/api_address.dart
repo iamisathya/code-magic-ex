@@ -1,6 +1,7 @@
 const String encodetype = "base64";
 const String encodeValue = "Mjk3MDQ2NjoxMjM0";
 const String baseDscTh = "https://dsc-th.unicity.com/";
+const String gToken = "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1973291869.1632382277; __cf_bm=g83McmerfcqxtdhiGFATq8b8A99IpLJEv.uiyDhy0WY-1632416053-0-AZdaMG45KBS/h/MQBVdgAJyPzzY0uX6Ql/zW6Fggzg5UAf3zaJ+Az41w2nWVVkuZHTrNqabsoWfFzKU4oLbY1Mqld5KRAzkCNNT/DW2dNSvun1nFras+le1rMdxwSFw0JA==";
 
 class Address {
   static const String baseDscTh = "https://dsc-th.unicity.com/";

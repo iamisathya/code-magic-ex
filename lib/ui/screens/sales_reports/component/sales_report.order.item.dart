@@ -17,25 +17,25 @@ class SalesReportEachOrderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => controller.gotoDetailsPage(item),
-      child: Container(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(item.name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(color: const Color(0xFF000000))),
-                ),
-                SizedBox(
+    return Container(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(item.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(color: const Color(0xFF000000))),
+              ),
+              GestureDetector(
+                onTap: () => controller.gotoDetailsPage(item),
+                child: SizedBox(
                   width: 70,
                   child: SvgPicture.asset(
                     item.barcode.contains("glyphicon-ok-circle")
@@ -46,35 +46,33 @@ class SalesReportEachOrderItem extends StatelessWidget {
                     semanticsLabel: "barcode",
                   ),
                 ),
-              ],
-            ),
-            _renderEachRow(
-                context,
-                "BA Number: ${item.customer}",
-                "Barcode: ${item.barcodeNumber}"),
-            _renderOrderIdRow(
-                context,
-                "Order ID: ",
-                item.orderNumber,
-                "Date: ${item.date}",
-                item.orderHref),
-            _renderEachRow(
-                context, "Record: ${item.inputData}", "Time: ${item.time}"),
-            GrandTotal(
-                status: item.barcode.contains("glyphicon-ok-circle")
-                    ? "Success"
-                    : "Unknown",
-                totalPrice: item.total,
-                totalPv: item.totalPv.toString()),
-          ],
-        ),
+              ),
+            ],
+          ),
+          _renderEachRow(context, "BA Number: ${item.customer}",
+              "Barcode: ${item.barcodeNumber}"),
+          _renderOrderIdRow(context, "Order ID: ", item.orderNumber,
+              "Date: ${item.date}", item.orderHref),
+          _renderEachRow(
+              context, "Record: ${item.inputData}", "Time: ${item.time}"),
+          GrandTotal(
+              status: item.barcode.contains("glyphicon-ok-circle")
+                  ? "Success"
+                  : "Unknown",
+              totalPrice: item.total,
+              totalPv: item.totalPv.toString()),
+        ],
       ),
     );
   }
 
   Widget _renderOrderIdRow(BuildContext context, String title1, String value1,
       String value2, String href) {
-    final Map<String, dynamic> args = {"orderId": value1, "href": href, "readyUrl": true};
+    final Map<String, dynamic> args = {
+      "orderId": value1,
+      "href": href,
+      "readyUrl": true
+    };
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Row(

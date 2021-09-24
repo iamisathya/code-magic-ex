@@ -1,9 +1,9 @@
+import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import '../../../../models/sales_report_details.dart';
 import '../../../../utilities/images.dart';
 import '../../../global/widgets/plain_button.dart';
 import '../../open_po/home/components/loader.dart';
@@ -119,7 +119,7 @@ class SalesReportOrderDetials extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: controller.listSize,
                       itemBuilder: (BuildContext ctxt, int index) {
-                        final Items item = controller.products[index];
+                        final BarcodeItem item = controller.products[index];
                         return BarcodeProductItem(item: item);
                       }),
                 ),

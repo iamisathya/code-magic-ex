@@ -34,15 +34,18 @@ class SalesReportEachRmaItem extends StatelessWidget {
                         .headline6!
                         .copyWith(color: const Color(0xFF000000))),
               ),
-              SizedBox(
-                width: 70,
-                child: SvgPicture.asset(
-                  item.rmaOrderNumber.contains("glyphicon-ok-circle")
-                      ? kBarcodeSuccessIcon
-                      : kBarcodeErrorIcon,
-                  height: 25,
-                  width: 50,
-                  semanticsLabel: "barcode",
+              GestureDetector(
+                onTap: () => controller.gotoBarcodePage(item),
+                child: SizedBox(
+                  width: 70,
+                  child: SvgPicture.asset(
+                    item.rmaOrderNumber.contains("glyphicon-ok-circle")
+                        ? kBarcodeSuccessIcon
+                        : kBarcodeErrorIcon,
+                    height: 25,
+                    width: 50,
+                    semanticsLabel: "barcode",
+                  ),
                 ),
               ),
             ],

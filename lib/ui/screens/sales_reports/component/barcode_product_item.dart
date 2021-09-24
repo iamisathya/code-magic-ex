@@ -1,11 +1,11 @@
+import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../models/sales_report_details.dart';
 import '../../../../utilities/images.dart';
 
 class BarcodeProductItem extends StatelessWidget {
-  final Items item;
+  final BarcodeItem item;
 
   const BarcodeProductItem({required this.item});
 
@@ -29,10 +29,10 @@ class BarcodeProductItem extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(item.catalogSlide.content.description,
+                Text(item.desc,
                     style: Theme.of(context).textTheme.bodyText1),
                 Text(
-                    "Scanned:${item.quantityDetails.quantityBackordered}/${item.quantity}",
+                    "Scanned:${item.scan}/${item.qty}",
                     style: Theme.of(context).textTheme.bodyText2)
               ],
             ),

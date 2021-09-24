@@ -377,4 +377,20 @@ class SalesReportHomeController extends GetxController {
     };
     Get.to(() => SalesReportOrderDetials(), arguments: args);
   }
+
+  void gotoBarcodePage(SalesReportRmaItem item) {
+    final Map<String, dynamic> args = {
+      "orderCode": item.orderNumber.retrieveOrderCodeFromUrl(),
+      "orderId": item.orderNumber.retrieveBarcode()
+    };
+    Get.to(() => SalesReportOrderDetials(), arguments: args);
+  }
+
+  void gotoDetailPage(SalesReportItemItem item) {
+    final Map<String, dynamic> args = {
+      "orderCode": item.itemCode,
+      "orderId": item.description
+    };
+    Get.to(() => SalesReportOrderDetials(), arguments: args);
+  }
 }

@@ -1037,7 +1037,7 @@ class _MemberCallsService implements MemberCallsService {
     final _data = request;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<BarCodeItemsResponse>(Options(
-                method: 'GET',
+                method: 'POST',
                 headers: <String, dynamic>{},
                 extra: _extra,
                 contentType: 'application/x-www-form-urlencoded')

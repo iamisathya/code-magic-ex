@@ -33,13 +33,16 @@ class SalesReportEachItemItem extends StatelessWidget {
                         .headline6!
                         .copyWith(color: const Color(0xFF000000))),
               ),
-              SizedBox(
-                width: 70,
-                child: SvgPicture.asset(
-                  kBarcodeSuccessIcon,
-                  height: 25,
-                  width: 50,
-                  semanticsLabel: "barcode",
+              GestureDetector(
+                onTap: () => controller.gotoDetailPage(item),
+                child: SizedBox(
+                  width: 70,
+                  child: SvgPicture.asset(
+                    kBarcodeSuccessIcon,
+                    height: 25,
+                    width: 50,
+                    semanticsLabel: "barcode",
+                  ),
                 ),
               ),
             ],
