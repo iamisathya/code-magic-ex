@@ -107,6 +107,7 @@ flutter:
     - assets/icons/dashboard/
     - assets/json/
     - assets/images/
+    - assets/illustration/
     - assets/lottie/
     - assets/animated/
     - .env

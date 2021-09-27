@@ -75,6 +75,7 @@ const kBarcodePlainIcon = 'assets/icons/barcode_icon.svg';
 const kWarningIcon = 'assets/icons/warning_icon.svg';
 const kSuccessIcon = 'assets/icons/success_icon.svg';
 const kCrossArrowIcon = 'assets/icons/cross_arrow_icon.svg';
+const kBarcodeScanIcon = 'assets/icons/barcode_scan_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';
@@ -97,3 +98,8 @@ const kSplashImage = 'assets/images/splash.jpg';
 // * animated
 const kAnimatedLoader = 'assets/animated/spinner.gif';
 const kAnimatedLoader2 = 'assets/animated/spinner2.gif';
+
+
+// * Illustration
+const kScanBarcodeIllustration = 'assets/illustration/scan_barcode_illustration.svg';
+
