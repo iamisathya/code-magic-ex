@@ -40,7 +40,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
     lines: Lines.fromJson(json['lines'] as Map<String, dynamic>),
     market: json['market'] as String,
     dateCreated: json['dateCreated'] as String,
-    id: Id.fromJson(json['id'] as Map<String, dynamic>),
+    id: LabelId.fromJson(json['id'] as Map<String, dynamic>),
     notes: json['notes'] as String,
     paymentStatus: json['paymentStatus'] as String,
     shipToAddress:

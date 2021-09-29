@@ -55,7 +55,7 @@ class UserProfile {
   @JsonKey(name: "href")
   String href;
   @JsonKey(name: "id")
-  Id id;
+  LabelId id;
   @JsonKey(name: "invoice")
   Invoice invoice;
   @JsonKey(name: "lines")

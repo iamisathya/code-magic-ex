@@ -105,8 +105,7 @@ class SalesReportDetailsController extends Image.GetxController {
       map["data[market]"] = barcodeDetails!.userProfile.market;
       map["data[dateCreated]"] = barcodeDetails!.userProfile.dateCreated;
       map["data[id][unicity]"] = barcodeDetails!.userProfile.id.unicity;
-      // ! map["data[id][label]"] = barcodeDetails!.userProfile.id.unicity;
-      map["data[id][label]"] = barcodeDetails!.userProfile.id.unicity;
+      map["data[id][label]"] = barcodeDetails!.userProfile.id.label;
       map["data[notes]"] = barcodeDetails!.userProfile.notes;
       map["data[paymentStatus]"] = barcodeDetails!.userProfile.paymentStatus;
       map["data[shipToAddress][address1]"] = barcodeDetails!.userProfile.shipToAddress.address1;
