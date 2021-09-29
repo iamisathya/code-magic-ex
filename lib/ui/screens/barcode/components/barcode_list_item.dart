@@ -15,75 +15,76 @@ class BarcodeListItem extends StatelessWidget {
       () => GestureDetector(
         onTap: () => controller.isExpanded.toggle(),
         child: AnimatedContainer(
-          margin: const EdgeInsets.symmetric(vertical: 5),
-          duration: const Duration(milliseconds: 160),
-          // height: controller.isExpanded.value ? 246 : 66,
-          decoration: BoxDecoration(
-              color: const Color(0xFFFFFFFF),
-              border: Border.all(color: const Color(0xFFD0D0CF), width: 0.5),
-              borderRadius: const BorderRadius.all(Radius.circular(3.0))),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: SvgPicture.asset(kSuccessIcon,
-                        height: 25, width: 25, semanticsLabel: 'success icon'),
-                  ),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Promo Free Sanitizer Spray TH",
-                            style: Theme.of(context).textTheme.bodyText1),
-                        Text("Scanned:1",
-                            style: Theme.of(context).textTheme.bodyText2)
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: SvgPicture.asset(
-                        controller.isExpanded.value ? kMinusIcon : kPlusIcon,
-                        width: 15,
-                        semanticsLabel: 'add icon'),
-                  ),
-                ],
-              ),
-              if (controller.isExpanded.value)
-                Column(
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            duration: const Duration(milliseconds: 160),
+            // height: controller.isExpanded.value ? 246 : 66,
+            decoration: BoxDecoration(
+                color: const Color(0xFFFFFFFF),
+                border: Border.all(color: const Color(0xFFD0D0CF), width: 0.5),
+                borderRadius: const BorderRadius.all(Radius.circular(3.0))),
+            child: Column(
+              children: [
+                Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5.0, horizontal: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          BarcodeItemChip(text: "Code: 19236"),
-                          BarcodeItemChip(text: "Qty: 3"),
-                          BarcodeItemChip(text: "Remains: 0"),
+                      padding: const EdgeInsets.all(20.0),
+                      child: SvgPicture.asset(kSuccessIcon,
+                          height: 25,
+                          width: 25,
+                          semanticsLabel: 'success icon'),
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Promo Free Sanitizer Spray TH",
+                              style: Theme.of(context).textTheme.bodyText1),
+                          Text("Scanned:1",
+                              style: Theme.of(context).textTheme.bodyText2)
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 3,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return BarcodeTextItem();
-                          }),
-                    )
+                      padding: const EdgeInsets.all(20.0),
+                      child: SvgPicture.asset(controller.isExpanded.value ? kMinusIcon : kPlusIcon,
+                          width: 15, semanticsLabel: 'add icon'),
+                    ),
                   ],
-                )
-              else
-                const SizedBox(),
-            ],
+                ),
+                if (controller.isExpanded.value)
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5.0, horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: const [
+                            BarcodeItemChip(text: "Code: 19236"),
+                            BarcodeItemChip(text: "Qty: 3"),
+                            BarcodeItemChip(text: "Remains: 0"),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: 3,
+                            itemBuilder: (BuildContext ctxt, int index) {
+                              return const BarcodeTextItem();
+                            }),
+                      )
+                    ],
+                  )
+                else
+                  const SizedBox(),
+              ],
+            ),
           ),
         ),
-      ),
+      
     );
   }
 }
@@ -116,10 +117,7 @@ class BarcodeItemChip extends StatelessWidget {
 }
 
 class BarcodeTextItem extends StatelessWidget {
-  final BarcodeScannResultController controller =
-      Get.put(BarcodeScannResultController());
-
-  BarcodeTextItem({
+  const BarcodeTextItem({
     Key? key,
   }) : super(key: key);
 
@@ -133,7 +131,6 @@ class BarcodeTextItem extends StatelessWidget {
           Text("Barcode: 2573500222478",
               style: Theme.of(context).textTheme.bodyText1),
           GestureDetector(
-            onTap: () => controller.deleteBarcodeItem(),
             child: SvgPicture.asset(kTrashIcon,
                 height: 15, width: 15, semanticsLabel: 'trash icon'),
           ),
