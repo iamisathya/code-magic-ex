@@ -82,6 +82,15 @@ extension OrderId on String {
     }
   }
 
+   String retrieveLastString() {
+    // https://dsc-th.unicity.com/barcode/?href=cb35c0faba9c0ecd572a6929e3c912293874eb850fabf9595af7b0ae858e164b&token=654a5e49-e5cd-410d-82ab-32f1a6ca28cd&user=23123123
+    try {
+      return substring(lastIndexOf("=")+1, length);
+    } catch (e) {
+      return this;
+    }
+  }
+
   String retrieveHrefCode() {
     // <a href=\"https://dsc-th.unicity.com/invoice.php?link=https://hydra.unicity.net/v5a/orders/31512d2a1d4a2a5860bc785d27d1f7525477d2ced9d2f1fac6c0ddf622ee02f2&token=ad4e6c2d-aad2-473b-8686-b02b2fc903d0\" target=\"_blank\">423177348</a>
     const start = 'href=\"';

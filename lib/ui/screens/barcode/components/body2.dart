@@ -29,6 +29,9 @@ class Body extends StatelessWidget {
                 color: const Color(0xFFFFFFFF),
               ),
               child: TextField(
+                controller: controller.bardcodeTextField,
+                onSubmitted: (val) => controller.getBarcodePath(context, val),
+                onEditingComplete: () => controller.getBarcodePath(context, controller.bardcodeTextField.text),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   contentPadding:
