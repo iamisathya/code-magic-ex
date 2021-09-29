@@ -22,6 +22,7 @@ const kOrderWaringImage = 'assets/images/order_warning_image.svg';
 const kNoRecordFoundImage = 'assets/images/no_record_found_image.svg';
 const kDefaultDistributorImage = 'assets/images/distributor.png';
 const kProductPlaceholderImage = 'assets/images/product_placeholder_image.svg';
+const kNotificationBellImage = 'assets/images/notification_bell_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityGradient3xImage = 'assets/icons/unicity_logo_3x.png';
@@ -76,6 +77,8 @@ const kWarningIcon = 'assets/icons/warning_icon.svg';
 const kSuccessIcon = 'assets/icons/success_icon.svg';
 const kCrossArrowIcon = 'assets/icons/cross_arrow_icon.svg';
 const kBarcodeScanIcon = 'assets/icons/barcode_scan_icon.svg';
+const kCheckSuccessIcon = 'assets/icons/check_success_icon.svg';
+const kTrashIcon = 'assets/icons/trash_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';
