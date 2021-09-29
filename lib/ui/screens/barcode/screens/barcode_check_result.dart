@@ -51,7 +51,7 @@ class BarcodeCheckResult extends StatelessWidget {
                  child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 10,
+                      itemCount: 4,
                       itemBuilder: (BuildContext ctxt, int index) {
                         return BarcodeListItem();
                       }),

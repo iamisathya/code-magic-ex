@@ -19,9 +19,12 @@ class BarcodeScannResultController extends GetxController {
             children: [
               SvgPicture.asset(kNotificationBellImage, height: 193, width: 200),
               const SizedBox(height: 30),
-              const Text(
-                "“Your current changes will not be saved”",
-                textAlign: TextAlign.center,
+              const SizedBox(
+                width: 230,
+                child: Text(
+                  "“Your current changes will not be saved”",
+                  textAlign: TextAlign.center,
+                ),
               ),
               const SizedBox(height: 40),
               PlainButton(
