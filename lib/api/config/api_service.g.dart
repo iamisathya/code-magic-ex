@@ -1031,21 +1031,20 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
-  Future<BarCodeItemsResponse> getBarcodeItems(request) async {
+  Future<dynamic> getBarcodeItems(cookie, request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = request;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<BarCodeItemsResponse>(Options(
-                method: 'POST',
-                headers: <String, dynamic>{},
-                extra: _extra,
-                contentType: 'application/x-www-form-urlencoded')
-            .compose(
-                _dio.options, 'ALL/DSC/THA/barcode/check/library/get_items.php',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = BarCodeItemsResponse.fromJson(_result.data!);
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+            method: 'POST',
+            headers: <String, dynamic>{r'cookie': cookie},
+            extra: _extra,
+            contentType: 'application/x-www-form-urlencoded')
+        .compose(
+            _dio.options, 'ALL/DSC/THA/barcode/check/library/get_items.php',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
     return value;
   }
 

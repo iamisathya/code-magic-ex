@@ -439,8 +439,8 @@ abstract class MemberCallsService {
 
   //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?order=423182123&token=b5eb37c5-5644-492d-b703-817cf58bfa9e&href=31512d2a1d4a2a5860bc785d27d1f7522ad2ddc6de4667f07aa6ac036f67662c
   @POST(Address.barcodeItems)
-  @FormUrlEncoded()
-  Future<BarCodeItemsResponse> getBarcodeItems(@Body() String request);
+  @FormUrlEncoded()  
+  Future<dynamic> getBarcodeItems(@Header("cookie") String cookie, @Body() FormData request);
 }
 
 @RestApi(baseUrl: Address.memberCalls2Base)

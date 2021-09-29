@@ -121,6 +121,19 @@ extension OrderId on String {
     }
   }
 
+    String retrieveOrderCodeFromLightUrl() {
+    // https://dsc-th.unicity.com/barcode?lang=en&href=31512d2a1d4a2a5860bc785d27d1f752db37de8ea067cef098ede454fbf66dad&token=3c9a4466-9b31-4e5d-bf18-ca4b8c3dd76d&user=236187666\"
+    const start = "href=";
+    const end = "&token";
+    final startIndex = indexOf(start);
+    final endIndex = indexOf(end, startIndex + start.length);
+    try {
+      return substring(startIndex + start.length, endIndex);
+    } catch (e) {
+      return this;
+    }
+  }
+
   String getAfterLastSlash() {
     try {
       return substring(lastIndexOf('/') + 1);
