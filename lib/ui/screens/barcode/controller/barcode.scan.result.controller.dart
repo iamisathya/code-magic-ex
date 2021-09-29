@@ -8,6 +8,10 @@ class BarcodeScannResultController extends GetxController {
   RxBool loading = false.obs;
   RxBool isExpanded = false.obs;
 
+  void deleteBarcodeItem() {
+    
+  }
+
   void showWarningMessage() {
     Get.dialog(
       AlertDialog(
