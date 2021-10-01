@@ -40,7 +40,7 @@ class BarcodeListItem extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Promo Free Sanitizer Spray TH",
+                        Text(item.desc,
                             style: Theme.of(context).textTheme.bodyText1),
                         Text("Scanned:1",
                             style: Theme.of(context).textTheme.bodyText2)
@@ -64,10 +64,10 @@ class BarcodeListItem extends StatelessWidget {
                           vertical: 5.0, horizontal: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          BarcodeItemChip(text: "Code: 19236"),
-                          BarcodeItemChip(text: "Qty: 3"),
-                          BarcodeItemChip(text: "Remains: 0"),
+                        children: [
+                          BarcodeItemChip(text: "Code: ${item.code}"),
+                          BarcodeItemChip(text: "Qty: ${item.qty}"),
+                          BarcodeItemChip(text: "Remains: ${item.remain}"),
                         ],
                       ),
                     ),
