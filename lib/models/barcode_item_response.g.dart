@@ -30,6 +30,7 @@ BarcodeItem _$BarcodeItemFromJson(Map<String, dynamic> json) {
     remain: json['remain'] as int,
     require: json['require'] as bool,
     scan: json['scan'] as int,
+    isExpanded: json['isExpanded'] as bool,
   );
 }
 
@@ -41,4 +42,5 @@ Map<String, dynamic> _$BarcodeItemToJson(BarcodeItem instance) =>
       'remain': instance.remain,
       'require': instance.require,
       'scan': instance.scan,
+      'isExpanded': instance.isExpanded,
     };

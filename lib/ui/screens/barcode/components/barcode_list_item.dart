@@ -1,4 +1,5 @@
-import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.result.controller.dart';
+import 'package:dsc_tools/models/barcode_item_response.dart';
+import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -6,85 +7,88 @@ import 'package:get/get.dart';
 import '../../../../utilities/images.dart';
 
 class BarcodeListItem extends StatelessWidget {
-  final BarcodeScannResultController controller =
-      Get.put(BarcodeScannResultController());
+  final BarcodeScannerController controller =
+      Get.put(BarcodeScannerController());
+
+  final BarcodeItem item;
+  final int index;
+  BarcodeListItem({required this.item, required this.index});
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => GestureDetector(
-        onTap: () => controller.isExpanded.toggle(),
+    return  GetBuilder<BarcodeScannerController>(
+        builder: (_) => GestureDetector(
+        onTap: () => controller.toggleItem(index),
         child: AnimatedContainer(
-            margin: const EdgeInsets.symmetric(vertical: 5),
-            duration: const Duration(milliseconds: 160),
-            // height: controller.isExpanded.value ? 246 : 66,
-            decoration: BoxDecoration(
-                color: const Color(0xFFFFFFFF),
-                border: Border.all(color: const Color(0xFFD0D0CF), width: 0.5),
-                borderRadius: const BorderRadius.all(Radius.circular(3.0))),
-            child: Column(
-              children: [
-                Row(
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          duration: const Duration(milliseconds: 160),
+          // height: controller.isExpanded.value ? 246 : 66,
+          decoration: BoxDecoration(
+              color: const Color(0xFFFFFFFF),
+              border: Border.all(color: const Color(0xFFD0D0CF), width: 0.5),
+              borderRadius: const BorderRadius.all(Radius.circular(3.0))),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: SvgPicture.asset(kSuccessIcon,
+                        height: 25, width: 25, semanticsLabel: 'success icon'),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Promo Free Sanitizer Spray TH",
+                            style: Theme.of(context).textTheme.bodyText1),
+                        Text("Scanned:1",
+                            style: Theme.of(context).textTheme.bodyText2)
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: SvgPicture.asset(
+                        item.isExpanded ? kMinusIcon : kPlusIcon,
+                        width: 15,
+                        semanticsLabel: 'add icon'),
+                  ),
+                ],
+              ),
+              if (item.isExpanded)
+                Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: SvgPicture.asset(kSuccessIcon,
-                          height: 25,
-                          width: 25,
-                          semanticsLabel: 'success icon'),
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Promo Free Sanitizer Spray TH",
-                              style: Theme.of(context).textTheme.bodyText1),
-                          Text("Scanned:1",
-                              style: Theme.of(context).textTheme.bodyText2)
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: const [
+                          BarcodeItemChip(text: "Code: 19236"),
+                          BarcodeItemChip(text: "Qty: 3"),
+                          BarcodeItemChip(text: "Remains: 0"),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: SvgPicture.asset(controller.isExpanded.value ? kMinusIcon : kPlusIcon,
-                          width: 15, semanticsLabel: 'add icon'),
-                    ),
+                      padding: const EdgeInsets.all(10.0),
+                      child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: 3,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return const BarcodeTextItem();
+                          }),
+                    )
                   ],
-                ),
-                if (controller.isExpanded.value)
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5.0, horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const [
-                            BarcodeItemChip(text: "Code: 19236"),
-                            BarcodeItemChip(text: "Qty: 3"),
-                            BarcodeItemChip(text: "Remains: 0"),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: 3,
-                            itemBuilder: (BuildContext ctxt, int index) {
-                              return const BarcodeTextItem();
-                            }),
-                      )
-                    ],
-                  )
-                else
-                  const SizedBox(),
-              ],
-            ),
+                )
+              else
+                const SizedBox(),
+            ],
           ),
-        ),
-      
+          ),
+      ),
     );
   }
 }

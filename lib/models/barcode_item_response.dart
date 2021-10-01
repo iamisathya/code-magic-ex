@@ -33,6 +33,8 @@ class BarcodeItem {
   bool require;
   @JsonKey(name: "scan")
   int scan;
+  @JsonKey(name: "isExpanded")
+  bool isExpanded;
 
   BarcodeItem(
       {required this.code,
@@ -40,7 +42,9 @@ class BarcodeItem {
       required this.qty,
       required this.remain,
       required this.require,
-      required this.scan});
+      required this.scan,
+      required this.isExpanded,
+      });
 
   factory BarcodeItem.fromJson(Map<String, dynamic> json) =>
       _$BarcodeItemFromJson(json);
@@ -53,6 +57,7 @@ class BarcodeItem {
         'qty': qty,
         'remain': remain,
         'require': require,
-        'scan': scan
+        'scan': scan,
+        'isExpanded': isExpanded,
       };
 }
