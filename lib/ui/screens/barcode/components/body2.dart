@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import 'barcode_list_item.dart';
+import 'barcode_product_item.dart';
 
 class Body extends StatelessWidget {
   final BarcodeScannerController controller =
@@ -59,21 +59,16 @@ class Body extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-            padding: const EdgeInsets.all(20),
-            child:
-                (!controller.isLoading.value && controller.barcodeItems != null)
-                    ? ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: controller.barcodeItems?.items.length,
-                        itemBuilder: (BuildContext ctxt, int index) {
-                          final BarcodeItem item =
-                              controller.barcodeItems!.items[index];
-                          return BarcodeListItem(item: item, index: index);
-                        })
-                    : SvgPicture.asset(kScanBarcodeIllustration,
-                        width: 254, height: 252))
+        if (!controller.isLoading.value && controller.barcodeItems != null) ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: controller.barcodeItems?.items.length,
+                itemBuilder: (BuildContext ctxt, int index) {
+                  final BarcodeItem item =
+                      controller.barcodeItems!.items[index];
+                  return BarcodeProductItem(item: item);
+                }) else SvgPicture.asset(kScanBarcodeIllustration,
+                width: 254, height: 252)
       ]),
     );
   }

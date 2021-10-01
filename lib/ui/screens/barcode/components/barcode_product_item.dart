@@ -1,10 +1,15 @@
 
+import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BarcodeProductItem extends StatelessWidget {
+
+  final BarcodeItem item;
+
   const BarcodeProductItem({
+    required this.item,
     Key? key,
   }) : super(key: key);
 
@@ -35,30 +40,30 @@ class BarcodeProductItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20.0),
-                      child: Text("Scan: 0",
+                      child: Text("Scan: ${item.scan}",
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2),
                     )
                   ],
                 ),
-                Text("Qty: 1",
+                Text("Qty: ${item.qty}",
                     style: Theme.of(context).textTheme.subtitle2)
               ],
             ),
             Container(
               padding: const EdgeInsets.only(top: 10, bottom: 5),
               alignment: Alignment.centerLeft,
-              child: Text("Promo Free Sanitizer Spray TH",
+              child: Text(item.desc,
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.subtitle1),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Code: 19236",
+                Text("Code: ${item.code}",
                     style: Theme.of(context).textTheme.bodyText2),
-                Text("Remains: 1",
+                Text("Remains: ${item.remain}",
                     style: Theme.of(context).textTheme.subtitle2)
               ],
             ),

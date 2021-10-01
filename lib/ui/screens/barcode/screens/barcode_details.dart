@@ -1,3 +1,4 @@
+import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
 import 'package:dsc_tools/ui/screens/barcode/components/barcode_product_item.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
@@ -58,7 +59,15 @@ class BarCodeDetails extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: 10,
                     itemBuilder: (BuildContext ctxt, int index) {
-                      return const BarcodeProductItem();
+                      final BarcodeItem item = BarcodeItem(
+                          code: '000000',
+                          desc: 'Hardcoded',
+                          isExpanded: false,
+                          qty: 0,
+                          remain: 0,
+                          require: false,
+                          scan: 0);
+                      return BarcodeProductItem(item: item);
                     }),
               ],
             ),
