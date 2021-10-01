@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import 'alarm_info.dart';
 import 'barcode_list_item.dart';
-import 'db.dart';
 
 class Body extends StatelessWidget {
   final BarcodeScannerController controller =
