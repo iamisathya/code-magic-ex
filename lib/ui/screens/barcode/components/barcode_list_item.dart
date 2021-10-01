@@ -42,7 +42,7 @@ class BarcodeListItem extends StatelessWidget {
                       children: [
                         Text(item.desc,
                             style: Theme.of(context).textTheme.bodyText1),
-                        Text("Scanned:1",
+                        Text("Scanned: ${item.scan}",
                             style: Theme.of(context).textTheme.bodyText2)
                       ],
                     ),
