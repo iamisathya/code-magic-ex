@@ -14,6 +14,7 @@ BarcodeResponse _$BarcodeResponseFromJson(Map<String, dynamic> json) {
     token: json['token'] as String,
     url: json['url'] as String,
     version: json['version'] as String,
+    redirect: json['redirect'] as String?,
   );
 }
 
@@ -25,6 +26,7 @@ Map<String, dynamic> _$BarcodeResponseToJson(BarcodeResponse instance) =>
       'token': instance.token,
       'url': instance.url,
       'version': instance.version,
+      'redirect': instance.redirect,
     };
 
 UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
@@ -280,7 +282,8 @@ ShipToName _$ShipToNameFromJson(Map<String, dynamic> json) {
     firstName: json['firstName'] as String,
     lastName: json['lastName'] as String,
     fullName: json['fullName'] as String,
-    fullNameTh: json['fullName@th'] as String,
+    fullNameTh: json['fullName@th'] as String?,
+    fullNameAr: json['fullName@ar'] as String?,
   );
 }
 
@@ -290,12 +293,14 @@ Map<String, dynamic> _$ShipToNameToJson(ShipToName instance) =>
       'lastName': instance.lastName,
       'fullName': instance.fullName,
       'fullName@th': instance.fullNameTh,
+      'fullName@ar': instance.fullNameAr,
     };
 
 ShippingMethod _$ShippingMethodFromJson(Map<String, dynamic> json) {
   return ShippingMethod(
     type: json['type'] as String,
-    location: json['location'] as String,
+    location: json['location'] as String?,
+    href: json['href'] as String?,
   );
 }
 
@@ -303,6 +308,7 @@ Map<String, dynamic> _$ShippingMethodToJson(ShippingMethod instance) =>
     <String, dynamic>{
       'type': instance.type,
       'location': instance.location,
+      'href': instance.href,
     };
 
 Terms _$TermsFromJson(Map<String, dynamic> json) {
@@ -385,8 +391,8 @@ BillToAddress _$BillToAddressFromJson(Map<String, dynamic> json) {
   return BillToAddress(
     address1: json['address1'] as String,
     address2: json['address2'] as String,
-    city: json['city'] as String,
-    zip: json['zip'] as String,
+    city: json['city'] as String?,
+    zip: json['zip'] as String?,
     country: json['country'] as String,
   );
 }

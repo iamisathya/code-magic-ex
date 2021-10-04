@@ -16,14 +16,18 @@ class BarcodeResponse {
   String url;
   @JsonKey(name: "version")
   String version;
+  @JsonKey(name: "redirect")
+  String? redirect;
 
-  BarcodeResponse(
-      {required this.href,
+  BarcodeResponse({
+      required this.href,
       required this.userProfile,
       this.result,
       required this.token,
       required this.url,
-      required this.version});
+      required this.version,
+      this.redirect,
+  });
 
   factory BarcodeResponse.fromJson(Map<String, dynamic> json) =>
       _$BarcodeResponseFromJson(json);
@@ -36,7 +40,8 @@ class BarcodeResponse {
         'result': result,
         'token': token,
         'url': url,
-        'version': version
+        'version': version,
+        'redirect': redirect,
       };
 }
 
@@ -370,13 +375,17 @@ class ShipToName {
   String lastName;
   String fullName;
   @JsonKey(name: "fullName@th")
-  String fullNameTh;
+  String? fullNameTh;
+  @JsonKey(name: "fullName@ar")
+  String? fullNameAr;
 
   ShipToName(
       {required this.firstName,
       required this.lastName,
       required this.fullName,
-      required this.fullNameTh});
+      this.fullNameTh,
+      this.fullNameAr,
+      });
 
 
   factory ShipToName.fromJson(Map<String, dynamic> json) =>
@@ -388,9 +397,10 @@ class ShipToName {
 @JsonSerializable()
 class ShippingMethod {
   String type;
-  String location;
+  String? location;
+  String? href;
 
-  ShippingMethod({required this.type, required this.location});
+  ShippingMethod({required this.type, this.location, this.href});
 
 
   factory ShippingMethod.fromJson(Map<String, dynamic> json) =>
@@ -486,15 +496,15 @@ class Discount {
 class BillToAddress {
   String address1;
   String address2;
-  String city;
-  String zip;
+  String? city;
+  String? zip;
   String country;
 
   BillToAddress(
       {required this.address1,
       required this.address2,
-      required this.city,
-      required this.zip,
+      this.city,
+      this.zip,
       required this.country});
 
 

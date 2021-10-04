@@ -10,6 +10,7 @@ import 'package:dsc_tools/ui/screens/barcode/screens/barcode_check_result.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/keyboard.dart';
 import 'package:dsc_tools/utilities/logger.dart';
+import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -27,7 +28,7 @@ class BarcodeScannerController extends getx.GetxController {
 
   @override
   void onInit() {
-    bardcodeTextField.text = "423188055";
+    bardcodeTextField.text = "423189834";
     super.onInit();
   }
 
@@ -65,12 +66,14 @@ class BarcodeScannerController extends getx.GetxController {
       final String orderCode = orderUrl.value.retrieveOrderCodeFromLightUrl();
       final String orderNumber = orderUrl.value.retrieveLastString();
       barcodeDetails =
-          await MemberCallsService.init().getBarcodeDetails(gToken, orderNumber, "1228c4a3-767b-433e-96aa-9ffc3535ce62", orderCode);
+          await MemberCallsService.init().getBarcodeDetails(gTokenBarcodeNew, orderNumber, UserSessionManager.shared.customerToken.token, orderCode);
           getOpenPlaceOrderDetails();
       isLoading.toggle();
-    } catch (err) {
+    } catch (err, s) {
+      // final String message = getItemsErrorMessage(s);
+      SnackbarUtil.showError(message: "message");
       isLoading.toggle();
-      LoggerService.instance.e(err.toString());
+      LoggerService.instance.e(s);
     }
   }
 

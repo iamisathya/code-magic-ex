@@ -152,6 +152,11 @@ String getErrorMessage(dynamic error) {
   return mappedObj["error"]["error_message"].toString();
 }
 
+String getItemsErrorMessage(dynamic error) {
+  final mappedObj = error as Map<String, dynamic>;
+  return mappedObj["items"]["error"]["error_message"].toString();
+}
+
 String getErrorMessageWithKey(dynamic error, String key) {
   final mappedObj = error as Map<String, dynamic>;
   return mappedObj["error"][key].toString();
