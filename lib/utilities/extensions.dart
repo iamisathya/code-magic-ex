@@ -29,6 +29,14 @@ extension NumberParsing on String {
   int toInt() {
     return int.tryParse(this) ?? 0;
   }
+
+  bool isNumberOnly() {
+    final n = num.tryParse(this);
+    if (n == null) {
+      return false;
+    }
+    return true;
+  }
 }
 
 extension FormatNumber on String {
@@ -82,10 +90,10 @@ extension OrderId on String {
     }
   }
 
-   String retrieveLastString() {
+  String retrieveLastString() {
     // https://dsc-th.unicity.com/barcode/?href=cb35c0faba9c0ecd572a6929e3c912293874eb850fabf9595af7b0ae858e164b&token=654a5e49-e5cd-410d-82ab-32f1a6ca28cd&user=23123123
     try {
-      return substring(lastIndexOf("=")+1, length);
+      return substring(lastIndexOf("=") + 1, length);
     } catch (e) {
       return this;
     }
@@ -130,7 +138,7 @@ extension OrderId on String {
     }
   }
 
-    String retrieveOrderCodeFromLightUrl() {
+  String retrieveOrderCodeFromLightUrl() {
     // https://dsc-th.unicity.com/barcode?lang=en&href=31512d2a1d4a2a5860bc785d27d1f752db37de8ea067cef098ede454fbf66dad&token=3c9a4466-9b31-4e5d-bf18-ca4b8c3dd76d&user=236187666\"
     const start = "href=";
     const end = "&token";

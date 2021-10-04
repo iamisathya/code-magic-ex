@@ -1,17 +1,20 @@
 import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
 import 'package:dsc_tools/ui/screens/barcode/components/barcode_product_item.dart';
+import 'package:dsc_tools/ui/screens/barcode/components/search_textfield.dart';
+import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.controller.dart';
+import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.result.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/controller/salesreport.details.controller.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 class BarCodeDetails extends StatelessWidget {
-  final SalesReportDetailsController controller =
-      Get.put(SalesReportDetailsController());
+  final BarcodeScannResultController controller =
+      Get.put(BarcodeScannResultController());
+  final BarcodeScannerController orderController =
+      Get.put(BarcodeScannerController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,47 +31,22 @@ class BarCodeDetails extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
-                  height: 94,
-                  color: const Color(0xFF5297A6),
-                  child: Container(
-                    margin: const EdgeInsets.all(20.0),
-                    color: Colors.white,
-                    height: 54,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Text("Scan Barcode",
-                              style: Theme.of(context).textTheme.subtitle2),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: SvgPicture.asset(kBarcodePlainIcon,
-                              height: 20,
-                              width: 30,
-                              semanticsLabel: 'barcode icon'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: 10,
-                    itemBuilder: (BuildContext ctxt, int index) {
-                      final BarcodeItem item = BarcodeItem(
-                          code: '000000',
-                          desc: 'Hardcoded',
-                          isExpanded: false,
-                          qty: 0,
-                          remain: 0,
-                          require: false,
-                          scan: 0);
-                      return BarcodeProductItem(item: item);
-                    }),
+                SearchTextfield(
+                    labelText: "Scan Barcode",
+                    onSubmit: () => controller.getBarcodeDetails(),
+                    icon: kBarcodePlainIcon,
+                    textFieldController: controller.bardcodeTextField),
+                if (!controller.isLoading.value &&
+                    controller.barcodeItems != null)
+                  ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controller.barcodeItems?.items.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        final BarcodeItem item =
+                            controller.barcodeItems!.items[index];
+                        return BarcodeProductItem(item: item);
+                      })
               ],
             ),
           ),

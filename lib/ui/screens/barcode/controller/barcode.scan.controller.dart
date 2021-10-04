@@ -7,6 +7,7 @@ import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:dsc_tools/models/barcode_response.dart';
 import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
 import 'package:dsc_tools/ui/screens/barcode/screens/barcode_check_result.dart';
+import 'package:dsc_tools/ui/screens/barcode/screens/barcode_details.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/keyboard.dart';
 import 'package:dsc_tools/utilities/logger.dart';
@@ -41,23 +42,25 @@ class BarcodeScannerController extends getx.GetxController {
   }
 
   Future<void> getBarcodePath(BuildContext context, String orderNumber) async {
-    if (orderNumber.isEmpty) {
+    if (orderNumber.isEmpty && !orderNumber.isNumberOnly()) {
+      SnackbarUtil.showError(message: "Order number should only contains numarics.");
       return;
     }
-    isLoading.toggle();  
-    KeyboardUtil.hideKeyboard(context);
-    final String token = UserSessionManager.shared.customerToken.token;
-    try {
-      final dynamic res = await MemberCallsService.init()
-          .getBarcodePath("en", bardcodeTextField.text, token, orderNumber);
-      final Map<String, dynamic> barcodeObjected = res as Map<String, dynamic>;
-      orderUrl.value = barcodeObjected["links"].toString();
-      getOrderDetails();
-      isLoading.toggle();
-    } catch (err) {
-      isLoading.toggle();
-      LoggerService.instance.e(err.toString());      
-    }
+    getx.Get.to(() => BarCodeDetails(), arguments: bardcodeTextField.text); 
+    // isLoading.toggle();  
+    // KeyboardUtil.hideKeyboard(context);
+    // final String token = UserSessionManager.shared.customerToken.token;
+    // try {
+    //   final dynamic res = await MemberCallsService.init()
+    //       .getBarcodePath("en", bardcodeTextField.text, token, orderNumber);
+    //   final Map<String, dynamic> barcodeObjected = res as Map<String, dynamic>;
+    //   orderUrl.value = barcodeObjected["links"].toString();
+    //   getOrderDetails();
+    //   isLoading.toggle();
+    // } catch (err) {
+    //   isLoading.toggle();
+    //   LoggerService.instance.e(err.toString());      
+    // }
   }
 
   Future<void> getOrderDetails() async{
@@ -164,7 +167,8 @@ class BarcodeScannerController extends getx.GetxController {
       }
       barcodeItems = BarCodeItemsResponse.fromJson(jsonDecodedData);
       barcodeItems!.items = modified;
-      isLoading.toggle();      
+      isLoading.toggle(); 
+      getx.Get.to(() => BarCodeDetails());     
       update();
     } catch (err, s) {
       debugPrint(s.toString());
@@ -227,8 +231,7 @@ class BarcodeScannerController extends getx.GetxController {
       barcodeItems!.items[index].isExpanded = !status;
       update();
     } catch (e, s) {
-      print(s);
-      LoggerService.instance.e(e.toString());
+      LoggerService.instance.e(s);
     }
   }
 }
