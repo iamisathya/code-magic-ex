@@ -1,7 +1,7 @@
 import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
+import 'package:dsc_tools/ui/screens/barcode/components/barcode_list_item.dart';
 import 'package:dsc_tools/ui/screens/barcode/components/barcode_product_item.dart';
-import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.controller.dart';
 import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.result.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
 import 'package:dsc_tools/utilities/images.dart';
@@ -13,8 +13,6 @@ import 'package:loading_overlay/loading_overlay.dart';
 class BarCodeDetails extends StatelessWidget {
   final BarcodeScannResultController controller =
       Get.put(BarcodeScannResultController());
-  final BarcodeScannerController orderController =
-      Get.put(BarcodeScannerController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,15 +65,22 @@ class BarCodeDetails extends StatelessWidget {
                 ),
                 if (!controller.isLoading.value &&
                     controller.barcodeItems != null)
-                  ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: controller.barcodeItems?.items.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        final BarcodeItem item =
-                            controller.barcodeItems!.items[index];
-                        return BarcodeProductItem(item: item);
-                      })
+                  Container(
+                    margin: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, top: 15.0),
+                    child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: controller.barcodeItems?.items.length,
+                        itemBuilder: (BuildContext ctxt, int index) {
+                          final BarcodeItem item =
+                              controller.barcodeItems!.items[index];
+                          if (item.require) {
+                            return BarcodeProductItem(item: item);
+                          }
+                          return BarcodeListItem(item: item, index: index);
+                        }),
+                  )
               ],
             ),
           ),
@@ -95,14 +100,14 @@ class BarCodeDetails extends StatelessWidget {
                         buttonColor: const Color(0xFFFFBF3A),
                         title: 'Cancel',
                         titleColor: const Color(0xFF000000),
-                        onTap: () => null,
+                        onTap: () => controller.showWarningMessage(),
                       ),
                     ),
                     const SizedBox(width: 10),
                     Flexible(
                       child: PlainButton(
                         title: 'Save',
-                        onTap: () => null,
+                        onTap: () => controller.saveBarcodeDetails(),
                       ),
                     ),
                   ],

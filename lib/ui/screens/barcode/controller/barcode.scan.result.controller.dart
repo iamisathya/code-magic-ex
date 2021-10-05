@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dsc_tools/api/api_address.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dsc_tools/models/barcode_item_response.dart';
+import 'package:dsc_tools/models/barcode_number_response.dart';
 import 'package:dsc_tools/models/barcode_response.dart';
 import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
 import 'package:dsc_tools/ui/screens/barcode/screens/barcode_search_screen.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' as getx;
 import '../../../../utilities/extensions.dart';
+import '../barcode.screen.dart';
 
 class BarcodeScannResultController extends getx.GetxController {
   TextEditingController bardcodeTextField = TextEditingController();
@@ -25,6 +27,7 @@ class BarcodeScannResultController extends getx.GetxController {
   BarcodeResponse? barcodeDetails;
   BarCodeItemsResponse? barcodeItems;
   getx.RxString orderUrl = "".obs;
+  getx.RxBool barcodeNumberLoading = false.obs;
 
   @override
   void onInit() {
@@ -254,11 +257,34 @@ class BarcodeScannResultController extends getx.GetxController {
     );
   }
 
-  void getBarcodeDetails() {
-
+  Future<void> saveBarcodeDetails() async {
+    getx.Get.offAll(() => BarcodeHomeScreen());
   }
+
+  void getBarcodeDetails() {}
 
   void navigateToScanBarcode() {
     getx.Get.to(() => BarCodeSearchScreen(), arguments: orderNumber.value);
+  }
+
+  Future<void> toggleItem(int index) async {
+    try {
+      final bool status = barcodeItems!.items[index].isExpanded;
+      if (status) {
+        barcodeItems!.items[index].isExpanded = !status;
+        update();
+        return;
+      }
+      barcodeNumberLoading.toggle();
+      final BarcodeItem item = barcodeItems!.items[index];
+      final BarcodeNumberResponse res = await MemberCallsService.init()
+          .getBarcodeNumbers(orderNumber.value, item.code);
+      barcodeNumberLoading.toggle();
+      barcodeItems!.items[index].isExpanded = !status;
+      update();
+    } catch (e, s) {
+      barcodeNumberLoading.toggle();
+      LoggerService.instance.e(s);
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/models/barcode_item_response.dart';
+import 'package:dsc_tools/models/barcode_number_response.dart';
 import 'package:dsc_tools/models/barcode_response.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -441,6 +442,10 @@ abstract class MemberCallsService {
   @POST(Address.barcodeItems)
   @FormUrlEncoded()  
   Future<dynamic> getBarcodeItems(@Header("cookie") String cookie, @Body() FormData request);
+
+  //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/check/library/edit.php?order=423190633&item=24288
+  @GET(Address.getBarcodeNumbers)
+  Future<BarcodeNumberResponse> getBarcodeNumbers(@Query('order') String order, @Query('item') String item);
 }
 
 @RestApi(baseUrl: Address.memberCalls2Base)

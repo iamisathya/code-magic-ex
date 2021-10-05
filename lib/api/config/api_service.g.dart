@@ -1048,6 +1048,22 @@ class _MemberCallsService implements MemberCallsService {
     return value;
   }
 
+  @override
+  Future<BarcodeNumberResponse> getBarcodeNumbers(order, item) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'order': order, r'item': item};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<BarcodeNumberResponse>(
+            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+                .compose(
+                    _dio.options, 'ALL/DSC/THA/barcode/check/library/edit.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = BarcodeNumberResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

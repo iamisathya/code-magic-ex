@@ -74,7 +74,7 @@ class UserProfile {
   @JsonKey(name: "shipToAddress")
   ShipToAddress shipToAddress;
   @JsonKey(name: "shipToEmail")
-  String shipToEmail;
+  String? shipToEmail;
   @JsonKey(name: "shipToName")
   ShipToName shipToName;
   @JsonKey(name: "shipToPhone")
@@ -103,7 +103,7 @@ class UserProfile {
       required this.notes,
       required this.paymentStatus,
       required this.shipToAddress,
-      required this.shipToEmail,
+      this.shipToEmail,
       required this.shippingMethod,
       required this.shipToName,
       required this.shipToPhone,
@@ -371,7 +371,7 @@ class ShipToAddress {
 
 @JsonSerializable()
 class ShipToName {
-  String firstName;
+  String? firstName;
   String lastName;
   String fullName;
   @JsonKey(name: "fullName@th")
@@ -380,7 +380,7 @@ class ShipToName {
   String? fullNameAr;
 
   ShipToName(
-      {required this.firstName,
+      {this.firstName,
       required this.lastName,
       required this.fullName,
       this.fullNameTh,

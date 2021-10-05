@@ -227,10 +227,12 @@ class BarcodeScannerController extends getx.GetxController {
 
   void toggleItem(int index) {
     try {
+      print("here");
       final bool status = barcodeItems!.items[index].isExpanded;
       barcodeItems!.items[index].isExpanded = !status;
       update();
     } catch (e, s) {
+      LoggerService.instance.e(e);
       LoggerService.instance.e(s);
     }
   }

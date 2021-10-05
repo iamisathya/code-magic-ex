@@ -1,5 +1,5 @@
 import 'package:dsc_tools/models/barcode_item_response.dart';
-import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.controller.dart';
+import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.result.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,17 +7,16 @@ import 'package:get/get.dart';
 import '../../../../utilities/images.dart';
 
 class BarcodeListItem extends StatelessWidget {
-  final BarcodeScannerController controller =
-      Get.put(BarcodeScannerController());
+
 
   final BarcodeItem item;
   final int index;
-  BarcodeListItem({required this.item, required this.index});
+  const BarcodeListItem({required this.item, required this.index});
 
   @override
   Widget build(BuildContext context) {
-    return  GetBuilder<BarcodeScannerController>(
-        builder: (_) => GestureDetector(
+    return  GetBuilder<BarcodeScannResultController>(
+        builder: (controller) => GestureDetector(
         onTap: () => controller.toggleItem(index),
         child: AnimatedContainer(
           margin: const EdgeInsets.symmetric(vertical: 5),

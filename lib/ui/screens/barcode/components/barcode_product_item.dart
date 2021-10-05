@@ -22,8 +22,7 @@ class BarcodeProductItem extends StatelessWidget {
               color: const Color(0xFFD0D0CF), width: 0.5),
           borderRadius:
               const BorderRadius.all(Radius.circular(3.0))),
-      margin:
-          const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
         padding: const EdgeInsets.all(20),
         child: Column(

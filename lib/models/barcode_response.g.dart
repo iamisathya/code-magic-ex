@@ -47,7 +47,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
     paymentStatus: json['paymentStatus'] as String,
     shipToAddress:
         ShipToAddress.fromJson(json['shipToAddress'] as Map<String, dynamic>),
-    shipToEmail: json['shipToEmail'] as String,
+    shipToEmail: json['shipToEmail'] as String?,
     shippingMethod:
         ShippingMethod.fromJson(json['shippingMethod'] as Map<String, dynamic>),
     shipToName: ShipToName.fromJson(json['shipToName'] as Map<String, dynamic>),
@@ -279,7 +279,7 @@ Map<String, dynamic> _$ShipToAddressToJson(ShipToAddress instance) =>
 
 ShipToName _$ShipToNameFromJson(Map<String, dynamic> json) {
   return ShipToName(
-    firstName: json['firstName'] as String,
+    firstName: json['firstName'] as String?,
     lastName: json['lastName'] as String,
     fullName: json['fullName'] as String,
     fullNameTh: json['fullName@th'] as String?,
