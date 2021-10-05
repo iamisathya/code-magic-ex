@@ -1,12 +1,12 @@
 import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
 import 'package:dsc_tools/ui/screens/barcode/components/barcode_product_item.dart';
-import 'package:dsc_tools/ui/screens/barcode/components/search_textfield.dart';
 import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.controller.dart';
 import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.result.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
@@ -31,11 +31,40 @@ class BarCodeDetails extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SearchTextfield(
-                    labelText: "Scan Barcode",
-                    onSubmit: () => controller.getBarcodeDetails(),
-                    icon: kBarcodePlainIcon,
-                    textFieldController: controller.bardcodeTextField),
+                // SearchTextfield(
+                //   labelText: "Barcode Number",
+                //     onSubmit: () => controller.getBarcodeDetails(),
+                //     icon: kBarcodePlainIcon,
+                //     textFieldController: controller.bardcodeTextField),
+                GestureDetector(
+                  onTap: () => controller.navigateToScanBarcode(),
+                  child: Container(
+                    height: 94,
+                    color: const Color(0xFF5297A6),
+                    child: Container(
+                      margin: const EdgeInsets.all(20.0),
+                      color: Colors.white,
+                      height: 54,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Text("Scan Barcode",
+                                style: Theme.of(context).textTheme.subtitle2),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: SvgPicture.asset(kBarcodePlainIcon,
+                                height: 20,
+                                width: 30,
+                                semanticsLabel: 'barcode icon'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 if (!controller.isLoading.value &&
                     controller.barcodeItems != null)
                   ListView.builder(

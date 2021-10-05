@@ -6,6 +6,7 @@ import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:dsc_tools/models/barcode_response.dart';
 import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
+import 'package:dsc_tools/ui/screens/barcode/screens/barcode_search_screen.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/logger.dart';
 import 'package:dsc_tools/utilities/snackbar.dart';
@@ -255,5 +256,9 @@ class BarcodeScannResultController extends getx.GetxController {
 
   void getBarcodeDetails() {
 
+  }
+
+  void navigateToScanBarcode() {
+    getx.Get.to(() => BarCodeSearchScreen(), arguments: orderNumber.value);
   }
 }

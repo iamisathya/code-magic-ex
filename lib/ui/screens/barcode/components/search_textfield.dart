@@ -1,4 +1,3 @@
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -29,34 +28,37 @@ class SearchTextfield extends StatelessWidget {
           borderRadius: BorderRadius.circular(3),
           color: const Color(0xFFFFFFFF),
         ),
-        child: TextField(
-          controller: textFieldController,
-          onSubmitted: (val) => onSubmit(),
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            labelText: labelText,
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
+        child: Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: textFieldController,
+                onSubmitted: (val) => onSubmit(),
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  labelText: labelText,
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
+                  ),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
+                  ),
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
+                  ),
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
+                ),
+              ),
             ),
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
-            ),
-            border: const OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.auto,
-            suffixIconConstraints:
-                const BoxConstraints(minHeight: 20, minWidth: 20),
-            suffixIcon: Padding(
-              padding: const EdgeInsets.only(right: 20.0),
+            SizedBox(
+              width: 50,
               child: GestureDetector(
                   onTap: () => onSubmit(),
-                  child: SvgPicture.asset(icon,
-                      width: 20, height: 20)),
+                  child: SvgPicture.asset(icon, width: 20, height: 20)),
             ),
-          ),
+          ],
         ),
       ),
     );
