@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/managed_warehouse.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +12,7 @@ import '../../../../api/request/request_place_open_po_order.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/inventory_records.dart';
+import '../../../../models/managed_warehouse.dart';
 import '../../../../models/open_po_create_order_response.dart';
 import '../../../../models/validate_order.dart';
 import '../../../../utilities/constants.dart';

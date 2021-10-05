@@ -1,22 +1,23 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/api_address.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/models/barcode_item_response.dart';
-import 'package:dsc_tools/models/barcode_number_response.dart';
-import 'package:dsc_tools/models/barcode_response.dart';
-import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
-import 'package:dsc_tools/ui/screens/barcode/screens/barcode_search_screen.dart';
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/logger.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' as getx;
+
+import '../../../../api/api_address.dart';
+import '../../../../api/config/api_service.dart';
+import '../../../../models/barcode_item_response.dart';
+import '../../../../models/barcode_number_response.dart';
+import '../../../../models/barcode_response.dart';
 import '../../../../utilities/extensions.dart';
+import '../../../../utilities/images.dart';
+import '../../../../utilities/logger.dart';
+import '../../../../utilities/user_session.dart';
+import '../../../global/widgets/plain_button.dart';
+import '../../home/home.dart';
 import '../barcode.screen.dart';
+import '../screens/barcode_search_screen.dart';
 
 class BarcodeScannResultController extends getx.GetxController {
   TextEditingController bardcodeTextField = TextEditingController();
@@ -52,6 +53,7 @@ class BarcodeScannResultController extends getx.GetxController {
     } catch (err) {
       isLoading.toggle();
       LoggerService.instance.e(err.toString());
+      getx.Get.back(); 
     }
   }
 
@@ -68,10 +70,9 @@ class BarcodeScannResultController extends getx.GetxController {
       getOpenPlaceOrderDetails();
       isLoading.toggle();
     } catch (err, s) {
-      // final String message = getItemsErrorMessage(s);
-      SnackbarUtil.showError(message: "message");
       isLoading.toggle();
       LoggerService.instance.e(s);
+      getx.Get.back(); 
     }
   }
 
@@ -207,9 +208,9 @@ class BarcodeScannResultController extends getx.GetxController {
       isLoading.toggle();
       update();
     } catch (err, s) {
-      debugPrint(s.toString());
       isLoading.toggle();
-      LoggerService.instance.e(err.toString());
+      LoggerService.instance.e(s);
+      getx.Get.back();
     }
   }
 
@@ -258,7 +259,8 @@ class BarcodeScannResultController extends getx.GetxController {
   }
 
   Future<void> saveBarcodeDetails() async {
-    getx.Get.offAll(() => BarcodeHomeScreen());
+    getx.Get.offAll(MainHomeScreen());
+    getx.Get.to(BarcodeHomeScreen());
   }
 
   void getBarcodeDetails() {}

@@ -1,6 +1,7 @@
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../utilities/images.dart';
 
 class PlainButton extends StatelessWidget {
   final String title;

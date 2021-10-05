@@ -1,12 +1,13 @@
-import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
-import 'package:dsc_tools/ui/screens/barcode/components/barcode_number_item.dart';
-import 'package:dsc_tools/ui/screens/barcode/components/search_textfield.dart';
-import 'package:dsc_tools/ui/screens/barcode/controller/barcode.search.controller.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+
+import '../../../../utilities/images.dart';
+import '../../../global/widgets/plain_button.dart';
+import '../../open_po/home/components/loader.dart';
+import '../components/barcode_number_item.dart';
+import '../components/search_textfield.dart';
+import '../controller/barcode.search.controller.dart';
 
 class BarCodeSearchScreen extends StatelessWidget {
   final BarcodeSearchController controller = Get.put(BarcodeSearchController());

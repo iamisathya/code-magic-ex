@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/managed_warehouse.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +16,7 @@ import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
 import '../../../../models/general_models.dart';
 import '../../../../models/inventory_records.dart';
+import '../../../../models/managed_warehouse.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';

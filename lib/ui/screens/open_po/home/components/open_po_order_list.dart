@@ -1,4 +1,3 @@
-import 'package:dsc_tools/ui/global/widgets/animated_add_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 import '../../../../../models/general_models.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
+import '../../../../global/widgets/animated_add_button.dart';
 import '../../controller/openpo.list.controller.dart';
 import 'add_products.dart';
 import 'loader.dart';

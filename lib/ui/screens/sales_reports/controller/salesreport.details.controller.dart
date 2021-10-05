@@ -1,16 +1,16 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/api_address.dart';
-import 'package:dsc_tools/models/barcode_item_response.dart';
-import 'package:dsc_tools/models/barcode_response.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
-import '../../../../../utilities/extensions.dart';
 import 'package:get/get.dart'  as Image;
 
+import '../../../../../utilities/extensions.dart';
+import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
+import '../../../../models/barcode_item_response.dart';
+import '../../../../models/barcode_response.dart';
 // import '../../../../models/sales_report_details.dart';
 import '../../../../utilities/logger.dart';
+import '../../../../utilities/user_session.dart';
 
 class SalesReportDetailsController extends Image.GetxController {
   Image.RxString orderCode = "".obs;

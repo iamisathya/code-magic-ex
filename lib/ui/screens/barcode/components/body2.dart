@@ -1,10 +1,10 @@
-import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.controller.dart';
-import 'package:dsc_tools/ui/screens/inventory/component/page_title.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../utilities/images.dart';
+import '../../inventory/component/page_title.dart';
+import '../controller/barcode.scan.controller.dart';
 import 'search_textfield.dart';
 
 class Body extends StatelessWidget {

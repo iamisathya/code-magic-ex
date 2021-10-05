@@ -1,14 +1,15 @@
-import 'package:dsc_tools/models/barcode_item_response.dart';
-import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
-import 'package:dsc_tools/ui/screens/barcode/components/barcode_list_item.dart';
-import 'package:dsc_tools/ui/screens/barcode/components/barcode_product_item.dart';
-import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.result.controller.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
+
+import '../../../../models/barcode_item_response.dart';
+import '../../../../utilities/images.dart';
+import '../../../global/widgets/plain_button.dart';
+import '../../open_po/home/components/loader.dart';
+import '../components/barcode_list_item.dart';
+import '../components/barcode_product_item.dart';
+import '../controller/barcode.scan.result.controller.dart';
 
 class BarCodeDetails extends StatelessWidget {
   final BarcodeScannResultController controller =

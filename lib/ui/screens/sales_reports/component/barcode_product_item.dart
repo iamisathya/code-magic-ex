@@ -1,7 +1,7 @@
-import 'package:dsc_tools/models/barcode_item_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../models/barcode_item_response.dart';
 import '../../../../utilities/images.dart';
 
 class BarcodeProductItem extends StatelessWidget {

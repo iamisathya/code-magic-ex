@@ -1,10 +1,10 @@
-import 'package:dsc_tools/models/barcode_item_response.dart';
-import 'package:dsc_tools/ui/screens/barcode/controller/barcode.scan.result.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../models/barcode_item_response.dart';
 import '../../../../utilities/images.dart';
+import '../controller/barcode.scan.result.controller.dart';
 
 class BarcodeListItem extends StatelessWidget {
 
