@@ -42,7 +42,8 @@ class BarcodeScannResultController extends getx.GetxController {
     }
   }
 
-  getx.RxBool get isItemExpanded => barcodeItems!.items.any((element) => element.isExpanded).obs;
+  getx.RxBool get isItemExpanded =>
+      barcodeItems!.items.any((element) => element.isExpanded).obs;
 
   Future<void> getBarcodePath() async {
     isLoading.toggle();
@@ -57,7 +58,7 @@ class BarcodeScannResultController extends getx.GetxController {
     } catch (err) {
       isLoading.toggle();
       LoggerService.instance.e(err.toString());
-      getx.Get.back(); 
+      getx.Get.back();
     }
   }
 
@@ -76,7 +77,7 @@ class BarcodeScannResultController extends getx.GetxController {
     } catch (err, s) {
       isLoading.toggle();
       LoggerService.instance.e(s);
-      getx.Get.back(); 
+      getx.Get.back();
     }
   }
 
@@ -204,6 +205,7 @@ class BarcodeScannResultController extends getx.GetxController {
       final List<BarcodeItem> modified = [];
       for (final item in list) {
         item["isExpanded"] = false;
+        item["barcodes"] = [];
         final currentItem = BarcodeItem.fromJson(item as Map<String, dynamic>);
         modified.add(currentItem);
       }
@@ -285,13 +287,22 @@ class BarcodeScannResultController extends getx.GetxController {
       final BarcodeItem item = barcodeItems!.items[index];
       final BarcodeNumberResponse res = await MemberCallsService.init()
           .getBarcodeNumbers(orderNumber.value, item.code);
-      currentBarcodeNumbers.value = res.items;
+      barcodeItems!.items[index].barcodes = res.items;
       barcodeNumberLoading.toggle();
+      for (final barItem in barcodeItems!.items) {
+        barItem.isExpanded = false;
+      }
       barcodeItems!.items[index].isExpanded = !status;
       update();
     } catch (e, s) {
       barcodeNumberLoading.toggle();
       LoggerService.instance.e(s);
     }
+  }
+
+  void removeBarcodeNumber(int mainIndex, int index) {
+    barcodeItems!.items[mainIndex].barcodes.removeAt(index);
+    hasAnyChangesMade.value = true;
+    update();
   }
 }
