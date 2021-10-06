@@ -36,7 +36,7 @@ class BarCodeDetails extends StatelessWidget {
                 //     icon: kBarcodePlainIcon,
                 //     textFieldController: controller.bardcodeTextField),
                 GestureDetector(
-                  onTap: () => controller.navigateToScanBarcode(),
+                  onTap: () => controller.scanBarcode(context),
                   child: Container(
                     height: 94,
                     color: const Color(0xFF5297A6),

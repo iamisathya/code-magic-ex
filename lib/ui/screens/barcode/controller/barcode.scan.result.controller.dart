@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/models/barcode_number_update_request.dart';
 import 'package:dsc_tools/models/verify_each_barcode_response.dart';
+import 'package:dsc_tools/utilities/keyboard.dart';
+import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' as getx;
 
@@ -292,6 +295,10 @@ class BarcodeScannResultController extends getx.GetxController {
       eachBarcodeResponse = await MemberCallsService.init()
           .verifyEachBarcodeNumber(gTokenBarcodeNew, expandedItem.code,
               json.encode(request.toMap()));
+      if (eachBarcodeResponse!.scan[0].pass) {
+        SnackbarUtil.showSuccess(
+            message: "Barcode scan successfull for ${expandedItem.code}");
+      }
       //* getx.Get.offAll(MainHomeScreen());
       //* getx.Get.to(BarcodeHomeScreen());
       isLoading.toggle();
@@ -341,5 +348,44 @@ class BarcodeScannResultController extends getx.GetxController {
     barcodeItems!.items[mainIndex].barcodes.removeAt(index);
     hasAnyChangesMade.value = true;
     update();
+  }
+
+  void addBarcodeNumber(int mainIndex, String number) {
+    barcodeItems!.items[mainIndex].barcodes.add(number);
+    hasAnyChangesMade.value = true;
+    update();
+  }
+
+  int getExpandedIndex() {
+    return barcodeItems!.items.indexWhere((element) => element.isExpanded);
+  }
+
+  bool hasAnyItemExpanded() {
+    return barcodeItems!.items.any((element) => element.isExpanded == true);
+  }
+
+  Future<void> scanBarcode(BuildContext context) async {
+    final int expndedIdx = getExpandedIndex();
+    if (!hasAnyItemExpanded()) {
+      SnackbarUtil.showWarning(
+          message: "Please expand product before barcode scan!");
+      return;
+    }
+    KeyboardUtil.hideKeyboard(context);
+    final String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+        "#FFFFFF", "Cancel", false, ScanMode.BARCODE);
+    debugPrint(barcodeScanRes);
+    if (barcodeScanRes.isEmpty && !barcodeScanRes.isNumberOnly()) {
+      SnackbarUtil.showError(
+          message: "Order number should only contains numarics.");
+      return;
+    }
+    if (barcodeItems!.items[expndedIdx].barcodes.contains(barcodeScanRes)) {
+      SnackbarUtil.showWarning(
+          message:
+              "Barcode number $barcodeScanRes already exists in current product.");
+      return;
+    }
+    addBarcodeNumber(expndedIdx, barcodeScanRes);
   }
 }
