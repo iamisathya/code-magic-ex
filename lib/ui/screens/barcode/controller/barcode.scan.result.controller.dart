@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/barcode_number_update_request.dart';
+import 'package:dsc_tools/models/verify_each_barcode_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' as getx;
@@ -26,11 +28,13 @@ class BarcodeScannResultController extends getx.GetxController {
   getx.RxString orderNumber = "".obs;
   getx.RxBool isLoading = false.obs;
   getx.RxBool hasAnyChangesMade = false.obs;
-  BarcodeResponse? barcodeDetails;
-  BarCodeItemsResponse? barcodeItems;
   getx.RxString orderUrl = "".obs;
   getx.RxBool barcodeNumberLoading = false.obs;
   getx.RxList<String> currentBarcodeNumbers = <String>[].obs;
+
+  BarcodeResponse? barcodeDetails;
+  BarCodeItemsResponse? barcodeItems;
+  VerifyEachBarcodeResponse? eachBarcodeResponse;
 
   @override
   void onInit() {
@@ -198,7 +202,7 @@ class BarcodeScannResultController extends getx.GetxController {
       map["data[href]"] = barcodeDetails!.userProfile.href;
 
       final dynamic response = await MemberCallsService.init()
-          .getBarcodeItems(gTokenBarcode, FormData.fromMap(map));
+          .getBarcodeItems(gTokenBarcodeNew, FormData.fromMap(map));
       final jsonDecodedData =
           jsonDecode(response as String) as Map<String, dynamic>;
       final List<dynamic> list = jsonDecodedData["items"] as List<dynamic>;
@@ -265,8 +269,36 @@ class BarcodeScannResultController extends getx.GetxController {
   }
 
   Future<void> saveBarcodeDetails() async {
-    getx.Get.offAll(MainHomeScreen());
-    getx.Get.to(BarcodeHomeScreen());
+    try {
+      final BarcodeItem expandedItem =
+          barcodeItems!.items.firstWhere((element) => element.isExpanded);
+      final int expandedItemIdx =
+          barcodeItems!.items.indexWhere((element) => element.isExpanded);
+      final List<Order> allitems = [];
+      final List<BarcodeNumbers> allBarcodes = [];
+      for (final i in barcodeItems!.items) {
+        allitems.add(Order(item: i.code, quantity: i.qty));
+        // allitems.add({"item": i.code, "quantity": i.qty});
+      }
+      for (final i in barcodeItems!.items[expandedItemIdx].barcodes) {
+        // allBarcodes.add({"item": i});
+        allBarcodes.add(BarcodeNumbers(item: i));
+      }
+      isLoading.toggle();
+      closeAllItems();
+      allBarcodes.add(BarcodeNumbers(item: ""));
+      final BarcodeNumberUpdateRequest request = BarcodeNumberUpdateRequest(
+          order: allitems, scan: allBarcodes, orderNumber: orderNumber.value);
+      eachBarcodeResponse = await MemberCallsService.init()
+          .verifyEachBarcodeNumber(gTokenBarcodeNew, expandedItem.code,
+              json.encode(request.toMap()));
+      //* getx.Get.offAll(MainHomeScreen());
+      //* getx.Get.to(BarcodeHomeScreen());
+      isLoading.toggle();
+    } catch (e, s) {
+      isLoading.toggle();
+      LoggerService.instance.e(s);
+    }
   }
 
   void getBarcodeDetails() {}
@@ -289,14 +321,19 @@ class BarcodeScannResultController extends getx.GetxController {
           .getBarcodeNumbers(orderNumber.value, item.code);
       barcodeItems!.items[index].barcodes = res.items;
       barcodeNumberLoading.toggle();
-      for (final barItem in barcodeItems!.items) {
-        barItem.isExpanded = false;
-      }
+      closeAllItems();
+      hasAnyChangesMade.value = false;
       barcodeItems!.items[index].isExpanded = !status;
       update();
     } catch (e, s) {
       barcodeNumberLoading.toggle();
       LoggerService.instance.e(s);
+    }
+  }
+
+  void closeAllItems() {
+    for (final barItem in barcodeItems!.items) {
+      barItem.isExpanded = false;
     }
   }
 

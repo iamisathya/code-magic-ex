@@ -1064,6 +1064,26 @@ class _MemberCallsService implements MemberCallsService {
     return value;
   }
 
+  @override
+  Future<VerifyEachBarcodeResponse> verifyEachBarcodeNumber(
+      cookie, item, request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'item': item};
+    final _data = request;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<VerifyEachBarcodeResponse>(Options(
+                method: 'POST',
+                headers: <String, dynamic>{r'cookie': cookie},
+                extra: _extra,
+                contentType: 'application/x-www-form-urlencoded')
+            .compose(
+                _dio.options, 'ALL/DSC/THA/barcode/check/library/verify.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = VerifyEachBarcodeResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
