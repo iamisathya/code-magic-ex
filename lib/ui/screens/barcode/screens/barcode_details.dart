@@ -77,7 +77,7 @@ class BarCodeDetails extends StatelessWidget {
                           final BarcodeItem item =
                               controller.barcodeItems!.items[index];
                           if (item.require) {
-                            return BarcodeListItem(item: item, index: index);
+                            return BarcodeListItem(item: item, mainIndex: index);
                           }
                           return BarcodeProductItem(item: item);
                         }),

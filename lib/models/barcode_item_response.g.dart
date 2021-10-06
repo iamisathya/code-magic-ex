@@ -31,6 +31,8 @@ BarcodeItem _$BarcodeItemFromJson(Map<String, dynamic> json) {
     require: json['require'] as bool,
     scan: json['scan'] as int,
     isExpanded: json['isExpanded'] as bool,
+    barcodes:
+        (json['barcodes'] as List<dynamic>).map((e) => e as String).toList(),
   );
 }
 
@@ -43,4 +45,5 @@ Map<String, dynamic> _$BarcodeItemToJson(BarcodeItem instance) =>
       'require': instance.require,
       'scan': instance.scan,
       'isExpanded': instance.isExpanded,
+      'barcodes': instance.barcodes,
     };

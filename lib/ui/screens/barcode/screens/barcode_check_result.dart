@@ -55,7 +55,7 @@ class BarcodeCheckResult extends StatelessWidget {
                   itemBuilder: (BuildContext ctxt, int index) {
                     final BarcodeItem item =
                         controller.barcodeItems!.items[index];
-                    return BarcodeListItem(item: item, index: index);
+                    return BarcodeListItem(item: item, mainIndex: index);
                   }),
             ),
           ]),

@@ -7,18 +7,15 @@ import '../../../../utilities/images.dart';
 import '../controller/barcode.scan.result.controller.dart';
 
 class BarcodeListItem extends StatelessWidget {
-  final BarcodeScannResultController controller =
-      Get.put(BarcodeScannResultController());
-
   final BarcodeItem item;
-  final int index;
-  BarcodeListItem({required this.item, required this.index});
+  final int mainIndex;
+  const BarcodeListItem({required this.item, required this.mainIndex});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BarcodeScannResultController>(
       builder: (controller) => GestureDetector(
-        onTap: () => controller.toggleItem(index),
+        onTap: () => controller.toggleItem(mainIndex),
         child: AnimatedContainer(
           margin: const EdgeInsets.symmetric(vertical: 5),
           duration: const Duration(milliseconds: 160),
@@ -78,9 +75,12 @@ class BarcodeListItem extends StatelessWidget {
                       child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: controller.currentBarcodeNumbers.length,
+                          itemCount: item.barcodes.length,
                           itemBuilder: (BuildContext ctxt, int index) {
-                            return BarcodeTextItem(barcode: controller.currentBarcodeNumbers[index]);
+                            return BarcodeTextItem(
+                                barcode: item.barcodes[index],
+                                index: index,
+                                mainIndex: mainIndex);
                           }),
                     )
                   ],
@@ -123,12 +123,19 @@ class BarcodeItemChip extends StatelessWidget {
 }
 
 class BarcodeTextItem extends StatelessWidget {
-  const BarcodeTextItem({
+  final BarcodeScannResultController controller =
+      Get.put(BarcodeScannResultController());
+
+  BarcodeTextItem({
     Key? key,
     required this.barcode,
+    required this.mainIndex,
+    required this.index,
   }) : super(key: key);
 
   final String barcode;
+  final int mainIndex;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -140,6 +147,7 @@ class BarcodeTextItem extends StatelessWidget {
           Text("Barcode: $barcode",
               style: Theme.of(context).textTheme.bodyText1),
           GestureDetector(
+            onTap: () => controller.removeBarcodeNumber(mainIndex, index),
             child: SvgPicture.asset(kTrashIcon,
                 height: 15, width: 15, semanticsLabel: 'trash icon'),
           ),
