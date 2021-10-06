@@ -25,10 +25,12 @@ class BarcodeScannResultController extends getx.GetxController {
   getx.RxBool isExpanded = false.obs;
   getx.RxString orderNumber = "".obs;
   getx.RxBool isLoading = false.obs;
+  getx.RxBool hasAnyChangesMade = false.obs;
   BarcodeResponse? barcodeDetails;
   BarCodeItemsResponse? barcodeItems;
   getx.RxString orderUrl = "".obs;
   getx.RxBool barcodeNumberLoading = false.obs;
+  getx.RxList<String> currentBarcodeNumbers = <String>[].obs;
 
   @override
   void onInit() {
@@ -39,6 +41,8 @@ class BarcodeScannResultController extends getx.GetxController {
       getBarcodePath();
     }
   }
+
+  getx.RxBool get isItemExpanded => barcodeItems!.items.any((element) => element.isExpanded).obs;
 
   Future<void> getBarcodePath() async {
     isLoading.toggle();
@@ -281,6 +285,7 @@ class BarcodeScannResultController extends getx.GetxController {
       final BarcodeItem item = barcodeItems!.items[index];
       final BarcodeNumberResponse res = await MemberCallsService.init()
           .getBarcodeNumbers(orderNumber.value, item.code);
+      currentBarcodeNumbers.value = res.items;
       barcodeNumberLoading.toggle();
       barcodeItems!.items[index].isExpanded = !status;
       update();

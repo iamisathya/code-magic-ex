@@ -77,9 +77,9 @@ class BarCodeDetails extends StatelessWidget {
                           final BarcodeItem item =
                               controller.barcodeItems!.items[index];
                           if (item.require) {
-                            return BarcodeProductItem(item: item);
+                            return BarcodeListItem(item: item, index: index);
                           }
-                          return BarcodeListItem(item: item, index: index);
+                          return BarcodeProductItem(item: item);
                         }),
                   )
               ],
@@ -88,7 +88,7 @@ class BarCodeDetails extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Obx(
-        () => controller.isLoading.value
+        () => controller.isLoading.value || !controller.hasAnyChangesMade.value
             ? const SizedBox()
             : Container(
                 height: 90,

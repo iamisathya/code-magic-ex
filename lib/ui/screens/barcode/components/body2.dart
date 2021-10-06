@@ -21,6 +21,7 @@ class Body extends StatelessWidget {
             labelText: "Order Number",
             onSubmit: () => controller.getBarcodePath(
                 context, controller.bardcodeTextField.text),
+            onScan: () => controller.scanBarcode(context),
             textFieldController: controller.bardcodeTextField),
         if (!controller.isLoading.value)
           SvgPicture.asset(kScanBarcodeIllustration, width: 254, height: 252)

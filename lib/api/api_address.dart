@@ -3,7 +3,7 @@ const String encodeValue = "Mjk3MDQ2NjoxMjM0";
 const String baseDscTh = "https://dsc-th.unicity.com/";
 const String gToken = "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1973291869.1632382277; __cf_bm=g83McmerfcqxtdhiGFATq8b8A99IpLJEv.uiyDhy0WY-1632416053-0-AZdaMG45KBS/h/MQBVdgAJyPzzY0uX6Ql/zW6Fggzg5UAf3zaJ+Az41w2nWVVkuZHTrNqabsoWfFzKU4oLbY1Mqld5KRAzkCNNT/DW2dNSvun1nFras+le1rMdxwSFw0JA==";
 const String gTokenBarcode = "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1201615372.1632894042; __cf_bm=8aVjR86.q3wgw92UX0sP6KqSET_LxGVg1rYmWD86YIk-1632933883-0-ATTJS2nxUB8qw3qVJFGgqpiQUgMadHRzHvVb28BVBZ0HbMR5V6qqOXn9h8v5ldjaCNVdLVYNIPucMo0f9Unp+l8/j8In2VSBNC7WAqjw9FB4q6KXK+yWfoKEs01RdGYtsA==";
-const String gTokenBarcodeNew = "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1688805920.1633324197; __cf_bm=ggGK2GuBLDlAZBE.GUBVuPENU9qEKRqfZ4td6fzl9OY-1633442771-0-AYMWLgeR3YOawIm4tVvPwkFWMjVfF0rtHmg5mSG48+GUGzsfNqG0zQbPup8Ka6y2jAQ16OhbJl2dR5esNeCXCOo01/o/1FmoJEdz413wVk8BwvhcETbHV5ImpriX+IEYzQ==";
+const String gTokenBarcodeNew = "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1688805920.1633324197; __cf_bm=NHo2iWfzcOX7vxlB2y5tfWIYF2jId520NtlehZ1nrdY-1633503271-0-ARXpmJ+pOYozZ0kDXylTW/E5up22GPRjq9d/UPhrTchNndl3GWR6r342VPBRUAlhMgI2vVyFszaVwwgblepyQSTzJItvk5zacTs+BCqwi1SO4WVtFhPyll3HqBQURCE66w==";
 
 class Address {
   static const String baseDscTh = "https://dsc-th.unicity.com/";

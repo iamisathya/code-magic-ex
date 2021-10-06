@@ -6,12 +6,14 @@ class SearchTextfield extends StatelessWidget {
     Key? key,
     required this.textFieldController,
     required this.onSubmit,
+    required this.onScan,
     required this.labelText,
     required this.icon,
   }) : super(key: key);
 
   final TextEditingController textFieldController;
   final Function onSubmit;
+  final Function onScan;
   final String labelText;
   final String icon;
 
@@ -34,7 +36,7 @@ class SearchTextfield extends StatelessWidget {
               child: TextField(
                 controller: textFieldController,
                 onSubmitted: (val) => onSubmit(),
-                keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.go,
                 decoration: InputDecoration(
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -55,7 +57,7 @@ class SearchTextfield extends StatelessWidget {
             SizedBox(
               width: 50,
               child: GestureDetector(
-                  onTap: () => onSubmit(),
+                  onTap: () => onScan(),
                   child: SvgPicture.asset(icon, width: 20, height: 20)),
             ),
           ],

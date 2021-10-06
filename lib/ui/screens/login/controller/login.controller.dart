@@ -122,7 +122,7 @@ class LoginController extends GetxController {
 
       //*  getCustomerData from api
       final UserId userResponse =
-          await MemberCallsService.init().getUserId(kUserId, "2970466");
+          await MemberCallsService.init().getUserId(kUserId, userIdController.text);
 
       //*  Storing user info to db
       await store.write('current_market', currentMarket);

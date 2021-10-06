@@ -7,16 +7,17 @@ import '../../../../utilities/images.dart';
 import '../controller/barcode.scan.result.controller.dart';
 
 class BarcodeListItem extends StatelessWidget {
-
+  final BarcodeScannResultController controller =
+      Get.put(BarcodeScannResultController());
 
   final BarcodeItem item;
   final int index;
-  const BarcodeListItem({required this.item, required this.index});
+  BarcodeListItem({required this.item, required this.index});
 
   @override
   Widget build(BuildContext context) {
-    return  GetBuilder<BarcodeScannResultController>(
-        builder: (controller) => GestureDetector(
+    return GetBuilder<BarcodeScannResultController>(
+      builder: (controller) => GestureDetector(
         onTap: () => controller.toggleItem(index),
         child: AnimatedContainer(
           margin: const EdgeInsets.symmetric(vertical: 5),
@@ -48,10 +49,12 @@ class BarcodeListItem extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: SvgPicture.asset(
-                        item.isExpanded ? kMinusIcon : kPlusIcon,
-                        width: 15,
-                        semanticsLabel: 'add icon'),
+                    child: controller.barcodeNumberLoading.value
+                        ? Image.asset(kAnimatedSpin, width: 20)
+                        : SvgPicture.asset(
+                            item.isExpanded ? kMinusIcon : kPlusIcon,
+                            width: 15,
+                            semanticsLabel: 'add icon'),
                   ),
                 ],
               ),
@@ -75,9 +78,9 @@ class BarcodeListItem extends StatelessWidget {
                       child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: 3,
+                          itemCount: controller.currentBarcodeNumbers.length,
                           itemBuilder: (BuildContext ctxt, int index) {
-                            return const BarcodeTextItem();
+                            return BarcodeTextItem(barcode: controller.currentBarcodeNumbers[index]);
                           }),
                     )
                   ],
@@ -86,7 +89,7 @@ class BarcodeListItem extends StatelessWidget {
                 const SizedBox(),
             ],
           ),
-          ),
+        ),
       ),
     );
   }
@@ -122,7 +125,10 @@ class BarcodeItemChip extends StatelessWidget {
 class BarcodeTextItem extends StatelessWidget {
   const BarcodeTextItem({
     Key? key,
+    required this.barcode,
   }) : super(key: key);
+
+  final String barcode;
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +137,7 @@ class BarcodeTextItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Barcode: 2573500222478",
+          Text("Barcode: $barcode",
               style: Theme.of(context).textTheme.bodyText1),
           GestureDetector(
             child: SvgPicture.asset(kTrashIcon,
