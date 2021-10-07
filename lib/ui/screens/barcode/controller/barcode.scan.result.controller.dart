@@ -366,12 +366,11 @@ class BarcodeScannResultController extends getx.GetxController {
   }
 
   Future<void> scanBarcode(BuildContext context) async {
-    final int expndedIdx = getExpandedIndex();
     if (!hasAnyItemExpanded()) {
-      SnackbarUtil.showWarning(
-          message: "Please expand product before barcode scan!");
+      navigateToScanBarcode();
       return;
     }
+    final int expndedIdx = getExpandedIndex();
     KeyboardUtil.hideKeyboard(context);
     final String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         "#FFFFFF", "Cancel", false, ScanMode.BARCODE);

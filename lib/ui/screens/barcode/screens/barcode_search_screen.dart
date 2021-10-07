@@ -31,8 +31,9 @@ class BarCodeSearchScreen extends StatelessWidget {
                 children: [
                   SearchTextfield(
                       labelText: "Barcode Number",
-                      onScan: () => null,
-                      onSubmit: () => controller.addBarcodeNumber(),
+                      onScan: () => controller.scanBarcodeNumber(context),
+                      onSubmit: () => controller
+                          .addBarcodeNumber(controller.bardcodeTextField.text),
                       icon: kBarcodePlainIcon,
                       textFieldController: controller.bardcodeTextField),
                   Container(
