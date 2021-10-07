@@ -299,9 +299,10 @@ class BarcodeScannResultController extends getx.GetxController {
         SnackbarUtil.showSuccess(
             message: "Barcode scan successfull for ${expandedItem.code}");
       }
+      hasAnyChangesMade.value = false;
+      isLoading.toggle();
       //* getx.Get.offAll(MainHomeScreen());
       //* getx.Get.to(BarcodeHomeScreen());
-      isLoading.toggle();
     } catch (e, s) {
       isLoading.toggle();
       LoggerService.instance.e(s);
