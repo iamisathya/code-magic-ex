@@ -66,6 +66,29 @@ class BarCodeDetails extends StatelessWidget {
                   ),
                 ),
                 if (!controller.isLoading.value &&
+                    !controller.barcodeItems!.items
+                        .any((i) => i.require == false))
+                  Container(
+                    height: 152,
+                    width: Get.width,
+                    color: const Color(0xFF5297A6),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(kCheckSuccessIcon,
+                            height: 45,
+                            width: 45,
+                            semanticsLabel: 'barcode check icon'),
+                        const SizedBox(height: 15),
+                        Text("Check Successfully",
+                            style: Theme.of(context).textTheme.headline6),
+                        const SizedBox(height: 7),
+                        Text("Order Number: 423154182",
+                            style: Theme.of(context).textTheme.bodyText2)
+                      ],
+                    ),
+                  ),
+                if (!controller.isLoading.value &&
                     controller.barcodeItems != null)
                   Container(
                     margin: const EdgeInsets.only(
@@ -78,7 +101,8 @@ class BarCodeDetails extends StatelessWidget {
                           final BarcodeItem item =
                               controller.barcodeItems!.items[index];
                           if (item.require) {
-                            return BarcodeListItem(item: item, mainIndex: index);
+                            return BarcodeListItem(
+                                item: item, mainIndex: index);
                           }
                           return BarcodeProductItem(item: item);
                         }),
