@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/barcode/screens/barcode_details.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -56,5 +57,6 @@ class AppRoutes {
         page: () => CreateOpenPoOrder(),
         binding: CreateOpenPoOrderBindings()),
     GetPage(name: PrintSalesReport.routeName, page: () => PrintSalesReport()),
+    GetPage(name: BarCodeDetails.routeName, page: () => BarCodeDetails()),
   ];
 }

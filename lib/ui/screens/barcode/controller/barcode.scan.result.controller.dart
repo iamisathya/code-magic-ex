@@ -46,6 +46,8 @@ class BarcodeScannResultController extends getx.GetxController {
     if (data != null) {
       orderNumber.value = data as String;
       getBarcodePath();
+    } else {
+      getx.Get.back();
     }
   }
 

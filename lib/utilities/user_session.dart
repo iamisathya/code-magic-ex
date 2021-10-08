@@ -112,6 +112,26 @@ class UserSessionManager {
     return false;
   }
 
+  void getCustomerIdIntoDB() {
+    try {
+      final data =
+          KeyValueStorageManager.getString(KeyValueStorageKeys.customerIdInfo);
+      if (null == data || data.isEmpty) {
+        throw Exception('No data available in DB');
+      }
+      final Map<String, dynamic> jsonData =
+          json.decode(data) as Map<String, dynamic>;
+      if (jsonData.isEmpty) {
+        throw Exception('No data available after JSON convert');
+      }
+      customerIdInfo = UserId.fromJson(jsonData);
+    } catch (error) {
+      LoggerService.instance
+          .e('Session - Set User Info from DB - Error : ${error.toString()}');
+      customerIdInfo = _emptyCustomerIdInfo();
+    }
+  }
+
   Future<bool> setCurrentTheme(ThemeTypes theme) async {
     try {
       await KeyValueStorageManager.setString(

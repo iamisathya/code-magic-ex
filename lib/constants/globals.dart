@@ -30,4 +30,5 @@ class Globals {
       UserSessionManager.shared.userInfo!.id.unicity.toString();
   static UserInfo userInfo = UserSessionManager.shared.userInfo!;
   static String customerCode = "";
+  static String customerPoCode = "";
 }

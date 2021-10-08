@@ -12,6 +12,7 @@ import '../components/barcode_product_item.dart';
 import '../controller/barcode.scan.result.controller.dart';
 
 class BarCodeDetails extends StatelessWidget {
+  static const String routeName = '/barCodeDetailsPage';
   final BarcodeScannResultController controller =
       Get.put(BarcodeScannResultController());
   @override

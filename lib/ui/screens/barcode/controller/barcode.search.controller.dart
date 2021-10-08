@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dsc_tools/api/api_address.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/barcode_save_response.dart';
 import 'package:dsc_tools/models/verify_each_barcode_response.dart';
 import 'package:dsc_tools/utilities/keyboard.dart';
@@ -88,7 +89,7 @@ class BarcodeSearchController extends GetxController {
         "order": controller.orderNumber.value,
         "scan": scanNumbers,
         "data": allProducts,
-        "cus_code": "WCCM"
+        "cus_code": Globals.customerPoCode
       };
       final Map<String, dynamic> verifyRequest = {
         "order": allProducts,
@@ -106,14 +107,20 @@ class BarcodeSearchController extends GetxController {
               json.encode(saveRequest));
       barCodeSaveResponse = BarCodeSaveResponse.fromJson(
           json.decode(saveBarcodeRes as String) as Map<String, dynamic>);
-      if (barCodeSaveResponse!.errorMessages.isNotEmpty) {
+      // on success barcode scan
+      if (barCodeSaveResponse!.success &&
+          barCodeSaveResponse!.validateResult.success == "true" &&
+          barCodeSaveResponse!.validateResult.errorMessages!.isEmpty) {
+        SnackbarUtil.showError(message: "Barcode scan success!", duration: 10);
+        controller.getBarcodePath();
+        Get.back();
+      } else if (barCodeSaveResponse!.errorMessages.isNotEmpty) {
         final errors = StringBuffer();
         for (final err in barCodeSaveResponse!.errorMessages) {
           errors.write("\n $err");
         }
         SnackbarUtil.showError(message: errors.toString(), duration: 10);
       }
-
       isLoading.toggle();
       // Get.back();
     } catch (e, s) {
