@@ -51,7 +51,7 @@ class BarCodeSearchScreen extends StatelessWidget {
                               index: index,
                               onDelete: controller.removeBarcodeNumber);
                         }),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -72,14 +72,14 @@ class BarCodeSearchScreen extends StatelessWidget {
                         buttonColor: const Color(0xFFFFBF3A),
                         title: 'Cancel',
                         titleColor: const Color(0xFF000000),
-                        onTap: () => null,
+                        onTap: () => Get.back(),
                       ),
                     ),
                     const SizedBox(width: 10),
                     Flexible(
                       child: PlainButton(
                         title: 'Continue',
-                        onTap: () => null,
+                        onTap: () => controller.saveBarcodeDetails(),
                       ),
                     ),
                   ],
@@ -88,4 +88,27 @@ class BarCodeSearchScreen extends StatelessWidget {
       ),
     );
   }
+
+  Container _renderErrorBox(List<String> errors) {
+    return Container(
+        margin: const EdgeInsets.all(20),
+        width: Get.width,
+        decoration: BoxDecoration(
+            color: Colors.red.shade50,
+            border: Border.all(width: 2, color: Colors.red),
+            borderRadius: const BorderRadius.all(Radius.circular(8.0))),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: errors.map((errorMsg) => _errorText(errorMsg)).toList(),
+          ),
+        ));
+  }
+
+  Padding _errorText(String text) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.red, fontSize: 16)),
+      );
 }

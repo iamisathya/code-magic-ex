@@ -7,7 +7,7 @@ class VerifyEachBarcodeResponse {
   @JsonKey(name: "pass")
   String pass;
   @JsonKey(name: "error")
-  List<String>? error;
+  List<ErrorMessage>? error;
   @JsonKey(name: "scan")
   List<Scan> scan;
 
@@ -40,4 +40,17 @@ class Scan {
       _$ScanFromJson(json);
 
   Map<String, dynamic> toJson() => _$ScanToJson(this);
+}
+
+@JsonSerializable()
+class ErrorMessage {
+  @JsonKey(name: "msg")
+  String msg;
+
+  ErrorMessage({required this.msg});
+
+    factory ErrorMessage.fromJson(Map<String, dynamic> json) =>
+      _$ErrorMessageFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ErrorMessageToJson(this);
 }

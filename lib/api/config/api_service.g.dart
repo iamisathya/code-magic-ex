@@ -1084,6 +1084,23 @@ class _MemberCallsService implements MemberCallsService {
     return value;
   }
 
+  @override
+  Future<dynamic> saveBarcodeNumber(cookie, item, lang, request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'item': item, r'lang': lang};
+    final _data = request;
+    final _result = await _dio.fetch(_setStreamType<dynamic>(Options(
+            method: 'POST',
+            headers: <String, dynamic>{r'cookie': cookie},
+            extra: _extra,
+            contentType: 'application/x-www-form-urlencoded')
+        .compose(_dio.options, 'ALL/DSC/THA/barcode/check/library/save.php',
+            queryParameters: queryParameters, data: _data)
+        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
