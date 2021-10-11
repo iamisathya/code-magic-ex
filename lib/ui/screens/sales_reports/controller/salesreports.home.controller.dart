@@ -160,9 +160,9 @@ class SalesReportHomeController extends GetxController {
   void onTapDateSelector(DateSelectorType type, BuildContext context) {
     if (type == DateSelectorType.startDate) {
       DatePicker.showDatePicker(context,
-          currentTime: startDate != null ? startDate!.value : DateTime.now(),
           maxTime: DateTime.now().subtract(const Duration(days: 1)),
           minTime: DateTime.now().subtract(const Duration(days: 365)),
+          currentTime: startDate!.value.isAtSameMomentAs(DateTime.fromMicrosecondsSinceEpoch(100)) ? DateTime.now() : startDate!.value,
           onConfirm: (date) {
         startDate!.value = date;
         startDateString.value = startDate!.value.yyyyMMdd();
@@ -170,9 +170,10 @@ class SalesReportHomeController extends GetxController {
       });
     } else {
       DatePicker.showDatePicker(context,
-          currentTime: endDate != null ? endDate!.value : DateTime.now(),
           minTime: DateTime.now().subtract(const Duration(days: 364)),
-          maxTime: DateTime.now(), onConfirm: (date) {
+          maxTime: DateTime.now(), 
+          currentTime: endDate!.value.isAtSameMomentAs(DateTime.fromMicrosecondsSinceEpoch(100)) ?  DateTime.now() : endDate!.value,
+          onConfirm: (date) {
         endDate!.value = date;
         endDateString.value = endDate!.value.yyyyMMdd();
         enableFindButton();
