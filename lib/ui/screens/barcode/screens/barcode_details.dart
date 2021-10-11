@@ -17,7 +17,6 @@ class BarCodeDetails extends StatelessWidget {
       Get.put(BarcodeScannResultController());
   @override
   Widget build(BuildContext context) {
-    print(controller.checkIfAnyPandingBarcodeScanLeft().value);
     return Scaffold(
       body: Obx(
         () => SafeArea(
