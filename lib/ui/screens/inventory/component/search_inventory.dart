@@ -32,9 +32,12 @@ class _SearchAppBarState extends State<SearchProducts> {
               setState(() {
                 if (actionIcon.key == const ObjectKey("seachIcon")) {
                   appBarTitle = SearchBarField(
-                      // onTap: (String value) => controller.addSearchItem(value),
-                      searchTextController: controller.searchTextController, placeHolder: "Item number...",);
-                      controller.addSearchItem(controller.searchTextController.text);
+                    // onTap: (String value) => controller.addSearchItem(value),
+                    searchTextController: controller.searchTextController,
+                    placeHolder: "Item number...",
+                  );
+                  controller
+                      .addSearchItem(controller.searchTextController.text);
                 } else {
                   appBarTitle = const Text("");
                 }
@@ -54,14 +57,18 @@ class _SearchAppBarState extends State<SearchProducts> {
                     const EdgeInsets.symmetric(vertical: 17, horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "Search History",
                       style: TextStyle(fontSize: 14, color: Color(0xFF000000)),
                     ),
-                    Text(
-                      "Clear all",
-                      style: TextStyle(fontSize: 14, color: Color(0xFFFE5D7C)),
+                    GestureDetector(
+                      onTap: () => controller.clearHistory(),
+                      child: const Text(
+                        "Clear all",
+                        style:
+                            TextStyle(fontSize: 14, color: Color(0xFFFE5D7C)),
+                      ),
                     )
                   ],
                 ),
