@@ -127,7 +127,7 @@ class BarCodeDetails extends StatelessWidget {
                       controller.barcodeItems != null)
                     Container(
                       margin: const EdgeInsets.only(
-                          left: 20.0, right: 20.0, top: 15.0),
+                          left: 20.0, right: 20.0),
                       child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
