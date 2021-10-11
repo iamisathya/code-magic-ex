@@ -33,7 +33,7 @@ class _SearchAppBarState extends State<SearchProducts> {
                 if (actionIcon.key == const ObjectKey("seachIcon")) {
                   appBarTitle = SearchBarField(
                       // onTap: (String value) => controller.addSearchItem(value),
-                      searchTextController: controller.searchTextController);
+                      searchTextController: controller.searchTextController, placeHolder: "Item number...",);
                       controller.addSearchItem(controller.searchTextController.text);
                 } else {
                   appBarTitle = const Text("");
