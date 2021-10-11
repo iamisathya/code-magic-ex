@@ -54,6 +54,8 @@ class BarcodeScannResultController extends getx.GetxController {
   getx.RxBool get isItemExpanded =>
       barcodeItems!.items.any((element) => element.isExpanded).obs;
 
+  getx.RxBool get checkIfAllItemScanned => barcodeItems != null ? barcodeItems!.items.any((element) => element.require).obs : false.obs;
+
   Future<void> getBarcodePath() async {
     isLoading.toggle();
     final String token = UserSessionManager.shared.customerToken.token;
