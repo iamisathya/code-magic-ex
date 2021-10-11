@@ -271,7 +271,7 @@ class BarcodeScannResultController extends getx.GetxController {
               const SizedBox(height: 40),
               PlainButton(
                 title: 'OK, Got it',
-                onTap: () => getx.Get.back(),
+                onTap: () => navigateToBarcodeHome(),
               ),
               const SizedBox(height: 10),
               SizedBox(
@@ -315,7 +315,8 @@ class BarcodeScannResultController extends getx.GetxController {
       eachBarcodeResponse = await MemberCallsService.init()
           .verifyEachBarcodeNumber(gTokenBarcodeNew, expandedItem.code,
               json.encode(request.toMap()));
-      final bool allItemsArevalid = eachBarcodeResponse!.scan.any((element) => element.pass == false);
+      final bool allItemsArevalid =
+          eachBarcodeResponse!.scan.any((element) => element.pass == false);
       if (eachBarcodeResponse!.error!.isEmpty && !allItemsArevalid) {
         saveSingleBarcodeDetails();
       } else {
@@ -335,6 +336,12 @@ class BarcodeScannResultController extends getx.GetxController {
       isLoading.toggle();
       LoggerService.instance.e(s);
     }
+  }
+
+  void navigateToBarcodeHome() {
+    getx.Get.back();
+    getx.Get.offAll(MainHomeScreen());
+    getx.Get.to(BarcodeHomeScreen());
   }
 
   Future<void> saveSingleBarcodeDetails() async {
