@@ -429,9 +429,11 @@ packages:
   flutter_barcode_scanner:
     dependency: "direct main"
     description:
-      name: flutter_barcode_scanner
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: c466d32d017c29cd34307b5681f697891c55babc
+      url: "git://github.com/iamisathya/flutter_barcode_scanner.git"
+    source: git
     version: "2.0.0"
   flutter_bloc:
     dependency: "direct main"

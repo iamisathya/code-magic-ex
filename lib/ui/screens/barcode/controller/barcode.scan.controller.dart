@@ -26,12 +26,13 @@ class BarcodeScannerController extends GetxController {
     KeyboardUtil.hideKeyboard(context);
     final String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
         "#FFFFFF", "Cancel", false, ScanMode.BARCODE);
+    if(barcodeScanRes == "-1") return;
     debugPrint(barcodeScanRes);
     getBarcodePath(context, barcodeScanRes);
   }
 
   Future<void> getBarcodePath(BuildContext context, String orderNumber) async {
-    if (orderNumber.isEmpty && !orderNumber.isNumberOnly() && orderNumber != "-1") {
+    if (orderNumber.isEmpty && !orderNumber.isNumberOnly()) {
       SnackbarUtil.showError(message: "Order number should only contains numarics.");
       return;
     }

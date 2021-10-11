@@ -37,7 +37,10 @@ dependencies:
   firebase_remote_config: ^0.10.0+3
   flutter:
     sdk: flutter
-  flutter_barcode_scanner: ^2.0.0  
+  flutter_barcode_scanner:
+    git:
+      url: git://github.com/iamisathya/flutter_barcode_scanner.git
+      ref: master
   flutter_bloc: ^7.0.1
   flutter_datetime_picker: ^1.5.1
   flutter_dotenv: ^5.0.0
