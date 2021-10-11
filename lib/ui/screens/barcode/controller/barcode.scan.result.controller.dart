@@ -372,17 +372,15 @@ class BarcodeScannResultController extends getx.GetxController {
       barCodeSaveResponse = BarCodeSaveResponse.fromJson(
           json.decode(saveBarcodeRes as String) as Map<String, dynamic>);
       // on success barcode scan
-      if (barCodeSaveResponse!.success &&
-          barCodeSaveResponse!.validateResult.success == "true" &&
-          barCodeSaveResponse!.validateResult.errorMessages!.isEmpty) {
+      if (barCodeSaveResponse!.success) {
         hasAnyChangesMade.value = false;
         closeAllItems();
         SnackbarUtil.showSuccess(
             message: "Barcode scan successfull for ${expandedItem.code}");
         getBarcodePath();
-      } else if (barCodeSaveResponse!.errorMessages.isNotEmpty) {
+      } else if (barCodeSaveResponse!.errorMessages!.isNotEmpty) {
         final errors = StringBuffer();
-        for (final err in barCodeSaveResponse!.errorMessages) {
+        for (final err in barCodeSaveResponse!.errorMessages!) {
           errors.write("\n $err");
         }
         SnackbarUtil.showError(message: errors.toString(), duration: 10);

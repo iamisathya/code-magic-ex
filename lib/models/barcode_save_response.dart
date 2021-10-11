@@ -7,20 +7,23 @@ class BarCodeSaveResponse {
   @JsonKey(name: "success")
   bool success;
   @JsonKey(name: "errorMessages")
-  List<String> errorMessages;
+  List<String>? errorMessages;
   @JsonKey(name: "infoMessages")
-  List<String> infoMessages;
+  List<String>? infoMessages;
   @JsonKey(name: "validateResult")
-  ValidateResult validateResult;
+  ValidateResult? validateResult;
   @JsonKey(name: "orderItems")
   List<OrderItems> orderItems;
+  @JsonKey(name: "message")
+  String? message;
 
   BarCodeSaveResponse(
       {required this.success,
-      required this.errorMessages,
-      required this.infoMessages,
+      this.errorMessages,
+      this.infoMessages,
       required this.orderItems,
-      required this.validateResult});
+      this.validateResult,
+      this.message});
 
   factory BarCodeSaveResponse.fromJson(Map<String, dynamic> json) =>
       _$BarCodeSaveResponseFromJson(json);

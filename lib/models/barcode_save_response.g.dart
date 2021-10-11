@@ -9,17 +9,20 @@ part of 'barcode_save_response.dart';
 BarCodeSaveResponse _$BarCodeSaveResponseFromJson(Map<String, dynamic> json) {
   return BarCodeSaveResponse(
     success: json['success'] as bool,
-    errorMessages: (json['errorMessages'] as List<dynamic>)
-        .map((e) => e as String)
+    errorMessages: (json['errorMessages'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
-    infoMessages: (json['infoMessages'] as List<dynamic>)
-        .map((e) => e as String)
+    infoMessages: (json['infoMessages'] as List<dynamic>?)
+        ?.map((e) => e as String)
         .toList(),
     orderItems: (json['orderItems'] as List<dynamic>)
         .map((e) => OrderItems.fromJson(e as Map<String, dynamic>))
         .toList(),
-    validateResult:
-        ValidateResult.fromJson(json['validateResult'] as Map<String, dynamic>),
+    validateResult: json['validateResult'] == null
+        ? null
+        : ValidateResult.fromJson(
+            json['validateResult'] as Map<String, dynamic>),
+    message: json['message'] as String?,
   );
 }
 
@@ -31,6 +34,7 @@ Map<String, dynamic> _$BarCodeSaveResponseToJson(
       'infoMessages': instance.infoMessages,
       'validateResult': instance.validateResult,
       'orderItems': instance.orderItems,
+      'message': instance.message,
     };
 
 ValidateResult _$ValidateResultFromJson(Map<String, dynamic> json) {
