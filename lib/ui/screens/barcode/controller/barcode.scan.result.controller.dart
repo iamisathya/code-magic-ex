@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/models/barcode_number_update_request.dart';
+import 'package:dsc_tools/models/barcode_save_response.dart';
 import 'package:dsc_tools/models/verify_each_barcode_response.dart';
 import 'package:dsc_tools/utilities/keyboard.dart';
 import 'package:dsc_tools/utilities/snackbar.dart';
@@ -38,6 +39,7 @@ class BarcodeScannResultController extends getx.GetxController {
 
   BarcodeResponse? barcodeDetails;
   BarCodeItemsResponse? barcodeItems;
+  BarCodeSaveResponse? barCodeSaveResponse;
   VerifyEachBarcodeResponse? eachBarcodeResponse;
 
   @override
@@ -56,9 +58,9 @@ class BarcodeScannResultController extends getx.GetxController {
       barcodeItems!.items.any((element) => element.isExpanded).obs;
 
   getx.RxBool checkIfAnyPandingBarcodeScanLeft() {
-    if(barcodeItems == null) return true.obs;
+    if (barcodeItems == null) return true.obs;
     for (final e in barcodeItems!.items) {
-      if(e.require == false ||  (e.require == true && e.remain != 0)) {
+      if (e.require == false || (e.require == true && e.remain != 0)) {
         // hasd pending
         //* {"items":[{"code":"27018","qty":1,"desc":"Calcium Magnesium Plus TH","require":false,"scan":0,"remain":0}],"user":"236187666"}
         return true.obs;
@@ -307,24 +309,84 @@ class BarcodeScannResultController extends getx.GetxController {
         allBarcodes.add(BarcodeNumbers(item: i));
       }
       isLoading.toggle();
-      closeAllItems();
       allBarcodes.add(BarcodeNumbers(item: ""));
       final BarcodeNumberUpdateRequest request = BarcodeNumberUpdateRequest(
           order: allitems, scan: allBarcodes, orderNumber: orderNumber.value);
       eachBarcodeResponse = await MemberCallsService.init()
           .verifyEachBarcodeNumber(gTokenBarcodeNew, expandedItem.code,
               json.encode(request.toMap()));
-      if (eachBarcodeResponse!.scan[0].pass) {
-        SnackbarUtil.showSuccess(
-            message: "Barcode scan successfull for ${expandedItem.code}");
+      final bool allItemsArevalid = eachBarcodeResponse!.scan.any((element) => element.pass == false);
+      if (eachBarcodeResponse!.error!.isEmpty && !allItemsArevalid) {
+        saveSingleBarcodeDetails();
+      } else {
+        if (eachBarcodeResponse!.error!.isNotEmpty) {
+          final errors = StringBuffer();
+          for (final err in eachBarcodeResponse!.error!) {
+            errors.write("\n $err");
+          }
+          SnackbarUtil.showError(message: errors.toString(), duration: 10);
+        }
+        hasAnyChangesMade.value = false;
+        isLoading.toggle();
       }
-      hasAnyChangesMade.value = false;
-      isLoading.toggle();
       //* getx.Get.offAll(MainHomeScreen());
       //* getx.Get.to(BarcodeHomeScreen());
     } catch (e, s) {
       isLoading.toggle();
       LoggerService.instance.e(s);
+    }
+  }
+
+  Future<void> saveSingleBarcodeDetails() async {
+    try {
+      // {"order":"423188055","scan":[{"item":"299900006000"},{"item":"299900006001"},{"item":"299900006002"},{"item":""}],"data":[{"item":"25735","quantity":"0"},{"item":"30266","quantity":"0"},{"item":"24288","quantity":"0"},{"item":"22375","quantity":"0"},{"item":"19236","quantity":"0"},{"item":"23256","quantity":"0"},{"item":"34222","quantity":"0"}],"cus_code":"WCCM"}
+      final List<Map<String, dynamic>> scanNumbers = [];
+      final List<Map<String, dynamic>> allProducts = [];
+      final BarcodeItem expandedItem =
+          barcodeItems!.items.firstWhere((element) => element.isExpanded);
+      for (final i in barcodeItems!.items) {
+        allProducts.add({"item": i.code, "quantity": i.qty});
+      }
+      for (final i in expandedItem.barcodes) {
+        scanNumbers.add({"item": i});
+      }
+      final Map<String, dynamic> saveRequest = {
+        "order": orderNumber.value,
+        "scan": scanNumbers,
+        "data": allProducts,
+        "cus_code": 'WCCM'
+      };
+      final dynamic saveBarcodeRes = await MemberCallsService.init()
+          .saveBarcodeNumber(
+              "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1688805920.1633324197; __cf_bm=Ss938oGvx.NVsHwWkudfJe6vqoHmaP5Pik.s7_u5uXk-1633603833-0-Af+WI9XAvMJQDtbavfyymnV3oAFL8/BObDZYzqVhG6rQSOG5g5dBOKOAr4cOqAqtzJe9teA0d3UQY+kwgpJfyEg8mqnNIU7JsjZKGfjgbgyFhf7tvGUugvLv26KRsBKmeA==",
+              expandedItem.code,
+              "en",
+              json.encode(saveRequest));
+      barCodeSaveResponse = BarCodeSaveResponse.fromJson(
+          json.decode(saveBarcodeRes as String) as Map<String, dynamic>);
+      // on success barcode scan
+      if (barCodeSaveResponse!.success &&
+          barCodeSaveResponse!.validateResult.success == "true" &&
+          barCodeSaveResponse!.validateResult.errorMessages!.isEmpty) {
+        hasAnyChangesMade.value = false;
+        closeAllItems();
+        SnackbarUtil.showSuccess(
+            message: "Barcode scan successfull for ${expandedItem.code}");
+        getBarcodePath();
+      } else if (barCodeSaveResponse!.errorMessages.isNotEmpty) {
+        final errors = StringBuffer();
+        for (final err in barCodeSaveResponse!.errorMessages) {
+          errors.write("\n $err");
+        }
+        SnackbarUtil.showError(message: errors.toString(), duration: 10);
+      }
+      isLoading.toggle();
+      // Get.back();
+    } catch (e, s) {
+      debugPrint(e.toString());
+      isLoading.toggle();
+      LoggerService.instance.e(s);
+      SnackbarUtil.showError(message: e.toString());
     }
   }
 
