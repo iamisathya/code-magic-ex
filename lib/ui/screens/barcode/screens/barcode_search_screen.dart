@@ -79,7 +79,8 @@ class BarCodeSearchScreen extends StatelessWidget {
                     Flexible(
                       child: PlainButton(
                         title: 'Continue',
-                        onTap: () => controller.saveBarcodeDetails(),
+                        // onTap: () => controller.saveBarcodeDetails(),
+                        onTap: () => controller.verifyBarcodeDetails(),
                       ),
                     ),
                   ],

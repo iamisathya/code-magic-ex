@@ -44,7 +44,7 @@ class ValidateResult {
   @JsonKey(name: "errorMessages")
   List<String>? errorMessages;
   @JsonKey(name: "errorBarcodes")
-  List<num>? errorBarcodes;
+  List<dynamic>? errorBarcodes;
   @JsonKey(name: "validBarcodes")
   List<String>? validBarcodes;
 

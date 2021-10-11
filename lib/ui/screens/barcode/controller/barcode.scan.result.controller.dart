@@ -34,6 +34,7 @@ class BarcodeScannResultController extends getx.GetxController {
   getx.RxString orderUrl = "".obs;
   getx.RxBool barcodeNumberLoading = false.obs;
   getx.RxList<String> currentBarcodeNumbers = <String>[].obs;
+  getx.RxBool canOrderHasBarcode = false.obs;
 
   BarcodeResponse? barcodeDetails;
   BarCodeItemsResponse? barcodeItems;
@@ -54,7 +55,21 @@ class BarcodeScannResultController extends getx.GetxController {
   getx.RxBool get isItemExpanded =>
       barcodeItems!.items.any((element) => element.isExpanded).obs;
 
-  getx.RxBool get checkIfAllItemScanned => barcodeItems != null ? barcodeItems!.items.any((element) => element.require).obs : false.obs;
+  getx.RxBool checkIfAnyPandingBarcodeScanLeft() {
+    if(barcodeItems == null) return true.obs;
+    for (final e in barcodeItems!.items) {
+      if(e.require == false ||  (e.require == true && e.remain != 0)) {
+        // hasd pending
+        //* {"items":[{"code":"27018","qty":1,"desc":"Calcium Magnesium Plus TH","require":false,"scan":0,"remain":0}],"user":"236187666"}
+        return true.obs;
+      }
+    }
+    // Has no pending orders
+    //* {"items":[{"code":"22375","qty":1,"desc":"Natures T Infusion","require":true,"scan":1,"remain":0}],"user":"236187666"}
+    return false.obs;
+  }
+
+  // getx.RxBool get checkIfAllItemScanned => barcodeItems != null ? checkIfAnyPandingBarcodeScanLeft() : false.obs;
 
   Future<void> getBarcodePath() async {
     isLoading.toggle();

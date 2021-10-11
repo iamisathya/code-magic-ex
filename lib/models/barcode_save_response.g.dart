@@ -42,9 +42,7 @@ ValidateResult _$ValidateResultFromJson(Map<String, dynamic> json) {
     errorMessages: (json['errorMessages'] as List<dynamic>?)
         ?.map((e) => e as String)
         .toList(),
-    errorBarcodes: (json['errorBarcodes'] as List<dynamic>?)
-        ?.map((e) => e as num)
-        .toList(),
+    errorBarcodes: json['errorBarcodes'] as List<dynamic>?,
     validBarcodes: (json['validBarcodes'] as List<dynamic>?)
         ?.map((e) => e as String)
         .toList(),
