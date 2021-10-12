@@ -178,8 +178,11 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                       },
                     ).whenComplete(
                         () => controller.searchProductTextController.text = ""),
-                    child: SvgPicture.asset(kAddMoreProductsImage,
-                        height: 40, semanticsLabel: "Add more products"),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: SvgPicture.asset(kAddMoreProductsImage,
+                          height: 40, semanticsLabel: "Add more products"),
+                    ),
                   ),
                   const SizedBox(height: 34),
                   Obx(() => TotalPrice(
