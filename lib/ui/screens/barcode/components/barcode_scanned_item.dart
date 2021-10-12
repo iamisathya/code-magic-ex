@@ -1,7 +1,7 @@
-import '../../../../models/barcode_item_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../models/barcode_item_response.dart';
 import '../../../../utilities/images.dart';
 
 class BarcodeScannedItem extends StatelessWidget {
@@ -44,7 +44,7 @@ class BarcodeScannedItem extends StatelessWidget {
           ],
         ),
       ),
-      children: <Widget>[
+      children: const <Widget> [
         Text("Number: 1"),
         Text("Number: 2"),
         Text("Number: 3"),

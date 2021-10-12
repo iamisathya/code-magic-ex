@@ -1,16 +1,17 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:get/get.dart';
+
 import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
 import '../../../../models/barcode_save_response.dart';
 import '../../../../models/verify_each_barcode_response.dart';
+import '../../../../utilities/extensions.dart';
 import '../../../../utilities/keyboard.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:get/get.dart';
-import '../../../../utilities/extensions.dart';
 import 'barcode.scan.result.controller.dart';
 
 class BarcodeSearchController extends GetxController {

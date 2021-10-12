@@ -1,11 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import '../../../../models/barcode_number_update_request.dart';
-import '../../../../models/barcode_save_response.dart';
-import '../../../../models/verify_each_barcode_response.dart';
-import '../../../../utilities/keyboard.dart';
-import '../../../../utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,10 +10,15 @@ import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
 import '../../../../models/barcode_item_response.dart';
 import '../../../../models/barcode_number_response.dart';
+import '../../../../models/barcode_number_update_request.dart';
 import '../../../../models/barcode_response.dart';
+import '../../../../models/barcode_save_response.dart';
+import '../../../../models/verify_each_barcode_response.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/images.dart';
+import '../../../../utilities/keyboard.dart';
 import '../../../../utilities/logger.dart';
+import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/widgets/plain_button.dart';
 import '../../home/home.dart';

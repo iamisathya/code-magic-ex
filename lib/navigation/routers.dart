@@ -1,7 +1,7 @@
-import '../ui/screens/barcode/screens/barcode_details.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
+import '../ui/screens/barcode/screens/barcode_details.dart';
 import '../ui/screens/easy_ship/easyship.screen.dart';
 import '../ui/screens/enroll/enrollhome.screen.dart';
 import '../ui/screens/enroll/screens/enroll_confirmation/enrollconfirmation.screen.dart';

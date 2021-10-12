@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import '../../models/barcode_number_update_request.dart';
-import '../../models/barcode_save_response.dart';
-import '../../models/verify_each_barcode_response.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -42,6 +39,7 @@ import '../../models/search_reponse_by_href.dart';
 import '../../models/user_id.dart';
 import '../../models/user_info.dart';
 import '../../models/user_token.dart';
+import '../../models/verify_each_barcode_response.dart';
 import '../../models/zip_code_response.dart';
 import '../../utilities/user_session.dart';
 import '../api_address.dart';
