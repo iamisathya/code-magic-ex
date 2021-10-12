@@ -223,7 +223,7 @@ class CreateOpenPoOrderController extends GetxController
     try {
       isLoading.toggle();
       final dynamic reponse =
-          await MemberCallsService.init().valiadateOrder("TH", "BKM");
+          await MemberCallsService.init().valiadateOrder("TH", Globals.customerPoCode);
       final jsonResponse = jsonDecode(reponse.toString());
       final ValidateOrder orderResponse =
           ValidateOrder.fromJson(jsonResponse as Map<String, dynamic>);

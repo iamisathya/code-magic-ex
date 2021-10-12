@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
@@ -129,7 +130,7 @@ class BarcodeSearchController extends GetxController {
         "order": controller.orderNumber.value,
         "scan": scanNumbers,
         "data": allProducts,
-        "cus_code": 'WCCM'
+        "cus_code": Globals.customerPoCode
       };
       final dynamic saveBarcodeRes = await MemberCallsService.init()
           .saveBarcodeNumber(

@@ -105,7 +105,7 @@ class OpenPoTableController extends GetxController {
     _sendingMsgProgressBar.show(context);
     try {
       final dynamic reponse =
-          await MemberCallsService.init().valiadateOrder("TH", "BKM");
+          await MemberCallsService.init().valiadateOrder("TH", Globals.customerPoCode);
       final jsonResponse = jsonDecode(reponse.toString());
       final ValidateOrder orderResponse =
           ValidateOrder.fromJson(jsonResponse as Map<String, dynamic>);
@@ -330,7 +330,7 @@ class OpenPoTableController extends GetxController {
       });
       final response = await MemberCallsService.init().uploadFile(
           "weylbzpplvy6wq9ae5rma",
-          "BKM%20-00-W001",
+          "${Globals.customerPoCode}%20-00-W001",
           "0",
           kUploadFileId,
           formData);
