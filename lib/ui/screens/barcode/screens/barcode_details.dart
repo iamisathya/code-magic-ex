@@ -136,7 +136,7 @@ class CompleteBarcodeScanSuccess extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(kCheckSuccessIcon,
+          SvgPicture.asset(kBarcodeCheckSuccessIcon,
               height: 45, width: 45, semanticsLabel: 'barcode check icon'),
           const SizedBox(height: 15),
           Text("Check Successfully",

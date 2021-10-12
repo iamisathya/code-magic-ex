@@ -12,7 +12,7 @@ class PoOrderedItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       color: const Color(0xFFFFFFFF),
       child: Padding(
         padding: const EdgeInsets.all(30),
