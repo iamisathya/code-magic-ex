@@ -31,7 +31,9 @@ class _SearchAppBarState extends State<SearchProducts> {
                 setState(() {
                   if (actionIcon.key == const ObjectKey("seachIcon")) {
                     appBarTitle = SearchBarField(
-                        searchTextController: controller.searchTextController, placeHolder: "Item number",);
+                      searchTextController: controller.searchTextController,
+                      placeHolder: "Item number",
+                    );
                     controller
                         .addSearchItem(controller.searchTextController.text);
                   } else {
@@ -48,8 +50,7 @@ class _SearchAppBarState extends State<SearchProducts> {
               height: 50,
               color: const Color(0xFFF5F5F5),
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

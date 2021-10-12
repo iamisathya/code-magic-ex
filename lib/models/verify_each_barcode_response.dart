@@ -11,7 +11,6 @@ class VerifyEachBarcodeResponse {
   @JsonKey(name: "scan")
   List<Scan> scan;
 
-
   VerifyEachBarcodeResponse({
     required this.pass,
     this.error,
@@ -23,8 +22,7 @@ class VerifyEachBarcodeResponse {
 
   Map<String, dynamic> toJson() => _$VerifyEachBarcodeResponseToJson(this);
 
-  Map<String, dynamic> toMap() =>
-      {'pass': pass, 'error': error, 'scan': scan};
+  Map<String, dynamic> toMap() => {'pass': pass, 'error': error, 'scan': scan};
 }
 
 @JsonSerializable()
@@ -36,8 +34,7 @@ class Scan {
 
   Scan({required this.item, required this.pass});
 
-    factory Scan.fromJson(Map<String, dynamic> json) =>
-      _$ScanFromJson(json);
+  factory Scan.fromJson(Map<String, dynamic> json) => _$ScanFromJson(json);
 
   Map<String, dynamic> toJson() => _$ScanToJson(this);
 }
@@ -49,7 +46,7 @@ class ErrorMessage {
 
   ErrorMessage({required this.msg});
 
-    factory ErrorMessage.fromJson(Map<String, dynamic> json) =>
+  factory ErrorMessage.fromJson(Map<String, dynamic> json) =>
       _$ErrorMessageFromJson(json);
 
   Map<String, dynamic> toJson() => _$ErrorMessageToJson(this);

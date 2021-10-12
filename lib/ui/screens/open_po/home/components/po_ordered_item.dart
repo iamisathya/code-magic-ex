@@ -24,15 +24,17 @@ class PoOrderedItem extends StatelessWidget {
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
+                      border: Border.all(
+                          width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: const Color(0xFFF5F5F5),
                       borderRadius: BorderRadius.circular(3),
                     ),
                     height: 40,
                     child: Center(
                         child: Text(
-                      "Item ${idx+1}",
-                      style: const TextStyle(color: Color(0xFF384250), fontSize: 14),
+                      "Item ${idx + 1}",
+                      style: const TextStyle(
+                          color: Color(0xFF384250), fontSize: 14),
                     )),
                   ),
                 ),
@@ -43,7 +45,8 @@ class PoOrderedItem extends StatelessWidget {
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
+                      border: Border.all(
+                          width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(3),
                     ),
@@ -68,7 +71,8 @@ class PoOrderedItem extends StatelessWidget {
                     width: double.infinity,
                     height: 40,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
+                      border: Border.all(
+                          width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(3),
                     ),
@@ -92,7 +96,8 @@ class PoOrderedItem extends StatelessWidget {
                     width: double.infinity,
                     height: 40,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
+                      border: Border.all(
+                          width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(3),
                     ),
@@ -113,7 +118,8 @@ class PoOrderedItem extends StatelessWidget {
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
+                      border: Border.all(
+                          width: 0.5, color: const Color(0xFFD0D0CF)),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(3),
                     ),

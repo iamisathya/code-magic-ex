@@ -108,7 +108,8 @@ class OpenPODetailsPage extends GetView<OpenPoDetailsController> {
                         itemCount: controller.openPlaceOrderDetails.length,
                         itemBuilder: (BuildContext ctxt, int index) {
                           return PoOrderedItem(
-                              item: controller.openPlaceOrderDetails[index], idx: index);
+                              item: controller.openPlaceOrderDetails[index],
+                              idx: index);
                         }),
                     const SizedBox(
                       height: 34,
@@ -145,7 +146,7 @@ class OpenPODetailsPage extends GetView<OpenPoDetailsController> {
                         bgColor: const Color(0xFF1C9CFC),
                         fgColor: const Color(0xFFFFFFFF),
                         icon: kPrintIcon,
-                        iconColor:const Color(0xFFFFFFFF),
+                        iconColor: const Color(0xFFFFFFFF),
                       ),
                     ),
                   ],

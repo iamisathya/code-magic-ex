@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/barcode_number_update_request.dart';
-import 'package:dsc_tools/models/barcode_save_response.dart';
-import 'package:dsc_tools/models/verify_each_barcode_response.dart';
-import 'package:dsc_tools/utilities/keyboard.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
+import '../../../../models/barcode_number_update_request.dart';
+import '../../../../models/barcode_save_response.dart';
+import '../../../../models/verify_each_barcode_response.dart';
+import '../../../../utilities/keyboard.dart';
+import '../../../../utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/svg.dart';

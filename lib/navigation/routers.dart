@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/barcode/screens/barcode_details.dart';
+import '../ui/screens/barcode/screens/barcode_details.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';

@@ -7,8 +7,6 @@ class BarcodeNumberResponse {
   @JsonKey(name: "items")
   List<String> items;
 
-
-
   BarcodeNumberResponse({required this.items});
 
   factory BarcodeNumberResponse.fromJson(Map<String, dynamic> json) =>

@@ -38,16 +38,16 @@ class BarcodeItem {
   @JsonKey(name: "barcodes")
   List<String> barcodes;
 
-  BarcodeItem(
-      {required this.code,
-      required this.desc,
-      required this.qty,
-      required this.remain,
-      required this.require,
-      required this.scan,
-      required this.isExpanded,
-      required this.barcodes,
-      });
+  BarcodeItem({
+    required this.code,
+    required this.desc,
+    required this.qty,
+    required this.remain,
+    required this.require,
+    required this.scan,
+    required this.isExpanded,
+    required this.barcodes,
+  });
 
   factory BarcodeItem.fromJson(Map<String, dynamic> json) =>
       _$BarcodeItemFromJson(json);

@@ -54,9 +54,4 @@ enum LocaleTypes {
 
 enum DateSelectorType { startDate, endDate }
 
-enum OrderStatus {
-  pending, 
-  error, 
-  success,
-  unknown
-}
+enum OrderStatus { pending, error, success, unknown }

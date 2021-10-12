@@ -29,14 +29,17 @@ class PlainButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Row(
-            mainAxisAlignment: showIcons ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center, 
+            mainAxisAlignment: showIcons
+                ? MainAxisAlignment.spaceBetween
+                : MainAxisAlignment.center,
             children: [
               Text(title,
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
                       .copyWith(color: titleColor)),
-              if(showIcons) SvgPicture.asset(kForwardIcon, width: 34, height: 10)
+              if (showIcons)
+                SvgPicture.asset(kForwardIcon, width: 34, height: 10)
             ],
           ),
         ),

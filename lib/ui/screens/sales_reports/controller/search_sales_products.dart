@@ -25,7 +25,8 @@ class SalesReportSearchController extends GetxController {
 
   void searchOrder(String orderId) {
     final SalesReportOrderItem? orderItem = controller.allSalesReports
-        .firstWhereOrNull((order) => order.orderNumber == orderId || order.customer == orderId);
+        .firstWhereOrNull((order) =>
+            order.orderNumber == orderId || order.customer == orderId);
     if (orderItem != null && orderItem.orderNumber.isNotEmpty) {
       final Map<String, dynamic> args = {"type": "order", "data": orderItem};
       Get.to(() => SalesReportSearchResult(), arguments: args);

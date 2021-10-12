@@ -121,14 +121,14 @@ class LoginController extends GetxController {
           .getProfilePicture(UserSessionManager.shared.customerUniqueId);
 
       //*  getCustomerData from api
-      final UserId userResponse =
-          await MemberCallsService.init().getUserId(kUserId, userIdController.text);
+      final UserId userResponse = await MemberCallsService.init()
+          .getUserId(kUserId, userIdController.text);
 
       //*  Storing user info to db
       await store.write('current_market', currentMarket);
       Globals.currentMarket = currentMarket;
       Globals.currency = currentMarket.currency;
-      Globals.customerCode = customerToken.customer.href.getAfterLastSlash();      
+      Globals.customerCode = customerToken.customer.href.getAfterLastSlash();
 
       UserSessionManager.shared.customerId = userResponse.customerId;
       UserSessionManager.shared.customerCode = userResponse.customerCode;

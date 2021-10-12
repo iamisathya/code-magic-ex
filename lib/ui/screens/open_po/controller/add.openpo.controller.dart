@@ -23,6 +23,7 @@ import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
 import '../home/components/order_success.dart';
+
 class CreateOpenPoOrderController extends GetxController
     with StateMixin<List<InventoryRecords>> {
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
@@ -54,7 +55,6 @@ class CreateOpenPoOrderController extends GetxController
           ? searchResult.value
           : inventoryRecords.value;
 
-  
   Future<void> getManagedWarehouses() async {
     isLoading.toggle();
     try {
@@ -83,7 +83,7 @@ class CreateOpenPoOrderController extends GetxController
     try {
       inventoryRecords.value =
           await ApiService.shared().getInventoryRecords(warehouseId, type);
-      searchResult.value.items = List.from(inventoryRecords.value.items);    
+      searchResult.value.items = List.from(inventoryRecords.value.items);
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: "Error! $message");

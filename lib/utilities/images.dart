@@ -104,7 +104,6 @@ const kAnimatedLoader = 'assets/animated/spinner.gif';
 const kAnimatedLoader2 = 'assets/animated/spinner2.gif';
 const kAnimatedSpin = 'assets/animated/spin.gif';
 
-
 // * Illustration
-const kScanBarcodeIllustration = 'assets/illustration/scan_barcode_illustration.svg';
-
+const kScanBarcodeIllustration =
+    'assets/illustration/scan_barcode_illustration.svg';

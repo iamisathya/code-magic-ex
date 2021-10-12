@@ -29,10 +29,8 @@ class BarcodeProductItem extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(item.desc,
-                    style: Theme.of(context).textTheme.bodyText1),
-                Text(
-                    "Scanned:${item.scan}/${item.qty}",
+                Text(item.desc, style: Theme.of(context).textTheme.bodyText1),
+                Text("Scanned:${item.scan}/${item.qty}",
                     style: Theme.of(context).textTheme.bodyText2)
               ],
             ),

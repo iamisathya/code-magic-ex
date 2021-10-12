@@ -5,7 +5,8 @@ class SearchBarField extends StatelessWidget {
   final TextEditingController searchTextController;
   final String placeHolder;
 
-  const SearchBarField({required this.searchTextController, this.placeHolder = "Search ..."});
+  const SearchBarField(
+      {required this.searchTextController, this.placeHolder = "Search ..."});
 
   @override
   Widget build(BuildContext context) {

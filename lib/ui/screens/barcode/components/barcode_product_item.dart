@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -6,7 +5,6 @@ import '../../../../models/barcode_item_response.dart';
 import '../../../../utilities/images.dart';
 
 class BarcodeProductItem extends StatelessWidget {
-
   final BarcodeItem item;
 
   const BarcodeProductItem({
@@ -19,10 +17,8 @@ class BarcodeProductItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: const Color(0xFFFFFFFF),
-          border: Border.all(
-              color: const Color(0xFFD0D0CF), width: 0.5),
-          borderRadius:
-              const BorderRadius.all(Radius.circular(3.0))),
+          border: Border.all(color: const Color(0xFFD0D0CF), width: 0.5),
+          borderRadius: const BorderRadius.all(Radius.circular(3.0))),
       margin: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -34,16 +30,11 @@ class BarcodeProductItem extends StatelessWidget {
                 Row(
                   children: [
                     SvgPicture.asset(kWarningIcon,
-                        height: 25,
-                        width: 25,
-                        semanticsLabel: 'warning icon'),
+                        height: 25, width: 25, semanticsLabel: 'warning icon'),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Text("Scan: ${item.scan}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle2),
+                          style: Theme.of(context).textTheme.subtitle2),
                     )
                   ],
                 ),

@@ -35,11 +35,12 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                         "PO List",
                         style: Theme.of(context).textTheme.headline4,
                       ),
-                      ShareButton(onPress: () => Get.to(() => CreateOpenPoOrder())),
+                      ShareButton(
+                          onPress: () => Get.to(() => CreateOpenPoOrder())),
                     ],
                   ),
                 ),
-              ),              
+              ),
               Container(
                 color: const Color(0xFFE3E8ED),
                 height: 70,

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/barcode_number_update_request.dart';
-import 'package:dsc_tools/models/barcode_save_response.dart';
-import 'package:dsc_tools/models/verify_each_barcode_response.dart';
+import '../../models/barcode_number_update_request.dart';
+import '../../models/barcode_save_response.dart';
+import '../../models/verify_each_barcode_response.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -431,33 +431,41 @@ abstract class MemberCallsService {
       @Query('token') String token,
       @Query('action') String action);
 
-
   //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?order=423182123&token=b5eb37c5-5644-492d-b703-817cf58bfa9e&href=31512d2a1d4a2a5860bc785d27d1f7522ad2ddc6de4667f07aa6ac036f67662c
   @GET(Address.barcodeDetails)
   Future<BarcodeResponse> getBarcodeDetails(
-      @Header("cookie") String cookie, 
+      @Header("cookie") String cookie,
       @Query('order') String order,
       @Query('token') String token,
       @Query('href') String href);
 
   //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?order=423182123&token=b5eb37c5-5644-492d-b703-817cf58bfa9e&href=31512d2a1d4a2a5860bc785d27d1f7522ad2ddc6de4667f07aa6ac036f67662c
   @POST(Address.barcodeItems)
-  @FormUrlEncoded()  
-  Future<dynamic> getBarcodeItems(@Header("cookie") String cookie, @Body() FormData request);
+  @FormUrlEncoded()
+  Future<dynamic> getBarcodeItems(
+      @Header("cookie") String cookie, @Body() FormData request);
 
   //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/check/library/edit.php?order=423190633&item=24288
   @GET(Address.getBarcodeNumbers)
-  Future<BarcodeNumberResponse> getBarcodeNumbers(@Query('order') String order, @Query('item') String item);
+  Future<BarcodeNumberResponse> getBarcodeNumbers(
+      @Query('order') String order, @Query('item') String item);
 
   //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/check/library/edit.php?order=423190633&item=24288
   @POST(Address.verifyEachBarcodeNumber)
-  @FormUrlEncoded()  
-  Future<VerifyEachBarcodeResponse> verifyEachBarcodeNumber(@Header("cookie") String cookie, @Query('item') String item, @Body() String request);
+  @FormUrlEncoded()
+  Future<VerifyEachBarcodeResponse> verifyEachBarcodeNumber(
+      @Header("cookie") String cookie,
+      @Query('item') String item,
+      @Body() String request);
 
   //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/check/library/save.php?item=&lang=en
   @POST(Address.saveBarcodeNumber)
-  @FormUrlEncoded()  
-  Future<dynamic> saveBarcodeNumber(@Header("cookie") String cookie, @Query('item') String item, @Query('lang') String lang, @Body() String request);
+  @FormUrlEncoded()
+  Future<dynamic> saveBarcodeNumber(
+      @Header("cookie") String cookie,
+      @Query('item') String item,
+      @Query('lang') String lang,
+      @Body() String request);
 }
 
 @RestApi(baseUrl: Address.memberCalls2Base)

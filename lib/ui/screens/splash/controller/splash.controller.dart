@@ -87,7 +87,8 @@ class SplashController extends GetxController {
       UserSessionManager.shared.getProfilePictureFromDB();
       UserSessionManager.shared.getCustomerIdInfoFromDB();
       FirebaseCrashlytics.instance.setUserIdentifier(userId);
-      Globals.customerPoCode = UserSessionManager.shared.customerIdInfo!.customerPoCode;
+      Globals.customerPoCode =
+          UserSessionManager.shared.customerIdInfo!.customerPoCode;
       await _setAppAnalytics();
       Get.offAll(() => MainHomeScreen());
     } else {

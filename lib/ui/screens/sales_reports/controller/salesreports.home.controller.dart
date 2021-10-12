@@ -162,8 +162,10 @@ class SalesReportHomeController extends GetxController {
       DatePicker.showDatePicker(context,
           maxTime: DateTime.now().subtract(const Duration(days: 1)),
           minTime: DateTime.now().subtract(const Duration(days: 365)),
-          currentTime: startDate!.value.isAtSameMomentAs(DateTime.fromMicrosecondsSinceEpoch(100)) ? DateTime.now() : startDate!.value,
-          onConfirm: (date) {
+          currentTime: startDate!.value
+                  .isAtSameMomentAs(DateTime.fromMicrosecondsSinceEpoch(100))
+              ? DateTime.now()
+              : startDate!.value, onConfirm: (date) {
         startDate!.value = date;
         startDateString.value = startDate!.value.yyyyMMdd();
         enableFindButton();
@@ -171,9 +173,11 @@ class SalesReportHomeController extends GetxController {
     } else {
       DatePicker.showDatePicker(context,
           minTime: DateTime.now().subtract(const Duration(days: 364)),
-          maxTime: DateTime.now(), 
-          currentTime: endDate!.value.isAtSameMomentAs(DateTime.fromMicrosecondsSinceEpoch(100)) ?  DateTime.now() : endDate!.value,
-          onConfirm: (date) {
+          maxTime: DateTime.now(),
+          currentTime: endDate!.value
+                  .isAtSameMomentAs(DateTime.fromMicrosecondsSinceEpoch(100))
+              ? DateTime.now()
+              : endDate!.value, onConfirm: (date) {
         endDate!.value = date;
         endDateString.value = endDate!.value.yyyyMMdd();
         enableFindButton();
@@ -371,7 +375,7 @@ class SalesReportHomeController extends GetxController {
     }
   }
 
-  void gotoDetailsPage(SalesReportOrderItem item) {    
+  void gotoDetailsPage(SalesReportOrderItem item) {
     final Map<String, dynamic> args = {
       "orderCode": item.barcodeHref.retrieveOrderCodeFromLightUrl(),
       "orderId": item.orderNumber.retrieveBarcode()
@@ -379,7 +383,7 @@ class SalesReportHomeController extends GetxController {
     Get.to(() => SalesReportOrderDetials(), arguments: args);
   }
 
-  void gotoBarcodePage(SalesReportRmaItem item) {    
+  void gotoBarcodePage(SalesReportRmaItem item) {
     final Map<String, dynamic> args = {
       "orderCode": item.orderNumber.retrieveOrderCodeFromLightUrl(),
       "orderId": item.orderNumber.retrieveBarcode()

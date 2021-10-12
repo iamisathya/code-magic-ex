@@ -20,13 +20,13 @@ class BarcodeResponse {
   String? redirect;
 
   BarcodeResponse({
-      required this.href,
-      required this.userProfile,
-      this.result,
-      required this.token,
-      required this.url,
-      required this.version,
-      this.redirect,
+    required this.href,
+    required this.userProfile,
+    this.result,
+    required this.token,
+    required this.url,
+    required this.version,
+    this.redirect,
   });
 
   factory BarcodeResponse.fromJson(Map<String, dynamic> json) =>
@@ -145,7 +145,6 @@ class Creator {
 
   Creator({required this.humanName});
 
-
   factory Creator.fromJson(Map<String, dynamic> json) =>
       _$CreatorFromJson(json);
 
@@ -157,7 +156,6 @@ class BillToName {
   String fullName;
 
   BillToName({required this.fullName});
-
 
   factory BillToName.fromJson(Map<String, dynamic> json) =>
       _$BillToNameFromJson(json);
@@ -173,7 +171,6 @@ class Customer {
 
   Customer({required this.id, required this.taxTerms, required this.href});
 
-
   factory Customer.fromJson(Map<String, dynamic> json) =>
       _$CustomerFromJson(json);
 
@@ -186,9 +183,7 @@ class Id {
 
   Id({required this.unicity});
 
-
-  factory Id.fromJson(Map<String, dynamic> json) =>
-      _$IdFromJson(json);
+  factory Id.fromJson(Map<String, dynamic> json) => _$IdFromJson(json);
 
   Map<String, dynamic> toJson() => _$IdToJson(this);
 }
@@ -198,7 +193,6 @@ class TaxTerms {
   String taxId;
 
   TaxTerms({required this.taxId});
-
 
   factory TaxTerms.fromJson(Map<String, dynamic> json) =>
       _$TaxTermsFromJson(json);
@@ -226,7 +220,6 @@ class LabelId {
 
   LabelId({required this.unicity, required this.label});
 
-
   factory LabelId.fromJson(Map<String, dynamic> json) =>
       _$LabelIdFromJson(json);
 
@@ -239,9 +232,7 @@ class Lines {
 
   Lines({required this.items});
 
-
-  factory Lines.fromJson(Map<String, dynamic> json) =>
-      _$LinesFromJson(json);
+  factory Lines.fromJson(Map<String, dynamic> json) => _$LinesFromJson(json);
 
   Map<String, dynamic> toJson() => _$LinesToJson(this);
 }
@@ -261,7 +252,6 @@ class ProductItems {
       required this.quantity,
       required this.quantityDetails});
 
-
   factory ProductItems.fromJson(Map<String, dynamic> json) =>
       _$ProductItemsFromJson(json);
 
@@ -274,7 +264,6 @@ class CatalogSlide {
 
   CatalogSlide({required this.content});
 
-
   factory CatalogSlide.fromJson(Map<String, dynamic> json) =>
       _$CatalogSlideFromJson(json);
 
@@ -286,7 +275,6 @@ class Content {
   String description;
 
   Content({required this.description});
-
 
   factory Content.fromJson(Map<String, dynamic> json) =>
       _$ContentFromJson(json);
@@ -307,7 +295,6 @@ class ProductTerms {
       required this.taxablePriceEach,
       required this.tax});
 
-
   factory ProductTerms.fromJson(Map<String, dynamic> json) =>
       _$ProductTermsFromJson(json);
 
@@ -325,7 +312,6 @@ class ProductTax {
       required this.amount,
       required this.percentage});
 
-
   factory ProductTax.fromJson(Map<String, dynamic> json) =>
       _$ProductTaxFromJson(json);
 
@@ -337,7 +323,6 @@ class Aggregate {
   double amount;
 
   Aggregate({required this.amount});
-
 
   factory Aggregate.fromJson(Map<String, dynamic> json) =>
       _$AggregateFromJson(json);
@@ -362,7 +347,6 @@ class ShipToAddress {
       required this.zip,
       required this.country});
 
-
   factory ShipToAddress.fromJson(Map<String, dynamic> json) =>
       _$ShipToAddressFromJson(json);
 
@@ -379,14 +363,13 @@ class ShipToName {
   @JsonKey(name: "fullName@ar")
   String? fullNameAr;
 
-  ShipToName(
-      {this.firstName,
-      required this.lastName,
-      required this.fullName,
-      this.fullNameTh,
-      this.fullNameAr,
-      });
-
+  ShipToName({
+    this.firstName,
+    required this.lastName,
+    required this.fullName,
+    this.fullNameTh,
+    this.fullNameAr,
+  });
 
   factory ShipToName.fromJson(Map<String, dynamic> json) =>
       _$ShipToNameFromJson(json);
@@ -401,7 +384,6 @@ class ShippingMethod {
   String? href;
 
   ShippingMethod({required this.type, this.location, this.href});
-
 
   factory ShippingMethod.fromJson(Map<String, dynamic> json) =>
       _$ShippingMethodFromJson(json);
@@ -432,9 +414,7 @@ class Terms {
       required this.total,
       required this.pv});
 
-
-  factory Terms.fromJson(Map<String, dynamic> json) =>
-      _$TermsFromJson(json);
+  factory Terms.fromJson(Map<String, dynamic> json) => _$TermsFromJson(json);
 
   Map<String, dynamic> toJson() => _$TermsToJson(this);
 }
@@ -445,7 +425,6 @@ class Transactions {
   Aggregate aggregate;
 
   Transactions({required this.items, required this.aggregate});
-
 
   factory Transactions.fromJson(Map<String, dynamic> json) =>
       _$TransactionsFromJson(json);
@@ -472,7 +451,6 @@ class TransactionItem {
       required this.authorization,
       required this.type});
 
-
   factory TransactionItem.fromJson(Map<String, dynamic> json) =>
       _$TransactionItemFromJson(json);
 
@@ -484,7 +462,6 @@ class Discount {
   int amount;
 
   Discount({required this.amount});
-
 
   factory Discount.fromJson(Map<String, dynamic> json) =>
       _$DiscountFromJson(json);
@@ -507,7 +484,6 @@ class BillToAddress {
       this.zip,
       required this.country});
 
-
   factory BillToAddress.fromJson(Map<String, dynamic> json) =>
       _$BillToAddressFromJson(json);
 
@@ -519,7 +495,6 @@ class MethodDetails {
   String payer;
 
   MethodDetails({required this.payer});
-
 
   factory MethodDetails.fromJson(Map<String, dynamic> json) =>
       _$MethodDetailsFromJson(json);
@@ -533,7 +508,6 @@ class QuantityDetails {
 
   QuantityDetails({required this.quantityBackordered});
 
-
   factory QuantityDetails.fromJson(Map<String, dynamic> json) =>
       _$QuantityDetailsFromJson(json);
 
@@ -546,7 +520,6 @@ class TaxRate {
   int percentage;
 
   TaxRate({required this.amount, required this.percentage});
-
 
   factory TaxRate.fromJson(Map<String, dynamic> json) =>
       _$TaxRateFromJson(json);

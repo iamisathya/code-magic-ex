@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:dsc_tools/api/api_address.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/models/barcode_save_response.dart';
-import 'package:dsc_tools/models/verify_each_barcode_response.dart';
-import 'package:dsc_tools/utilities/keyboard.dart';
-import 'package:dsc_tools/utilities/logger.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
+import '../../../../api/api_address.dart';
+import '../../../../api/config/api_service.dart';
+import '../../../../models/barcode_save_response.dart';
+import '../../../../models/verify_each_barcode_response.dart';
+import '../../../../utilities/keyboard.dart';
+import '../../../../utilities/logger.dart';
+import '../../../../utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
@@ -94,7 +94,8 @@ class BarcodeSearchController extends GetxController {
       barCodeVerifyResponse = await MemberCallsService.init()
           .verifyEachBarcodeNumber(
               gTokenBarcodeNew, "", json.encode(verifyRequest));
-      if (barCodeVerifyResponse!.error != null && barCodeVerifyResponse!.error!.isNotEmpty) {
+      if (barCodeVerifyResponse!.error != null &&
+          barCodeVerifyResponse!.error!.isNotEmpty) {
         final errors = StringBuffer();
         for (final err in barCodeVerifyResponse!.error!) {
           errors.write("\n ${err.msg}");
@@ -139,8 +140,8 @@ class BarcodeSearchController extends GetxController {
           json.decode(saveBarcodeRes as String) as Map<String, dynamic>);
       // on success barcode scan
       if (barCodeSaveResponse!.success) {
-          controller.getBarcodePath();
-          Get.back();
+        controller.getBarcodePath();
+        Get.back();
       } else if (barCodeSaveResponse!.errorMessages!.isNotEmpty) {
         final errors = StringBuffer();
         for (final err in barCodeSaveResponse!.errorMessages!) {

@@ -41,9 +41,9 @@ class _ShareButtonState extends State<ShareButton> {
             shape: BoxShape.circle,
           ),
           child: IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: () => _toggleShare(),
-            ),
+            icon: const Icon(Icons.add),
+            onPressed: () => _toggleShare(),
+          ),
         ),
         AnimatedOpacity(
           duration: const Duration(milliseconds: 450),

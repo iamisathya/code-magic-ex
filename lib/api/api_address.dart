@@ -1,9 +1,12 @@
 const String encodetype = "base64";
 const String encodeValue = "Mjk3MDQ2NjoxMjM0";
 const String baseDscTh = "https://dsc-th.unicity.com/";
-const String gToken = "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1973291869.1632382277; __cf_bm=g83McmerfcqxtdhiGFATq8b8A99IpLJEv.uiyDhy0WY-1632416053-0-AZdaMG45KBS/h/MQBVdgAJyPzzY0uX6Ql/zW6Fggzg5UAf3zaJ+Az41w2nWVVkuZHTrNqabsoWfFzKU4oLbY1Mqld5KRAzkCNNT/DW2dNSvun1nFras+le1rMdxwSFw0JA==";
-const String gTokenBarcode = "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1201615372.1632894042; __cf_bm=8aVjR86.q3wgw92UX0sP6KqSET_LxGVg1rYmWD86YIk-1632933883-0-ATTJS2nxUB8qw3qVJFGgqpiQUgMadHRzHvVb28BVBZ0HbMR5V6qqOXn9h8v5ldjaCNVdLVYNIPucMo0f9Unp+l8/j8In2VSBNC7WAqjw9FB4q6KXK+yWfoKEs01RdGYtsA==";
-const String gTokenBarcodeNew = "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.946094527.1633924655; __cf_bm=RbGqNT7YHoMjijKTJsdkJaw0v_blJ71AiT_XQrT.big-1634026450-0-AWUP5SwA8SJ23yxbF1R6alwi2fgCPgUBVVdsf3z4EB46py+hfR2RmOuAKZXof6f19CqdMt6VVLEWP9C+qX6yADKiv4FyHWdu12fKREeRUtbrXKqO+680fWI2fcVIBxzbLA==";
+const String gToken =
+    "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1973291869.1632382277; __cf_bm=g83McmerfcqxtdhiGFATq8b8A99IpLJEv.uiyDhy0WY-1632416053-0-AZdaMG45KBS/h/MQBVdgAJyPzzY0uX6Ql/zW6Fggzg5UAf3zaJ+Az41w2nWVVkuZHTrNqabsoWfFzKU4oLbY1Mqld5KRAzkCNNT/DW2dNSvun1nFras+le1rMdxwSFw0JA==";
+const String gTokenBarcode =
+    "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.1201615372.1632894042; __cf_bm=8aVjR86.q3wgw92UX0sP6KqSET_LxGVg1rYmWD86YIk-1632933883-0-ATTJS2nxUB8qw3qVJFGgqpiQUgMadHRzHvVb28BVBZ0HbMR5V6qqOXn9h8v5ldjaCNVdLVYNIPucMo0f9Unp+l8/j8In2VSBNC7WAqjw9FB4q6KXK+yWfoKEs01RdGYtsA==";
+const String gTokenBarcodeNew =
+    "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.946094527.1633924655; __cf_bm=RbGqNT7YHoMjijKTJsdkJaw0v_blJ71AiT_XQrT.big-1634026450-0-AWUP5SwA8SJ23yxbF1R6alwi2fgCPgUBVVdsf3z4EB46py+hfR2RmOuAKZXof6f19CqdMt6VVLEWP9C+qX6yADKiv4FyHWdu12fKREeRUtbrXKqO+680fWI2fcVIBxzbLA==";
 
 class Address {
   static const String baseDscTh = "https://dsc-th.unicity.com/";
@@ -27,11 +30,15 @@ class Address {
   static const String memberCallsBase = "https://member-calls.unicity.com/";
   static const String validOrders = "ALL/DSC/THA/getdata.php";
   static const String barcodeDetails = "ALL/DSC/THA/barcode/redirect.php";
-  static const String barcodeItems = "ALL/DSC/THA/barcode/check/library/get_items.php";
+  static const String barcodeItems =
+      "ALL/DSC/THA/barcode/check/library/get_items.php";
   static const String dscBarcodeItems = "barcode/check/library/get_items.php";
-  static const String getBarcodeNumbers = "ALL/DSC/THA/barcode/check/library/edit.php";
-  static const String verifyEachBarcodeNumber = "ALL/DSC/THA/barcode/check/library/verify.php";
-  static const String saveBarcodeNumber = "ALL/DSC/THA/barcode/check/library/save.php";
+  static const String getBarcodeNumbers =
+      "ALL/DSC/THA/barcode/check/library/edit.php";
+  static const String verifyEachBarcodeNumber =
+      "ALL/DSC/THA/barcode/check/library/verify.php";
+  static const String saveBarcodeNumber =
+      "ALL/DSC/THA/barcode/check/library/save.php";
   static const String allDsc = "ALL/DSC/";
   static const String allDscPath = "ALL/DSC";
   static const String dictionary = "dictionary/publish";
