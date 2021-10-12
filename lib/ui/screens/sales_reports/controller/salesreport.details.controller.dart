@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart'  as Image;
 
 import '../../../../../utilities/extensions.dart';
@@ -128,9 +129,10 @@ class SalesReportDetailsController extends Image.GetxController {
           await MemberCallsService.init().getBarcodeItems(gTokenBarcode, FormData.fromMap(map));
       barcodeItems = BarCodeItemsResponse.fromJson(jsonDecode(response as String) as Map<String, dynamic>);
       isLoading.toggle();
-    } catch (err) {
+    } catch (err, s) {
       isLoading.toggle();
-      LoggerService.instance.e(err.toString());
+      debugPrint(err.toString());
+      LoggerService.instance.e(s);
     }
   }
 }
