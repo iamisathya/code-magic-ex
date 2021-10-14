@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' as Image;
+import 'package:get/get.dart' as image;
 
 import '../../../../../utilities/extensions.dart';
 import '../../../../api/api_address.dart';
@@ -13,10 +13,10 @@ import '../../../../models/barcode_response.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/user_session.dart';
 
-class SalesReportDetailsController extends Image.GetxController {
-  Image.RxString orderCode = "".obs;
-  Image.RxString orderNumber = "".obs;
-  Image.RxBool isLoading = false.obs;
+class SalesReportDetailsController extends image.GetxController {
+  image.RxString orderCode = "".obs;
+  image.RxString orderNumber = "".obs;
+  image.RxBool isLoading = false.obs;
   BarcodeResponse? barcodeDetails;
   BarCodeItemsResponse? barcodeItems;
 
@@ -26,7 +26,7 @@ class SalesReportDetailsController extends Image.GetxController {
 
   @override
   void onInit() {
-    final dynamic data = Image.Get.arguments;
+    final dynamic data = image.Get.arguments;
     if (data != null) {
       final args = data as Map<String, dynamic>;
       orderCode.value = args["orderCode"] as String;
@@ -92,7 +92,7 @@ class SalesReportDetailsController extends Image.GetxController {
                 map["data[transactions][items][$index][billToPhone]"] =
                     item.billToPhone,
                 map["data[transactions][items][$index][methodDetails][payer]"] =
-                    item.methodDetails.payer,
+                    item.methodDetails!.payer,
                 map["data[transactions][items][$index][amount]"] = item.amount,
                 map["data[transactions][items][$index][authorization]"] =
                     item.authorization,

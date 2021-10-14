@@ -437,19 +437,19 @@ class TransactionItem {
   BillToAddress billToAddress;
   BillToName billToName;
   String billToPhone;
-  MethodDetails methodDetails;
-  int amount;
-  String authorization;
-  String type;
+  MethodDetails? methodDetails;
+  int? amount;
+  String? authorization;
+  String? type;
 
   TransactionItem(
       {required this.billToAddress,
       required this.billToName,
       required this.billToPhone,
-      required this.methodDetails,
-      required this.amount,
-      required this.authorization,
-      required this.type});
+      this.methodDetails,
+      this.amount,
+      this.authorization,
+      this.type});
 
   factory TransactionItem.fromJson(Map<String, dynamic> json) =>
       _$TransactionItemFromJson(json);

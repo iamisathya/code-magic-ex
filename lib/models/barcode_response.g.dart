@@ -358,11 +358,12 @@ TransactionItem _$TransactionItemFromJson(Map<String, dynamic> json) {
         BillToAddress.fromJson(json['billToAddress'] as Map<String, dynamic>),
     billToName: BillToName.fromJson(json['billToName'] as Map<String, dynamic>),
     billToPhone: json['billToPhone'] as String,
-    methodDetails:
-        MethodDetails.fromJson(json['methodDetails'] as Map<String, dynamic>),
-    amount: json['amount'] as int,
-    authorization: json['authorization'] as String,
-    type: json['type'] as String,
+    methodDetails: json['methodDetails'] == null
+        ? null
+        : MethodDetails.fromJson(json['methodDetails'] as Map<String, dynamic>),
+    amount: json['amount'] as int?,
+    authorization: json['authorization'] as String?,
+    type: json['type'] as String?,
   );
 }
 

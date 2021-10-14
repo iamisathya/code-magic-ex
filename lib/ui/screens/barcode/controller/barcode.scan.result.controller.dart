@@ -49,6 +49,7 @@ class BarcodeScannResultController extends getx.GetxController {
     final dynamic data = getx.Get.arguments;
     if (data != null) {
       orderNumber.value = data as String;
+      print(orderNumber.value);
       getBarcodePath();
     } else {
       getx.Get.back();
@@ -149,7 +150,7 @@ class BarcodeScannResultController extends getx.GetxController {
                 map["data[transactions][items][$index][billToPhone]"] =
                     item.billToPhone,
                 map["data[transactions][items][$index][methodDetails][payer]"] =
-                    item.methodDetails.payer,
+                    item.methodDetails!.payer,
                 map["data[transactions][items][$index][amount]"] = item.amount,
                 map["data[transactions][items][$index][authorization]"] =
                     item.authorization,
