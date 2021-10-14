@@ -15,7 +15,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
-        const PageTitle(title: "Barcode Tracker"),
+        PageTitle(title: "barcode_tracker".tr),
         SearchTextfield(
             icon: kBarcodeScanIcon,
             labelText: "Order Number",

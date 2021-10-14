@@ -9,6 +9,7 @@ import '../../../../models/sales_report_rma_item.dart';
 import '../../../../utilities/snackbar.dart';
 import '../component/sales_report_search_result.dart';
 import 'salesreports.home.controller.dart';
+import '../../../../utilities/extensions.dart';
 
 class SalesReportSearchController extends GetxController {
   SalesReportHomeController controller = Get.put(SalesReportHomeController());
@@ -24,30 +25,47 @@ class SalesReportSearchController extends GetxController {
   }
 
   void searchOrder(String orderId) {
-    final SalesReportOrderItem? orderItem = controller.allSalesReports
-        .firstWhereOrNull((order) =>
-            order.orderNumber == orderId || order.customer == orderId);
-    if (orderItem != null && orderItem.orderNumber.isNotEmpty) {
-      final Map<String, dynamic> args = {"type": "order", "data": orderItem};
-      Get.to(() => SalesReportSearchResult(), arguments: args);
-      return;
+    switch (controller.activeStockType.value.value) {
+      case "order":
+        final SalesReportOrderItem? orderItem = controller.allSalesReports
+            .firstWhereOrNull((order) =>
+                order.orderNumber == orderId || order.customer == orderId);
+        if (orderItem != null && orderItem.orderNumber.isNotEmpty) {
+          final Map<String, dynamic> args = {
+            "type": "order",
+            "data": orderItem
+          };
+          Get.to(() => SalesReportSearchResult(), arguments: args);
+        } else {
+          SnackbarUtil.showWarning(
+              message: "Sorry no report found with sales report id: $orderId");
+        }
+        break;
+      case "rma":
+        final SalesReportRmaItem? rmaItem = controller.allSalesRmaReports
+            .firstWhereOrNull((order) =>
+                order.orderNumber.retrieveBarcode() == orderId ||
+                order.rmaOrderNumber.retrieveBarcode() == orderId);
+        if (rmaItem != null && rmaItem.orderNumber.isNotEmpty) {
+          final Map<String, dynamic> args = {"type": "rma", "data": rmaItem};
+          Get.to(() => SalesReportSearchResult(), arguments: args);
+        } else {
+          SnackbarUtil.showWarning(
+              message: "Sorry no report found with sales report id: $orderId");
+        }
+        break;
+      case "item":
+        final SalesReportItemItem? item = controller.allSalesItemReports
+            .firstWhereOrNull((order) => order.itemCode == orderId);
+        if (item != null && item.itemCode.isNotEmpty) {
+          final Map<String, dynamic> args = {"type": "item", "data": item};
+          Get.to(() => SalesReportSearchResult(), arguments: args);
+        } else {
+          SnackbarUtil.showWarning(
+              message: "Sorry no report found with sales report id: $orderId");
+        }
+        break;
     }
-    final SalesReportRmaItem? rmaItem = controller.allSalesRmaReports
-        .firstWhereOrNull((order) => order.orderNumber == orderId);
-    if (rmaItem != null && rmaItem.orderNumber.isNotEmpty) {
-      final Map<String, dynamic> args = {"type": "rma", "data": rmaItem};
-      Get.to(() => SalesReportSearchResult(), arguments: args);
-      return;
-    }
-    final SalesReportItemItem? item = controller.allSalesItemReports
-        .firstWhereOrNull((order) => order.itemCode == orderId);
-    if (item != null && item.itemCode.isNotEmpty) {
-      final Map<String, dynamic> args = {"type": "item", "data": item};
-      Get.to(() => SalesReportSearchResult(), arguments: args);
-      return;
-    }
-    SnackbarUtil.showWarning(
-        message: "Sorry no report found with sales report id: $orderId");
   }
 
   // Retrieves and Sets language based on device settings

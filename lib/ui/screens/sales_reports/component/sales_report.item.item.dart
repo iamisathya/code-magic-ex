@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -5,8 +6,6 @@ import 'package:get/get.dart';
 import '../../../../models/sales_report_item_item.dart';
 import '../../../../utilities/images.dart';
 import '../controller/salesreports.home.controller.dart';
-import 'grand_total.dart';
-import 'print_report.dart';
 
 class SalesReportEachItemItem extends StatelessWidget {
   final SalesReportHomeController controller =
@@ -33,62 +32,13 @@ class SalesReportEachItemItem extends StatelessWidget {
                         .headline6!
                         .copyWith(color: const Color(0xFF000000))),
               ),
-              GestureDetector(
-                onTap: () => controller.gotoDetailPage(item),
-                child: SizedBox(
-                  width: 70,
-                  child: SvgPicture.asset(
-                    kBarcodeSuccessIcon,
-                    height: 25,
-                    width: 50,
-                    semanticsLabel: "barcode",
-                  ),
-                ),
-              ),
+              const SizedBox()
             ],
           ),
           _renderEachRow(
-              context, "BA Number: ${item.itemCode}", "Barcode: xxxxxx"),
-          _renderOrderIdRow(context, "Order ID: ", item.pv.toString(),
-              "Date: ${item.pv.toString}", item.pv.toString()),
-          _renderEachRow(
-              context, "Record: ${item.totalPv}", "Time: ${item.totalPv}"),
-          GrandTotal(
-              status: "Success",
-              totalPrice: item.totalPv,
-              totalPv: item.totalPv.toString()),
-        ],
-      ),
-    );
-  }
-
-  Widget _renderOrderIdRow(BuildContext context, String title1, String value1,
-      String value2, String href) {
-    final Map<String, dynamic> args = {"orderId": value1, "href": href};
-    return Padding(
-      padding: const EdgeInsets.only(top: 15.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(children: [
-            Text(title1,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: const Color(0xFF505050))),
-            GestureDetector(
-                // onTap: () => controller.proceedToPrint(context, orderHref: href),
-                onTap: () => Get.to(() => PrintSalesReport(), arguments: args),
-                child: Text(value1,
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        color: const Color(0xFF1C9CFC),
-                        fontWeight: FontWeight.w600))),
-          ]),
-          Text(value2,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2!
-                  .copyWith(color: const Color(0xFF505050))),
+              context, "BA Number: ${item.itemCode}", ""),
+          _renderEachRow(context, "PV: ${item.pv}", "Quantity: ${item.qty}"),
+          GrandTotal(totalPv: item.totalPv.toString()),
         ],
       ),
     );
@@ -112,6 +62,47 @@ class SalesReportEachItemItem extends StatelessWidget {
                   .copyWith(color: const Color(0xFF505050))),
         ],
       ),
+    );
+  }
+}
+
+class GrandTotal extends StatelessWidget {
+  final String totalPv;
+
+  const GrandTotal({required this.totalPv});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+          decoration: const BoxDecoration(
+              color: Color(0xFFF1FAF7), //FFE7EB error color
+              borderRadius: BorderRadius.all(Radius.circular(3.0))),
+          height: 40,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Total PV:",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2!
+                    .copyWith(color: const Color(0xFF000000)),
+              ),
+              Text(
+                totalPv,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2!
+                    .copyWith(color: const Color(0xFF000000)),
+              ),
+            ],
+          ),
+        ),
+      ]),
     );
   }
 }
