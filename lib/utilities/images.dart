@@ -80,6 +80,7 @@ const kBarcodeScanIcon = 'assets/icons/barcode_scan_icon.svg';
 const kCheckSuccessIcon = 'assets/icons/check_success_icon.svg';
 const kBarcodeCheckSuccessIcon = 'assets/icons/barcode_check_success_icon.svg';
 const kTrashIcon = 'assets/icons/trash_icon.svg';
+const kSearchV2Icon = 'assets/icons/search_icon_v2.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';
