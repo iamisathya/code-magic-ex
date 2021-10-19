@@ -64,8 +64,6 @@ class PositiveButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-          width: 187,
-          height: 50,
           alignment: Alignment.center,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -88,6 +86,36 @@ class PositiveButton extends StatelessWidget {
   }
 }
 
+class NuetralButton extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const NuetralButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: onTap,
+        child: Transform.rotate(
+          angle: 3.14,
+          child: Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                bottomLeft: Radius.circular(30),
+              ),
+              color: Color(0xffafbed5),
+            ),
+            child: Text("next".tr,
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1!
+                    .copyWith(color: Colors.white)),
+          ),
+        ));
+  }
+}
+
 class NegetiveButton extends StatelessWidget {
   final VoidCallback onTap;
 
@@ -98,8 +126,6 @@ class NegetiveButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-          width: 187,
-          height: 50,
           alignment: Alignment.center,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(

@@ -55,3 +55,24 @@ enum LocaleTypes {
 enum DateSelectorType { startDate, endDate }
 
 enum OrderStatus { pending, error, success, unknown }
+
+enum TextTypes {
+  headline1,
+  headline2,
+  headline3,
+  headline4, //24
+  headline5,
+  headline6,
+  subtitle1,
+  subtitle2,
+  bodyText1,
+  bodyText2,
+  caption,
+  button,
+  overline
+}
+
+enum OrderEntryItemFilters {
+  allProduct,
+  easyShipSet
+}

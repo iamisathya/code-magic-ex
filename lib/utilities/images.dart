@@ -81,6 +81,7 @@ const kCheckSuccessIcon = 'assets/icons/check_success_icon.svg';
 const kBarcodeCheckSuccessIcon = 'assets/icons/barcode_check_success_icon.svg';
 const kTrashIcon = 'assets/icons/trash_icon.svg';
 const kSearchV2Icon = 'assets/icons/search_icon_v2.svg';
+const kOrderEntryCartIcon = 'assets/icons/cart_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';
@@ -97,6 +98,7 @@ const kSettingsIcon = 'assets/icons/dashboard/settings.svg';
 const kSignOutIcon = 'assets/icons/dashboard/sign_out.svg';
 const kUnicityLogoIcon = 'assets/icons/dashboard/unicity_logo.svg';
 const kDscLogoIcon = 'assets/icons/dashboard/dsc_logo.svg';
+const kOrderEntryErrorImage = 'assets/icons/order_entyry_error.svg';
 
 // * splash
 const kSplashImage = 'assets/images/splash.jpg';

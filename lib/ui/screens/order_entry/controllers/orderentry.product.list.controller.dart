@@ -1,17 +1,16 @@
 import 'package:dsc_tools/models/general_models.dart';
-import 'package:dsc_tools/ui/screens/order_entry/screens/order_entry_list/home.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OrderEntryUserListController extends GetxController {
+class OrderEntryProductListController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();
   RxInt currentTab = 0.obs;
   RxList<NameValueType> searchOptions = [
-    NameValueType(name: "With BA Number", value: "baId"),
-    NameValueType(name: "with Govt ID, Name", value: "govtIdOrName"),
+    NameValueType(name: "All Product", value: "all"),
+    NameValueType(name: "Easyship Set", value: "easyShip"),
   ].obs;
-  RxString filterMethod = "baId".obs;
+  RxString filterMethod = "all".obs;
   RxBool isLoading = false.obs;
   RxList<String> searchedUsers = <String>["Hi", "Sathya"].obs;
   final selecteduserIndex = Rxn<int>();
@@ -38,7 +37,5 @@ class OrderEntryUserListController extends GetxController {
 
   void onCancel() {}
 
-  void onProceedNext() {
-    Get.to(() => OrderEntryList());
-  }
+  void onProceedNext() {}
 }

@@ -1,12 +1,10 @@
 import 'package:dsc_tools/models/general_models.dart';
-import 'package:dsc_tools/ui/global/widgets/animated_add_button.dart';
-import 'package:dsc_tools/ui/screens/inventory/component/search_inventory.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/add_products.dart';
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.home.controller.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -111,7 +109,24 @@ class Body extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: controller.searchedUsers.length,
                             itemBuilder: (BuildContext ctxt, int index) {
-                              return Text(controller.searchedUsers[index]);
+                              final bool isSelected =
+                                  controller.selecteduserIndex.value == index;
+                              return GestureDetector(
+                                onTap: () => controller.onSelectUser(index),
+                                child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10.0),
+                                    child: isSelected
+                                        ? AppText(
+                                            text:
+                                                controller.searchedUsers[index],
+                                            style: TextTypes.headline6)
+                                        : AppText(
+                                            text:
+                                                controller.searchedUsers[index],
+                                            style: TextTypes.bodyText1,
+                                            color: const Color(0xFF505050))),
+                              );
                             }),
                       ),
                     ),
