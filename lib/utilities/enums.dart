@@ -76,3 +76,13 @@ enum OrderEntryItemFilters {
   allProduct,
   easyShipSet
 }
+
+
+enum OrderEntrySummaryFilters {
+  myCart,
+  paymentType
+}
+
+enum PaymentTypes {
+  payWithDsc
+}

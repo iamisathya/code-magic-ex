@@ -1,6 +1,5 @@
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
-import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.summary.controller%20copy.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class FilterTabs extends StatelessWidget {
-  final OrderEntryCheckoutSummaryController controller =
-      Get.put(OrderEntryCheckoutSummaryController());
+  final OrderEntryProductListController controller =
+      Get.put(OrderEntryProductListController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +21,26 @@ class FilterTabs extends StatelessWidget {
             () => Row(
               children: [
                 GestureDetector(
-                    onTap: () => controller
-                        .onTabChange(OrderEntrySummaryFilters.myCart),
+                    onTap: () =>
+                        controller.onTabChange(OrderEntrySummaryFilters.myCart),
                     child: AppText(
-                        text: "All Product",
-                        style: controller.filterMethod.value == "all"
-                            ? TextTypes.subtitle1
-                            : TextTypes.bodyText1)),
+                      text: "My Cart",
+                      style: controller.filterMethod.value == "myCart"
+                          ? TextTypes.subtitle1
+                          : TextTypes.bodyText1,
+                      color: const Color(0xFF505050),
+                    )),
                 const SizedBox(width: 30),
                 GestureDetector(
                     onTap: () => controller
                         .onTabChange(OrderEntrySummaryFilters.paymentType),
                     child: AppText(
-                        text: "Easyship Set",
-                        style: controller.filterMethod.value == "easyShip"
-                            ? TextTypes.subtitle1
-                            : TextTypes.bodyText1)),
+                      text: "Payment Type",
+                      style: controller.filterMethod.value == "paymentType"
+                          ? TextTypes.subtitle1
+                          : TextTypes.bodyText1,
+                      color: const Color(0xFF505050),
+                    )),
               ],
             ),
           ),

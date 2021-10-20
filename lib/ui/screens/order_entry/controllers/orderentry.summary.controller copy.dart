@@ -4,7 +4,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OrderEntryProductListController extends GetxController {
+class OrderEntryCheckoutSummaryController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();
   RxInt currentTab = 0.obs;
   RxList<NameValueType> searchOptions = [
@@ -15,12 +15,6 @@ class OrderEntryProductListController extends GetxController {
   RxBool isLoading = false.obs;
   RxList<String> searchedUsers = <String>["Hi", "Sathya"].obs;
   final selecteduserIndex = Rxn<int>();
-
-  RxList<NameValueType> paymentTypes = [
-    NameValueType(name: " Pay with DSC", value: "payWithDsc"),
-  ].obs;
-
-  RxString selectedPayment = "payWithDsc".obs;
 
   @override
   void onInit() {
