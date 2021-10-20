@@ -1,6 +1,5 @@
 import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
-import 'package:dsc_tools/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,7 +44,7 @@ class BottomButtonBar extends StatelessWidget {
                     child: NegetiveButton(onTap: controller.onCancel),
                   ),
                   Flexible(
-                    child: PositiveButton(onTap: controller.onProceedNext),
+                    child: NuetralButton(onTap: () {}),
                   ),
                 ],
               ),

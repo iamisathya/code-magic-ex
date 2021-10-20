@@ -95,13 +95,12 @@ class NuetralButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: onTap,
-        child: Transform.rotate(
-          angle: 3.14,
-          child: Container(
+        child: Container(
+            alignment: Alignment.center,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+                bottomRight: Radius.circular(30),
               ),
               color: Color(0xffafbed5),
             ),
@@ -112,7 +111,7 @@ class NuetralButton extends StatelessWidget {
                     .subtitle1!
                     .copyWith(color: Colors.white)),
           ),
-        ));
+        );
   }
 }
 
