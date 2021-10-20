@@ -7,7 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class FilterTabs extends StatelessWidget {
-  final OrderEntryProductListController controller = Get.put(OrderEntryProductListController());
+  final OrderEntryProductListController controller =
+      Get.put(OrderEntryProductListController());
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +17,36 @@ class FilterTabs extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              const AppText(text: "All Product", style: controller. TextTypes.bodyText1),
-              const SizedBox(width: 30),
-              const AppText(text: "Easyship Set", style: TextTypes.bodyText1),
-            ],),
-            SvgPicture.asset(kTrashIcon, width: 20, height: 20,)
-      ],),
+          Obx(
+            () => Row(
+              children: [
+                GestureDetector(
+                    onTap: () => controller
+                        .onTabChange(OrderEntryItemFilters.allProduct),
+                    child: AppText(
+                        text: "All Product",
+                        style: controller.filterMethod.value == "all"
+                            ? TextTypes.subtitle1
+                            : TextTypes.bodyText1)),
+                const SizedBox(width: 30),
+                GestureDetector(
+                    onTap: () => controller
+                        .onTabChange(OrderEntryItemFilters.easyShipSet),
+                    child: AppText(
+                        text: "Easyship Set",
+                        style: controller.filterMethod.value == "easyShip"
+                            ? TextTypes.subtitle1
+                            : TextTypes.bodyText1)),
+              ],
+            ),
+          ),
+          SvgPicture.asset(
+            kTrashIcon,
+            width: 20,
+            height: 20,
+          )
+        ],
+      ),
     );
   }
 }

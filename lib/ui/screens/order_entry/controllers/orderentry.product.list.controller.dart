@@ -1,4 +1,5 @@
 import 'package:dsc_tools/models/general_models.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,4 +39,8 @@ class OrderEntryProductListController extends GetxController {
   void onCancel() {}
 
   void onProceedNext() {}
+
+  void onTabChange(OrderEntryItemFilters type) {
+    filterMethod.value = type == OrderEntryItemFilters.allProduct ? "all" : "easyShip";
+  }
 }

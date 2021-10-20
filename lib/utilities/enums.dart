@@ -57,17 +57,17 @@ enum DateSelectorType { startDate, endDate }
 enum OrderStatus { pending, error, success, unknown }
 
 enum TextTypes {
-  headline1,
-  headline2,
-  headline3,
+  headline1, //60
+  headline2, //48
+  headline3, //34
   headline4, //24
-  headline5,
-  headline6,
-  subtitle1,
-  subtitle2,
-  bodyText1,
-  bodyText2,
-  caption,
+  headline5, //20
+  headline6, //18
+  subtitle1, //16
+  subtitle2, //14
+  bodyText1, //14
+  bodyText2, //12
+  caption, //12
   button,
   overline
 }

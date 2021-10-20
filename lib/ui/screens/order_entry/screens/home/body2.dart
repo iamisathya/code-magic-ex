@@ -3,13 +3,12 @@ import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.home.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../../../utilities/extensions.dart';
+import 'components/white_search_field.dart';
 
 class Body extends StatelessWidget {
   final OrderEntryUserListController controller =
@@ -66,32 +65,10 @@ class Body extends StatelessWidget {
                                 ),
                               )
                               .toList()),
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 54,
-                        child: TextField(
+                      WhiteSearchField(
                           controller: controller.searchUserTextController,
-                          decoration: InputDecoration(
-                            filled: true,
-                            border: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            errorBorder: InputBorder.none,
-                            disabledBorder: InputBorder.none,
-                            fillColor: Colors.white,
-                            hintText: "BA Number or Govt ID or Name",
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 18, horizontal: 20),
-                            suffixIcon: IconButton(
-                                onPressed: controller.onSearchPressed,
-                                color: const Color(0xFF384250),
-                                icon: SvgPicture.asset(kSearchV2Icon,
-                                    width: 20, semanticsLabel: 'search icon')),
-                            hintStyle: TextStyle(color: Colors.grey[300]),
-                          ),
-                        ),
-                      )
+                          onPress: controller.onSearchPressed,
+                          hintText: "BA Number or Govt ID or Name")
                     ],
                   ),
                 ),
