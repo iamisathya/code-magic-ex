@@ -44,6 +44,7 @@ class OrderEntryUserListController extends GetxController {
     }
     if (filterMethod.value == "baId") {
       searchUserById();
+      searchResultsOfUserInfo.clear();
     } else {
       searchUserBySearchKey();
     }
@@ -57,11 +58,12 @@ class OrderEntryUserListController extends GetxController {
           Parsing.intFrom(searchUserTextController.text)!, "customer");
       if (searchedGuestUserInfo.items.isNotEmpty) {
         // Move to details page
+        final CustomerData foundUser = searchedGuestUserInfo.items[0];
         final UserMinimalData user = UserMinimalData(
-            fullName: searchedGuestUserInfo.items[0].humanName.fullName,
-            email: searchedGuestUserInfo.items[0].email,
-            userId: searchedGuestUserInfo.items[0].id.unicity);
-        // Get.to(() => OrderEntryTable(), arguments: user);
+            fullName: foundUser.humanName.fullName,
+            email: foundUser.email,
+            userId: foundUser.id.unicity);
+        Get.to(() => OrderEntryList(), arguments: user);
       }
       isLoading.toggle();
     } on DioError catch (e) {
@@ -127,6 +129,7 @@ class OrderEntryUserListController extends GetxController {
 
   void onChangeMonthType(int index) {
     currentTab.value = index;
+    searchUserTextController.text = "";
     filterMethod.value = searchOptions[index].value;
     // getAllOpenPo();
   }

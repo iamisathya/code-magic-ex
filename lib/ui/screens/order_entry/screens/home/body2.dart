@@ -68,7 +68,7 @@ class Body extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
+            if(controller.filterMethod.value != "baId") Expanded(
               child: SingleChildScrollView(
                   child: Padding(
                 padding:
@@ -107,7 +107,7 @@ class Body extends StatelessWidget {
                   ),
                 ),
               )),
-            )
+            ) else const SizedBox()
           ],
         ),
       ),
