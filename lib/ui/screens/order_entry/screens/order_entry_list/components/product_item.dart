@@ -1,32 +1,67 @@
+import 'package:dsc_tools/models/inventory_records.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductItem extends StatelessWidget {
+  final OrderEntryProductListController controller =
+      Get.put(OrderEntryProductListController());
+  final InventoryRecordItems item;
+  final bool inCart;
+
+  ProductItem({required this.item, required this.inCart});
+  
   @override
   Widget build(BuildContext context) {
-    return Card(      
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(3.0),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          AppText(
-            text: "Code: 34160",
-            style: TextTypes.caption,
-            color: Color(0xFF9EA9B9),
+    return GestureDetector(
+      onTap: () => controller.addItemToCart(itemCode: item.item.id.unicity),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(3.0),
+          side: BorderSide(
+            color: const Color(0xFFFFBF3A),
+            width: inCart ? 1 : 0
           ),
-          Container(
-            height: 60,
-            child: const FlutterLogo(size: 60),
+        ),
+        child: Stack(children: [
+          Align(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                AppText(
+                  text: "Code: ${item.item.id.unicity}",
+                  style: TextTypes.caption,
+                  color: const Color(0xFF9EA9B9),
+                ),
+                const SizedBox(
+                  height: 60,
+                  child: FlutterLogo(size: 60),
+                ),
+                AppText(
+                  align: TextAlign.center,
+                  text: "${item.terms.pvEach} PV | ${item.terms.priceEach} THB",
+                  style: TextTypes.caption,
+                  color: const Color(0xFF384250),
+                ),
+              ],
+            ),
           ),
-          AppText(
-            text: "4 PV | 350 THB",
-            style: TextTypes.caption,
-            color: Color(0xFF384250),
-          ),
-        ],
+          if(inCart) Positioned(
+            left: 10,
+            top: 25,
+            child: Container(
+              width: 20,
+              height: 20,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: const Color(0xFFFFBF3A),
+                  borderRadius: BorderRadius.circular(3)),
+              child: const AppText(text: "1", style: TextTypes.caption, color: Colors.white,),
+            ),
+          )
+        ]),
       ),
     );
   }

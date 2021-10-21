@@ -8,8 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class FilterTabs extends StatelessWidget {
-  final OrderEntryCheckoutSummaryController controller =
-      Get.put(OrderEntryCheckoutSummaryController());
+  final OrderEntryProductListController controller =
+      Get.put(OrderEntryProductListController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +41,13 @@ class FilterTabs extends StatelessWidget {
               ],
             ),
           ),
-          SvgPicture.asset(
-            kTrashIcon,
-            width: 20,
-            height: 20,
+          GestureDetector(
+            onTap: controller.clearCart,
+            child: SvgPicture.asset(
+              kTrashIcon,
+              width: 20,
+              height: 20,
+            ),
           )
         ],
       ),

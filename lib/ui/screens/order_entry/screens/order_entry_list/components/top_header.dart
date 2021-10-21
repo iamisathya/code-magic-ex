@@ -1,4 +1,6 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
@@ -6,16 +8,22 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class TopHeader extends StatelessWidget {
+  final OrderEntryProductListController controller =
+      Get.put(OrderEntryProductListController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 70,
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 22.0),
+        padding: const EdgeInsets.symmetric(horizontal: 22.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [AppText(text: "categories".tr, style: TextTypes.headline4), renderCart()],
+          children: [
+            AppText(text: "categories".tr, style: TextTypes.headline4),
+            renderCart()
+          ],
         ),
       ),
     );
@@ -23,47 +31,42 @@ class TopHeader extends StatelessWidget {
 
   Row renderCart() {
     return Row(
-      children: [    
-        SizedBox(
-          width: 19,
-          height: 18.75,
-          child: Stack(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          alignment: Alignment.center,
+          width: 20,
+          height: 20,
+          decoration: BoxDecoration(
+              color: const Color(0xfff9748e),
+              borderRadius: BorderRadius.circular(10)),
+          child: Obx(() => AppText(
+              text: controller.cartProducts.length.toString(),
+              color: Colors.white,
+              align: TextAlign.center,
+              style: TextTypes.caption)),
+        ),
+        SvgPicture.asset(
+          kOrderEntryCartIcon,
+          width: 20,
+          height: 20,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Positioned.fill(
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    width: 18.95,
-                    height: 18.75,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xfff9748e),
-                    ),
-                  ),
-                ),
-              ),
-              const Positioned.fill(
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: SizedBox(
-                    width: 19,
-                    height: 17,
-                    child: Text(
-                      "0",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              Obx(() => AppText(
+                  text: "${controller.totalCartPv.toString()} PV",
+                  style: TextTypes.caption)),
+              Obx(() => AppText(
+                  text:
+                      "${controller.totalCartPrice.toString()} ${Globals.currency}",
+                  style: TextTypes.caption)),
             ],
           ),
         ),
-
-        SvgPicture.asset(kOrderEntryCartIcon, width: 20, height: 20,),    
       ],
     );
   }

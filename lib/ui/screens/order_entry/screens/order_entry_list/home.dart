@@ -1,8 +1,10 @@
 import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
 import 'package:dsc_tools/ui/screens/order_entry/screens/order_entry_summary/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../orderentry.screen.dart';
 import 'components/body.dart';
@@ -14,11 +16,19 @@ class OrderEntryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE3E8ED),
-      appBar: OpenPoAppBar(),
-      body: Body(),
-      bottomNavigationBar: BottomButtonBar(controller: controller),
-    );
+        backgroundColor: const Color(0xFFE3E8ED),
+        appBar: OpenPoAppBar(),
+        body: Obx(
+          () => LoadingOverlay(
+            isLoading: controller.isLoading.value,
+            progressIndicator: const Loader(),
+            child: GestureDetector(
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: Body(),
+            ),
+          ),
+        ),
+        bottomNavigationBar: BottomButtonBar(controller: controller));
   }
 }
 
@@ -45,7 +55,8 @@ class BottomButtonBar extends StatelessWidget {
                     child: NegetiveButton(onTap: controller.onCancel),
                   ),
                   Flexible(
-                    child: NuetralButton(onTap: () => Get.to(() => OrderEntrySummary())),
+                    child: NuetralButton(
+                        onTap: () => Get.to(() => OrderEntrySummary())),
                   ),
                 ],
               ),
