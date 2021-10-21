@@ -1,12 +1,13 @@
-
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class WhiteSearchField extends StatelessWidget {
   const WhiteSearchField({
     Key? key,
     required this.controller,
+    required this.isFetching,
     required this.onPress,
     required this.hintText,
   }) : super(key: key);
@@ -14,6 +15,7 @@ class WhiteSearchField extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onPress;
   final String hintText;
+  final RxBool isFetching;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +35,13 @@ class WhiteSearchField extends StatelessWidget {
           hintText: hintText,
           contentPadding:
               const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-          suffixIcon: IconButton(
+          suffixIcon: Obx(() => IconButton(
               onPressed: onPress,
               color: const Color(0xFF384250),
-              icon: SvgPicture.asset(kSearchV2Icon,
-                  width: 20, semanticsLabel: 'search icon')),
+              icon: isFetching.value
+                  ? Image.asset(kAnimatedSpin, width: 20)
+                  : SvgPicture.asset(kSearchV2Icon,
+                      width: 20, semanticsLabel: 'search icon'))),
           hintStyle: TextStyle(color: Colors.grey[300]),
         ),
       ),

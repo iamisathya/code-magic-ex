@@ -13,6 +13,7 @@ class OrderEntryProductListController extends GetxController {
   ].obs;
   RxString filterMethod = "myCart".obs;
   RxBool isLoading = false.obs;
+  RxBool isFetching = false.obs;
   RxList<String> searchedUsers = <String>["Hi", "Sathya"].obs;
   final selecteduserIndex = Rxn<int>();
 

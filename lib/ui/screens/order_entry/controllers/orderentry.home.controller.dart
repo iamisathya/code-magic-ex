@@ -23,6 +23,7 @@ class OrderEntryUserListController extends GetxController {
   ].obs;
   RxString filterMethod = "baId".obs;
   RxBool isLoading = false.obs;
+  RxBool isFetching = false.obs;
   RxList<String> searchedUsers = <String>["Hi", "Sathya"].obs;
   final selecteduserIndex = Rxn<int>();
   SearchCustomer searchedResultsOfHref = SearchCustomer(items: []);
@@ -131,9 +132,20 @@ class OrderEntryUserListController extends GetxController {
   }
 
   void onSelectUser(int idx) {
-    searchUserTextController.text = searchedUsers[idx];
+    searchUserTextController.text =
+        searchResultsOfUserInfo[idx].humanName.fullName;
     selecteduserIndex.value = idx;
-    searchedUsers.refresh();
+    searchResultsOfUserInfo.refresh();
+    isFetching.toggle();
+    Future.delayed(const Duration(milliseconds: 1200), () {
+      final SearchedUserInfo selectedUser = searchResultsOfUserInfo[idx];
+      final UserMinimalData userData = UserMinimalData(
+          fullName: selectedUser.humanName.fullName,
+          email: selectedUser.email,
+          userId: selectedUser.id.unicity.toString());
+      isFetching.toggle();
+      Get.to(() => OrderEntryList(), arguments: userData);
+    });
   }
 
   void onCancel() {}
