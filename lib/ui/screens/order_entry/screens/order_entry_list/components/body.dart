@@ -28,9 +28,9 @@ class Body extends StatelessWidget {
                 shrinkWrap: true,
                 crossAxisCount: 3,
                 children: List.generate(
-                    controller.inventoryRecords.value.items.length, (index) {
+                    controller.tempInventoryRecords.value.items.length, (index) {
                   final InventoryRecordItems item =
-                      controller.inventoryRecords.value.items[index];
+                      controller.tempInventoryRecords.value.items[index];
                   int itemIndex =
                       controller.cartItemIndex(item.item.id.unicity);
                   final bool inItemInCart = itemIndex != -1; // id -1 means item not in cart

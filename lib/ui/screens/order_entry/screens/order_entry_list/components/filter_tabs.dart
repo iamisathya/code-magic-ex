@@ -1,6 +1,5 @@
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
-import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.summary.controller%20copy.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class FilterTabs extends StatelessWidget {
               children: [
                 GestureDetector(
                     onTap: () => controller
-                        .onTabChange(OrderEntrySummaryFilters.myCart),
+                        .onTabChange(OrderEntryItemFilters.allProduct),
                     child: AppText(
                         text: "All Product",
                         style: controller.filterMethod.value == "all"
@@ -32,7 +31,7 @@ class FilterTabs extends StatelessWidget {
                 const SizedBox(width: 30),
                 GestureDetector(
                     onTap: () => controller
-                        .onTabChange(OrderEntrySummaryFilters.paymentType),
+                        .onTabChange(OrderEntryItemFilters.easyShipSet),
                     child: AppText(
                         text: "Easyship Set",
                         style: controller.filterMethod.value == "easyShip"

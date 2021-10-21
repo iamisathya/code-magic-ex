@@ -1,5 +1,5 @@
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
+import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.summary.controller%20copy.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class FilterTabs extends StatelessWidget {
-  final OrderEntryProductListController controller =
-      Get.put(OrderEntryProductListController());
+  final OrderEntryCheckoutSummaryController controller =
+      Get.put(OrderEntryCheckoutSummaryController());
 
   @override
   Widget build(BuildContext context) {

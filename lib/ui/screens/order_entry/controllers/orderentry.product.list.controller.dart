@@ -19,7 +19,7 @@ class OrderEntryProductListController extends GetxController {
     NameValueType(name: "My Cart", value: "myCart"),
     NameValueType(name: "Payment Type", value: "paymentType"),
   ].obs;
-  RxString filterMethod = "myCart".obs;
+  RxString filterMethod = "all".obs;
   RxBool isLoading = false.obs;
   RxBool isFetching = false.obs;
   RxList<String> searchedUsers = <String>["Hi", "Sathya"].obs;
@@ -31,6 +31,7 @@ class OrderEntryProductListController extends GetxController {
     NameValueType(name: " Pay with DSC", value: "payWithDsc"),
   ].obs;
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
+  Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
 
   RxString selectedPayment = "payWithDsc".obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
@@ -97,9 +98,9 @@ class OrderEntryProductListController extends GetxController {
 
   void onProceedNext() {}
 
-  void onTabChange(OrderEntrySummaryFilters type) {
+  void onTabChange(OrderEntryItemFilters type) {
     filterMethod.value =
-        type == OrderEntrySummaryFilters.myCart ? "myCart" : "paymentType";
+        type == OrderEntryItemFilters.allProduct ? "all" : "easyShip";
   }
 
   void addItemToCart({required String itemCode}) {
@@ -173,7 +174,8 @@ class OrderEntryProductListController extends GetxController {
   }
 
   int cartItemIndex(String itemCode) {
-    return cartProducts.reversed.toList()
+    return cartProducts.reversed
+        .toList()
         .indexWhere((element) => element.itemCode == itemCode);
   }
 
@@ -185,6 +187,26 @@ class OrderEntryProductListController extends GetxController {
   }
 
   void onClickNuetralButton() {
-    SnackbarUtil.showWarning(message: "Please add items to cart before proceed!");
+    SnackbarUtil.showWarning(
+        message: "Please add items to cart before proceed!");
+  }
+
+  void onTextChanged(String text) {
+    tempInventoryRecords.value.items.clear();
+    if (text.isEmpty) {
+      tempInventoryRecords =
+          InventoryRecords(items: List.from(tempInventoryRecords.value.items))
+              .obs;
+      tempInventoryRecords.refresh();
+      return;
+    }
+
+    for (final item in inventoryRecords.value.items) {
+      if (item.catalogSlideContent.content.description.contains(text) ||
+          item.item.id.unicity.contains(text)) {
+        tempInventoryRecords.value.items.add(item);
+      }
+    }
+    tempInventoryRecords.refresh();
   }
 }

@@ -16,6 +16,7 @@ class SearchBox extends StatelessWidget {
       child: WhiteSearchField(
           controller: controller.searchUserTextController,
           onPress: controller.onSearchPressed,
+          onChanged: controller.onTextChanged,
           hintText: "Search products",
           isFetching: controller.isFetching),
     );

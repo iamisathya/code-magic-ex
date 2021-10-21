@@ -10,12 +10,14 @@ class WhiteSearchField extends StatelessWidget {
     required this.isFetching,
     required this.onPress,
     required this.hintText,
+    this.onChanged,
   }) : super(key: key);
 
   final TextEditingController controller;
   final VoidCallback onPress;
   final String hintText;
   final RxBool isFetching;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class WhiteSearchField extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       height: 54,
       child: TextField(
+        onChanged: onChanged,
         controller: controller,
         decoration: InputDecoration(
           filled: true,
