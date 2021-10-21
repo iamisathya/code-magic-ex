@@ -23,6 +23,7 @@ const kNoRecordFoundImage = 'assets/images/no_record_found_image.svg';
 const kDefaultDistributorImage = 'assets/images/distributor.png';
 const kProductPlaceholderImage = 'assets/images/product_placeholder_image.svg';
 const kNotificationBellImage = 'assets/images/notification_bell_image.svg';
+const kTrashImage = 'assets/images/trash_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityGradient3xImage = 'assets/icons/unicity_logo_3x.png';

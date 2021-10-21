@@ -1,4 +1,5 @@
 import 'package:dsc_tools/models/general_models.dart';
+import 'package:dsc_tools/ui/screens/order_entry/screens/order_entry_summary/components/discard_alert.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +37,19 @@ class OrderEntryCheckoutSummaryController extends GetxController {
 
   void onSearchPressed() {}
 
-  void onCancel() {}
+  void onCancel(BuildContext context) {
+    showModalBottomSheet<void>(
+        context: context,
+          backgroundColor: Colors.transparent,
+        builder: (BuildContext context) {
+          return const DiscardAlert();
+        });
+  }
 
   void onProceedNext() {}
 
   void onTabChange(OrderEntrySummaryFilters type) {
-    filterMethod.value = type == OrderEntrySummaryFilters.myCart ? "myCart" : "paymentType";
+    filterMethod.value =
+        type == OrderEntrySummaryFilters.myCart ? "myCart" : "paymentType";
   }
 }

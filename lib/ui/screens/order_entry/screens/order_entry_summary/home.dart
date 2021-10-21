@@ -1,5 +1,6 @@
 import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
+import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.summary.controller%20copy.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,8 +9,8 @@ import 'components/body.dart';
 
 class OrderEntrySummary extends StatelessWidget {
   static const String routeName = '/orderEntrySummaryPage';
-  final OrderEntryProductListController controller =
-      Get.put(OrderEntryProductListController());
+  final OrderEntryCheckoutSummaryController controller =
+      Get.put(OrderEntryCheckoutSummaryController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +28,7 @@ class BottomButtonBar extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final OrderEntryProductListController controller;
+  final OrderEntryCheckoutSummaryController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,8 @@ class BottomButtonBar extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Flexible(
-                    child: NegetiveButton(onTap: controller.onCancel),
+                    child: NegetiveButton(
+                        onTap: () => controller.onCancel(context)),
                   ),
                   Flexible(
                     child: PositiveButton(onTap: () {}),

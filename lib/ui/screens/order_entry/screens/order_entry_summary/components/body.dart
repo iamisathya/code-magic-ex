@@ -15,56 +15,53 @@ class Body extends StatelessWidget {
       Get.put(OrderEntryProductListController());
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-              children: [
-                const Headline(title: "Order Entry Summary"),
-                const UserInfoBox(),
-                FilterTabs(),
-                Obx(
-                  () => ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(
-                        left: 12.0, right: 12.0, top: 20, bottom: 20),
-                    itemCount: controller.filterMethod.value == "myCart"
-                        ? 6
-                        : PaymentTypes.values.length,
-                    itemBuilder: (BuildContext ctxt, int index) {
-                      if (controller.filterMethod.value == "myCart") {
-                        return const CheckoutItem();
-                      } else {
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(3.0),
-                          ),
-                          elevation: 0,
-                          child: ListTile(
-                              title: AppText(
-                                  text: controller.paymentTypes[index].name,
-                                  style: TextTypes.subtitle1),
-                              leading: Radio(
-                                  value: controller.paymentTypes[index].value,
-                                  groupValue: controller.selectedPayment.value,
-                                  fillColor: MaterialStateProperty.all<Color>(
-                                    const Color(0xFF6FCF97),
-                                  ),
-                                  onChanged: null)),
-                        );
-                      }
-                    },
-                  ),
-                ),
-              ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          children: [
+            const Headline(title: "Order Entry Summary"),
+            const UserInfoBox(),
+            FilterTabs(),
+            Obx(
+              () => ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(
+                    left: 12.0, right: 12.0, top: 20, bottom: 20),
+                itemCount: controller.filterMethod.value == "myCart"
+                    ? 6
+                    : PaymentTypes.values.length,
+                itemBuilder: (BuildContext ctxt, int index) {
+                  if (controller.filterMethod.value == "myCart") {
+                    return const CheckoutItem();
+                  } else {
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(3.0),
+                      ),
+                      elevation: 0,
+                      child: ListTile(
+                          title: AppText(
+                              text: controller.paymentTypes[index].name,
+                              style: TextTypes.subtitle1),
+                          leading: Radio(
+                              value: controller.paymentTypes[index].value,
+                              groupValue: controller.selectedPayment.value,
+                              fillColor: MaterialStateProperty.all<Color>(
+                                const Color(0xFF6FCF97),
+                              ),
+                              onChanged: null)),
+                    );
+                  }
+                },
+              ),
             ),
-          
-          const TotalAmountBox(),
-        ],
-      ),
+          ],
+        ),
+        const TotalAmountBox(),
+      ],
     );
   }
 }
