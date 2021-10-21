@@ -67,7 +67,7 @@ class Body extends StatelessWidget {
                               .toList()),
                       WhiteSearchField(
                           controller: controller.searchUserTextController,
-                          onPress: controller.onSearchPressed,
+                          onPress: controller.searchUserBySearchQuery,
                           hintText: "BA Number or Govt ID or Name")
                     ],
                   ),
@@ -84,7 +84,8 @@ class Body extends StatelessWidget {
                         () => ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: controller.searchedUsers.length,
+                            itemCount:
+                                controller.searchResultsOfUserInfo.length,
                             itemBuilder: (BuildContext ctxt, int index) {
                               final bool isSelected =
                                   controller.selecteduserIndex.value == index;
@@ -95,12 +96,16 @@ class Body extends StatelessWidget {
                                         vertical: 10.0),
                                     child: isSelected
                                         ? AppText(
-                                            text:
-                                                controller.searchedUsers[index],
+                                            text: controller
+                                                .searchResultsOfUserInfo[index]
+                                                .humanName
+                                                .fullName,
                                             style: TextTypes.headline6)
                                         : AppText(
-                                            text:
-                                                controller.searchedUsers[index],
+                                            text: controller
+                                                .searchResultsOfUserInfo[index]
+                                                .humanName
+                                                .fullName,
                                             style: TextTypes.bodyText1,
                                             color: const Color(0xFF505050))),
                               );

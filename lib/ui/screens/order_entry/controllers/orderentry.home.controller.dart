@@ -1,5 +1,15 @@
+import 'package:dio/dio.dart';
+import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/models/find_customer.dart';
 import 'package:dsc_tools/models/general_models.dart';
+import 'package:dsc_tools/models/search_customer.dart';
+import 'package:dsc_tools/models/search_reponse_by_href.dart';
+import 'package:dsc_tools/models/user_minimal_data.dart';
 import 'package:dsc_tools/ui/screens/order_entry/screens/order_entry_list/home.dart';
+import 'package:dsc_tools/utilities/function.dart';
+import 'package:dsc_tools/utilities/logger.dart';
+import 'package:dsc_tools/utilities/parsing.dart';
+import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,11 +25,103 @@ class OrderEntryUserListController extends GetxController {
   RxBool isLoading = false.obs;
   RxList<String> searchedUsers = <String>["Hi", "Sathya"].obs;
   final selecteduserIndex = Rxn<int>();
+  SearchCustomer searchedResultsOfHref = SearchCustomer(items: []);
+  FindCustomer searchedGuestUserInfo = FindCustomer(items: []);
+  RxList<SearchedUserInfo> searchResultsOfUserInfo = <SearchedUserInfo>[].obs;
+  RxString errorMessage = "".obs;
 
   @override
   void onInit() {
     FirebaseAnalytics().setCurrentScreen(screenName: "order_entry");
     super.onInit();
+  }
+
+  Future<void> searchUserBySearchQuery() async {
+    if (searchUserTextController.text.isEmpty) {
+      SnackbarUtil.showWarning(message: "User id shouldn't be empty.");
+      return;
+    }
+    if (filterMethod.value == "baId") {
+      searchUserById();
+    } else {
+      searchUserBySearchKey();
+    }
+  }
+
+  Future<void> searchUserById() async {
+    try {
+      // * search for users by user id(search key)
+      isLoading.toggle();
+      searchedGuestUserInfo = await ApiService.shared().findCustomer(
+          Parsing.intFrom(searchUserTextController.text)!, "customer");
+      if (searchedGuestUserInfo.items.isNotEmpty) {
+        // Move to details page
+        final UserMinimalData user = UserMinimalData(
+            fullName: searchedGuestUserInfo.items[0].humanName.fullName,
+            email: searchedGuestUserInfo.items[0].email,
+            userId: searchedGuestUserInfo.items[0].id.unicity);
+        // Get.to(() => OrderEntryTable(), arguments: user);
+      }
+      isLoading.toggle();
+    } on DioError catch (e) {
+      _onDioError(e);
+    } catch (err, s) {
+      _onCatchError(err, s);
+    }
+  }
+
+  Future<void> searchUserBySearchKey() async {
+    isLoading.toggle();
+    try {
+      // * search for users by user id(search key)
+      searchedResultsOfHref = await ApiService.shared()
+          .searchCustomer(searchUserTextController.text, 1);
+      if (searchedResultsOfHref.items.isNotEmpty) {
+        final List<String> data =
+            searchedResultsOfHref.items.map((e) => e.href).toList();
+        searchUsersByHref(data);
+      }
+    } on DioError catch (e) {
+      _onDioError(e);
+    } catch (err, s) {
+      _onCatchError(err, s);
+    }
+  }
+
+  Future<void> searchUsersByHref(List<String> results) async {
+    try {
+      // * search for users by user id(search key)
+      searchResultsOfUserInfo.value = await MemberCallsService.init()
+          .searchUsersByHref("getBAInfo", results);
+      isLoading.toggle();
+    } on DioError catch (e) {
+      _onDioError(e);
+    } catch (err, s) {
+      _onCatchError(err, s);
+    } finally {
+      update();
+    }
+  }
+
+  String _getErrorMessage(dynamic error) {
+    // final errorObj = jsonDecode(error.toString());
+    final mappedObj = error as Map<String, dynamic>;
+    return mappedObj["error"]["error_message"].toString();
+  }
+
+  void _onDioError(DioError e) {
+    isLoading.toggle();
+    debugPrint(e.toString());
+    final message = _getErrorMessage(e.response!.data);
+    SnackbarUtil.showError(message: message);
+    returnResponse(e.response!);
+  }
+
+  void _onCatchError(Object err, StackTrace s) {
+    debugPrint(err.toString());
+    SnackbarUtil.showError(message: "Error while getting user details!");
+    LoggerService.instance.e(s);
+    isLoading.toggle();
   }
 
   void onChangeMonthType(int index) {
@@ -33,8 +135,6 @@ class OrderEntryUserListController extends GetxController {
     selecteduserIndex.value = idx;
     searchedUsers.refresh();
   }
-
-  void onSearchPressed() {}
 
   void onCancel() {}
 
