@@ -1,4 +1,5 @@
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/order_entry/screens/order_complete_screen/home.dart';
 import 'package:dsc_tools/utilities/constants.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
@@ -37,7 +38,8 @@ class DiscardAlert extends StatelessWidget {
                     child: NegetiveButton(onTap: () => Navigator.pop(context)),
                   ),
                   Flexible(
-                    child: PositiveButton(onTap: () {}),
+                    child: PositiveButton(
+                        onTap: () => Get.to(() => OrderEntryComplete())),
                   ),
                 ],
               ),

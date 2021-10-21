@@ -24,6 +24,9 @@ const kDefaultDistributorImage = 'assets/images/distributor.png';
 const kProductPlaceholderImage = 'assets/images/product_placeholder_image.svg';
 const kNotificationBellImage = 'assets/images/notification_bell_image.svg';
 const kTrashImage = 'assets/images/trash_image.svg';
+const kOrderEntryBarcodeImage = 'assets/images/order_entry_barcode.svg';
+const kOrderEntryFailureImage = 'assets/images/order_entry_failure.svg';
+const kOrderEntrySuccessImage = 'assets/images/order_entry_success.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityGradient3xImage = 'assets/icons/unicity_logo_3x.png';
