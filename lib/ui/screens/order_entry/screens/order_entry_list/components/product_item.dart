@@ -10,8 +10,9 @@ class ProductItem extends StatelessWidget {
       Get.put(OrderEntryProductListController());
   final InventoryRecordItems item;
   final bool inCart;
+  final int cartItemIndex;
 
-  ProductItem({required this.item, required this.inCart});
+  ProductItem({required this.item, required this.inCart, required this.cartItemIndex});
   
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,7 @@ class ProductItem extends StatelessWidget {
               decoration: BoxDecoration(
                   color: const Color(0xFFFFBF3A),
                   borderRadius: BorderRadius.circular(3)),
-              child: const AppText(text: "1", style: TextTypes.caption, color: Colors.white,),
+              child: AppText(text: cartItemIndex.toString(), style: TextTypes.caption, color: Colors.white,),
             ),
           )
         ]),

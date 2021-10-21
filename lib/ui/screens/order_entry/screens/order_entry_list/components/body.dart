@@ -31,9 +31,14 @@ class Body extends StatelessWidget {
                     controller.inventoryRecords.value.items.length, (index) {
                   final InventoryRecordItems item =
                       controller.inventoryRecords.value.items[index];
-                  final bool isItemInCart =
-                      controller.isItemInCart(item.item.id.unicity);
-                  return ProductItem(item: item, inCart: isItemInCart);
+                  int itemIndex =
+                      controller.cartItemIndex(item.item.id.unicity);
+                  final bool inItemInCart = itemIndex != -1; // id -1 means item not in cart
+                  itemIndex = itemIndex + 1; // add 1 to index numbner which start from 0
+                  return ProductItem(
+                      item: item,
+                      inCart: inItemInCart,
+                      cartItemIndex: itemIndex);
                 }),
               ),
             ),

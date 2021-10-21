@@ -172,9 +172,19 @@ class OrderEntryProductListController extends GetxController {
     calculateTotal();
   }
 
+  int cartItemIndex(String itemCode) {
+    return cartProducts.reversed.toList()
+        .indexWhere((element) => element.itemCode == itemCode);
+  }
+
   bool isItemInCart(String itemCode) {
+    // cartProducts.indexWhere((element) => false)(element)
     final CartProductsItem? item = cartProducts
         .firstWhereOrNull((element) => element.itemCode == itemCode);
     return item != null;
+  }
+
+  void onClickNuetralButton() {
+    SnackbarUtil.showWarning(message: "Please add items to cart before proceed!");
   }
 }
