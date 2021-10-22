@@ -17,6 +17,11 @@ class OrderEntryCheckoutSummaryController extends GetxController {
   RxList<String> searchedUsers = <String>["Hi", "Sathya"].obs;
   final selecteduserIndex = Rxn<int>();
 
+  RxList<NameValueType> paymentTypes = [
+    NameValueType(name: " Pay with DSC", value: "payWithDsc"),
+  ].obs;
+  RxString selectedPayment = "payWithDsc".obs;
+
   @override
   void onInit() {
     FirebaseAnalytics().setCurrentScreen(screenName: "order_entry");
@@ -40,7 +45,7 @@ class OrderEntryCheckoutSummaryController extends GetxController {
   void onCancel(BuildContext context) {
     showModalBottomSheet<void>(
         context: context,
-          backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
         builder: (BuildContext context) {
           return const DiscardAlert();
         });

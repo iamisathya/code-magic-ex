@@ -28,10 +28,7 @@ class OrderEntryProductListController extends GetxController {
   RxDouble totalCartPrice = 0.0.obs;
   RxInt totalCartPv = 0.obs;
 
-  RxList<NameValueType> paymentTypes = [
-    NameValueType(name: " Pay with DSC", value: "payWithDsc"),
-  ].obs;
-  RxString selectedPayment = "payWithDsc".obs;
+
 
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   Rx<InventoryRecords> inventoryEasyShipRecords = InventoryRecords(items: []).obs;

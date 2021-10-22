@@ -1,5 +1,6 @@
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
+import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.summary.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,10 @@ import 'total_amount_box.dart';
 import 'user_info_box.dart';
 
 class Body extends StatelessWidget {
-  final OrderEntryProductListController controller =
+  final OrderEntryCheckoutSummaryController controller =
+      Get.put(OrderEntryCheckoutSummaryController());
+
+       final OrderEntryProductListController listController =
       Get.put(OrderEntryProductListController());
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,7 @@ class Body extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: 12.0, right: 12.0, top: 20, bottom: 20),
                 itemCount: controller.filterMethod.value == "myCart"
-                    ? 6
+                    ? listController.cartProducts.length
                     : PaymentTypes.values.length,
                 itemBuilder: (BuildContext ctxt, int index) {
                   if (controller.filterMethod.value == "myCart") {
