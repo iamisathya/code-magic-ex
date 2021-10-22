@@ -26,7 +26,7 @@ class TotalAmountBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const AppText(text: "Total PV:", style: TextTypes.bodyText2),
-                Obx(() => AppText(text: "${listController.totalCartPv} PV:", style: TextTypes.bodyText2))
+                Obx(() => AppText(text: "${listController.totalCartPv} PV", style: TextTypes.bodyText2))
               ],
             ),
           ),

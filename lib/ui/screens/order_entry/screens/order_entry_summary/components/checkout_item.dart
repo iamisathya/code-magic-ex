@@ -14,8 +14,8 @@ class CheckoutItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 95,
-        margin: const EdgeInsets.symmetric(vertical: 5),
-        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
           color: Colors.white,

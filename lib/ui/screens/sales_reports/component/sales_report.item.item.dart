@@ -1,10 +1,7 @@
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../models/sales_report_item_item.dart';
-import '../../../../utilities/images.dart';
 import '../controller/salesreports.home.controller.dart';
 
 class SalesReportEachItemItem extends StatelessWidget {
