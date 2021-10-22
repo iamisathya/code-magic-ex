@@ -1,7 +1,12 @@
+import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserInfoBox extends StatelessWidget {
-  const UserInfoBox({
+  final OrderEntryProductListController listController =
+      Get.put(OrderEntryProductListController());
+
+  UserInfoBox({
     Key? key,
   }) : super(key: key);
 
@@ -12,10 +17,10 @@ class UserInfoBox extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       color: const Color(0xff76e5de),
       child: Row(
-        children: const [
-          TitleBox(title: "108357166"),
-          SizedBox(width: 10),
-          Expanded(child: TitleBox(title: "Patthiraya sdfsdfsdfsdfsdfsdf")),
+        children: [
+          TitleBox(title: listController.userData.userId),
+          const SizedBox(width: 10),
+          Expanded(child: TitleBox(title: listController.userData.fullName)),
         ],
       ),
     );

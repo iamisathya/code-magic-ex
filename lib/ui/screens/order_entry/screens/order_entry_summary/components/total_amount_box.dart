@@ -1,11 +1,15 @@
 
 
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TotalAmountBox extends StatelessWidget {
-  const TotalAmountBox({
+  final OrderEntryProductListController listController =
+      Get.put(OrderEntryProductListController());
+  TotalAmountBox({
     Key? key,
   }) : super(key: key);
 
@@ -20,9 +24,9 @@ class TotalAmountBox extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                AppText(text: "Total PV:", style: TextTypes.bodyText2),
-                AppText(text: "57 PV:", style: TextTypes.bodyText2)
+              children: [
+                const AppText(text: "Total PV:", style: TextTypes.bodyText2),
+                Obx(() => AppText(text: "${listController.totalCartPv} PV:", style: TextTypes.bodyText2))
               ],
             ),
           ),
@@ -30,9 +34,9 @@ class TotalAmountBox extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                AppText(text: "Total Price:", style: TextTypes.bodyText2),
-                AppText(text: "4,130 THB", style: TextTypes.bodyText2)
+              children: [
+                const AppText(text: "Total Price:", style: TextTypes.bodyText2),
+                Obx(() => AppText(text: "${listController.totalCartPrice} THB", style: TextTypes.bodyText2))
               ],
             ),
           ),
@@ -42,9 +46,9 @@ class TotalAmountBox extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              AppText(text: "Payment Amount", style: TextTypes.subtitle1),
-              AppText(text: "4,130 THB", style: TextTypes.subtitle1)
+            children: [
+              const AppText(text: "Payment Amount", style: TextTypes.subtitle1),
+              Obx(() => AppText(text: "${listController.totalCartPrice} THB", style: TextTypes.subtitle1))
             ],
           ),
         ],

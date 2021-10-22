@@ -1,9 +1,14 @@
+import 'package:dsc_tools/models/cart_products.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CheckoutItem extends StatelessWidget {
-  const CheckoutItem({Key? key}) : super(key: key);
+  final CartProductsItem item;
+
+  const CheckoutItem({required this.item, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +33,9 @@ class CheckoutItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Flexible(
+                  Flexible(
                     child: AppText(
-                        text: "Coffee Mix (Bio Reishi Brand)",
-                        style: TextTypes.subtitle2),
+                        text: item.productName, style: TextTypes.subtitle2),
                   ),
                   Flexible(
                     flex: 2,
@@ -41,18 +45,19 @@ class CheckoutItem extends StatelessWidget {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             AppText(
-                                text: "CODE: 19852",
+                                text: "CODE: ${item.itemCode}",
                                 style: TextTypes.caption,
-                                color: Color(0xff9ea9b9)),
+                                color: const Color(0xff9ea9b9)),
                             AppText(
-                                text: "3 PV | 310 THB",
+                                text:
+                                    "${item.totalPv} PV | ${item.totalPrice} THB",
                                 style: TextTypes.bodyText2,
-                                color: Color(0xFF384250)),
+                                color: const Color(0xFF384250)),
                           ],
                         ),
-                        const QuantityCounter()
+                        QuantityCounter(item: item)
                       ],
                     ),
                   ),
@@ -65,7 +70,13 @@ class CheckoutItem extends StatelessWidget {
 }
 
 class QuantityCounter extends StatelessWidget {
-  const QuantityCounter({
+  final OrderEntryProductListController listController =
+      Get.put(OrderEntryProductListController());
+
+  final CartProductsItem item;
+
+  QuantityCounter({
+    required this.item,
     Key? key,
   }) : super(key: key);
 
@@ -86,13 +97,14 @@ class QuantityCounter extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const AppText(text: "-", style: TextTypes.headline4),
+          GestureDetector(onTap: () => listController.updateQuantity(CartUpdate.decreament, item.itemCode), child: const AppText(text: "-", style: TextTypes.headline4)),
           Container(
             width: 34,
             alignment: Alignment.center,
-            child: const AppText(text: "1", style: TextTypes.bodyText1),
+            child: AppText(
+                text: item.quantity.toString(), style: TextTypes.bodyText1),
           ),
-          const AppText(text: "+", style: TextTypes.headline4),
+          GestureDetector(onTap: () => listController.updateQuantity(CartUpdate.increament, item.itemCode), child: const AppText(text: "+", style: TextTypes.headline4)),
         ],
       ),
     );

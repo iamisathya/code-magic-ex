@@ -1,4 +1,5 @@
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.summary.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
@@ -9,6 +10,9 @@ import 'package:get/get.dart';
 class FilterTabs extends StatelessWidget {
   final OrderEntryCheckoutSummaryController controller =
       Get.put(OrderEntryCheckoutSummaryController());
+
+  final OrderEntryProductListController listController =
+      Get.put(OrderEntryProductListController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +48,13 @@ class FilterTabs extends StatelessWidget {
               ],
             ),
           ),
-          SvgPicture.asset(
-            kTrashIcon,
-            width: 20,
-            height: 20,
+          GestureDetector(
+            onTap: listController.clearCart,
+            child: SvgPicture.asset(
+              kTrashIcon,
+              width: 20,
+              height: 20,
+            ),
           )
         ],
       ),

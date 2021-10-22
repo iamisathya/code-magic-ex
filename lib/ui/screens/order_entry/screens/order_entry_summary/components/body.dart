@@ -1,3 +1,4 @@
+import 'package:dsc_tools/models/cart_products.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.summary.controller.dart';
@@ -15,8 +16,9 @@ class Body extends StatelessWidget {
   final OrderEntryCheckoutSummaryController controller =
       Get.put(OrderEntryCheckoutSummaryController());
 
-       final OrderEntryProductListController listController =
+  final OrderEntryProductListController listController =
       Get.put(OrderEntryProductListController());
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +28,7 @@ class Body extends StatelessWidget {
         Column(
           children: [
             const Headline(title: "Order Entry Summary"),
-            const UserInfoBox(),
+            UserInfoBox(),
             FilterTabs(),
             Obx(
               () => ListView.builder(
@@ -39,7 +41,9 @@ class Body extends StatelessWidget {
                     : PaymentTypes.values.length,
                 itemBuilder: (BuildContext ctxt, int index) {
                   if (controller.filterMethod.value == "myCart") {
-                    return const CheckoutItem();
+                    final CartProductsItem item =
+                        listController.cartProducts[index];
+                    return CheckoutItem(item: item);
                   } else {
                     return Card(
                       shape: RoundedRectangleBorder(
@@ -64,7 +68,7 @@ class Body extends StatelessWidget {
             ),
           ],
         ),
-        const TotalAmountBox(),
+        TotalAmountBox(),
       ],
     );
   }

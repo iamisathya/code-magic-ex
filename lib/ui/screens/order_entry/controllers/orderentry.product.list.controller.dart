@@ -4,6 +4,8 @@ import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dsc_tools/models/cart_products.dart';
 import 'package:dsc_tools/models/general_models.dart';
 import 'package:dsc_tools/models/inventory_records.dart';
+import 'package:dsc_tools/models/user_minimal_data.dart';
+import 'package:dsc_tools/ui/screens/order_entry/screens/order_entry_summary/home.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/logger.dart';
@@ -28,19 +30,31 @@ class OrderEntryProductListController extends GetxController {
   RxDouble totalCartPrice = 0.0.obs;
   RxInt totalCartPv = 0.obs;
 
-
+  late UserMinimalData userData;
 
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
-  Rx<InventoryRecords> inventoryEasyShipRecords = InventoryRecords(items: []).obs;
-  Rx<InventoryRecords> tempInventoryEasyShipRecords = InventoryRecords(items: []).obs;
+  Rx<InventoryRecords> inventoryEasyShipRecords =
+      InventoryRecords(items: []).obs;
+  Rx<InventoryRecords> tempInventoryEasyShipRecords =
+      InventoryRecords(items: []).obs;
   Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
 
   @override
   void onInit() {
     FirebaseAnalytics().setCurrentScreen(screenName: "order_entry");
+    receiveIntentData();
     loadInventoryRecords();
     super.onInit();
+  }
+
+  void receiveIntentData() {
+    final dynamic data = Get.arguments;
+    if (data != null) {
+      userData = data as UserMinimalData;
+    } else {
+      Get.back();
+    }
   }
 
   set currentFilteredMethod(String type) => filterMethod.value = type;
@@ -142,6 +156,7 @@ class OrderEntryProductListController extends GetxController {
       }
     }
     cartProducts.refresh();
+    calculateTotal();
   }
 
   void onUpdateQuantity(CartUpdate type, String itemCode) {
@@ -162,6 +177,7 @@ class OrderEntryProductListController extends GetxController {
 
   void clearCart() {
     cartProducts.clear();
+    calculateTotal();
   }
 
   void onPressRemove(String itemCode) {
@@ -188,6 +204,10 @@ class OrderEntryProductListController extends GetxController {
   void onClickNuetralButton() {
     SnackbarUtil.showWarning(
         message: "Please add items to cart before proceed!");
+  }
+
+  void onClickPositiveButton() {
+    Get.to(() => OrderEntrySummary());
   }
 
   void onTextChanged(String text) {
