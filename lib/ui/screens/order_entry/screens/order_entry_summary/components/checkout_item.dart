@@ -23,9 +23,10 @@ class CheckoutItem extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(15),
-              width: 61,
-              height: 50,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(8),
+              width: 80,
+              height: 65,
               child: const FlutterLogo(size: 61),
             ),
             Expanded(
