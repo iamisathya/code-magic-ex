@@ -66,8 +66,6 @@ class OrderEntryCheckoutSummaryController extends GetxController {
     searchedUsers.refresh();
   }
 
-  void onSearchPressed() {}
-
   void onCancel(BuildContext context) {
     showModalBottomSheet<void>(
         context: context,
@@ -77,21 +75,19 @@ class OrderEntryCheckoutSummaryController extends GetxController {
         });
   }
 
-  void onProceedNext() {}
-
   void onTabChange(OrderEntrySummaryFilters type) {
     filterMethod.value =
         type == OrderEntrySummaryFilters.myCart ? "myCart" : "paymentType";
   }
 
-  Future<void> proceedToCheckOut(BuildContext context) async {
+  Future<void> proceedToCheckOut() async {
     try {
       isLoading.toggle();
       // * Check for server status if on or off
       final bool serverStatus = await checkOrderEntryServerStatus();
       if (serverStatus) {
-        final List<dynamic> response = await Future.wait(
-            [getPeriodResponse(), proceedPlaceOrder(context)]);
+        final List<dynamic> response =
+            await Future.wait([getPeriodResponse(), proceedPlaceOrder()]);
         final periodResponse = response[0] as String;
         final orderPlaceResponse = response[1] as PlaceOrder?;
         if (orderPlaceResponse != null && periodResponse != "") {
@@ -124,10 +120,10 @@ class OrderEntryCheckoutSummaryController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "Server Error!", subTitle: e.error.toString());
+      SnackbarUtil.showError(message: "Server Error! ${e.error.toString()}");
       return false;
     } catch (err) {
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      SnackbarUtil.showError(message: "Server Error! ${err.toString()}");
       return false;
     }
   }
@@ -229,7 +225,7 @@ class OrderEntryCheckoutSummaryController extends GetxController {
     }
   }
 
-  Future<PlaceOrder?> proceedPlaceOrder(BuildContext context) async {
+  Future<PlaceOrder?> proceedPlaceOrder() async {
     PlaceOrder? response;
     try {
       final String enrollResponse = jsonEncode(prepareRequestPaylod());
@@ -245,11 +241,11 @@ class OrderEntryCheckoutSummaryController extends GetxController {
       return response;
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      SnackbarUtil.showError(message: "Error! ${e.error.toString()}");
       return response;
     } catch (err) {
       LoggerService.instance.e(err.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      SnackbarUtil.showError(message: "Error! ${err.toString()}");
       return response;
     }
   }
@@ -267,10 +263,10 @@ class OrderEntryCheckoutSummaryController extends GetxController {
     try {
       await MemberCallsService.init().verifyOrder(requestData);
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      SnackbarUtil.showError(message: "Error! ${e.error.toString()}");
     } catch (err) {
       LoggerService.instance.e(err.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      SnackbarUtil.showError(message: "Error! ${err.toString()}");
     }
   }
 
@@ -308,5 +304,10 @@ class OrderEntryCheckoutSummaryController extends GetxController {
     SnackbarUtil.showError(message: "Error!");
     LoggerService.instance.e(s);
     isLoading.toggle();
+  }
+
+  void onClickNuetralButton() {
+    SnackbarUtil.showWarning(
+        message: "Please add items to cart before proceed!");
   }
 }
