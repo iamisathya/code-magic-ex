@@ -15,14 +15,15 @@ import 'package:get/get.dart';
 class OrderEntryProductListController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();
   RxInt currentTab = 0.obs;
-  RxList<NameValueType> searchOptions = [
-    NameValueType(name: "My Cart", value: "myCart"),
-    NameValueType(name: "Payment Type", value: "paymentType"),
+  RxList<NameValueType> filterOptions = [
+    NameValueType(name: "All Product", value: "all"),
+    NameValueType(name: "Easyship Set", value: "easyShip"),
   ].obs;
   RxString filterMethod = "all".obs;
+
   RxBool isLoading = false.obs;
   RxBool isFetching = false.obs;
-  RxList<String> searchedUsers = <String>["Hi", "Sathya"].obs;
+  RxList<String> searchedUsers = <String>[].obs;
   final selecteduserIndex = Rxn<int>();
   RxDouble totalCartPrice = 0.0.obs;
   RxInt totalCartPv = 0.obs;
@@ -30,10 +31,12 @@ class OrderEntryProductListController extends GetxController {
   RxList<NameValueType> paymentTypes = [
     NameValueType(name: " Pay with DSC", value: "payWithDsc"),
   ].obs;
-  Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
-  Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
-
   RxString selectedPayment = "payWithDsc".obs;
+
+  Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
+  Rx<InventoryRecords> inventoryEasyShipRecords = InventoryRecords(items: []).obs;
+  Rx<InventoryRecords> tempInventoryEasyShipRecords = InventoryRecords(items: []).obs;
+  Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
 
   @override
@@ -42,6 +45,10 @@ class OrderEntryProductListController extends GetxController {
     loadInventoryRecords();
     super.onInit();
   }
+
+  set currentFilteredMethod(String type) => filterMethod.value = type;
+
+  String get currentFilteredMethod => filterMethod.value;
 
   Future<void> loadInventoryRecords() async {
     const String userId =
@@ -82,7 +89,7 @@ class OrderEntryProductListController extends GetxController {
   void onChangeMonthType(int index) {
     currentTab.value = index;
     searchUserTextController.text = "";
-    filterMethod.value = searchOptions[index].value;
+    filterMethod.value = filterOptions[index].value;
     // getAllOpenPo();
   }
 
@@ -97,11 +104,6 @@ class OrderEntryProductListController extends GetxController {
   void onCancel() {}
 
   void onProceedNext() {}
-
-  void onTabChange(OrderEntryItemFilters type) {
-    filterMethod.value =
-        type == OrderEntryItemFilters.allProduct ? "all" : "easyShip";
-  }
 
   void addItemToCart({required String itemCode}) {
     final bool targetFound =

@@ -19,25 +19,21 @@ class FilterTabs extends StatelessWidget {
         children: [
           Obx(
             () => Row(
-              children: [
-                GestureDetector(
-                    onTap: () => controller
-                        .onTabChange(OrderEntryItemFilters.allProduct),
-                    child: AppText(
-                        text: "All Product",
-                        style: controller.filterMethod.value == "all"
-                            ? TextTypes.subtitle1
-                            : TextTypes.bodyText1)),
-                const SizedBox(width: 30),
-                GestureDetector(
-                    onTap: () => controller
-                        .onTabChange(OrderEntryItemFilters.easyShipSet),
-                    child: AppText(
-                        text: "Easyship Set",
-                        style: controller.filterMethod.value == "easyShip"
-                            ? TextTypes.subtitle1
-                            : TextTypes.bodyText1)),
-              ],
+              children: controller.filterOptions
+                  .map(
+                    (i) => Padding(
+                      padding: const EdgeInsets.only(right: 30.0),
+                      child: GestureDetector(
+                        onTap: () => controller.currentFilteredMethod = i.value,
+                        child: AppText(
+                            text: i.name,
+                            style: controller.filterMethod.value == i.value
+                                ? TextTypes.subtitle1
+                                : TextTypes.bodyText1),
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
           GestureDetector(

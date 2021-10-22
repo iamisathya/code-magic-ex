@@ -1,5 +1,3 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 
 class UserInfoBox extends StatelessWidget {
@@ -17,9 +15,7 @@ class UserInfoBox extends StatelessWidget {
         children: const [
           TitleBox(title: "108357166"),
           SizedBox(width: 10),
-          Expanded(
-            child: TitleBox(title: "Patthiraya Preedakulthanawat"),
-          )
+          Expanded(child: TitleBox(title: "Patthiraya sdfsdfsdfsdfsdfsdf")),
         ],
       ),
     );
@@ -43,10 +39,14 @@ class TitleBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(3),
         color: const Color(0xfff5f5f5),
       ),
-      child: AppText(
-        text: title,
-        style: TextTypes.subtitle1,
-        color: const Color(0xFF505050),
+      child: Text(
+        title,
+        overflow: TextOverflow.fade,
+        softWrap: false,
+        style: Theme.of(context)
+            .textTheme
+            .subtitle1!
+            .copyWith(color: const Color(0xFF505050)),
       ),
     );
   }
