@@ -108,6 +108,7 @@ flutter:
     - assets/icons/
     - assets/icons/tabs/
     - assets/icons/dashboard/
+    - assets/icons/navigation/
     - assets/json/
     - assets/images/
     - assets/illustration/

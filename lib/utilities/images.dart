@@ -87,6 +87,16 @@ const kTrashIcon = 'assets/icons/trash_icon.svg';
 const kSearchV2Icon = 'assets/icons/search_icon_v2.svg';
 const kOrderEntryCartIcon = 'assets/icons/cart_icon.svg';
 
+// * Bottom tab bar
+const kBottomTabBarcodeActiveIcon = 'assets/icons/navigation/tab_barcode_icon_active.svg';
+const kBottomTabOrderEntryActvieIcon = 'assets/icons/navigation/tab_orderentry_icon_active.svg';
+const kBottomTabSalesReportActiveIcon = 'assets/icons/navigation/tab_salesreport_icon_active.svg';
+const kBottomTabBarcodeIcon = 'assets/icons/navigation/tab_barcode_icon.svg';
+const kBottomTabAddIcon = 'assets/icons/navigation/tab_addnew_icon.svg';
+const kBottomTabHomeIcon = 'assets/icons/navigation/tab_home_icon.svg';
+const kBottomTabOrderEntryIcon = 'assets/icons/navigation/tab_orderentry_icon.svg';
+const kBottomTabSalesReportIcon = 'assets/icons/navigation/tab_salesreport_icon.svg';
+
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';
 const kBarcodeIcon = 'assets/icons/dashboard/barcode.svg';
