@@ -71,7 +71,7 @@ class OrderEntryCheckoutSummaryController extends GetxController {
         context: context,
         backgroundColor: Colors.transparent,
         builder: (BuildContext context) {
-          return const DiscardAlert();
+          return DiscardAlert();
         });
   }
 
@@ -309,5 +309,9 @@ class OrderEntryCheckoutSummaryController extends GetxController {
   void onClickNuetralButton() {
     SnackbarUtil.showWarning(
         message: "Please add items to cart before proceed!");
+  }
+
+  void onNegetiveButtonClick() {
+    Get.back();
   }
 }

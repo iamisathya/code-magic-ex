@@ -42,10 +42,10 @@ class BottomButtonBar extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Flexible(
-                    child: NegetiveButton(onTap: controller.onCancel),
+                    child: NegetiveButton(title: "cancel".tr, onTap: controller.onCancel),
                   ),
                   Flexible(
-                    child: PositiveButton(onTap: controller.onProceedNext),
+                    child: PositiveButton(title: "next".tr, onTap: controller.onProceedNext),
                   ),
                 ],
               ),
@@ -56,8 +56,9 @@ class BottomButtonBar extends StatelessWidget {
 
 class PositiveButton extends StatelessWidget {
   final VoidCallback onTap;
+  final String title;
 
-  const PositiveButton({required this.onTap});
+  const PositiveButton({required this.onTap, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +77,7 @@ class PositiveButton extends StatelessWidget {
               colors: [Color(0xff1c9cfc), Color(0xff4cdfff)],
             ),
           ),
-          child: Text("next".tr,
+          child: Text(title,
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
@@ -88,8 +89,9 @@ class PositiveButton extends StatelessWidget {
 
 class NuetralButton extends StatelessWidget {
   final VoidCallback onTap;
+  final String title;
 
-  const NuetralButton({required this.onTap});
+  const NuetralButton({required this.onTap, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +106,7 @@ class NuetralButton extends StatelessWidget {
               ),
               color: Color(0xffafbed5),
             ),
-            child: Text("next".tr,
+            child: Text(title,
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
@@ -117,8 +119,9 @@ class NuetralButton extends StatelessWidget {
 
 class NegetiveButton extends StatelessWidget {
   final VoidCallback onTap;
+  final String title;
 
-  const NegetiveButton({required this.onTap});
+  const NegetiveButton({required this.onTap, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +136,7 @@ class NegetiveButton extends StatelessWidget {
             ),
             color: Color(0xffffbf3a),
           ),
-          child: Text("cancel".tr,
+          child: Text(title,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.subtitle1)),
     );

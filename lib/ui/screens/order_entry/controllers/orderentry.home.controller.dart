@@ -47,6 +47,7 @@ class OrderEntryUserListController extends GetxController {
       searchResultsOfUserInfo.clear();
     } else {
       searchUserBySearchKey();
+      searchResultsOfUserInfo.clear();
     }
   }
 
@@ -147,13 +148,20 @@ class OrderEntryUserListController extends GetxController {
           email: selectedUser.email,
           userId: selectedUser.id.unicity.toString());
       isFetching.toggle();
+      searchUserTextController.text = "";
       Get.to(() => OrderEntryList(), arguments: userData);
     });
   }
 
-  void onCancel() {}
+  void onCancel() {
+    Get.back();
+  }
 
   void onProceedNext() {
-    Get.to(() => OrderEntryList());
+    if (searchUserTextController.text.isNotEmpty) {
+      searchUserBySearchQuery();
+      return;
+    }
+    SnackbarUtil.showWarning(message: "Please enter/select user id first!");
   }
 }

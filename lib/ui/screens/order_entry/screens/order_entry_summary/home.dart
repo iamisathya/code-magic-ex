@@ -57,13 +57,13 @@ class BottomButtonBar extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Flexible(
-                    child: NegetiveButton(
-                        onTap: () => controller.onCancel(context)),
+                    child: NegetiveButton(title: "back".tr, 
+                        onTap: controller.onNegetiveButtonClick),
                   ),
                   Flexible(
                     child: listController.cartProducts.isEmpty
-                        ? NuetralButton(onTap: controller.onClickNuetralButton)
-                        : PositiveButton(
+                        ? NuetralButton(title: "Place Order".tr, onTap: controller.onClickNuetralButton)
+                        : PositiveButton(title: "Place Order".tr, 
                             onTap: controller.proceedToCheckOut),
                   ),
                 ],
