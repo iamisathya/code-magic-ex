@@ -12,11 +12,10 @@ import '../../../../models/open_order_id.dart';
 import '../../../../models/open_po_details.dart';
 import '../../../../utilities/logger.dart';
 
-class OpenPoDetailsController extends GetxController
-    with StateMixin<List<OpenPlaceOrderDetails>> {
-  final MemberCallsService api;
+class OpenPoDetailsController extends GetxController {
+  // final MemberCallsService api;
 
-  OpenPoDetailsController({required this.api});
+  // OpenPoDetailsController({required this.api});
 
   String currentPoNumber = "";
   RxString passedOrderNumber = "".obs;
@@ -43,18 +42,18 @@ class OpenPoDetailsController extends GetxController
     try {
       // * Getting order id from getOpenOrderId API - 203
       poOrderAttachment =
-          await api.getPoOrderAttachment("getAttachment", ponumber);
-      openPlaceOrderId = await api.getOpenOrderId("203", ponumber);
+          await MemberCallsService.init().getPoOrderAttachment("getAttachment", ponumber);
+      openPlaceOrderId = await MemberCallsService.init().getOpenOrderId("203", ponumber);
       currentPoNumber = openPlaceOrderId.orderId;
       // * Getting order details from from getOpenOrderDetails api - 204
       final List<OpenPlaceOrderDetails> detailsResponse =
-          await api.getOpenOrderDetails("204", openPlaceOrderId.orderId);
+          await MemberCallsService.init().getOpenOrderDetails("204", openPlaceOrderId.orderId);
       openPlaceOrderDetails = detailsResponse.obs;
       isLoading.toggle();
-      change(openPlaceOrderDetails, status: RxStatus.success());
+      // change(openPlaceOrderDetails, status: RxStatus.success());
     } catch (err) {
       isLoading.toggle();
-      change(null, status: RxStatus.error());
+      // change(null, status: RxStatus.error());
       LoggerService.instance.e(err.toString());
     }
   }

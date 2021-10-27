@@ -1,3 +1,6 @@
+import 'package:dsc_tools/ui/global/widgets/bottom_button_bar.dart';
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -9,160 +12,144 @@ import 'loader.dart';
 import 'po_ordered_item.dart';
 import 'total_price_container.dart';
 
-class OpenPODetailsPage extends GetView<OpenPoDetailsController> {
-  // final OpenPoDetailsController controller =
-  //     Get.put(OpenPoDetailsController(api: MemberCallsService(Dio())));
+class OpenPODetailsPage extends StatelessWidget {
+  final OpenPoDetailsController controller = Get.put(OpenPoDetailsController());
   static const String routeName = '/openPoDetailsPage';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
-      appBar: AppBar(
-          title: Obx(() => Text(controller.passedOrderNumber.value,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(color: const Color(0xFF000000))))),
-      body: Obx(
-        () => LoadingOverlay(
-          isLoading: controller.isLoading.value,
-          progressIndicator: const Loader(),
-          child: SingleChildScrollView(
-            child: controller.obx(
-              (state) => SafeArea(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      height: 130,
-                      color: const Color(0xFF5297A6),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 20, left: 30, bottom: 10, right: 30),
-                            child: Row(
-                              children: [
-                                Flexible(
-                                  child: Container(
-                                    width: double.infinity,
-                                    color: Colors.white,
-                                    height: 40,
-                                    child: Center(
-                                        child: Text(
-                                      controller.openPlaceOrderId.orderDscid,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle2!
-                                          .copyWith(
-                                              color: const Color(0xFF9999A4)),
-                                    )),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Flexible(
-                                  child: Container(
-                                    width: double.infinity,
-                                    color: Colors.white,
-                                    height: 40,
-                                    child: Center(
-                                        child: Text(
-                                      controller.openPlaceOrderId.orderDate,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle2!
-                                          .copyWith(
-                                              color: const Color(0xFF9999A4)),
-                                    )),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 30, bottom: 20, right: 30),
-                            child: Container(
-                              width: double.infinity,
-                              color: Colors.white,
-                              height: 40,
-                              child: Center(
-                                  child: Text(
-                                controller.openPlaceOrderId.createBy,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2!
-                                    .copyWith(color: const Color(0xFF9999A4)),
-                              )),
-                            ),
-                          ),
-                        ],
+        backgroundColor: const Color(0xFFF5F5F5),
+        appBar: AppBar(
+            title: Obx(() => Text(controller.passedOrderNumber.value,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(color: const Color(0xFF000000))))),
+        body: Obx(
+          () => LoadingOverlay(
+            isLoading: controller.isLoading.value,
+            progressIndicator: const Loader(),
+            child: SingleChildScrollView(
+              child: Obx(
+                () => SafeArea(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TopBar(controller: controller),
+                      ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: controller.openPlaceOrderDetails.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return PoOrderedItem(
+                                item: controller.openPlaceOrderDetails[index],
+                                idx: index);
+                          }),
+                      const SizedBox(
+                        height: 34,
                       ),
-                    ),
-                    ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: controller.openPlaceOrderDetails.length,
-                        itemBuilder: (BuildContext ctxt, int index) {
-                          return PoOrderedItem(
-                              item: controller.openPlaceOrderDetails[index],
-                              idx: index);
-                        }),
-                    const SizedBox(
-                      height: 34,
-                    ),
-                    TotalPrice(
-                        totalPrice: controller.openPlaceOrderId.orderTotalPrice,
-                        totalPv: controller.openPlaceOrderId.orderTotalPv),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    if (controller.poOrderAttachment.isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 10, left: 20, right: 20, bottom: 5),
-                        child: SignOutButton(
-                            title: controller.poOrderAttachment,
-                            onPress: () {
-                              controller.openDialog(
-                                  context, controller.poOrderAttachment);
-                            },
-                            icon: kFileIcon),
-                      )
-                    else
-                      const SizedBox(),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 5, left: 20, right: 20, bottom: 10),
-                      child: SignOutButton(
-                        title: "Print PO List",
-                        onPress: () {
-                          controller.proceedToPrint(context,
-                              orderId: controller.openPlaceOrderId.orderId);
-                        },
-                        bgColor: const Color(0xFF1C9CFC),
-                        fgColor: const Color(0xFFFFFFFF),
-                        icon: kPrintIcon,
-                        iconColor: const Color(0xFFFFFFFF),
+                      TotalPrice(
+                          totalPrice:
+                              controller.openPlaceOrderId.orderTotalPrice,
+                          totalPv: controller.openPlaceOrderId.orderTotalPv),
+                      const SizedBox(
+                        height: 30,
                       ),
-                    ),
-                  ],
-                ),
-              ), // optional
-              onError: (error) => Center(
-                // optional
-                child: Text(
-                  'Error: $error',
-                  style: const TextStyle(fontSize: 18),
-                  textAlign: TextAlign.center,
+                      if (controller.poOrderAttachment.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 20, right: 20, bottom: 5),
+                          child: SignOutButton(
+                              title: controller.poOrderAttachment,
+                              onPress: () {
+                                controller.openDialog(
+                                    context, controller.poOrderAttachment);
+                              },
+                              icon: kFileIcon),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
+        bottomNavigationBar: BottomButtonBar(
+            showNeutral: false,
+            isShown: false,
+            onTapCancelButton: Get.back,
+            negetiveText: "back",
+            positiveText: "Print PO List",
+            onTapPositiveButton: () {
+              controller.proceedToPrint(context,
+                  orderId: controller.openPlaceOrderId.orderId);
+            }));
+  }
+}
+
+class TopBar extends StatelessWidget {
+  const TopBar({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final OpenPoDetailsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 130,
+      color: const Color(0xFF76E5DE),
+      child: Column(
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 20, left: 30, bottom: 10, right: 30),
+            child: Row(
+              children: [
+                Flexible(
+                  child: Container(
+                      width: double.infinity,
+                      color: Colors.white,
+                      height: 40,
+                      child: Center(
+                          child: AppText(
+                              text: controller.openPlaceOrderId.orderDscid,
+                              style: TextTypes.subtitle2,
+                              color: const Color(0xFF505050)))),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Flexible(
+                  child: Container(
+                      width: double.infinity,
+                      color: Colors.white,
+                      height: 40,
+                      child: Center(
+                          child: AppText(
+                              text: controller.openPlaceOrderId.orderDate,
+                              style: TextTypes.subtitle2,
+                              color: const Color(0xFF9999A4)))),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 30, bottom: 20, right: 30),
+            child: Container(
+              width: double.infinity,
+              color: Colors.white,
+              height: 40,
+              child: Center(
+                  child: AppText(
+                      text: controller.openPlaceOrderId.createBy,
+                      style: TextTypes.subtitle2,
+                      color: const Color(0xFF9999A4))),
+            ),
+          ),
+        ],
       ),
     );
   }
