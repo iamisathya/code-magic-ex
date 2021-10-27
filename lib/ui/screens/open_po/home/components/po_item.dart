@@ -134,8 +134,11 @@ class POItem extends StatelessWidget {
       Positioned(
         top: 10,
         right: 20,
-        child: SvgPicture.asset(kInformationIcon,
-            height: 20, semanticsLabel: "Add PO"),
+        child: GestureDetector(
+          onTap: () => controller.showInofPopover(context),
+          child: SvgPicture.asset(kInformationIcon,
+              height: 20, semanticsLabel: "Add PO"),
+        ),
       ),
     ]);
   }
