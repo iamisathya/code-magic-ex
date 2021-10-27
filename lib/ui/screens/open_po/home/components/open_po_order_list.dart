@@ -6,9 +6,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 import '../../../../../models/general_models.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
-import '../../../../global/widgets/animated_add_button.dart';
 import '../../controller/openpo.list.controller.dart';
-import 'add_products.dart';
 import 'loader.dart';
 import 'po_item.dart';
 import 'search_products.dart';
@@ -29,20 +27,20 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "PO List",
                         style: Theme.of(context).textTheme.headline4,
                       ),
-                      ShareButton(
-                          onPress: () => Get.to(() => CreateOpenPoOrder())),
+                      // ShareButton(
+                      //     onPress: () => Get.to(() => CreateOpenPoOrder())),
                     ],
                   ),
                 ),
               ),
               Container(
-                color: const Color(0xFFE3E8ED),
+                color: const Color(0xFF76E5DE),
                 height: 70,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -50,6 +48,7 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Flexible(
+                        flex: 3,
                         child: Obx(
                           () => Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,11 +74,24 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                         ),
                       ),
                       Flexible(
-                          child: GestureDetector(
-                        onTap: () => Get.to(() => SearchProducts()),
-                        child: SvgPicture.asset(kSearchIcon,
-                            height: 20, semanticsLabel: "Search PO list"),
-                      )),
+                        flex:2,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: () => controller.showPicker(context),
+                              child: SvgPicture.asset(kOpenPoFilterIcon,
+                                  height: 20, semanticsLabel: "Filter PO list"),
+                            ),
+                            const SizedBox(width: 25),
+                            GestureDetector(
+                              onTap: () => Get.to(() => SearchProducts()),
+                              child: SvgPicture.asset(kSearchIcon,
+                                  height: 20, semanticsLabel: "Search PO list"),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

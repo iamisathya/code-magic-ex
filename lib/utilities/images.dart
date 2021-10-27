@@ -86,6 +86,10 @@ const kBarcodeCheckSuccessIcon = 'assets/icons/barcode_check_success_icon.svg';
 const kTrashIcon = 'assets/icons/trash_icon.svg';
 const kSearchV2Icon = 'assets/icons/search_icon_v2.svg';
 const kOrderEntryCartIcon = 'assets/icons/cart_icon.svg';
+const kOpenPoFilterIcon = 'assets/icons/openpo_filter_icon.svg';
+const kOpenPoViewIcon = 'assets/icons/openpo_view_icon.svg';
+const kOpenPoEditIcon = 'assets/icons/openpo_edit_icon.svg';
+const kOpenPoCameraIcon = 'assets/icons/openpo_camera_icon.svg';
 
 // * Bottom tab bar
 const kBottomTabBarcodeActiveIcon = 'assets/icons/navigation/tab_barcode_icon_active.svg';

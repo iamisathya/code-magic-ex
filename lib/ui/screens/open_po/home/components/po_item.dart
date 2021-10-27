@@ -1,3 +1,5 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -72,30 +74,57 @@ class POItem extends StatelessWidget {
                     children: [
                       Row(
                         children: [
+                          if (attchmentName.isNotEmpty)
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () => controller.openDialog(
+                                      context, attchmentName),
+                                  child: SvgPicture.asset(kOpenPoCameraIcon,
+                                      height: 20,
+                                      semanticsLabel: "Open PO attachment"),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Container(
+                                    alignment: Alignment.center,
+                                    height: 15,
+                                    width: 15,
+                                    decoration: BoxDecoration(
+                                        color: const Color(0xFFFA758E),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: AppText(
+                                        text: attchmentName.isNotEmpty
+                                            ? "1"
+                                            : "0",
+                                        style: TextTypes.bodyText2,
+                                        color: Colors.white)),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                              ],
+                            ),
                           GestureDetector(
                             onTap: () => attchmentName.isNotEmpty
                                 ? controller.openDialog(context, attchmentName)
                                 : null,
-                            child: SvgPicture.asset(
-                                attchmentName.isNotEmpty
-                                    ? kPoAttachmentIcon
-                                    : kAttachmentInactiveIcon,
-                                height: 20,
-                                semanticsLabel: "Add PO"),
+                            child: SvgPicture.asset(kOpenPoViewIcon,
+                                height: 20, semanticsLabel: "View Open PO"),
                           ),
                           const SizedBox(
                             width: 10,
                           ),
-                          Text(
-                            attchmentName.isNotEmpty ? "1" : "0",
-                            style: const TextStyle(color: Color(0xFF505050)),
+                          GestureDetector(
+                            onTap: () => attchmentName.isNotEmpty
+                                ? controller.openDialog(context, attchmentName)
+                                : null,
+                            child: SvgPicture.asset(kOpenPoEditIcon,
+                                height: 20, semanticsLabel: "Edit Open PO"),
                           ),
                         ],
                       ),
-                      SvgPicture.asset(
-                          controller.getStatusIcon(openPo.orderStatus),
-                          height: 20,
-                          semanticsLabel: "Add PO"),
+                      controller.getStatusIcon(openPo.orderStatus)
                     ],
                   ),
                 ),
