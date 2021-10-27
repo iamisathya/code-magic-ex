@@ -11,7 +11,9 @@ import 'loader.dart';
 import 'po_item.dart';
 import 'search_products.dart';
 
-class OpenPoOrderList extends GetView<OpenPoListController> {
+class OpenPoOrderList extends StatelessWidget {
+  final OpenPoListController controller = Get.put(OpenPoListController());
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -74,7 +76,7 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                         ),
                       ),
                       Flexible(
-                        flex:2,
+                        flex: 2,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -103,25 +105,16 @@ class OpenPoOrderList extends GetView<OpenPoListController> {
                         horizontal: 20, vertical: 10),
                     child: Container(
                       color: const Color(0xFFF5F5F5),
-                      child: controller.obx(
-                        (openPoList) => ListView.builder(
+                      child: Obx(
+                        () => ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: openPoList!.length,
+                            itemCount: controller.tempOpenPlaceOrders.length,
                             itemBuilder: (BuildContext ctxt, int index) {
                               return POItem(
-                                  openPo: openPoList[index],
+                                  openPo: controller.tempOpenPlaceOrders[index],
                                   controller: controller);
                             }),
-                        onEmpty: const Text('No data found'),
-                        onError: (error) => Center(
-                          // optional
-                          child: Text(
-                            'Error: $error',
-                            style: const TextStyle(fontSize: 18),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
                       ),
                     ),
                   ))

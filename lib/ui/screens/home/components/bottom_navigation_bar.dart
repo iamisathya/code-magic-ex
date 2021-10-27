@@ -8,9 +8,13 @@ class NavigationBottomBar extends StatelessWidget {
   const NavigationBottomBar({
     Key? key,
     required this.controller,
+    this.isExternal = false,
+    this.currentPage = "",
   }) : super(key: key);
 
   final HomeController controller;
+  final bool isExternal;
+  final String currentPage;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +37,8 @@ class NavigationBottomBar extends StatelessWidget {
             backgroundColor: Colors.white,
             elevation: 20,
             iconSize: 20,
-            onTap: (int index) => controller.onTabTapped = index, // new
-            currentIndex: controller.onTabTapped,
+            onTap: (int index) => controller.onTabTapped(index: index, isExternal: isExternal, currentPage: currentPage), // new
+            currentIndex: controller.currentTabIndex.value,
             items: [
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(kBottomTabHomeIcon, height: 20),
