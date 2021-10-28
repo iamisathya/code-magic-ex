@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' show DioError;
+import 'package:dsc_tools/ui/global/theme/text_view.dart' show AppText;
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -22,6 +25,7 @@ import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
+import '../../order_entry/screens/home/components/white_search_field.dart';
 import '../home/components/order_success.dart';
 
 class CreateOpenPoOrderController extends GetxController
@@ -222,8 +226,8 @@ class CreateOpenPoOrderController extends GetxController
   Future<void> confirmOrder(BuildContext context) async {
     try {
       isLoading.toggle();
-      final dynamic reponse =
-          await MemberCallsService.init().valiadateOrder("TH", Globals.customerPoCode);
+      final dynamic reponse = await MemberCallsService.init()
+          .valiadateOrder("TH", Globals.customerPoCode);
       final jsonResponse = jsonDecode(reponse.toString());
       final ValidateOrder orderResponse =
           ValidateOrder.fromJson(jsonResponse as Map<String, dynamic>);
@@ -304,5 +308,104 @@ class CreateOpenPoOrderController extends GetxController
             .contains(searchKey))
         .toList();
     searchResult.refresh();
+  }
+
+  void showBottomModal(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFFF5F5F5),
+      context: context,
+      isDismissible: true,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          minChildSize: 0.2,
+          maxChildSize: 0.75,
+          expand: false,
+          builder: (_, ctrl) => Container(
+            color: const Color(0xFFE3E8ED),
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 4, right: 4),
+                  child: WhiteSearchField(
+                      controller: searchProductTextController,
+                      onChanged: (val) => onSearchTextChange(val),
+                      onPress: () {},
+                      hintText: "Search Products",
+                      isFetching: false.obs),
+                ),
+                const SizedBox(height: 5),
+                Expanded(
+                  child: Obx(
+                    () => ListView.builder(
+                      controller: ctrl,
+                      itemCount: searchResult.value.items.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        final InventoryRecordItems item =
+                            searchResult.value.items[index];
+                        return GestureDetector(
+                          onTap: () {
+                            addItemToCart(item);
+                            Navigator.pop(context);
+                          },
+                          child: Card(
+                            child: Container(
+                              height: 75,
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 155,
+                                    child: SvgPicture.asset(
+                                        kProductPlaceholderImage,
+                                        width: 80),
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                            item.catalogSlideContent.content
+                                                .description,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle2!
+                                                .copyWith(
+                                                    color: const Color(
+                                                        0xFF384250))),
+                                        AppText(
+                                          text: "Code: ${item.item.id.unicity}",
+                                          style: TextTypes.caption,
+                                          color: const Color(0xFF9EA9B9),
+                                        ),
+                                        AppText(
+                                          text:
+                                              "${item.terms.pvEach} PV | ${item.terms.priceEach} ${Globals.currency}",
+                                          style: TextTypes.subtitle2,
+                                          color: const Color(0xFF384250),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    ).whenComplete(() => searchProductTextController.text = "");
   }
 }

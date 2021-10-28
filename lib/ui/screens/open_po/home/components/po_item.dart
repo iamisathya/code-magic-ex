@@ -106,22 +106,19 @@ class POItem extends StatelessWidget {
                               ],
                             ),
                           GestureDetector(
-                            onTap: () => attchmentName.isNotEmpty
-                                ? controller.openDialog(context, attchmentName)
-                                : null,
+                            onTap: () => Get.to(() => OpenPODetailsPage(),
+                                arguments: openPo.orderOpid),
                             child: SvgPicture.asset(kOpenPoViewIcon,
                                 height: 20, semanticsLabel: "View Open PO"),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () => attchmentName.isNotEmpty
-                                ? controller.openDialog(context, attchmentName)
-                                : null,
-                            child: SvgPicture.asset(kOpenPoEditIcon,
-                                height: 20, semanticsLabel: "Edit Open PO"),
-                          ),
+                          // const SizedBox(
+                          //   width: 10,
+                          // ),
+                          // GestureDetector(
+                          //   onTap: () => Get.to(() => OpenPODetailsPage(), arguments: openPo.orderOpid),
+                          //   child: SvgPicture.asset(kOpenPoEditIcon,
+                          //       height: 20, semanticsLabel: "Edit Open PO"),
+                          // ),
                         ],
                       ),
                       controller.getStatusIcon(openPo.orderStatus)

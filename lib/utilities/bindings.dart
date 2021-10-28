@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-import '../api/config/api_service.dart';
 import '../ui/screens/open_po/controller/add.openpo.controller.dart';
 import '../ui/screens/open_po/controller/openpo.details.controller.dart';
 import '../ui/screens/open_po/controller/openpo.list.controller.dart';
