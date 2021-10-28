@@ -20,62 +20,64 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: const Color(0xFFF5F5F5),
-        appBar: AppBar(
-            title: const Text(
-          "New PO",
-          style: TextStyle(fontSize: 24, color: Color(0xFF000000)),
-        )),
-        body: Obx(
-          () => LoadingOverlay(
-            isLoading: controller.isLoading.value,
-            progressIndicator: const Loader(),
-            child: SingleChildScrollView(
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    ConstrainedBox(
-                      constraints: BoxConstraints(minHeight: Get.height - 334),
-                      child: Column(
-                        children: [
-                          const UserInformation(),
-                          Obx(() => ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: controller.cartProducts.length,
-                              itemBuilder: (BuildContext ctxt, int index) {
-                                final CartProductsItem item =
-                                    controller.cartProducts[index];
-                                return PoCartItem(item: item, idx: index);
-                              })),
-                        ],
-                      ),
-                    ),
-                    Column(
+    return Obx(
+      () => LoadingOverlay(
+        isLoading: controller.isLoading.value,
+        progressIndicator: const Loader(),
+        child: Scaffold(
+          backgroundColor: const Color(0xFFF5F5F5),
+          appBar: AppBar(
+              title: const Text(
+            "New PO",
+            style: TextStyle(fontSize: 24, color: Color(0xFF000000)),
+          )),
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: Column(
+                children: [
+                  ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: Get.height - 334),
+                    child: Column(
                       children: [
-                        Obx(() => TotalPrice(
-                              totalPrice:
-                                  controller.totalCartPrice.value.toString(),
-                              totalPv: controller.totalCartPv.value.toString(),
-                              bgColor: const Color(0xFFF5F5F5),
-                            )),
-                        BrosweAttachment(controller: controller)
+                        const UserInformation(),
+                        Obx(() => ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: controller.cartProducts.length,
+                            itemBuilder: (BuildContext ctxt, int index) {
+                              final CartProductsItem item =
+                                  controller.cartProducts[index];
+                              return PoCartItem(item: item, idx: index);
+                            })),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  Column(
+                    children: [
+                      Obx(() => TotalPrice(
+                            totalPrice:
+                                controller.totalCartPrice.value.toString(),
+                            totalPv: controller.totalCartPv.value.toString(),
+                            bgColor: const Color(0xFFF5F5F5),
+                          )),
+                      BrosweAttachment(controller: controller)
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
-        ),
-        bottomNavigationBar: BottomButtonBar(
+          bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
             isShown: false,
             onTapCancelButton: () => controller.showBottomModal(context),
             negetiveText: "+ Add",
             positiveText: "Place Order",
-            onTapPositiveButton: () => controller.validateOrder(context)));
+            onTapPositiveButton: () => controller.validateOrder(context),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -179,10 +181,10 @@ class BrosweAttachment extends StatelessWidget {
               onPressed: controller.selectSource,
               icon: SvgPicture.asset(kFileIcon, color: const Color(0xFF1C9CFC)),
               label: const AppText(
-                    text: "Browse",
-                    style: TextTypes.subtitle2,
-                    color: Color(0xFF1C9CFC),
-                  ))
+                text: "Browse",
+                style: TextTypes.subtitle2,
+                color: Color(0xFF1C9CFC),
+              ))
         ],
       ),
     );

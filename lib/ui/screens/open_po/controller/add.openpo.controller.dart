@@ -305,7 +305,7 @@ class CreateOpenPoOrderController extends GetxController
     searchResult.value.items = inventoryRecords.value.items
         .where((item) => item.catalogSlideContent.content.description
             .toLowerCase()
-            .contains(searchKey))
+            .contains(searchKey.toLowerCase()))
         .toList();
     searchResult.refresh();
   }
@@ -327,7 +327,7 @@ class CreateOpenPoOrderController extends GetxController
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(left: 4, right: 4),
+                  padding: const EdgeInsets.only(left: 4, right: 4, top: 4),
                   child: WhiteSearchField(
                       controller: searchProductTextController,
                       onChanged: (val) => onSearchTextChange(val),
