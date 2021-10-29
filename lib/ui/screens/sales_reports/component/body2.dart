@@ -26,6 +26,7 @@ class Body2 extends StatelessWidget {
           children: [
             const PageTitle(title: "Sales Report"),
             SalesReportToolBar(),
+            const SizedBox(height: 5),
             DateSelector(),
             if (!controller.isLoading.value && controller.activeListLength != 0)
               Column(

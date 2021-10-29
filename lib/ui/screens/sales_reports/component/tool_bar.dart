@@ -13,8 +13,8 @@ class SalesReportToolBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFE3E8ED),
-      height: 50,
+      color: const Color(0xFFFFBF3A),
+      height: 54,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

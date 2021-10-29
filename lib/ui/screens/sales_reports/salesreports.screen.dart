@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/widgets/bottom_button_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -17,40 +18,28 @@ class SalesReportsHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kWhiteSmokeColor,
-      appBar: OpenPoAppBar(),
-      body: Obx(
-        () => LoadingOverlay(
-            isLoading:
-                controller.isLoading.value || controller.isPrinting.value,
-            progressIndicator: const Loader(),
-            child: Body2()),
-      ),
-      floatingActionButton: Obx(() => Container(
-          child: !controller.isLoading.value && controller.activeListLength == 0
-              ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Obx(() => SignOutButton(
-                        title: "Find Sales Report",
-                        onPress: () => controller.isDateSelected.value
-                            ? controller.getAllSalesReports()
-                            : null,
-                        bgColor: controller.isDateSelected.value
-                            ? const Color(0xFFFFBF3A)
-                            : const Color(0xFF9EA9B9),
-                        icon: kArrowIcon,
-                        height: 50,
-                        fgColor: controller.isDateSelected.value
-                            ? const Color(0xFF000000)
-                            : const Color(0xFFFFFFFF),
-                        iconColor: controller.isDateSelected.value
-                            ? const Color(0xFF000000)
-                            : const Color(0xFFFFFFFF),
-                      )),
+    return Obx(
+      () => LoadingOverlay(
+        isLoading: controller.isLoading.value || controller.isPrinting.value,
+        progressIndicator: const Loader(),
+        child: Scaffold(
+          backgroundColor: kWhiteSmokeColor,
+          appBar: OpenPoAppBar(),
+          body: Body2(),
+          bottomNavigationBar: controller.isDateSelected.value &&
+                  !controller.isLoading.value &&
+                  controller.activeListLength == 0
+              ? BottomButtonBar(
+                  showNeutral: false,
+                  isShown: false,
+                  onTapCancelButton: Get.back,
+                  negetiveText: "cancel".tr,
+                  positiveText: "find report".tr,
+                  onTapPositiveButton: () => controller.getAllSalesReports(),
                 )
-              : const SizedBox())),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+              : const SizedBox(),
+        ),
+      ),
     );
   }
 }

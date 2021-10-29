@@ -15,7 +15,7 @@ class DateSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 158,
-      color: const Color(0xFFF5F5F5),
+      color: const Color(0xFFD8DDE3),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -29,7 +29,6 @@ class DateSelector extends StatelessWidget {
                   height: 54,
                   decoration: BoxDecoration(
                       color: const Color(0xFFFFFFFF),
-                      border: Border.all(color: const Color(0xFF384250)),
                       borderRadius: BorderRadius.circular(3)),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -81,7 +80,6 @@ class DateSelector extends StatelessWidget {
                   height: 54,
                   decoration: BoxDecoration(
                       color: const Color(0xFFFFFFFF),
-                      border: Border.all(color: const Color(0xFF384250)),
                       borderRadius: BorderRadius.circular(3)),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
