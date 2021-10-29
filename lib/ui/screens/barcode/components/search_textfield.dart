@@ -20,11 +20,10 @@ class SearchTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 104,
-      color: const Color(0xFF5297A6),
+      height: 94,
+      color: const Color(0xFF76E5DE),
       child: Container(
         margin: const EdgeInsets.all(20),
-        height: 64,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
@@ -37,20 +36,18 @@ class SearchTextfield extends StatelessWidget {
                 controller: textFieldController,
                 onSubmitted: (val) => onSubmit(),
                 textInputAction: TextInputAction.go,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                  labelText: labelText,
-                  focusedBorder: const OutlineInputBorder(
+                      EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
                   ),
-                  enabledBorder: const OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
                   ),
-                  border: const OutlineInputBorder(
+                  border: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
                   ),
-                  floatingLabelBehavior: FloatingLabelBehavior.auto,
                 ),
               ),
             ),

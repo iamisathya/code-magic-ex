@@ -14,18 +14,33 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(children: [
-        PageTitle(title: "barcode_tracker".tr),
-        SearchTextfield(
-            icon: kBarcodeScanIcon,
-            labelText: "Order Number",
-            onSubmit: () => controller.getBarcodePath(
-                context, controller.bardcodeTextField.text),
-            onScan: () => controller.scanBarcode(context),
-            textFieldController: controller.bardcodeTextField),
-        if (!controller.isLoading.value)
-          SvgPicture.asset(kScanBarcodeIllustration, width: 254, height: 252)
-      ]),
+      child: SizedBox(
+        height: Get.height - 108,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    PageTitle(title: "barcode_tracker".tr),
+                    SearchTextfield(
+                        icon: kBarcodeScanIcon,
+                        labelText: "Order Number",
+                        onSubmit: () => controller.getBarcodePath(
+                            context, controller.bardcodeTextField.text),
+                        onScan: () => controller.scanBarcode(context),
+                        textFieldController: controller.bardcodeTextField),
+                  ],
+                ),
+              ),
+              if (!controller.isLoading.value)
+                Expanded(
+                  child: SvgPicture.asset(kScanBarcodeIllustration,
+                      width: 254, height: 252),
+                ),
+              const Expanded(child: SizedBox()),
+            ]),
+      ),
     );
   }
 }
