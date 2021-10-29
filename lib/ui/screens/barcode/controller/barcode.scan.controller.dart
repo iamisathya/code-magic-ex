@@ -18,7 +18,7 @@ class BarcodeScannerController extends GetxController {
 
   @override
   void onInit() {
-    bardcodeTextField.text = "423188055";
+    bardcodeTextField.text = "423198958";
     super.onInit();
   }
 

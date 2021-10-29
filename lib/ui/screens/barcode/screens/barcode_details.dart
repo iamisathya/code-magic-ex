@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/widgets/bottom_button_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -5,7 +6,6 @@ import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../../models/barcode_item_response.dart';
 import '../../../../utilities/images.dart';
-import '../../../global/widgets/plain_button.dart';
 import '../../open_po/home/components/loader.dart';
 import '../components/barcode_list_item.dart';
 import '../components/barcode_product_item.dart';
@@ -17,13 +17,13 @@ class BarCodeDetails extends StatelessWidget {
       Get.put(BarcodeScannResultController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(
-        () => SafeArea(
-          top: false,
-          child: LoadingOverlay(
-            isLoading: controller.isLoading.value,
-            progressIndicator: const Loader(),
+    return Obx(
+      () => LoadingOverlay(
+        isLoading: controller.isLoading.value,
+        progressIndicator: const Loader(),
+        child: Scaffold(
+          body: SafeArea(
+            top: false,
             child: SingleChildScrollView(
               child: controller.barcodeItems == null
                   ? const Center()
@@ -44,53 +44,64 @@ class BarCodeDetails extends StatelessWidget {
                     ),
             ),
           ),
+          bottomNavigationBar:
+              controller.isLoading.value || !controller.hasAnyChangesMade.value
+                  ? const SizedBox()
+                  : BottomButtonBar(
+                      isShown: !controller.isLoading.value &&
+                          controller.hasAnyChangesMade.value,
+                      negetiveText: "cancel".tr,
+                      positiveText: "Save",
+                      onTapCancelButton: controller.showWarningMessage,
+                      onTapPositiveButton: controller.saveBarcodeDetails,
+                      showNeutral: false,
+                    ),
         ),
       ),
-      bottomNavigationBar: BottomButtonBar(controller: controller),
     );
   }
 }
 
-class BottomButtonBar extends StatelessWidget {
-  const BottomButtonBar({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+// class BottomButtonBar extends StatelessWidget {
+//   const BottomButtonBar({
+//     Key? key,
+//     required this.controller,
+//   }) : super(key: key);
 
-  final BarcodeScannResultController controller;
+//   final BarcodeScannResultController controller;
 
-  @override
-  Widget build(BuildContext context) {
-    return Obx(
-      () => controller.isLoading.value || !controller.hasAnyChangesMade.value
-          ? const SizedBox()
-          : Container(
-              height: 90,
-              color: const Color(0xFFE3E8ED),
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: <Widget>[
-                  Flexible(
-                    child: PlainButton(
-                      buttonColor: const Color(0xFFFFBF3A),
-                      title: 'Cancel',
-                      titleColor: const Color(0xFF000000),
-                      onTap: () => controller.showWarningMessage(),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Flexible(
-                    child: PlainButton(
-                      title: 'Save',
-                      onTap: () => controller.saveBarcodeDetails(),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Obx(
+//       () => controller.isLoading.value || !controller.hasAnyChangesMade.value
+//           ? const SizedBox()
+//           : Container(
+//               height: 90,
+//               color: const Color(0xFFE3E8ED),
+//               padding: const EdgeInsets.all(20.0),
+//               child: Row(
+//                 children: <Widget>[
+//                   Flexible(
+//                     child: PlainButton(
+//                       buttonColor: const Color(0xFFFFBF3A),
+//                       title: 'Cancel',
+//                       titleColor: const Color(0xFF000000),
+//                       onTap: () => controller.showWarningMessage(),
+//                     ),
+//                   ),
+//                   const SizedBox(width: 10),
+//                   Flexible(
+//                     child: PlainButton(
+//                       title: 'Save',
+//                       onTap: () => controller.saveBarcodeDetails(),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//     );
+//   }
+// }
 
 class BarcodeItemList extends StatelessWidget {
   const BarcodeItemList({
@@ -170,7 +181,7 @@ class BarcodeScanner extends StatelessWidget {
       onTap: () => controller.scanBarcode(context),
       child: Container(
         height: 94,
-        color: const Color(0xFF5297A6),
+        color: const Color(0xFF76E5DE),
         child: Container(
           margin: const EdgeInsets.all(20.0),
           color: Colors.white,

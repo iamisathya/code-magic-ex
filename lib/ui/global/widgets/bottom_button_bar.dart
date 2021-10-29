@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class BottomButtonBar extends StatelessWidget {
   const BottomButtonBar({
     Key? key,
-    required this.isShown,
+    this.isShown = true,
     required this.showNeutral,
     required this.onTapCancelButton,
     this.onTapNeutralButton,
@@ -26,25 +26,29 @@ class BottomButtonBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 90,
-      color: const Color(0xFFFFFFFF),
-      padding: const EdgeInsets.all(20.0),
-      child: Row(
-        children: <Widget>[
-          Flexible(
-            child: NegetiveButton(
-                title: negetiveText.tr, onTap: onTapCancelButton),
-          ),
-          Flexible(
-            child: showNeutral
-                ? NuetralButton(
-                    title: neutralText.tr, onTap: () => onTapNeutralButton!())
-                : PositiveButton(
-                    title: positiveText.tr, onTap: () => onTapPositiveButton!()),
-          ),
-        ],
-      ),
-    );
+    return isShown
+        ? Container(
+            height: 90,
+            color: const Color(0xFFFFFFFF),
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                  child: NegetiveButton(
+                      title: negetiveText.tr, onTap: onTapCancelButton),
+                ),
+                Flexible(
+                  child: showNeutral
+                      ? NuetralButton(
+                          title: neutralText.tr,
+                          onTap: () => onTapNeutralButton!())
+                      : PositiveButton(
+                          title: positiveText.tr,
+                          onTap: () => onTapPositiveButton!()),
+                ),
+              ],
+            ),
+          )
+        : const SizedBox();
   }
 }
