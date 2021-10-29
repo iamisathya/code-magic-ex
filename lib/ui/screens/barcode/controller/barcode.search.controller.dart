@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/ui/global/widgets/bottom_modal_alert.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
@@ -80,6 +82,7 @@ class BarcodeSearchController extends GetxController {
 
   Future<void> verifyBarcodeDetails() async {
     try {
+      isLoading.toggle();
       final List<Map<String, dynamic>> scanNumbers = [];
       final List<Map<String, dynamic>> allProducts = [];
       for (final i in controller.barcodeItems!.items) {
@@ -102,7 +105,9 @@ class BarcodeSearchController extends GetxController {
         for (final err in barCodeVerifyResponse!.error!) {
           errors.write("\n ${err.msg}");
         }
-        SnackbarUtil.showError(message: errors.toString(), duration: 10);
+        isLoading.toggle();
+        showErrorDialoge();
+        // SnackbarUtil.showError(message: errors.toString(), duration: 10);
       } else {
         // * Success, save barcode numbers
         saveBarcodeDetails();
@@ -112,6 +117,24 @@ class BarcodeSearchController extends GetxController {
       isLoading.toggle();
       LoggerService.instance.e(s);
     }
+  }
+
+  void showErrorDialoge() {
+    showModalBottomSheet<void>(
+        context: Get.context!,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext context) {
+          return BottomModalAlert(
+              negetiveTitle: "cancel".tr,
+              positiveTitle: "OK, Got it".tr,
+              onPositiveTap: () => Navigator.pop(context),
+              onNegetiveTap: () => Navigator.pop(context),
+              title: "``Scan Error``",
+              showTitle: true,
+              subTitle:
+                  "You have already scanned this order number 2999000054163.",
+              assetPath: kScanErrorImage);
+        });
   }
 
   Future<void> saveBarcodeDetails() async {

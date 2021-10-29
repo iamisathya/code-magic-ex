@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' as getx;
@@ -37,11 +38,13 @@ class BarcodeScannResultController extends getx.GetxController {
   getx.RxBool barcodeNumberLoading = false.obs;
   getx.RxList<String> currentBarcodeNumbers = <String>[].obs;
   getx.RxBool canOrderHasBarcode = false.obs;
+  getx.RxBool isScroolButtonVisible = false.obs;
 
   BarcodeResponse? barcodeDetails;
   BarCodeItemsResponse? barcodeItems;
   BarCodeSaveResponse? barCodeSaveResponse;
   VerifyEachBarcodeResponse? eachBarcodeResponse;
+  ScrollController hideButtonController = ScrollController();
 
   @override
   void onInit() {
@@ -49,11 +52,27 @@ class BarcodeScannResultController extends getx.GetxController {
     final dynamic data = getx.Get.arguments;
     if (data != null) {
       orderNumber.value = data as String;
-      print(orderNumber.value);
       getBarcodePath();
     } else {
       getx.Get.back();
     }
+    hideButtonController.addListener(() {
+      if (hideButtonController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        // isScroolButtonVisible.toggle();
+        if (isScroolButtonVisible.value == true) {
+          isScroolButtonVisible.value = false;
+        }
+      } else {
+        if (hideButtonController.position.userScrollDirection ==
+            ScrollDirection.forward) {
+          // isScroolButtonVisible.toggle();
+          if (isScroolButtonVisible.value == false) {
+            isScroolButtonVisible.value = true;
+          }
+        }
+      }
+    });
   }
 
   getx.RxBool get isItemExpanded =>
@@ -475,5 +494,14 @@ class BarcodeScannResultController extends getx.GetxController {
       return;
     }
     addBarcodeNumber(expndedIdx, barcodeScanRes);
+  }
+
+  void onTapScrollToTop() {
+    isScroolButtonVisible.value = true;
+    hideButtonController.animateTo(
+      0.0,
+      curve: Curves.easeOut,
+      duration: const Duration(milliseconds: 200),
+    );
   }
 }

@@ -27,6 +27,7 @@ const kTrashImage = 'assets/images/trash_image.svg';
 const kOrderEntryBarcodeImage = 'assets/images/order_entry_barcode.svg';
 const kOrderEntryFailureImage = 'assets/images/order_entry_failure.svg';
 const kOrderEntrySuccessImage = 'assets/images/order_entry_success.svg';
+const kScanErrorImage = 'assets/images/scan_error_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityGradient3xImage = 'assets/icons/unicity_logo_3x.png';

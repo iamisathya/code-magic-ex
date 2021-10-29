@@ -25,6 +25,7 @@ class BarCodeDetails extends StatelessWidget {
           body: SafeArea(
             top: false,
             child: SingleChildScrollView(
+              controller: controller.hideButtonController,
               child: controller.barcodeItems == null
                   ? const Center()
                   : Column(
@@ -45,7 +46,7 @@ class BarCodeDetails extends StatelessWidget {
             ),
           ),
           bottomNavigationBar:
-              controller.isLoading.value || !controller.hasAnyChangesMade.value
+              !controller.isLoading.value || controller.hasAnyChangesMade.value
                   ? const SizedBox()
                   : BottomButtonBar(
                       isShown: !controller.isLoading.value &&
@@ -56,6 +57,16 @@ class BarCodeDetails extends StatelessWidget {
                       onTapPositiveButton: controller.saveBarcodeDetails,
                       showNeutral: false,
                     ),
+          floatingActionButton: AnimatedOpacity(
+            opacity: controller.isScroolButtonVisible.value ? 0.0 : 1.0,
+            duration: const Duration(milliseconds: 100),
+            child: FloatingActionButton(
+                backgroundColor: const Color(0xFFFFBF3A),
+                onPressed: controller.onTapScrollToTop,
+                tooltip: 'scroll to top',
+                child:
+                    const Icon(Icons.arrow_upward, color: Color(0xFF000000))),
+          ),
         ),
       ),
     );

@@ -29,7 +29,7 @@ class BarcodeCheckResult extends StatelessWidget {
             Container(
               height: 152,
               width: Get.width,
-              color: const Color(0xFF5297A6),
+              color: const Color(0xFF76E5DE),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
