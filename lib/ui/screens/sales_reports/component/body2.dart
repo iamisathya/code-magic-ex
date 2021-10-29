@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/sales_reports/component/date_selector_row.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +9,6 @@ import '../../inventory/component/no_record_found.dart';
 import '../../inventory/component/page_title.dart';
 import '../controller/salesreports.home.controller.dart';
 import 'date_selector.dart';
-import 'option_bar.dart';
 import 'sales_report.item.item.dart';
 import 'sales_report.order.item.dart';
 import 'sales_report.rma.item.dart';
@@ -27,14 +27,13 @@ class Body2 extends StatelessWidget {
             const PageTitle(title: "Sales Report"),
             SalesReportToolBar(),
             const SizedBox(height: 5),
-            DateSelector(),
+            if (controller.activeListLength != 0)
+              RowDateSelector()
+            else
+              DateSelector(),
             if (!controller.isLoading.value && controller.activeListLength != 0)
               Column(
                 children: [
-                  OptionBar(
-                      onPrint: () =>
-                          controller.proceedToPrint(context, orderHref: ""),
-                      onDownload: () => controller.onTapExportExcellSheet()),
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

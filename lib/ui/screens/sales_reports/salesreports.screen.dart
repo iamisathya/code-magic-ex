@@ -31,7 +31,6 @@ class SalesReportsHomeScreen extends StatelessWidget {
                   controller.activeListLength == 0
               ? BottomButtonBar(
                   showNeutral: false,
-                  isShown: false,
                   onTapCancelButton: Get.back,
                   negetiveText: "cancel".tr,
                   positiveText: "find report".tr,
