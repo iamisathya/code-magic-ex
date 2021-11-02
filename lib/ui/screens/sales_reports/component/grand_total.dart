@@ -14,14 +14,16 @@ class GrandTotal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(3.0))),
       child: Column(children: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
           decoration: BoxDecoration(
-              color: status == "Unknown"
-                  ? const Color(0xFFFFE7EB)
-                  : const Color(0xFFF1FAF7), //FFE7EB error color
-              borderRadius: const BorderRadius.all(Radius.circular(3.0))),
+            color: status == "Unknown"
+                ? const Color(0xFFFFE7EB)
+                : const Color(0xFFE4FAF6), //FFE7EB error color
+          ),
           height: 40,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,14 +45,13 @@ class GrandTotal extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 10),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
           decoration: BoxDecoration(
-              color: status == "Unknown"
-                  ? const Color(0xFFFFE7EB)
-                  : const Color(0xFFF1FAF7), //FFE7EB error color
-              borderRadius: const BorderRadius.all(Radius.circular(3.0))),
+            color: status == "Unknown"
+                ? const Color(0xFFFFE7EB)
+                : const Color(0xFFE4FAF6), //FFE7EB error color
+          ),
           height: 40,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
