@@ -1,4 +1,8 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/utilities/enums.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -13,19 +17,35 @@ class SaleReportBody extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 50,
+          height: 54,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           alignment: Alignment.center,
-          color: const Color(0xFFE3E8ED),
-          child: Text("Order ID: ${controller.orderId}",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: const Color(0xFF606975))),
+          color: const Color(0xFFFFBF3A),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AppText(
+                  text: "Order ID: ${controller.orderId}", //! hardcoded
+                  style: TextTypes.bodyText1,
+                  color: const Color(0xFF384250)),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: GestureDetector(
+                  onTap: () => controller.proceedToPrint(context,
+                      orderHref: controller.orderHref.value),
+                  child: SvgPicture.asset(kPrintIcon,
+                      color: const Color(0xFF384250),
+                      width: 20,
+                      semanticsLabel: 'print icon'),
+                ),
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: 10),
         Expanded(
           child: WebView(
-            initialUrl: controller.orderHref.value,
+            initialUrl: "https://google.com", //controller.orderHref.value
             javascriptMode: JavascriptMode.unrestricted,
             onPageFinished: (finish) => controller.isLoading.value = false,
           ),
