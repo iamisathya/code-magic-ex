@@ -91,6 +91,7 @@ const kOpenPoFilterIcon = 'assets/icons/openpo_filter_icon.svg';
 const kOpenPoViewIcon = 'assets/icons/openpo_view_icon.svg';
 const kOpenPoEditIcon = 'assets/icons/openpo_edit_icon.svg';
 const kOpenPoCameraIcon = 'assets/icons/openpo_camera_icon.svg';
+const kScreenShotIcon = 'assets/icons/screen_shot_icon.svg';
 
 // * Bottom tab bar
 const kBottomTabBarcodeActiveIcon = 'assets/icons/navigation/tab_barcode_icon_active.svg';
@@ -125,6 +126,7 @@ const kSplashImage = 'assets/images/splash.jpg';
 const kAnimatedLoader = 'assets/animated/spinner.gif';
 const kAnimatedLoader2 = 'assets/animated/spinner2.gif';
 const kAnimatedSpin = 'assets/animated/spin.gif';
+const kEasyShipGradient = 'assets/gradient/gradient_background.svg';
 
 // * Illustration
 const kScanBarcodeIllustration =

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,6 +10,8 @@ class SearchTextfield extends StatelessWidget {
     required this.onScan,
     required this.labelText,
     required this.icon,
+    this.isLoading = false,
+    this.bgColor = const Color(0xFF76E5DE),
   }) : super(key: key);
 
   final TextEditingController textFieldController;
@@ -16,12 +19,14 @@ class SearchTextfield extends StatelessWidget {
   final Function onScan;
   final String labelText;
   final String icon;
+  final Color? bgColor;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 94,
-      color: const Color(0xFF76E5DE),
+      color: bgColor,
       child: Container(
         margin: const EdgeInsets.all(20),
         alignment: Alignment.center,
@@ -55,7 +60,9 @@ class SearchTextfield extends StatelessWidget {
               width: 50,
               child: GestureDetector(
                   onTap: () => onScan(),
-                  child: SvgPicture.asset(icon, width: 20, height: 20)),
+                  child: isLoading
+                      ? Image.asset(kAnimatedSpin, width: 20)
+                      : SvgPicture.asset(icon, width: 20, height: 20)),
             ),
           ],
         ),

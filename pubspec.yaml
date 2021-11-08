@@ -114,6 +114,7 @@ flutter:
     - assets/illustration/
     - assets/lottie/
     - assets/animated/
+    - assets/gradient/
     - .env
   fonts:
     - family: MavenPro

@@ -189,6 +189,24 @@ extension DateFormater on String {
       return '';
     }
   }
+
+  String get asMMM {
+    try {
+      final DateTime currentDateTime = DateFormat("yyyy-MM").parse(this);
+      return DateFormat('MMM').format(currentDateTime);
+    } catch (e) {
+      return '';
+    }
+  }
+
+   String get asYYYY {
+    try {
+      final DateTime currentDateTime = DateFormat("yyyy-MM").parse(this);
+      return DateFormat('yyyy').format(currentDateTime);
+    } catch (e) {
+      return '';
+    }
+  }
 }
 
 extension DoubleExtension on double {

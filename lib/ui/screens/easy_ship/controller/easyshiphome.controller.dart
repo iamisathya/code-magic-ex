@@ -1,10 +1,9 @@
 import 'dart:io';
 
+import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,148 +15,46 @@ import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
-import '../../../../utilities/parsing.dart';
 import '../../../../utilities/user_session.dart';
 
-class EasyShipController extends GetxController {
+class EasyShipHomeController extends GetxController {
   RxBool loading = false.obs;
   RxBool isLoading = false.obs;
   RxString errorMessage = "".obs;
 
   TextEditingController baNumberTextField = TextEditingController();
-  List<EasyShipReports> allEasyShipOrders = <EasyShipReports>[];
-  List<EasyShipReports> _tempEasyShipOrders = <EasyShipReports>[];
+  RxList<EasyShipReports> allEasyShipOrders = <EasyShipReports>[].obs;
 
   static int sortName = 0;
   static int sortStatus = 1;
   bool isAscending = true;
   EasyShipTypes currentType = EasyShipTypes.orderNumber;
 
-  List<EasyShipReports> get getEasyShipReports => _tempEasyShipOrders;
-  int get easyShipReportsCount => _tempEasyShipOrders.length;
-  bool get isEasyShipReportsEmpty => _tempEasyShipOrders.isEmpty;
+  List<EasyShipReports> get getEasyShipReports => allEasyShipOrders;
+  int get easyShipReportsCount => allEasyShipOrders.length;
+  bool get isEasyShipReportsEmpty => allEasyShipOrders.isEmpty;
 
-  Future<void> getAllOrderlines({String userId = "2970466"}) async {
-    loading(true);
-    update();
+  Future<void> onSearchEasyShipReport() async {
+    if(baNumberTextField.text.isEmpty) {
+      SnackbarUtil.showWarning(message: "Please enter user id!");
+      return;
+    }
+    isLoading.toggle();
     try {
-      allEasyShipOrders = await MemberCallsService.init().getEasyShipReports(
+      allEasyShipOrders.value = await MemberCallsService.init().getEasyShipReports(
           kEasyShipReports,
-          userId,
+          baNumberTextField.text,
           UserSessionManager.shared.customerToken.token);
-      allEasyShipOrders = addTotalRowAfterEachUniqueItemSet();
-      _tempEasyShipOrders = allEasyShipOrders;
-      loading(false);
-      update();
-    } catch (err) {
-      loading(false);
+      isLoading.toggle();
+    } catch (err, s) {
       errorMessage(err.toString());
-      LoggerService.instance.e(err.toString());
-      update();
+      LoggerService.instance.e(s.toString());
+      isLoading.toggle();
     }
-  }
-
-  void onSortCulumn(EasyShipTypes sortStatus) {
-    currentType = sortStatus;
-    isAscending = !isAscending;
-    switch (sortStatus) {
-      case EasyShipTypes.orderNumber:
-        if (isAscending) {
-          _tempEasyShipOrders
-              .sort((a, b) => a.orderNumber.compareTo(b.orderNumber));
-        } else {
-          _tempEasyShipOrders
-              .sort((b, a) => a.orderNumber.compareTo(b.orderNumber));
-        }
-        break;
-      case EasyShipTypes.period:
-        if (isAscending) {
-          _tempEasyShipOrders.sort((a, b) => a.pvDate.compareTo(b.pvDate));
-        } else {
-          _tempEasyShipOrders.sort((b, a) => a.pvDate.compareTo(b.pvDate));
-        }
-        break;
-      case EasyShipTypes.productName:
-        if (isAscending) {
-          _tempEasyShipOrders.sort((a, b) => a.name.compareTo(b.name));
-        } else {
-          _tempEasyShipOrders.sort((b, a) => a.name.compareTo(b.name));
-        }
-        break;
-      case EasyShipTypes.itemCode:
-        if (isAscending) {
-          _tempEasyShipOrders.sort((a, b) => a.itemName.compareTo(b.itemName));
-        } else {
-          _tempEasyShipOrders.sort((b, a) => a.itemName.compareTo(b.itemName));
-        }
-        break;
-      case EasyShipTypes.pv:
-        if (isAscending) {
-          _tempEasyShipOrders.sort((a, b) => a.pv.compareTo(b.pv));
-        } else {
-          _tempEasyShipOrders.sort((b, a) => a.pv.compareTo(b.pv));
-        }
-        break;
-      case EasyShipTypes.price:
-        if (isAscending) {
-          _tempEasyShipOrders
-              .sort((a, b) => a.totalPrice.compareTo(b.totalPrice));
-        } else {
-          _tempEasyShipOrders
-              .sort((b, a) => a.totalPrice.compareTo(b.totalPrice));
-        }
-        break;
-      default:
-    }
-    update();
-  }
-
-  //*  This will find & returns total unique order size
-  int totalUniqueOrderItemSize() {
-    final List<EasyShipReports> resArr = [];
-    for (final item in _tempEasyShipOrders) {
-      final i = resArr.indexWhere((x) => x.orderNumber == item.orderNumber);
-      if (i <= -1) {
-        resArr.add(item);
-      }
-    }
-    return resArr.length;
-  }
-
-  int forceParse(String str) {
-    return Parsing.doubleFrom(str.replaceAll(",", ""))!.toInt();
-  }
-
-  List<EasyShipReports> addTotalRowAfterEachUniqueItemSet() {
-    final Map<String, List<EasyShipReports>> easyShipMap =
-        groupBy(allEasyShipOrders, (obj) => obj.orderNumber);
-    //* Adding empty EasyShipReports object after each set of unique orders
-    for (final objectItem in easyShipMap.values) {
-      final int totalAmount =
-          objectItem.fold(0, (sum, item) => sum + forceParse(item.totalPrice));
-      final int totalVolume = objectItem.fold(0, (sum, item) => sum + item.pv);
-      final EasyShipReports emptyReport = EasyShipReports(
-          orderNumber: "",
-          itemName: "Total",
-          name: "",
-          price: "",
-          pv: totalVolume,
-          pvDate: "",
-          totalPrice: NumberFormat("#,###").format(totalAmount));
-      objectItem.add(emptyReport);
-    }
-    // ! Need to optimise this
-    final List<EasyShipReports> easyShipReports = [];
-    for (final objectItems in easyShipMap.values) {
-      for (var i = 0; i < objectItems.length; i++) {
-        easyShipReports.add(objectItems[i]);
-      }
-    }
-    return easyShipReports;
   }
 
   Future onTapExportExcellSheet() async {
-    if (_tempEasyShipOrders.isEmpty) {
+    if (allEasyShipOrders.isEmpty) {
       renderGetSnackbar(
           title: "Empty table!",
           message: "No data found in table.",
@@ -187,8 +84,8 @@ class EasyShipController extends GetxController {
             verticalAlign: VerticalAlign.Center,
             fontFamily: getFontFamily(FontFamily.Calibri));
 
-        for (int i = 0; i < _tempEasyShipOrders.length; i++) {
-          final EasyShipReports currentItem = _tempEasyShipOrders[i];
+        for (int i = 0; i < allEasyShipOrders.length; i++) {
+          final EasyShipReports currentItem = allEasyShipOrders[i];
           final emptyA = sheetObject.cell(CellIndex.indexByString("A${i + 1}"));
 
           emptyA.cellStyle = headerCellStyle;
@@ -250,9 +147,5 @@ class EasyShipController extends GetxController {
         OpenFile.open(file.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");
       });
     }
-  }
-
-  void onSearchEasyShipReport() {
-    isLoading.toggle();
   }
 }
