@@ -25,7 +25,6 @@ class EasyShipListController extends GetxController {
 
   @override
   void onInit() {
-    print("here");
     final dynamic data = Get.arguments;
     if (data != null) {
       userId = data as String;
