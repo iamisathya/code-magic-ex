@@ -5,6 +5,7 @@ import 'package:dsc_tools/models/cart_products.dart';
 import 'package:dsc_tools/models/inventory_records.dart';
 import 'package:dsc_tools/models/managed_warehouse.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_details/home.dart';
 import 'package:dsc_tools/ui/screens/order_entry/screens/home/components/white_search_field.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/function.dart';
@@ -90,6 +91,10 @@ class EnrollHomeController extends GetxController {
     cartProducts.removeWhere((element) => element.itemCode == itemCode);
     cartProducts.refresh();
     calculateTotal();
+  }
+
+  void onContinue() {
+    Get.to(() => EnrollmentDetailsHomeScreen());
   }
 
   void showBottomModal(BuildContext context) {

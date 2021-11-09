@@ -1,17 +1,18 @@
-import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
-import 'package:flutter/material.dart';
 import 'package:dsc_tools/ui/global/widgets/bottom_button_bar.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
+import 'package:dsc_tools/utilities/constants.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import '../../../utilities/constants.dart';
-import '../open_po/home/components/app_bar.dart';
-import 'controllers/enroll.controller.dart';
-import 'screens/enroll/body2.dart';
+import 'components/body.dart';
+import 'controller/enrollement.details.controller.dart';
 
-class EnrollHomeScreen extends StatelessWidget {
-  final EnrollHomeController controller = Get.put(EnrollHomeController());
-  static const String routeName = '/enrollHomePage';
+class EnrollmentDetailsHomeScreen extends StatelessWidget {
+  final EnrollmentDetailsHomeController controller =
+      Get.put(EnrollmentDetailsHomeController());
+  static const String routeName = '/enrollmentDetailsHomePage';
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +29,10 @@ class EnrollHomeScreen extends StatelessWidget {
           ),
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
-            onTapCancelButton: () => controller.showBottomModal(context),
-            negetiveText: "+ Add",
-            positiveText: "Continue",
-            onTapPositiveButton: controller.onContinue,
+            onTapCancelButton: () => Get.back(),
+            negetiveText: "Back",
+            positiveText: "Verify",
+            onTapPositiveButton: () {},
           ),
         ),
       ),
