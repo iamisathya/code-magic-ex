@@ -26,6 +26,7 @@ dependencies:
   connectivity_plus: ^1.0.1
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
+  dotted_decoration: ^2.0.0
   dropdown_search: ^0.6.3
   easy_localization: ^3.0.0
   equatable: ^2.0.2
@@ -54,6 +55,7 @@ dependencies:
   get: ^4.1.4
   get_storage: ^2.0.3
   horizontal_data_table: ^3.4.2
+  image_gallery_saver: '^1.7.1'
   image_picker: ^0.8.2
   intl: ^0.17.0
   json_annotation: ^4.0.1
@@ -74,6 +76,7 @@ dependencies:
   retrofit: ^2.0.0
   retrofit_generator: ^2.0.0
   rxdart: ^0.27.1
+  screenshot: ^1.2.3
   share: ^2.0.4
   shared_preferences: ^2.0.6
   tuple: ^2.0.0

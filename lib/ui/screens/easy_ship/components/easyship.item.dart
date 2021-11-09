@@ -1,3 +1,4 @@
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/easy_ship_reports.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
@@ -7,9 +8,11 @@ import '../../../../utilities/extensions.dart';
 
 class EasyShipItem extends StatelessWidget {
   final int index;
-  final EasyShipReports item;
+  final String date;
+  final List<EasyShipReports> item;
 
-  const EasyShipItem({required this.index, required this.item});
+  const EasyShipItem(
+      {required this.index, required this.item, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +22,6 @@ class EasyShipItem extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x66191c1f),
-              blurRadius: 1,
-            ),
-          ],
           color: Colors.white.withOpacity(0.65),
         ),
         child: Row(children: [
@@ -35,67 +32,86 @@ class EasyShipItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: AppText(
-                  text: item.pvDate.asMMM,
+                  text: date.asMMM,
                   style: TextTypes.headline4,
                   color: const Color(0xFFFFBF3A),
                 ),
               ),
               AppText(
-                text: item.pvDate.asYYYY,
+                text: date.asYYYY,
                 style: TextTypes.caption,
                 color: const Color(0xFF505050),
               ),
             ]),
           ),
           Expanded(
-            child: Padding(
+            child: Container(
+              decoration: DottedDecoration(linePosition: LinePosition.left),
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AppText(text: item.name, style: TextTypes.headline6),
-                    AppText(text: "Code: ${item.itemName}", style: TextTypes.bodyText2),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: AppText(
-                      text: "Order Number ${item.pvDate.asMMM}",
-                      style: TextTypes.bodyText2,
-                      color: const Color(0xFF505050),
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 33,
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  color: const Color(0xFFF6F9FD),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppText(
-                        text: "Total PV: ${item.pv.toString()} PV",
-                        style: TextTypes.caption,
-                        color: const Color(0xFF505050),
-                      ),
-                      AppText(
-                        text: "Total Price: ${item.totalPrice} ${Globals.currency}",
-                        style: TextTypes.caption,
-                        color: const Color(0xFF505050),
-                      ),
-                    ],
-                  ),
-                ),
-              ]),
+                children: item
+                    .mapIndexed((elem, idx) => _renderDescrption(elem, idx))
+                    .toList(),
+              ),
             ),
           )
         ]),
       ),
     );
+  }
+
+  Column _renderDescrption(EasyShipReports element, int idx) {
+    final bool isLast = idx != item.length - 1;
+    return Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          AppText(text: element.name, style: TextTypes.headline6),
+          AppText(
+              text: "Code: ${element.itemName}", style: TextTypes.bodyText2),
+        ],
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: AppText(
+            text: "Order Number ${element.pvDate.asMMM}",
+            style: TextTypes.bodyText2,
+            color: const Color(0xFF505050),
+          ),
+        ),
+      ),
+      Container(
+        height: 33,
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(3),
+          color: const Color(0xFFE5EBF1),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            AppText(
+              text: "Total PV: ${element.pv.toString()} PV",
+              style: TextTypes.caption,
+              color: const Color(0xFF505050),
+            ),
+            AppText(
+              text: "Total Price: ${element.totalPrice} ${Globals.currency}",
+              style: TextTypes.caption,
+              color: const Color(0xFF505050),
+            ),
+          ],
+        ),
+      ),
+      if (isLast)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Container(
+            decoration: isLast ? DottedDecoration() : null,
+          ),
+        )
+    ]);
   }
 }

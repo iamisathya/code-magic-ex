@@ -7,6 +7,7 @@ import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:screenshot/screenshot.dart';
 
 import 'easyship.item.dart';
 
@@ -21,6 +22,7 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const PageTitle(title: "Easyship Report"),
+            PageToolBox(controller: controller),
             SearchTextfield(
                 icon: kSearchIcon,
                 isLoading: controller.isLoading.value,
@@ -29,16 +31,34 @@ class Body extends StatelessWidget {
                 onSubmit: () => controller.onSearchEasyShipReport(),
                 onScan: () => controller.onSearchEasyShipReport(),
                 textFieldController: controller.baNumberTextField),
-            ListView.builder(
-              padding: const EdgeInsets.all(10.0),
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: controller.allEasyShipOrders.length,
-              itemBuilder: (BuildContext ctxt, int index) {
-                return EasyShipItem(
-                    item: controller.allEasyShipOrders[index], index: index);
-              },
+            SingleChildScrollView(
+              child: Screenshot(
+                controller: controller.screenshotController,
+                child: Container(
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                    image: AssetImage(kEasyShipBgImage),
+                    fit: BoxFit.cover,
+                  )),
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(10.0),
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: controller.orderedEasyShipOrders.length,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      final key =
+                          controller.orderedEasyShipOrders.keys.toList()[index];
+                      return EasyShipItem(
+                          item: controller.orderedEasyShipOrders[key]!,
+                          index: index,
+                          date: key);
+                    },
+                  ),
+                ),
+              ),
             ),
+            // if(controller.capturedImage.lengthInBytes != 1000000)
+            // Image.memory(controller.capturedImage)
           ],
         ),
       ),
@@ -66,9 +86,12 @@ class PageToolBox extends StatelessWidget {
           AppText(
               text: "BA Number: ${controller.baNumberTextField.text}",
               style: TextTypes.subtitle1),
-          SvgPicture.asset(
-            kScreenShotIcon,
-            width: 20,
+          GestureDetector(
+            onTap: () => controller.onCaptureScreenShot(context),
+            child: SvgPicture.asset(
+              kScreenShotIcon,
+              width: 20,
+            ),
           )
         ],
       ),
