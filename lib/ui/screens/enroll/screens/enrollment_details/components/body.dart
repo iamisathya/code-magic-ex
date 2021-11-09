@@ -2,6 +2,7 @@ import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_details/controller/enrollement.details.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,9 +37,14 @@ class Body extends StatelessWidget {
                           fontSize: 14, color: const Color(0xFF606975)),
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'Conditions Apply',
-                            style: DefaultTextStyle.of(context).style.copyWith(
-                                fontSize: 16, color: const Color(0xFF1C9CFC))),
+                          text: 'Conditions Apply',
+                          style: DefaultTextStyle.of(context).style.copyWith(
+                                fontSize: 16,
+                                color: const Color(0xFF1C9CFC),
+                              ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => controller.navigateToTermsPage(),
+                        ),
                       ],
                     ),
                   ),
