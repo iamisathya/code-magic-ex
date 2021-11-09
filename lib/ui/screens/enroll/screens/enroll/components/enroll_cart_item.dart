@@ -52,9 +52,9 @@ class EnrollCartItem extends StatelessWidget {
                   color: const Color(0xFF384250),
                 ),
                 CartCounterView(
-                    itemCode: "1243",
+                    itemCode: item.itemCode,
                     onPress: controller.onUpdateQuantity,
-                    quantity: 1)
+                    quantity: item.quantity)
               ],
             ),
           )
