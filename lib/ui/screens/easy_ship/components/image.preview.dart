@@ -1,14 +1,14 @@
 import 'dart:typed_data';
 
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/controller/easyshiphome.controller.dart';
+import 'package:dsc_tools/ui/screens/easy_ship/controller/easyship.list.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class ScreenShotPreview extends StatelessWidget {
-  final EasyShipHomeController controller = Get.put(EasyShipHomeController());
+  final EasyShipListController controller = Get.put(EasyShipListController());
   ScreenShotPreview({required this.image, Key? key}) : super(key: key);
 
   final Uint8List image;

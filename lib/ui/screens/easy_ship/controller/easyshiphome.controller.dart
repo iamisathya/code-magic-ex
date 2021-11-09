@@ -1,33 +1,26 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:collection/collection.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/components/easyship.item.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/components/image.preview.dart';
-import 'package:dsc_tools/utilities/images.dart';
+import 'package:dsc_tools/ui/screens/easy_ship/components/easyship.orders.list.dart';
+
 import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 
-import '../../../../api/config/api_service.dart';
 import '../../../../models/easy_ship_reports.dart';
-import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
-import '../../../../utilities/logger.dart';
-import '../../../../utilities/user_session.dart';
 
 class EasyShipHomeController extends GetxController {
-  RxBool loading = false.obs;
   RxBool isLoading = false.obs;
-  RxString errorMessage = "".obs;
+
   Uint8List capturedImage = Uint8List(1000000);
 
   TextEditingController baNumberTextField = TextEditingController();
@@ -36,34 +29,12 @@ class EasyShipHomeController extends GetxController {
       RxMap<String, List<EasyShipReports>>();
   ScreenshotController screenshotController = ScreenshotController();
 
-  static int sortName = 0;
-  static int sortStatus = 1;
-  bool isAscending = true;
-  EasyShipTypes currentType = EasyShipTypes.orderNumber;
-
-  List<EasyShipReports> get getEasyShipReports => allEasyShipOrders;
-  int get easyShipReportsCount => allEasyShipOrders.length;
-  bool get isEasyShipReportsEmpty => allEasyShipOrders.isEmpty;
-
   Future<void> onSearchEasyShipReport() async {
     if (baNumberTextField.text.isEmpty) {
       SnackbarUtil.showWarning(message: "Please enter user id!");
       return;
     }
-    isLoading.toggle();
-    try {
-      allEasyShipOrders.value = await MemberCallsService.init()
-          .getEasyShipReports(kEasyShipReports, baNumberTextField.text,
-              UserSessionManager.shared.customerToken.token);
-      orderedEasyShipOrders.value =
-          groupBy(allEasyShipOrders, (EasyShipReports obj) => obj.pvDate);
-      print(orderedEasyShipOrders.toString());
-      isLoading.toggle();
-    } catch (err, s) {
-      errorMessage(err.toString());
-      LoggerService.instance.e(s.toString());
-      isLoading.toggle();
-    }
+    Get.to(() => EasyShipOrdersList(), arguments: baNumberTextField.text);
   }
 
   Future onTapExportExcellSheet() async {
@@ -159,44 +130,6 @@ class EasyShipHomeController extends GetxController {
           ..writeAsBytesSync(encoded!);
         OpenFile.open(file.path, type: "xlsx/vnd.ms-excel", uti: ".xlsx");
       });
-    }
-  }
-
-  void onCaptureScreenShot(BuildContext context) {
-    Get.rawSnackbar(
-        message: "Capturing Screenshot..",
-        snackStyle: SnackStyle.GROUNDED,
-        icon: const Icon(Icons.screenshot, color: Colors.white),
-        backgroundColor: Colors.black,
-        showProgressIndicator: true,
-        progressIndicatorBackgroundColor: const Color(0xFFFFFFFF));
-    screenshotController.capture().then((image) {
-      debugPrint("Captured");
-       ScaffoldMessenger.of(context).clearSnackBars();
-      capturedImage = image!;
-      showDialog(
-          context: context,
-          useSafeArea: false,
-          barrierDismissible: true,
-          barrierColor: Colors.black.withOpacity(0.8),
-          builder: (BuildContext context) {
-            return ScreenShotPreview(image: image);
-          });
-    }).catchError((err) {
-      debugPrint("Capture error!");
-      debugPrint(err.toString());
-    });
-  }
-
-  Future<void> saveImage(BuildContext context) async {
-    final result = await ImageGallerySaver.saveImage(capturedImage,
-        quality: 60, name: "easyship_${DateTime.now().millisecondsSinceEpoch}");
-    if (result["isSuccess"] == true) {
-      Navigator.of(context).pop();
-      SnackbarUtil.showSuccess(message: "Image saved successfully!");
-    } else {
-      Navigator.of(context).pop();
-      SnackbarUtil.showError(message: "Error while saving image!");
     }
   }
 }

@@ -19,7 +19,7 @@ class EasyShipItem extends StatelessWidget {
     return ConstrainedBox(
       constraints: const BoxConstraints(minHeight: 122),
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 5),
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: Colors.white.withOpacity(0.65),
