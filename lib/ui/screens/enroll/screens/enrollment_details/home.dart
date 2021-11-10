@@ -1,4 +1,5 @@
 import 'package:dsc_tools/ui/global/widgets/bottom_button_bar.dart';
+import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/main_screen.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
 import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
 import 'package:dsc_tools/utilities/constants.dart';
@@ -32,7 +33,7 @@ class EnrollmentDetailsHomeScreen extends StatelessWidget {
             onTapCancelButton: () => Get.back(),
             negetiveText: "Back",
             positiveText: "Verify",
-            onTapPositiveButton: () {},
+            onTapPositiveButton: () => Get.to(() => EnrollmentUserInfoScreen()),
           ),
         ),
       ),
