@@ -78,7 +78,7 @@ class UserModel {
     return data;
   }
 
-  static List<UserModel>? fromJsonList(List list) {
+  static List<UserModel> fromJsonList(List list) {
     if (list == null) return null;
     return list.map((item) => UserModel.fromJson(item as Map<String, dynamic>)).toList();
   }
