@@ -4,13 +4,47 @@ import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/control
 import 'package:dsc_tools/ui/screens/inventory/component/page_title.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import 'address_search.dart';
+import 'user_info_card.dart';
+
 class Body extends StatelessWidget {
   final EnrollmentUserInfoController controller =
       Get.put(EnrollmentUserInfoController());
+
+  Widget _getBody(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFFD0D0CF)),
+              color: const Color(0xFFFFFFFF),
+              borderRadius: BorderRadius.circular(3)),
+          child: TextField(
+            controller: controller.addressSearchController,
+            autofocus: true,
+            textInputAction: TextInputAction.go,
+            decoration: const InputDecoration(
+              fillColor: Color(0xFFFFFFFF),
+              filled: true,
+              floatingLabelBehavior: FloatingLabelBehavior.auto,
+              contentPadding: EdgeInsets.symmetric(horizontal: 15),
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              border: InputBorder.none,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,52 +88,71 @@ class Body extends StatelessWidget {
                       label: 'First Name (Thai)',
                       textInputAction: TextInputAction.next),
                   EnrollTextField(
-                      controller: controller.nativeFirstNameController,
+                      controller: controller.nativeLastNameController,
                       isLoading: controller.isLoading.value,
                       label: 'Last Name (Thai)',
                       textInputAction: TextInputAction.next),
                   const SizedBox(height: 20),
                   EnrollTextField(
-                      controller: controller.nativeFirstNameController,
+                      controller: controller.firstNameController,
                       isLoading: controller.isLoading.value,
                       label: 'First Name',
                       textInputAction: TextInputAction.next),
                   EnrollTextField(
-                      controller: controller.nativeFirstNameController,
+                      controller: controller.lastNameController,
                       isLoading: controller.isLoading.value,
                       label: 'Last Name',
                       textInputAction: TextInputAction.next),
-                  const SizedBox(height: 20),
                   Row(
                     children: [
                       Expanded(
-                        child: EnrollTextField(
-                            controller: controller.nativeFirstNameController,
-                            isLoading: controller.isLoading.value,
-                            label: 'Last Name',
-                            icon: Icons.add,
-                            showIcon: true,
-                            textInputAction: TextInputAction.next),
+                        child: GestureDetector(
+                          onTap: () => controller.showPicker(
+                              context,
+                              controller.selectedGenderIndex,
+                              controller.genderOptions,
+                              controller.genderController),
+                          child: EnrollTextField(
+                              controller: controller.genderController,
+                              isLoading: controller.isLoading.value,
+                              label: 'Gender',
+                              icon: Icons.add,
+                              showIcon: true,
+                              enabled: false,
+                              textInputAction: TextInputAction.next),
+                        ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: EnrollTextField(
-                            controller: controller.nativeFirstNameController,
-                            isLoading: controller.isLoading.value,
-                            label: 'Last Name',
-                            icon: Icons.add,
-                            showIcon: true,
-                            textInputAction: TextInputAction.next),
+                        child: GestureDetector(
+                          onTap: () => controller.showPicker(
+                              context,
+                              controller.selectedMaritalStatusIndex,
+                              controller.maritalStatusOptions,
+                              controller.maritalStatusController),
+                          child: EnrollTextField(
+                              controller: controller.maritalStatusController,
+                              isLoading: controller.isLoading.value,
+                              label: 'Marital Status',
+                              icon: Icons.add,
+                              showIcon: true,
+                              enabled: false,
+                              textInputAction: TextInputAction.next),
+                        ),
                       ),
                     ],
                   ),
-                  EnrollTextField(
-                      controller: controller.nativeFirstNameController,
-                      isLoading: controller.isLoading.value,
-                      label: 'Birth Day',
-                      icon: Icons.add,
-                      showIcon: true,
-                      textInputAction: TextInputAction.next),
+                  GestureDetector(
+                    onTap: () => controller.renderDatePicker(context),
+                    child: EnrollTextField(
+                        controller: controller.birthdayController,
+                        isLoading: controller.isLoading.value,
+                        label: 'Birth Day',
+                        icon: Icons.add,
+                        showIcon: true,
+                        enabled: false,
+                        textInputAction: TextInputAction.next),
+                  ),
                   const SizedBox(height: 15),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15),
@@ -107,100 +160,58 @@ class Body extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const AppText(
-                            text: "Contact Address", style: TextTypes.headline6),
-                        SvgPicture.asset(kSearchV2Icon, width: 20)
+                            text: "Contact Address",
+                            style: TextTypes.headline6),
+                        GestureDetector(
+                            onTap: () =>
+                                controller.openAddressSearchDialog(context),
+                            child: SvgPicture.asset(kSearchV2Icon, width: 20))
                       ],
                     ),
                   ),
+                  AddressSearchModal(),
                   EnrollTextField(
-                      controller: controller.nativeFirstNameController,
+                      controller: controller.zipCodeController,
                       isLoading: controller.isLoading.value,
                       label: 'Zip Code',
                       textInputAction: TextInputAction.next),
+                  GestureDetector(
+                    onTap: () => controller.showPicker(
+                        context,
+                        controller.selectedProvience,
+                        controller.provienceOptions,
+                        controller.provienceController),
+                    child: EnrollTextField(
+                        controller: controller.provienceController,
+                        isLoading: controller.isLoading.value,
+                        label: 'Province',
+                        icon: Icons.add,
+                        enabled: false,
+                        showIcon: true,
+                        textInputAction: TextInputAction.next),
+                  ),
                   EnrollTextField(
-                      controller: controller.nativeFirstNameController,
-                      isLoading: controller.isLoading.value,
-                      label: 'Province',
-                      icon: Icons.add,
-                      showIcon: true,
-                      textInputAction: TextInputAction.next),
-                  EnrollTextField(
-                      controller: controller.nativeFirstNameController,
+                      controller: controller.districtController,
                       isLoading: controller.isLoading.value,
                       label: 'District - Subdistrict',
                       textInputAction: TextInputAction.next),
                   EnrollTextField(
-                      controller: controller.nativeFirstNameController,
+                      controller: controller.streetController,
                       isLoading: controller.isLoading.value,
                       label: 'Address - Street',
                       textInputAction: TextInputAction.next),
                   EnrollTextField(
-                      controller: controller.nativeFirstNameController,
+                      controller: controller.mobileNumberController,
                       isLoading: controller.isLoading.value,
                       label: 'Mobile Number',
                       textInputAction: TextInputAction.next),
                   EnrollTextField(
-                      controller: controller.nativeFirstNameController,
+                      controller: controller.emailController,
                       isLoading: controller.isLoading.value,
                       label: 'Email',
                       textInputAction: TextInputAction.next),
                 ],
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class UserInfoCard extends StatelessWidget {
-  const UserInfoCard({
-    Key? key,
-    required this.id,
-    required this.nativeName,
-    required this.name,
-    required this.title,
-  }) : super(key: key);
-
-  final String id;
-  final String nativeName;
-  final String name;
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3),
-            color: const Color(0xFFFFFFFF)),
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: Theme.of(context).textTheme.caption!.copyWith(
-                    fontSize: 10,
-                    color: const Color(0xFF505050),
-                  ),
-            ),
-            AppText(
-                text: id,
-                style: TextTypes.subtitle1,
-                color: const Color(0xFF384250)),
-            AppText(
-                text: name,
-                style: TextTypes.bodyText1,
-                color: const Color(0xFF384250)),
-            Text(
-              nativeName,
-              style: Theme.of(context).textTheme.caption!.copyWith(
-                    fontSize: 10,
-                    color: const Color(0xFF384250),
-                  ),
             ),
           ],
         ),

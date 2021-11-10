@@ -10,9 +10,11 @@ class EnrollTextField extends StatelessWidget {
     required this.isLoading,
     this.showIcon = false,
     this.enabled = true,
+    this.onIconTap,
     this.icon = Icons.arrow_right_alt_outlined,
   }) : super(key: key);
 
+  final VoidCallback? onIconTap;
   final TextEditingController controller;
   final TextInputAction textInputAction;
   final String label;
@@ -48,7 +50,7 @@ class EnrollTextField extends StatelessWidget {
             suffixIcon: showIcon
                 ? (isLoading
                     ? Image.asset(kAnimatedSpin, width: 20)
-                    : Icon(icon))
+                    : GestureDetector(onTap: onIconTap, child: Icon(icon)))
                 : null),
       ),
     );
