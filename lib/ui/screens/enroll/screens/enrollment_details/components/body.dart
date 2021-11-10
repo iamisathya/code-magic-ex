@@ -6,6 +6,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'error_message.dart';
+
 class Body extends StatelessWidget {
   final EnrollmentDetailsHomeController controller =
       Get.put(EnrollmentDetailsHomeController());
@@ -14,7 +16,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Container(
-      margin: const EdgeInsetsDirectional.all(60),
+      margin: const EdgeInsetsDirectional.only(top: 60, start: 60, end: 60),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -79,8 +81,9 @@ class Body extends StatelessWidget {
             ),
           ),
           Flexible(
+            flex: 2,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 AppText(
                   text: "Please Contact Unicity",
