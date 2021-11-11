@@ -159,12 +159,12 @@ class EnrollmentUserInfoController extends GetxController {
         },
       );
 
-  Future<UserModel>? searchAddresByZipCode(String filter) async {
-    var response = await Dio().get(
-        "http://5d85ccfb1e61af001471bf60.mockapi.io/user",
-        queryParameters: {"filter": filter},
-    );
-    final models = UserModel.fromJsonList(response.data as List<Map<String, dynamic>>);
-    return models;
-  }
+  // Future<UserModel>? searchAddresByZipCode(String filter) async {
+  //   var response = await Dio().get(
+  //       "http://5d85ccfb1e61af001471bf60.mockapi.io/user",
+  //       queryParameters: {"filter": filter},
+  //   );
+  //   final models = UserModel.fromJsonList(response.data as List<Map<String, dynamic>>);
+  //   return models;
+  // }
 }

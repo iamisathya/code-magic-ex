@@ -12,7 +12,7 @@ class AddressSearchModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownSearch<UserModel>(
+    return DropdownSearch<String>(
         mode: Mode.BOTTOM_SHEET,
         popupSafeArea: const PopupSafeArea(),
         showSearchBox: true,
@@ -25,7 +25,7 @@ class AddressSearchModal extends StatelessWidget {
         loadingBuilder: (BuildContext ctx, String? emprty) {
           return const Loader();
         },
-        onFind: (String filter) => controller.searchAddresByZipCode(filter),
+        // onFind: (String filter) => controller.searchAddresByZipCode(filter),
         searchBoxDecoration: InputDecoration(
           fillColor: const Color(0xFFFFFFFF),
           filled: true,
@@ -52,42 +52,4 @@ class AddressSearchModal extends StatelessWidget {
         onChanged: print,
         selectedItem: "Brazil");
   }
-}
-
-class UserModel {
-  String? id;
-  DateTime? createdAt;
-  String? name;
-  String? avatar;
-
-  UserModel({this.id, this.createdAt, this.name, this.avatar});
-
-  UserModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as String;
-    createdAt = json['createdAt'] as DateTime;
-    name = json['name'] as String;
-    avatar = json['avatar'] as String;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['createdAt'] = createdAt;
-    data['name'] = name;
-    data['avatar'] = avatar;
-    return data;
-  }
-
-  static List<UserModel> fromJsonList(List list) {
-    if (list == null) return null;
-    return list.map((item) => UserModel.fromJson(item as Map<String, dynamic>)).toList();
-  }
-
-  ///custom comparing function to check if two users are equal
-  bool isEqual(UserModel model) {
-    return id == model.id;
-  }
-
-  @override
-  String toString() => name!;
 }
