@@ -1,4 +1,5 @@
 import 'package:dsc_tools/models/cart_products.dart';
+import 'package:dsc_tools/ui/screens/enroll/screens/enrolment_complete/main_screen.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -36,5 +37,9 @@ class EnrollmentSummaryController extends GetxController {
   void onChangeBirthDay(DateTime date) {
     final String selectedDate = DateFormat('yyyy-MM-dd').format(date);
     expireDayController.text = selectedDate.toString();
+  }
+
+  void onProceedPayment() {
+    Get.to(() => EnrollmentCompleteScreen());
   }
 }

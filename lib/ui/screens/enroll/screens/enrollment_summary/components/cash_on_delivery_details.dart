@@ -17,13 +17,13 @@ class CashOnDeliveryDetails extends StatelessWidget {
     return Column(children: [
       Padding(
         padding: const EdgeInsets.only(top: 10, bottom: 24),
-        child: SvgPicture.asset(kCashOnDeliveryImage),
+        child: SvgPicture.asset(image),
       ),
-      const AppText(
-        text:
-            "Pay in cash using the exact change once your items are delivered!",
+      AppText(
+        text: message,
         style: TextTypes.bodyText1,
-        color: Color(0xFF707783),
+        color: const Color(0xFF707783),
+        align: TextAlign.center,
       )
     ]);
   }

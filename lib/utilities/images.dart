@@ -108,6 +108,10 @@ const kCashOnDeliveryIcon = 'assets/icons/cash_on_delivery.svg';
 const kPromptPayIcon = 'assets/icons/prompt_pay_icon.svg';
 const kCreditCardIcon = 'assets/icons/credit_card_icon.svg';
 const kECPayIcon = 'assets/icons/ec_pay_icon.svg';
+const kScanBarCodeImage = 'assets/images/scan_barcode_gradient_image.svg';
+
+//gradient
+
 
 // * Bottom tab bar
 const kBottomTabBarcodeActiveIcon = 'assets/icons/navigation/tab_barcode_icon_active.svg';
