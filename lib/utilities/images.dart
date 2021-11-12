@@ -29,6 +29,14 @@ const kOrderEntryFailureImage = 'assets/images/order_entry_failure.svg';
 const kOrderEntrySuccessImage = 'assets/images/order_entry_success.svg';
 const kScanErrorImage = 'assets/images/scan_error_image.svg';
 const kEasyShipBgImage = 'assets/images/easyship_background_image.png';
+
+const kCashOnDeliveryImage = 'assets/images/cash_on_delivery_image.svg';
+const kECPayImage = 'assets/images/ec_pay_image.svg';
+const kEnrolmentErrorImage = 'assets/images/enrolment_error_image.svg';
+const kEnrolmentSuccessImage = 'assets/images/enrolment_success_image.svg';
+const kPromptPayImage = 'assets/images/prompt_pay_image.svg';
+const kSalesCashCounterImage = 'assets/images/sales_cash_counter_image.svg';
+const kBarcodeExampleImage = 'assets/images/example_barcode_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityGradient3xImage = 'assets/icons/unicity_logo_3x.png';
@@ -94,6 +102,12 @@ const kOpenPoViewIcon = 'assets/icons/openpo_view_icon.svg';
 const kOpenPoEditIcon = 'assets/icons/openpo_edit_icon.svg';
 const kOpenPoCameraIcon = 'assets/icons/openpo_camera_icon.svg';
 const kScreenShotIcon = 'assets/icons/screen_shot_icon.svg';
+const kCashPayIcon = 'assets/icons/cash_pay_icon.svg';
+const kBankWireIcon = 'assets/icons/bank_wire_icon.svg';
+const kCashOnDeliveryIcon = 'assets/icons/cash_on_delivery.svg';
+const kPromptPayIcon = 'assets/icons/prompt_pay_icon.svg';
+const kCreditCardIcon = 'assets/icons/credit_card_icon.svg';
+const kECPayIcon = 'assets/icons/ec_pay_icon.svg';
 
 // * Bottom tab bar
 const kBottomTabBarcodeActiveIcon = 'assets/icons/navigation/tab_barcode_icon_active.svg';

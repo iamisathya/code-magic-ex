@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dsc_tools/models/provience_item.dart';
+import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/main_screen.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/address_search.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/enroll_textfield.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/modal_picker.dart';
@@ -167,4 +168,8 @@ class EnrollmentUserInfoController extends GetxController {
   //   final models = UserModel.fromJsonList(response.data as List<Map<String, dynamic>>);
   //   return models;
   // }
+
+  void onPressContinue(){
+    Get.to(() => EnrollmentSummaryScreen());
+  }
 }

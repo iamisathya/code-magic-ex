@@ -7,12 +7,12 @@ import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 import 'components/body.dart';
-import 'controller/enrollment.userinfo.controller.dart';
+import 'controller/enrollment.summary.controller.dart';
 
-class EnrollmentUserInfoScreen extends StatelessWidget {
-  final EnrollmentUserInfoController controller =
-      Get.put(EnrollmentUserInfoController());
-  static const String routeName = '/enrollmentUserInfoHomePage';
+class EnrollmentSummaryScreen extends StatelessWidget {
+  final EnrollmentSummaryController controller =
+      Get.put(EnrollmentSummaryController());
+  static const String routeName = '/enrollmentSummaryHomePage';
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +28,8 @@ class EnrollmentUserInfoScreen extends StatelessWidget {
             showNeutral: false,
             onTapCancelButton: Get.back,
             negetiveText: "Back",
-            positiveText: "Continue",
-            onTapPositiveButton: controller.onPressContinue,
-          ),
-          floatingActionButton: AnimatedOpacity(
-            opacity: controller.isScrolButtonVisible.value ? 0.0 : 1.0,
-            duration: const Duration(milliseconds: 100),
-            child: FloatingActionButton(
-                backgroundColor: const Color(0xFFFFBF3A),
-                onPressed: controller.onTapScrollToTop,
-                tooltip: 'scroll to top',
-                child:
-                    const Icon(Icons.arrow_upward, color: Color(0xFF000000))),
+            positiveText: "Proceed Payment",
+            onTapPositiveButton: Get.back,
           ),
         ),
       ),

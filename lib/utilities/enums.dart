@@ -86,3 +86,13 @@ enum OrderEntrySummaryFilters {
 enum PaymentTypes {
   payWithDsc
 }
+
+enum PaymentOptions {
+  creditCard,
+  cashOnDelivery,
+  cashCounterPay,
+  ecPay,
+  promptPay,
+  bankWire,
+  none
+}
