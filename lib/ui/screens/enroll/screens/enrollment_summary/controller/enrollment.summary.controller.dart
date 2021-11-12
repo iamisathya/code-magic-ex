@@ -1,8 +1,10 @@
 import 'package:dsc_tools/models/cart_products.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:intl/intl.dart';
 
 class EnrollmentSummaryController extends GetxController {
   RxBool isLoading = false.obs;
@@ -18,4 +20,21 @@ class EnrollmentSummaryController extends GetxController {
   TextEditingController cardHolderNameController = TextEditingController();
   TextEditingController expireDayController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
+
+  void selectExpiryDate(BuildContext context) {
+    DateTime? selectedDate;
+    if (expireDayController.text != "") {
+      final selcted = DateFormat("yyyy-MM-dd").parse(expireDayController.text);
+      selectedDate = DateTime(selcted.year, selcted.month, selcted.day);
+    }
+    DatePicker.showDatePicker(context,
+        minTime: DateTime.now(),
+        currentTime: selectedDate,
+        onConfirm: (date) => onChangeBirthDay(date));
+  }
+
+  void onChangeBirthDay(DateTime date) {
+    final String selectedDate = DateFormat('yyyy-MM-dd').format(date);
+    expireDayController.text = selectedDate.toString();
+  }
 }
