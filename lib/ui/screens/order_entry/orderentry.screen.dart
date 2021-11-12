@@ -72,9 +72,9 @@ class PositiveButton extends StatelessWidget {
               bottomRight: Radius.circular(30),
             ),
             gradient: LinearGradient(
-              begin: Alignment.bottomRight,
-              end: Alignment.topLeft,
-              colors: [Color(0xff1c9cfc), Color(0xff4cdfff)],
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [Color(0xFF1C9CFC), Color(0xFF4CDFFF)],
             ),
           ),
           child: Text(title,
