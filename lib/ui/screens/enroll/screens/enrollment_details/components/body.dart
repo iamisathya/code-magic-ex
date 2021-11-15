@@ -60,23 +60,38 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 EnrollTextField(
-                    controller: controller.idNumberTextController,
-                    label: "ID Card Number",
-                    textInputAction: TextInputAction.next,
-                    isLoading: controller.isLoading.value), //! Harcoded
+                  controller: controller.idNumberTextController,
+                  label: "ID Card Number", //! Harcoded
+                  textInputAction: TextInputAction.next,
+                  isLoading: controller.isLoading.value,
+                  icon: controller.isValidGovtId.value
+                      ? const Icon(Icons.check)
+                      : const Icon(Icons.arrow_right_alt_outlined),
+                  enabled: !controller.isValidGovtId.value,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: EnrollTextField(
-                      controller: controller.enrollerIdTextController,
-                      label: "Enroller ID",
-                      textInputAction: TextInputAction.next,
-                      isLoading: controller.isLoading.value), //! Harcoded
+                    controller: controller.enrollerIdTextController,
+                    label: "Enroller ID", //! Harcoded
+                    textInputAction: TextInputAction.next,
+                    isLoading: controller.isLoading.value,
+                    icon: controller.isValidGovtId.value
+                        ? const Icon(Icons.check)
+                        : const Icon(Icons.arrow_right_alt_outlined),
+                    enabled: !controller.isValidEnrolerId.value,
+                  ),
                 ),
                 EnrollTextField(
-                    controller: controller.sponsorIdTextController,
-                    label: "Sponsor ID",
-                    textInputAction: TextInputAction.done,
-                    isLoading: controller.isLoading.value), //! Harcoded
+                  controller: controller.sponsorIdTextController,
+                  label: "Sponsor ID", //! Harcoded
+                  textInputAction: TextInputAction.done,
+                  isLoading: controller.isLoading.value,
+                  icon: controller.isValidGovtId.value
+                      ? const Icon(Icons.check)
+                      : const Icon(Icons.arrow_right_alt_outlined),
+                  enabled: !controller.isValidSponsorId.value,
+                ),
               ],
             ),
           ),
@@ -116,12 +131,16 @@ class EnrollTextField extends StatelessWidget {
     required this.label,
     required this.textInputAction,
     required this.isLoading,
+    this.enabled = true,
+    this.icon = const Icon(Icons.arrow_right_alt_outlined),
   }) : super(key: key);
 
   final TextEditingController controller;
   final TextInputAction textInputAction;
   final String label;
   final bool isLoading;
+  final Icon icon;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +150,7 @@ class EnrollTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         autofocus: true,
+        enabled: enabled,
         textInputAction: textInputAction,
         decoration: InputDecoration(
             labelText: label,
@@ -139,10 +159,10 @@ class EnrollTextField extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
             border: InputBorder.none,
-            suffixIcon: isLoading
-                ? Image.asset(kAnimatedSpin, width: 20)
-                : const Icon(Icons.arrow_right_alt_outlined)),
+            suffixIcon:
+                isLoading ? Image.asset(kAnimatedSpin, width: 20) : icon),
       ),
     );
   }

@@ -33,7 +33,7 @@ class EnrollmentDetailsHomeScreen extends StatelessWidget {
             onTapCancelButton: () => Get.back(),
             negetiveText: "Back",
             positiveText: "Verify",
-            onTapPositiveButton: () => Get.to(() => EnrollmentUserInfoScreen()),
+            onTapPositiveButton: controller.verifyUserInfo,
           ),
         ),
       ),
