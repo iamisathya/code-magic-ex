@@ -5,6 +5,7 @@ import 'package:dsc_tools/models/cart_products.dart';
 import 'package:dsc_tools/models/inventory_records.dart';
 import 'package:dsc_tools/models/managed_warehouse.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/global/widgets/searchble_dropdown.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_details/home.dart';
 import 'package:dsc_tools/ui/screens/order_entry/screens/home/components/white_search_field.dart';
 import 'package:dsc_tools/utilities/enums.dart';
@@ -94,10 +95,14 @@ class EnrollHomeController extends GetxController {
   }
 
   void onContinue() {
+    if(cartProducts.isEmpty){
+      SnackbarUtil.showWarning(message: "Please add some products to cart before proceed!");
+      return;
+    }
     Get.to(() => EnrollmentDetailsHomeScreen());
   }
 
-  void showBottomModal(BuildContext context) {
+  void showBottomModal(BuildContext context) {    
     showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: const Color(0xFFF5F5F5),

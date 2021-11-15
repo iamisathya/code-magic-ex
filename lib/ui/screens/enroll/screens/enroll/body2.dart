@@ -1,11 +1,12 @@
 import 'package:dsc_tools/models/cart_products.dart';
+import 'package:dsc_tools/ui/global/widgets/searchble_dropdown.dart';
 import 'package:dsc_tools/ui/screens/enroll/controllers/enroll.controller.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/total_price_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'components/enroll_cart_item.dart';
+import 'components/total_price.dart';
 
 class Body extends StatelessWidget {
   final EnrollHomeController controller = Get.put(EnrollHomeController());
@@ -20,7 +21,8 @@ class Body extends StatelessWidget {
               constraints: BoxConstraints(minHeight: Get.height - 284),
               child: Column(
                 children: [
-                  Obx(() => ListView.builder(
+                  Obx(
+                    () => ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: controller.cartProducts.length,
@@ -41,17 +43,22 @@ class Body extends StatelessWidget {
                           ],
                           child: EnrollCartItem(item: item, idx: index),
                         );
-                      })),
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
             Column(
               children: [
-                Obx(() => TotalPrice(
-                      totalPrice: controller.totalCartPrice.value.toString(),
-                      totalPv: controller.totalCartPv.value.toString(),
-                      bgColor: const Color(0xFFF5F5F5),
-                    )),
+            SearchableDropdown(idx: 1, inventoryRecords: controller.searchResult.value, onSelected: (String , int ) {  },),
+                Obx(
+                  () => TotalPrice(
+                    totalPrice: controller.totalCartPrice.value.toString(),
+                    totalPv: controller.totalCartPv.value.toString(),
+                    bgColor: const Color(0xFFF5F5F5),
+                  ),
+                ),
               ],
             ),
           ],

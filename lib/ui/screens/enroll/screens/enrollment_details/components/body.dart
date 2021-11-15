@@ -75,7 +75,7 @@ class Body extends StatelessWidget {
                 EnrollTextField(
                     controller: controller.sponsorIdTextController,
                     label: "Sponsor ID",
-                    textInputAction: TextInputAction.go,
+                    textInputAction: TextInputAction.done,
                     isLoading: controller.isLoading.value), //! Harcoded
               ],
             ),

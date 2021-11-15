@@ -109,6 +109,7 @@ const kPromptPayIcon = 'assets/icons/prompt_pay_icon.svg';
 const kCreditCardIcon = 'assets/icons/credit_card_icon.svg';
 const kECPayIcon = 'assets/icons/ec_pay_icon.svg';
 const kScanBarCodeImage = 'assets/images/scan_barcode_gradient_image.svg';
+const kInputClearIcon = 'assets/icons/input_clear_icon.svg';
 
 //gradient
 
