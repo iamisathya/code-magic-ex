@@ -1,8 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/models/guest_user_info.dart';
 import 'package:dsc_tools/models/provience_item.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/main_screen.dart';
-import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/address_search.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/enroll_textfield.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/modal_picker.dart';
 import 'package:dsc_tools/utilities/keyboard.dart';
@@ -14,7 +13,6 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/state_manager.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
 
 import '../../../../../../utilities/extensions.dart';
 
@@ -52,9 +50,23 @@ class EnrollmentUserInfoController extends GetxController {
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
+  late GuestUserInfo enrolerProfile;
+  late GuestUserInfo sponsorProfile;
+
   @override
   void onInit() {
     super.onInit();
+    final dynamic data = Get.arguments as Map<String, dynamic>;
+    if (data != null) {
+      final GuestUserInfoList enroler =
+          data["enrolerProfile"] as GuestUserInfoList;
+      final GuestUserInfoList sponsor =
+          data["sponsorProfile"] as GuestUserInfoList;
+      enrolerProfile = enroler.items[0];
+      sponsorProfile = sponsor.items[0];
+    } else {
+      Get.back();
+    }
     getAllProvince();
     hideButtonController.addListener(() {
       if (hideButtonController.position.userScrollDirection ==
@@ -169,7 +181,7 @@ class EnrollmentUserInfoController extends GetxController {
   //   return models;
   // }
 
-  void onPressContinue(){
+  void onPressContinue() {
     Get.to(() => EnrollmentSummaryScreen());
   }
 }

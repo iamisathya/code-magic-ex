@@ -42,9 +42,11 @@ class UserInfoCard extends StatelessWidget {
             AppText(
                 text: name,
                 style: TextTypes.bodyText1,
+                maxLines: 1,
                 color: const Color(0xFF384250)),
             Text(
               nativeName,
+              maxLines: 1,
               style: Theme.of(context).textTheme.caption!.copyWith(
                     fontSize: 10,
                     color: const Color(0xFF384250),

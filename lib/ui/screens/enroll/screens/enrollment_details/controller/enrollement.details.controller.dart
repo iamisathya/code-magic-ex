@@ -12,8 +12,8 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class EnrollmentDetailsHomeController extends GetxController {
-  GuestUserInfoList enrollerProfile = GuestUserInfoList(items: []);
-  GuestUserInfoList sponserProfile = GuestUserInfoList(items: []);
+  GuestUserInfoList enrolerProfile = GuestUserInfoList(items: []);
+  GuestUserInfoList sponsorProfile = GuestUserInfoList(items: []);
   String enrollerName = "";
   String sponsorName = "";
 
@@ -57,7 +57,11 @@ class EnrollmentDetailsHomeController extends GetxController {
       }
       isLoading.toggle();
       if (isGovtIdVerified && isEnrolerIdVerified && isSponsorIdVerified) {
-        Get.to(() => EnrollmentUserInfoScreen());
+        final Map<String, dynamic> args = {
+          "enrolerProfile": enrolerProfile,
+          "sponsorProfile": sponsorProfile
+        };
+        Get.to(() => EnrollmentUserInfoScreen(), arguments: args);
       }
     }
   }
@@ -84,9 +88,9 @@ class EnrollmentDetailsHomeController extends GetxController {
   Future<bool> verifySponsor() async {
     try {
       // * Calling enroller validation
-      sponserProfile = await ApiService.shared().getCustomerInfo(
+      sponsorProfile = await ApiService.shared().getCustomerInfo(
           Parsing.intFrom(sponsorIdTextController.text)!, "customer");
-      sponsorName = enrollerProfile.items[0].humanName.fullName;
+      sponsorName = enrolerProfile.items[0].humanName.fullName;
       if (sponsorName != "") {
         isValidSponsorId.value = 1;
         return true;
@@ -107,9 +111,9 @@ class EnrollmentDetailsHomeController extends GetxController {
   Future<bool> verifyEnroller() async {
     try {
       // * Calling enroller validation
-      enrollerProfile = await ApiService.shared().getCustomerInfo(
+      enrolerProfile = await ApiService.shared().getCustomerInfo(
           Parsing.intFrom(enrollerIdTextController.text)!, "customer");
-      enrollerName = enrollerProfile.items[0].humanName.fullName;
+      enrollerName = enrolerProfile.items[0].humanName.fullName;
       if (enrollerName != "") {
         isValidEnrolerId.value = 1;
         return true;
@@ -130,11 +134,11 @@ class EnrollmentDetailsHomeController extends GetxController {
   Future<bool> verifyEnrollerSponsor() async {
     try {
       // * if sponsor & enroller are same
-      enrollerProfile = await ApiService.shared().getCustomerInfo(
+      enrolerProfile = await ApiService.shared().getCustomerInfo(
           Parsing.intFrom(enrollerIdTextController.text)!, "customer");
-      sponserProfile = enrollerProfile;
-      enrollerName = enrollerProfile.items[0].humanName.fullName;
-      sponsorName = enrollerProfile.items[0].humanName.fullName;
+      sponsorProfile = enrolerProfile;
+      enrollerName = enrolerProfile.items[0].humanName.fullName;
+      sponsorName = enrolerProfile.items[0].humanName.fullName;
       if (sponsorName != "") {
         isValidSponsorId.value = 1;
         isValidEnrolerId.value = 1;

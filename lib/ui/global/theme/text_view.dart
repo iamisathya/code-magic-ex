@@ -7,17 +7,20 @@ class AppText extends StatelessWidget {
   final Color color;
   final TextAlign align;
   final TextTypes style;
+  final int maxLines;
 
   const AppText(
       {required this.text,
       required this.style,
       this.color = const Color(0xFF000000),
+      this.maxLines = 10000,
       this.align = TextAlign.start});
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
         style: getThemeStyle(style, context).copyWith(color: color),
+        maxLines: maxLines,
         textAlign: align);
   }
 

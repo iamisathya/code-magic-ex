@@ -59,18 +59,20 @@ class Body extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               height: 134,
               child: Row(
-                children: const [
+                children: [
                   UserInfoCard(
                       title: "Enroller ID",
-                      id: "108357166",
-                      name: "Saoirse Worcestershire",
-                      nativeName: "ฏิญฐ์ ฌิฎฌื่ณ"),
-                  SizedBox(width: 10),
+                      id: controller.enrolerProfile.id.unicity.toString(),
+                      name: controller.enrolerProfile.humanName.fullName,
+                      nativeName:
+                          controller.enrolerProfile.humanName.fullNameTh!),
+                  const SizedBox(width: 10),
                   UserInfoCard(
                       title: "Sponsor ID",
-                      id: "108357166",
-                      name: "Saoirse Worcestershire",
-                      nativeName: "ฏิญฐ์ ฌิฎฌื่ณ"),
+                      id: controller.sponsorProfile.id.unicity.toString(),
+                      name: controller.sponsorProfile.humanName.fullName,
+                      nativeName:
+                          controller.sponsorProfile.humanName.fullNameTh!),
                 ],
               ),
             ),
