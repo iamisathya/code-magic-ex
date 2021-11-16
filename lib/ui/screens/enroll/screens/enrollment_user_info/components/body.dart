@@ -9,42 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import 'address_search.dart';
 import 'user_info_card.dart';
 
 class Body extends StatelessWidget {
   final EnrollmentUserInfoController controller =
       Get.put(EnrollmentUserInfoController());
-
-  Widget _getBody(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 5),
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFFD0D0CF)),
-              color: const Color(0xFFFFFFFF),
-              borderRadius: BorderRadius.circular(3)),
-          child: TextField(
-            controller: controller.addressSearchController,
-            autofocus: true,
-            textInputAction: TextInputAction.go,
-            decoration: const InputDecoration(
-              fillColor: Color(0xFFFFFFFF),
-              filled: true,
-              floatingLabelBehavior: FloatingLabelBehavior.auto,
-              contentPadding: EdgeInsets.symmetric(horizontal: 15),
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              disabledBorder: InputBorder.none,
-              border: InputBorder.none,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
