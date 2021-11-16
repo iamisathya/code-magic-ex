@@ -4,9 +4,11 @@ import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/country_details.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -148,6 +150,18 @@ void showAlertDialog(BuildContext context,
       return alert;
     },
   );
+}
+
+Future<CountryDetails> getCountryCode(String countryCode) async {
+  final String countries =
+      await rootBundle.loadString('assets/json/country_state.json');
+  final List<dynamic> parsedListJson = jsonDecode(countries) as List<dynamic>;
+  final List<CountryDetails> itemsList = List<CountryDetails>.from(
+      parsedListJson
+          .map((i) => CountryDetails.fromJson(i as Map<String, dynamic>)));
+  final CountryDetails item = itemsList
+      .firstWhere((element) => element.alpha3Code == countryCode);
+  return item;
 }
 
 String getErrorMessage(dynamic error) {

@@ -59,7 +59,8 @@ class EnrollmentDetailsHomeController extends GetxController {
       if (isGovtIdVerified && isEnrolerIdVerified && isSponsorIdVerified) {
         final Map<String, dynamic> args = {
           "enrolerProfile": enrolerProfile,
-          "sponsorProfile": sponsorProfile
+          "sponsorProfile": sponsorProfile,
+          "govtId": idNumberTextController.text,
         };
         Get.to(() => EnrollmentUserInfoScreen(), arguments: args);
       }

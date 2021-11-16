@@ -1,11 +1,18 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dsc_tools/models/complete_addres.dart';
+import 'package:dsc_tools/models/country_details.dart';
+import 'package:dsc_tools/models/enroll_response.dart';
+import 'package:dsc_tools/models/enrollee_user_data.dart';
 import 'package:dsc_tools/models/guest_user_info.dart';
 import 'package:dsc_tools/models/provience_item.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/main_screen.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/modal_picker.dart';
 import 'package:dsc_tools/ui/screens/order_entry/screens/home/components/white_search_field.dart';
+import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/logger.dart';
 import 'package:dsc_tools/utilities/snackbar.dart';
@@ -13,6 +20,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -34,6 +42,8 @@ class EnrollmentUserInfoController extends GetxController {
   RxInt selectedProvience = 0.obs;
   final RxList<ProvinceItem> allProvince = <ProvinceItem>[].obs;
   Rx<CompleteAddressResponse> searchedAddresses = CompleteAddressResponse().obs;
+  Rx<String> countryCode = "".obs;
+  Rx<String> govtId = "".obs;
 
   List<String> genderOptions = ["Male", "Female"];
   List<String> maritalStatusOptions = ["Single", "Married"];
@@ -61,6 +71,8 @@ class EnrollmentUserInfoController extends GetxController {
   late GuestUserInfo enrolerProfile;
   late GuestUserInfo sponsorProfile;
 
+  late EnrolleeUserData enroleeData;
+
   @override
   void onInit() {
     super.onInit();
@@ -70,6 +82,7 @@ class EnrollmentUserInfoController extends GetxController {
           data["enrolerProfile"] as GuestUserInfoList;
       final GuestUserInfoList sponsor =
           data["sponsorProfile"] as GuestUserInfoList;
+      govtId.value = data["govtId"] as String;
       enrolerProfile = enroler.items[0];
       sponsorProfile = sponsor.items[0];
     } else {
@@ -262,10 +275,71 @@ class EnrollmentUserInfoController extends GetxController {
 
   void _onSelectAddress(CompleteAddress address) {
     Navigator.pop(Get.context!);
-    districtController.text = address.sub1Roman;
+    districtController.text = address.returnAddressRoman;
     provienceController.text = address.cityRoman;
     zipCodeController.text = address.zip;
-    streetController.text = address.sub2Roman;
+    countryCode.value = address.countryCode;
+  }
+
+  Future<void> verifyEnrollForm() async {
+    final CountryDetails item = await getCountryCode(countryCode.value);
+    enroleeData = EnrolleeUserData(
+        enrollerId: enrolerProfile.id.unicity.toString(),
+        enrollerName: enrolerProfile.humanName.fullName,
+        sponsorId: sponsorProfile.id.unicity.toString(),
+        sponsorName: sponsorProfile.humanName.fullName,
+        firstName: firstNameController.text,
+        lastName: lastNameController.text,
+        firstNameTh: nativeFirstNameController.text,
+        lastNameTh: nativeLastNameController.text,
+        gender: genderController.text,
+        maritalStatus: maritalStatusController.text,
+        dateOfBirth: birthdayController.text,
+        mainAddress1: districtController.text,
+        mainAddress2: streetController.text,
+        city: provienceController.text,
+        country: item.code!,
+        zipCode: zipCodeController.text,
+        email: emailController.text,
+        mobileNumber: mobileNumberController.text,
+        phoneNumber: mobileNumberController.text.substring(0, 9),
+        taxId: govtId.value,
+        password: "1234");
+    try {
+      isLoading.toggle();
+      final response = await MemberCallsService.init().verifyEnrollForm(
+          "English",
+          firstNameController.text,
+          lastNameController.text,
+          nativeFirstNameController.text,
+          nativeLastNameController.text,
+          genderController.text.toLowerCase(),
+          maritalStatusController.text,
+          birthdayController.text,
+          districtController.text,
+          streetController.text,
+          "area.value",
+          item.code!,
+          zipCodeController.text,
+          emailController.text,
+          mobileNumberController.text,
+          mobileNumberController.text.substring(0, 9),
+          "22222");
+      final body = json.decode(response.toString());
+      final enrollResponse =
+          EnrollResponse.fromJson(body as Map<String, dynamic>);
+      if (enrollResponse.success == "No" && enrollResponse.message.isNotEmpty) {
+        // errorMessages.clear();
+        // errorMessages.addAll(enrollResponse.message);
+      } else {
+        Get.to(() => EnrollmentSummaryScreen(), arguments: enroleeData);
+      }
+      isLoading.toggle();
+    } catch (err, s) {
+      isLoading.toggle();
+      debugPrint(s.toString());
+      LoggerService.instance.e(err.toString());
+    }
   }
 
   void clearAddress() {

@@ -29,17 +29,20 @@ class EnrollmentUserInfoScreen extends StatelessWidget {
             onTapCancelButton: Get.back,
             negetiveText: "Back",
             positiveText: "Continue",
-            onTapPositiveButton: controller.onPressContinue,
+            onTapPositiveButton: controller.verifyEnrollForm,
           ),
           floatingActionButton: AnimatedOpacity(
             opacity: controller.isScrolButtonVisible.value ? 0.0 : 1.0,
             duration: const Duration(milliseconds: 100),
             child: FloatingActionButton(
-                backgroundColor: const Color(0xFFFFBF3A),
-                onPressed: controller.onTapScrollToTop,
-                tooltip: 'scroll to top',
-                child:
-                    const Icon(Icons.arrow_upward, color: Color(0xFF000000))),
+              backgroundColor: const Color(0xFFFFBF3A),
+              onPressed: controller.onTapScrollToTop,
+              tooltip: 'scroll to top',
+              child: const Icon(
+                Icons.arrow_upward,
+                color: Color(0xFF000000),
+              ),
+            ),
           ),
         ),
       ),
