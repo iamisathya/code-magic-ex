@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/complete_addres.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -503,6 +504,10 @@ abstract class MemberCalls2Service {
   //? Example: https://member-calls2.unicity.com/etlV2/cache/clearAll?baId=2970466
   @DELETE(Address.clearOrderCache)
   Future<ClearOrderCacheResponse> clearOrderCache(@Query('baId') String baId);
+
+  //? url=Request URL: https://member-calls2.unicity.com/unishop-fn-misc/city/search?country_code=THA&keyword=10240
+  @GET(Address.addressList)
+  Future<CompleteAddressResponse> getAddressByZipcode(@Query("country_code") String type, @Query("keyword") String keyword);
 }
 
 @RestApi(baseUrl: Address.dscBase)

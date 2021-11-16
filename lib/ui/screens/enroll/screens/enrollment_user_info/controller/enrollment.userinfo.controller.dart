@@ -1,12 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/models/complete_addres.dart';
 import 'package:dsc_tools/models/guest_user_info.dart';
 import 'package:dsc_tools/models/provience_item.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/main_screen.dart';
-import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/enroll_textfield.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/modal_picker.dart';
 import 'package:dsc_tools/ui/screens/order_entry/screens/home/components/white_search_field.dart';
 import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/keyboard.dart';
+import 'package:dsc_tools/utilities/logger.dart';
+import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ import '../../../../../../utilities/extensions.dart';
 class EnrollmentUserInfoController extends GetxController {
   final FocusNode nodeText2 = FocusNode();
   RxBool isLoading = false.obs;
+  RxBool isSearchingAddres = false.obs;
   RxBool isScrolButtonVisible = false.obs;
   ScrollController hideButtonController = ScrollController();
   RxInt selectedGenderIndex = 0.obs;
@@ -30,6 +33,7 @@ class EnrollmentUserInfoController extends GetxController {
   RxBool isUnderAgeLimit = false.obs;
   RxInt selectedProvience = 0.obs;
   final RxList<ProvinceItem> allProvince = <ProvinceItem>[].obs;
+  Rx<CompleteAddressResponse> searchedAddresses = CompleteAddressResponse().obs;
 
   List<String> genderOptions = ["Male", "Female"];
   List<String> maritalStatusOptions = ["Single", "Married"];
@@ -94,6 +98,27 @@ class EnrollmentUserInfoController extends GetxController {
         await MemberCallsService.init().getAllProvince("getAllProvince");
     provienceOptions =
         List.from(allProvince.map((element) => element.proNameEn));
+  }
+
+  Future<void> getAddresByZipcode() async {
+    if (addressSearchController.text.isEmpty) {
+      SnackbarUtil.showWarning(message: "Search field shouldn't be empty");
+      return;
+    }
+    try {
+      searchedAddresses.value.data = [];
+      isSearchingAddres.toggle();
+      searchedAddresses.value = await MemberCalls2Service.init()
+          .getAddressByZipcode("THA", addressSearchController.text);
+      isSearchingAddres.toggle();
+    } on DioError catch (e) {
+      isSearchingAddres.toggle();
+      SnackbarUtil.showError(message: "Error! ${e.response}");
+    } catch (err, e) {
+      isSearchingAddres.toggle();
+      debugPrint(e.toString());
+      LoggerService.instance.e(err.toString());
+    }
   }
 
   void onTapScrollToTop() {
@@ -174,48 +199,57 @@ class EnrollmentUserInfoController extends GetxController {
                   padding: const EdgeInsets.only(left: 4, right: 4, top: 4),
                   child: WhiteSearchField(
                       controller: addressSearchController,
-                      onPress: searchAddress,
+                      onPress: getAddresByZipcode,
                       hintText: "Search Address",
-                      isFetching: false.obs),
+                      isFetching: isSearchingAddres),
                 ),
                 const SizedBox(height: 5),
+                if (addresses.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Obx(() => Text(
+                        'Found ${searchedAddresses.value.data!.length} item(s) matched with "${addressSearchController.text}".')),
+                  ),
                 Expanded(
-                  child: ListView.builder(
-                    controller: ctrl,
-                    itemCount: addresses.length,
-                    itemBuilder: (BuildContext ctxt, int index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Card(
-                          child: Container(
-                            height: 50,
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
-                                  child: SvgPicture.asset(kLocationIcon,
-                                      width: 20),
-                                ),
-                                Expanded(
-                                  child: Text("Hi",
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle2!
-                                          .copyWith(
-                                              color: const Color(0xFF384250))),
-                                )
-                              ],
+                  child: Obx(
+                    () => ListView.builder(
+                      controller: ctrl,
+                      itemCount: searchedAddresses.value.data!.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        final CompleteAddress item =
+                            searchedAddresses.value.data![index];
+                        return GestureDetector(
+                          onTap: () => _onSelectAddress(item),
+                          child: Card(
+                            child: Container(
+                              height: 50,
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15),
+                                    child: SvgPicture.asset(kLocationIcon,
+                                        width: 20),
+                                  ),
+                                  Expanded(
+                                    child: Text(item.searchAddressRoman,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle2!
+                                            .copyWith(
+                                                color:
+                                                    const Color(0xFF384250))),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 )
               ],
@@ -223,11 +257,20 @@ class EnrollmentUserInfoController extends GetxController {
           ),
         );
       },
-    ).whenComplete(() => addressSearchController.text = "");
+    ).whenComplete(() => clearAddress);
   }
 
-  Future<void> searchAddress() async{
-    
+  void _onSelectAddress(CompleteAddress address) {
+    Navigator.pop(Get.context!);
+    districtController.text = address.sub1Roman;
+    provienceController.text = address.cityRoman;
+    zipCodeController.text = address.zip;
+    streetController.text = address.sub2Roman;
+  }
+
+  void clearAddress() {
+    addressSearchController.text = "";
+    searchedAddresses.value.data = [];
   }
 
   void onPressContinue() {

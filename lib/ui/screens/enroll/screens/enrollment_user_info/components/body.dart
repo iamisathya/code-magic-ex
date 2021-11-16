@@ -176,21 +176,11 @@ class Body extends StatelessWidget {
                       isLoading: controller.isLoading.value,
                       label: 'Zip Code',
                       textInputAction: TextInputAction.next),
-                  GestureDetector(
-                    onTap: () => controller.showPicker(
-                        context,
-                        controller.selectedProvience,
-                        controller.provienceOptions,
-                        controller.provienceController),
-                    child: EnrollTextField(
-                        controller: controller.provienceController,
-                        isLoading: controller.isLoading.value,
-                        label: 'Province',
-                        icon: Icons.add,
-                        enabled: false,
-                        showIcon: true,
-                        textInputAction: TextInputAction.next),
-                  ),
+                  EnrollTextField(
+                      controller: controller.provienceController,
+                      isLoading: controller.isLoading.value,
+                      label: 'Province',
+                      textInputAction: TextInputAction.next),
                   EnrollTextField(
                       controller: controller.districtController,
                       isLoading: controller.isLoading.value,
