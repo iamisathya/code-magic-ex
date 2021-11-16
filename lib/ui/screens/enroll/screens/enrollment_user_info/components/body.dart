@@ -171,7 +171,6 @@ class Body extends StatelessWidget {
                       ],
                     ),
                   ),
-                  AddressSearchModal(),
                   EnrollTextField(
                       controller: controller.zipCodeController,
                       isLoading: controller.isLoading.value,

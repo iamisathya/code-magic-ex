@@ -4,12 +4,15 @@ import 'package:dsc_tools/models/provience_item.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/main_screen.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/enroll_textfield.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/modal_picker.dart';
+import 'package:dsc_tools/ui/screens/order_entry/screens/home/components/white_search_field.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/keyboard.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/state_manager.dart';
@@ -30,6 +33,7 @@ class EnrollmentUserInfoController extends GetxController {
 
   List<String> genderOptions = ["Male", "Female"];
   List<String> maritalStatusOptions = ["Single", "Married"];
+  List<String> addresses = ["Bangalore", "Mysore"];
   List<String> provienceOptions = [];
 
   TextEditingController addressSearchController = TextEditingController();
@@ -150,36 +154,81 @@ class EnrollmentUserInfoController extends GetxController {
     birthdayController.text = selectedDate.toString();
   }
 
-  void openAddressSearchDialog(BuildContext context) => showDialog(
-        context: context,
-        barrierDismissible: false,
-        barrierColor: Colors.black54,
-        builder: (BuildContext context) {
-          return Dialog(
-            insetPadding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
-            child: EnrollTextField(
-                controller: addressSearchController,
-                isLoading: false,
-                label: 'Zip Code',
-                showIcon: true,
-                onIconTap: () {
-                  Get.back();
-                  KeyboardUtil.hideKeyboard(context);
-                },
-                textInputAction: TextInputAction.go),
-          );
-        },
-      );
+  void openAddressSearchDialog(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFFF5F5F5),
+      context: context,
+      isDismissible: true,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          minChildSize: 0.2,
+          maxChildSize: 0.75,
+          expand: false,
+          builder: (_, ctrl) => Container(
+            color: const Color(0xFFE3E8ED),
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 4, right: 4, top: 4),
+                  child: WhiteSearchField(
+                      controller: addressSearchController,
+                      onPress: searchAddress,
+                      hintText: "Search Address",
+                      isFetching: false.obs),
+                ),
+                const SizedBox(height: 5),
+                Expanded(
+                  child: ListView.builder(
+                    controller: ctrl,
+                    itemCount: addresses.length,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Card(
+                          child: Container(
+                            height: 50,
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  child: SvgPicture.asset(kLocationIcon,
+                                      width: 20),
+                                ),
+                                Expanded(
+                                  child: Text("Hi",
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle2!
+                                          .copyWith(
+                                              color: const Color(0xFF384250))),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    ).whenComplete(() => addressSearchController.text = "");
+  }
 
-  // Future<UserModel>? searchAddresByZipCode(String filter) async {
-  //   var response = await Dio().get(
-  //       "http://5d85ccfb1e61af001471bf60.mockapi.io/user",
-  //       queryParameters: {"filter": filter},
-  //   );
-  //   final models = UserModel.fromJsonList(response.data as List<Map<String, dynamic>>);
-  //   return models;
-  // }
+  Future<void> searchAddress() async{
+    
+  }
 
   void onPressContinue() {
     Get.to(() => EnrollmentSummaryScreen());
