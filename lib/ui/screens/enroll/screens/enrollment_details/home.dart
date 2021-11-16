@@ -22,7 +22,6 @@ class EnrollmentDetailsHomeScreen extends StatelessWidget {
         isLoading: controller.isLoading.value,
         progressIndicator: const Loader(),
         child: Scaffold(
-          backgroundColor: kWhiteSmokeColor,
           appBar: OpenPoAppBar(),
           body: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

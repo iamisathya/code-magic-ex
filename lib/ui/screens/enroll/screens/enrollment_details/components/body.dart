@@ -6,8 +6,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'error_message.dart';
-
 class Body extends StatelessWidget {
   final EnrollmentDetailsHomeController controller =
       Get.put(EnrollmentDetailsHomeController());
@@ -59,39 +57,61 @@ class Body extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                EnrollTextField(
-                  controller: controller.idNumberTextController,
-                  label: "ID Card Number", //! Harcoded
-                  textInputAction: TextInputAction.next,
-                  isLoading: controller.isLoading.value,
-                  icon: controller.isValidGovtId.value
-                      ? const Icon(Icons.check)
-                      : const Icon(Icons.arrow_right_alt_outlined),
-                  enabled: !controller.isValidGovtId.value,
-                ),
+                Obx(() => EnrollTextField(
+                      controller: controller.idNumberTextController,
+                      label: "ID Card Number", //! Harcoded
+                      textInputAction: TextInputAction.next,
+                      isLoading: controller.isLoading.value,
+                      fillColor: controller.isValidGovtId.value == 0
+                          ? const Color(0xFFFFFFFF)
+                          : controller.isValidGovtId.value == 1
+                              ? const Color(0xFFF5F5F5)
+                              : const Color(0xFFFFE7EB),
+                      icon: controller.isValidGovtId.value == 1
+                          ? const Icon(Icons.check, color: Colors.green)
+                          : const Icon(Icons.arrow_right_alt_outlined),
+                      onTap: () => controller.isValidGovtId.value = 0,
+                      enabled: controller.isValidGovtId.value == 0 ||
+                          controller.isValidGovtId.value == 2,
+                    )),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: EnrollTextField(
-                    controller: controller.enrollerIdTextController,
-                    label: "Enroller ID", //! Harcoded
-                    textInputAction: TextInputAction.next,
-                    isLoading: controller.isLoading.value,
-                    icon: controller.isValidGovtId.value
-                        ? const Icon(Icons.check)
-                        : const Icon(Icons.arrow_right_alt_outlined),
-                    enabled: !controller.isValidEnrolerId.value,
-                  ),
+                  child: Obx(() => EnrollTextField(
+                        controller: controller.enrollerIdTextController,
+                        label: "Enroller ID", //! Harcoded
+                        textInputAction: TextInputAction.next,
+                        isLoading: controller.isLoading.value,
+                        fillColor: controller.isValidEnrolerId.value == 0
+                            ? const Color(0xFFFFFFFF)
+                            : controller.isValidEnrolerId.value == 1
+                                ? const Color(0xFFF5F5F5)
+                                : const Color(0xFFFFE7EB),
+                        icon: controller.isValidEnrolerId.value == 1
+                            ? const Icon(Icons.check, color: Colors.green)
+                            : const Icon(Icons.arrow_right_alt_outlined),
+                        onTap: () => controller.isValidEnrolerId.value = 0,
+                        enabled: controller.isValidEnrolerId.value == 0 ||
+                            controller.isValidEnrolerId.value == 2,
+                      )),
                 ),
-                EnrollTextField(
-                  controller: controller.sponsorIdTextController,
-                  label: "Sponsor ID", //! Harcoded
-                  textInputAction: TextInputAction.done,
-                  isLoading: controller.isLoading.value,
-                  icon: controller.isValidGovtId.value
-                      ? const Icon(Icons.check)
-                      : const Icon(Icons.arrow_right_alt_outlined),
-                  enabled: !controller.isValidSponsorId.value,
-                ),
+                Obx(() => EnrollTextField(
+                      controller: controller.sponsorIdTextController,
+                      label: "Sponsor ID", //! Harcoded
+                      textInputAction: TextInputAction.done,
+                      isLoading: controller.isLoading.value,
+                      fillColor: controller.isValidSponsorId.value == 0
+                          ? const Color(0xFFFFFFFF)
+                          : controller.isValidSponsorId.value == 1
+                              ? const Color(0xFFF5F5F5)
+                              : const Color(0xFFFFE7EB),
+                      icon: controller.isValidSponsorId.value == 1
+                          ? const Icon(Icons.check, color: Colors.green)
+                          : const Icon(Icons.arrow_right_alt_outlined),
+                      onTap: () => controller.isValidSponsorId.value = 0,
+                      enabled: controller.isValidSponsorId.value == 0 ||
+                          controller.isValidSponsorId.value == 2,
+                    )),
+                    Obx(() => Text(controller.isValidEnrolerId.value.toString()))
               ],
             ),
           ),
@@ -132,6 +152,8 @@ class EnrollTextField extends StatelessWidget {
     required this.textInputAction,
     required this.isLoading,
     this.enabled = true,
+    this.fillColor = const Color(0xFFFFFFFF),
+    this.onTap,
     this.icon = const Icon(Icons.arrow_right_alt_outlined),
   }) : super(key: key);
 
@@ -141,28 +163,35 @@ class EnrollTextField extends StatelessWidget {
   final bool isLoading;
   final Icon icon;
   final bool enabled;
+  final Color fillColor;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration:
           BoxDecoration(border: Border.all(color: const Color(0xFF384250))),
-      child: TextField(
-        controller: controller,
-        autofocus: true,
-        enabled: enabled,
-        textInputAction: textInputAction,
-        decoration: InputDecoration(
-            labelText: label,
-            floatingLabelBehavior: FloatingLabelBehavior.auto,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            border: InputBorder.none,
-            suffixIcon:
-                isLoading ? Image.asset(kAnimatedSpin, width: 20) : icon),
+      child: GestureDetector(
+        onTap: onTap,
+        child: TextField(
+          controller: controller,
+          autofocus: true,
+          enabled: enabled,
+          textInputAction: textInputAction,
+          decoration: InputDecoration(
+              labelText: label,
+              floatingLabelBehavior: FloatingLabelBehavior.auto,
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              border: InputBorder.none,
+              fillColor: fillColor,
+              filled: true,
+              suffixIcon:
+                  isLoading ? Image.asset(kAnimatedSpin, width: 20) : icon),
+        ),
       ),
     );
   }

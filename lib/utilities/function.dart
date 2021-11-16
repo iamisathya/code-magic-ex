@@ -96,6 +96,9 @@ dynamic returnResponse(dio.Response response) {
       if (errorMsg == "Unauthorized") {
         errorMsg = "Invalid credentials";
       }
+      if (errorMsg == "Not Found") {
+        errorMsg = getErrorMessage(response.data);
+      }
       throw UnauthorisedException(message: errorMsg);
     case 408:
       throw TimeOutException(message: response.data.toString());
