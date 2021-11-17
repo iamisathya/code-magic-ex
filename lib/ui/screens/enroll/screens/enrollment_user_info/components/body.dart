@@ -1,4 +1,5 @@
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_details/components/error_message.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/enroll_textfield.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/controller/enrollment.userinfo.controller.dart';
 import 'package:dsc_tools/ui/screens/inventory/component/page_title.dart';
@@ -85,7 +86,7 @@ class Body extends StatelessWidget {
                               controller.genderController),
                           child: EnrollTextField(
                               controller: controller.genderController,
-                              isLoading: controller.isLoading.value,
+                              isLoading: false,
                               label: 'Gender',
                               icon: Icons.add,
                               showIcon: true,
@@ -103,7 +104,7 @@ class Body extends StatelessWidget {
                               controller.maritalStatusController),
                           child: EnrollTextField(
                               controller: controller.maritalStatusController,
-                              isLoading: controller.isLoading.value,
+                              isLoading: false,
                               label: 'Marital Status',
                               icon: Icons.add,
                               showIcon: true,
@@ -117,7 +118,7 @@ class Body extends StatelessWidget {
                     onTap: () => controller.renderDatePicker(context),
                     child: EnrollTextField(
                         controller: controller.birthdayController,
-                        isLoading: controller.isLoading.value,
+                        isLoading: false,
                         label: 'Birth Day',
                         icon: Icons.add,
                         showIcon: true,
@@ -170,6 +171,8 @@ class Body extends StatelessWidget {
                       isLoading: controller.isLoading.value,
                       label: 'Email',
                       textInputAction: TextInputAction.next),
+                  if (controller.enrolmentErrorMessages.isNotEmpty) 
+                    Obx(() => ErrorMessage(errors: controller.enrolmentErrorMessages)),
                 ],
               ),
             ),

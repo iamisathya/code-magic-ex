@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/complete_addres.dart';
 import 'package:dsc_tools/models/country_details.dart';
 import 'package:dsc_tools/models/enroll_response.dart';
@@ -41,6 +42,7 @@ class EnrollmentUserInfoController extends GetxController {
   RxBool isUnderAgeLimit = false.obs;
   RxInt selectedProvience = 0.obs;
   final RxList<ProvinceItem> allProvince = <ProvinceItem>[].obs;
+  final RxList<String> enrolmentErrorMessages = <String>[].obs;
   Rx<CompleteAddressResponse> searchedAddresses = CompleteAddressResponse().obs;
   Rx<String> countryCode = "".obs;
   Rx<String> govtId = "".obs;
@@ -282,30 +284,37 @@ class EnrollmentUserInfoController extends GetxController {
   }
 
   Future<void> verifyEnrollForm() async {
-    final CountryDetails item = await getCountryCode(countryCode.value);
-    enroleeData = EnrolleeUserData(
-        enrollerId: enrolerProfile.id.unicity.toString(),
-        enrollerName: enrolerProfile.humanName.fullName,
-        sponsorId: sponsorProfile.id.unicity.toString(),
-        sponsorName: sponsorProfile.humanName.fullName,
-        firstName: firstNameController.text,
-        lastName: lastNameController.text,
-        firstNameTh: nativeFirstNameController.text,
-        lastNameTh: nativeLastNameController.text,
-        gender: genderController.text,
-        maritalStatus: maritalStatusController.text,
-        dateOfBirth: birthdayController.text,
-        mainAddress1: districtController.text,
-        mainAddress2: streetController.text,
-        city: provienceController.text,
-        country: item.code!,
-        zipCode: zipCodeController.text,
-        email: emailController.text,
-        mobileNumber: mobileNumberController.text,
-        phoneNumber: mobileNumberController.text.substring(0, 9),
-        taxId: govtId.value,
-        password: "1234");
     try {
+      final alpha2Code =
+          countryCode.value != "" ? countryCode.value : Globals.countryCode;
+      final CountryDetails item = await getCountryCode(alpha2Code);
+      final phoneNumber = mobileNumberController.text.length > 9
+          ? mobileNumberController.text.substring(0, 9)
+          : mobileNumberController.text;
+
+      enroleeData = EnrolleeUserData(
+          enrollerId: enrolerProfile.id.unicity.toString(),
+          enrollerName: enrolerProfile.humanName.fullName,
+          sponsorId: sponsorProfile.id.unicity.toString(),
+          sponsorName: sponsorProfile.humanName.fullName,
+          firstName: firstNameController.text,
+          lastName: lastNameController.text,
+          firstNameTh: nativeFirstNameController.text,
+          lastNameTh: nativeLastNameController.text,
+          gender: genderController.text,
+          maritalStatus: maritalStatusController.text,
+          dateOfBirth: birthdayController.text,
+          mainAddress1: districtController.text,
+          mainAddress2: streetController.text,
+          city: provienceController.text,
+          country: item.code!,
+          zipCode: zipCodeController.text,
+          email: emailController.text,
+          mobileNumber: mobileNumberController.text,
+          phoneNumber: phoneNumber,
+          taxId: govtId.value,
+          password: "1234");
+
       isLoading.toggle();
       final response = await MemberCallsService.init().verifyEnrollForm(
           "English",
@@ -323,15 +332,16 @@ class EnrollmentUserInfoController extends GetxController {
           zipCodeController.text,
           emailController.text,
           mobileNumberController.text,
-          mobileNumberController.text.substring(0, 9),
+          phoneNumber,
           "22222");
       final body = json.decode(response.toString());
       final enrollResponse =
           EnrollResponse.fromJson(body as Map<String, dynamic>);
       if (enrollResponse.success == "No" && enrollResponse.message.isNotEmpty) {
-        // errorMessages.clear();
-        // errorMessages.addAll(enrollResponse.message);
+        enrolmentErrorMessages.clear();
+        enrolmentErrorMessages.addAll(enrollResponse.message);
       } else {
+        enrolmentErrorMessages.clear();
         Get.to(() => EnrollmentSummaryScreen(), arguments: enroleeData);
       }
       isLoading.toggle();

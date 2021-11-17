@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -79,7 +80,7 @@ class Body extends StatelessWidget {
                       MenuOption(
                           icon: kEnrollIcon,
                           optionTitle: "Enroll",
-                          onPress: () => Get.to(() => EnrollHomeScreen())),
+                          onPress: () => Get.to(() => EnrollHomeScreen())), //EnrollHomeScreen
                       MenuOption(
                           icon: kOrderEntryIcon,
                           optionTitle: "Order Entry",
