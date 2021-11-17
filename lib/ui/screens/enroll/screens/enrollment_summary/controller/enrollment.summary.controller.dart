@@ -1,4 +1,5 @@
 import 'package:dsc_tools/models/cart_products.dart';
+import 'package:dsc_tools/models/enrollee_user_data.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrolment_complete/main_screen.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,19 @@ class EnrollmentSummaryController extends GetxController {
   TextEditingController cardHolderNameController = TextEditingController();
   TextEditingController expireDayController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
+
+  late EnrolleeUserData enrolleeUserData;
+
+   @override
+  void onInit() {
+    super.onInit();
+    final dynamic data = Get.arguments as Map<String, dynamic>;
+    if (data != null) {
+      enrolleeUserData = data as EnrolleeUserData;
+    } else {
+      Get.back();
+    }
+  }
 
   void selectExpiryDate(BuildContext context) {
     DateTime? selectedDate;

@@ -1,11 +1,7 @@
-import 'package:dotted_decoration/dotted_decoration.dart';
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/cart_products.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enroll/components/enroll_cart_item.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/controller/enrollment.summary.controller.dart';
 import 'package:dsc_tools/ui/screens/inventory/component/page_title.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

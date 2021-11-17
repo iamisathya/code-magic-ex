@@ -219,7 +219,7 @@ class EnrollmentUserInfoController extends GetxController {
                       isFetching: isSearchingAddres),
                 ),
                 const SizedBox(height: 5),
-                if (addresses.isNotEmpty)
+                if (searchedAddresses.value.data!.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Obx(() => Text(
@@ -272,7 +272,7 @@ class EnrollmentUserInfoController extends GetxController {
           ),
         );
       },
-    ).whenComplete(() => clearAddress);
+    ).whenComplete(clearAddress);
   }
 
   void _onSelectAddress(CompleteAddress address) {
@@ -354,7 +354,7 @@ class EnrollmentUserInfoController extends GetxController {
 
   void clearAddress() {
     addressSearchController.text = "";
-    searchedAddresses.value.data = [];
+    searchedAddresses.value.data!.clear();
   }
 
   void onPressContinue() {
