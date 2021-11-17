@@ -172,7 +172,7 @@ class Body extends StatelessWidget {
                       label: 'Email',
                       textInputAction: TextInputAction.next),
                   if (controller.enrolmentErrorMessages.isNotEmpty) 
-                    Obx(() => ErrorMessage(errors: controller.enrolmentErrorMessages)),
+                    ErrorMessage(errors: controller.enrolmentErrorMessages),
                 ],
               ),
             ),
