@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 
-class EnrollmentSummaryController extends GetxController {
+class EnrollmentSummaryController extends GetxController {  
   RxBool isLoading = false.obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
 
@@ -28,9 +28,9 @@ class EnrollmentSummaryController extends GetxController {
    @override
   void onInit() {
     super.onInit();
-    final dynamic data = Get.arguments as Map<String, dynamic>;
-    if (data != null) {
-      enrolleeUserData = data as EnrolleeUserData;
+    final EnrolleeUserData data = Get.arguments as EnrolleeUserData;
+    if (data.firstName.isNotEmpty) {
+      enrolleeUserData = data;
     } else {
       Get.back();
     }

@@ -45,8 +45,7 @@ class EnrollmentUserInfoController extends GetxController {
   final RxList<ProvinceItem> allProvince = <ProvinceItem>[].obs;
   final RxList<String> enrolmentErrorMessages = <String>[].obs;
   RxList<CompleteAddress> searchedAddresses = <CompleteAddress>[].obs;
-  Rx<String> countryCode = "".obs;
-  Rx<String> govtId = "".obs;
+  Rx<String> countryCode = "".obs;  
 
   List<String> genderOptions = ["Male", "Female"];
   List<String> maritalStatusOptions = ["Single", "Married"];
@@ -71,6 +70,7 @@ class EnrollmentUserInfoController extends GetxController {
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
+  Rx<String> govtId = "".obs;
   late GuestUserInfo enrolerProfile;
   late GuestUserInfo sponsorProfile;
 
@@ -352,6 +352,11 @@ class EnrollmentUserInfoController extends GetxController {
         enrolmentErrorMessages.addAll(enrollResponse.message);
       } else {
         enrolmentErrorMessages.clear();
+        final args = {
+          "enrolerProfile": enrolerProfile,
+          "sponsorProfile": sponsorProfile,
+          "enroleeData": enroleeData
+        };
         Get.to(() => EnrollmentSummaryScreen(), arguments: enroleeData);
       }
       isLoading.toggle();

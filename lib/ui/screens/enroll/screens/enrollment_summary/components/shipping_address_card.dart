@@ -1,9 +1,13 @@
+import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/controller/enrollment.summary.controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'each_info_row.dart';
 
 class ShippingAddressCard extends StatelessWidget {
-  const ShippingAddressCard({
+  final EnrollmentSummaryController controller =
+      Get.put(EnrollmentSummaryController());  
+  ShippingAddressCard({
     Key? key,
   }) : super(key: key);
 
@@ -13,17 +17,20 @@ class ShippingAddressCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.5, horizontal: 20),
         child: Column(
-          children: const [
+          children: [
             EeachUserinfoItem(
                 title: "Name",
                 value:
-                    "Patthiraya Preedakulthanawatภัทร์ฐิรญา ปรีดากุลธนวัฒน์"),
+                    "${controller.enrolleeUserData.firstName} ${controller.enrolleeUserData.lastName}\n ${controller.enrolleeUserData.firstNameTh} ${controller.enrolleeUserData.lastNameTh}"),
             EeachUserinfoItem(
                 title: "Address",
                 value:
-                    "18 Soi Lat Phrao 83 Lat Phrao Rd Khlong Chao Khun Sing, Wang Thonglang Bangkok 10310"),
-            EeachUserinfoItem(title: "Mobile Number", value: "094-636-1222"),
-            EeachUserinfoItem(title: "Email", value: "patthiraya@gmail.com"),
+                    "${controller.enrolleeUserData.mainAddress1} \n ${controller.enrolleeUserData.mainAddress2} \n ${controller.enrolleeUserData.city} \n ${controller.enrolleeUserData.zipCode} "),
+            EeachUserinfoItem(
+                title: "Mobile Number",
+                value: controller.enrolleeUserData.mobileNumber),
+            EeachUserinfoItem(
+                title: "Email", value: controller.enrolleeUserData.email),
           ],
         ),
       ),

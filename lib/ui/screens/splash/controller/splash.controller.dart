@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/config/firebase_remote_config.dart';
+import 'package:dsc_tools/models/enrolment_payment_methods.dart' hide Markets;
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +29,7 @@ class SplashController extends GetxController {
   Rx<FlutterLogoStyle> logoStyle = FlutterLogoStyle.markOnly.obs;
   final CustomerToken customerToken =
       UserSessionManager.shared.getLoginTokensFromDB();
+  RemoteConfigService remoteConfigService = RemoteConfigService();
 
   @override
   void onInit() {
@@ -35,6 +39,7 @@ class SplashController extends GetxController {
       logoStyle.value = FlutterLogoStyle.horizontal;
       // Get.offAll(() => MainHomeScreen());
       fetchCustomerData();
+      remoteConfigService.onInit();
     });
   }
 

@@ -40,9 +40,9 @@ class Body extends StatelessWidget {
               color: const Color(0xFFF6F9FD),
               child: Column(
                 children: [
-                  const ShippingAddressCard(),
+                  ShippingAddressCard(),
                   const SizedBox(height: 20),
-                  const EnrollerInfoCard(),
+                  EnrollerInfoCard(),
                   const SizedBox(height: 20),
                   TotalAmountCard(boldFont: boldFont),
                   const SizedBox(height: 20),

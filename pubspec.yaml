@@ -31,11 +31,11 @@ dependencies:
   easy_localization: ^3.0.0
   equatable: ^2.0.2
   excel: 2.0.0-null-safety-3
-  firebase: ^9.0.1
-  firebase_analytics: ^8.2.0
-  firebase_core: ^1.4.0
-  firebase_crashlytics: ^2.1.1
-  # firebase_remote_config: ^0.10.0+3
+  firebase: ^9.0.2
+  firebase_analytics: ^8.3.4
+  firebase_core: ^1.10.0
+  firebase_crashlytics: ^2.3.0
+  firebase_remote_config: ^0.11.0+2
   flutter:
     sdk: flutter
   flutter_barcode_scanner:
