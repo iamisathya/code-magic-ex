@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/api/api_address.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
 import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/complete_addres.dart';
@@ -10,9 +11,11 @@ import 'package:dsc_tools/models/enroll_response.dart';
 import 'package:dsc_tools/models/enrollee_user_data.dart';
 import 'package:dsc_tools/models/guest_user_info.dart';
 import 'package:dsc_tools/models/provience_item.dart';
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/main_screen.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/components/modal_picker.dart';
 import 'package:dsc_tools/ui/screens/order_entry/screens/home/components/white_search_field.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:dsc_tools/utilities/logger.dart';
@@ -21,7 +24,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -43,7 +45,7 @@ class EnrollmentUserInfoController extends GetxController {
   RxInt selectedProvience = 0.obs;
   final RxList<ProvinceItem> allProvince = <ProvinceItem>[].obs;
   final RxList<String> enrolmentErrorMessages = <String>[].obs;
-  Rx<CompleteAddressResponse> searchedAddresses = CompleteAddressResponse().obs;
+  RxList<CompleteAddress> searchedAddresses = <CompleteAddress>[].obs;
   Rx<String> countryCode = "".obs;
   Rx<String> govtId = "".obs;
 
@@ -121,11 +123,15 @@ class EnrollmentUserInfoController extends GetxController {
       return;
     }
     try {
-      searchedAddresses.value.data = [];
+      searchedAddresses.clear();
       isSearchingAddres.toggle();
-      searchedAddresses.value = await MemberCalls2Service.init()
+      final addressResponse = await MemberCalls2Service.init()
           .getAddressByZipcode("THA", addressSearchController.text);
+      if (addressResponse.success) {
+        searchedAddresses.value = addressResponse.data;
+      }
       isSearchingAddres.toggle();
+      update();
     } on DioError catch (e) {
       isSearchingAddres.toggle();
       SnackbarUtil.showError(message: "Error! ${e.response}");
@@ -219,20 +225,25 @@ class EnrollmentUserInfoController extends GetxController {
                       isFetching: isSearchingAddres),
                 ),
                 const SizedBox(height: 5),
-                if (searchedAddresses.value.data!.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Obx(() => Text(
-                        'Found ${searchedAddresses.value.data!.length} item(s) matched with "${addressSearchController.text}".')),
-                  ),
+                if (searchedAddresses.isNotEmpty)
+                  Obx(() => Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                            'Found ${searchedAddresses.length} item(s) matched with "${addressSearchController.text}".'),
+                      )),
                 Expanded(
                   child: Obx(
                     () => ListView.builder(
                       controller: ctrl,
-                      itemCount: searchedAddresses.value.data!.length,
+                      itemCount: searchedAddresses.length,
                       itemBuilder: (BuildContext ctxt, int index) {
-                        final CompleteAddress item =
-                            searchedAddresses.value.data![index];
+                        final CompleteAddress item = searchedAddresses[index];
+                        if (searchedAddresses.isEmpty) {
+                          return const Center(
+                              child: AppText(
+                                  text: "Sorry no addres found!",
+                                  style: TextTypes.bodyText2));
+                        }
                         return GestureDetector(
                           onTap: () => _onSelectAddress(item),
                           child: Card(
@@ -248,7 +259,7 @@ class EnrollmentUserInfoController extends GetxController {
                                         width: 20),
                                   ),
                                   Expanded(
-                                    child: Text(item.searchAddressRoman,
+                                    child: Text(item.searchAddressRoman!,
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 2,
                                         style: Theme.of(context)
@@ -277,10 +288,10 @@ class EnrollmentUserInfoController extends GetxController {
 
   void _onSelectAddress(CompleteAddress address) {
     Navigator.pop(Get.context!);
-    districtController.text = address.returnAddressRoman;
-    provienceController.text = address.cityRoman;
-    zipCodeController.text = address.zip;
-    countryCode.value = address.countryCode;
+    districtController.text = address.returnAddressRoman!;
+    provienceController.text = address.cityRoman!;
+    zipCodeController.text = address.zip!;
+    countryCode.value = address.countryCode!;
   }
 
   Future<void> verifyEnrollForm() async {
@@ -327,7 +338,7 @@ class EnrollmentUserInfoController extends GetxController {
           birthdayController.text,
           districtController.text,
           streetController.text,
-          "area.value",
+          streetController.text,
           item.code!,
           zipCodeController.text,
           emailController.text,
@@ -354,7 +365,7 @@ class EnrollmentUserInfoController extends GetxController {
 
   void clearAddress() {
     addressSearchController.text = "";
-    searchedAddresses.value.data!.clear();
+    searchedAddresses.clear();
   }
 
   void onPressContinue() {

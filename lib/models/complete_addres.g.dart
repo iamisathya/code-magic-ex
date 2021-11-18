@@ -9,10 +9,10 @@ part of 'complete_addres.dart';
 CompleteAddressResponse _$CompleteAddressResponseFromJson(
     Map<String, dynamic> json) {
   return CompleteAddressResponse(
-    data: (json['data'] as List<dynamic>?)
-        ?.map((e) => CompleteAddress.fromJson(e as Map<String, dynamic>))
+    data: (json['data'] as List<dynamic>)
+        .map((e) => CompleteAddress.fromJson(e as Map<String, dynamic>))
         .toList(),
-    success: json['success'] as bool?,
+    success: json['success'] as bool,
   );
 }
 
@@ -25,22 +25,22 @@ Map<String, dynamic> _$CompleteAddressResponseToJson(
 
 CompleteAddress _$CompleteAddressFromJson(Map<String, dynamic> json) {
   return CompleteAddress(
-    cityNative: json['city_native'] as String,
-    cityRoman: json['city_roman'] as String,
-    countryCode: json['country_code'] as String,
-    id: json['id'] as int,
+    cityNative: json['city_native'] as String?,
+    cityRoman: json['city_roman'] as String?,
+    countryCode: json['country_code'] as String?,
+    id: json['id'] as int?,
     priority: json['priority'] as String?,
-    returnAddressNative: json['return_address_native'] as String,
-    returnAddressRoman: json['return_address_roman'] as String,
-    searchAddressNative: json['search_address_native'] as String,
-    searchAddressRoman: json['search_address_roman'] as String,
-    sub1Native: json['sub1_native'] as String,
-    sub1Roman: json['sub1_roman'] as String,
-    sub2Native: json['sub2_native'] as String,
-    sub2Roman: json['sub2_roman'] as String,
-    sub3Native: json['sub3_native'] as String,
-    sub3Roman: json['sub3_roman'] as String,
-    zip: json['zip'] as String,
+    returnAddressNative: json['return_address_native'] as String?,
+    returnAddressRoman: json['return_address_roman'] as String?,
+    searchAddressNative: json['search_address_native'] as String?,
+    searchAddressRoman: json['search_address_roman'] as String?,
+    sub1Native: json['sub1_native'] as String?,
+    sub1Roman: json['sub1_roman'] as String?,
+    sub2Native: json['sub2_native'] as String?,
+    sub2Roman: json['sub2_roman'] as String?,
+    sub3Native: json['sub3_native'] as String?,
+    sub3Roman: json['sub3_roman'] as String?,
+    zip: json['zip'] as String?,
   );
 }
 
