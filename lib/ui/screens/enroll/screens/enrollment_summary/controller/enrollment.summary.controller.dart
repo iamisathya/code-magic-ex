@@ -1,8 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/api/api_address.dart';
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
+import 'package:dsc_tools/ui/screens/enroll/controllers/enroll.controller.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrolment_complete/main_screen.dart';
 import 'package:dsc_tools/utilities/constants.dart';
 import 'package:dsc_tools/utilities/enums.dart';
@@ -15,6 +19,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../../../../api/config/api_service.dart';
 import '../../../../../../models/cart_products.dart';
@@ -22,6 +27,7 @@ import '../../../../../../models/enroll_form.dart';
 import '../../../../../../models/enroll_log_request_data.dart';
 import '../../../../../../models/enrollee_user_data.dart';
 import '../../../../../../models/general_models.dart';
+import '../../../../../../../utilities/extensions.dart';
 
 class EnrollmentSummaryController extends GetxController {
   RxBool isLoading = false.obs;
@@ -37,6 +43,9 @@ class EnrollmentSummaryController extends GetxController {
   TextEditingController cardHolderNameController = TextEditingController();
   TextEditingController expireDayController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
+
+  final EnrollHomeController enrollHomeController =
+      Get.put(EnrollHomeController());
 
   late EnrolleeUserData enrolleeUserData;
 
@@ -72,7 +81,7 @@ class EnrollmentSummaryController extends GetxController {
     Get.to(() => EnrollmentCompleteScreen());
   }
 
-  Future<void> proceedOrderPlace(BuildContext context) async {
+  Future<void> proceedOrderPlace() async {
     try {
       isLoading.toggle();
       final bool isServerRuning = await checkOrderEntryServerStatus();
@@ -88,9 +97,19 @@ class EnrollmentSummaryController extends GetxController {
         if (resposne != null) {
           verifyOrder(resposne);
           await forceResetPassword();
-          Get.offNamedUntil(EnrollmentCompleteScreen.routeName,
-              ModalRoute.withName('/enrollmentCompleteHomePage'),
-              arguments: resposne);
+          // Get.offNamedUntil(EnrollmentCompleteScreen.routeName,
+          //     ModalRoute.withName('/enrollmentCompleteHomePage'),
+          //     arguments: resposne);
+
+          final args = OrderCompleteArguments(
+              orderId: resposne.id.unicity.retrieveOrderId(),
+              orderStatus: true,
+              userId: resposne.customer.id.unicity);
+          Get.to(EnrollmentCompleteScreen(), arguments: args);
+        } else {
+          final args = OrderCompleteArguments(
+              orderId: "", orderStatus: false, userId: "");
+          Get.to(EnrollmentCompleteScreen(), arguments: args);
         }
       }
       isLoading.toggle();
@@ -117,35 +136,44 @@ class EnrollmentSummaryController extends GetxController {
     }
   }
 
-  EnrollLogRequestData? prepareRequestPaylod() {
-    try {
-      final source = Source(
-          campaign: null,
-          agent: "MLBS-DSCTools-TH",
-          medium: "Internet",
-          platform: "Mac OS",
-          referrer: null,
-          version: null);
-      final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
-      final ProductLineItem checkoutItems = ProductLineItem(
-          quantity: "1",
-          item: CustomerHref(
-              href: "https://hydra.unicity.net/v5a/items?id.unicity=20817"));
+  List<ProductLineItem> checkoutItems() {
+    return enrollHomeController.cartProducts
+        .map((element) => ProductLineItem(
+            item: CustomerHref(
+                href:
+                    "https://hydra.unicity.net/v5a/items?id.unicity=${element.itemCode}"),
+            quantity: element.quantity.toString()))
+        .toList();
+  }
 
+  Future<Source> prepareSource() async {
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    return Source(
+        campaign: null,
+        agent: "MLBS-DSCTools-TH",
+        medium: "Internet",
+        platform: "${Globals.deviceType} ${Globals.osVersion}",
+        referrer: "Sales",
+        version:
+            "v-${packageInfo.version} : build_number-${packageInfo.buildNumber}");
+  }
+
+  Future<EnrollLogRequestData?> prepareRequestPaylod() async {
+    try {
       final EnrollLogRequestData requestData = EnrollLogRequestData(
           customer: Customer(
               mainAddress: MainAddress(
-                  address1: usedInfo.mainAddress.address1,
-                  address2: usedInfo.mainAddress.address2,
-                  city: usedInfo.mainAddress.city,
-                  country: usedInfo.mainAddress.country,
-                  state: usedInfo.mainAddress.state,
-                  zip: usedInfo.mainAddress.zip),
+                  address1: enrolleeUserData.mainAddress1,
+                  address2: enrolleeUserData.mainAddress2,
+                  city: enrolleeUserData.city,
+                  country: enrolleeUserData.country,
+                  state: enrolleeUserData.city,
+                  zip: enrolleeUserData.zipCode),
               humanName: HumanName(
-                  firstName: usedInfo.humanName.firstName,
-                  lastName: usedInfo.humanName.lastName,
-                  firstNameTh: usedInfo.humanName.fullNameTh ?? "",
-                  lastNameTh: usedInfo.humanName.fullNameTh),
+                  firstName: enrolleeUserData.firstName,
+                  lastName: enrolleeUserData.lastName,
+                  firstNameTh: enrolleeUserData.firstNameTh,
+                  lastNameTh: enrolleeUserData.lastNameTh),
               enroller: CustomerHref(
                   href:
                       "https://hydra.unicity.net/v5a/customers?id.unicity=${enrolleeUserData.enrollerId}"),
@@ -162,31 +190,29 @@ class EnrollmentSummaryController extends GetxController {
               gender: enrolleeUserData.gender,
               password: Password(value: enrolleeUserData.password),
               type: 'Associate',
-              source: source),
-          lines: ProductLines(items: [checkoutItems]),
+              source: await prepareSource()),
+          lines: ProductLines(items: checkoutItems()),
           shipToName: ShipToName(
-              firstName: usedInfo.humanName.firstName,
-              lastName: usedInfo.humanName.lastName),
-          shipToPhone: usedInfo.homePhone,
-          shipToEmail:
-              usedInfo.email.isNotEmpty ? usedInfo.email : "none@unicity.com",
-          notes: prepareNotes(usedInfo.id.unicity.toString(), "TH"),
+              firstName: enrolleeUserData.firstName,
+              lastName: enrolleeUserData.lastName),
+          shipToPhone: enrolleeUserData.phoneNumber,
+          shipToEmail: enrolleeUserData.email,
+          notes: prepareNotes(
+              enrolleeUserData.enrollerId, enrolleeUserData.country),
           shipToAddress: UserShipToAddress(
-              city: usedInfo.mainAddress.city,
-              country: "TH",
-              state: usedInfo.mainAddress.state,
-              address1: usedInfo.mainAddress.address1,
-              address2: usedInfo.mainAddress.address2,
-              zip: usedInfo.mainAddress.zip),
-          shippingMethod: CustomerHref(
-              href:
-                  "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"),
+              city: enrolleeUserData.city,
+              country: enrolleeUserData.country,
+              state: enrolleeUserData.city,
+              address1: enrolleeUserData.mainAddress1,
+              address2: enrolleeUserData.mainAddress2,
+              zip: enrolleeUserData.zipCode),
+          shippingMethod: CustomerHref(href: Address.deliveryShiping),
           transactions: Transactions(items: [
             TransactionItem(
                 amount: "this.terms.total", method: "Cash", type: "record")
           ]),
           terms: ProductTerms(period: getCurrentPeriod()),
-          source: source);
+          source: await prepareSource());
       return requestData;
     } catch (err) {
       LoggerService.instance.e(err.toString());

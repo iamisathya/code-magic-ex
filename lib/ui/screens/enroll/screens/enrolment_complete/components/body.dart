@@ -11,8 +11,11 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return controller.isEnrolementSuccess.value
-        ? const EnrolmentSuccessScreen()
+    return controller.orderDetails.orderStatus
+        ? EnrolmentSuccessScreen(
+            distributorId: controller.orderDetails.userId,
+            poNumber: controller.orderDetails.orderId,
+          )
         : EnrolmentErrorScreen();
   }
 }

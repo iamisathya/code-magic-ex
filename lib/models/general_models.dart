@@ -103,3 +103,21 @@ class NameValueType {
   });
 }
 
+@JsonSerializable()
+class OrderCompleteArguments {
+  String orderId;
+  String userId;
+  bool orderStatus;
+
+  OrderCompleteArguments({
+    required this.orderId,
+    required this.userId,
+    required this.orderStatus,
+  });
+
+  factory OrderCompleteArguments.fromJson(Map<String, dynamic> json) =>
+      _$OrderCompleteArgumentsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OrderCompleteArgumentsToJson(this);
+}
+

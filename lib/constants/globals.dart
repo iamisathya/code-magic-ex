@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 
 import '../models/country_info.dart';
@@ -33,4 +35,7 @@ class Globals {
   static UserInfo userInfo = UserSessionManager.shared.userInfo!;
   static String customerCode = "";
   static String customerPoCode = "";
+  
+  static String osVersion = Platform.operatingSystemVersion;
+  static String deviceType = Platform.isIOS ? "iOS" : Platform.isAndroid ? "Android" : "Others";
 }

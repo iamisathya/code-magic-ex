@@ -92,3 +92,20 @@ Map<String, dynamic> _$NameValueTypeToJson(NameValueType instance) =>
       'name': instance.name,
       'value': instance.value,
     };
+
+OrderCompleteArguments _$OrderCompleteArgumentsFromJson(
+    Map<String, dynamic> json) {
+  return OrderCompleteArguments(
+    orderId: json['orderId'] as String,
+    userId: json['userId'] as String,
+    orderStatus: json['orderStatus'] as bool,
+  );
+}
+
+Map<String, dynamic> _$OrderCompleteArgumentsToJson(
+        OrderCompleteArguments instance) =>
+    <String, dynamic>{
+      'orderId': instance.orderId,
+      'userId': instance.userId,
+      'orderStatus': instance.orderStatus,
+    };

@@ -29,7 +29,7 @@ class EnrolmentErrorScreen extends StatelessWidget {
             ],
           ),
           SvgPicture.asset(kEnrolmentErrorImage,
-              height: 232, semanticsLabel: "Enrolment success!"),
+              height: 232, semanticsLabel: "Enrolment error!"),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 53),
             decoration: BoxDecoration(
