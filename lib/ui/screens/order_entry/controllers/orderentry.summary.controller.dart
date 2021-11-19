@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import '../../../../api/config/api_service.dart';
 import 'package:dsc_tools/models/place_order.dart'
     hide
         Customer,
@@ -16,7 +15,6 @@ import 'package:dsc_tools/models/user_info.dart';
 import 'package:dsc_tools/ui/screens/order_entry/screens/order_complete_screen/home.dart';
 import 'package:dsc_tools/ui/screens/order_entry/screens/order_entry_summary/components/discard_alert.dart';
 import 'package:dsc_tools/utilities/constants.dart';
-
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/logger.dart';
@@ -26,6 +24,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../api/config/api_service.dart';
 import '../../../../models/general_models.dart';
 import 'orderentry.product.list.controller.dart';
 

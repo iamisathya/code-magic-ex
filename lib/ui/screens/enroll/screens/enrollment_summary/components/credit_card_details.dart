@@ -1,11 +1,10 @@
-import '../controller/enrollment.summary.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/enrollment.summary.controller.dart';
 import 'card_validator/textfield_ccnumber.dart';
 import 'card_validator/textfield_cvv.dart';
 import 'card_validator/textfield_expirydate.dart';
-import 'card_validator/textfield_username.dart';
 import 'form_text_field.dart';
 
 class CreditCardDetails extends StatelessWidget {

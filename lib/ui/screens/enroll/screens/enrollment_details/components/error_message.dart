@@ -1,7 +1,6 @@
-import '../../../../../global/theme/text_view.dart';
-import '../../../../../global/widgets/unordered_list.dart';
-import '../../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../global/widgets/unordered_list.dart';
 
 class ErrorMessage extends StatelessWidget {
   const ErrorMessage({Key? key, required this.errors}) : super(key: key);

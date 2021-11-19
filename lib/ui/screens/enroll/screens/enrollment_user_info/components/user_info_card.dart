@@ -1,6 +1,7 @@
-import '../../../../../global/theme/text_view.dart';
-import '../../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../../utilities/enums.dart';
+import '../../../../../global/theme/text_view.dart';
 
 class UserInfoCard extends StatelessWidget {
   const UserInfoCard({

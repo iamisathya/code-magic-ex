@@ -1,9 +1,9 @@
-import '../../../global/widgets/bottom_button_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../../utilities/images.dart';
+import '../../../global/widgets/bottom_button_bar.dart';
 import '../../open_po/home/components/loader.dart';
 import '../components/barcode_number_item.dart';
 import '../components/search_textfield.dart';

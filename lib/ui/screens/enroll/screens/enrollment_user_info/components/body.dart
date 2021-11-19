@@ -1,15 +1,15 @@
-import '../../../../../global/theme/text_view.dart';
-import '../../enrollment_details/components/error_message.dart';
-import 'enroll_textfield.dart';
-import '../controller/enrollment.userinfo.controller.dart';
-import '../../../../inventory/component/page_title.dart';
-import '../../../../../../utilities/enums.dart';
-import '../../../../../../utilities/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../../inventory/component/page_title.dart';
+import '../../enrollment_details/components/error_message.dart';
+import '../controller/enrollment.userinfo.controller.dart';
+import 'enroll_textfield.dart';
 import 'user_info_card.dart';
 
 class Body extends StatelessWidget {

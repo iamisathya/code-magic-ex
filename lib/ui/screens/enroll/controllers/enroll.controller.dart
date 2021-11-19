@@ -1,21 +1,22 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+
 import '../../../../api/config/api_service.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/inventory_records.dart';
 import '../../../../models/managed_warehouse.dart';
-import '../../../global/theme/text_view.dart';
-import '../screens/enrollment_details/home.dart';
-import '../../order_entry/screens/home/components/white_search_field.dart';
 import '../../../../utilities/enums.dart';
+import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/images.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import '../../../../utilities/extensions.dart';
+import '../../../global/theme/text_view.dart';
+import '../../order_entry/screens/home/components/white_search_field.dart';
+import '../screens/enrollment_details/home.dart';
 
 class EnrollHomeController extends GetxController {
   RxBool isLoading = false.obs;

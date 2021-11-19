@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart' show DioError;
-import '../../../global/theme/text_view.dart' show AppText;
-import '../../../../utilities/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,9 +20,11 @@ import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
+import '../../../../utilities/images.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
+import '../../../global/theme/text_view.dart' show AppText;
 import '../../order_entry/screens/home/components/white_search_field.dart';
 import '../home/components/order_success.dart';
 

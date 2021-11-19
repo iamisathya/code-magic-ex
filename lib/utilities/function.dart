@@ -4,7 +4,6 @@ import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
-import '../models/country_details.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +16,7 @@ import '../exceptions/default.exception.dart';
 import '../exceptions/internet_failed.exception.dart';
 import '../exceptions/time_out.exception.dart';
 import '../exceptions/unauthorised.exception.dart';
+import '../models/country_details.dart';
 import '../models/inventory_records.dart';
 import '../models/locale.dart';
 import '../ui/global/widgets/overlay_progress.dart';

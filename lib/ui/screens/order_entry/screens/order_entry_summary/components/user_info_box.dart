@@ -1,6 +1,7 @@
-import '../../../controllers/orderentry.product.list.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/orderentry.product.list.controller.dart';
 
 class UserInfoBox extends StatelessWidget {
   final OrderEntryProductListController listController =

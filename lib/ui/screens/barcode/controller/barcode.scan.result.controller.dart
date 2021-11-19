@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import '../../../../constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -10,6 +9,7 @@ import 'package:get/get.dart' as getx;
 
 import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
+import '../../../../constants/globals.dart';
 import '../../../../models/barcode_item_response.dart';
 import '../../../../models/barcode_number_response.dart';
 import '../../../../models/barcode_number_update_request.dart';

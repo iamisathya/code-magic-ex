@@ -1,7 +1,7 @@
-import '../controller/enrollment.summary.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/enrollment.summary.controller.dart';
 import 'each_info_row.dart';
 
 class ShippingAddressCard extends StatelessWidget {

@@ -1,18 +1,19 @@
-import 'package:dio/dio.dart';
 import 'package:collection/collection.dart';
+import 'package:dio/dio.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../../../api/config/api_service.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/general_models.dart';
 import '../../../../models/inventory_records.dart';
 import '../../../../models/user_minimal_data.dart';
-import '../screens/order_entry_summary/home.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import '../screens/order_entry_summary/home.dart';
 
 class OrderEntryProductListController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();

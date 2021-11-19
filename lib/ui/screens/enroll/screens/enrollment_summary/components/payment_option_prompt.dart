@@ -1,9 +1,10 @@
-import '../../../../../../constants/globals.dart';
-import '../../../../../global/theme/text_view.dart';
-import '../../../../../../utilities/enums.dart';
-import '../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../../../../constants/globals.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../global/theme/text_view.dart';
 
 class PromptPaymentOption extends StatelessWidget {
   const PromptPaymentOption({Key? key}) : super(key: key);

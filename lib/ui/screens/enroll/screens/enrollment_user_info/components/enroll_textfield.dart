@@ -1,5 +1,6 @@
-import '../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../../utilities/images.dart';
 
 class EnrollTextField extends StatelessWidget {
   const EnrollTextField({

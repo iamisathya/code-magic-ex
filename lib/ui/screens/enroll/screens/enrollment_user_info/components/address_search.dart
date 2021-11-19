@@ -1,8 +1,9 @@
 import 'package:dropdown_search/dropdown_search.dart';
-import '../controller/enrollment.userinfo.controller.dart';
-import '../../../../open_po/home/components/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../open_po/home/components/loader.dart';
+import '../controller/enrollment.userinfo.controller.dart';
 
 class AddressSearchModal extends StatelessWidget {
   AddressSearchModal({Key? key}) : super(key: key);

@@ -1,7 +1,8 @@
-import '../../../controllers/orderentry.product.list.controller.dart';
-import '../../home/components/white_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/orderentry.product.list.controller.dart';
+import '../../home/components/white_search_field.dart';
 
 class SearchBox extends StatelessWidget {
   final OrderEntryProductListController controller =

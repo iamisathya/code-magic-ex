@@ -1,7 +1,8 @@
-import '../../../../../../global/widgets/input_formatters.dart';
-import '../../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../../../../../../utilities/images.dart';
+import '../../../../../../global/widgets/input_formatters.dart';
 
 class UserNameTextField extends StatelessWidget {
   const UserNameTextField({

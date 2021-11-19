@@ -1,10 +1,11 @@
-import '../../../../../global/theme/text_view.dart';
-import '../controller/enrollement.details.controller.dart';
-import '../../../../../../utilities/enums.dart';
-import '../../../../../../utilities/images.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../controller/enrollement.details.controller.dart';
 
 class Body extends StatelessWidget {
   final EnrollmentDetailsHomeController controller =

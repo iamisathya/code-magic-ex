@@ -1,12 +1,12 @@
-import '../../../../global/theme/text_view.dart';
-import '../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../models/open_po.dart';
+import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
+import '../../../../global/theme/text_view.dart';
 import '../../controller/openpo.list.controller.dart';
 import 'open_po_details.dart';
 

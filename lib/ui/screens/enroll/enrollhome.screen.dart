@@ -1,11 +1,11 @@
-import '../open_po/home/components/loader.dart';
 import 'package:flutter/material.dart';
-import '../../global/widgets/bottom_button_bar.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../utilities/constants.dart';
+import '../../global/widgets/bottom_button_bar.dart';
 import '../open_po/home/components/app_bar.dart';
+import '../open_po/home/components/loader.dart';
 import 'controllers/enroll.controller.dart';
 import 'screens/enroll/body2.dart';
 

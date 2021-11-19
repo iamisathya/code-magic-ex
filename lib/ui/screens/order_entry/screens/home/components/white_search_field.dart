@@ -1,7 +1,8 @@
-import '../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../utilities/images.dart';
 
 class WhiteSearchField extends StatelessWidget {
   const WhiteSearchField({

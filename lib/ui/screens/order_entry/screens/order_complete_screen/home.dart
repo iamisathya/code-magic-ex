@@ -1,6 +1,6 @@
-import '../../../open_po/home/components/app_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../../../open_po/home/components/app_bar.dart';
 import 'components/body.dart';
 
 class OrderEntryComplete extends StatelessWidget {

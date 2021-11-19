@@ -2,23 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import '../../../../../../api/config/api_service.dart';
-import '../../../../../../constants/globals.dart';
-import '../../../../../../models/complete_addres.dart';
-import '../../../../../../models/country_details.dart';
-import '../../../../../../models/enroll_response.dart';
-import '../../../../../../models/enrollee_user_data.dart';
-import '../../../../../../models/guest_user_info.dart';
-import '../../../../../../models/provience_item.dart';
-import '../../../../../global/theme/text_view.dart';
-import '../../enrollment_summary/main_screen.dart';
-import '../components/modal_picker.dart';
-import '../../../../order_entry/screens/home/components/white_search_field.dart';
-import '../../../../../../utilities/enums.dart';
-import '../../../../../../utilities/function.dart';
-import '../../../../../../utilities/images.dart';
-import '../../../../../../utilities/logger.dart';
-import '../../../../../../utilities/snackbar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +12,24 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/state_manager.dart';
 
+import '../../../../../../api/config/api_service.dart';
+import '../../../../../../constants/globals.dart';
+import '../../../../../../models/complete_addres.dart';
+import '../../../../../../models/country_details.dart';
+import '../../../../../../models/enroll_response.dart';
+import '../../../../../../models/enrollee_user_data.dart';
+import '../../../../../../models/guest_user_info.dart';
+import '../../../../../../models/provience_item.dart';
+import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/extensions.dart';
+import '../../../../../../utilities/function.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../../utilities/logger.dart';
+import '../../../../../../utilities/snackbar.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../../order_entry/screens/home/components/white_search_field.dart';
+import '../../enrollment_summary/main_screen.dart';
+import '../components/modal_picker.dart';
 
 class EnrollmentUserInfoController extends GetxController {
   final FocusNode nodeText2 = FocusNode();
@@ -352,11 +352,11 @@ class EnrollmentUserInfoController extends GetxController {
         enrolmentErrorMessages.addAll(enrollResponse.message);
       } else {
         enrolmentErrorMessages.clear();
-        final args = {
-          "enrolerProfile": enrolerProfile,
-          "sponsorProfile": sponsorProfile,
-          "enroleeData": enroleeData
-        };
+        // final args = {
+        //   "enrolerProfile": enrolerProfile,
+        //   "sponsorProfile": sponsorProfile,
+        //   "enroleeData": enroleeData
+        // };
         Get.to(() => EnrollmentSummaryScreen(), arguments: enroleeData);
       }
       isLoading.toggle();

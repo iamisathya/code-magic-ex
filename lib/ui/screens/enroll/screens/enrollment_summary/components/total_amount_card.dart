@@ -1,9 +1,9 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
-import '../../../../../../constants/globals.dart';
-import '../../../controllers/enroll.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../constants/globals.dart';
+import '../../../controllers/enroll.controller.dart';
 import 'each_info_row.dart';
 
 class TotalAmountCard extends StatelessWidget {

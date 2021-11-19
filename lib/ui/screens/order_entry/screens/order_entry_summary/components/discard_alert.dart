@@ -1,11 +1,11 @@
-import '../../../../../global/theme/text_view.dart';
-import '../../../controllers/orderentry.product.list.controller.dart';
-import '../../../../../../utilities/enums.dart';
-import '../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../controllers/orderentry.product.list.controller.dart';
 import '../../../orderentry.screen.dart';
 
 class DiscardAlert extends StatelessWidget {

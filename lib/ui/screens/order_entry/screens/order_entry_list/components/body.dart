@@ -1,10 +1,10 @@
-import '../../../../../../models/inventory_records.dart';
-import '../../../controllers/orderentry.product.list.controller.dart';
-import 'product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../models/inventory_records.dart';
+import '../../../controllers/orderentry.product.list.controller.dart';
 import 'filter_tabs.dart';
+import 'product_item.dart';
 import 'search_box.dart';
 import 'top_header.dart';
 

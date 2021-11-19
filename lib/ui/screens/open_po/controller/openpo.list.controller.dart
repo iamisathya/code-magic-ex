@@ -1,6 +1,3 @@
-import '../../../global/theme/text_view.dart';
-import '../../../global/widgets/unordered_list.dart';
-import '../../../../utilities/enums.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +10,10 @@ import '../../../../api/config/api_service.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/general_models.dart';
 import '../../../../models/open_po.dart';
+import '../../../../utilities/enums.dart';
 import '../../../../utilities/logger.dart';
+import '../../../global/theme/text_view.dart';
+import '../../../global/widgets/unordered_list.dart';
 
 class OpenPoListController extends GetxController
     with StateMixin<List<OpenPO>> {

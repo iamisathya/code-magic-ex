@@ -1,15 +1,16 @@
 import 'package:dio/dio.dart';
-import '../../../../../../api/config/api_service.dart';
-import '../../../../../../models/govt_id_verify.dart';
-import '../../../../../../models/guest_user_info.dart';
-import '../../enrollement_condition/controller/enrollment.terms.controller.dart';
-import '../../enrollment_user_info/main_screen.dart';
-import '../../../../../../utilities/logger.dart';
-import '../../../../../../utilities/parsing.dart';
-import '../../../../../../utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+
+import '../../../../../../api/config/api_service.dart';
+import '../../../../../../models/govt_id_verify.dart';
+import '../../../../../../models/guest_user_info.dart';
+import '../../../../../../utilities/logger.dart';
+import '../../../../../../utilities/parsing.dart';
+import '../../../../../../utilities/snackbar.dart';
+import '../../enrollement_condition/controller/enrollment.terms.controller.dart';
+import '../../enrollment_user_info/main_screen.dart';
 
 class EnrollmentDetailsHomeController extends GetxController {
   GuestUserInfoList enrolerProfile = GuestUserInfoList(items: []);

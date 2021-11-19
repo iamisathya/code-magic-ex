@@ -1,8 +1,9 @@
-import '../controller/home.controller.dart';
-import '../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../utilities/images.dart';
+import '../controller/home.controller.dart';
 
 class NavigationBottomBar extends StatelessWidget {
   const NavigationBottomBar({

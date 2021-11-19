@@ -1,4 +1,3 @@
-import '../../../global/widgets/bottom_button_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -6,6 +5,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../../models/barcode_item_response.dart';
 import '../../../../utilities/images.dart';
+import '../../../global/widgets/bottom_button_bar.dart';
 import '../../open_po/home/components/loader.dart';
 import '../components/barcode_list_item.dart';
 import '../components/barcode_product_item.dart';

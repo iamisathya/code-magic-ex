@@ -1,5 +1,6 @@
-import '../../../../inventory/component/page_title.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../inventory/component/page_title.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);

@@ -1,12 +1,13 @@
-import '../../../../../../models/cart_products.dart';
-import '../../../../../global/theme/text_view.dart';
-import '../../../../../global/widgets/cart_counter_view.dart';
-import '../../../controllers/enroll.controller.dart';
-import '../../../../../../utilities/enums.dart';
-import '../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../models/cart_products.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../../../global/widgets/cart_counter_view.dart';
+import '../../../controllers/enroll.controller.dart';
 
 class EnrollCartItem extends StatelessWidget {
   final EnrollHomeController controller = Get.put(EnrollHomeController());

@@ -1,8 +1,8 @@
-import '../../enrollment_user_info/controller/enrollment.userinfo.controller.dart';
-import '../../../../../../utilities/function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../utilities/function.dart';
+import '../../enrollment_user_info/controller/enrollment.userinfo.controller.dart';
 import 'each_info_row.dart';
 
 class EnrollerInfoCard extends StatelessWidget {

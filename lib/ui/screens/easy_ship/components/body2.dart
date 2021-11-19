@@ -1,9 +1,10 @@
-import '../../barcode/components/search_textfield.dart';
-import '../controller/easyshiphome.controller.dart';
-import '../../inventory/component/page_title.dart';
-import '../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../utilities/images.dart';
+import '../../barcode/components/search_textfield.dart';
+import '../../inventory/component/page_title.dart';
+import '../controller/easyshiphome.controller.dart';
 
 class Body extends StatelessWidget {
   final EasyShipHomeController controller = Get.put(EasyShipHomeController());

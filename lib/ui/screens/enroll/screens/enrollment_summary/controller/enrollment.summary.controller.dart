@@ -1,12 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import '../../../../../../api/config/api_service.dart';
-import '../../../../../../models/cart_products.dart';
-import '../../../../../../models/enroll_form.dart';
-import '../../../../../../models/enroll_log_request_data.dart';
-import '../../../../../../models/enrollee_user_data.dart';
-import '../../../../../../models/general_models.dart';
 import 'package:dsc_tools/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
 import 'package:dsc_tools/ui/screens/enroll/screens/enrolment_complete/main_screen.dart';
@@ -14,13 +8,20 @@ import 'package:dsc_tools/utilities/constants.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/logger.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:dsc_tools/utilities/snackbar.dart';
+import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../../../api/config/api_service.dart';
+import '../../../../../../models/cart_products.dart';
+import '../../../../../../models/enroll_form.dart';
+import '../../../../../../models/enroll_log_request_data.dart';
+import '../../../../../../models/enrollee_user_data.dart';
+import '../../../../../../models/general_models.dart';
 
 class EnrollmentSummaryController extends GetxController {
   RxBool isLoading = false.obs;

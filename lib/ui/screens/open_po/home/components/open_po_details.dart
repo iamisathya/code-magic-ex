@@ -1,11 +1,11 @@
-import '../../../../global/widgets/bottom_button_bar.dart';
-import '../../../../global/theme/text_view.dart';
-import '../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/images.dart';
+import '../../../../global/theme/text_view.dart';
+import '../../../../global/widgets/bottom_button_bar.dart';
 import '../../../../global/widgets/sign_out_button.dart';
 import '../../controller/openpo.details.controller.dart';
 import 'loader.dart';

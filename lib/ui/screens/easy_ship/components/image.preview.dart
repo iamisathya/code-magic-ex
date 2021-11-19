@@ -1,11 +1,12 @@
 import 'dart:typed_data';
 
-import '../../../global/theme/text_view.dart';
-import '../controller/easyship.list.controller.dart';
-import '../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
+import '../../../../utilities/enums.dart';
+import '../../../global/theme/text_view.dart';
+import '../controller/easyship.list.controller.dart';
 
 class ScreenShotPreview extends StatelessWidget {
   final EasyShipListController controller = Get.put(EasyShipListController());

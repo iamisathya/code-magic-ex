@@ -1,8 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
-import '../components/image.preview.dart';
-import '../../../../utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -12,7 +10,9 @@ import '../../../../api/config/api_service.dart';
 import '../../../../models/easy_ship_reports.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/logger.dart';
+import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
+import '../components/image.preview.dart';
 
 class EasyShipListController extends GetxController {
   String userId = "";

@@ -1,12 +1,10 @@
-import '../../../../global/widgets/bottom_button_bar.dart';
-import '../enrollment_user_info/main_screen.dart';
-import '../../../open_po/home/components/app_bar.dart';
-import '../../../open_po/home/components/loader.dart';
-import '../../../../../utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../global/widgets/bottom_button_bar.dart';
+import '../../../open_po/home/components/app_bar.dart';
+import '../../../open_po/home/components/loader.dart';
 import 'components/body.dart';
 import 'controller/enrollement.details.controller.dart';
 

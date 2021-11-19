@@ -1,10 +1,10 @@
-import '../../../../../global/theme/text_view.dart';
-import '../controller/enrollment.summary.controller.dart';
-import '../../../../../../utilities/enums.dart';
-import '../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../controller/enrollment.summary.controller.dart';
 import 'payment_details.dart';
 import 'payment_option_item.dart';
 

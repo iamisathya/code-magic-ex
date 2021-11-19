@@ -1,6 +1,7 @@
-import '../../../../../global/theme/text_view.dart';
-import '../../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../../utilities/enums.dart';
+import '../../../../../global/theme/text_view.dart';
 
 class BankWirePaymentOption extends StatelessWidget {
   const BankWirePaymentOption({Key? key}) : super(key: key);

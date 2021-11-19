@@ -1,13 +1,9 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import '../components/easyship.orders.list.dart';
-
-import '../../../../utilities/snackbar.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -17,6 +13,8 @@ import 'package:screenshot/screenshot.dart';
 import '../../../../models/easy_ship_reports.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
+import '../../../../utilities/snackbar.dart';
+import '../components/easyship.orders.list.dart';
 
 class EasyShipHomeController extends GetxController {
   RxBool isLoading = false.obs;

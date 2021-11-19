@@ -1,7 +1,8 @@
-import '../../../../../../global/widgets/payment_card.dart';
-import '../../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../../../../../../utilities/images.dart';
+import '../../../../../../global/widgets/payment_card.dart';
 
 class CVVFormTextField extends StatelessWidget {
   const CVVFormTextField({
@@ -40,6 +41,7 @@ class CVVFormTextField extends StatelessWidget {
         textInputAction: textInputAction,
         enabled: enabled,
         inputFormatters: [
+          // ignore: deprecated_member_use
           WhitelistingTextInputFormatter.digitsOnly,
           LengthLimitingTextInputFormatter(4),
         ],

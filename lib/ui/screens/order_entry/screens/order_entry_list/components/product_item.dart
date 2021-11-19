@@ -1,9 +1,10 @@
-import '../../../../../../models/inventory_records.dart';
-import '../../../../../global/theme/text_view.dart';
-import '../../../controllers/orderentry.product.list.controller.dart';
-import '../../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../models/inventory_records.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../controllers/orderentry.product.list.controller.dart';
 
 class ProductItem extends StatelessWidget {
   final OrderEntryProductListController controller =

@@ -1,11 +1,11 @@
-import '../../../global/theme/text_view.dart';
-import '../../../../utilities/enums.dart';
-import '../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/images.dart';
+import '../../../global/theme/text_view.dart';
 import '../controller/print.salesreport.controller.dart';
 
 class SaleReportBody extends StatelessWidget {

@@ -1,9 +1,10 @@
-import '../../../../../../models/cart_products.dart';
-import '../../../../../global/theme/text_view.dart';
-import '../../../controllers/orderentry.product.list.controller.dart';
-import '../../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../models/cart_products.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../controllers/orderentry.product.list.controller.dart';
 
 class QuantityCounter extends StatelessWidget {
   final OrderEntryProductListController listController =

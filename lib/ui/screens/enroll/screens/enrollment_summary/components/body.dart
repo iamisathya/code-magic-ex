@@ -1,10 +1,10 @@
-import '../../../../../../models/cart_products.dart';
-import '../../../controllers/enroll.controller.dart';
-import '../controller/enrollment.summary.controller.dart';
-import '../../../../inventory/component/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../models/cart_products.dart';
+import '../../../../inventory/component/page_title.dart';
+import '../../../controllers/enroll.controller.dart';
+import '../controller/enrollment.summary.controller.dart';
 import 'enrol_summary_cartt_item.dart';
 import 'enroller_info_card.dart';
 import 'payment_method_card.dart';

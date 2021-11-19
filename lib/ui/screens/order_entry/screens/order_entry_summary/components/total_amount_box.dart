@@ -1,10 +1,11 @@
 
 
-import '../../../../../global/theme/text_view.dart';
-import '../../../controllers/orderentry.product.list.controller.dart';
-import '../../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../utilities/enums.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../controllers/orderentry.product.list.controller.dart';
 
 class TotalAmountBox extends StatelessWidget {
   final OrderEntryProductListController listController =
