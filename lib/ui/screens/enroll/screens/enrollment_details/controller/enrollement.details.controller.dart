@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/ui/screens/enroll/screens/enrollement_condition/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -34,7 +35,7 @@ class EnrollmentDetailsHomeController extends GetxController {
   RxInt isValidSponsorId = 0.obs;
 
   void navigateToTermsPage() {
-    Get.to(() => EnrollmentTermsController());
+    Get.to(() => EnrollmentTermsScreen());
   }
 
   Future<void> verifyUserInfo() async {
