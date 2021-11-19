@@ -1,11 +1,15 @@
+import 'package:dsc_tools/ui/screens/enroll/screens/enrolment_complete/controller/enrolment_complete_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../global/theme/text_view.dart';
 
 class EnrolmentErrorScreen extends StatelessWidget {
+  final EnrolmentCompleteController controller =
+      Get.put(EnrolmentCompleteController());
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -30,18 +34,21 @@ class EnrolmentErrorScreen extends StatelessWidget {
           ),
           SvgPicture.asset(kEnrolmentErrorImage,
               height: 232, semanticsLabel: "Enrolment error!"),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 53),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                gradient: const LinearGradient(
-                    colors: [Color(0xFF1C9CFC), Color(0xFF4CDFFF)],
-                    begin: Alignment.bottomLeft,
-                    end: Alignment.topRight)),
-            child: const AppText(
-              text: "Try Again!",
-              style: TextTypes.headline6,
-              color: Color(0xFFFFFFFF),
+          GestureDetector(
+            onTap: controller.onClickTryAgain,
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 53),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  gradient: const LinearGradient(
+                      colors: [Color(0xFF1C9CFC), Color(0xFF4CDFFF)],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topRight)),
+              child: const AppText(
+                text: "Try Again!",
+                style: TextTypes.headline6,
+                color: Color(0xFFFFFFFF),
+              ),
             ),
           )
         ],

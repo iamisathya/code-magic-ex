@@ -1,3 +1,5 @@
+import 'package:dsc_tools/ui/screens/enroll/enrollhome.screen.dart';
+import 'package:dsc_tools/ui/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -25,5 +27,10 @@ class EnrolmentCompleteController extends GetxController {
           OrderCompleteArguments(orderId: "", orderStatus: false, userId: "");
       debugPrint(e.toString());
     }
+  }
+
+  void onClickTryAgain() {
+    Get.to(MainHomeScreen());
+    Get.to(EnrollHomeScreen());
   }
 }
