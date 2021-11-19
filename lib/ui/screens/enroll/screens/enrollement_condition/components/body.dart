@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/inventory/component/page_title.dart';
+import '../../../../inventory/component/page_title.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {

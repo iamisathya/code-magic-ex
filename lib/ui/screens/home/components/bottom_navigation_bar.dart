@@ -1,5 +1,5 @@
-import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
-import 'package:dsc_tools/utilities/images.dart';
+import '../controller/home.controller.dart';
+import '../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

@@ -1,8 +1,9 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../utilities/enums.dart';
+import '../../screens/order_entry/orderentry.screen.dart';
+import '../theme/text_view.dart';
 
 class BottomModalAlert extends StatelessWidget {
   const BottomModalAlert(

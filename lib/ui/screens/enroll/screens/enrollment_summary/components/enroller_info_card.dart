@@ -1,5 +1,5 @@
-import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/controller/enrollment.userinfo.controller.dart';
-import 'package:dsc_tools/utilities/function.dart';
+import '../../enrollment_user_info/controller/enrollment.userinfo.controller.dart';
+import '../../../../../../utilities/function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

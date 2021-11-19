@@ -1,7 +1,7 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import '../../../../../global/theme/text_view.dart';
 
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

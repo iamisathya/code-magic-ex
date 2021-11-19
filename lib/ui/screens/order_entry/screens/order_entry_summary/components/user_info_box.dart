@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
+import '../../../controllers/orderentry.product.list.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

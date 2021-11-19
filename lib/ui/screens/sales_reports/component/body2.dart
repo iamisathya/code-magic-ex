@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/sales_reports/component/date_selector_row.dart';
+import 'date_selector_row.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

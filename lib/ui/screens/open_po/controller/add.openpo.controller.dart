@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart' show DioError;
-import 'package:dsc_tools/ui/global/theme/text_view.dart' show AppText;
-import 'package:dsc_tools/utilities/images.dart';
+import '../../../global/theme/text_view.dart' show AppText;
+import '../../../../utilities/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

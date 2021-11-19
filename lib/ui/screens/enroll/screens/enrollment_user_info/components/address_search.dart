@@ -1,6 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_user_info/controller/enrollment.userinfo.controller.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
+import '../controller/enrollment.userinfo.controller.dart';
+import '../../../../open_po/home/components/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

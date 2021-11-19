@@ -1,4 +1,4 @@
-import 'package:dsc_tools/utilities/images.dart';
+import '../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

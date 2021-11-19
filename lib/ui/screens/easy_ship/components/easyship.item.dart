@@ -1,9 +1,9 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/easy_ship_reports.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
+import '../../../../constants/globals.dart';
+import '../../../../models/easy_ship_reports.dart';
+import '../../../global/theme/text_view.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../utilities/extensions.dart';

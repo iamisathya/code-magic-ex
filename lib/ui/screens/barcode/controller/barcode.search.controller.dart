@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/ui/global/widgets/bottom_modal_alert.dart';
-import 'package:dsc_tools/utilities/images.dart';
+import '../../../../constants/globals.dart';
+import '../../../global/widgets/bottom_modal_alert.dart';
+import '../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';

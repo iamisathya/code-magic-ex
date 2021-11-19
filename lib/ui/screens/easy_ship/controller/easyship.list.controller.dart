@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/components/image.preview.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
+import '../components/image.preview.dart';
+import '../../../../utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';

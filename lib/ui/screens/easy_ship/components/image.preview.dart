@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/controller/easyship.list.controller.dart';
-import 'package:dsc_tools/utilities/enums.dart';
+import '../../../global/theme/text_view.dart';
+import '../controller/easyship.list.controller.dart';
+import '../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

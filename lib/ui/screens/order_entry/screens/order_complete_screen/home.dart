@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
+import '../../../open_po/home/components/app_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';

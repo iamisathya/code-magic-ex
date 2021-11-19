@@ -1,5 +1,6 @@
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utilities/enums.dart';
 
 class AppText extends StatelessWidget {
   //some common attributes. You can change as needed

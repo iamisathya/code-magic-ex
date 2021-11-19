@@ -1,7 +1,7 @@
-import 'package:dsc_tools/ui/screens/barcode/components/search_textfield.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/controller/easyshiphome.controller.dart';
-import 'package:dsc_tools/ui/screens/inventory/component/page_title.dart';
-import 'package:dsc_tools/utilities/images.dart';
+import '../../barcode/components/search_textfield.dart';
+import '../controller/easyshiphome.controller.dart';
+import '../../inventory/component/page_title.dart';
+import '../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

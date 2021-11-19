@@ -1,6 +1,6 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/global/widgets/unordered_list.dart';
-import 'package:dsc_tools/utilities/enums.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../../../global/widgets/unordered_list.dart';
+import '../../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
 
 class ErrorMessage extends StatelessWidget {

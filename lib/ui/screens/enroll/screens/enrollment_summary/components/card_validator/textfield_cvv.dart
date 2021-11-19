@@ -1,5 +1,5 @@
-import 'package:dsc_tools/ui/global/widgets/payment_card.dart';
-import 'package:dsc_tools/utilities/images.dart';
+import '../../../../../../global/widgets/payment_card.dart';
+import '../../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

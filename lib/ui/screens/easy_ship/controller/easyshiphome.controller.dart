@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:dsc_tools/ui/screens/easy_ship/components/easyship.orders.list.dart';
+import '../components/easyship.orders.list.dart';
 
-import 'package:dsc_tools/utilities/snackbar.dart';
+import '../../../../utilities/snackbar.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,5 +1,5 @@
-import 'package:dsc_tools/models/cart_products.dart';
-import 'package:dsc_tools/ui/screens/enroll/controllers/enroll.controller.dart';
+import '../../../../../models/cart_products.dart';
+import '../../controllers/enroll.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';

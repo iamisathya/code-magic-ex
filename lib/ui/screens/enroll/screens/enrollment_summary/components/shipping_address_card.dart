@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/controller/enrollment.summary.controller.dart';
+import '../controller/enrollment.summary.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

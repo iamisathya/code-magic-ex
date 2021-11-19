@@ -1,5 +1,5 @@
-import 'package:dsc_tools/ui/screens/home/components/bottom_navigation_bar.dart';
-import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
+import '../../home/components/bottom_navigation_bar.dart';
+import '../../home/controller/home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

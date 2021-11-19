@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/models/cart_products.dart';
-import 'package:dsc_tools/models/enroll_form.dart';
-import 'package:dsc_tools/models/enroll_log_request_data.dart';
-import 'package:dsc_tools/models/enrollee_user_data.dart';
-import 'package:dsc_tools/models/general_models.dart';
+import '../../../../../../api/config/api_service.dart';
+import '../../../../../../models/cart_products.dart';
+import '../../../../../../models/enroll_form.dart';
+import '../../../../../../models/enroll_log_request_data.dart';
+import '../../../../../../models/enrollee_user_data.dart';
+import '../../../../../../models/general_models.dart';
 import 'package:dsc_tools/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
 import 'package:dsc_tools/ui/screens/enroll/screens/enrolment_complete/main_screen.dart';

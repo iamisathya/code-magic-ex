@@ -1,7 +1,7 @@
-import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/components/payment_option_prompt.dart';
-import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_summary/controller/enrollment.summary.controller.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
+import 'payment_option_prompt.dart';
+import '../controller/enrollment.summary.controller.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

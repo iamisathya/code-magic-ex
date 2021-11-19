@@ -1,6 +1,7 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
+
+import '../../../utilities/enums.dart';
+import '../theme/text_view.dart';
 
 class UnorderedList extends StatelessWidget {
   const UnorderedList(this.texts, {this.color = const Color(0xFFFFFFFF)});

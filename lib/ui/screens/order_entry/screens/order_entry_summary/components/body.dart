@@ -1,7 +1,7 @@
-import 'package:dsc_tools/models/cart_products.dart';
-import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
-import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.summary.controller.dart';
-import 'package:dsc_tools/utilities/enums.dart';
+import '../../../../../../models/cart_products.dart';
+import '../../../controllers/orderentry.product.list.controller.dart';
+import '../../../controllers/orderentry.summary.controller.dart';
+import '../../../../../../utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

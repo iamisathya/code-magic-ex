@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/config/firebase_remote_config.dart';
-import 'package:dsc_tools/models/enrolment_payment_methods.dart' hide Markets;
+import '../../../../config/firebase_remote_config.dart';
+import '../../../../models/enrolment_payment_methods.dart' hide Markets;
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';

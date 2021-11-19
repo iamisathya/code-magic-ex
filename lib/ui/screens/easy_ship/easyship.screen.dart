@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
+import '../open_po/home/components/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';

@@ -1,10 +1,10 @@
-import 'package:dsc_tools/ui/screens/easy_ship/components/tool_box.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/controller/easyship.list.controller.dart';
-import 'package:dsc_tools/ui/screens/inventory/component/page_title.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
-import 'package:dsc_tools/utilities/constants.dart';
-import 'package:dsc_tools/utilities/images.dart';
+import 'tool_box.dart';
+import '../controller/easyship.list.controller.dart';
+import '../../inventory/component/page_title.dart';
+import '../../open_po/home/components/app_bar.dart';
+import '../../open_po/home/components/loader.dart';
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';

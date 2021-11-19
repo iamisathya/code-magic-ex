@@ -1,5 +1,5 @@
-import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
-import 'package:dsc_tools/ui/screens/order_entry/screens/home/components/white_search_field.dart';
+import '../../../controllers/orderentry.product.list.controller.dart';
+import '../../home/components/white_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

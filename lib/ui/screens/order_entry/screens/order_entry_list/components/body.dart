@@ -1,6 +1,6 @@
-import 'package:dsc_tools/models/inventory_records.dart';
-import 'package:dsc_tools/ui/screens/order_entry/controllers/orderentry.product.list.controller.dart';
-import 'package:dsc_tools/ui/screens/order_entry/screens/order_entry_list/components/product_item.dart';
+import '../../../../../../models/inventory_records.dart';
+import '../../../controllers/orderentry.product.list.controller.dart';
+import 'product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
