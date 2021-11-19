@@ -222,7 +222,7 @@ class EnrollmentSummaryController extends GetxController {
 
   Future<void> getPurchaseLog() async {
     try {
-      final payload = prepareRequestPaylod();
+      final payload = await prepareRequestPaylod();
       if (payload == null) {
         isLoading.toggle();
         throw Exception(
