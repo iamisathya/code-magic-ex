@@ -104,12 +104,11 @@ class EnrollmentSummaryController extends GetxController {
           // Get.offNamedUntil(EnrollmentCompleteScreen.routeName,
           //     ModalRoute.withName('/enrollmentCompleteHomePage'),
           //     arguments: resposne);
-
           final args = OrderCompleteArguments(
               orderId: resposne.id.unicity.retrieveOrderId(),
               orderStatus: true,
               userId: resposne.customer.id.unicity);
-          Get.to(EnrollmentCompleteScreen(), arguments: args);
+          Get.offAllNamed(EnrollmentCompleteScreen.routeName, arguments: args);
         } else {
           final args = OrderCompleteArguments(
               orderId: "", orderStatus: false, userId: "");
@@ -246,7 +245,7 @@ class EnrollmentSummaryController extends GetxController {
   Future<EnrollForm?> proceedPlaceOrder() async {
     EnrollForm? response;
     try {
-      final String enrollResponse = jsonEncode(prepareRequestPaylod());
+      final String enrollResponse = jsonEncode(await prepareRequestPaylod());
       response = await ApiService.shared().placeEnrollOrder(enrollResponse);
       if (response.customer.id.unicity != "") {
         // * firing all api's at once

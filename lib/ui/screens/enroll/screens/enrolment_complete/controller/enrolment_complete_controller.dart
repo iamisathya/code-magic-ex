@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -11,14 +12,18 @@ class EnrolmentCompleteController extends GetxController {
 
   @override
   void onInit() {
-    final dynamic data = Get.arguments;
-    if (data != null) {
-      orderDetails = data as OrderCompleteArguments;
-    } else {
-      Get.back();
-    }
     super.onInit();
+    try {
+      final dynamic data = Get.arguments;
+      if (data != null) {
+        orderDetails = data as OrderCompleteArguments;
+      } else {
+        Get.back();
+      }
+    } catch (e) {
+      orderDetails =
+          OrderCompleteArguments(orderId: "", orderStatus: false, userId: "");
+      debugPrint(e.toString());
+    }
   }
-
-
 }
