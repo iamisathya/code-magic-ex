@@ -23,7 +23,7 @@ class EnrollmentTermsScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kWhiteSmokeColor,
           appBar: OpenPoAppBar(),
-          body: const Body(),
+          body: Body(),
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
             onTapCancelButton: Get.back,
