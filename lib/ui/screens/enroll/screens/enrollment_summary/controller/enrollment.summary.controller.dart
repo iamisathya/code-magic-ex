@@ -1,11 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/api/api_address.dart';
 import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/user_info.dart'
-    hide HumanName, MainAddress, TaxTerms;
 import 'package:dsc_tools/ui/screens/enroll/controllers/enroll.controller.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrolment_complete/main_screen.dart';
 import 'package:dsc_tools/utilities/constants.dart';
@@ -13,7 +10,6 @@ import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/logger.dart';
 import 'package:dsc_tools/utilities/snackbar.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -21,13 +17,13 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../../../../../../utilities/extensions.dart';
 import '../../../../../../api/config/api_service.dart';
 import '../../../../../../models/cart_products.dart';
 import '../../../../../../models/enroll_form.dart';
 import '../../../../../../models/enroll_log_request_data.dart';
 import '../../../../../../models/enrollee_user_data.dart';
 import '../../../../../../models/general_models.dart';
-import '../../../../../../../utilities/extensions.dart';
 
 class EnrollmentSummaryController extends GetxController {
   RxBool isLoading = false.obs;
@@ -77,11 +73,19 @@ class EnrollmentSummaryController extends GetxController {
     expireDayController.text = selectedDate.toString();
   }
 
-  void onProceedPayment() {
-    Get.to(() => EnrollmentCompleteScreen());
-  }
-
   Future<void> proceedOrderPlace() async {
+    if (activePayType.value == PaymentOptions.none) {
+      SnackbarUtil.showWarning(
+          title: "Payment mode error!",
+          message: "Please select payment method before proceed!");
+      return;
+    } else if (activePayType.value != PaymentOptions.cashOnDelivery) {
+      SnackbarUtil.showWarning(
+          title: "Payment mode isn't available!",
+          message:
+              "We're sorry! Your selected payment mode isn't available for now. Please choose other payment option.");
+      return;
+    }
     try {
       isLoading.toggle();
       final bool isServerRuning = await checkOrderEntryServerStatus();
@@ -96,7 +100,7 @@ class EnrollmentSummaryController extends GetxController {
         final EnrollForm? resposne = await proceedPlaceOrder();
         if (resposne != null) {
           verifyOrder(resposne);
-          await forceResetPassword();
+          await forceResetPassword(resposne.customer.id.unicity);
           // Get.offNamedUntil(EnrollmentCompleteScreen.routeName,
           //     ModalRoute.withName('/enrollmentCompleteHomePage'),
           //     arguments: resposne);
@@ -214,7 +218,8 @@ class EnrollmentSummaryController extends GetxController {
           terms: ProductTerms(period: getCurrentPeriod()),
           source: await prepareSource());
       return requestData;
-    } catch (err) {
+    } catch (err, s) {
+      debugPrint(s.toString());
       LoggerService.instance.e(err.toString());
       return null;
     }
@@ -222,13 +227,13 @@ class EnrollmentSummaryController extends GetxController {
 
   Future<void> getPurchaseLog() async {
     try {
-      final payload = await prepareRequestPaylod();
+      final EnrollLogRequestData? payload = await prepareRequestPaylod();
       if (payload == null) {
         isLoading.toggle();
         throw Exception(
             'Somthing went wrong while preparing PurchaseLogRequestData');
       }
-      final String jsonUser = jsonEncode(prepareRequestPaylod());
+      final String jsonUser = jsonEncode(payload);
       await MemberCallsService.init().logEnrollerData(
         kEnrollerLog,
         jsonUser,
@@ -271,11 +276,11 @@ class EnrollmentSummaryController extends GetxController {
     }
   }
 
-  Future<void> forceResetPassword() async {
+  Future<void> forceResetPassword(String password) async {
     try {
       final PasswordResetResponse validationResponse =
           await MemberCalls2Service.init().forceResetPassword(
-        "257461866",
+        password,
       );
       if (validationResponse.affectedRows == 1) {
         debugPrint("Password reset success");

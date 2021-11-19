@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SnackbarUtil {
-  static void showSuccess({required String message, int duration = 3}) {
+  static void showSuccess({String title = "Success", required String message, int duration = 3}) {
     Get.rawSnackbar(
         duration: Duration(seconds: duration),
-        title: 'Success',
+        title: title,
         icon: const Icon(Icons.thumb_up, color: Colors.white),
         message: message,
         backgroundColor: Colors.green.shade600,
         snackStyle: SnackStyle.GROUNDED);
   }
 
-  static void showWarning({required String message, int duration = 3}) {
+  static void showWarning({String title = "Warning", required String message, int duration = 3}) {
     Get.rawSnackbar(
-        title: 'Warning',
+        title: title,
         icon: const Icon(Icons.warning, color: Colors.white),
         message: message,
         duration: Duration(seconds: duration),
@@ -22,9 +22,9 @@ class SnackbarUtil {
         snackStyle: SnackStyle.GROUNDED);
   }
 
-  static void showError({required String message, int duration = 3}) {
+  static void showError({String title = "Error", required String message, int duration = 3}) {
     Get.rawSnackbar(
-        title: 'Error',
+        title: title,
         icon: const Icon(Icons.error, color: Colors.white),
         message: message,
         duration: Duration(seconds: duration),
