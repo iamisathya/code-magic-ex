@@ -17,49 +17,58 @@ class SalesReportEachOrderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(item.name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .copyWith(color: const Color(0xFF000000))),
-              ),
-              GestureDetector(
-                onTap: () => controller.gotoDetailsPage(item),
-                child: SizedBox(
-                  width: 70,
-                  child: SvgPicture.asset(
-                    item.barcode.contains("glyphicon-ok-circle")
-                        ? kBarcodeSuccessIcon
-                        : kBarcodeErrorIcon,
-                    height: 25,
-                    width: 50,
-                    semanticsLabel: "barcode",
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(0),
+      ),
+      color: Colors.white,
+      child: Container(
+        color: Colors.white,
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(item.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: const Color(0xFF000000))),
+                ),
+                GestureDetector(
+                  onTap: () => controller.gotoDetailsPage(item),
+                  child: SizedBox(
+                    width: 70,
+                    child: SvgPicture.asset(
+                      item.barcode.contains("glyphicon-ok-circle")
+                          ? kBarcodeSuccessIcon
+                          : kBarcodeErrorIcon,
+                      height: 25,
+                      width: 50,
+                      semanticsLabel: "barcode",
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          _renderEachRow(context, "BA Number: ${item.customer}",
-              "Date: ${item.date}"),
-          _renderOrderIdRow(context, "Order ID: ", item.orderNumber,
-              "Time: ${item.time}", item.orderHref),
-          GrandTotal(
-              status: item.barcode.contains("glyphicon-ok-circle")
-                  ? "Success"
-                  : "Unknown",
-              totalPrice: item.total,
-              totalPv: item.totalPv.toString()),
-        ],
+              ],
+            ),
+            _renderEachRow(context, "BA Number: ${item.customer}",
+                "Date: ${item.date}"),
+            _renderOrderIdRow(context, "Order ID: ", item.orderNumber,
+                "Time: ${item.time}", item.orderHref),
+              GrandTotal(
+                  status: item.barcode.contains("glyphicon-ok-circle")
+                      ? "Success"
+                      : "Unknown",
+                  totalPrice: item.total,
+                  totalPv: item.totalPv.toString()),
+          ],
+        ),
       ),
     );
   }

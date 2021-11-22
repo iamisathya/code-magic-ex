@@ -1,3 +1,5 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/globals.dart';
@@ -28,20 +30,13 @@ class GrandTotal extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Total Price:",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: const Color(0xFF000000)),
+              const AppText(
+                text: "Total Price:",
+                style: TextTypes.bodyText2,
               ),
-              Text(
-                "$totalPrice ${Globals.currency}",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: const Color(0xFF000000)),
-              ),
+              AppText(
+                  text: "$totalPrice ${Globals.currency}",
+                  style: TextTypes.bodyText2),
             ],
           ),
         ),
@@ -56,20 +51,8 @@ class GrandTotal extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Total PV:",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: const Color(0xFF000000)),
-              ),
-              Text(
-                "$totalPv PV",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: const Color(0xFF000000)),
-              ),
+              const AppText(text: "Total PV:", style: TextTypes.bodyText2),
+              AppText(text: "$totalPv PV", style: TextTypes.bodyText2),
             ],
           ),
         )
