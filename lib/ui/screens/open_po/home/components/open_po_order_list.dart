@@ -69,23 +69,25 @@ class OpenPoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        physics: const ScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Container(
-            color: const Color(0xFFF5F5F5),
-            child: Obx(
-              () => ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: controller.tempOpenPlaceOrders.length,
-                  itemBuilder: (BuildContext ctxt, int index) {
-                    return POItem(
-                        openPo: controller.tempOpenPlaceOrders[index],
-                        controller: controller);
-                  }),
+      physics: const ScrollPhysics(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Container(
+          color: const Color(0xFFF5F5F5),
+          child: Obx(
+            () => ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: controller.tempOpenPlaceOrders.length,
+              itemBuilder: (BuildContext ctxt, int index) {
+                return POItem(
+                    openPo: controller.tempOpenPlaceOrders[index],
+                    controller: controller);
+              },
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

@@ -520,6 +520,11 @@ abstract class DscCallService {
     return DscCallService(dio);
   }
 
+
+  //? Example: https://dsc-th.unicity.com/barcode/check/library/get_items_api.php?token=9a36619e-2e99-4d15-92a8-ed77bd816208
+  @POST(Address.dscBarcodeItems)
+  Future<PasswordResetResponse> getBarcodeItems(@Path("token") String token);
+
   // //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
   // @GET(Address.dscBarcodeItems)
   // Future<BarCodeResponse> getBarcodeItems(
