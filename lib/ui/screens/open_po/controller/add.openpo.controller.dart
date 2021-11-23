@@ -216,12 +216,6 @@ class CreateOpenPoOrderController extends GetxController
   }
 
   Future<void> validateOrder(BuildContext context) async {
-    Get.off(() => CreateOpenPoOrderResult(),
-        arguments: OpenPoCreateOrderResult(
-            isSuccess: false,
-            poNumber: "reponse.poId",
-            distributorId: Globals.userId));
-    return;
     if (cartProducts.isEmpty) {
       SnackbarUtil.showError(
           message: "Please add products to proceed with checkout!");
@@ -299,9 +293,9 @@ class CreateOpenPoOrderController extends GetxController
         poNumber: reponse.poId,
         distributorId: Globals.userId);
     if (reponse.success == true) {
-      Get.off(() => CreateOpenPoOrderResult(), arguments: args);
+      Get.offAll(() => CreateOpenPoOrderResult(), arguments: args);
     } else {
-      Get.off(() => CreateOpenPoOrderResult(), arguments: args);
+      Get.offAll(() => CreateOpenPoOrderResult(), arguments: args);
     }
   }
 

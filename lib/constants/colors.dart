@@ -25,6 +25,7 @@ class AppColor {
   static const kWhiteColor = Color(0xFFFFFFFF);
   static const kWhiteSmokeColor = Color(0xFFF5F5F5);
   static const charcoal = Color(0xFF384250);
+  static const lightGrey = Color(0xFFD3D3D3);
 
   /// Swatch
   static const MaterialColor primarySwatch = MaterialColor(0xff5D4377, {

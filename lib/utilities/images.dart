@@ -29,6 +29,7 @@ const kOrderEntryFailureImage = 'assets/images/order_entry_failure.svg';
 const kOrderEntrySuccessImage = 'assets/images/order_entry_success.svg';
 const kScanErrorImage = 'assets/images/scan_error_image.svg';
 const kEasyShipBgImage = 'assets/images/easyship_background_image.png';
+const kUnicityDscImage = 'assets/images/unicity_dsc.svg';
 
 const kCashOnDeliveryImage = 'assets/images/cash_on_delivery_image.svg';
 const kECPayImage = 'assets/images/ec_pay_image.svg';
@@ -111,6 +112,7 @@ const kECPayIcon = 'assets/icons/ec_pay_icon.svg';
 const kScanBarCodeImage = 'assets/images/scan_barcode_gradient_image.svg';
 const kInputClearIcon = 'assets/icons/input_clear_icon.svg';
 const kLocationIcon = 'assets/icons/location_icon.svg';
+const kUserIcon = 'assets/icons/user_icon.svg';
 
 //gradient
 
