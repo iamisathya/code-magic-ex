@@ -1,4 +1,7 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../constants/globals.dart';
 
@@ -23,20 +26,14 @@ class TotalPrice extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Total PV:",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2!
-                      .copyWith(color: const Color(0xFF384250)),
-                ),
-                Text(
-                  "$totalPv PV",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2!
-                      .copyWith(color: const Color(0xFF384250)),
-                ),
+                AppText(
+                    text: "${"total_pv".tr}:",
+                    style: TextTypes.subtitle2,
+                    color: const Color(0xFF384250)),
+                AppText(
+                    text: "$totalPv PV",
+                    style: TextTypes.subtitle2,
+                    color: const Color(0xFF384250)),
               ],
             ),
             const Padding(
@@ -49,20 +46,14 @@ class TotalPrice extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Total Price:",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2!
-                      .copyWith(color: const Color(0xFF384250)),
-                ),
-                Text(
-                  "$totalPrice ${Globals.currency}",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2!
-                      .copyWith(color: const Color(0xFF384250)),
-                ),
+                AppText(
+                    text: "${"total_price".tr}:",
+                    style: TextTypes.subtitle2,
+                    color: const Color(0xFF384250)),
+                AppText(
+                    text: "$totalPrice ${Globals.currency}",
+                    style: TextTypes.subtitle2,
+                    color: const Color(0xFF384250)),
               ],
             )
           ],

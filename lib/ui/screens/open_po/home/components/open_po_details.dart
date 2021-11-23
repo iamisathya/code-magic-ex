@@ -103,6 +103,7 @@ class OpenPODetailsPage extends StatelessWidget {
           ),
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
+            bgColor: const Color(0xFFE3E8ED),
             onTapCancelButton: Get.back,
             negetiveText: "back",
             positiveText: "Print PO List",

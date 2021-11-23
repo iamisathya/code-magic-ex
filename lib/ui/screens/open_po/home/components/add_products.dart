@@ -69,7 +69,6 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
           ),
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
-            isShown: false,
             onTapCancelButton: () => controller.showBottomModal(context),
             negetiveText: "+ Add",
             positiveText: "Place Order",
@@ -178,6 +177,7 @@ class BrosweAttachment extends StatelessWidget {
                 overflow: TextOverflow.ellipsis),
           )),
           TextButton.icon(
+            style: ButtonStyle(padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
               onPressed: controller.selectSource,
               icon: SvgPicture.asset(kFileIcon, color: const Color(0xFF1C9CFC)),
               label: const AppText(

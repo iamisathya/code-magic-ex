@@ -12,6 +12,7 @@ class BottomButtonBar extends StatelessWidget {
     this.onTapNeutralButton,
     this.onTapPositiveButton,
     this.positiveText = "next",
+    this.bgColor = const Color(0xFFFFFFFF),
     this.negetiveText = "cancel",
     this.neutralText = "back",
   }) : super(key: key);
@@ -24,13 +25,14 @@ class BottomButtonBar extends StatelessWidget {
   final String positiveText;
   final String negetiveText;
   final String neutralText;
+  final Color bgColor;
 
   @override
   Widget build(BuildContext context) {
     return isShown
         ? Container(
             height: 90,
-            color: const Color(0xFFFFFFFF),
+            color: bgColor,
             padding: const EdgeInsets.all(20.0),
             child: Row(
               children: <Widget>[

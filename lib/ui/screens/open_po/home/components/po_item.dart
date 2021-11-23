@@ -56,7 +56,7 @@ class POItem extends StatelessWidget {
                           children: [
                             Text("Total Price: ${openPo.orderTotalPrice}",
                                 style: Theme.of(context).textTheme.caption),
-                            Text("Date: ${openPo.orderTime}",
+                            Text("Time: ${openPo.orderTime}",
                                 style: Theme.of(context).textTheme.caption),
                           ],
                         ),
