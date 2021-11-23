@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart' show DioError;
+import 'package:dsc_tools/models/openpo_create_order_result.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_success/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,7 +28,6 @@ import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/theme/text_view.dart' show AppText;
 import '../../order_entry/screens/home/components/white_search_field.dart';
-import '../home/components/order_success.dart';
 
 class CreateOpenPoOrderController extends GetxController
     with StateMixin<List<InventoryRecords>> {
@@ -215,6 +216,12 @@ class CreateOpenPoOrderController extends GetxController
   }
 
   Future<void> validateOrder(BuildContext context) async {
+    Get.off(() => CreateOpenPoOrderResult(),
+        arguments: OpenPoCreateOrderResult(
+            isSuccess: false,
+            poNumber: "reponse.poId",
+            distributorId: Globals.userId));
+    return;
     if (cartProducts.isEmpty) {
       SnackbarUtil.showError(
           message: "Please add products to proceed with checkout!");
@@ -274,18 +281,8 @@ class CreateOpenPoOrderController extends GetxController
       final OpenPOCreateOrderResponse reponse =
           await MemberCallsService.init().placeOrder(kPlaceOrder, request);
       isLoading.toggle();
-      if (reponse.success == true) {
-        Get.off(() => OrderSuccess(
-              distributorId: Globals.userId,
-              poNumber: reponse.poId,
-            ));
-      } else {
-        Get.off(() => OrderSuccess(
-              distributorId: Globals.userId,
-              poNumber: reponse.poId,
-              isSuccess: false,
-            ));
-      }
+      // Sending result
+      _onPlaceOrder(reponse);
     } on DioError catch (e) {
       isLoading.toggle();
       renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
@@ -293,6 +290,18 @@ class CreateOpenPoOrderController extends GetxController
     } catch (err) {
       isLoading.toggle();
       LoggerService.instance.e(err.toString());
+    }
+  }
+
+  void _onPlaceOrder(OpenPOCreateOrderResponse reponse) {
+    final OpenPoCreateOrderResult args = OpenPoCreateOrderResult(
+        isSuccess: false,
+        poNumber: reponse.poId,
+        distributorId: Globals.userId);
+    if (reponse.success == true) {
+      Get.off(() => CreateOpenPoOrderResult(), arguments: args);
+    } else {
+      Get.off(() => CreateOpenPoOrderResult(), arguments: args);
     }
   }
 

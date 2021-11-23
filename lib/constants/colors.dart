@@ -15,12 +15,16 @@ class AppColor {
     colors: [kMainColor, kMainColorSub],
   );
   static const kSecondaryColor = Color(0xFFA8DADC);
-
-  static const kWhiteSmokeColor = Color(0xfff5f5f5);
+  
   static const kPendingColor = Color(0xfff0ad4e);
   static const kApprovedColor = Color(0xff5cb85c);
 
   static const kTextColor = Color(0xFF757575);
+
+  static const kBlackColor = Color(0xFF000000);
+  static const kWhiteColor = Color(0xFFFFFFFF);
+  static const kWhiteSmokeColor = Color(0xFFF5F5F5);
+  static const charcoal = Color(0xFF384250);
 
   /// Swatch
   static const MaterialColor primarySwatch = MaterialColor(0xff5D4377, {

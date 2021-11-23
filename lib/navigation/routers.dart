@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/open_po/order_success/main_screen.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -23,27 +24,28 @@ import '../utilities/bindings.dart';
 class AppRoutes {
   AppRoutes._(); //this is to prevent anyone from instantiating this object
   static final routes = [
+    // splash
     GetPage(name: SplashScreen.routeName, page: () => SplashScreen()),
+    // Enroll
     GetPage(name: EnrollHomeScreen.routeName, page: () => EnrollHomeScreen()),
     GetPage(
         name: EnrollConfirmation.routeName, page: () => EnrollConfirmation()),
     GetPage(name: EnrollComplete.routeName, page: () => EnrollComplete()),
-    GetPage(name: BarcodeHomeScreen.routeName, page: () => BarcodeHomeScreen()),
-    GetPage(
-        name: WebivewHomeScreen.routeName,
-        page: () => const WebivewHomeScreen()),
+    // Easy ship
     GetPage(
         name: EasyShipHomeScreen.routeName, page: () => EasyShipHomeScreen()),
-    GetPage(
-        name: SalesReportsHomeScreen.routeName,
-        page: () => SalesReportsHomeScreen()),
+    // Order Entry
     GetPage(
         name: OrderEntryHomeScreen.routeName,
         page: () => OrderEntryHomeScreen()),
+    // Dashbaord
     GetPage(name: MainHomeScreen.routeName, page: () => MainHomeScreen()),
+    // Login
     GetPage(name: LoginScreen.routeName, page: () => LoginScreen()),
     GetPage(name: CheckoutPage.routeName, page: () => CheckoutPage()),
+    // Settings
     GetPage(name: SettingsPage.routeName, page: () => SettingsPage()),
+    // Open PO
     GetPage(
         name: OpenPOHomeScreen.routeName,
         page: () => OpenPOHomeScreen(),
@@ -56,7 +58,20 @@ class AppRoutes {
         name: CreateOpenPoOrder.routeName,
         page: () => CreateOpenPoOrder(),
         binding: CreateOpenPoOrderBindings()),
+    GetPage(
+        name: CreateOpenPoOrderResult.routeName,
+        page: () => CreateOpenPoOrderResult()),
+    // Sales Report
     GetPage(name: PrintSalesReport.routeName, page: () => PrintSalesReport()),
+    GetPage(
+        name: SalesReportsHomeScreen.routeName,
+        page: () => SalesReportsHomeScreen()),
+    // Barcode
     GetPage(name: BarCodeDetails.routeName, page: () => BarCodeDetails()),
+    GetPage(name: BarcodeHomeScreen.routeName, page: () => BarcodeHomeScreen()),
+    // Common pages
+    GetPage(
+        name: WebivewHomeScreen.routeName,
+        page: () => const WebivewHomeScreen()),
   ];
 }
