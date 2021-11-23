@@ -57,6 +57,21 @@ class Body extends StatelessWidget {
               style: const TextStyle(fontSize: 14, color: AppColor.charcoal),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: Text("Go to Home"),
+                ),
+                GestureDetector(
+                    onTap: _controller.gotoHome,
+                    child: SvgPicture.asset(kBottomTabHomeIcon, width: 36)),
+              ],
+            ),
+          )
         ],
       ),
     );

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../controller/openpo.list.controller.dart';
-import 'loader.dart';
 import 'po_item.dart';
 import 'po_list_toolbar.dart';
 
@@ -12,19 +10,13 @@ class OpenPoOrderList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => LoadingOverlay(
-        isLoading: controller.isLoading.value,
-        progressIndicator: const Loader(),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const HeaderBar(),
-              PoListToolBar(controller: controller),
-              OpenPoList(controller: controller)
-            ],
-          ),
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const HeaderBar(),
+          PoListToolBar(controller: controller),
+          OpenPoList(controller: controller)
+        ],
       ),
     );
   }

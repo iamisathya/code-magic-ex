@@ -1,4 +1,5 @@
 import 'package:dsc_tools/models/openpo_create_order_result.dart';
+import 'package:dsc_tools/ui/screens/home/home.dart';
 import 'package:get/get.dart';
 
 import '../../../../screens/open_po/home/home.screen.dart';
@@ -23,5 +24,9 @@ class OpenPoOrderResultController extends GetxController {
   void onPressedBack() {
     homeCtrol.getAllOpenPo();
     Get.off(() => OpenPOHomeScreen());
+  }
+
+  void gotoHome() {
+    Get.offAll(() => MainHomeScreen());
   }
 }
