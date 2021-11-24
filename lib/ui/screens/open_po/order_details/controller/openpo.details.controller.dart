@@ -6,11 +6,11 @@ import 'package:pdf/pdf.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:printing/printing.dart';
 
-import '../../../../api/api_address.dart';
-import '../../../../api/config/api_service.dart';
-import '../../../../models/open_order_id.dart';
-import '../../../../models/open_po_details.dart';
-import '../../../../utilities/logger.dart';
+import '../../../../../api/api_address.dart';
+import '../../../../../api/config/api_service.dart';
+import '../../../../../models/open_order_id.dart';
+import '../../../../../models/open_po_details.dart';
+import '../../../../../utilities/logger.dart';
 
 class OpenPoDetailsController extends GetxController {
   // final MemberCallsService api;

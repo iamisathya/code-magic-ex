@@ -1,6 +1,6 @@
 import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/models/cart_products.dart';
-import 'package:dsc_tools/ui/screens/open_po/controller/add.openpo.controller.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/controller/add.openpo.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/order_create/component/po_cart_item.dart';
 import 'package:dsc_tools/ui/screens/open_po/order_create/component/total_price_container.dart';
 import 'package:flutter/material.dart';

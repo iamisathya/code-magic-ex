@@ -1,6 +1,6 @@
 
 import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/open_po/controller/openpo.list.controller.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_list/controller/openpo.list.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

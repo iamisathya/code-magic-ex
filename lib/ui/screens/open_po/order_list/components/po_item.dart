@@ -8,7 +8,7 @@ import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
-import '../../controller/openpo.list.controller.dart';
+import '../controller/openpo.list.controller.dart';
 import '../../order_details/home_screen.dart';
 
 class POItem extends StatelessWidget {

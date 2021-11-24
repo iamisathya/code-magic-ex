@@ -6,7 +6,7 @@ import '../../../../constants/colors.dart';
 import '../../../../utilities/enums.dart';
 import '../../../global/theme/text_view.dart';
 import '../../../global/widgets/bottom_button_bar.dart';
-import '../controller/openpo.details.controller.dart';
+import 'controller/openpo.details.controller.dart';
 import '../order_create/component/loader.dart';
 import 'components/body2.dart';
 

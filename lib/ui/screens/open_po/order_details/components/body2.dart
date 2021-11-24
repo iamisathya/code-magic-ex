@@ -7,7 +7,7 @@ import '../../../../../utilities/constants.dart';
 import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
-import '../../controller/openpo.details.controller.dart';
+import '../controller/openpo.details.controller.dart';
 import 'po_ordered_item.dart';
 import '../../order_create/component/total_price_container.dart';
 import 'openpo_details_topbar.dart';

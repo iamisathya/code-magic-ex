@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import 'package:dsc_tools/ui/screens/open_po/controller/add.openpo.controller.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/controller/add.openpo.controller.dart';
 import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
 
 import '../../../../../constants/colors.dart';
