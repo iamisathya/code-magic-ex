@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class FilterTabs extends StatelessWidget {
                       style: controller.filterMethod.value == "myCart"
                           ? TextTypes.subtitle1
                           : TextTypes.bodyText1,
-                      color: const Color(0xFF505050),
+                      color: AppColor.darkLiver
                     )),
                 const SizedBox(width: 30),
                 GestureDetector(
@@ -44,7 +45,7 @@ class FilterTabs extends StatelessWidget {
                       style: controller.filterMethod.value == "paymentType"
                           ? TextTypes.subtitle1
                           : TextTypes.bodyText1,
-                      color: const Color(0xFF505050),
+                      color: AppColor.darkLiver
                     )),
               ],
             ),

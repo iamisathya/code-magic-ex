@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -32,8 +33,8 @@ class UserNameTextField extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5),
       padding: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFFD0D0CF)),
-          color: const Color(0xFFFFFFFF),
+          border: Border.all(color: AppColor.americanSilver),
+          color: AppColor.kWhiteColor,
           borderRadius: BorderRadius.circular(3)),
       child: TextFormField(
         controller: controller,
@@ -49,7 +50,7 @@ class UserNameTextField extends StatelessWidget {
         validator: (String? value) =>
             value!.isEmpty ? "This field is required" : null,
         decoration: InputDecoration(
-            fillColor: const Color(0xFFFFFFFF),
+            fillColor: AppColor.kWhiteColor,
             filled: true,
             labelText: label,
             floatingLabelBehavior: FloatingLabelBehavior.auto,

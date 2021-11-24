@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/cart_products.dart';
@@ -50,12 +51,12 @@ class CheckoutItem extends StatelessWidget {
                             AppText(
                                 text: "CODE: ${item.itemCode}",
                                 style: TextTypes.caption,
-                                color: const Color(0xff9ea9b9)),
+                                color: AppColor.metallicSilver),
                             AppText(
                                 text:
                                     "${item.totalPv} PV | ${item.totalPrice} THB",
                                 style: TextTypes.bodyText2,
-                                color: const Color(0xFF384250)),
+                                color: AppColor.charcoal),
                           ],
                         ),
                         QuantityCounter(item: item)

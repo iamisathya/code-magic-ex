@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -132,7 +133,7 @@ class EnrollHomeController extends GetxController {
   void showBottomModal(BuildContext context) {
     showModalBottomSheet(
       isScrollControlled: true,
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColor.kWhiteSmokeColor,
       context: context,
       isDismissible: true,
       builder: (context) {
@@ -141,7 +142,7 @@ class EnrollHomeController extends GetxController {
           maxChildSize: 0.75,
           expand: false,
           builder: (_, ctrl) => Container(
-            color: const Color(0xFFE3E8ED),
+            color: AppColor.brightGray,
             padding: const EdgeInsets.all(8),
             child: Column(
               children: <Widget>[
@@ -196,18 +197,17 @@ class EnrollHomeController extends GetxController {
                                                 .textTheme
                                                 .subtitle2!
                                                 .copyWith(
-                                                    color: const Color(
-                                                        0xFF384250))),
+                                                    color: AppColor.charcoal)),
                                         AppText(
                                           text: "Code: ${item.item.id.unicity}",
                                           style: TextTypes.caption,
-                                          color: const Color(0xFF9EA9B9),
+                                          color: AppColor.metallicSilver,
                                         ),
                                         AppText(
                                           text:
                                               "${item.terms.pvEach} PV | ${item.terms.priceEach} ${Globals.currency}",
                                           style: TextTypes.subtitle2,
-                                          color: const Color(0xFF384250),
+                                          color: AppColor.charcoal,
                                         ),
                                       ],
                                     ),

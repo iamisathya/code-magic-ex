@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,11 +26,11 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
         isLoading: controller.isLoading.value,
         progressIndicator: const Loader(),
         child: Scaffold(
-          backgroundColor: const Color(0xFFF5F5F5),
+          backgroundColor: AppColor.kWhiteSmokeColor,
           appBar: AppBar(
               title: const Text(
             "New PO",
-            style: TextStyle(fontSize: 24, color: Color(0xFF000000)),
+            style: TextStyle(fontSize: 24, color: AppColor.kBlackColor),
           )),
           body: SingleChildScrollView(
             child: SafeArea(
@@ -58,7 +59,7 @@ class CreateOpenPoOrder extends GetView<CreateOpenPoOrderController> {
                             totalPrice:
                                 controller.totalCartPrice.value.toString(),
                             totalPv: controller.totalCartPv.value.toString(),
-                            bgColor: const Color(0xFFF5F5F5),
+                            bgColor: AppColor.kWhiteSmokeColor,
                           )),
                       BrosweAttachment(controller: controller)
                     ],
@@ -89,7 +90,7 @@ class UserInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 130,
-      color: const Color(0xFF76E5DE),
+      color: AppColor.crayola,
       child: Column(
         children: [
           Padding(
@@ -106,7 +107,7 @@ class UserInformation extends StatelessWidget {
                         child: Text(
                       Globals.userId,
                       style: const TextStyle(
-                          color: Color(0xFF9999A4), fontSize: 14),
+                          color: AppColor.manatee, fontSize: 14),
                     )),
                   ),
                 ),
@@ -124,7 +125,7 @@ class UserInformation extends StatelessWidget {
                           .format(DateTime.now())
                           .toString(),
                       style: const TextStyle(
-                          color: Color(0xFF9999A4), fontSize: 14),
+                          color: AppColor.manatee, fontSize: 14),
                     )),
                   ),
                 )
@@ -140,7 +141,7 @@ class UserInformation extends StatelessWidget {
               child: Center(
                   child: Text(
                 Globals.userInfo.humanName.fullName,
-                style: const TextStyle(color: Color(0xFF9999A4), fontSize: 14),
+                style: const TextStyle(color: AppColor.manatee, fontSize: 14),
               )),
             ),
           ),
@@ -164,7 +165,7 @@ class BrosweAttachment extends StatelessWidget {
       height: 50,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       alignment: Alignment.center,
-      color: const Color(0xFFE3E8ED),
+      color: AppColor.brightGray,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -179,11 +180,11 @@ class BrosweAttachment extends StatelessWidget {
           TextButton.icon(
             style: ButtonStyle(padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
               onPressed: controller.selectSource,
-              icon: SvgPicture.asset(kFileIcon, color: const Color(0xFF1C9CFC)),
+              icon: SvgPicture.asset(kFileIcon, color: AppColor.dodgerBlue),
               label: const AppText(
                 text: "Browse",
                 style: TextTypes.subtitle2,
-                color: Color(0xFF1C9CFC),
+                color: AppColor.dodgerBlue,
               ))
         ],
       ),

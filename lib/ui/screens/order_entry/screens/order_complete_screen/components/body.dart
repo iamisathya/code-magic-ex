@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -19,7 +20,7 @@ class Body extends StatelessWidget {
               AppText(
                   text: "Your order has been placed successfully!",
                   style: TextTypes.subtitle2,
-                  color: Color(0xFF606975)),
+                  color: AppColor.cadet),
             ],
           ),
           SvgPicture.asset(kOrderEntrySuccessImage, height: 224),
@@ -28,12 +29,12 @@ class Body extends StatelessWidget {
               AppText(
                   text: "Distributor ID : 102915181",
                   style: TextTypes.subtitle2,
-                  color: Color(0xFF606975)),
+                  color: AppColor.cadet),
               SizedBox(height: 10),
               AppText(
                   text: "PO Number: BKM 2021-08-W002",
                   style: TextTypes.subtitle2,
-                  color: Color(0xFF606975)),
+                  color: AppColor.cadet),
             ],
           ),
           Column(

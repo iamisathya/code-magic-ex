@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -61,11 +62,11 @@ class BarCodeDetails extends StatelessWidget {
             opacity: controller.isScroolButtonVisible.value ? 0.0 : 1.0,
             duration: const Duration(milliseconds: 100),
             child: FloatingActionButton(
-                backgroundColor: const Color(0xFFFFBF3A),
+                backgroundColor: AppColor.sunglow,
                 onPressed: controller.onTapScrollToTop,
                 tooltip: 'scroll to top',
                 child:
-                    const Icon(Icons.arrow_upward, color: Color(0xFF000000))),
+                    const Icon(Icons.arrow_upward, color: AppColor.kBlackColor)),
           ),
         ),
       ),
@@ -88,15 +89,15 @@ class BarCodeDetails extends StatelessWidget {
 //           ? const SizedBox()
 //           : Container(
 //               height: 90,
-//               color: const Color(0xFFE3E8ED),
+//               color: AppColor.brightGray,
 //               padding: const EdgeInsets.all(20.0),
 //               child: Row(
 //                 children: <Widget>[
 //                   Flexible(
 //                     child: PlainButton(
-//                       buttonColor: const Color(0xFFFFBF3A),
+//                       buttonColor: AppColor.sunglow,
 //                       title: 'Cancel',
-//                       titleColor: const Color(0xFF000000),
+//                       titleColor: AppColor.kBlackColor,
 //                       onTap: () => controller.showWarningMessage(),
 //                     ),
 //                   ),
@@ -154,7 +155,7 @@ class CompleteBarcodeScanSuccess extends StatelessWidget {
     return Container(
       height: 152,
       width: Get.width,
-      color: const Color(0xFF5297A6),
+      color: AppColor.cadetBlue,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -165,13 +166,13 @@ class CompleteBarcodeScanSuccess extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline6!
-                  .copyWith(color: const Color(0xFFFFFFFF))),
+                  .copyWith(color: AppColor.kWhiteColor)),
           const SizedBox(height: 7),
           Text("Order Number: ${controller.orderNumber.value}",
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(color: const Color(0xFFFFFFFF))),
+                  .copyWith(color: AppColor.kWhiteColor)),
         ],
       ),
     );
@@ -192,7 +193,7 @@ class BarcodeScanner extends StatelessWidget {
       onTap: () => controller.scanBarcode(context),
       child: Container(
         height: 94,
-        color: const Color(0xFF76E5DE),
+        color: AppColor.crayola,
         child: Container(
           margin: const EdgeInsets.all(20.0),
           color: Colors.white,
@@ -231,8 +232,8 @@ class Spacer extends StatelessWidget {
     return Container(
         height: 45,
         color: controller.checkIfAnyPandingBarcodeScanLeft().value
-            ? const Color(0xFFFFFFFF)
-            : const Color(0xFF5297A6));
+            ? AppColor.kWhiteColor
+            : AppColor.cadetBlue);
   }
 }
 
@@ -248,8 +249,8 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: controller.checkIfAnyPandingBarcodeScanLeft().value
-          ? const Color(0xFFFFFFFF)
-          : const Color(0xFF5297A6),
+          ? AppColor.kWhiteColor
+          : AppColor.cadetBlue,
       height: 60,
       child: Stack(
         children: <Widget>[
@@ -265,7 +266,7 @@ class CustomAppBar extends StatelessWidget {
             child: Text(
               "Order Number: ${controller.orderNumber.value}",
               style: Theme.of(context).textTheme.headline6!.copyWith(
-                    color: const Color(0xFF000000),
+                    color: AppColor.kBlackColor,
                   ),
             ),
           ),

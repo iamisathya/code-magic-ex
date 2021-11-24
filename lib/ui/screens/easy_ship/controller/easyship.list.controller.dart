@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -60,7 +61,7 @@ class EasyShipListController extends GetxController {
         icon: const Icon(Icons.screenshot, color: Colors.white),
         backgroundColor: Colors.black,
         showProgressIndicator: true,
-        progressIndicatorBackgroundColor: const Color(0xFFFFFFFF));
+        progressIndicatorBackgroundColor: AppColor.kWhiteColor);
     screenshotController.capture().then((image) {
       debugPrint("Captured");
       ScaffoldMessenger.of(context).clearSnackBars();

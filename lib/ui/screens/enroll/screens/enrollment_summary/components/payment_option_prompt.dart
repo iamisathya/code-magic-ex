@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -20,13 +21,13 @@ class PromptPaymentOption extends StatelessWidget {
           const AppText(
               text: "Scan The QR Code to Pay",
               style: TextTypes.bodyText1,
-              color: Color(0xFF003B6F)),
+              color: AppColor.ateneoBlue),
           SvgPicture.asset(kBarcodeExampleImage),
           Text(
             "${Globals.currency} 8,040",
             style: const TextStyle(
                 fontWeight: FontWeight.w800,
-                color: Color(0xFF000000),
+                color: AppColor.kBlackColor,
                 fontSize: 24),
           ),
           Row(
@@ -38,12 +39,12 @@ class PromptPaymentOption extends StatelessWidget {
                 child: AppText(
                     text: "03 Nov 2021 -",
                     style: TextTypes.bodyText1,
-                    color: Color(0xFF384250)),
+                    color: AppColor.charcoal),
               ),
               AppText(
                   text: "01:55",
                   style: TextTypes.bodyText1,
-                  color: Color(0xFF6FCF97)),
+                  color: AppColor.mediumAquamarine),
             ],
           )
         ],

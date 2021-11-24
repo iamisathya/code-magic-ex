@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,7 +36,7 @@ class ModalPicker extends StatelessWidget {
               child: AppText(
                 text: "cancel".tr,
                 style: TextTypes.bodyText1,
-                color: const Color(0xFF505050),
+                color: AppColor.darkLiver,
               ),
             ),
             GestureDetector(
@@ -43,7 +44,7 @@ class ModalPicker extends StatelessWidget {
               child: AppText(
                 text: "done".tr,
                 style: TextTypes.headline6,
-                color: const Color(0xFF1A78F4),
+                color: AppColor.blueCrayola,
               ),
             )
           ]),
@@ -51,7 +52,7 @@ class ModalPicker extends StatelessWidget {
         SizedBox(
           height: 250,
           child: CupertinoPicker(
-              backgroundColor: const Color(0xFFF6F9FD),
+              backgroundColor: AppColor.ghostWhite,
               scrollController:
                   FixedExtentScrollController(initialItem: selectedIndex),
               magnification: 1.2,

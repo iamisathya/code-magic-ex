@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrolment_complete/controller/enrolment_complete_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,7 +29,7 @@ class EnrolmentErrorScreen extends StatelessWidget {
                 child: AppText(
                     text: "This Page has been Error!",
                     style: TextTypes.bodyText1,
-                    color: Color(0xFF505050)),
+                    color: AppColor.darkLiver),
               ),
             ],
           ),
@@ -41,13 +42,13 @@ class EnrolmentErrorScreen extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   gradient: const LinearGradient(
-                      colors: [Color(0xFF1C9CFC), Color(0xFF4CDFFF)],
+                      colors: [AppColor.dodgerBlue, AppColor.skyBlue],
                       begin: Alignment.bottomLeft,
                       end: Alignment.topRight)),
               child: const AppText(
                 text: "Try Again!",
                 style: TextTypes.headline6,
-                color: Color(0xFFFFFFFF),
+                color: AppColor.kWhiteColor,
               ),
             ),
           )

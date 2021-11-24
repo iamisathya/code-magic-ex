@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -14,7 +15,7 @@ class CartCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-          color: const Color(0xFFFFFFFF),
+          color: AppColor.kWhiteColor,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
@@ -26,7 +27,7 @@ class CartCard extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(getProportionateScreenWidth(10)),
                   decoration: const BoxDecoration(
-                    color: Color(0xFFF5F6F9),
+                    color: AppColor.culturedSecond,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(15),
                         bottomLeft: Radius.circular(15)),

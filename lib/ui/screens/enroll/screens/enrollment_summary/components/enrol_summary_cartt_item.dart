@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -17,7 +18,7 @@ class EnrollSummaryCartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color(0xFFFFFFFF),
+      color: AppColor.kWhiteColor,
       child: Column(
         children: [
           SizedBox(
@@ -45,12 +46,12 @@ class EnrollSummaryCartItem extends StatelessWidget {
                         AppText(
                           text: "Code: ${item.itemCode}",
                           style: TextTypes.caption,
-                          color: const Color(0xFF9EA9B9),
+                          color: AppColor.metallicSilver,
                         ),
                         AppText(
                           text: "${item.itemPv} PV | ${item.itemPrice} THB",
                           style: TextTypes.subtitle1,
-                          color: const Color(0xFF384250),
+                          color: AppColor.charcoal,
                         ),
                       ],
                     ),
@@ -71,7 +72,7 @@ class EnrollSummaryCartItem extends StatelessWidget {
                         style: TextTypes.subtitle1,
                         align: TextAlign.center)),
                 const SizedBox(
-                    width: 5, child: VerticalDivider(color: Color(0xFFD0D0CF))),
+                    width: 5, child: VerticalDivider(color: AppColor.americanSilver)),
                 Expanded(
                   child: AppText(
                       text: "${item.totalPv} PV",
@@ -79,7 +80,7 @@ class EnrollSummaryCartItem extends StatelessWidget {
                       align: TextAlign.center),
                 ),
                 const SizedBox(
-                    width: 5, child: VerticalDivider(color: Color(0xFFD0D0CF))),
+                    width: 5, child: VerticalDivider(color: AppColor.americanSilver)),
                 Expanded(
                   child: AppText(
                       text: "${item.totalPrice} ${Globals.currency}",

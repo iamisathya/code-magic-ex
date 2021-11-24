@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,9 +17,9 @@ class SignOutButton extends StatelessWidget {
       {this.fontSize = 14,
       this.title = "Button",
       this.height = 40,
-      this.bgColor = const Color(0xFFFFB74F),
-      this.fgColor = const Color(0xFF000000),
-      this.iconColor = const Color(0xFF000000),
+      this.bgColor = AppColor.kWhiteColor,
+      this.fgColor = AppColor.kBlackColor,
+      this.iconColor = AppColor.kBlackColor,
       this.icon = kSignOutIcon,
       this.onPress});
 

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,7 +19,7 @@ class PageToolBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 54,
-      color: const Color(0xFFFFBF3A),
+      color: AppColor.sunglow,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -202,7 +203,7 @@ class EnrollmentUserInfoController extends GetxController {
   void openAddressSearchDialog(BuildContext context) {
     showModalBottomSheet(
       isScrollControlled: true,
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColor.kWhiteSmokeColor,
       context: context,
       isDismissible: true,
       builder: (context) {
@@ -211,7 +212,7 @@ class EnrollmentUserInfoController extends GetxController {
           maxChildSize: 0.75,
           expand: false,
           builder: (_, ctrl) => Container(
-            color: const Color(0xFFE3E8ED),
+            color: AppColor.brightGray,
             padding: const EdgeInsets.all(8),
             child: Column(
               children: <Widget>[
@@ -266,7 +267,7 @@ class EnrollmentUserInfoController extends GetxController {
                                             .subtitle2!
                                             .copyWith(
                                                 color:
-                                                    const Color(0xFF384250))),
+                                                    AppColor.charcoal)),
                                   )
                                 ],
                               ),

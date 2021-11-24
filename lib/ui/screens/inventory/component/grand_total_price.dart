@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/globals.dart';
@@ -12,13 +13,13 @@ class GrandTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFF5297A6),
+      color: AppColor.cadetBlue,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(children: [
           Container(
             decoration: const BoxDecoration(
-                color: Color(0xFFFFFFFF),
+                color: AppColor.kWhiteColor,
                 borderRadius: BorderRadius.all(Radius.circular(3.0))),
             height: 40,
             child: Row(
@@ -32,7 +33,7 @@ class GrandTotal extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2!
-                        .copyWith(color: const Color(0xFF000000)),
+                        .copyWith(color: AppColor.kBlackColor),
                   ),
                 ),
                 Padding(
@@ -43,7 +44,7 @@ class GrandTotal extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2!
-                        .copyWith(color: const Color(0xFF000000)),
+                        .copyWith(color: AppColor.kBlackColor),
                   ),
                 ),
               ],
@@ -52,7 +53,7 @@ class GrandTotal extends StatelessWidget {
           const SizedBox(height: 10),
           Container(
               decoration: const BoxDecoration(
-                  color: Color(0xFFFFFFFF),
+                  color: AppColor.kWhiteColor,
                   borderRadius: BorderRadius.all(Radius.circular(3.0))),
               height: 40,
               child: Row(
@@ -66,7 +67,7 @@ class GrandTotal extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2!
-                          .copyWith(color: const Color(0xFF000000)),
+                          .copyWith(color: AppColor.kBlackColor),
                     ),
                   ),
                   Padding(
@@ -77,7 +78,7 @@ class GrandTotal extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2!
-                          .copyWith(color: const Color(0xFF000000)),
+                          .copyWith(color: AppColor.kBlackColor),
                     ),
                   ),
                 ],

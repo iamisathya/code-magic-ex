@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -21,8 +22,8 @@ class BarcodeListItem extends StatelessWidget {
           duration: const Duration(milliseconds: 160),
           // height: controller.isExpanded.value ? 246 : 66,
           decoration: BoxDecoration(
-              color: const Color(0xFFFFFFFF),
-              border: Border.all(color: const Color(0xFFD0D0CF), width: 0.5),
+              color: AppColor.kWhiteColor,
+              border: Border.all(color: AppColor.americanSilver, width: 0.5),
               borderRadius: const BorderRadius.all(Radius.circular(3.0))),
           child: Column(
             children: [
@@ -109,15 +110,15 @@ class BarcodeItemChip extends StatelessWidget {
         height: 35,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(3),
-            color: const Color(0xFFF1F8FC),
-            border: Border.all(width: 0.5, color: const Color(0xFFEAEAEA))),
+            color: AppColor.aliceBlue,
+            border: Border.all(width: 0.5, color: AppColor.brightGraySecond)),
         alignment: Alignment.center,
         child: Text(
           text,
           style: Theme.of(context)
               .textTheme
               .bodyText2!
-              .copyWith(color: const Color(0xFF505050)),
+              .copyWith(color: AppColor.darkLiver),
         ));
   }
 }

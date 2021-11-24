@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class TableView extends StatelessWidget {
           leftSideItemBuilder: _generateFirstColumnRow,
           rightSideItemBuilder: _generateRightHandSideColumnRow,
           itemCount: controller.tempInventoryRecords.value.items.length,
-          rowSeparatorWidget: kDivider(c: const Color(0xFFEAEAEA)),
+          rowSeparatorWidget: kDivider(c: AppColor.brightGraySecond),
         ));
   }
 
@@ -64,8 +65,8 @@ class TableView extends StatelessWidget {
       onTap: () => controller.onSortCulumn(type),
       child: Container(
           color: controller.activeStockType.value.value == "onHand"
-              ? const Color(0xFF5297a6)
-              : const Color(0xFFC9A769),
+              ? AppColor.cadetBlue
+              : AppColor.brownYellow,
           height: 55,
           width: 180,
           child: Row(
@@ -74,9 +75,9 @@ class TableView extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _renderWhiteText(label, context, const Color(0xFFFFFFFF)),
+                  _renderWhiteText(label, context, AppColor.kWhiteColor),
                   if (controller.activeStockType.value.value == "onHand")
-                    _renderWhiteText(value, context, const Color(0xFFE7BB4A)),
+                    _renderWhiteText(value, context, AppColor.maximumYellowRed),
                 ],
               ),
               SvgPicture.asset(
@@ -84,7 +85,7 @@ class TableView extends StatelessWidget {
                 width: 8,
                 height: 10,
                 semanticsLabel: 'sort icon',
-                color: const Color(0xFFFFFFFF),
+                color: AppColor.kWhiteColor
               )
             ],
           )),
@@ -94,10 +95,10 @@ class TableView extends StatelessWidget {
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     final currentItem = controller.tempInventoryRecords.value.items[index];
     final alternativeBgColor = index % 2 == 0
-        ? const Color(0xFFFFFFFF)
+        ? AppColor.kWhiteColor
         : (controller.activeStockType.value.value == "onHand")
-            ? const Color(0xFFF1FAF7)
-            : const Color(0xFFF7F1E9);
+            ? AppColor.cultured
+            : AppColor.isabelline;
     return Container(
       width: 140,
       height: 65,
@@ -106,22 +107,22 @@ class TableView extends StatelessWidget {
       decoration: BoxDecoration(
           color: alternativeBgColor,
           border: const Border.symmetric(
-              vertical: BorderSide(width: 0.5, color: Color(0xFFEAEAEA)))),
+              vertical: BorderSide(width: 0.5, color: AppColor.brightGraySecond))),
       child: Text(currentItem.item.id.unicity,
           style: Theme.of(context)
               .textTheme
               .bodyText2!
-              .copyWith(color: const Color(0xFF384250))),
+              .copyWith(color: AppColor.charcoal)),
     );
   }
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
     final currentItem = controller.tempInventoryRecords.value.items[index];
     final alternativeBgColor = index % 2 == 0
-        ? const Color(0xFFFFFFFF)
+        ? AppColor.kWhiteColor
         : (controller.activeStockType.value.value == "onHand")
-            ? const Color(0xFFF1FAF7)
-            : const Color(0xFFF7F1E9);
+            ? AppColor.cultured
+            : AppColor.isabelline;
     return Row(
       children: <Widget>[
         Container(
@@ -131,14 +132,14 @@ class TableView extends StatelessWidget {
                 color: alternativeBgColor,
                 border: const Border.symmetric(
                     vertical:
-                        BorderSide(width: 0.5, color: Color(0xFFEAEAEA)))),
+                        BorderSide(width: 0.5, color: AppColor.brightGraySecond))),
             padding: const EdgeInsets.all(15),
             alignment: Alignment.centerLeft,
             child: Text(currentItem.catalogSlideContent.content.description,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
-                    .copyWith(color: const Color(0xFF384250)))),
+                    .copyWith(color: AppColor.charcoal))),
         _renderDataCell(96, currentItem.quantityOnHand, Alignment.center,
             context, alternativeBgColor),
         _renderDataCell(100, NumberFormat().format(currentItem.terms.pvEach),
@@ -171,14 +172,14 @@ class TableView extends StatelessWidget {
       onTap: () => controller.onSortCulumn(type),
       child: Container(
         color: controller.activeStockType.value.value == "onHand"
-            ? const Color(0xFF5297a6)
-            : const Color(0xFFC9A769),
+            ? AppColor.cadetBlue
+            : AppColor.brownYellow,
         height: 56,
         width: width,
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Text(title,
               style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: const Color(0xFFFFFFFF),
+                  color: AppColor.kWhiteColor,
                   fontWeight: type == controller.currentType
                       ? FontWeight.w600
                       : FontWeight.w400)),
@@ -187,7 +188,7 @@ class TableView extends StatelessWidget {
             width: 8,
             height: 10,
             semanticsLabel: 'sort icon',
-            color: const Color(0xFFFFFFFF),
+            color: AppColor.kWhiteColor
           )
         ]),
       ),
@@ -211,13 +212,13 @@ class TableView extends StatelessWidget {
       decoration: BoxDecoration(
           color: color,
           border: const Border.symmetric(
-              vertical: BorderSide(width: 0.5, color: Color(0xFFEAEAEA)))),
+              vertical: BorderSide(width: 0.5, color: AppColor.brightGraySecond))),
       alignment: textAlign,
       child: Text(titleText,
           style: Theme.of(context)
               .textTheme
               .bodyText2!
-              .copyWith(color: const Color(0xFF000000))),
+              .copyWith(color: AppColor.kBlackColor)),
     );
   }
 }

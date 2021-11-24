@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class SalesReportOrderDetials extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline6!
-                  .copyWith(color: const Color(0xFF000000))))),
+                  .copyWith(color: AppColor.kBlackColor)))),
       body: Obx(
         () => LoadingOverlay(
           isLoading: controller.isLoading.value,
@@ -31,7 +32,7 @@ class SalesReportOrderDetials extends StatelessWidget {
               children: [
                 Container(
                   height: 94,
-                  color: const Color(0xFF5297A6),
+                  color: AppColor.cadetBlue,
                   child: Container(
                     margin: const EdgeInsets.all(20.0),
                     color: Colors.white,
@@ -57,9 +58,9 @@ class SalesReportOrderDetials extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
+                      color: AppColor.kWhiteColor,
                       border: Border.all(
-                          color: const Color(0xFFD0D0CF), width: 0.5),
+                          color: AppColor.americanSilver, width: 0.5),
                       borderRadius:
                           const BorderRadius.all(Radius.circular(3.0))),
                   margin:
@@ -133,15 +134,15 @@ class SalesReportOrderDetials extends StatelessWidget {
             ? const SizedBox()
             : Container(
                 height: 90,
-                color: const Color(0xFFE3E8ED),
+                color: AppColor.brightGray,
                 padding: const EdgeInsets.all(20.0),
                 child: Row(
                   children: <Widget>[
                     Flexible(
                       child: PlainButton(
-                        buttonColor: const Color(0xFFFFBF3A),
+                        buttonColor: AppColor.sunglow,
                         title: 'Cancel',
-                        titleColor: const Color(0xFF000000),
+                        titleColor: AppColor.kBlackColor,
                         onTap: () => null,
                       ),
                     ),

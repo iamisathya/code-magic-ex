@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +38,7 @@ class BottomButtonBar extends StatelessWidget {
           ? const SizedBox()
           : Container(
               height: 90,
-              color: const Color(0xFFFFFFFF),
+              color: AppColor.kWhiteColor,
               padding: const EdgeInsets.all(20.0),
               child: Row(
                 children: <Widget>[
@@ -74,7 +75,7 @@ class PositiveButton extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,
-              colors: [Color(0xFF1C9CFC), Color(0xFF4CDFFF)],
+              colors: [AppColor.dodgerBlue, AppColor.skyBlue],
             ),
           ),
           child: Text(title,
@@ -104,7 +105,7 @@ class NuetralButton extends StatelessWidget {
                 topRight: Radius.circular(30),
                 bottomRight: Radius.circular(30),
               ),
-              color: Color(0xffafbed5),
+              color: AppColor.pastelBlue,
             ),
             child: Text(title,
                 textAlign: TextAlign.center,
@@ -134,7 +135,7 @@ class NegetiveButton extends StatelessWidget {
               topLeft: Radius.circular(30),
               bottomLeft: Radius.circular(30),
             ),
-            color: Color(0xffffbf3a),
+            color: AppColor.sunglow,
           ),
           child: Text(title,
               textAlign: TextAlign.center,

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -20,8 +21,8 @@ class ProfileImage extends StatelessWidget {
               width: 100,
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(25)),
-                  color: const Color(0xFFE3E8ED),
-                  border: Border.all(color: const Color(0xFFFFFFFF), width: 2)),
+                  color: AppColor.brightGray,
+                  border: Border.all(color: AppColor.kWhiteColor, width: 2)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(26.0),
                 child:

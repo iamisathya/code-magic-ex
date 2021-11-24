@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,7 @@ class SearchBox extends StatelessWidget {
     return Container(
       height: 90,
       padding: const EdgeInsets.all(20),
-      color: const Color(0xff76e5de),
+      color: AppColor.crayola,
       child: WhiteSearchField(
           controller: controller.searchUserTextController,
           onPress: controller.onSearchPressed,

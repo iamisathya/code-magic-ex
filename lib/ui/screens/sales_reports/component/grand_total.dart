@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +24,8 @@ class GrandTotal extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
           decoration: BoxDecoration(
             color: status == "Unknown"
-                ? const Color(0xFFFFE7EB)
-                : const Color(0xFFE4FAF6), //FFE7EB error color
+                ? AppColor.mistyRose
+                : AppColor.bubbles, //FFE7EB error color
           ),
           height: 40,
           child: Row(
@@ -44,8 +45,8 @@ class GrandTotal extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
           decoration: BoxDecoration(
             color: status == "Unknown"
-                ? const Color(0xFFFFE7EB)
-                : const Color(0xFFE4FAF6), //FFE7EB error color
+                ? AppColor.mistyRose
+                : AppColor.bubbles, //FFE7EB error color
           ),
           height: 40,
           child: Row(

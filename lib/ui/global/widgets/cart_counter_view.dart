@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -23,7 +24,7 @@ class CartCounterView extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
+          border: Border.all(width: 0.5, color: AppColor.americanSilver),
           color: Colors.white,
           borderRadius: BorderRadius.circular(2),
         ),
@@ -50,7 +51,7 @@ class CartCounterView extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .subtitle2!
-                    .copyWith(color: const Color(0xFF384250)),
+                    .copyWith(color: AppColor.charcoal),
               )),
             ),
             GestureDetector(

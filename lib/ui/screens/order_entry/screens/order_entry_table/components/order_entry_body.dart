@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
@@ -148,7 +149,7 @@ class OrderEntryBody extends StatelessWidget {
               contentPadding: const EdgeInsets.only(left: 20, right: 10),
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: Color(0xFF204CDC),
+                  color: AppColor.palatinateBlue,
                 ),
               ),
               enabledBorder: const OutlineInputBorder(

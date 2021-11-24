@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class PoCartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFFFFFFF),
+      color: AppColor.kWhiteColor,
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -35,7 +36,7 @@ class PoCartItem extends StatelessWidget {
               Flexible(
                   child: BoxContainer(
                 text: item.itemCode,
-                bgColor: const Color(0xFFFFFFFF),
+                bgColor: AppColor.kWhiteColor,
               ))
             ],
           ),
@@ -81,7 +82,7 @@ class CounterView extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
+          border: Border.all(width: 0.5, color: AppColor.americanSilver),
           color: Colors.white,
           borderRadius: BorderRadius.circular(2),
         ),
@@ -109,7 +110,7 @@ class CounterView extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .subtitle2!
-                    .copyWith(color: const Color(0xFF384250)),
+                    .copyWith(color: AppColor.charcoal),
               )),
             ),
             GestureDetector(
@@ -138,7 +139,7 @@ class BoxContainer extends StatelessWidget {
     Key? key,
     required this.text,
     this.alignment = Alignment.centerLeft,
-    this.bgColor = const Color(0xFFF5F5F5),
+    this.bgColor = AppColor.kWhiteSmokeColor,
   }) : super(key: key);
 
   final String text;
@@ -151,7 +152,7 @@ class BoxContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       alignment: alignment,
       decoration: BoxDecoration(
-        border: Border.all(width: 0.5, color: const Color(0xFFD0D0CF)),
+        border: Border.all(width: 0.5, color: AppColor.americanSilver),
         color: bgColor,
         borderRadius: BorderRadius.circular(2),
       ),
@@ -159,7 +160,7 @@ class BoxContainer extends StatelessWidget {
       child: AppText(
           text: text,
           style: TextTypes.bodyText1,
-          color: const Color(0xFF384250)),
+          color: AppColor.charcoal),
     );
   }
 }

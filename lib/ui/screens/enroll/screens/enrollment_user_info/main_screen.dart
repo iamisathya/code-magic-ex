@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -35,12 +36,12 @@ class EnrollmentUserInfoScreen extends StatelessWidget {
             opacity: controller.isScrolButtonVisible.value ? 0.0 : 1.0,
             duration: const Duration(milliseconds: 100),
             child: FloatingActionButton(
-              backgroundColor: const Color(0xFFFFBF3A),
+              backgroundColor: AppColor.sunglow,
               onPressed: controller.onTapScrollToTop,
               tooltip: 'scroll to top',
               child: const Icon(
                 Icons.arrow_upward,
-                color: Color(0xFF000000),
+                color: AppColor.kBlackColor,
               ),
             ),
           ),

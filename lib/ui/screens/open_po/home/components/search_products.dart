@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -50,7 +51,7 @@ class _SearchAppBarState extends State<SearchProducts> {
           children: [
             Container(
               height: 54,
-              color: const Color(0xFFF5F5F5),
+              color: AppColor.kWhiteSmokeColor,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -63,7 +64,7 @@ class _SearchAppBarState extends State<SearchProducts> {
                       onTap: () => controller.clearHistory(),
                       child: const AppText(
                         text: "Clear all", //! Hardcoded
-                        style: TextTypes.subtitle1, color: Color(0xFFFE5D7C),
+                        style: TextTypes.subtitle1, color: AppColor.brinkPink,
                       ),
                     )
                   ],
@@ -87,7 +88,7 @@ class _SearchAppBarState extends State<SearchProducts> {
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2!
-                              .copyWith(color: const Color(0xFF606975))),
+                              .copyWith(color: AppColor.cadet)),
                     ),
                   );
                 },

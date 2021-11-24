@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,7 +13,7 @@ class SearchTextfield extends StatelessWidget {
     required this.labelText,
     required this.icon,
     this.isLoading = false,
-    this.bgColor = const Color(0xFF76E5DE),
+    this.bgColor = AppColor.crayola,
   }) : super(key: key);
 
   final TextEditingController textFieldController;
@@ -33,7 +34,7 @@ class SearchTextfield extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
-          color: const Color(0xFFFFFFFF),
+          color: AppColor.kWhiteColor,
         ),
         child: Row(
           children: [
@@ -46,13 +47,13 @@ class SearchTextfield extends StatelessWidget {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
+                    borderSide: BorderSide(color: AppColor.kWhiteColor, width: 0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
+                    borderSide: BorderSide(color: AppColor.kWhiteColor, width: 0),
                   ),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFFFFFFF), width: 0),
+                    borderSide: BorderSide(color: AppColor.kWhiteColor, width: 0),
                   ),
                 ),
               ),

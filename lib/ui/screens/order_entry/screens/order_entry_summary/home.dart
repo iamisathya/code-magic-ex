@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -17,7 +18,7 @@ class OrderEntrySummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE3E8ED),
+      backgroundColor: AppColor.brightGray,
       appBar: OpenPoAppBar(),
       body: Obx(
         () => LoadingOverlay(
@@ -52,7 +53,7 @@ class BottomButtonBar extends StatelessWidget {
           ? const SizedBox()
           : Container(
               height: 90,
-              color: const Color(0xFFFFFFFF),
+              color: AppColor.kWhiteColor,
               padding: const EdgeInsets.all(20.0),
               child: Row(
                 children: <Widget>[

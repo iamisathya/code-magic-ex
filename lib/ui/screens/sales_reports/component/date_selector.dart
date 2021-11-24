@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class DateSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 158,
-      color: const Color(0xFFD8DDE3),
+      color: AppColor.gainsboro,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -28,7 +29,7 @@ class DateSelector extends StatelessWidget {
                 child: Container(
                   height: 54,
                   decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
+                      color: AppColor.kWhiteColor,
                       borderRadius: BorderRadius.circular(3)),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -38,9 +39,9 @@ class DateSelector extends StatelessWidget {
                             children: [
                               const AppText(
                                   text: "Start Date: ",
-                                  color: Color(0xFF384250)),
+                                  color: AppColor.charcoal),
                               SvgPicture.asset(kPlusIcon,
-                                  color: const Color(0xFF384250),
+                                  color: AppColor.charcoal,
                                   width: 14,
                                   semanticsLabel: 'plus icon'),
                             ],
@@ -55,15 +56,15 @@ class DateSelector extends StatelessWidget {
                                 children: [
                                   const AppText(
                                       text: "Start Date: ",
-                                      color: Color(0xFF606975),
+                                      color: AppColor.cadet,
                                       fontSize: 10),
                                   AppText(
                                       text: controller.startDateString.value,
-                                      color: const Color(0xFF384250)),
+                                      color: AppColor.charcoal),
                                 ],
                               ),
                               SvgPicture.asset(kPlusIcon,
-                                  color: const Color(0xFF384250),
+                                  color: AppColor.charcoal,
                                   width: 14,
                                   semanticsLabel: 'plus icon'),
                             ],
@@ -79,7 +80,7 @@ class DateSelector extends StatelessWidget {
                 child: Container(
                   height: 54,
                   decoration: BoxDecoration(
-                      color: const Color(0xFFFFFFFF),
+                      color: AppColor.kWhiteColor,
                       borderRadius: BorderRadius.circular(3)),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -88,9 +89,9 @@ class DateSelector extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const AppText(
-                                  text: "End Date: ", color: Color(0xFF384250)),
+                                  text: "End Date: ", color: AppColor.charcoal),
                               SvgPicture.asset(kPlusIcon,
-                                  color: const Color(0xFF384250),
+                                  color: AppColor.charcoal,
                                   width: 14,
                                   semanticsLabel: 'plsu icon'),
                             ],
@@ -105,15 +106,15 @@ class DateSelector extends StatelessWidget {
                                 children: [
                                   const AppText(
                                       text: "End Date: ",
-                                      color: Color(0xFF384250),
+                                      color: AppColor.charcoal,
                                       fontSize: 10),
                                   AppText(
                                       text: controller.endDateString.value,
-                                      color: const Color(0xFF384250)),
+                                      color: AppColor.charcoal),
                                 ],
                               ),
                               SvgPicture.asset(kPlusIcon,
-                                  color: const Color(0xFF384250),
+                                  color: AppColor.charcoal,
                                   width: 14,
                                   semanticsLabel: 'plsu icon'),
                             ],

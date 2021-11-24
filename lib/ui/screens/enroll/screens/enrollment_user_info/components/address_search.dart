@@ -1,4 +1,5 @@
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,21 +29,21 @@ class AddressSearchModal extends StatelessWidget {
         },
         // onFind: (String filter) => controller.searchAddresByZipCode(filter),
         searchBoxDecoration: InputDecoration(
-          fillColor: const Color(0xFFFFFFFF),
+          fillColor: AppColor.kWhiteColor,
           filled: true,
           floatingLabelBehavior: FloatingLabelBehavior.auto,
           contentPadding: const EdgeInsets.symmetric(horizontal: 15),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(3),
-            borderSide: const BorderSide(color: Color(0xFFD0D0CF), width: 0.5),
+            borderSide: const BorderSide(color: AppColor.americanSilver, width: 0.5),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(3),
-            borderSide: const BorderSide(color: Color(0xFFD0D0CF), width: 0.5),
+            borderSide: const BorderSide(color: AppColor.americanSilver, width: 0.5),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(3),
-            borderSide: const BorderSide(color: Color(0xFFD0D0CF), width: 0.5),
+            borderSide: const BorderSide(color: AppColor.americanSilver, width: 0.5),
           ),
           suffixIcon: const Icon(Icons.search),
         ),

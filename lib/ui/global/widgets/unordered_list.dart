@@ -1,10 +1,11 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utilities/enums.dart';
 import '../theme/text_view.dart';
 
 class UnorderedList extends StatelessWidget {
-  const UnorderedList(this.texts, {this.color = const Color(0xFFFFFFFF)});
+  const UnorderedList(this.texts, {this.color = AppColor.kWhiteColor});
   final List<String> texts;
   final Color color;
 

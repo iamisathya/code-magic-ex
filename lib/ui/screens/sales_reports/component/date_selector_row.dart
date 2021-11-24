@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +14,7 @@ class RowDateSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 94,
-      color: const Color(0xFFD8DDE3),
+      color: AppColor.gainsboro,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Row(
@@ -27,7 +28,7 @@ class RowDateSelector extends StatelessWidget {
                   child: Container(
                     height: 54,
                     decoration: BoxDecoration(
-                        color: const Color(0xFFFFFFFF),
+                        color: AppColor.kWhiteColor,
                         borderRadius: BorderRadius.circular(3)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -40,11 +41,11 @@ class RowDateSelector extends StatelessWidget {
                             children: [
                               const AppText(
                                   text: "Start Date: ",
-                                  color: Color(0xFF606975),
+                                  color: AppColor.cadet,
                                   fontSize: 10),
                               AppText(
                                   text: controller.startDateString.value,
-                                  color: const Color(0xFF384250)),
+                                  color: AppColor.charcoal),
                             ],
                           ),
                         ],
@@ -63,7 +64,7 @@ class RowDateSelector extends StatelessWidget {
                   child: Container(
                     height: 54,
                     decoration: BoxDecoration(
-                        color: const Color(0xFFFFFFFF),
+                        color: AppColor.kWhiteColor,
                         borderRadius: BorderRadius.circular(3)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -76,11 +77,11 @@ class RowDateSelector extends StatelessWidget {
                             children: [
                               const AppText(
                                   text: "End Date: ",
-                                  color: Color(0xFF384250),
+                                  color: AppColor.charcoal,
                                   fontSize: 10),
                               AppText(
                                   text: controller.endDateString.value,
-                                  color: const Color(0xFF384250)),
+                                  color: AppColor.charcoal),
                             ],
                           ),
                         ],

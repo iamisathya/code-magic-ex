@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,8 +13,8 @@ class PlainButton extends StatelessWidget {
 
   const PlainButton(
       {required this.title,
-      this.titleColor = const Color(0xFFFFFFFF),
-      this.buttonColor = const Color(0xFF1C9CFC),
+      this.titleColor = AppColor.kWhiteColor,
+      this.buttonColor = AppColor.dodgerBlue,
       this.showIcons = false,
       this.onTap});
 

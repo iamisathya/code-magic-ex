@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class ShareButton extends StatefulWidget {
@@ -29,7 +30,7 @@ class _ShareButtonState extends State<ShareButton> {
           width: isOpen ? 144 : 40,
           height: 40,
           decoration: const ShapeDecoration(
-            color: Color(0xFFFFBF3A),
+            color: AppColor.sunglow,
             shape: StadiumBorder(),
           ),
         ),
@@ -37,7 +38,7 @@ class _ShareButtonState extends State<ShareButton> {
           width: 40,
           height: 40,
           decoration: const BoxDecoration(
-            color: Color(0xFFFFBF3A),
+            color: AppColor.sunglow,
             shape: BoxShape.circle,
           ),
           child: IconButton(
@@ -59,7 +60,7 @@ class _ShareButtonState extends State<ShareButton> {
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1!
-                        .copyWith(color: const Color(0xFF000000))),
+                        .copyWith(color: AppColor.kBlackColor)),
               )),
         ),
       ],

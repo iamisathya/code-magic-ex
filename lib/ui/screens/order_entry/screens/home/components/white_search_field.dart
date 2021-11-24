@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -41,7 +42,7 @@ class WhiteSearchField extends StatelessWidget {
               const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
           suffixIcon: Obx(() => IconButton(
               onPressed: onPress,
-              color: const Color(0xFF384250),
+              color: AppColor.charcoal,
               icon: isFetching.value
                   ? Image.asset(kAnimatedSpin, width: 20)
                   : SvgPicture.asset(kSearchV2Icon,

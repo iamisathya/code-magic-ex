@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../constants/globals.dart';
@@ -9,7 +10,7 @@ class TotalPrice extends StatelessWidget {
   final String totalPrice;
   final String totalPv;
   const TotalPrice(
-      {this.bgColor = const Color(0xFFE3E8ED),
+      {this.bgColor = AppColor.brightGray,
       required this.totalPrice,
       required this.totalPv});
 
@@ -33,7 +34,7 @@ class TotalPrice extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Divider(
                 height: 1,
-                color: Color(0xFF000000),
+                color: AppColor.kBlackColor,
               ),
             ),
             Row(

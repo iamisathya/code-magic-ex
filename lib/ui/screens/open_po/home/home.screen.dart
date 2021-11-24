@@ -6,16 +6,15 @@ import 'package:loading_overlay/loading_overlay.dart';
 import '../../../../utilities/constants.dart';
 import '../../home/components/bottom_navigation_bar.dart';
 import '../../home/controller/home.controller.dart';
-import '../controller/openpo.controller.dart';
 import 'components/app_bar.dart';
 import 'components/loader.dart';
 import 'components/open_po_order_list.dart';
 
 class OpenPOHomeScreen extends StatelessWidget {
-  final OpenPoController controller = Get.put(OpenPoController());
   static const String routeName = '/openPOHomePage';
-  final OpenPoListController listController = Get.put(OpenPoListController());
+
   final HomeController tabController = Get.put(HomeController());
+  final OpenPoListController listController = Get.put(OpenPoListController());
 
   @override
   Widget build(BuildContext context) {

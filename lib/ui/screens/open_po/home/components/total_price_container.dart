@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class TotalPrice extends StatelessWidget {
   final String totalPrice;
   final String totalPv;
   const TotalPrice(
-      {this.bgColor = const Color(0xFFE3E8ED),
+      {this.bgColor = AppColor.brightGray,
       required this.totalPrice,
       required this.totalPv});
 
@@ -29,18 +30,18 @@ class TotalPrice extends StatelessWidget {
                 AppText(
                     text: "${"total_pv".tr}:",
                     style: TextTypes.subtitle2,
-                    color: const Color(0xFF384250)),
+                    color: AppColor.charcoal),
                 AppText(
                     text: "$totalPv PV",
                     style: TextTypes.subtitle2,
-                    color: const Color(0xFF384250)),
+                    color: AppColor.charcoal),
               ],
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Divider(
                 height: 1,
-                color: Color(0xFFD0D0CF),
+                color: AppColor.americanSilver,
               ),
             ),
             Row(
@@ -49,11 +50,11 @@ class TotalPrice extends StatelessWidget {
                 AppText(
                     text: "${"total_price".tr}:",
                     style: TextTypes.subtitle2,
-                    color: const Color(0xFF384250)),
+                    color: AppColor.charcoal),
                 AppText(
                     text: "$totalPrice ${Globals.currency}",
                     style: TextTypes.subtitle2,
-                    color: const Color(0xFF384250)),
+                    color: AppColor.charcoal),
               ],
             )
           ],

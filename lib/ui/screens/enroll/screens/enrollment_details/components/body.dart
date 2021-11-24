@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,13 +36,13 @@ class Body extends StatelessWidget {
                     text: TextSpan(
                       text: 'Terms & ',
                       style: DefaultTextStyle.of(context).style.copyWith(
-                          fontSize: 14, color: const Color(0xFF606975)),
+                          fontSize: 14, color: AppColor.cadet),
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Conditions Apply',
                           style: DefaultTextStyle.of(context).style.copyWith(
                                 fontSize: 16,
-                                color: const Color(0xFF1C9CFC),
+                                color: AppColor.dodgerBlue,
                               ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () => controller.navigateToTermsPage(),
@@ -64,10 +65,10 @@ class Body extends StatelessWidget {
                       textInputAction: TextInputAction.next,
                       isLoading: controller.isLoading.value,
                       fillColor: controller.isValidGovtId.value == 0
-                          ? const Color(0xFFFFFFFF)
+                          ? AppColor.kWhiteColor
                           : controller.isValidGovtId.value == 1
-                              ? const Color(0xFFF5F5F5)
-                              : const Color(0xFFFFE7EB),
+                              ? AppColor.kWhiteSmokeColor
+                              : AppColor.mistyRose,
                       icon: controller.isValidGovtId.value == 1
                           ? const Icon(Icons.check, color: Colors.green)
                           : const Icon(Icons.arrow_right_alt_outlined),
@@ -83,10 +84,10 @@ class Body extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         isLoading: controller.isLoading.value,
                         fillColor: controller.isValidEnrolerId.value == 0
-                            ? const Color(0xFFFFFFFF)
+                            ? AppColor.kWhiteColor
                             : controller.isValidEnrolerId.value == 1
-                                ? const Color(0xFFF5F5F5)
-                                : const Color(0xFFFFE7EB),
+                                ? AppColor.kWhiteSmokeColor
+                                : AppColor.mistyRose,
                         icon: controller.isValidEnrolerId.value == 1
                             ? const Icon(Icons.check, color: Colors.green)
                             : const Icon(Icons.arrow_right_alt_outlined),
@@ -101,10 +102,10 @@ class Body extends StatelessWidget {
                       textInputAction: TextInputAction.done,
                       isLoading: controller.isLoading.value,
                       fillColor: controller.isValidSponsorId.value == 0
-                          ? const Color(0xFFFFFFFF)
+                          ? AppColor.kWhiteColor
                           : controller.isValidSponsorId.value == 1
-                              ? const Color(0xFFF5F5F5)
-                              : const Color(0xFFFFE7EB),
+                              ? AppColor.kWhiteSmokeColor
+                              : AppColor.mistyRose,
                       icon: controller.isValidSponsorId.value == 1
                           ? const Icon(Icons.check, color: Colors.green)
                           : const Icon(Icons.arrow_right_alt_outlined),
@@ -124,7 +125,7 @@ class Body extends StatelessWidget {
                 AppText(
                   text: "Please Contact Unicity",
                   style: TextTypes.headline4,
-                  color: Color(0xFF505050),
+                  color: AppColor.darkLiver,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10),
@@ -132,7 +133,7 @@ class Body extends StatelessWidget {
                     text:
                         "If you experience any problems with this application or if you have any questions.",
                     style: TextTypes.subtitle1,
-                    color: Color(0xFF505050),
+                    color: AppColor.darkLiver,
                     align: TextAlign.center,
                   ),
                 ),
@@ -153,7 +154,7 @@ class EnrollTextField extends StatelessWidget {
     required this.textInputAction,
     required this.isLoading,
     this.enabled = true,
-    this.fillColor = const Color(0xFFFFFFFF),
+    this.fillColor = AppColor.kWhiteColor,
     this.onTap,
     this.icon = const Icon(Icons.arrow_right_alt_outlined),
   }) : super(key: key);
@@ -171,7 +172,7 @@ class EnrollTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration:
-          BoxDecoration(border: Border.all(color: const Color(0xFF384250))),
+          BoxDecoration(border: Border.all(color: AppColor.charcoal)),
       child: GestureDetector(
         onTap: onTap,
         child: TextField(

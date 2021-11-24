@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +25,7 @@ class QuantityCounter extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(3),
         border: Border.all(
-          color: const Color(0xffd0d0cf),
+          color: AppColor.americanSilver,
           width: 0.50,
         ),
       ),

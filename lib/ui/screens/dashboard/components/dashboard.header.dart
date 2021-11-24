@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,7 +13,7 @@ class DashboardHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(kSettingsIcon,
-              color: const Color(0xFF000000),
+              color: AppColor.kBlackColor,
               height: 20,
               semanticsLabel: "settings"),
           Image.asset(

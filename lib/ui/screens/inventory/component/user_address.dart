@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,7 +15,7 @@ class UserAddress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      color: const Color(0xFFFFFFFF),
+      color: AppColor.kWhiteColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,7 +32,7 @@ class UserAddress extends StatelessWidget {
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1!
-                      .copyWith(color: const Color(0xFF384250)))),
+                      .copyWith(color: AppColor.charcoal))),
           Padding(
             padding: const EdgeInsets.only(bottom: 5.0),
             child: Text(
@@ -52,7 +53,7 @@ class UserAddress extends StatelessWidget {
             height: 1,
             width: double.infinity,
             child: Container(
-              color: const Color(0xFFCBCBCD),
+              color: AppColor.chineseSilver,
             ),
           ),
           const Divider(height: 1),
@@ -74,8 +75,8 @@ class UserAddress extends StatelessWidget {
                           SvgPicture.asset(kCardViewIcon,
                               color: controller.currentViewType.value.value ==
                                       "card"
-                                  ? const Color(0xFF000000)
-                                  : const Color(0xFF606975),
+                                  ? AppColor.kBlackColor
+                                  : AppColor.cadet,
                               width: 20,
                               semanticsLabel: 'arrow'),
                         ],
@@ -84,7 +85,7 @@ class UserAddress extends StatelessWidget {
                     height: 50,
                     width: 1,
                     child: Container(
-                      color: const Color(0xFFCBCBCD),
+                      color: AppColor.chineseSilver,
                     ),
                   ),
                   GestureDetector(
@@ -100,8 +101,8 @@ class UserAddress extends StatelessWidget {
                         SvgPicture.asset(kTableViewIcon,
                             color: controller.currentViewType.value.value ==
                                     "table"
-                                ? const Color(0xFF000000)
-                                : const Color(0xFF606975),
+                                ? AppColor.kBlackColor
+                                : AppColor.cadet,
                             width: 20,
                             semanticsLabel: 'arrow'),
                       ],

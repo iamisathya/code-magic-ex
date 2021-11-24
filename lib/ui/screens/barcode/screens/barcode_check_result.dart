@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class BarcodeCheckResult extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline6!
-                  .copyWith(color: const Color(0xFF000000))))),
+                  .copyWith(color: AppColor.kBlackColor)))),
       body: LoadingOverlay(
         isLoading: false,
         progressIndicator: const Loader(),
@@ -29,7 +30,7 @@ class BarcodeCheckResult extends StatelessWidget {
             Container(
               height: 152,
               width: Get.width,
-              color: const Color(0xFF76E5DE),
+              color: AppColor.crayola,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

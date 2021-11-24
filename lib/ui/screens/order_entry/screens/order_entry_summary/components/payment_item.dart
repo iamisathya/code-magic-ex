@@ -1,4 +1,5 @@
 
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../utilities/enums.dart';
@@ -30,7 +31,7 @@ class PaymentItem extends StatelessWidget {
               value: controller.paymentTypes[index].value,
               groupValue: controller.selectedPayment.value,
               fillColor: MaterialStateProperty.all<Color>(
-                const Color(0xFF6FCF97),
+                AppColor.mediumAquamarine,
               ),
               onChanged: null)),
     );

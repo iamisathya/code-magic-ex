@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,8 +16,8 @@ class BarcodeProductItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5),
       height: 65,
       decoration: BoxDecoration(
-          color: const Color(0xFFFFFFFF),
-          border: Border.all(color: const Color(0xFFD0D0CF), width: 0.5),
+          color: AppColor.kWhiteColor,
+          border: Border.all(color: AppColor.americanSilver, width: 0.5),
           borderRadius: const BorderRadius.all(Radius.circular(3.0))),
       child: Row(
         children: [

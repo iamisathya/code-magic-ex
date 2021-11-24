@@ -1,10 +1,10 @@
+import 'package:dsc_tools/ui/screens/open_po/order_details/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../../models/open_po.dart';
 import '../../../../utilities/snackbar.dart';
-import '../home/components/open_po_details.dart';
 import 'openpo.list.controller.dart';
 
 class OpenPoSearchController extends GetxController {
@@ -25,7 +25,7 @@ class OpenPoSearchController extends GetxController {
         (order) => order.orderOpid == orderId,
         orElse: () => OpenPO());
     if (order.orderOpid.isNotEmpty) {
-      Get.to(() => OpenPODetailsPage(), arguments: order.orderOpid);
+      Get.to(() => OpenPoOrderDetails(), arguments: order.orderOpid);
     } else {
       SnackbarUtil.showWarning(
           message: "Sorry no orders found with order id: $orderId");

@@ -1,9 +1,6 @@
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollement_condition/controller/enrollment.terms.controller.dart';
-import 'package:dsc_tools/utilities/constants.dart';
 import 'package:dsc_tools/utilities/enums.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

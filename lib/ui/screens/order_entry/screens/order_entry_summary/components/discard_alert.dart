@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class DiscardAlert extends StatelessWidget {
             const AppText(
               text: "“Your current changes will not be saved”",
               style: TextTypes.headline6,
-              color: Color(0xFF384250),
+              color: AppColor.charcoal,
             ),
             SizedBox(
               height: 50,

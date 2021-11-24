@@ -1,4 +1,4 @@
-import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/ui/screens/open_po/controller/openpo.list.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,7 +31,7 @@ class OrderSuccess extends StatelessWidget {
         ),
         title: const Text(
           "Order Success",
-          style: TextStyle(color: Color(0xFF000000)),
+          style: TextStyle(color: AppColor.kBlackColor),
         ),
       ),
       body: Center(
@@ -42,14 +42,14 @@ class OrderSuccess extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: Text(
                 "Thank You",
-                style: TextStyle(fontSize: 24, color: Color(0xFF000000)),
+                style: TextStyle(fontSize: 24, color: AppColor.kBlackColor),
               ),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: Text(
                 "Your order has been placed successfully!",
-                style: TextStyle(fontSize: 14, color: Color(0xFF505050)),
+                style: TextStyle(fontSize: 14, color: AppColor.darkLiver),
               ),
             ),
             const SizedBox(height: 55),
@@ -60,14 +60,14 @@ class OrderSuccess extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: Text(
                 "Distributor ID : $distributorId",
-                style: const TextStyle(fontSize: 14, color: Color(0xFF384250)),
+                style: const TextStyle(fontSize: 14, color: AppColor.charcoal),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
               child: Text(
                 "PO Number: $poNumber",
-                style: const TextStyle(fontSize: 14, color: Color(0xFF384250)),
+                style: const TextStyle(fontSize: 14, color: AppColor.charcoal),
               ),
             ),
           ],

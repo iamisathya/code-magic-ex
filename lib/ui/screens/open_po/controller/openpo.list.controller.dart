@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -126,7 +127,7 @@ class OpenPoListController extends GetxController
                           child: AppText(
                             text: "cancel".tr,
                             style: TextTypes.bodyText1,
-                            color: const Color(0xFF505050),
+                            color: AppColor.darkLiver
                           ),
                         ),
                         GestureDetector(
@@ -134,7 +135,7 @@ class OpenPoListController extends GetxController
                           child: AppText(
                             text: "done".tr,
                             style: TextTypes.headline6,
-                            color: const Color(0xFF1A78F4),
+                            color: AppColor.blueCrayola,
                           ),
                         )
                       ]),
@@ -142,7 +143,7 @@ class OpenPoListController extends GetxController
                 SizedBox(
                   height: 250,
                   child: CupertinoPicker(
-                    backgroundColor: const Color(0xFFF6F9FD),
+                    backgroundColor: AppColor.ghostWhite,
                     scrollController: FixedExtentScrollController(
                         initialItem: selectedFilterIndex.value),
                     magnification: 1.2,
@@ -206,7 +207,7 @@ class OpenPoListController extends GetxController
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             height: 20,
-            color: const Color(0xFFFFBF3A),
+            color: AppColor.sunglow,
             child: const AppText(
                 text: "WAITING FOR APPROVAL", //! 1 Hardcoded
                 style: TextTypes.bodyText2,
@@ -216,7 +217,7 @@ class OpenPoListController extends GetxController
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             height: 20,
-            color: const Color(0xFFFF0000),
+            color: AppColor.red,
             child: const AppText(
                 text: "DELETED", //! 1 Hardcoded
                 style: TextTypes.bodyText2,
@@ -226,7 +227,7 @@ class OpenPoListController extends GetxController
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             height: 20,
-            color: const Color(0xFFC7A4FF),
+            color: AppColor.paleViolet,
             child: const AppText(
                 text: "INVENTORY TRANSFERRED", //! 1 Hardcoded
                 style: TextTypes.bodyText2,
@@ -236,7 +237,7 @@ class OpenPoListController extends GetxController
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             height: 20,
-            color: const Color(0xFFFFBF3A),
+            color: AppColor.sunglow,
             child: const AppText(
                 text: "WAITING FOR APPROVAL", //! 1 Hardcoded
                 style: TextTypes.bodyText2,
@@ -246,7 +247,7 @@ class OpenPoListController extends GetxController
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             height: 20,
-            color: const Color(0xFF6FCF97),
+            color: AppColor.mediumAquamarine,
             child: const AppText(
                 text: "APPROVED", //! 1 Hardcoded
                 style: TextTypes.bodyText2,
@@ -256,7 +257,7 @@ class OpenPoListController extends GetxController
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             height: 20,
-            color: const Color(0xFFFFBF3A),
+            color: AppColor.sunglow,
             child: const AppText(
                 text: "WAITING FOR APPROVAL", //! 1 Hardcoded
                 style: TextTypes.bodyText2,
@@ -267,7 +268,7 @@ class OpenPoListController extends GetxController
   void showInofPopover(BuildContext context) {
     showPopover(
       context: context,
-      backgroundColor: const Color(0xFFAFBED5),
+      backgroundColor: AppColor.pastelBlue,
       transitionDuration: const Duration(milliseconds: 150),
       bodyBuilder: (context) => Container(
         padding: const EdgeInsets.all(13),

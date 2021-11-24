@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,7 @@ class UserInfoBox extends StatelessWidget {
     return Container(
       height: 80,
       padding: const EdgeInsets.all(20),
-      color: const Color(0xff76e5de),
+      color: AppColor.crayola,
       child: Row(
         children: [
           TitleBox(title: listController.userData.userId),
@@ -43,7 +44,7 @@ class TitleBox extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(3),
-        color: const Color(0xfff5f5f5),
+        color: AppColor.kWhiteSmokeColor,
       ),
       child: Text(
         title,
@@ -52,7 +53,7 @@ class TitleBox extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .subtitle1!
-            .copyWith(color: const Color(0xFF505050)),
+            .copyWith(color: AppColor.darkLiver),
       ),
     );
   }

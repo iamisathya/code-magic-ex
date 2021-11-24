@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utilities/enums.dart';
@@ -13,7 +14,7 @@ class AppText extends StatelessWidget {
   const AppText(
       {required this.text,
       required this.style,
-      this.color = const Color(0xFF000000),
+      this.color = AppColor.kBlackColor,
       this.maxLines = 10000,
       this.align = TextAlign.start});
 

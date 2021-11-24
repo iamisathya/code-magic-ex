@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -29,8 +30,8 @@ class PaymentOptionItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(3),
           gradient: LinearGradient(
             colors: [
-              Color(isActive ? 0xFF1C9CFC : 0xFFFFFFFF),
-              Color(isActive ? 0xFF4CDFFF : 0xFFFFFFFF),
+              if (isActive) AppColor.dodgerBlue else AppColor.kWhiteColor,
+              if (isActive) AppColor.dodgerBlue else AppColor.kWhiteColor,
             ],
             begin: const FractionalOffset(0.0, 0.0),
             end: const FractionalOffset(1.0, 0.0),
@@ -42,13 +43,13 @@ class PaymentOptionItem extends StatelessWidget {
             SizedBox(
               width: 90,
               child: SvgPicture.asset(icon,
-                  color: Color(isActive ? 0xFFFFFFFF : 0xFF606975)),
+                  color: isActive ? AppColor.kWhiteColor : AppColor.cadet),
             ),
             Expanded(
               child: AppText(
                 text: title,
                 style: TextTypes.bodyText1,
-                color: Color(isActive ? 0xFFFFFFFF : 0xFF000000),
+                color: isActive ? AppColor.kWhiteColor : AppColor.kBlackColor,
               ),
             )
           ],

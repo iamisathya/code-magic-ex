@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,7 +26,7 @@ class Body extends StatelessWidget {
           children: [
             const PageTitle(title: "Enrollment Details"),
             Container(
-              color: const Color(0xFF76E5DE),
+              color: AppColor.crayola,
               padding: const EdgeInsets.all(20),
               height: 134,
               child: Row(

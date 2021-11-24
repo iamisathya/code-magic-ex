@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,7 @@ class ProductItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.0),
           side: BorderSide(
-            color: const Color(0xFFFFBF3A),
+            color: AppColor.sunglow,
             width: inCart ? 1 : 0
           ),
         ),
@@ -35,7 +36,7 @@ class ProductItem extends StatelessWidget {
                 AppText(
                   text: "Code: ${item.item.id.unicity}",
                   style: TextTypes.caption,
-                  color: const Color(0xFF9EA9B9),
+                  color: AppColor.metallicSilver,
                 ),
                 const SizedBox(
                   height: 60,
@@ -45,7 +46,7 @@ class ProductItem extends StatelessWidget {
                   align: TextAlign.center,
                   text: "${item.terms.pvEach} PV | ${item.terms.priceEach} THB",
                   style: TextTypes.caption,
-                  color: const Color(0xFF384250),
+                  color: AppColor.charcoal,
                 ),
               ],
             ),
@@ -58,7 +59,7 @@ class ProductItem extends StatelessWidget {
               height: 20,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: const Color(0xFFFFBF3A),
+                  color: AppColor.sunglow,
                   borderRadius: BorderRadius.circular(3)),
               child: AppText(text: cartItemIndex.toString(), style: TextTypes.caption, color: Colors.white,),
             ),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart' show DioError;
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/models/openpo_create_order_result.dart';
 import 'package:dsc_tools/ui/screens/open_po/order_success/main_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -316,7 +317,7 @@ class CreateOpenPoOrderController extends GetxController
   void showBottomModal(BuildContext context) {
     showModalBottomSheet(
       isScrollControlled: true,
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColor.kWhiteSmokeColor,
       context: context,
       isDismissible: true,
       builder: (context) {
@@ -325,7 +326,7 @@ class CreateOpenPoOrderController extends GetxController
           maxChildSize: 0.75,
           expand: false,
           builder: (_, ctrl) => Container(
-            color: const Color(0xFFE3E8ED),
+            color: AppColor.brightGray,
             padding: const EdgeInsets.all(8),
             child: Column(
               children: <Widget>[
@@ -379,18 +380,17 @@ class CreateOpenPoOrderController extends GetxController
                                                 .textTheme
                                                 .subtitle2!
                                                 .copyWith(
-                                                    color: const Color(
-                                                        0xFF384250))),
+                                                    color: AppColor.charcoal)),
                                         AppText(
                                           text: "Code: ${item.item.id.unicity}",
                                           style: TextTypes.caption,
-                                          color: const Color(0xFF9EA9B9),
+                                          color: AppColor.metallicSilver,
                                         ),
                                         AppText(
                                           text:
                                               "${item.terms.pvEach} PV | ${item.terms.priceEach} ${Globals.currency}",
                                           style: TextTypes.subtitle2,
-                                          color: const Color(0xFF384250),
+                                          color: AppColor.charcoal,
                                         ),
                                       ],
                                     ),

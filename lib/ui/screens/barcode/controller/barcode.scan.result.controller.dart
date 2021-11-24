@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -304,7 +305,7 @@ class BarcodeScannResultController extends getx.GetxController {
                           style: Theme.of(getx.Get.context!)
                               .textTheme
                               .bodyText2!
-                              .copyWith(color: const Color(0xFF606975)))))
+                              .copyWith(color: AppColor.cadet))))
             ],
           ),
         ),

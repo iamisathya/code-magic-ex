@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,13 +24,13 @@ class OpenPODetailsPage extends StatelessWidget {
         isLoading: controller.isLoading.value,
         progressIndicator: const Loader(),
         child: Scaffold(
-          backgroundColor: const Color(0xFFF5F5F5),
+          backgroundColor: AppColor.kWhiteSmokeColor,
           appBar: AppBar(
               title: Obx(() => Text(controller.passedOrderNumber.value,
                   style: Theme.of(context)
                       .textTheme
                       .headline6!
-                      .copyWith(color: const Color(0xFF000000))))),
+                      .copyWith(color: AppColor.kBlackColor)))),
           body: SingleChildScrollView(
             child: Obx(
               () => SafeArea(
@@ -38,7 +39,11 @@ class OpenPODetailsPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ConstrainedBox(
-                      constraints: BoxConstraints(minHeight: Get.height - (controller.poOrderAttachment.isNotEmpty ? 334 : 284)),
+                      constraints: BoxConstraints(
+                          minHeight: Get.height -
+                              (controller.poOrderAttachment.isNotEmpty
+                                  ? 334
+                                  : 284)),
                       child: Column(
                         children: [
                           TopBar(controller: controller),
@@ -66,7 +71,7 @@ class OpenPODetailsPage extends StatelessWidget {
                     if (controller.poOrderAttachment.isNotEmpty)
                       Container(
                         height: 50,
-                        color: const Color(0xFFE3E8ED),
+                        color: AppColor.brightGray,
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,16 +85,16 @@ class OpenPODetailsPage extends StatelessWidget {
                               child: Row(
                                 children: [
                                   const Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10.0),
                                     child: AppText(
                                       text: "View",
                                       style: TextTypes.bodyText1,
-                                      color: Color(0xFF1C9CFC),
+                                      color: AppColor.dodgerBlue,
                                     ),
                                   ),
                                   SvgPicture.asset(kFileIcon,
-                                      height: 15,
-                                      color: const Color(0xFF1C9CFC))
+                                      height: 15, color: AppColor.dodgerBlue)
                                 ],
                               ),
                             )
@@ -103,7 +108,7 @@ class OpenPODetailsPage extends StatelessWidget {
           ),
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
-            bgColor: const Color(0xFFE3E8ED),
+            bgColor: AppColor.brightGray,
             onTapCancelButton: Get.back,
             negetiveText: "back",
             positiveText: "Print PO List",
@@ -130,7 +135,7 @@ class TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 130,
-      color: const Color(0xFF76E5DE),
+      color: AppColor.crayola,
       child: Column(
         children: [
           Padding(
@@ -140,14 +145,16 @@ class TopBar extends StatelessWidget {
               children: [
                 Flexible(
                   child: Container(
-                      width: double.infinity,
-                      color: Colors.white,
-                      height: 40,
-                      child: Center(
-                          child: AppText(
-                              text: controller.openPlaceOrderId.orderDscid,
-                              style: TextTypes.subtitle2,
-                              color: const Color(0xFF505050)))),
+                    width: double.infinity,
+                    color: Colors.white,
+                    height: 40,
+                    child: Center(
+                      child: AppText(
+                          text: controller.openPlaceOrderId.orderDscid,
+                          style: TextTypes.subtitle2,
+                          color: AppColor.darkLiver),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   width: 10,
@@ -161,7 +168,7 @@ class TopBar extends StatelessWidget {
                           child: AppText(
                               text: controller.openPlaceOrderId.orderDate,
                               style: TextTypes.subtitle2,
-                              color: const Color(0xFF9999A4)))),
+                              color: AppColor.manatee))),
                 )
               ],
             ),
@@ -176,7 +183,7 @@ class TopBar extends StatelessWidget {
                   child: AppText(
                       text: controller.openPlaceOrderId.createBy,
                       style: TextTypes.subtitle2,
-                      color: const Color(0xFF9999A4))),
+                      color: AppColor.manatee)),
             ),
           ),
         ],

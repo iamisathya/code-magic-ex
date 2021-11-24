@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class Body extends StatelessWidget {
                           secondaryActions: <Widget>[
                             IconSlideAction(
                               caption: 'Delete',
-                              color: const Color(0xFFFA758E),
+                              color: AppColor.ultraRed,
                               icon: Icons.delete,
                               foregroundColor: Colors.white,
                               onTap: () => controller.removeItem(item.itemCode),

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,7 @@ class Body extends StatelessWidget {
     final boldFont = Theme.of(context)
         .textTheme
         .bodyText1!
-        .copyWith(fontWeight: FontWeight.bold, color: const Color(0xFF000000));
+        .copyWith(fontWeight: FontWeight.bold, color: AppColor.kBlackColor);
     return SingleChildScrollView(
       child: SafeArea(
         child: Column(
@@ -48,7 +49,7 @@ class Body extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.all(20),
-              color: const Color(0xFFF6F9FD),
+              color: AppColor.ghostWhite,
               child: Column(
                 children: [
                   ShippingAddressCard(),

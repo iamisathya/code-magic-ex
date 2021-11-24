@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 //Enum for different text types, you can add more
@@ -25,7 +26,7 @@ class AppText extends StatelessWidget {
 
   const AppText(
       {required this.text,
-      this.color = const Color(0xFF000000),
+      this.color = AppColor.kBlackColor,
       this.align = TextAlign.start,
       this.fontSize = 14.0,
       this.weight = FontWeight.normal,

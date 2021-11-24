@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollement_condition/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,6 @@ import '../../../../../../models/guest_user_info.dart';
 import '../../../../../../utilities/logger.dart';
 import '../../../../../../utilities/parsing.dart';
 import '../../../../../../utilities/snackbar.dart';
-import '../../enrollement_condition/controller/enrollment.terms.controller.dart';
 import '../../enrollment_user_info/main_screen.dart';
 
 class EnrollmentDetailsHomeController extends GetxController {
@@ -160,9 +160,9 @@ class EnrollmentDetailsHomeController extends GetxController {
 
   Color getActiveColor(int value) {
     return value == 0
-        ? const Color(0xFFFFFFFF)
+        ? AppColor.kWhiteColor
         : value == 1
-            ? const Color(0xFFF5F5F5)
-            : const Color(0xFFFFE7EB);
+            ? AppColor.kWhiteSmokeColor
+            : AppColor.mistyRose;
   }
 }

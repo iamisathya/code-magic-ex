@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +28,7 @@ class SalesReportEachItemItem extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline6!
-                        .copyWith(color: const Color(0xFF000000))),
+                        .copyWith(color: AppColor.kBlackColor)),
               ),
               const SizedBox()
             ],
@@ -51,12 +52,12 @@ class SalesReportEachItemItem extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(color: const Color(0xFF505050))),
+                  .copyWith(color: AppColor.darkLiver)),
           Text(value2,
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(color: const Color(0xFF505050))),
+                  .copyWith(color: AppColor.darkLiver)),
         ],
       ),
     );
@@ -76,7 +77,7 @@ class GrandTotal extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
           decoration: const BoxDecoration(
-              color: Color(0xFFF1FAF7), //FFE7EB error color
+              color: AppColor.cultured, //FFE7EB error color
               borderRadius: BorderRadius.all(Radius.circular(3.0))),
           height: 40,
           child: Row(
@@ -87,14 +88,14 @@ class GrandTotal extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
-                    .copyWith(color: const Color(0xFF000000)),
+                    .copyWith(color: AppColor.kBlackColor),
               ),
               Text(
                 totalPv,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
-                    .copyWith(color: const Color(0xFF000000)),
+                    .copyWith(color: AppColor.kBlackColor),
               ),
             ],
           ),

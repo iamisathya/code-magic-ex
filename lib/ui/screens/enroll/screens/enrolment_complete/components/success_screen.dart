@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -28,7 +29,7 @@ class EnrolmentSuccessScreen extends StatelessWidget {
                 child: AppText(
                     text: "Your order has been placed successfully!",
                     style: TextTypes.bodyText1,
-                    color: Color(0xFF505050)),
+                    color: AppColor.darkLiver),
               ),
             ],
           ),
@@ -42,7 +43,7 @@ class EnrolmentSuccessScreen extends StatelessWidget {
                 child: AppText(
                   text: "Distributor ID : $distributorId",
                   style: TextTypes.bodyText1,
-                  color: const Color(0xFF384250),
+                  color: AppColor.charcoal,
                 ),
               ),
               Padding(
@@ -51,7 +52,7 @@ class EnrolmentSuccessScreen extends StatelessWidget {
                 child: AppText(
                   text: "PO Number: $poNumber",
                   style: TextTypes.bodyText1,
-                  color: const Color(0xFF384250),
+                  color: AppColor.charcoal,
                 ),
               ),
               const SizedBox(height: 30),
@@ -60,7 +61,7 @@ class EnrolmentSuccessScreen extends StatelessWidget {
                 child: AppText(
                   text: "Scan Barcode",
                   style: TextTypes.bodyText1,
-                  color: Color(0xFF384250),
+                  color: AppColor.charcoal,
                 ),
               ),
               SvgPicture.asset(kScanBarCodeImage),

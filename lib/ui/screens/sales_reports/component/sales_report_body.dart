@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -20,21 +21,21 @@ class SaleReportBody extends StatelessWidget {
           height: 54,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           alignment: Alignment.center,
-          color: const Color(0xFFFFBF3A),
+          color: AppColor.sunglow,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppText(
                   text: "Order ID: ${controller.orderId}", //! hardcoded
                   style: TextTypes.bodyText1,
-                  color: const Color(0xFF384250)),
+                  color: AppColor.charcoal),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: GestureDetector(
                   onTap: () => controller.proceedToPrint(context,
                       orderHref: controller.orderHref.value),
                   child: SvgPicture.asset(kPrintIcon,
-                      color: const Color(0xFF384250),
+                      color: AppColor.charcoal,
                       width: 20,
                       semanticsLabel: 'print icon'),
                 ),

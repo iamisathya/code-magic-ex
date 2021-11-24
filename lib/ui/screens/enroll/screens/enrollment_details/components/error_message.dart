@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../global/widgets/unordered_list.dart';
@@ -14,7 +15,7 @@ class ErrorMessage extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
-          color: const Color(0xFFFA758E),
+          color: AppColor.ultraRed,
         ),
         child: UnorderedList(errors));
   }

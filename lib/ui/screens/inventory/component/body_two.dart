@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +25,7 @@ class Body2 extends StatelessWidget {
               onTapExport: () => controller.onTapExportExcellSheet(),
               onTapPrint: () => controller.onTapPrint()),
           UserAddress(),
-          Container(height: 10, color: const Color(0xFFCBCBCD)),
+          Container(height: 10, color: AppColor.chineseSilver),
           Obx(() => Column(
                 children: [
                   if (controller.currentViewType.value.value == "card")
@@ -34,7 +35,7 @@ class Body2 extends StatelessWidget {
                             totalPrice: controller.grandTotalPrice.value,
                             totalPv: controller.grandTotalPv.value),
                         Container(
-                            color: const Color(0xFFFFFFFF),
+                            color: AppColor.kWhiteColor,
                             child: controller
                                     .tempInventoryRecords.value.items.isEmpty
                                 ? Container(

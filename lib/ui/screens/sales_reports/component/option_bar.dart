@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class OptionBar extends StatelessWidget {
     return Container(
       height: 50,
       decoration: const BoxDecoration(
-        color: Color(0xFFFFFFFF),
+        color: AppColor.kWhiteColor,
         border: Border(
           top: BorderSide(width: 0.5),
           bottom: BorderSide(width: 0.5),
@@ -34,16 +35,18 @@ class OptionBar extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () => onPrint(),
-                  child: Text("Print",
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle1!
-                          .copyWith(color: const Color(0xFF505050))),
+                  child: Text(
+                    "Print",
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle1!
+                        .copyWith(color: AppColor.darkLiver),
+                  ),
                 ),
                 const SizedBox(width: 20),
                 SvgPicture.asset(kPrintIcon,
                     width: 12,
-                    color: const Color(0xFF505050),
+                    color: AppColor.darkLiver,
                     semanticsLabel: 'print'),
               ],
             ),
@@ -52,7 +55,7 @@ class OptionBar extends StatelessWidget {
             height: 50,
             width: 0.5,
             child: Container(
-              color: const Color(0xFF000000),
+              color: AppColor.kBlackColor,
             ),
           ),
           Flexible(
@@ -61,15 +64,17 @@ class OptionBar extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () => onDownload(),
-                  child: Text("Download",
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle1!
-                          .copyWith(color: const Color(0xFF505050))),
+                  child: Text(
+                    "Download",
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle1!
+                        .copyWith(color: AppColor.darkLiver),
+                  ),
                 ),
                 const SizedBox(width: 20),
                 SvgPicture.asset(kDownloadIcon,
-                    color: const Color(0xFF505050),
+                    color: AppColor.darkLiver,
                     width: 12,
                     semanticsLabel: 'dowmnload'),
               ],

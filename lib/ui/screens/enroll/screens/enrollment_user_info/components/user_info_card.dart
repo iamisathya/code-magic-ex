@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../utilities/enums.dart';
@@ -23,7 +24,7 @@ class UserInfoCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(3),
-            color: const Color(0xFFFFFFFF)),
+            color: AppColor.kWhiteColor),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,24 +34,24 @@ class UserInfoCard extends StatelessWidget {
               title,
               style: Theme.of(context).textTheme.caption!.copyWith(
                     fontSize: 10,
-                    color: const Color(0xFF505050),
+                    color: AppColor.darkLiver
                   ),
             ),
             AppText(
                 text: id,
                 style: TextTypes.subtitle1,
-                color: const Color(0xFF384250)),
+                color: AppColor.charcoal),
             AppText(
                 text: name,
                 style: TextTypes.bodyText1,
                 maxLines: 1,
-                color: const Color(0xFF384250)),
+                color: AppColor.charcoal),
             Text(
               nativeName,
               maxLines: 1,
               style: Theme.of(context).textTheme.caption!.copyWith(
                     fontSize: 10,
-                    color: const Color(0xFF384250),
+                    color: AppColor.charcoal,
                   ),
             ),
           ],

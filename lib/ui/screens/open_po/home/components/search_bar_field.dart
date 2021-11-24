@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -19,7 +20,7 @@ class SearchBarField extends StatelessWidget {
           decoration: InputDecoration(
               border: InputBorder.none,
               focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFF9EA9B9)),
+                borderSide: BorderSide(color: AppColor.metallicSilver),
               ),
               contentPadding: const EdgeInsets.symmetric(vertical: 20),
               enabledBorder: InputBorder.none,
@@ -27,7 +28,7 @@ class SearchBarField extends StatelessWidget {
               disabledBorder: InputBorder.none,
               hintText: placeHolder,
               hintStyle:
-                  const TextStyle(color: Color(0xFF9EA9B9), fontSize: 14)),
+                  const TextStyle(color: AppColor.metallicSilver, fontSize: 14)),
         ));
   }
 }

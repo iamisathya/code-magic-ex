@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -32,7 +33,7 @@ class Body extends StatelessWidget {
               ),
             ),
             Container(
-              color: const Color(0xFF76E5DE),
+              color: AppColor.crayola,
               height: 130,
               child: Padding(
                 padding: const EdgeInsets.all(20),
@@ -68,46 +69,48 @@ class Body extends StatelessWidget {
                 ),
               ),
             ),
-            if(controller.filterMethod.value != "baId") Expanded(
-              child: SingleChildScrollView(
-                  child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Container(
-                  color: const Color(0xFFF5F5F5),
-                  child: Obx(
-                    () => ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: controller.searchResultsOfUserInfo.length,
-                        itemBuilder: (BuildContext ctxt, int index) {
-                          final bool isSelected =
-                              controller.selecteduserIndex.value == index;
-                          return GestureDetector(
-                            onTap: () => controller.onSelectUser(index),
-                            child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10.0),
-                                child: isSelected
-                                    ? AppText(
-                                        text: controller
-                                            .searchResultsOfUserInfo[index]
-                                            .humanName
-                                            .fullName,
-                                        style: TextTypes.headline6)
-                                    : AppText(
-                                        text: controller
-                                            .searchResultsOfUserInfo[index]
-                                            .humanName
-                                            .fullName,
-                                        style: TextTypes.bodyText1,
-                                        color: const Color(0xFF505050))),
-                          );
-                        }),
+            if (controller.filterMethod.value != "baId")
+              Expanded(
+                child: SingleChildScrollView(
+                    child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Container(
+                    color: AppColor.kWhiteSmokeColor,
+                    child: Obx(
+                      () => ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: controller.searchResultsOfUserInfo.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            final bool isSelected =
+                                controller.selecteduserIndex.value == index;
+                            return GestureDetector(
+                                onTap: () => controller.onSelectUser(index),
+                                child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10.0),
+                                    child: isSelected
+                                        ? AppText(
+                                            text: controller
+                                                .searchResultsOfUserInfo[index]
+                                                .humanName
+                                                .fullName,
+                                            style: TextTypes.headline6)
+                                        : AppText(
+                                            text: controller
+                                                .searchResultsOfUserInfo[index]
+                                                .humanName
+                                                .fullName,
+                                            style: TextTypes.bodyText1,
+                                            color: AppColor.darkLiver)));
+                          }),
+                    ),
                   ),
-                ),
-              )),
-            ) else const SizedBox()
+                )),
+              )
+            else
+              const SizedBox()
           ],
         ),
       ),

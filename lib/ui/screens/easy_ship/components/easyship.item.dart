@@ -1,4 +1,5 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/globals.dart';
@@ -43,13 +44,13 @@ class EasyShipItem extends StatelessWidget {
                     child: AppText(
                       text: date.asMMM,
                       style: TextTypes.headline4,
-                      color: const Color(0xFFFFBF3A),
+                      color: AppColor.sunglow,
                     ),
                   ),
                   AppText(
                     text: date.asYYYY,
                     style: TextTypes.caption,
-                    color: const Color(0xFF505050),
+                    color: AppColor.darkLiver,
                   ),
                 ]),
               ),
@@ -90,7 +91,7 @@ class EasyShipItem extends StatelessWidget {
           child: AppText(
             text: "Order Number ${element.pvDate.asMMM}",
             style: TextTypes.bodyText2,
-            color: const Color(0xFF505050),
+            color: AppColor.darkLiver,
           ),
         ),
       ),
@@ -99,7 +100,7 @@ class EasyShipItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
-          color: const Color(0xFFE5EBF1),
+          color: AppColor.brightGraySecond,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,12 +108,12 @@ class EasyShipItem extends StatelessWidget {
             AppText(
               text: "Total PV: ${element.pv.toString()} PV",
               style: TextTypes.caption,
-              color: const Color(0xFF505050),
+              color: AppColor.darkLiver,
             ),
             AppText(
               text: "Total Price: ${element.totalPrice} ${Globals.currency}",
               style: TextTypes.caption,
-              color: const Color(0xFF505050),
+              color: AppColor.darkLiver,
             ),
           ],
         ),

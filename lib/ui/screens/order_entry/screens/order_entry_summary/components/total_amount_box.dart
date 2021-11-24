@@ -1,5 +1,6 @@
 
 
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,7 +44,7 @@ class TotalAmountBox extends StatelessWidget {
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 15),
-            child: Divider(color: Color(0xFF9999A4)),
+            child: Divider(color: AppColor.manatee),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

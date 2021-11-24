@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -65,7 +66,7 @@ class OpenPoList extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Container(
-          color: const Color(0xFFF5F5F5),
+          color: AppColor.kWhiteSmokeColor,
           child: Obx(
             () => ListView.builder(
               physics: const NeverScrollableScrollPhysics(),

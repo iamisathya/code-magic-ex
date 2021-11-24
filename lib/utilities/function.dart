@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -287,5 +288,5 @@ LocaleModel getLocale(LocaleTypes type) {
 }
 
 final Shader linearGradient = const LinearGradient(
-  colors: <Color>[Color(0xFF5468AD), Color(0xFF448ED7), Color(0xFF30ACEA)],
+  colors: <Color>[AppColor.blueYonder, AppColor.tuftsBlue, AppColor.buttonBlue],
 ).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 54.0));

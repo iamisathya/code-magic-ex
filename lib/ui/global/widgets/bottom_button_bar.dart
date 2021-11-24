@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,7 @@ class BottomButtonBar extends StatelessWidget {
     this.onTapNeutralButton,
     this.onTapPositiveButton,
     this.positiveText = "next",
-    this.bgColor = const Color(0xFFFFFFFF),
+    this.bgColor = AppColor.kWhiteColor,
     this.negetiveText = "cancel",
     this.neutralText = "back",
   }) : super(key: key);

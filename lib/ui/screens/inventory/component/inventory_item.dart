@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -27,8 +28,8 @@ class InventoryItem extends StatelessWidget {
       height: 340,
       decoration: BoxDecoration(
           color: controller.activeStockType.value.value == "onHand"
-              ? const Color(0xFFF1FAF7)
-              : const Color(0xFFF7F1E9),
+              ? AppColor.cultured
+              : AppColor.isabelline,
           borderRadius: const BorderRadius.all(Radius.circular(3.0))),
       child: Column(
         children: [
@@ -38,13 +39,13 @@ class InventoryItem extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headline6!
-                    .copyWith(color: const Color(0xFF000000))),
+                    .copyWith(color: AppColor.kBlackColor)),
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
-                color: const Color(0xFFFFFFFF)),
+                color: AppColor.kWhiteColor),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -58,7 +59,7 @@ class InventoryItem extends StatelessWidget {
                   height: 105,
                   width: 100,
                   decoration: BoxDecoration(
-                      border: Border.all(color: const Color(0xFFFFB74F)),
+                      border: Border.all(color: AppColor.kWhiteColor),
                       borderRadius: BorderRadius.circular(2)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +72,7 @@ class InventoryItem extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .bodyText2!
-                              .copyWith(color: const Color(0xFF9EA9B9)),
+                              .copyWith(color: AppColor.metallicSilver),
                         ),
                       ),
                       Text(
@@ -79,7 +80,7 @@ class InventoryItem extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .headline4!
-                            .copyWith(color: const Color(0xFF6FCF97)),
+                            .copyWith(color: AppColor.mediumAquamarine),
                       ),
                     ],
                   ),
@@ -101,12 +102,12 @@ class InventoryItem extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2!
-                              .copyWith(color: const Color(0xFF000000))),
+                              .copyWith(color: AppColor.kBlackColor)),
                       Text("Item Code: ${item.item.id.unicity}",
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2!
-                              .copyWith(color: const Color(0xFF000000))),
+                              .copyWith(color: AppColor.kBlackColor)),
                     ],
                   ),
                 ),
@@ -114,7 +115,7 @@ class InventoryItem extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 10.0),
                   child: Divider(
                     height: 1,
-                    color: Color(0xFFE3E8ED),
+                    color: AppColor.brightGray,
                   ),
                 ),
                 Row(
@@ -124,12 +125,12 @@ class InventoryItem extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(color: const Color(0xFF606975))),
+                            .copyWith(color: AppColor.cadet)),
                     Text("$totalPriceString  ${Globals.currency}",
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(color: const Color(0xFF606975))),
+                            .copyWith(color: AppColor.cadet)),
                   ],
                 ),
                 Row(
@@ -139,12 +140,12 @@ class InventoryItem extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(color: const Color(0xFF606975))),
+                            .copyWith(color: AppColor.cadet)),
                     Text("$totalPv PV",
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
-                            .copyWith(color: const Color(0xFF606975))),
+                            .copyWith(color: AppColor.cadet)),
                   ],
                 )
               ],

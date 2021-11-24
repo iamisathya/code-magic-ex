@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class EnrollCartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
-      color: const Color(0xFFFFFFFF),
+      color: AppColor.kWhiteColor,
       padding: const EdgeInsets.all(20),
       height: 180,
       child: Row(
@@ -45,12 +46,12 @@ class EnrollCartItem extends StatelessWidget {
                 AppText(
                   text: "Code: ${item.itemCode}",
                   style: TextTypes.caption,
-                  color: const Color(0xFF9EA9B9),
+                  color: AppColor.metallicSilver,
                 ),
                 AppText(
                   text: "${item.itemPv} PV | ${item.itemPrice} THB",
                   style: TextTypes.subtitle1,
-                  color: const Color(0xFF384250),
+                  color: AppColor.charcoal,
                 ),
                 CartCounterView(
                     itemCode: item.itemCode,

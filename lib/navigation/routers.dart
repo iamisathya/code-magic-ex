@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/open_po/order_details/home_screen.dart';
 import 'package:dsc_tools/ui/screens/open_po/order_success/main_screen.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,6 @@ import '../ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
 import '../ui/screens/home/home.dart';
 import '../ui/screens/login/login.screen.dart';
 import '../ui/screens/open_po/home/components/add_products.dart';
-import '../ui/screens/open_po/home/components/open_po_details.dart';
 import '../ui/screens/open_po/home/home.screen.dart';
 import '../ui/screens/order_entry/orderentry.screen.dart';
 import '../ui/screens/order_entry/screens/checkout/checkout.screen.dart';
@@ -51,8 +51,8 @@ class AppRoutes {
         page: () => OpenPOHomeScreen(),
         binding: OpenPoOrderListBindings()),
     GetPage(
-        name: OpenPODetailsPage.routeName,
-        page: () => OpenPODetailsPage(),
+        name: OpenPoOrderDetails.routeName,
+        page: () => OpenPoOrderDetails(),
         binding: AppBindings()),
     GetPage(
         name: CreateOpenPoOrder.routeName,

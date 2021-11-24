@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +25,7 @@ class PaymentMethodCard extends StatelessWidget {
           ),
           Obx(
             () => Container(
-              color: const Color(0xFFD8DDE3),
+              color: AppColor.gainsboro,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               child: Column(
                 children: [

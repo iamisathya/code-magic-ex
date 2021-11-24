@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +22,7 @@ class Body extends StatelessWidget {
                 icon: kSearchIcon,
                 isLoading: controller.isLoading.value,
                 labelText: "BA Number",
-                bgColor: const Color(0xFFFFBF3A),
+                bgColor: AppColor.sunglow,
                 onSubmit: () => controller.onSearchEasyShipReport(),
                 onScan: () => controller.onSearchEasyShipReport(),
                 textFieldController: controller.baNumberTextField),

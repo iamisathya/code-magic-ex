@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,21 +25,21 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        color: const Color(0xFFFFFFFF),
+        color: AppColor.kWhiteColor,
         child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
                 Container(
                   height: 300,
-                  color: const Color(0xFFFFFFFF),
+                  color: AppColor.kWhiteColor,
                   child: Stack(
                     children: [
                       Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                               bottomRight: Radius.circular(128)),
-                          color: Color(0xFFE3E8ED),
+                          color: AppColor.brightGray,
                         ),
                         height: 300,
                         child: Column(

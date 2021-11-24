@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -32,7 +33,7 @@ class SalesReportEachRmaItem extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline6!
-                        .copyWith(color: const Color(0xFF000000))),
+                        .copyWith(color: AppColor.kBlackColor)),
               ),
               GestureDetector(
                 onTap: () => controller.gotoBarcodePage(item),
@@ -92,20 +93,20 @@ class SalesReportEachRmaItem extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
-                    .copyWith(color: const Color(0xFF505050))),
+                    .copyWith(color: AppColor.darkLiver)),
             GestureDetector(
                 // onTap: () => controller.proceedToPrint(context, orderHref: href),
                 onTap: () => Get.to(() => PrintSalesReport(), arguments: args),
                 child: Text(value1,
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        color: const Color(0xFF1C9CFC),
+                        color: AppColor.dodgerBlue,
                         fontWeight: FontWeight.w600))),
           ]),
           Text(value2,
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(color: const Color(0xFF505050))),
+                  .copyWith(color: AppColor.darkLiver)),
         ],
       ),
     );
@@ -127,19 +128,19 @@ class SalesReportEachRmaItem extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(color: const Color(0xFF505050))),
+                  .copyWith(color: AppColor.darkLiver)),
           Row(children: [
             Text(title2,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
-                    .copyWith(color: const Color(0xFF505050))),
+                    .copyWith(color: AppColor.darkLiver)),
             GestureDetector(
                 // onTap: () => controller.proceedToPrint(context, orderHref: href),
                 onTap: () => Get.to(() => PrintSalesReport(), arguments: args),
                 child: Text(value2,
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                        color: const Color(0xFF1C9CFC),
+                        color: AppColor.dodgerBlue,
                         fontWeight: FontWeight.w600))),
           ]),
         ],
@@ -157,12 +158,12 @@ class SalesReportEachRmaItem extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(color: const Color(0xFF505050))),
+                  .copyWith(color: AppColor.darkLiver)),
           Text(value2,
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
-                  .copyWith(color: const Color(0xFF505050))),
+                  .copyWith(color: AppColor.darkLiver)),
         ],
       ),
     );

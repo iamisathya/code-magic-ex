@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -22,7 +23,7 @@ class CashOnDeliveryDetails extends StatelessWidget {
       AppText(
         text: message,
         style: TextTypes.bodyText1,
-        color: const Color(0xFF707783),
+        color: AppColor.auroMetalSaurus,
         align: TextAlign.center,
       )
     ]);

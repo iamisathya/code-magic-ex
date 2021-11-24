@@ -1,3 +1,5 @@
+import 'package:dsc_tools/constants/colors.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_details/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,7 +10,6 @@ import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
 import '../../controller/openpo.list.controller.dart';
-import 'open_po_details.dart';
 
 class POItem extends StatelessWidget {
   final OpenPO openPo;
@@ -23,7 +24,7 @@ class POItem extends StatelessWidget {
     return Stack(children: [
       GestureDetector(
         onTap: () =>
-            Get.to(() => OpenPODetailsPage(), arguments: openPo.orderOpid),
+            Get.to(() => OpenPoOrderDetails(), arguments: openPo.orderOpid),
         child: Card(
             margin: const EdgeInsets.symmetric(vertical: 10),
             child: Column(
@@ -64,7 +65,7 @@ class POItem extends StatelessWidget {
                     )),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 15),
-                  child: Divider(height: 1, color: Color(0xFFE3E8ED)),
+                  child: Divider(height: 1, color: AppColor.brightGray),
                 ),
                 Padding(
                   padding:
@@ -92,7 +93,7 @@ class POItem extends StatelessWidget {
                                     height: 15,
                                     width: 15,
                                     decoration: BoxDecoration(
-                                        color: const Color(0xFFFA758E),
+                                        color: AppColor.ultraRed,
                                         borderRadius: BorderRadius.circular(8)),
                                     child: AppText(
                                         text: attchmentName.isNotEmpty
@@ -106,7 +107,7 @@ class POItem extends StatelessWidget {
                               ],
                             ),
                           GestureDetector(
-                            onTap: () => Get.to(() => OpenPODetailsPage(),
+                            onTap: () => Get.to(() => OpenPoOrderDetails(),
                                 arguments: openPo.orderOpid),
                             child: SvgPicture.asset(kOpenPoViewIcon,
                                 height: 20, semanticsLabel: "View Open PO"),
@@ -115,7 +116,7 @@ class POItem extends StatelessWidget {
                           //   width: 10,
                           // ),
                           // GestureDetector(
-                          //   onTap: () => Get.to(() => OpenPODetailsPage(), arguments: openPo.orderOpid),
+                          //   onTap: () => Get.to(() => OpenPoOrderDetails(), arguments: openPo.orderOpid),
                           //   child: SvgPicture.asset(kOpenPoEditIcon,
                           //       height: 20, semanticsLabel: "Edit Open PO"),
                           // ),

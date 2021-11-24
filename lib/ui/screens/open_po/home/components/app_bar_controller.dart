@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,8 +21,8 @@ class AppBarController extends GetxController {
                       style: TextStyle(
                           color: languageController.currentOption.value ==
                                   lang.value
-                              ? const Color(0xFF1C9CFC)
-                              : const Color(0xFF000000))),
+                              ? AppColor.dodgerBlue
+                              : AppColor.kBlackColor)),
                 ),
               ))
           .toList(),

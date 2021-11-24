@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -45,14 +46,14 @@ class BottomModalAlert extends StatelessWidget {
               child: AppText(
                 text: title,
                 style: TextTypes.headline6,
-                color: const Color(0xFF384250),
+                color: AppColor.charcoal,
               ),
             ),
             AppText(
               align: TextAlign.center,
               text: subTitle,
               style: TextTypes.subtitle2,
-              color: const Color(0xFF384250),
+              color: AppColor.charcoal,
             ),
             SizedBox(
               height: 50,

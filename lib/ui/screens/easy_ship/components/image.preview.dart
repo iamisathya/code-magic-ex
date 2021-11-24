@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -31,9 +32,9 @@ class ScreenShotPreview extends StatelessWidget {
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
-                            side: const BorderSide(color: Color(0xFFFFBF3A)))),
+                            side: const BorderSide(color: AppColor.sunglow))),
                     backgroundColor:
-                        MaterialStateProperty.all(const Color(0xFFFFBF3A))),
+                        MaterialStateProperty.all(AppColor.sunglow)),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -44,14 +45,14 @@ class ScreenShotPreview extends StatelessWidget {
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
-                            side: const BorderSide(color: Color(0xFF1C9CFC)))),
+                            side: const BorderSide(color: AppColor.dodgerBlue))),
                     backgroundColor:
-                        MaterialStateProperty.all(const Color(0xFF1C9CFC))),
+                        MaterialStateProperty.all(AppColor.dodgerBlue)),
                 onPressed: () => controller.saveImage(context),
                 child: const AppText(
                   text: "Save",
                   style: TextTypes.caption,
-                  color: Color(0xFFFFFFFF),
+                  color: AppColor.kWhiteColor,
                 ),
               ),
             ],
