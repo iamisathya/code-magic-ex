@@ -36,29 +36,29 @@ class POItem extends StatelessWidget {
                       children: [
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: Text("PO Number: ${openPo.orderOpid}",
-                              textAlign: TextAlign.left,
-                              style: Theme.of(context).textTheme.subtitle1),
+                          child: AppText(text: "PO Number: ${openPo.orderOpid}",
+                              align: TextAlign.left,
+                              style: TextTypes.subtitle1),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 15, bottom: 5),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Total PV: ${openPo.orderTotalPv}",
-                                  style: Theme.of(context).textTheme.caption),
-                              Text("Date: ${openPo.orderDate}",
-                                  style: Theme.of(context).textTheme.caption),
+                              AppText(text: "Total PV: ${openPo.orderTotalPv}",
+                                  style: TextTypes.caption),
+                              AppText(text: "Date: ${openPo.orderDate}",
+                                  style: TextTypes.caption),
                             ],
                           ),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Total Price: ${openPo.orderTotalPrice}",
-                                style: Theme.of(context).textTheme.caption),
-                            Text("Time: ${openPo.orderTime}",
-                                style: Theme.of(context).textTheme.caption),
+                            AppText(text: "Total Price: ${openPo.orderTotalPrice}",
+                                style: TextTypes.caption),
+                            AppText(text: "Time: ${openPo.orderTime}",
+                                style: TextTypes.caption),
                           ],
                         ),
                       ],

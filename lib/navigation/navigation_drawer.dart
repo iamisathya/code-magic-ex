@@ -50,12 +50,12 @@ class NavigationDrawer extends StatelessWidget {
         children: <Widget>[
           _createDrawerHeader(context),
           _createDrawerBodyItem(
-              selected: currentRoute == ScreenPaths.openPO ||
+              selected: currentRoute == ScreenPaths.openPo ||
                   currentRoute == null ||
                   currentRoute == "/",
               icon: Icons.trending_up_sharp,
               text: 'Open PO',
-              onTap: () => onSelectItem(ScreenPaths.openPO)),
+              onTap: () => onSelectItem(ScreenPaths.openPo)),
           _createDrawerBodyItem(
             selected: currentRoute == ScreenPaths.enroll,
             icon: Icons.mode_edit_sharp,

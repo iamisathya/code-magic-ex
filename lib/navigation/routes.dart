@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -6,7 +7,6 @@ import '../ui/screens/enroll/enrollhome.screen.dart';
 import '../ui/screens/home/home.dart';
 import '../ui/screens/inventory/inventory.screen.dart';
 import '../ui/screens/login/login.screen.dart';
-import '../ui/screens/open_po/home/home.screen.dart';
 import '../ui/screens/order_entry/orderentry.screen.dart';
 import '../ui/screens/order_entry/screens/checkout/checkout.screen.dart';
 import '../ui/screens/sales_reports/salesreports.screen.dart';
@@ -17,7 +17,7 @@ Map<String, WidgetBuilder> get routes {
   return {
     ScreenPaths.loginHome: (context) => LoginScreen(),
     ScreenPaths.mainHome: (context) => MainHomeScreen(),
-    ScreenPaths.openPO: (context) => OpenPOHomeScreen(),
+    ScreenPaths.openPo: (context) => OpenPoHomeScreen(),
     ScreenPaths.enroll: (context) => EnrollHomeScreen(),
     ScreenPaths.orderEntry: (context) => OrderEntryHomeScreen(),
     ScreenPaths.inventory: (context) => InventoryHomeScreen(),

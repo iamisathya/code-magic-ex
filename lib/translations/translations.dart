@@ -48,6 +48,7 @@ class AppTranslations extends Translations {
           "distributor": "Distributor",
           "distributor_id": "Distributor ID",
           "distributor_notupline": "Distributor is in another's upline",
+          "done": "Done",
           "dsc_info": "DSC Information",
           "dsc_name": "DSC Name",
           "dscinfo": "DSC Address",

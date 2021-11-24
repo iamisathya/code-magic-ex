@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -5,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../../../constants/colors.dart';
 import '../../../../../utilities/images.dart';
 import '../../controller/openpo.list.controller.dart';
-import '../home.screen.dart';
 
 class OrderSuccess extends StatelessWidget {
   final OpenPoListController homeCtrol = Get.put(OpenPoListController());
@@ -18,7 +18,7 @@ class OrderSuccess extends StatelessWidget {
 
   void _onPressedBack() {
     homeCtrol.getAllOpenPo();
-    Get.off(() => OpenPOHomeScreen());
+    Get.off(() => OpenPoHomeScreen());
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +10,6 @@ import '../../barcode/barcode.screen.dart';
 import '../../easy_ship/easyship.screen.dart';
 import '../../enroll/enrollhome.screen.dart';
 import '../../inventory/inventory.screen.dart';
-import '../../open_po/home/home.screen.dart';
 import '../../order_entry/orderentry.screen.dart';
 import '../../sales_reports/salesreports.screen.dart';
 import '../components/dashboard.header.dart';
@@ -76,7 +76,7 @@ class Body extends StatelessWidget {
                       MenuOption(
                           icon: kOpenPoIcon,
                           optionTitle: "Open PO",
-                          onPress: () => Get.to(() => OpenPOHomeScreen())),
+                          onPress: () => Get.to(() => OpenPoHomeScreen())),
                       MenuOption(
                           icon: kEnrollIcon,
                           optionTitle: "Enroll",

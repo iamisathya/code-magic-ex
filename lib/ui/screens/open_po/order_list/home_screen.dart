@@ -1,3 +1,5 @@
+import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
+import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -6,12 +8,10 @@ import '../../../../utilities/constants.dart';
 import '../../home/components/bottom_navigation_bar.dart';
 import '../../home/controller/home.controller.dart';
 import '../controller/openpo.list.controller.dart';
-import 'components/app_bar.dart';
-import 'components/loader.dart';
 import '../order_list/components/open_po_order_list.dart';
 
-class OpenPOHomeScreen extends StatelessWidget {
-  static const String routeName = '/openPOHomePage';
+class OpenPoHomeScreen extends StatelessWidget {
+  static const String routeName = '/openPoHomePage';
 
   final HomeController tabController = Get.put(HomeController());
   final OpenPoListController listController = Get.put(OpenPoListController());

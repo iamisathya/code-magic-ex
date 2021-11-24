@@ -1,3 +1,5 @@
+import 'package:dsc_tools/ui/screens/open_po/order_list/components/openpo_list_filter_dropdown.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_list/components/order_status_item.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +13,7 @@ import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/general_models.dart';
 import '../../../../models/open_po.dart';
-import '../../../../utilities/enums.dart';
 import '../../../../utilities/logger.dart';
-import '../../../global/theme/text_view.dart';
 import '../../../global/widgets/unordered_list.dart';
 
 class OpenPoListController extends GetxController
@@ -111,156 +111,31 @@ class OpenPoListController extends GetxController
 
   void showPicker(BuildContext ctx) {
     showCupertinoModalPopup(
-        context: ctx,
-        builder: (_) => Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  height: 48,
-                  color: Colors.white,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: Get.back,
-                          child: AppText(
-                              text: "cancel".tr,
-                              style: TextTypes.bodyText1,
-                              color: AppColor.darkLiver),
-                        ),
-                        GestureDetector(
-                          onTap: onSelectFilter,
-                          child: AppText(
-                            text: "done".tr,
-                            style: TextTypes.headline6,
-                            color: AppColor.blueCrayola,
-                          ),
-                        )
-                      ]),
-                ),
-                SizedBox(
-                  height: 250,
-                  child: CupertinoPicker(
-                    backgroundColor: AppColor.ghostWhite,
-                    scrollController: FixedExtentScrollController(
-                        initialItem: selectedFilterIndex.value),
-                    magnification: 1.2,
-                    useMagnifier: true,
-                    itemExtent: 50.0,
-                    onSelectedItemChanged: (val) {
-                      selectedFilterIndex.value = val;
-                    },
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: 100,
-                        child: const Text(
-                          'Show All', //! 1 Hardcoded
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 100,
-                        child: const Text(
-                          'Wating Approval', //! 1 Hardcoded
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 100,
-                        child: const Text(
-                          'Inventory Transferred', //! 1 Hardcoded
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 100,
-                        child: const Text(
-                          'Approved', //! 1 Hardcoded
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 100,
-                        child: const Text(
-                          'Deleted', //! 1 Hardcoded
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ));
+        context: ctx, builder: (_) => OpenPoListFilterDropdown());
   }
 
   Widget getStatusIcon(String orderStatus) {
     switch (orderStatus) {
       case "0":
-        return Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            height: 20,
-            color: AppColor.sunglow,
-            child: const AppText(
-                text: "WAITING FOR APPROVAL", //! 1 Hardcoded
-                style: TextTypes.bodyText2,
-                color: Colors.white));
+        return const OrderStatusItem(
+            title: "WAITING FOR APPROVAL", color: AppColor.sunglow);
       case "1":
-        return Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            height: 20,
-            color: AppColor.red,
-            child: const AppText(
-                text: "DELETED", //! 1 Hardcoded
-                style: TextTypes.bodyText2,
-                color: Colors.white));
+        return const OrderStatusItem(
+          title: "DELETED",
+          color: AppColor.red,
+        );
       case "2":
-        return Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            height: 20,
-            color: AppColor.paleViolet,
-            child: const AppText(
-                text: "INVENTORY TRANSFERRED", //! 1 Hardcoded
-                style: TextTypes.bodyText2,
-                color: Colors.white));
+        return const OrderStatusItem(
+            title: "INVENTORY TRANSFERRED", color: AppColor.paleViolet);
       case "3":
-        return Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            height: 20,
-            color: AppColor.sunglow,
-            child: const AppText(
-                text: "WAITING FOR APPROVAL", //! 1 Hardcoded
-                style: TextTypes.bodyText2,
-                color: Colors.white));
+        return const OrderStatusItem(
+            title: "WAITING FOR APPROVAL", color: AppColor.sunglow);
       case "4":
-        return Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            height: 20,
-            color: AppColor.mediumAquamarine,
-            child: const AppText(
-                text: "APPROVED", //! 1 Hardcoded
-                style: TextTypes.bodyText2,
-                color: Colors.white)); //Approved
+        return const OrderStatusItem(
+            title: "APPROVED", color: AppColor.mediumAquamarine);
       default:
-        return Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            height: 20,
-            color: AppColor.sunglow,
-            child: const AppText(
-                text: "WAITING FOR APPROVAL", //! 1 Hardcoded
-                style: TextTypes.bodyText2,
-                color: Colors.white));
+        return const OrderStatusItem(
+            title: "WAITING FOR APPROVAL", color: AppColor.sunglow);
     }
   }
 

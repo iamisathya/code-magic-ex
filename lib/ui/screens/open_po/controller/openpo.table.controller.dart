@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide FormData, MultipartFile;
@@ -141,7 +142,7 @@ class OpenPoTableController extends GetxController {
         _sendingMsgProgressBar.hide();
         Navigator.pop(context);
         Timer(const Duration(milliseconds: 1000), () {
-          Get.off(() => OpenPOHomeScreen());
+          Get.off(() => OpenPoHomeScreen());
         });
       }
     } on DioError catch (e) {

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -47,8 +48,8 @@ class AppRoutes {
     GetPage(name: SettingsPage.routeName, page: () => SettingsPage()),
     // Open PO
     GetPage(
-        name: OpenPOHomeScreen.routeName,
-        page: () => OpenPOHomeScreen(),
+        name: OpenPoHomeScreen.routeName,
+        page: () => OpenPoHomeScreen(),
         binding: OpenPoOrderListBindings()),
     GetPage(
         name: OpenPoOrderDetails.routeName,
