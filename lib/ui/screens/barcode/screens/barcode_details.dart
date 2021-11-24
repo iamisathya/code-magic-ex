@@ -7,7 +7,7 @@ import '../../../../constants/colors.dart';
 import '../../../../models/barcode_item_response.dart';
 import '../../../../utilities/images.dart';
 import '../../../global/widgets/bottom_button_bar.dart';
-import '../../open_po/home/components/loader.dart';
+import '../../open_po/order_create/component/loader.dart';
 import '../components/barcode_list_item.dart';
 import '../components/barcode_product_item.dart';
 import '../controller/barcode.scan.result.controller.dart';

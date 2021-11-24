@@ -5,7 +5,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 import '../../../global/widgets/bottom_button_bar.dart';
-import '../../open_po/home/components/loader.dart';
+import '../../open_po/order_create/component/loader.dart';
 import '../components/barcode_number_item.dart';
 import '../components/search_textfield.dart';
 import '../controller/barcode.search.controller.dart';

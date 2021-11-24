@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
-import '../../open_po/home/components/search_bar_field.dart';
+import '../../open_po/order_search/components/search_bar_field.dart';
 import '../controller/search_sales_products.dart';
 
 class SearchSalesReport extends StatefulWidget {

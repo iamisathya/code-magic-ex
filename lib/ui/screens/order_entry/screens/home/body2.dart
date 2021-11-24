@@ -7,7 +7,7 @@ import '../../../../../models/general_models.dart';
 import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../global/theme/text_view.dart';
-import '../../../open_po/home/components/loader.dart';
+import '../../../open_po/order_create/component/loader.dart';
 import '../../controllers/orderentry.home.controller.dart';
 import 'components/white_search_field.dart';
 

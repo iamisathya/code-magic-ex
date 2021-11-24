@@ -9,7 +9,7 @@ import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
 import '../../controller/openpo.list.controller.dart';
-import 'search_products.dart';
+import '../../order_search/components/search_products.dart';
 
 class PoListToolBar extends StatelessWidget {
   const PoListToolBar({

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../controllers/language_controller.dart';
 import '../../../../../utilities/images.dart';
-import 'app_bar_controller.dart';
+import '../controller/app_bar_controller.dart';
 
 class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBarController controller = Get.put(AppBarController());

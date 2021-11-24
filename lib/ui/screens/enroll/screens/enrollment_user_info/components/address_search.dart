@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
-import '../../../../open_po/home/components/loader.dart';
+import '../../../../open_po/order_create/component/loader.dart';
 import '../controller/enrollment.userinfo.controller.dart';
 
 class AddressSearchModal extends StatelessWidget {

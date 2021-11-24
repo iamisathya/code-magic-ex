@@ -2,7 +2,6 @@ import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
 import 'package:get/get.dart';
 
 import '../../../../../models/openpo_create_order_result.dart';
-import '../../../../screens/open_po/home/home.screen.dart';
 import '../../../home/home.dart';
 import '../../controller/openpo.list.controller.dart';
 

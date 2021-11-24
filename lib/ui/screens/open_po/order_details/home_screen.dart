@@ -7,7 +7,7 @@ import '../../../../utilities/enums.dart';
 import '../../../global/theme/text_view.dart';
 import '../../../global/widgets/bottom_button_bar.dart';
 import '../controller/openpo.details.controller.dart';
-import '../home/components/loader.dart';
+import '../order_create/component/loader.dart';
 import 'components/body2.dart';
 
 class OpenPoOrderDetails extends StatelessWidget {

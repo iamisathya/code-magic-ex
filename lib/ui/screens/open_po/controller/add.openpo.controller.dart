@@ -290,7 +290,7 @@ class CreateOpenPoOrderController extends GetxController
 
   void _onPlaceOrder(OpenPOCreateOrderResponse reponse) {
     final OpenPoCreateOrderResult args = OpenPoCreateOrderResult(
-        isSuccess: false,
+        isSuccess: reponse.success,
         poNumber: reponse.poId,
         distributorId: Globals.userId);
     if (reponse.success == true) {

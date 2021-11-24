@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../../../constants/colors.dart';
-import '../../../open_po/home/components/app_bar.dart';
-import '../../../open_po/home/components/loader.dart';
+import '../../../open_po/order_create/component/app_bar.dart';
+import '../../../open_po/order_create/component/loader.dart';
 import '../../controllers/orderentry.product.list.controller.dart';
 import '../../orderentry.screen.dart';
 import 'components/body.dart';

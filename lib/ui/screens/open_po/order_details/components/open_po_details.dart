@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/open_po/order_create/component/total_price_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -10,9 +11,8 @@ import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
 import '../../../../global/widgets/bottom_button_bar.dart';
 import '../../controller/openpo.details.controller.dart';
-import 'loader.dart';
+import '../../order_create/component/loader.dart';
 import 'po_ordered_item.dart';
-import 'total_price_container.dart';
 
 class OpenPODetailsPage extends StatelessWidget {
   final OpenPoDetailsController controller = Get.put(OpenPoDetailsController());

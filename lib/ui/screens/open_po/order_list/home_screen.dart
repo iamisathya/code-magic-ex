@@ -1,5 +1,5 @@
-import 'package:dsc_tools/ui/screens/open_po/home/components/app_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/loader.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -29,7 +29,7 @@ class OpenPoHomeScreen extends StatelessWidget {
           bottomNavigationBar: NavigationBottomBar(
               controller: tabController,
               isExternal: true,
-              currentPage: "/createOpenPoOrder"),
+              currentPage: "/openPoCreateOrder"),
         ),
       ),
     );

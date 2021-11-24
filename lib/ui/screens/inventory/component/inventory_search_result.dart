@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../utilities/extensions.dart';
-import '../../open_po/home/components/app_bar.dart';
+import '../../open_po/order_create/component/app_bar.dart';
 import '../controller/inventory.search.result.controller.dart';
 import 'grand_total_price.dart';
 import 'inventory_item.dart';

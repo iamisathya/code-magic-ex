@@ -23,7 +23,6 @@ import '../../../../utilities/logger.dart';
 import '../../../global/widgets/overlay_progress.dart';
 import '../../webview/webview.screen.dart';
 import '../order_details/orderdetails.screen.dart';
-import '../order_table/ordertable.screen.dart';
 
 class OpenPoController extends GetxController {
   final RxInt _currentTab = 0.obs;
@@ -324,7 +323,7 @@ class OpenPoController extends GetxController {
   }
 
   Future<void> onAddOrderTap() async {
-    Get.to(OpenPoTable());
+    // Get.to(OpenPoTable());
   }
 
   void onTapOpenAttchment() {

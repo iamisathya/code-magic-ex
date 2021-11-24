@@ -4,8 +4,8 @@ import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../utilities/constants.dart';
 import '../../global/widgets/bottom_button_bar.dart';
-import '../open_po/home/components/app_bar.dart';
-import '../open_po/home/components/loader.dart';
+import '../open_po/order_create/component/app_bar.dart';
+import '../open_po/order_create/component/loader.dart';
 import 'component/body2.dart';
 import 'controller/salesreports.home.controller.dart';
 
