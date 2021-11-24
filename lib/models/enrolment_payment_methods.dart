@@ -17,7 +17,7 @@ class EnrolmentPaymentMethods {
 @JsonSerializable(anyMap: true)
 class Markets {
   String countryCode;
-	List<PaymentModes> paymentModes;
+  List<PaymentModes> paymentModes;
 
   Markets({required this.countryCode, required this.paymentModes});
 

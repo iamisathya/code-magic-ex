@@ -9,8 +9,7 @@ class AppBindings extends Bindings {
   void dependencies() {
     // Get.put(MemberCallsService(Dio()));
     // Get.put(OpenPoDetailsController(api: Get.find()));
-    Get.lazyPut(() => OpenPoDetailsController(),
-        fenix: true);
+    Get.lazyPut(() => OpenPoDetailsController(), fenix: true);
   }
 }
 

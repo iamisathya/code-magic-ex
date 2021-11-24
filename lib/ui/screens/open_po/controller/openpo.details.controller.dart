@@ -41,13 +41,15 @@ class OpenPoDetailsController extends GetxController {
     isLoading.toggle();
     try {
       // * Getting order id from getOpenOrderId API - 203
-      poOrderAttachment =
-          await MemberCallsService.init().getPoOrderAttachment("getAttachment", ponumber);
-      openPlaceOrderId = await MemberCallsService.init().getOpenOrderId("203", ponumber);
+      poOrderAttachment = await MemberCallsService.init()
+          .getPoOrderAttachment("getAttachment", ponumber);
+      openPlaceOrderId =
+          await MemberCallsService.init().getOpenOrderId("203", ponumber);
       currentPoNumber = openPlaceOrderId.orderId;
       // * Getting order details from from getOpenOrderDetails api - 204
       final List<OpenPlaceOrderDetails> detailsResponse =
-          await MemberCallsService.init().getOpenOrderDetails("204", openPlaceOrderId.orderId);
+          await MemberCallsService.init()
+              .getOpenOrderDetails("204", openPlaceOrderId.orderId);
       openPlaceOrderDetails = detailsResponse.obs;
       isLoading.toggle();
       // change(openPlaceOrderDetails, status: RxStatus.success());

@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../models/sales_report_item_item.dart';
 import '../controller/salesreports.home.controller.dart';
 
@@ -33,8 +33,7 @@ class SalesReportEachItemItem extends StatelessWidget {
               const SizedBox()
             ],
           ),
-          _renderEachRow(
-              context, "BA Number: ${item.itemCode}", ""),
+          _renderEachRow(context, "BA Number: ${item.itemCode}", ""),
           _renderEachRow(context, "PV: ${item.pv}", "Quantity: ${item.qty}"),
           GrandTotal(totalPv: item.totalPv.toString()),
         ],

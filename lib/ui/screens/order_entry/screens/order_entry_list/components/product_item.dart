@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../models/inventory_records.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../global/theme/text_view.dart';
@@ -14,8 +14,9 @@ class ProductItem extends StatelessWidget {
   final bool inCart;
   final int cartItemIndex;
 
-  ProductItem({required this.item, required this.inCart, required this.cartItemIndex});
-  
+  ProductItem(
+      {required this.item, required this.inCart, required this.cartItemIndex});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,10 +24,7 @@ class ProductItem extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.0),
-          side: BorderSide(
-            color: AppColor.sunglow,
-            width: inCart ? 1 : 0
-          ),
+          side: BorderSide(color: AppColor.sunglow, width: inCart ? 1 : 0),
         ),
         child: Stack(children: [
           Align(
@@ -51,19 +49,24 @@ class ProductItem extends StatelessWidget {
               ],
             ),
           ),
-          if(inCart) Positioned(
-            left: 10,
-            top: 25,
-            child: Container(
-              width: 20,
-              height: 20,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: AppColor.sunglow,
-                  borderRadius: BorderRadius.circular(3)),
-              child: AppText(text: cartItemIndex.toString(), style: TextTypes.caption, color: Colors.white,),
-            ),
-          )
+          if (inCart)
+            Positioned(
+              left: 10,
+              top: 25,
+              child: Container(
+                width: 20,
+                height: 20,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: AppColor.sunglow,
+                    borderRadius: BorderRadius.circular(3)),
+                child: AppText(
+                  text: cartItemIndex.toString(),
+                  style: TextTypes.caption,
+                  color: Colors.white,
+                ),
+              ),
+            )
         ]),
       ),
     );

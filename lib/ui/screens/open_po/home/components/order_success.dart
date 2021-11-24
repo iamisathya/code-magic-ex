@@ -1,10 +1,10 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/open_po/controller/openpo.list.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
 import '../../../../../utilities/images.dart';
+import '../../controller/openpo.list.controller.dart';
 import '../home.screen.dart';
 
 class OrderSuccess extends StatelessWidget {

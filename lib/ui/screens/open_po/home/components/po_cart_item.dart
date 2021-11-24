@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
 import '../../../../../constants/globals.dart';
 import '../../../../../models/cart_products.dart';
 import '../../../../../utilities/enums.dart';
@@ -158,9 +158,7 @@ class BoxContainer extends StatelessWidget {
       ),
       height: 40,
       child: AppText(
-          text: text,
-          style: TextTypes.bodyText1,
-          color: AppColor.charcoal),
+          text: text, style: TextTypes.bodyText1, color: AppColor.charcoal),
     );
   }
 }

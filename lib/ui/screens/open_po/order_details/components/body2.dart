@@ -1,15 +1,15 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/po_ordered_item.dart';
-import 'package:dsc_tools/ui/screens/open_po/home/components/total_price_container.dart';
-import 'package:dsc_tools/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
+import '../../../../../utilities/constants.dart';
 import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
 import '../../controller/openpo.details.controller.dart';
+import '../../home/components/po_ordered_item.dart';
+import '../../home/components/total_price_container.dart';
 import 'openpo_details_topbar.dart';
 
 class Body extends StatelessWidget {
@@ -89,4 +89,3 @@ class Body extends StatelessWidget {
     );
   }
 }
-

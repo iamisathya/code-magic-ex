@@ -1,7 +1,7 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/easy_ship_reports.dart';
 import '../../../../utilities/enums.dart';
@@ -28,16 +28,16 @@ class EasyShipItem extends StatelessWidget {
           color: Colors.white.withOpacity(0.65),
         ),
         child: Stack(children: [
-          Positioned(left: 70,  top: 54, child: Image.asset(kCheckSuccessIconPng, width: 20)),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+          Positioned(
+              left: 70,
+              top: 54,
+              child: Image.asset(kCheckSuccessIconPng, width: 20)),
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             SizedBox(
               width: 80,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 26),
-                child: Column(
-                  children: [
+                child: Column(children: [
                   AppText(text: index.toString(), style: TextTypes.headline6),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),

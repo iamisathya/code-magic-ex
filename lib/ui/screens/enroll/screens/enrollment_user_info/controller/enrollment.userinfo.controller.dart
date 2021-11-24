@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/state_manager.dart';
 
 import '../../../../../../api/config/api_service.dart';
+import '../../../../../../constants/colors.dart';
 import '../../../../../../constants/globals.dart';
 import '../../../../../../models/complete_addres.dart';
 import '../../../../../../models/country_details.dart';
@@ -46,7 +46,7 @@ class EnrollmentUserInfoController extends GetxController {
   final RxList<ProvinceItem> allProvince = <ProvinceItem>[].obs;
   final RxList<String> enrolmentErrorMessages = <String>[].obs;
   RxList<CompleteAddress> searchedAddresses = <CompleteAddress>[].obs;
-  Rx<String> countryCode = "".obs;  
+  Rx<String> countryCode = "".obs;
 
   List<String> genderOptions = ["Male", "Female"];
   List<String> maritalStatusOptions = ["Single", "Married"];
@@ -266,8 +266,7 @@ class EnrollmentUserInfoController extends GetxController {
                                             .textTheme
                                             .subtitle2!
                                             .copyWith(
-                                                color:
-                                                    AppColor.charcoal)),
+                                                color: AppColor.charcoal)),
                                   )
                                 ],
                               ),

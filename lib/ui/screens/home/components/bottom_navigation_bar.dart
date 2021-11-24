@@ -23,10 +23,7 @@ class NavigationBottomBar extends StatelessWidget {
       () => Container(
         decoration: const BoxDecoration(
           boxShadow: <BoxShadow>[
-            BoxShadow(
-              blurRadius: 28,
-              color: Colors.grey
-            ),
+            BoxShadow(blurRadius: 28, color: Colors.grey),
           ],
         ),
         child: ClipRRect(
@@ -38,7 +35,10 @@ class NavigationBottomBar extends StatelessWidget {
             backgroundColor: Colors.white,
             elevation: 20,
             iconSize: 20,
-            onTap: (int index) => controller.onTabTapped(index: index, isExternal: isExternal, currentPage: currentPage), // new
+            onTap: (int index) => controller.onTabTapped(
+                index: index,
+                isExternal: isExternal,
+                currentPage: currentPage), // new
             currentIndex: controller.currentTabIndex.value,
             items: [
               BottomNavigationBarItem(

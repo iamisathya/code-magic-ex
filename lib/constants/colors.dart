@@ -15,7 +15,7 @@ class AppColor {
     colors: [kMainColor, kMainColorSub],
   );
   static const kSecondaryColor = Color(0xFFA8DADC);
-  
+
   static const kPendingColor = Color(0xfff0ad4e);
   static const kApprovedColor = Color(0xff5cb85c);
 

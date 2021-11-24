@@ -120,4 +120,3 @@ class OrderCompleteArguments {
 
   Map<String, dynamic> toJson() => _$OrderCompleteArgumentsToJson(this);
 }
-

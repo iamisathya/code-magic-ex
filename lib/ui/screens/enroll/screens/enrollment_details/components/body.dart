@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../global/theme/text_view.dart';
@@ -35,8 +35,9 @@ class Body extends StatelessWidget {
                   child: RichText(
                     text: TextSpan(
                       text: 'Terms & ',
-                      style: DefaultTextStyle.of(context).style.copyWith(
-                          fontSize: 14, color: AppColor.cadet),
+                      style: DefaultTextStyle.of(context)
+                          .style
+                          .copyWith(fontSize: 14, color: AppColor.cadet),
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Conditions Apply',
@@ -113,7 +114,7 @@ class Body extends StatelessWidget {
                       enabled: controller.isValidSponsorId.value == 0 ||
                           controller.isValidSponsorId.value == 2,
                     )),
-                    Obx(() => Text(controller.isValidEnrolerId.value.toString()))
+                Obx(() => Text(controller.isValidEnrolerId.value.toString()))
               ],
             ),
           ),
@@ -171,8 +172,7 @@ class EnrollTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:
-          BoxDecoration(border: Border.all(color: AppColor.charcoal)),
+      decoration: BoxDecoration(border: Border.all(color: AppColor.charcoal)),
       child: GestureDetector(
         onTap: onTap,
         child: TextField(

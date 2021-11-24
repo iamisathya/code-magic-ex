@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 import '../controller/salesreports.home.controller.dart';
 

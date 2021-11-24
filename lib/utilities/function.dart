@@ -4,7 +4,6 @@ import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../constants/colors.dart';
 import '../exceptions/default.exception.dart';
 import '../exceptions/internet_failed.exception.dart';
 import '../exceptions/time_out.exception.dart';

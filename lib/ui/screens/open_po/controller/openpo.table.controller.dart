@@ -104,8 +104,8 @@ class OpenPoTableController extends GetxController {
   Future<void> confirmOrder(BuildContext context) async {
     _sendingMsgProgressBar.show(context);
     try {
-      final dynamic reponse =
-          await MemberCallsService.init().valiadateOrder("TH", Globals.customerPoCode);
+      final dynamic reponse = await MemberCallsService.init()
+          .valiadateOrder("TH", Globals.customerPoCode);
       final jsonResponse = jsonDecode(reponse.toString());
       final ValidateOrder orderResponse =
           ValidateOrder.fromJson(jsonResponse as Map<String, dynamic>);

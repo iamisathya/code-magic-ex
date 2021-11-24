@@ -1,15 +1,15 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_details/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
 import '../../../../../models/open_po.dart';
 import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
 import '../../controller/openpo.list.controller.dart';
+import '../../order_details/home_screen.dart';
 
 class POItem extends StatelessWidget {
   final OpenPO openPo;

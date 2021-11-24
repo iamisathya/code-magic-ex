@@ -199,7 +199,7 @@ extension DateFormater on String {
     }
   }
 
-   String get asYYYY {
+  String get asYYYY {
     try {
       final DateTime currentDateTime = DateFormat("yyyy-MM").parse(this);
       return DateFormat('yyyy').format(currentDateTime);

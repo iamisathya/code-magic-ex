@@ -507,7 +507,8 @@ abstract class MemberCalls2Service {
 
   //? url=Request URL: https://member-calls2.unicity.com/unishop-fn-misc/city/search?country_code=THA&keyword=10240
   @GET(Address.addressList)
-  Future<CompleteAddressResponse> getAddressByZipcode(@Query("country_code") String type, @Query("keyword") String keyword);
+  Future<CompleteAddressResponse> getAddressByZipcode(
+      @Query("country_code") String type, @Query("keyword") String keyword);
 }
 
 @RestApi(baseUrl: Address.dscBase)
@@ -519,7 +520,6 @@ abstract class DscCallService {
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
     return DscCallService(dio);
   }
-
 
   //? Example: https://dsc-th.unicity.com/barcode/check/library/get_items_api.php?token=9a36619e-2e99-4d15-92a8-ed77bd816208
   @POST(Address.dscBarcodeItems)

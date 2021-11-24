@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../models/cart_products.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/images.dart';
@@ -29,7 +29,7 @@ class EnrollCartItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 32),
+              margin: const EdgeInsets.symmetric(horizontal: 32),
               height: 158,
               width: 128,
               child: SvgPicture.asset(kProductPlaceholderImage,

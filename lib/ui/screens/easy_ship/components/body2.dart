@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 import '../../barcode/components/search_textfield.dart';
 import '../../inventory/component/page_title.dart';

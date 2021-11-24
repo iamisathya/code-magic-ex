@@ -6,7 +6,7 @@ import 'each_info_row.dart';
 
 class ShippingAddressCard extends StatelessWidget {
   final EnrollmentSummaryController controller =
-      Get.put(EnrollmentSummaryController());  
+      Get.put(EnrollmentSummaryController());
   ShippingAddressCard({
     Key? key,
   }) : super(key: key);

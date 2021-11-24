@@ -1,10 +1,10 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import 'package:dsc_tools/ui/screens/open_po/order_success/controller/openpo_order_success.controller.dart';
+import '../../../../../constants/colors.dart';
+import '../../../../../utilities/images.dart';
+import '../controller/openpo_order_success.controller.dart';
 
 class Body extends StatelessWidget {
   Body({

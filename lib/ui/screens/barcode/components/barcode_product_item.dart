@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../models/barcode_item_response.dart';
 import '../../../../utilities/images.dart';
 

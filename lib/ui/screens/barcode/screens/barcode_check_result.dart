@@ -1,9 +1,9 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../models/barcode_item_response.dart';
 import '../../../../utilities/images.dart';
 import '../../open_po/home/components/loader.dart';

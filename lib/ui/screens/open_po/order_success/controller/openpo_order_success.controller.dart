@@ -1,8 +1,8 @@
-import 'package:dsc_tools/models/openpo_create_order_result.dart';
-import 'package:dsc_tools/ui/screens/home/home.dart';
 import 'package:get/get.dart';
 
+import '../../../../../models/openpo_create_order_result.dart';
 import '../../../../screens/open_po/home/home.screen.dart';
+import '../../../home/home.dart';
 import '../../controller/openpo.list.controller.dart';
 
 class OpenPoOrderResultController extends GetxController {

@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../models/sales_report_order_item.dart';
 import '../../../../utilities/images.dart';
 import '../controller/salesreports.home.controller.dart';
@@ -58,16 +58,16 @@ class SalesReportEachOrderItem extends StatelessWidget {
                 ),
               ],
             ),
-            _renderEachRow(context, "BA Number: ${item.customer}",
-                "Date: ${item.date}"),
+            _renderEachRow(
+                context, "BA Number: ${item.customer}", "Date: ${item.date}"),
             _renderOrderIdRow(context, "Order ID: ", item.orderNumber,
                 "Time: ${item.time}", item.orderHref),
-              GrandTotal(
-                  status: item.barcode.contains("glyphicon-ok-circle")
-                      ? "Success"
-                      : "Unknown",
-                  totalPrice: item.total,
-                  totalPv: item.totalPv.toString()),
+            GrandTotal(
+                status: item.barcode.contains("glyphicon-ok-circle")
+                    ? "Success"
+                    : "Unknown",
+                totalPrice: item.total,
+                totalPv: item.totalPv.toString()),
           ],
         ),
       ),

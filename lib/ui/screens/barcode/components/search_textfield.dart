@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 
 class SearchTextfield extends StatelessWidget {
@@ -47,13 +47,16 @@ class SearchTextfield extends StatelessWidget {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColor.kWhiteColor, width: 0),
+                    borderSide:
+                        BorderSide(color: AppColor.kWhiteColor, width: 0),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColor.kWhiteColor, width: 0),
+                    borderSide:
+                        BorderSide(color: AppColor.kWhiteColor, width: 0),
                   ),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColor.kWhiteColor, width: 0),
+                    borderSide:
+                        BorderSide(color: AppColor.kWhiteColor, width: 0),
                   ),
                 ),
               ),

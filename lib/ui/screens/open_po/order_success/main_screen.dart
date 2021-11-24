@@ -1,9 +1,9 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_success/controller/openpo_order_success.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
 import 'components/body.dart';
+import 'controller/openpo_order_success.controller.dart';
 
 class CreateOpenPoOrderResult extends StatelessWidget {
   static const String routeName = '/createOpenPoOrderResult';

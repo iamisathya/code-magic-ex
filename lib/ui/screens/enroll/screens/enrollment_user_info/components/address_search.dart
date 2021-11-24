@@ -1,8 +1,8 @@
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../open_po/home/components/loader.dart';
 import '../controller/enrollment.userinfo.controller.dart';
 
@@ -35,15 +35,18 @@ class AddressSearchModal extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 15),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(3),
-            borderSide: const BorderSide(color: AppColor.americanSilver, width: 0.5),
+            borderSide:
+                const BorderSide(color: AppColor.americanSilver, width: 0.5),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(3),
-            borderSide: const BorderSide(color: AppColor.americanSilver, width: 0.5),
+            borderSide:
+                const BorderSide(color: AppColor.americanSilver, width: 0.5),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(3),
-            borderSide: const BorderSide(color: AppColor.americanSilver, width: 0.5),
+            borderSide:
+                const BorderSide(color: AppColor.americanSilver, width: 0.5),
           ),
           suffixIcon: const Icon(Icons.search),
         ),

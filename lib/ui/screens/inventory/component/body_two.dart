@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../models/inventory_records.dart';
 import '../controller/inventory.home.controller.dart';
 import 'grand_total_price.dart';

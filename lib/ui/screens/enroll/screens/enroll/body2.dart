@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
 import '../../../../../models/cart_products.dart';
 import '../../controllers/enroll.controller.dart';
 import 'components/enroll_cart_item.dart';

@@ -1,13 +1,13 @@
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:screenshot/screenshot.dart';
 
 import '../../../../api/config/api_service.dart';
+import '../../../../constants/colors.dart';
 import '../../../../models/easy_ship_reports.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/logger.dart';

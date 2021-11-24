@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../utilities/enums.dart';
 import '../../../global/theme/text_view.dart';
 import '../controller/easyship.list.controller.dart';
@@ -45,7 +45,8 @@ class ScreenShotPreview extends StatelessWidget {
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
-                            side: const BorderSide(color: AppColor.dodgerBlue))),
+                            side:
+                                const BorderSide(color: AppColor.dodgerBlue))),
                     backgroundColor:
                         MaterialStateProperty.all(AppColor.dodgerBlue)),
                 onPressed: () => controller.saveImage(context),

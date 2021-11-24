@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/colors.dart';
 import '../../../utilities/constants.dart';
 import '../open_po/home/components/app_bar.dart';
 import 'controllers/orderentry.home.controller.dart';
@@ -43,10 +43,12 @@ class BottomButtonBar extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Flexible(
-                    child: NegetiveButton(title: "cancel".tr, onTap: controller.onCancel),
+                    child: NegetiveButton(
+                        title: "cancel".tr, onTap: controller.onCancel),
                   ),
                   Flexible(
-                    child: PositiveButton(title: "next".tr, onTap: controller.onProceedNext),
+                    child: PositiveButton(
+                        title: "next".tr, onTap: controller.onProceedNext),
                   ),
                 ],
               ),
@@ -97,24 +99,24 @@ class NuetralButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: onTap,
-        child: Container(
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-              ),
-              color: AppColor.pastelBlue,
-            ),
-            child: Text(title,
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle1!
-                    .copyWith(color: Colors.white)),
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30),
+            bottomRight: Radius.circular(30),
           ),
-        );
+          color: AppColor.pastelBlue,
+        ),
+        child: Text(title,
+            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1!
+                .copyWith(color: Colors.white)),
+      ),
+    );
   }
 }
 

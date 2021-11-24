@@ -1,6 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../constants/colors.dart';
 
 class AppBar extends StatelessWidget {
   final String text;

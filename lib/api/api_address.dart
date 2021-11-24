@@ -64,5 +64,6 @@ class Address {
       "${baseDscTh}invoice.php?link=https://hydra.unicity.net/v5a/orders";
   static const String forceResetPassword = "etlV2/user/forceResetPassword";
   static const String salesOrderDetails = "orders/{orderCode}";
-  static const String deliveryShiping = "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall";
+  static const String deliveryShiping =
+      "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall";
 }

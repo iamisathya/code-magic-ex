@@ -1,6 +1,6 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../global/widgets/unordered_list.dart';
 
 class ErrorMessage extends StatelessWidget {

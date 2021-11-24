@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 import '../../../global/widgets/bottom_button_bar.dart';
 import '../../open_po/home/components/loader.dart';

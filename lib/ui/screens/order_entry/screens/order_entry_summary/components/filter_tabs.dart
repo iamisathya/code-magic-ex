@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../global/theme/text_view.dart';
@@ -30,23 +30,21 @@ class FilterTabs extends StatelessWidget {
                     onTap: () =>
                         controller.onTabChange(OrderEntrySummaryFilters.myCart),
                     child: AppText(
-                      text: "My Cart",
-                      style: controller.filterMethod.value == "myCart"
-                          ? TextTypes.subtitle1
-                          : TextTypes.bodyText1,
-                      color: AppColor.darkLiver
-                    )),
+                        text: "My Cart",
+                        style: controller.filterMethod.value == "myCart"
+                            ? TextTypes.subtitle1
+                            : TextTypes.bodyText1,
+                        color: AppColor.darkLiver)),
                 const SizedBox(width: 30),
                 GestureDetector(
                     onTap: () => controller
                         .onTabChange(OrderEntrySummaryFilters.paymentType),
                     child: AppText(
-                      text: "Payment Type",
-                      style: controller.filterMethod.value == "paymentType"
-                          ? TextTypes.subtitle1
-                          : TextTypes.bodyText1,
-                      color: AppColor.darkLiver
-                    )),
+                        text: "Payment Type",
+                        style: controller.filterMethod.value == "paymentType"
+                            ? TextTypes.subtitle1
+                            : TextTypes.bodyText1,
+                        color: AppColor.darkLiver)),
               ],
             ),
           ),

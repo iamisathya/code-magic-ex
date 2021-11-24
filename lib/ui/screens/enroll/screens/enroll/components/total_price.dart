@@ -1,6 +1,6 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../constants/globals.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../global/theme/text_view.dart';

@@ -1,10 +1,10 @@
-import 'package:dsc_tools/ui/screens/enroll/enrollhome.screen.dart';
-import 'package:dsc_tools/ui/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-import 'package:dsc_tools/models/general_models.dart';
+import '../../../../../../models/general_models.dart';
+import '../../../../home/home.dart';
+import '../../../enrollhome.screen.dart';
 
 class EnrolmentCompleteController extends GetxController {
   RxBool isLoading = false.obs;

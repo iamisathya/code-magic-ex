@@ -10,9 +10,7 @@ class BankWirePaymentOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        PaymentInfoRow(
-            title: "Mizuho Bank Aoyama Branch:",
-            value: "2583367"),
+        PaymentInfoRow(title: "Mizuho Bank Aoyama Branch:", value: "2583367"),
         SizedBox(
           height: 10,
         ),
@@ -38,7 +36,8 @@ class BankWirePaymentOption extends StatelessWidget {
         AppText(
             text:
                 "Please be sure to fill in or enter your member number before the name of the transferee.",
-            style: TextTypes.caption, align: TextAlign.center),
+            style: TextTypes.caption,
+            align: TextAlign.center),
       ],
     );
   }

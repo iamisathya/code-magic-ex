@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../controllers/orderentry.product.list.controller.dart';
 
 class UserInfoBox extends StatelessWidget {

@@ -1,10 +1,10 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
@@ -80,13 +80,11 @@ class TableView extends StatelessWidget {
                     _renderWhiteText(value, context, AppColor.maximumYellowRed),
                 ],
               ),
-              SvgPicture.asset(
-                kSortIcon,
-                width: 8,
-                height: 10,
-                semanticsLabel: 'sort icon',
-                color: AppColor.kWhiteColor
-              )
+              SvgPicture.asset(kSortIcon,
+                  width: 8,
+                  height: 10,
+                  semanticsLabel: 'sort icon',
+                  color: AppColor.kWhiteColor)
             ],
           )),
     );
@@ -107,7 +105,8 @@ class TableView extends StatelessWidget {
       decoration: BoxDecoration(
           color: alternativeBgColor,
           border: const Border.symmetric(
-              vertical: BorderSide(width: 0.5, color: AppColor.brightGraySecond))),
+              vertical:
+                  BorderSide(width: 0.5, color: AppColor.brightGraySecond))),
       child: Text(currentItem.item.id.unicity,
           style: Theme.of(context)
               .textTheme
@@ -131,8 +130,8 @@ class TableView extends StatelessWidget {
             decoration: BoxDecoration(
                 color: alternativeBgColor,
                 border: const Border.symmetric(
-                    vertical:
-                        BorderSide(width: 0.5, color: AppColor.brightGraySecond))),
+                    vertical: BorderSide(
+                        width: 0.5, color: AppColor.brightGraySecond))),
             padding: const EdgeInsets.all(15),
             alignment: Alignment.centerLeft,
             child: Text(currentItem.catalogSlideContent.content.description,
@@ -183,13 +182,11 @@ class TableView extends StatelessWidget {
                   fontWeight: type == controller.currentType
                       ? FontWeight.w600
                       : FontWeight.w400)),
-          SvgPicture.asset(
-            kSortIcon,
-            width: 8,
-            height: 10,
-            semanticsLabel: 'sort icon',
-            color: AppColor.kWhiteColor
-          )
+          SvgPicture.asset(kSortIcon,
+              width: 8,
+              height: 10,
+              semanticsLabel: 'sort icon',
+              color: AppColor.kWhiteColor)
         ]),
       ),
     );
@@ -212,7 +209,8 @@ class TableView extends StatelessWidget {
       decoration: BoxDecoration(
           color: color,
           border: const Border.symmetric(
-              vertical: BorderSide(width: 0.5, color: AppColor.brightGraySecond))),
+              vertical:
+                  BorderSide(width: 0.5, color: AppColor.brightGraySecond))),
       alignment: textAlign,
       child: Text(titleText,
           style: Theme.of(context)

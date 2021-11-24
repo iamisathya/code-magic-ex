@@ -1,6 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../../../../constants/colors.dart';
 
 class SearchBarField extends StatelessWidget {
   final TextEditingController searchTextController;
@@ -27,8 +28,8 @@ class SearchBarField extends StatelessWidget {
               errorBorder: InputBorder.none,
               disabledBorder: InputBorder.none,
               hintText: placeHolder,
-              hintStyle:
-                  const TextStyle(color: AppColor.metallicSilver, fontSize: 14)),
+              hintStyle: const TextStyle(
+                  color: AppColor.metallicSilver, fontSize: 14)),
         ));
   }
 }

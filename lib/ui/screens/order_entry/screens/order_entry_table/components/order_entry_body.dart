@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../models/inventory_records.dart';
 import '../../../../../../utilities/constants.dart';
 import '../../../../../../utilities/extensions.dart';

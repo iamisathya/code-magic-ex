@@ -72,20 +72,11 @@ enum TextTypes {
   overline
 }
 
-enum OrderEntryItemFilters {
-  allProduct,
-  easyShipSet
-}
+enum OrderEntryItemFilters { allProduct, easyShipSet }
 
+enum OrderEntrySummaryFilters { myCart, paymentType }
 
-enum OrderEntrySummaryFilters {
-  myCart,
-  paymentType
-}
-
-enum PaymentTypes {
-  payWithDsc
-}
+enum PaymentTypes { payWithDsc }
 
 enum PaymentOptions {
   creditCard,
@@ -108,4 +99,3 @@ enum CardType {
   others,
   invalid
 }
-

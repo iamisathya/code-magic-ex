@@ -1,9 +1,7 @@
-
-
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../global/theme/text_view.dart';
 import '../../../controllers/orderentry.product.list.controller.dart';
@@ -28,7 +26,9 @@ class TotalAmountBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const AppText(text: "Total PV:", style: TextTypes.bodyText2),
-                Obx(() => AppText(text: "${listController.totalCartPv} PV", style: TextTypes.bodyText2))
+                Obx(() => AppText(
+                    text: "${listController.totalCartPv} PV",
+                    style: TextTypes.bodyText2))
               ],
             ),
           ),
@@ -38,7 +38,9 @@ class TotalAmountBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const AppText(text: "Total Price:", style: TextTypes.bodyText2),
-                Obx(() => AppText(text: "${listController.totalCartPrice} THB", style: TextTypes.bodyText2))
+                Obx(() => AppText(
+                    text: "${listController.totalCartPrice} THB",
+                    style: TextTypes.bodyText2))
               ],
             ),
           ),
@@ -50,7 +52,9 @@ class TotalAmountBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const AppText(text: "Payment Amount", style: TextTypes.subtitle1),
-              Obx(() => AppText(text: "${listController.totalCartPrice} THB", style: TextTypes.subtitle1))
+              Obx(() => AppText(
+                  text: "${listController.totalCartPrice} THB",
+                  style: TextTypes.subtitle1))
             ],
           ),
         ],

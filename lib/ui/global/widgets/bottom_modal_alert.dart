@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../constants/colors.dart';
 import '../../../utilities/enums.dart';
 import '../../screens/order_entry/orderentry.screen.dart';
 import '../theme/text_view.dart';
@@ -41,14 +41,15 @@ class BottomModalAlert extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             SvgPicture.asset(assetPath, height: 198, width: 234),
-            if(showTitle) Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: AppText(
-                text: title,
-                style: TextTypes.headline6,
-                color: AppColor.charcoal,
+            if (showTitle)
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: AppText(
+                  text: title,
+                  style: TextTypes.headline6,
+                  color: AppColor.charcoal,
+                ),
               ),
-            ),
             AppText(
               align: TextAlign.center,
               text: subTitle,

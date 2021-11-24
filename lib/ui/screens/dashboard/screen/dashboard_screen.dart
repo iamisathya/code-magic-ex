@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/widgets/sign_out_button.dart';
@@ -80,7 +80,8 @@ class Body extends StatelessWidget {
                       MenuOption(
                           icon: kEnrollIcon,
                           optionTitle: "Enroll",
-                          onPress: () => Get.to(() => EnrollHomeScreen())), //EnrollHomeScreen
+                          onPress: () => Get.to(
+                              () => EnrollHomeScreen())), //EnrollHomeScreen
                       MenuOption(
                           icon: kOrderEntryIcon,
                           optionTitle: "Order Entry",

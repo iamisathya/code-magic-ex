@@ -1,4 +1,3 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:popover/popover.dart';
 
 import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
+import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/general_models.dart';
 import '../../../../models/open_po.dart';
@@ -125,10 +125,9 @@ class OpenPoListController extends GetxController
                         GestureDetector(
                           onTap: Get.back,
                           child: AppText(
-                            text: "cancel".tr,
-                            style: TextTypes.bodyText1,
-                            color: AppColor.darkLiver
-                          ),
+                              text: "cancel".tr,
+                              style: TextTypes.bodyText1,
+                              color: AppColor.darkLiver),
                         ),
                         GestureDetector(
                           onTap: onSelectFilter,
@@ -274,7 +273,10 @@ class OpenPoListController extends GetxController
         padding: const EdgeInsets.all(13),
         alignment: Alignment.center,
         child: const UnorderedList(
-          ["Pre-filter Cartridge (Ultra)", "Promo 150 PV get Bios E Mini TH"], //! 1 Hardcoded
+          [
+            "Pre-filter Cartridge (Ultra)",
+            "Promo 150 PV get Bios E Mini TH"
+          ], //! 1 Hardcoded
         ),
       ),
       direction: PopoverDirection.top,

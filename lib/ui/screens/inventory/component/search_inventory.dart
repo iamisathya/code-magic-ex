@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 import '../../open_po/home/components/search_bar_field.dart';
 import '../controller/inventory.search.controller.dart';
@@ -61,7 +61,8 @@ class _SearchAppBarState extends State<SearchProducts> {
                   children: [
                     const Text(
                       "Search History",
-                      style: TextStyle(fontSize: 14, color: AppColor.kBlackColor),
+                      style:
+                          TextStyle(fontSize: 14, color: AppColor.kBlackColor),
                     ),
                     GestureDetector(
                       onTap: () => controller.clearHistory(),

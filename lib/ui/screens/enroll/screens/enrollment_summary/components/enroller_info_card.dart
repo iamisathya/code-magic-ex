@@ -6,7 +6,8 @@ import '../../enrollment_user_info/controller/enrollment.userinfo.controller.dar
 import 'each_info_row.dart';
 
 class EnrollerInfoCard extends StatelessWidget {
-  final EnrollmentUserInfoController ctrl = Get.put(EnrollmentUserInfoController());
+  final EnrollmentUserInfoController ctrl =
+      Get.put(EnrollmentUserInfoController());
   EnrollerInfoCard({
     Key? key,
   }) : super(key: key);
@@ -20,15 +21,21 @@ class EnrollerInfoCard extends StatelessWidget {
           children: [
             EeachUserinfoItem(
                 title: "Enroller",
-                value: "${ctrl.enrolerProfile.id.unicity.toString()} ${ctrl.enrolerProfile.humanName.fullName}, ${ctrl.enrolerProfile.humanName.fullNameTh}"),
+                value:
+                    "${ctrl.enrolerProfile.id.unicity.toString()} ${ctrl.enrolerProfile.humanName.fullName}, ${ctrl.enrolerProfile.humanName.fullNameTh}"),
             EeachUserinfoItem(
                 title: "Sponsor",
-                value: "${ctrl.sponsorProfile.id.unicity.toString()} ${ctrl.sponsorProfile.humanName.fullName}, ${ctrl.sponsorProfile.humanName.fullNameTh}"),
+                value:
+                    "${ctrl.sponsorProfile.id.unicity.toString()} ${ctrl.sponsorProfile.humanName.fullName}, ${ctrl.sponsorProfile.humanName.fullNameTh}"),
             EeachUserinfoItem(title: "PV Month", value: getCurrentPeriod()),
             EeachUserinfoItem(title: "Government ID", value: ctrl.govtId.value),
-            EeachUserinfoItem(title: "Gender", value: ctrl.genderController.text),
-            EeachUserinfoItem(title: "Marital Status", value: ctrl.maritalStatusController.text),
-            EeachUserinfoItem(title: "Birthday", value: ctrl.birthdayController.text),
+            EeachUserinfoItem(
+                title: "Gender", value: ctrl.genderController.text),
+            EeachUserinfoItem(
+                title: "Marital Status",
+                value: ctrl.maritalStatusController.text),
+            EeachUserinfoItem(
+                title: "Birthday", value: ctrl.birthdayController.text),
           ],
         ),
       ),

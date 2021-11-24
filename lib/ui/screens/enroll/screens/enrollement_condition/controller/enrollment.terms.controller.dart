@@ -1,8 +1,9 @@
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/utilities/constants.dart';
+import 'package:collection/collection.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/state_manager.dart';
-import 'package:collection/collection.dart';
+
+import '../../../../../../constants/globals.dart';
+import '../../../../../../utilities/constants.dart';
 
 class EnrollmentTermsController extends GetxController {
   RxBool isLoading = false.obs;

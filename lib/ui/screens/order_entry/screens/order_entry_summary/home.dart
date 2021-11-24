@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../../constants/colors.dart';
 import '../../../open_po/home/components/app_bar.dart';
 import '../../../open_po/home/components/loader.dart';
 import '../../controllers/orderentry.product.list.controller.dart';
@@ -58,13 +58,17 @@ class BottomButtonBar extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Flexible(
-                    child: NegetiveButton(title: "back".tr, 
+                    child: NegetiveButton(
+                        title: "back".tr,
                         onTap: controller.onNegetiveButtonClick),
                   ),
                   Flexible(
                     child: listController.cartProducts.isEmpty
-                        ? NuetralButton(title: "Place Order".tr, onTap: controller.onClickNuetralButton)
-                        : PositiveButton(title: "Place Order".tr, 
+                        ? NuetralButton(
+                            title: "Place Order".tr,
+                            onTap: controller.onClickNuetralButton)
+                        : PositiveButton(
+                            title: "Place Order".tr,
                             onTap: controller.proceedToCheckOut),
                   ),
                 ],

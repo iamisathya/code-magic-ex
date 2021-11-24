@@ -28,14 +28,20 @@ class Globals {
 
   static Markets? currentMarket;
   static String currency = "";
-  static String countryCode = UserSessionManager.shared.userInfo!.mainAddress.country;  
-  static MainAddress mainAddress = UserSessionManager.shared.userInfo!.mainAddress;
-  static String userId = 
+  static String countryCode =
+      UserSessionManager.shared.userInfo!.mainAddress.country;
+  static MainAddress mainAddress =
+      UserSessionManager.shared.userInfo!.mainAddress;
+  static String userId =
       UserSessionManager.shared.userInfo!.id.unicity.toString();
   static UserInfo userInfo = UserSessionManager.shared.userInfo!;
   static String customerCode = "";
   static String customerPoCode = "";
-  
+
   static String osVersion = Platform.operatingSystemVersion;
-  static String deviceType = Platform.isIOS ? "iOS" : Platform.isAndroid ? "Android" : "Others";
+  static String deviceType = Platform.isIOS
+      ? "iOS"
+      : Platform.isAndroid
+          ? "Android"
+          : "Others";
 }

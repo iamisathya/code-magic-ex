@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
 import '../../controller/openpo.list.controller.dart';
 import 'po_item.dart';
 import 'po_list_toolbar.dart';

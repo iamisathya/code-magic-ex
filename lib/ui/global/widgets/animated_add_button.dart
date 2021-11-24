@@ -1,5 +1,6 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../../constants/colors.dart';
 
 class ShareButton extends StatefulWidget {
   final VoidCallback onPress;

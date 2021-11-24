@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../constants/globals.dart';
 import '../../../../../../models/cart_products.dart';
 import '../../../../../../utilities/enums.dart';
@@ -72,7 +72,8 @@ class EnrollSummaryCartItem extends StatelessWidget {
                         style: TextTypes.subtitle1,
                         align: TextAlign.center)),
                 const SizedBox(
-                    width: 5, child: VerticalDivider(color: AppColor.americanSilver)),
+                    width: 5,
+                    child: VerticalDivider(color: AppColor.americanSilver)),
                 Expanded(
                   child: AppText(
                       text: "${item.totalPv} PV",
@@ -80,7 +81,8 @@ class EnrollSummaryCartItem extends StatelessWidget {
                       align: TextAlign.center),
                 ),
                 const SizedBox(
-                    width: 5, child: VerticalDivider(color: AppColor.americanSilver)),
+                    width: 5,
+                    child: VerticalDivider(color: AppColor.americanSilver)),
                 Expanded(
                   child: AppText(
                       text: "${item.totalPrice} ${Globals.currency}",

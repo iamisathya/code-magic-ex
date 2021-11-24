@@ -1,6 +1,6 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../global/theme/text_view.dart';
 
@@ -32,15 +32,13 @@ class UserInfoCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.caption!.copyWith(
-                    fontSize: 10,
-                    color: AppColor.darkLiver
-                  ),
+              style: Theme.of(context)
+                  .textTheme
+                  .caption!
+                  .copyWith(fontSize: 10, color: AppColor.darkLiver),
             ),
             AppText(
-                text: id,
-                style: TextTypes.subtitle1,
-                color: AppColor.charcoal),
+                text: id, style: TextTypes.subtitle1, color: AppColor.charcoal),
             AppText(
                 text: name,
                 style: TextTypes.bodyText1,

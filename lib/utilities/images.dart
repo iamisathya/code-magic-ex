@@ -116,16 +116,20 @@ const kUserIcon = 'assets/icons/user_icon.svg';
 
 //gradient
 
-
 // * Bottom tab bar
-const kBottomTabBarcodeActiveIcon = 'assets/icons/navigation/tab_barcode_icon_active.svg';
-const kBottomTabOrderEntryActvieIcon = 'assets/icons/navigation/tab_orderentry_icon_active.svg';
-const kBottomTabSalesReportActiveIcon = 'assets/icons/navigation/tab_salesreport_icon_active.svg';
+const kBottomTabBarcodeActiveIcon =
+    'assets/icons/navigation/tab_barcode_icon_active.svg';
+const kBottomTabOrderEntryActvieIcon =
+    'assets/icons/navigation/tab_orderentry_icon_active.svg';
+const kBottomTabSalesReportActiveIcon =
+    'assets/icons/navigation/tab_salesreport_icon_active.svg';
 const kBottomTabBarcodeIcon = 'assets/icons/navigation/tab_barcode_icon.svg';
 const kBottomTabAddIcon = 'assets/icons/navigation/tab_addnew_icon.svg';
 const kBottomTabHomeIcon = 'assets/icons/navigation/tab_home_icon.svg';
-const kBottomTabOrderEntryIcon = 'assets/icons/navigation/tab_orderentry_icon.svg';
-const kBottomTabSalesReportIcon = 'assets/icons/navigation/tab_salesreport_icon.svg';
+const kBottomTabOrderEntryIcon =
+    'assets/icons/navigation/tab_orderentry_icon.svg';
+const kBottomTabSalesReportIcon =
+    'assets/icons/navigation/tab_salesreport_icon.svg';
 
 // * dashboard
 const kArrowIcon = 'assets/icons/dashboard/arrow.svg';

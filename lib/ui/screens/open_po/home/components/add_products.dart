@@ -1,10 +1,10 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../../constants/colors.dart';
 import '../../../../../constants/globals.dart';
 import '../../../../../models/cart_products.dart';
 import '../../../../../utilities/enums.dart';
@@ -178,7 +178,8 @@ class BrosweAttachment extends StatelessWidget {
                 overflow: TextOverflow.ellipsis),
           )),
           TextButton.icon(
-            style: ButtonStyle(padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
+              style: ButtonStyle(
+                  padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
               onPressed: controller.selectSource,
               icon: SvgPicture.asset(kFileIcon, color: AppColor.dodgerBlue),
               label: const AppText(

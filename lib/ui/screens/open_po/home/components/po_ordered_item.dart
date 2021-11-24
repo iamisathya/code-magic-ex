@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../../constants/colors.dart';
 import '../../../../../constants/globals.dart';
 import '../../../../../models/open_po_details.dart';
 import '../../../../../utilities/enums.dart';
@@ -56,8 +56,8 @@ class PoOrderedItem extends StatelessWidget {
                     height: 40,
                     width: 120,
                     decoration: BoxDecoration(
-                      border:
-                          Border.all(width: 0.5, color: AppColor.americanSilver),
+                      border: Border.all(
+                          width: 0.5, color: AppColor.americanSilver),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(3),
                     ),

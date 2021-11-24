@@ -56,10 +56,9 @@
 //   }
 // }
 
-
 //* UDSAGE
 // print('Welcome ${remoteConfigService.remoteConfig.getString('welcome_message')}');
-// EnrolmentPaymentMethods methods = EnrolmentPaymentMethods.fromJson(jsonDecode(payment) as Map<String, dynamic>); 
+// EnrolmentPaymentMethods methods = EnrolmentPaymentMethods.fromJson(jsonDecode(payment) as Map<String, dynamic>);
 
 import 'dart:convert';
 

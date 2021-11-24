@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
 import '../../../../../models/general_models.dart';
 import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/extensions.dart';
@@ -36,15 +36,13 @@ class PoListToolBar extends StatelessWidget {
                     children: controller.availableMonthSlots
                         .mapIndexed((NameValueType type, int index) =>
                             GestureDetector(
-                                onTap: () => controller
-                                    .onChangeMonthType(index),
+                                onTap: () =>
+                                    controller.onChangeMonthType(index),
                                 child: AppText(
                                     text: type.name,
-                                    style:
-                                        controller.currentTab.value ==
-                                                index
-                                            ? TextTypes.bodyText1
-                                            : TextTypes.bodyText2)))
+                                    style: controller.currentTab.value == index
+                                        ? TextTypes.bodyText1
+                                        : TextTypes.bodyText2)))
                         .toList()),
               ),
             ),

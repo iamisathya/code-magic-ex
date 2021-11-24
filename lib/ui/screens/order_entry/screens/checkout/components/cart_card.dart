@@ -1,7 +1,7 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../../../constants/colors.dart';
 import '../../../../../../models/cart_products.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../../utilities/size_config.dart';
