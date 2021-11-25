@@ -1,3 +1,4 @@
+import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -20,8 +21,7 @@ class DiscardAlert extends StatelessWidget {
       height: 448,
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(3), color: Colors.white),
+      decoration: borderRadiusWithColor(bgColor: AppColor.kWhiteColor),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

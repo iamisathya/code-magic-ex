@@ -1,3 +1,4 @@
+import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../constants/colors.dart';
@@ -17,10 +18,7 @@ class CheckoutItem extends StatelessWidget {
         height: 95,
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(3),
-          color: Colors.white,
-        ),
+        decoration: borderRadiusWithColor(bgColor: AppColor.kWhiteColor),
         child: Row(
           children: [
             Container(

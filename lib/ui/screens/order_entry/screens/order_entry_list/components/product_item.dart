@@ -1,3 +1,4 @@
+import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -57,9 +58,7 @@ class ProductItem extends StatelessWidget {
                 width: 20,
                 height: 20,
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: AppColor.sunglow,
-                    borderRadius: BorderRadius.circular(3)),
+                decoration: borderRadiusWithColor(bgColor: AppColor.sunglow),
                 child: AppText(
                   text: cartItemIndex.toString(),
                   style: TextTypes.caption,

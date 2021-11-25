@@ -1,3 +1,4 @@
+import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,33 +25,31 @@ class OpenPoDetailsTopBar extends StatelessWidget {
                 const EdgeInsets.only(top: 20, left: 30, bottom: 10, right: 30),
             child: Row(
               children: [
-                Flexible(
+                Expanded(
                   child: Container(
-                    width: double.infinity,
-                    color: Colors.white,
                     height: 40,
-                    child: Center(
-                      child: AppText(
-                          text: controller.openPlaceOrderId.orderDscid,
-                          style: TextTypes.subtitle2,
-                          color: AppColor.darkLiver),
-                    ),
+                    alignment: Alignment.center,
+                    decoration: borderRadiusWithColor(bgColor: Colors.white),
+                    child: AppText(
+                        text: controller.openPlaceOrderId.orderDscid,
+                        style: TextTypes.subtitle2,
+                        color: AppColor.darkLiver),
                   ),
                 ),
                 const SizedBox(
                   width: 10,
                 ),
-                Flexible(
+                Expanded(
                   child: Container(
-                      width: double.infinity,
-                      color: Colors.white,
-                      height: 40,
-                      child: Center(
-                          child: AppText(
-                              text: controller.openPlaceOrderId.orderDate,
-                              style: TextTypes.subtitle2,
-                              color: AppColor.manatee))),
-                )
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration: borderRadiusWithColor(bgColor: Colors.white),
+                    child: AppText(
+                        text: controller.openPlaceOrderId.orderDate,
+                        style: TextTypes.subtitle2,
+                        color: AppColor.darkLiver),
+                  ),
+                ),
               ],
             ),
           ),
@@ -58,13 +57,13 @@ class OpenPoDetailsTopBar extends StatelessWidget {
             padding: const EdgeInsets.only(left: 30, bottom: 20, right: 30),
             child: Container(
               width: double.infinity,
-              color: Colors.white,
+              decoration: borderRadiusWithColor(bgColor: Colors.white),
               height: 40,
               child: Center(
                   child: AppText(
                       text: controller.openPlaceOrderId.createBy,
                       style: TextTypes.subtitle2,
-                      color: AppColor.manatee)),
+                      color: AppColor.darkLiver)),
             ),
           ),
         ],

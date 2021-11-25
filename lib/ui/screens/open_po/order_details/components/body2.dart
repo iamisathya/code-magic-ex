@@ -7,10 +7,10 @@ import '../../../../../utilities/constants.dart';
 import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
-import '../controller/openpo.details.controller.dart';
-import 'po_ordered_item.dart';
 import '../../order_create/component/total_price_container.dart';
+import '../controller/openpo.details.controller.dart';
 import 'openpo_details_topbar.dart';
+import 'po_ordered_item.dart';
 
 class Body extends StatelessWidget {
   final OpenPoDetailsController controller = Get.put(OpenPoDetailsController());

@@ -26,15 +26,11 @@ class PoOrderedItem extends StatelessWidget {
         height: 180,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Flexible(
-                child: SvgPicture.asset(
-              kProductPlaceholderImage,
-              width: 100,
-              height: 100,
-            )),
-            Flexible(
+            Expanded(
+                child: SvgPicture.asset(kProductPlaceholderImage,
+                    height: 100, width: 100)),
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -62,21 +58,22 @@ class PoOrderedItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(3),
                     ),
                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const AppText(
-                              text: "-",
-                              style: TextTypes.headline4,
-                              color: AppColor.charcoal),
-                          AppText(
-                              text: item.productQty,
-                              style: TextTypes.subtitle1,
-                              color: AppColor.charcoal),
-                          const AppText(
-                              text: "+",
-                              style: TextTypes.headline4,
-                              color: AppColor.charcoal),
-                        ]),
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const AppText(
+                            text: "-",
+                            style: TextTypes.headline4,
+                            color: AppColor.charcoal),
+                        AppText(
+                            text: item.productQty,
+                            style: TextTypes.subtitle1,
+                            color: AppColor.charcoal),
+                        const AppText(
+                            text: "+",
+                            style: TextTypes.headline4,
+                            color: AppColor.charcoal),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -39,9 +40,7 @@ class TopHeader extends StatelessWidget {
           alignment: Alignment.center,
           width: 20,
           height: 20,
-          decoration: BoxDecoration(
-              color: AppColor.lightCrimson,
-              borderRadius: BorderRadius.circular(10)),
+          decoration: borderRadiusWithColor(bgColor: AppColor.lightCrimson, radius: 10),
           child: Obx(() => AppText(
               text: controller.cartProducts.length.toString(),
               color: Colors.white,

@@ -1,3 +1,4 @@
+import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -75,9 +76,7 @@ class GrandTotal extends StatelessWidget {
       child: Column(children: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
-          decoration: const BoxDecoration(
-              color: AppColor.cultured, //FFE7EB error color
-              borderRadius: BorderRadius.all(Radius.circular(3.0))),
+          decoration: borderRadiusWithColor(bgColor: AppColor.cultured),
           height: 40,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
