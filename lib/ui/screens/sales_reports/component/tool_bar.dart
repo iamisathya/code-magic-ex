@@ -42,7 +42,7 @@ class SalesReportToolBar extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: GestureDetector(
-                      onTap: () => Get.to(() => SearchSalesReport()),
+                      onTap: () => controller.proceedToPrint(context, orderHref: ""),
                       child: SvgPicture.asset(kPrintIcon,
                           width: 20, semanticsLabel: 'print icon'),
                     ),
@@ -50,7 +50,7 @@ class SalesReportToolBar extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: GestureDetector(
-                      onTap: () => controller.proceedToPrint(context, orderHref: ""),
+                      onTap: () => Get.to(() => SearchSalesReport()),
                       child: SvgPicture.asset(kSearchIcon,
                           width: 20, semanticsLabel: 'search icon'),
                     ),
