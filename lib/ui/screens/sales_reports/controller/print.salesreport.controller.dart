@@ -18,10 +18,12 @@ class PrintSalesReportController extends GetxController {
 
   @override
   void onInit() {
+    // https://dsc-th.unicity.com/invoice.php?link=https://hydra.unicity.net/v5a/orders/31512d2a1d4a2a5860bc785d27d1f7525dcc85b988e270d0465d007d9ccbd39a&token=db0d338d-ff80-4da7-9414-30ed18e1d3dd
     final dynamic data = Get.arguments;
     if (data != null) {
       final Map<String, dynamic> args = data as Map<String, dynamic>;
       isLoading.toggle();
+      print(args["href"]);
       orderHref.value = "$printUrl&link=${args["href"]}";
       if (args["readyUrl"] == true) {
         orderHref.value = args["href"] as String;
@@ -39,7 +41,7 @@ class PrintSalesReportController extends GetxController {
     try {
       isLoading.toggle();
       final Dio dio = Dio();
-      final response = await dio.get(imgUrl);
+      final response = await dio.get(orderHref);
       isLoading.toggle();
       await Printing.layoutPdf(
           dynamicLayout: false,

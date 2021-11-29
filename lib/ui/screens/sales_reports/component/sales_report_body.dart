@@ -46,7 +46,7 @@ class SaleReportBody extends StatelessWidget {
         const SizedBox(height: 10),
         Expanded(
           child: WebView(
-            initialUrl: "https://google.com", //controller.orderHref.value
+            initialUrl: controller.orderHref.value, //controller.orderHref.value
             javascriptMode: JavascriptMode.unrestricted,
             onPageFinished: (finish) => controller.isLoading.value = false,
           ),
