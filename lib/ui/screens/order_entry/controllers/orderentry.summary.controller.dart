@@ -242,8 +242,9 @@ class OrderEntryCheckoutSummaryController extends GetxController {
       LoggerService.instance.e(e.toString());
       SnackbarUtil.showError(message: "Error! ${e.error.toString()}");
       return response;
-    } catch (err) {
+    } catch (err, e) {
       LoggerService.instance.e(err.toString());
+      debugPrint(e.toString());
       SnackbarUtil.showError(message: "Error! ${err.toString()}");
       return response;
     }

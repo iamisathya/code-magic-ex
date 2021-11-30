@@ -116,7 +116,7 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) {
     href: json['href'] as String,
     humanName:
         HumanNameFull.fromJson(json['humanName'] as Map<String, dynamic>),
-    id: IdTypeString.fromJson(json['id'] as Map<String, dynamic>),
+    id: Id.fromJson(json['id'] as Map<String, dynamic>),
     sponsor: Sponsor.fromJson(json['sponsor'] as Map<String, dynamic>),
     status: json['status'] as String,
     taxTerms: TaxTerms.fromJson(json['taxTerms'] as Map<String, dynamic>),

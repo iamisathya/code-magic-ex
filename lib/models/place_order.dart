@@ -169,7 +169,7 @@ class Customer {
   Enroller enroller;
   String href;
   HumanNameFull humanName;
-  IdTypeString id;
+  Id id;
   Sponsor sponsor;
   String status;
   TaxTerms taxTerms;
