@@ -30,6 +30,7 @@ class Address {
   static const String memberCallsBase = "https://member-calls.unicity.com/";
   static const String validOrders = "ALL/DSC/THA/getdata.php";
   static const String barcodeDetails = "ALL/DSC/THA/barcode/redirect.php";
+  static const String dscBarcodeDetails = "barcode/redirect_api.php";
   static const String addressList = "unishop-fn-misc/city/search";
   static const String barcodeItems =
       "ALL/DSC/THA/barcode/check/library/get_items.php";

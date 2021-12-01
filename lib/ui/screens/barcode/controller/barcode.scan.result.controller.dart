@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/barcode_response_dsc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -41,7 +42,7 @@ class BarcodeScannResultController extends getx.GetxController {
   getx.RxBool canOrderHasBarcode = false.obs;
   getx.RxBool isScroolButtonVisible = false.obs;
 
-  BarcodeResponse? barcodeDetails;
+  BarcodeResponseDsc? barcodeDetails;
   BarCodeItemsResponse? barcodeItems;
   BarCodeSaveResponse? barCodeSaveResponse;
   VerifyEachBarcodeResponse? eachBarcodeResponse;
@@ -117,8 +118,7 @@ class BarcodeScannResultController extends getx.GetxController {
     try {
       final String orderCode = orderUrl.value.retrieveOrderCodeFromLightUrl();
       final String orderNumber = orderUrl.value.retrieveLastString();
-      barcodeDetails = await MemberCallsService.init().getBarcodeDetails(
-          gTokenBarcodeNew,
+      barcodeDetails = await DscCallService.init().getBarcodeDetails(          
           orderNumber,
           UserSessionManager.shared.customerToken.token,
           orderCode);
@@ -126,6 +126,7 @@ class BarcodeScannResultController extends getx.GetxController {
       isLoading.toggle();
     } catch (err, s) {
       isLoading.toggle();
+      debugPrint(err.toString());
       LoggerService.instance.e(s);
       getx.Get.back();
     }

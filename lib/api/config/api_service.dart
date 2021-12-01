@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/barcode_response_dsc.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -524,6 +525,14 @@ abstract class DscCallService {
   //? Example: https://dsc-th.unicity.com/barcode/check/library/get_items_api.php?token=9a36619e-2e99-4d15-92a8-ed77bd816208
   @POST(Address.dscBarcodeItems)
   Future<PasswordResetResponse> getBarcodeItems(@Path("token") String token);
+
+
+  //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?order=423182123&token=b5eb37c5-5644-492d-b703-817cf58bfa9e&href=31512d2a1d4a2a5860bc785d27d1f7522ad2ddc6de4667f07aa6ac036f67662c
+  @GET(Address.dscBarcodeDetails)
+  Future<BarcodeResponseDsc> getBarcodeDetails(
+      @Query('order') String order,
+      @Query('token') String token,
+      @Query('href') String href);
 
   // //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
   // @GET(Address.dscBarcodeItems)
