@@ -7,6 +7,7 @@ import 'package:dsc_tools/models/place_order.dart'
         ProductLines,
         ProductTerms,
         Transactions;
+import 'package:dsc_tools/ui/screens/home/home.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,10 @@ class OrderCompleteController extends GetxController {
     if (data != null) {
       orderResponse = data as PlaceOrder;
     }
+  }
+
+  void gotoHome() {
+    Get.off(() => MainHomeScreen());
   }
 
   void openBarCode() {

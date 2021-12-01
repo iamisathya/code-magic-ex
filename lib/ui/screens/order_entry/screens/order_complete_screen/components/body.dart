@@ -10,7 +10,7 @@ import '../../../../../../utilities/images.dart';
 import '../../../../../global/theme/text_view.dart';
 
 class Body extends StatelessWidget {
-  final OrderCompleteController controller = Get.put(OrderCompleteController());
+  final OrderCompleteController _controller = Get.put(OrderCompleteController());
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -32,13 +32,13 @@ class Body extends StatelessWidget {
             children: [
               AppText(
                   text:
-                      "Distributor ID : ${controller.orderResponse.customer.id.unicity}",
+                      "Distributor ID : ${_controller.orderResponse.customer.id.unicity}",
                   style: TextTypes.subtitle2,
                   color: AppColor.cadet),
               const SizedBox(height: 10),
               AppText(
                   text:
-                      "Order Number: ${controller.orderResponse.id.unicity.retrieveOrderId()}",
+                      "Order Number: ${_controller.orderResponse.id.unicity.retrieveOrderId()}",
                   style: TextTypes.subtitle2,
                   color: AppColor.cadet),
             ],
@@ -48,6 +48,21 @@ class Body extends StatelessWidget {
               const AppText(text: "Scan Order", style: TextTypes.subtitle1),
               const SizedBox(height: 10),
               SvgPicture.asset(kOrderEntryBarcodeImage, height: 60, width: 100),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(right: 20.0),
+                      child: Text("Go to Home"),
+                    ),
+                    GestureDetector(
+                        onTap: _controller.gotoHome,
+                        child: SvgPicture.asset(kBottomTabHomeIcon, width: 36)),
+                  ],
+                ),
+              )
             ],
           ),
         ],
