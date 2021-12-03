@@ -67,7 +67,7 @@ class InventoryItem extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Quantity on hand",
+                          "quantiity_on_hand".tr,
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme
@@ -98,12 +98,12 @@ class InventoryItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                          "${item.terms.pvEach} PV | ${NumberFormat().format(item.terms.priceEach.toInt())} ${Globals.currency}",
+                          "${item.terms.pvEach} ${"pv".tr} | ${NumberFormat().format(item.terms.priceEach.toInt())} ${Globals.currency}",
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2!
                               .copyWith(color: AppColor.kBlackColor)),
-                      Text("Item Code: ${item.item.id.unicity}",
+                      Text("${"item_code".tr}: ${item.item.id.unicity}",
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2!
@@ -121,7 +121,7 @@ class InventoryItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Total Price:",
+                    Text("${"total_price".tr}:",
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
@@ -136,12 +136,12 @@ class InventoryItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Total PV:",
+                    Text("${"total_pv".tr}:",
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!
                             .copyWith(color: AppColor.cadet)),
-                    Text("$totalPv PV",
+                    Text("$totalPv ${"pv".tr}",
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2!

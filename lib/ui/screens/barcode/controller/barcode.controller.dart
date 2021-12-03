@@ -21,7 +21,7 @@ class BarcodeController extends GetxController {
   OrderLines allEasyShipOrders = OrderLines(items: []);
 
   Future<void> getBarcodePath(BuildContext context,
-      {String userId = "2970466"}) async {
+      {String userId = "2970466"}) async { //!hardcoded
     if (!formKey.currentState!.validate()) {
       return;
     }
@@ -47,7 +47,7 @@ class BarcodeController extends GetxController {
   String? validateBarocde() {
     if (!(bardcodeTextField.text.length > 3) &&
         bardcodeTextField.text.isNotEmpty) {
-      return "Barcode should not be empty!";
+      return "Barcode should not be empty!";  //!hardcoded
     }
     return null;
   }
@@ -56,7 +56,7 @@ class BarcodeController extends GetxController {
     if (await canLaunch(url)) {
       await launch(url, forceSafariVC: false);
     } else {
-      throw "Could not launch $url";
+      throw "Could not launch $url"; //!hardcoded
     }
   }
 }

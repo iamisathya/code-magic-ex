@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide StringTranslateExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -22,13 +22,13 @@ class UserAddress extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 10.0),
             child: Text(
-              "Date: ${DateFormat('dd/MM/yyyy').format(DateTime.now()).toString()} - ${DateFormat('hh:mm aa').format(DateTime.now()).toString()}",
+              "${"date".tr}: ${DateFormat('dd/MM/yyyy').format(DateTime.now()).toString()} - ${DateFormat('hh:mm aa').format(DateTime.now()).toString()}",
               style: Theme.of(context).textTheme.bodyText2,
             ),
           ),
           Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
-              child: Text("DSC Address",
+              child: Text("dsc_address".tr,
                   style: Theme.of(context)
                       .textTheme
                       .subtitle1!
@@ -66,7 +66,7 @@ class UserAddress extends StatelessWidget {
                       onTap: () => controller.onChangeViewType("card"),
                       child: Row(
                         children: [
-                          Text("Card View",
+                          Text("card_view".tr,
                               style: controller.currentViewType.value.value ==
                                       "card"
                                   ? Theme.of(context).textTheme.subtitle1
@@ -92,7 +92,7 @@ class UserAddress extends StatelessWidget {
                     onTap: () => controller.onChangeViewType("table"),
                     child: Row(
                       children: [
-                        Text("Table View",
+                        Text("table_view".tr,
                             style: controller.currentViewType.value.value ==
                                     "table"
                                 ? Theme.of(context).textTheme.subtitle1

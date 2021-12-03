@@ -41,7 +41,7 @@ class Body extends StatelessWidget {
                   ? kOrderSuccessImage
                   : kOrderWaringImage,
               height: 232,
-              semanticsLabel: "Add PO"),
+              semanticsLabel: "Add PO"), //!hardcoded
           const SizedBox(height: 60),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -64,7 +64,7 @@ class Body extends StatelessWidget {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(right: 20.0),
-                  child: Text("Go to Home"),
+                  child: Text("Go to Home"), //!hardcoded
                 ),
                 GestureDetector(
                     onTap: _controller.gotoHome,

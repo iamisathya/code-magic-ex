@@ -32,7 +32,7 @@ class InventorySearchController extends GetxController {
     }
     SnackbarUtil.showWarning(
         message:
-            "Sorry no items found in inventory with search key: $searchKey");
+            "Sorry no items found in inventory with search key: $searchKey"); //! hardcoded
   }
 
   // Retrieves and Sets language based on device settings

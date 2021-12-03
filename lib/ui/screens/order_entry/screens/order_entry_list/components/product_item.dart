@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,7 +34,7 @@ class ProductItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 AppText(
-                  text: "Code: ${item.item.id.unicity}",
+                  text: "${"code".tr}: ${item.item.id.unicity}",
                   style: TextTypes.caption,
                   color: AppColor.metallicSilver,
                 ),
@@ -43,7 +44,7 @@ class ProductItem extends StatelessWidget {
                 ),
                 AppText(
                   align: TextAlign.center,
-                  text: "${item.terms.pvEach} PV | ${item.terms.priceEach} THB",
+                  text: "${item.terms.pvEach} ${"pv".tr} | ${item.terms.priceEach} ${Globals.currency}",
                   style: TextTypes.caption,
                   color: AppColor.charcoal,
                 ),

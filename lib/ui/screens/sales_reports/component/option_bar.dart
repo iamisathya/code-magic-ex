@@ -36,7 +36,7 @@ class OptionBar extends StatelessWidget {
                 GestureDetector(
                   onTap: () => onPrint(),
                   child: Text(
-                    "Print",
+                    "print".tr,
                     style: Theme.of(context)
                         .textTheme
                         .subtitle1!
@@ -65,7 +65,7 @@ class OptionBar extends StatelessWidget {
                 GestureDetector(
                   onTap: () => onDownload(),
                   child: Text(
-                    "Download",
+                    "download".tr,
                     style: Theme.of(context)
                         .textTheme
                         .subtitle1!

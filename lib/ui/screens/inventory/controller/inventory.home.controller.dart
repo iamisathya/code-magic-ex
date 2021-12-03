@@ -26,20 +26,20 @@ import '../../../../utilities/snackbar.dart';
 
 class InventoryHomeController extends GetxController {
   RxList<NameValueType> viewTypes = [
-    NameValueType(name: "Card View", value: "card"),
-    NameValueType(name: "Table View", value: "table")
+    NameValueType(name: "card_view".tr, value: "card"),
+    NameValueType(name: "table_view".tr, value: "table")
   ].obs;
 
   RxList<NameValueType> stockOptions = [
-    NameValueType(name: "On Hand", value: "onHand"),
-    NameValueType(name: "Out Of Stock", value: "outOfStock")
+    NameValueType(name: "on_hand".tr, value: "onHand"),
+    NameValueType(name: "out_of_stock".tr, value: "outOfStock")
   ].obs;
 
   Rx<NameValueType> activeStockType =
-      NameValueType(name: "On Hand", value: "onHand").obs;
+      NameValueType(name: "on_hand".tr, value: "onHand").obs;
 
   Rx<NameValueType> currentViewType =
-      NameValueType(name: "Card View", value: "card").obs;
+      NameValueType(name: "card_view".tr, value: "card").obs;
 
   RxBool isLoading = false.obs;
   RxString grandTotalPrice = "".obs;

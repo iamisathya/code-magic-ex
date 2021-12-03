@@ -19,10 +19,10 @@ class Body extends StatelessWidget {
         children: [
           Column(
             children: const [
-              AppText(text: "Thank You", style: TextTypes.headline4),
+              AppText(text: "Thank You", style: TextTypes.headline4), //!hardcoded
               SizedBox(height: 10),
               AppText(
-                  text: "Your order has been placed successfully!",
+                  text: "Your order has been placed successfully!", //!hardcoded
                   style: TextTypes.subtitle2,
                   color: AppColor.cadet),
             ],
@@ -32,20 +32,20 @@ class Body extends StatelessWidget {
             children: [
               AppText(
                   text:
-                      "Distributor ID : ${_controller.orderResponse.customer.id.unicity}",
+                      "${"distributor_id".tr} : ${_controller.orderResponse.customer.id.unicity}",
                   style: TextTypes.subtitle2,
                   color: AppColor.cadet),
               const SizedBox(height: 10),
               AppText(
                   text:
-                      "Order Number: ${_controller.orderResponse.id.unicity.retrieveOrderId()}",
+                      "${"order_number".tr}: ${_controller.orderResponse.id.unicity.retrieveOrderId()}",
                   style: TextTypes.subtitle2,
                   color: AppColor.cadet),
             ],
           ),
           Column(
             children: [
-              const AppText(text: "Scan Order", style: TextTypes.subtitle1),
+              AppText(text: "scan_order".tr, style: TextTypes.subtitle1),
               const SizedBox(height: 10),
               SvgPicture.asset(kOrderEntryBarcodeImage, height: 60, width: 100),
               Padding(
@@ -53,9 +53,9 @@ class Body extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(right: 20.0),
-                      child: Text("Go to Home"),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20.0),
+                      child: Text("go_to_home".tr),
                     ),
                     GestureDetector(
                         onTap: _controller.gotoHome,

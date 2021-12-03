@@ -39,8 +39,8 @@ class RowDateSelector extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              const AppText(
-                                  text: "Start Date: ",
+                              AppText(
+                                  text: "${"start_date".tr}: ",
                                   color: AppColor.cadet,
                                   fontSize: 10),
                               AppText(
@@ -75,8 +75,8 @@ class RowDateSelector extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              const AppText(
-                                  text: "End Date: ",
+                              AppText(
+                                  text: "${"end_date".tr}: ",
                                   color: AppColor.charcoal,
                                   fontSize: 10),
                               AppText(

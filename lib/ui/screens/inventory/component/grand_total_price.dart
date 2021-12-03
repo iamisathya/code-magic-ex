@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
@@ -29,7 +30,7 @@ class GrandTotal extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
                   child: Text(
-                    "Grand Total Price:",
+                    "${"grand_total_price".tr}:",
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2!
@@ -63,7 +64,7 @@ class GrandTotal extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 13),
                     child: Text(
-                      "Grand Total PV:",
+                      "${"grand_total_pv".tr}:",
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2!
@@ -74,7 +75,7 @@ class GrandTotal extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 13),
                     child: Text(
-                      "$totalPv PV",
+                      "$totalPv ${"pv".tr}",
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2!

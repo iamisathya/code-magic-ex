@@ -20,7 +20,7 @@ class Body2 extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const PageTitle(title: "Inventory"),
+          PageTitle(title: "inventory".tr),
           InventoryToolBar(
               onTapExport: () => controller.onTapExportExcellSheet(),
               onTapPrint: () => controller.onTapPrint()),
@@ -41,7 +41,7 @@ class Body2 extends StatelessWidget {
                                 ? Container(
                                     height: displaySize,
                                     alignment: Alignment.center,
-                                    child: const Text("No items found!"),
+                                    child: Text("no_items_found!".tr),
                                   )
                                 : Obx(() => ListView.builder(
                                     physics:

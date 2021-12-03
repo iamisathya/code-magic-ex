@@ -61,7 +61,7 @@ class Body extends StatelessWidget {
                 padding: EdgeInsets.all(getProportionateScreenWidth(10)),
                 child: Column(
                   children: [
-                    _renderUserInfo(context, "Payment with", ""),
+                    _renderUserInfo(context, "Payment with", ""),  // !hardcoded
                     _renderPayementOptions(context),
                   ],
                 ),
@@ -74,20 +74,20 @@ class Body extends StatelessWidget {
                 padding: EdgeInsets.all(getProportionateScreenWidth(10)),
                 child: Column(
                   children: [
-                    _renderUserInfo(context, "Order Summary", ""),
+                    _renderUserInfo(context, "order_summary".tr, ""),
                     const Divider(
                       color: Colors.black,
                     ),
-                    _renderUserInfo(context, "Total PV",
+                    _renderUserInfo(context, "total_pv".tr,
                         controller.totalCartPv.value.toString()),
-                    _renderUserInfo(context, "Total Price",
+                    _renderUserInfo(context, "total_price".tr,
                         controller.totalCartPrice.value.toString()),
                     Obx(() => (controller.seletedOption.value.index != 0)
-                        ? _renderUserInfo(context, "Credit Amount",
+                        ? _renderUserInfo(context, "credit_amount".tr,
                             controller.availableCreditAmount.value.toString())
                         : const SizedBox()),
                     const SizedBox(height: 10),
-                    Obx(() => _renderTotal(context, "Total",
+                    Obx(() => _renderTotal(context, "total".tr,
                         controller.totalCheckoutAmount.value.toString())),
                   ],
                 ),
@@ -96,7 +96,7 @@ class Body extends StatelessWidget {
             const SizedBox(height: 40),
             PrimaryButton(
               press: () => controller.proceedToCheckOut(context),
-              text: 'Checkout',
+              text: 'checkout'.tr,
             )
           ],
         ),
@@ -112,9 +112,9 @@ class Body extends StatelessWidget {
           child: Column(
             children: [
               _renderUserInfo(
-                  context, "BA Number", controller.passedUser.userId),
-              _renderUserInfo(context, "Name", controller.passedUser.fullName),
-              _renderUserInfo(context, "Email", controller.passedUser.email),
+                  context, "ba_number".tr, controller.passedUser.userId),
+              _renderUserInfo(context, "name".tr, controller.passedUser.fullName),
+              _renderUserInfo(context, "email".tr, controller.passedUser.email),
             ],
           ),
         ));

@@ -55,12 +55,12 @@ class OpenPoListFilterDropdown extends StatelessWidget {
             onSelectedItemChanged: (val) {
               controller.selectedFilterIndex.value = val;
             },
-            children: const [
-              DropDownItem(title: "Show All"),
-              DropDownItem(title: "Wating Approval"),
-              DropDownItem(title: "Inventory Transferred"),
-              DropDownItem(title: "Approved"),
-              DropDownItem(title: "Deleted")
+            children: [
+              DropDownItem(title: "show_all".tr),
+              DropDownItem(title: "wating_approval".tr),
+              DropDownItem(title: "inventory_transferred".tr),
+              DropDownItem(title: "approved".tr),
+              DropDownItem(title: "deleted".tr)
             ],
           ),
         ),

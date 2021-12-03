@@ -66,10 +66,10 @@ class Body extends StatelessWidget {
                             context, controller.poOrderAttachment),
                         child: Row(
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10.0),
                               child: AppText(
-                                text: "View",
+                                text: "view".tr,
                                 style: TextTypes.bodyText1,
                                 color: AppColor.dodgerBlue,
                               ),

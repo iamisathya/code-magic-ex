@@ -28,7 +28,7 @@ class PoCartItem extends StatelessWidget {
           Row(
             children: [
               Flexible(
-                child: BoxContainer(text: "Item ${idx + 1}"),
+                child: BoxContainer(text: "${"item".tr} ${idx + 1}"),
               ),
               const SizedBox(
                 width: 10,
@@ -48,7 +48,7 @@ class PoCartItem extends StatelessWidget {
               Flexible(
                 child: BoxContainer(
                     text:
-                        "${item.itemPv} PV | ${item.itemPrice}  ${Globals.currency}",
+                        "${item.itemPv} ${"pv".tr} | ${item.itemPrice}  ${Globals.currency}",
                     bgColor: Colors.white),
               ),
               Padding(

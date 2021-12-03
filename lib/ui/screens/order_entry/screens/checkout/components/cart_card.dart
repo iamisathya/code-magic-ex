@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../models/cart_products.dart';
@@ -52,9 +53,9 @@ class CartCard extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Price: ${item.itemPrice}"),
-                        Text("PV: ${item.itemPv}"),
-                        Text("Qty: ${item.quantity}"),
+                        Text("${"price".tr}: ${item.itemPrice}"),
+                        Text("${"pv".tr}: ${item.itemPv}"),
+                        Text("${"qty".tr}: ${item.quantity}"),
                       ],
                     ),
                   ),

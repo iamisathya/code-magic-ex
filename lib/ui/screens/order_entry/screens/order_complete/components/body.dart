@@ -32,8 +32,8 @@ class Body extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Order Summary - ",
+                  Text(
+                    "${"order_summary".tr} - ",
                   ),
                   Text(
                     "#${controller.orderResponse.id.unicity.retrieveOrderId()}",
@@ -43,7 +43,7 @@ class Body extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
-                  "We are recived order from your, we are processing it. We'll send it to you shortly",
+                  "We are recived order from your, we are processing it. We'll send it to you shortly", //! hardcoded
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -52,11 +52,11 @@ class Body extends StatelessWidget {
                 child: Column(
                   children: [
                     ColumnItem(
-                      title: "User ID",
+                      title: "user_id".tr,
                       value: info.id.unicity.toString(),
                     ),
                     ColumnItem(
-                      title: "User Name",
+                      title: "user_name".tr,
                       value: info.humanName.fullName,
                     ),
                     ColumnItem(

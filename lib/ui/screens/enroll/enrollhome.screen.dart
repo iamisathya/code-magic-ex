@@ -29,8 +29,8 @@ class EnrollHomeScreen extends StatelessWidget {
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
             onTapCancelButton: () => controller.showBottomModal(context),
-            negetiveText: "+ Add",
-            positiveText: "Continue",
+            negetiveText: "plus_add".tr,
+            positiveText: "continue".tr,
             onTapPositiveButton: controller.onContinue,
           ),
         ),

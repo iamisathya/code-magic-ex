@@ -32,7 +32,7 @@ class TotalPrice extends StatelessWidget {
                     style: TextTypes.subtitle2,
                     color: AppColor.charcoal),
                 AppText(
-                    text: "$totalPv PV",
+                    text: "$totalPv ${"pv".tr}",
                     style: TextTypes.subtitle2,
                     color: AppColor.charcoal),
               ],

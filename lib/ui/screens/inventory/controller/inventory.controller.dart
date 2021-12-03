@@ -281,14 +281,14 @@ class InventoryController extends GetxController {
             h.cellStyle = headerCellStyle;
           }
           if (i == 0) {
-            emptyA.value = "SL No.";
-            b.value = "Item Code";
-            c.value = "Item Name";
-            d.value = "PV";
-            e.value = "Price";
-            f.value = "Quantity on hand";
-            g.value = "Total Accumulated Price";
-            h.value = "Total PV";
+            emptyA.value = "SL No."; //!hardcoded
+            b.value = "Item Code"; //!hardcoded
+            c.value = "Item Name"; //!hardcoded
+            d.value = "PV"; //!hardcoded
+            e.value = "Price"; //!hardcoded
+            f.value = "Quantity on hand"; //!hardcoded
+            g.value = "Total Accumulated Price"; //!hardcoded
+            h.value = "Total PV"; //!hardcoded
             emptyA.cellStyle = headerCellStyle;
             b.cellStyle = headerCellStyle;
             c.cellStyle = headerCellStyle;

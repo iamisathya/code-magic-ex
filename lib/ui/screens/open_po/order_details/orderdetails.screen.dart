@@ -20,7 +20,7 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
         elevation: 0,
         iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
         title: Text(
-          "Order Details",
+          "order_details".tr,
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
         actions: _renderActionBar(context),
@@ -34,7 +34,7 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
       if (controller.wasAttachementExists())
         IconButton(
           icon: const Icon(Icons.attach_file_outlined),
-          tooltip: 'Attachement',
+          tooltip: 'attachement'.tr,
           onPressed: controller.onTapOpenAttchment,
         )
       else
@@ -43,7 +43,7 @@ class PurchaseOrderDetailsPage extends StatelessWidget {
         icon: const Icon(
           Icons.print_outlined,
         ),
-        tooltip: 'Print',
+        tooltip: 'print'.tr,
         onPressed: () => controller.proceedToPrint(context,
             orderId: controller.openPlaceOrderId.orderOpid),
       ),

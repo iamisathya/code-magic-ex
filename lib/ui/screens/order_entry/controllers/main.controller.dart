@@ -19,18 +19,18 @@ class OrderEntryController extends GetxController {
   RxList<OrderEntryRadioButton> searchRadioOptions = [
     OrderEntryRadioButton(
       index: 0,
-      name: "BA's ID",
+      name: "BA's ID", //! hardcoded
     ),
     OrderEntryRadioButton(
       index: 1,
-      name: "Govt ID, Name..",
+      name: "Govt ID, Name..", //! hardcoded
     ),
   ].obs;
 
   RxString errorMessage = "".obs;
 
   Rx<OrderEntryRadioButton> seletedOption =
-      OrderEntryRadioButton(index: 0, name: "BA's ID").obs;
+      OrderEntryRadioButton(index: 0, name: "BA's ID").obs; //! hardcoded
 
   TextEditingController searchIdTextController = TextEditingController();
   SearchCustomer searchedResultsOfHref = SearchCustomer(items: []);
@@ -56,7 +56,7 @@ class OrderEntryController extends GetxController {
   Future<void> searchUserBySearchQuery(BuildContext context) async {
     if (searchIdTextController.text.isEmpty) {
       renderErrorSnackBar(
-          title: "Enroller ID empty", subTitle: "Please enter valid enroller");
+          title: "Enroller ID empty", subTitle: "Please enter valid enroller"); //! hardcoded
       return;
     }
     if (seletedOption.value.index == 0) {
@@ -134,7 +134,7 @@ class OrderEntryController extends GetxController {
   void _onCatchError(Object err) {
     errorMessage(err.toString());
     renderErrorSnackBar(
-        title: "Error!", subTitle: "Error while getting user details!");
+        title: "error!".tr, subTitle: "Error while getting user details!"); //! hardcoded
     LoggerService.instance.e(err.toString());
     _sendingMsgProgressBar.hide();
   }

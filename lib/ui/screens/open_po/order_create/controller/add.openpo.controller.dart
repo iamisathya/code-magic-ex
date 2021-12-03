@@ -165,31 +165,31 @@ class CreateOpenPoOrderController extends GetxController
         browseImage(ImageSource.gallery);
         Get.back();
       },
-      child: const Text(
-        "Browse photos",
-        style: TextStyle(color: Colors.black),
+      child: Text(
+        "browse_photos".tr,
+        style: const TextStyle(color: Colors.black),
       ),
     );
     final Widget canncelButton = TextButton(
       onPressed: () {
         Get.back();
       },
-      child: const Text(
-        "Cacnel",
-        style: TextStyle(color: Colors.red),
+      child: Text(
+        "cancel".tr,
+        style: const TextStyle(color: Colors.red),
       ),
     );
 
     Get.dialog(
       AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
-          "Upload Image",
+        title: Text(
+          "upload_image".tr,
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w800),
+          style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w800),
         ),
         content: const Text(
-          "Take/Select an image you wish to upload",
+          "Take/Select an image you wish to upload",  //! hardcoded
           style: TextStyle(color: Colors.black),
         ),
         actions: <Widget>[
@@ -219,7 +219,7 @@ class CreateOpenPoOrderController extends GetxController
   Future<void> validateOrder(BuildContext context) async {
     if (cartProducts.isEmpty) {
       SnackbarUtil.showError(
-          message: "Please add products to proceed with checkout!");
+          message: "Please add products to proceed with checkout!"); //! hardcoced
       return;
     }
     confirmOrder(context);
@@ -238,7 +238,7 @@ class CreateOpenPoOrderController extends GetxController
       }
     } on DioError catch (e) {
       isLoading.toggle();
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
       isLoading.toggle();
@@ -280,7 +280,7 @@ class CreateOpenPoOrderController extends GetxController
       _onPlaceOrder(reponse);
     } on DioError catch (e) {
       isLoading.toggle();
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
       isLoading.toggle();
@@ -336,7 +336,7 @@ class CreateOpenPoOrderController extends GetxController
                       controller: searchProductTextController,
                       onChanged: (val) => onSearchTextChange(val),
                       onPress: () {},
-                      hintText: "Search Products",
+                      hintText: "search_products".tr,
                       isFetching: false.obs),
                 ),
                 const SizedBox(height: 5),
@@ -382,7 +382,7 @@ class CreateOpenPoOrderController extends GetxController
                                                 .copyWith(
                                                     color: AppColor.charcoal)),
                                         AppText(
-                                          text: "Code: ${item.item.id.unicity}",
+                                          text: "${"code".tr}: ${item.item.id.unicity}",
                                           style: TextTypes.caption,
                                           color: AppColor.metallicSilver,
                                         ),

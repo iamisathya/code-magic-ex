@@ -24,7 +24,7 @@ class Body2 extends StatelessWidget {
         () => Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const PageTitle(title: "Sales Report"),
+            PageTitle(title: "sales_report".tr),
             SalesReportToolBar(),
             const SizedBox(height: 5),
             if (controller.activeListLength != 0)

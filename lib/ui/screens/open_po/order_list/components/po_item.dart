@@ -8,8 +8,8 @@ import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
-import '../controller/openpo.list.controller.dart';
 import '../../order_details/home_screen.dart';
+import '../controller/openpo.list.controller.dart';
 
 class POItem extends StatelessWidget {
   final OpenPO openPo;
@@ -36,7 +36,7 @@ class POItem extends StatelessWidget {
                       children: [
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: AppText(text: "PO Number: ${openPo.orderOpid}",
+                          child: AppText(text: "${"po_number".tr}: ${openPo.orderOpid}",
                               align: TextAlign.left,
                               style: TextTypes.subtitle1),
                         ),
@@ -45,9 +45,9 @@ class POItem extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              AppText(text: "Total PV: ${openPo.orderTotalPv}",
+                              AppText(text: "${"total_pv"}.tr: ${openPo.orderTotalPv}",
                                   style: TextTypes.caption),
-                              AppText(text: "Date: ${openPo.orderDate}",
+                              AppText(text: "${"date".tr}: ${openPo.orderDate}",
                                   style: TextTypes.caption),
                             ],
                           ),
@@ -55,9 +55,9 @@ class POItem extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppText(text: "Total Price: ${openPo.orderTotalPrice}",
+                            AppText(text: "${"total_price".tr}: ${openPo.orderTotalPrice}",
                                 style: TextTypes.caption),
-                            AppText(text: "Time: ${openPo.orderTime}",
+                            AppText(text: "${"time".tr}: ${openPo.orderTime}",
                                 style: TextTypes.caption),
                           ],
                         ),
@@ -83,7 +83,7 @@ class POItem extends StatelessWidget {
                                       context, attchmentName),
                                   child: SvgPicture.asset(kOpenPoCameraIcon,
                                       height: 20,
-                                      semanticsLabel: "Open PO attachment"),
+                                      semanticsLabel: "open_po_attachment"),
                                 ),
                                 const SizedBox(
                                   width: 10,
@@ -110,7 +110,7 @@ class POItem extends StatelessWidget {
                             onTap: () => Get.to(() => OpenPoOrderDetails(),
                                 arguments: openPo.orderOpid),
                             child: SvgPicture.asset(kOpenPoViewIcon,
-                                height: 20, semanticsLabel: "View Open PO"),
+                                height: 20, semanticsLabel: "view_open_po"),
                           ),
                           // const SizedBox(
                           //   width: 10,
@@ -135,7 +135,7 @@ class POItem extends StatelessWidget {
         child: GestureDetector(
           onTap: () => controller.showInofPopover(context),
           child: SvgPicture.asset(kInformationIcon,
-              height: 20, semanticsLabel: "Add PO"),
+              height: 20, semanticsLabel: "add_po"),
         ),
       ),
     ]);

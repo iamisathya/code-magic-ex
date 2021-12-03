@@ -15,7 +15,6 @@ import '../../../../constants/globals.dart';
 import '../../../../models/barcode_item_response.dart';
 import '../../../../models/barcode_number_response.dart';
 import '../../../../models/barcode_number_update_request.dart';
-import '../../../../models/barcode_response.dart';
 import '../../../../models/barcode_save_response.dart';
 import '../../../../models/verify_each_barcode_response.dart';
 import '../../../../utilities/extensions.dart';
@@ -287,22 +286,22 @@ class BarcodeScannResultController extends getx.GetxController {
               const SizedBox(
                 width: 230,
                 child: Text(
-                  "“Your current changes will not be saved”",
+                  "“Your current changes will not be saved”", //!hardcoded
                   textAlign: TextAlign.center,
                 ),
               ),
               const SizedBox(height: 40),
               PlainButton(
-                title: 'OK, Got it',
+                title: 'OK, Got it', //!hardcoded
                 onTap: () => navigateToBarcodeHome(),
               ),
               const SizedBox(height: 10),
               SizedBox(
-                  width: getx.Get.width,
+                  width: getx.Get.width, 
                   height: 50,
                   child: TextButton(
                       onPressed: () => getx.Get.back(),
-                      child: Text("Cancel",
+                      child: Text("cancel".tr, //!hardcoded
                           style: Theme.of(getx.Get.context!)
                               .textTheme
                               .bodyText2!
@@ -399,7 +398,7 @@ class BarcodeScannResultController extends getx.GetxController {
         hasAnyChangesMade.value = false;
         closeAllItems();
         SnackbarUtil.showSuccess(
-            message: "Barcode scan successfull for ${expandedItem.code}");
+            message: "Barcode scan successfull for ${expandedItem.code}"); //!hardcoded
         getBarcodePath();
       } else if (barCodeSaveResponse!.errorMessages!.isNotEmpty) {
         final errors = StringBuffer();
@@ -482,17 +481,17 @@ class BarcodeScannResultController extends getx.GetxController {
     final int expndedIdx = getExpandedIndex();
     KeyboardUtil.hideKeyboard(context);
     final String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-        "#FFFFFF", "Cancel", false, ScanMode.BARCODE);
+        "#FFFFFF", "cancel".tr, false, ScanMode.BARCODE);
     debugPrint(barcodeScanRes);
     if (barcodeScanRes.isEmpty && !barcodeScanRes.isNumberOnly()) {
       SnackbarUtil.showError(
-          message: "Order number should only contains numarics.");
+          message: "Order number should only contains numarics."); //!hardcoded
       return;
     }
     if (barcodeItems!.items[expndedIdx].barcodes.contains(barcodeScanRes)) {
       SnackbarUtil.showWarning(
           message:
-              "Barcode number $barcodeScanRes already exists in current product.");
+              "Barcode number $barcodeScanRes already exists in current product."); //!hardcoded
       return;
     }
     addBarcodeNumber(expndedIdx, barcodeScanRes);

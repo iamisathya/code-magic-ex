@@ -17,8 +17,8 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TransAppBar(
-        title: "Settings",
+      appBar: TransAppBar(
+        title: "settings".tr,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -27,11 +27,11 @@ class SettingsPage extends StatelessWidget {
             ListTile(
               contentPadding: const EdgeInsets.all(8),
               minVerticalPadding: 10,
-              title: const Text(
-                "Dark Mode",
+              title: Text(
+                "dark_mode".tr,
               ),
               subtitle: const Text(
-                "Enable/Disable dark mode",
+                "Enable/Disable dark mode",  //! hardcoded
               ),
               trailing: CupertinoSwitch(
                 value: themeController.currentTheme == "dark",
@@ -43,11 +43,11 @@ class SettingsPage extends StatelessWidget {
             ListTile(
               contentPadding: const EdgeInsets.all(8),
               minVerticalPadding: 10,
-              title: const Text(
-                "Language",
+              title: Text(
+                "language".tr,
               ),
               subtitle: const Text(
-                "Change app language",
+                "Change app language", //! hardcoded
               ),
               trailing: DropdownButton<Languages>(
                 value: languageController.currentOption,

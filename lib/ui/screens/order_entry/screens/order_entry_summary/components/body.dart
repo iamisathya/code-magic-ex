@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
       children: [
         Column(
           children: [
-            const Headline(title: "Order Entry Summary"),
+            Headline(title: "order_entry_summary".tr),
             UserInfoBox(),
             FilterTabs(),
             Obx(

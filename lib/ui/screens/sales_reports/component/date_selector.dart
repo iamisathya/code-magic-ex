@@ -37,8 +37,8 @@ class DateSelector extends StatelessWidget {
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const AppText(
-                                  text: "Start Date: ",
+                              AppText(
+                                  text: "${"start_date".tr}: ",
                                   color: AppColor.charcoal),
                               SvgPicture.asset(kPlusIcon,
                                   color: AppColor.charcoal,
@@ -54,8 +54,8 @@ class DateSelector extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  const AppText(
-                                      text: "Start Date: ",
+                                  AppText(
+                                      text: "${"start_date".tr}: ",
                                       color: AppColor.cadet,
                                       fontSize: 10),
                                   AppText(
@@ -88,8 +88,8 @@ class DateSelector extends StatelessWidget {
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const AppText(
-                                  text: "End Date: ", color: AppColor.charcoal),
+                              AppText(
+                                  text: "${"end_date".tr}: ", color: AppColor.charcoal),
                               SvgPicture.asset(kPlusIcon,
                                   color: AppColor.charcoal,
                                   width: 14,
@@ -104,8 +104,8 @@ class DateSelector extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  const AppText(
-                                      text: "End Date: ",
+                                  AppText(
+                                      text: "${"end_date".tr}: ",
                                       color: AppColor.charcoal,
                                       fontSize: 10),
                                   AppText(

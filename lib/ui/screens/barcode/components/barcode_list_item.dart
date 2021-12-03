@@ -40,7 +40,7 @@ class BarcodeListItem extends StatelessWidget {
                       children: [
                         Text(item.desc,
                             style: Theme.of(context).textTheme.bodyText1),
-                        Text("Scanned: ${item.scan}",
+                        Text("Scanned: ${item.scan}",  //!hardcoded
                             style: Theme.of(context).textTheme.bodyText2)
                       ],
                     ),
@@ -65,9 +65,9 @@ class BarcodeListItem extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          BarcodeItemChip(text: "Code: ${item.code}"),
-                          BarcodeItemChip(text: "Qty: ${item.qty}"),
-                          BarcodeItemChip(text: "Remains: ${item.remain}"),
+                          BarcodeItemChip(text: "Code: ${item.code}"), //!hardcoded
+                          BarcodeItemChip(text: "Qty: ${item.qty}"), //!hardcoded
+                          BarcodeItemChip(text: "Remains: ${item.remain}"), //!hardcoded
                         ],
                       ),
                     ),
@@ -145,7 +145,7 @@ class BarcodeTextItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Barcode: $barcode",
+          Text("${"barcode".tr}: $barcode",
               style: Theme.of(context).textTheme.bodyText1),
           GestureDetector(
             onTap: () => controller.removeBarcodeNumber(mainIndex, index),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../../constants/colors.dart';
 import '../../../../../constants/globals.dart';
@@ -40,12 +41,12 @@ class PoOrderedItem extends StatelessWidget {
                       style: TextTypes.subtitle2,
                       color: AppColor.charcoal),
                   AppText(
-                      text: "code: ${item.productId}",
+                      text: "${"code".tr}: ${item.productId}",
                       style: TextTypes.caption,
                       color: AppColor.metallicSilver),
                   AppText(
                       text:
-                          "${item.productPv} PV | ${item.productPrice} ${Globals.currency}",
+                          "${item.productPv} ${"pv".tr} | ${item.productPrice} ${Globals.currency}",
                       style: TextTypes.subtitle2,
                       color: AppColor.charcoal),
                   Container(

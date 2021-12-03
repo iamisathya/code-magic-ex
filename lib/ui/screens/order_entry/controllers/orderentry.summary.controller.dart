@@ -34,8 +34,8 @@ class OrderEntryCheckoutSummaryController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();
   RxInt currentTab = 0.obs;
   RxList<NameValueType> searchOptions = [
-    NameValueType(name: "My Cart", value: "myCart"),
-    NameValueType(name: "Payment Type", value: "paymentType"),
+    NameValueType(name: "my_cart".tr, value: "myCart"),
+    NameValueType(name: "payment_type".tr, value: "paymentType"),
   ].obs;
   RxString filterMethod = "myCart".obs;
   RxBool isLoading = false.obs;
@@ -43,7 +43,7 @@ class OrderEntryCheckoutSummaryController extends GetxController {
   final selecteduserIndex = Rxn<int>();
 
   RxList<NameValueType> paymentTypes = [
-    NameValueType(name: " Pay with DSC", value: "payWithDsc"),
+    NameValueType(name: " pay_with_dsc".tr, value: "payWithDsc"),
   ].obs;
   RxString selectedPayment = "payWithDsc".obs;
 
@@ -119,10 +119,10 @@ class OrderEntryCheckoutSummaryController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: "Server Error! ${e.error.toString()}");
+      SnackbarUtil.showError(message: "${"server_error!".tr} ${e.error.toString()}");
       return false;
     } catch (err) {
-      SnackbarUtil.showError(message: "Server Error! ${err.toString()}");
+      SnackbarUtil.showError(message: "${"server_error!".tr} ${err.toString()}");
       return false;
     }
   }
@@ -209,7 +209,7 @@ class OrderEntryCheckoutSummaryController extends GetxController {
       final payload = prepareRequestPaylod();
       if (payload == null) {
         throw Exception(
-            'Somthing went wrong while preparing PurchaseLogRequestData');
+            'Something went wrong while preparing PurchaseLogRequestData'); //! hardcoded
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
@@ -240,12 +240,12 @@ class OrderEntryCheckoutSummaryController extends GetxController {
       return response;
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());
-      SnackbarUtil.showError(message: "Error! ${e.error.toString()}");
+      SnackbarUtil.showError(message: "${"error!".tr} ${e.error.toString()}");
       return response;
     } catch (err, e) {
       LoggerService.instance.e(err.toString());
       debugPrint(e.toString());
-      SnackbarUtil.showError(message: "Error! ${err.toString()}");
+      SnackbarUtil.showError(message: "${"error!".tr} ${err.toString()}");
       return response;
     }
   }
@@ -263,10 +263,10 @@ class OrderEntryCheckoutSummaryController extends GetxController {
     try {
       await MemberCallsService.init().verifyOrder(requestData);
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: "Error! ${e.error.toString()}");
+      SnackbarUtil.showError(message: "${"error!".tr} ${e.error.toString()}");
     } catch (err) {
       LoggerService.instance.e(err.toString());
-      SnackbarUtil.showError(message: "Error! ${err.toString()}");
+      SnackbarUtil.showError(message: "${"error!".tr} ${err.toString()}");
     }
   }
 
@@ -301,14 +301,14 @@ class OrderEntryCheckoutSummaryController extends GetxController {
 
   void _onCatchError(Object err, StackTrace s) {
     debugPrint(err.toString());
-    SnackbarUtil.showError(message: "Error!");
+    SnackbarUtil.showError(message: "error!".tr);
     LoggerService.instance.e(s);
     isLoading.toggle();
   }
 
   void onClickNuetralButton() {
     SnackbarUtil.showWarning(
-        message: "Please add items to cart before proceed!");
+        message: "Please add items to cart before proceed!"); //! hardcoded
   }
 
   void onNegetiveButtonClick() {

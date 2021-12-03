@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../utilities/enums.dart';
@@ -25,7 +26,7 @@ class PageToolBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           AppText(
-              text: "BA Number: ${controller.userId}",
+              text: "${"ba_number".tr}: ${controller.userId}",
               style: TextTypes.subtitle1),
           GestureDetector(
             onTap: () => controller.onCaptureScreenShot(context),

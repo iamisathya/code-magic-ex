@@ -65,10 +65,10 @@ class BottomButtonBar extends StatelessWidget {
                   Flexible(
                     child: listController.cartProducts.isEmpty
                         ? NuetralButton(
-                            title: "Place Order".tr,
+                            title: "place_order".tr,
                             onTap: controller.onClickNuetralButton)
                         : PositiveButton(
-                            title: "Place Order".tr,
+                            title: "place_order".tr,
                             onTap: controller.proceedToCheckOut),
                   ),
                 ],

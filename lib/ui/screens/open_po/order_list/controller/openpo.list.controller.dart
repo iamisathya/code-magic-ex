@@ -20,9 +20,9 @@ class OpenPoListController extends GetxController
     with StateMixin<List<OpenPO>> {
   RxInt currentTab = 0.obs;
   RxList<NameValueType> availableMonthSlots = [
-    NameValueType(name: "All", value: "all"), //! 1 Hardcoded
-    NameValueType(name: "6 Month", value: "6"), //! 1 Hardcoded
-    NameValueType(name: "12 Month", value: "12") //! 1 Hardcoded
+    NameValueType(name: "all".tr, value: "all"),
+    NameValueType(name: "6month".tr, value: "6"),
+    NameValueType(name: "12month".tr, value: "12")
   ].obs;
   RxString filterMethod = "all".obs;
   RxBool isLoading = false.obs;
@@ -117,25 +117,25 @@ class OpenPoListController extends GetxController
   Widget getStatusIcon(String orderStatus) {
     switch (orderStatus) {
       case "0":
-        return const OrderStatusItem(
-            title: "WAITING FOR APPROVAL", color: AppColor.sunglow);
+        return OrderStatusItem(
+            title: "waiting_for_approval".tr.toUpperCase(), color: AppColor.sunglow);
       case "1":
-        return const OrderStatusItem(
-          title: "DELETED",
+        return OrderStatusItem(
+          title: "deleted".tr.toUpperCase(),
           color: AppColor.red,
         );
       case "2":
-        return const OrderStatusItem(
-            title: "INVENTORY TRANSFERRED", color: AppColor.paleViolet);
+        return OrderStatusItem(
+            title: "inventory_transferred".tr.toUpperCase(), color: AppColor.paleViolet);
       case "3":
-        return const OrderStatusItem(
-            title: "WAITING FOR APPROVAL", color: AppColor.sunglow);
+        return OrderStatusItem(
+            title: "waiting_for_approval".tr.toUpperCase(), color: AppColor.sunglow);
       case "4":
-        return const OrderStatusItem(
-            title: "APPROVED", color: AppColor.mediumAquamarine);
+        return OrderStatusItem(
+            title: "approved".tr.toUpperCase(), color: AppColor.mediumAquamarine);
       default:
-        return const OrderStatusItem(
-            title: "WAITING FOR APPROVAL", color: AppColor.sunglow);
+        return OrderStatusItem(
+            title: "waiting_for_approval".tr.toUpperCase(), color: AppColor.sunglow);
     }
   }
 

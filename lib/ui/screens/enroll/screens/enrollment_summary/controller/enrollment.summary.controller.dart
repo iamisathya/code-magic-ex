@@ -76,14 +76,14 @@ class EnrollmentSummaryController extends GetxController {
   Future<void> proceedOrderPlace() async {
     if (activePayType.value == PaymentOptions.none) {
       SnackbarUtil.showWarning(
-          title: "Payment mode error!",
-          message: "Please select payment method before proceed!");
+          title: "Payment mode error!", //!hardcoded
+          message: "Please select payment method before proceed!"); //!hardcoded
       return;
     } else if (activePayType.value != PaymentOptions.cashOnDelivery) {
       SnackbarUtil.showWarning(
-          title: "Payment mode isn't available!",
+          title: "Payment mode isn't available!", //!hardcoded
           message:
-              "We're sorry! Your selected payment mode isn't available for now. Please choose other payment option.");
+              "We're sorry! Your selected payment mode isn't available for now. Please choose other payment option.");  //!hardcoded
       return;
     }
     try {
@@ -91,7 +91,7 @@ class EnrollmentSummaryController extends GetxController {
       final bool isServerRuning = await checkOrderEntryServerStatus();
       if (!isServerRuning) {
         SnackbarUtil.showError(
-            message: "Server error! please try again later!");
+            message: "Server error! please try again later!"); //!hardcoded
         isLoading.toggle();
         return;
       }
@@ -131,10 +131,10 @@ class EnrollmentSummaryController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: "Server Error! ${e.error.toString()}");
+      SnackbarUtil.showError(message: "Server Error! ${e.error.toString()}"); //!hardcoded
       return false;
     } catch (err) {
-      SnackbarUtil.showError(message: "Error! ${err.toString()}");
+      SnackbarUtil.showError(message: "${"error!".tr} ${err.toString()}");
       return false;
     }
   }
@@ -230,7 +230,7 @@ class EnrollmentSummaryController extends GetxController {
       if (payload == null) {
         isLoading.toggle();
         throw Exception(
-            'Somthing went wrong while preparing PurchaseLogRequestData');
+            'Somthing went wrong while preparing PurchaseLogRequestData');  //!hardcoded
       }
       final String jsonUser = jsonEncode(payload);
       await MemberCallsService.init().logEnrollerData(
@@ -254,11 +254,11 @@ class EnrollmentSummaryController extends GetxController {
       return null;
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
       return null;
     } catch (err) {
       LoggerService.instance.e(err.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
       return null;
     }
   }
@@ -268,10 +268,10 @@ class EnrollmentSummaryController extends GetxController {
     try {
       await MemberCallsService.init().verifyEnrollOrder(placeOrde);
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
     } catch (err) {
       LoggerService.instance.e(err.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
     }
   }
 
@@ -282,7 +282,7 @@ class EnrollmentSummaryController extends GetxController {
         password,
       );
       if (validationResponse.affectedRows == 1) {
-        debugPrint("Password reset success");
+        debugPrint("Password reset success"); //!hardcoded
       }
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());

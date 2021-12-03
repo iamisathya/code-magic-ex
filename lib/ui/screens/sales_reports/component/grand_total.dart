@@ -1,5 +1,6 @@
 import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
@@ -31,8 +32,8 @@ class GrandTotal extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const AppText(
-                text: "Total Price:",
+              AppText(
+                text: "${"total_price".tr}:",
                 style: TextTypes.bodyText2,
               ),
               AppText(
@@ -52,8 +53,8 @@ class GrandTotal extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const AppText(text: "Total PV:", style: TextTypes.bodyText2),
-              AppText(text: "$totalPv PV", style: TextTypes.bodyText2),
+              AppText(text: "${"total_pv".tr}:", style: TextTypes.bodyText2),
+              AppText(text: "$totalPv ${"pv".tr}", style: TextTypes.bodyText2),
             ],
           ),
         )

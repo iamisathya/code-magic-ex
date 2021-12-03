@@ -28,7 +28,7 @@ class Body extends StatelessWidget {
               height: 70,
               alignment: Alignment.center,
               child: Text(
-                "Order Entry",
+                "order_entry".tr,
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),
@@ -63,7 +63,7 @@ class Body extends StatelessWidget {
                     WhiteSearchField(
                         controller: controller.searchUserTextController,
                         onPress: controller.searchUserBySearchQuery,
-                        hintText: "BA Number or Govt ID or Name",
+                        hintText: "BA Number or Govt ID or Name", //! hardcoded
                         isFetching: controller.isFetching)
                   ],
                 ),

@@ -38,7 +38,7 @@ class ScreenShotPreview extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const AppText(text: "Cancel", style: TextTypes.caption),
+                child: AppText(text: "cancel".tr, style: TextTypes.caption),
               ),
               TextButton(
                 style: ButtonStyle(
@@ -50,8 +50,8 @@ class ScreenShotPreview extends StatelessWidget {
                     backgroundColor:
                         MaterialStateProperty.all(AppColor.dodgerBlue)),
                 onPressed: () => controller.saveImage(context),
-                child: const AppText(
-                  text: "Save",
+                child: AppText(
+                  text: "save".tr,
                   style: TextTypes.caption,
                   color: AppColor.kWhiteColor,
                 ),

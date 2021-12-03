@@ -22,13 +22,13 @@ class Body extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const AppText(
-                      text: "Search History", //! Hardcoded
+                  AppText(
+                      text: "search_history".tr,
                       style: TextTypes.subtitle1),
                   GestureDetector(
                     onTap: () => controller.clearHistory(),
-                    child: const AppText(
-                      text: "Clear all", //! Hardcoded
+                    child: AppText(
+                      text: "clear_all".tr,
                       style: TextTypes.subtitle1, color: AppColor.brinkPink,
                     ),
                   )

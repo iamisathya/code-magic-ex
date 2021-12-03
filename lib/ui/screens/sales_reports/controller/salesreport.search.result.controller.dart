@@ -59,10 +59,10 @@ class SalesReportSearchResultController extends GetxController {
     }
     final List<SalesReportGeneric> printList = [];
     printList.add(SalesReportGeneric(
-        orderNumber: "Order ID",
-        userId: "Ba Number",
-        totalPv: "Total PV",
-        totalPrice: "Total Price"));
+        orderNumber: "order_id".tr,
+        userId: "ba_number".tr,
+        totalPv: "total_pv".tr,
+        totalPrice: "total_price".tr));
     for (int x = 0; x < activeListLength; x++) {
       late SalesReportGeneric item;
       if (type.value == "order") {
@@ -166,11 +166,11 @@ class SalesReportSearchResultController extends GetxController {
           e.cellStyle = headerCellStyle;
         }
         if (x == 0) {
-          emptyA.value = "SL No.";
-          b.value = "Order ID";
-          c.value = "BA Number";
-          d.value = "Total PV";
-          e.value = "Total Price";
+          emptyA.value = "slno".tr;
+          b.value = "order_id".tr;
+          c.value = "ba_number".tr;
+          d.value = "total_pv".tr;
+          e.value = "total_price".tr;
           emptyA.cellStyle = headerCellStyle;
           b.cellStyle = headerCellStyle;
           c.cellStyle = headerCellStyle;

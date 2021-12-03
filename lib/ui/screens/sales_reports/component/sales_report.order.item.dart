@@ -59,9 +59,9 @@ class SalesReportEachOrderItem extends StatelessWidget {
               ],
             ),
             _renderEachRow(
-                context, "BA Number: ${item.customer}", "Date: ${item.date}"),
-            _renderOrderIdRow(context, "Order ID: ", item.orderNumber,
-                "Time: ${item.time}", item.orderHref),
+                context, "${"ba_number"}: ${item.customer}", "Date: ${item.date}"),
+            _renderOrderIdRow(context, "${"order_id"}: ", item.orderNumber,
+                "${"time"}: ${item.time}", item.orderHref),
             GrandTotal(
                 status: item.barcode.contains("glyphicon-ok-circle")
                     ? "Success"

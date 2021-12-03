@@ -60,15 +60,15 @@ class SalesReportEachRmaItem extends StatelessWidget {
             ),
             _renderBarcodeRow(
                 context,
-                "BA Number: ${item.customer}",
-                "RMA: ",
+                "${"ba_number"}: ${item.customer}",
+                "${"rma"}: ",
                 item.rmaOrderNumber.retrieveBarcode(),
                 item.rmaOrderNumber.retrieveHrefCode()),
             _renderOrderIdRow(
                 context,
-                "Order ID: ",
+                "${"order_id"}: ",
                 item.orderNumber.retrieveBarcode(),
-                "Date: ${item.date}",
+                "${"date"}: ${item.date}",
                 item.orderNumber.retrieveHrefCode()),
             _renderEachRow(
                 context, "Record: ${item.inputData}", "Time: ${item.time}"),

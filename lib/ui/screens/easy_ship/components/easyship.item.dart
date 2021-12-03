@@ -1,5 +1,6 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
@@ -81,7 +82,7 @@ class EasyShipItem extends StatelessWidget {
         children: [
           AppText(text: element.name, style: TextTypes.headline6),
           AppText(
-              text: "Code: ${element.itemName}", style: TextTypes.bodyText2),
+              text: "${"code".tr}: ${element.itemName}", style: TextTypes.bodyText2),
         ],
       ),
       Padding(
@@ -89,7 +90,7 @@ class EasyShipItem extends StatelessWidget {
         child: Align(
           alignment: Alignment.centerLeft,
           child: AppText(
-            text: "Order Number ${element.pvDate.asMMM}",
+            text: "${"order_number".tr} ${element.pvDate.asMMM}",
             style: TextTypes.bodyText2,
             color: AppColor.darkLiver,
           ),
@@ -106,12 +107,12 @@ class EasyShipItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AppText(
-              text: "Total PV: ${element.pv.toString()} PV",
+              text: "${"total_pv".tr}: ${element.pv.toString()} PV",
               style: TextTypes.caption,
               color: AppColor.darkLiver,
             ),
             AppText(
-              text: "Total Price: ${element.totalPrice} ${Globals.currency}",
+              text: "${"total_price".tr}: ${element.totalPrice} ${Globals.currency}",
               style: TextTypes.caption,
               color: AppColor.darkLiver,
             ),

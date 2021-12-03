@@ -49,7 +49,7 @@ class Body extends StatelessWidget {
                       "first_name_en".tr, controller.enroleeData.firstName),
                   _renderUserInfo(
                       "last_name_en".tr, controller.enroleeData.lastName),
-                  _renderUserInfo("Address",
+                  _renderUserInfo("address".tr,
                       "${controller.enroleeData.mainAddress1} ${controller.enroleeData.mainAddress2}, ${controller.enroleeData.zipCode}"),
                   _renderUserInfo("email".tr, controller.enroleeData.email),
                   _renderUserInfo(

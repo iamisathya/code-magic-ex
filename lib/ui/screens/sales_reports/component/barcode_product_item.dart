@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../models/barcode_item_response.dart';
@@ -31,7 +32,7 @@ class BarcodeProductItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(item.desc, style: Theme.of(context).textTheme.bodyText1),
-                Text("Scanned:${item.scan}/${item.qty}",
+                Text("${"scanned".tr}:${item.scan}/${item.qty}",
                     style: Theme.of(context).textTheme.bodyText2)
               ],
             ),

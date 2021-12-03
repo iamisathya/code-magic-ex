@@ -75,27 +75,27 @@ class Body extends StatelessWidget {
                     children: [
                       MenuOption(
                           icon: kOpenPoIcon,
-                          optionTitle: "Open PO",
+                          optionTitle: "open_po".tr,
                           onPress: () => Get.to(() => OpenPoHomeScreen())),
                       MenuOption(
                           icon: kEnrollIcon,
-                          optionTitle: "Enroll",
+                          optionTitle: "enroll".tr,
                           onPress: () => Get.to(
                               () => EnrollHomeScreen())), //EnrollHomeScreen
                       MenuOption(
                           icon: kOrderEntryIcon,
-                          optionTitle: "Order Entry",
+                          optionTitle: "order_entry".tr,
                           onPress: () => Get.to(() => OrderEntryHomeScreen())),
                       MenuOption(
                           icon: kInventoryIcon,
-                          optionTitle: "Inventory",
+                          optionTitle: "inventory".tr,
                           onPress: () => Get.to(() => InventoryHomeScreen())),
                       MenuOption(
                           icon: kSalesReportIcon,
                           trailingIcon: controller.isReportOptionShown.value
                               ? kCrossArrowIcon
                               : kArrowIcon,
-                          optionTitle: "Report",
+                          optionTitle: "report".tr,
                           onPress: () =>
                               controller.isReportOptionShown.toggle()),
                       AnimatedSwitcher(
@@ -106,11 +106,11 @@ class Body extends StatelessWidget {
                             if (controller.isReportOptionShown.value)
                               Column(children: [
                                 MenuOption(
-                                    optionTitle: "Sales Report",
+                                    optionTitle: "sales_report".tr,
                                     onPress: () =>
                                         Get.to(() => SalesReportsHomeScreen())),
                                 MenuOption(
-                                    optionTitle: "Easyship Report",
+                                    optionTitle: "easyship_report".tr,
                                     onPress: () =>
                                         Get.to(() => EasyShipHomeScreen())),
                               ])
@@ -121,7 +121,7 @@ class Body extends StatelessWidget {
                       ),
                       MenuOption(
                           icon: kBarcodeIcon,
-                          optionTitle: "Barcode",
+                          optionTitle: "barcode".tr,
                           onPress: () => Get.to(() => BarcodeHomeScreen())),
                     ],
                   ),
@@ -133,7 +133,7 @@ class Body extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: SignOutButton(
-                    title: "Sign Out",
+                    title: "sign_out".tr,
                     fontSize: 24,
                     height: 54,
                     onPress: () => controller.onLogout(context),

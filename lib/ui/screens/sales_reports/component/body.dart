@@ -76,40 +76,40 @@ class Body extends StatelessWidget {
   List<Widget> _getTitleWidget() {
     return [
       _renderTableHeader(
-          "Record", EasyShipSortTypes.record, Alignment.center, 140),
+          "record".tr, EasyShipSortTypes.record, Alignment.center, 140),
       _renderTableHeader(
-          "BA Number", EasyShipSortTypes.baNumber, Alignment.center, 140),
+          "ba_number".tr, EasyShipSortTypes.baNumber, Alignment.center, 140),
       _renderTableHeader(
-          "Name", EasyShipSortTypes.name, Alignment.centerLeft, 200),
+          "name".tr, EasyShipSortTypes.name, Alignment.centerLeft, 200),
       _renderTableHeader(
-          "Order ID", EasyShipSortTypes.orderId, Alignment.center, 140),
-      _renderTableHeader("Date", EasyShipSortTypes.date, Alignment.center, 140),
-      _renderTableHeader("Time", EasyShipSortTypes.time, Alignment.center, 140),
-      _renderTableHeader("Total ${controller.totalAmount}",
+          "order_id".tr, EasyShipSortTypes.orderId, Alignment.center, 140),
+      _renderTableHeader("date".tr, EasyShipSortTypes.date, Alignment.center, 140),
+      _renderTableHeader("time".tr, EasyShipSortTypes.time, Alignment.center, 140),
+      _renderTableHeader("${"total".tr} ${controller.totalAmount}",
           EasyShipSortTypes.total, Alignment.centerRight, 150),
-      _renderTableHeader("Total PV ${controller.totalVolume}",
+      _renderTableHeader("${"total_pv".tr} ${controller.totalVolume}",
           EasyShipSortTypes.totalPV, Alignment.centerRight, 150),
-      _getTitleItemWidget('Barcode', 100, Alignment.center),
+      _getTitleItemWidget('barcode'.tr, 100, Alignment.center),
     ];
   }
 
   List<Widget> _getRmaTitleWidget() {
     return [
       _renderTableHeader(
-          "Record", EasyShipSortTypes.record, Alignment.center, 140),
+          "record".tr, EasyShipSortTypes.record, Alignment.center, 140),
       _renderTableHeader(
-          "BA Number", EasyShipSortTypes.baNumber, Alignment.center, 140),
+          "ba_number".tr, EasyShipSortTypes.baNumber, Alignment.center, 140),
       _renderTableHeader(
-          "Name", EasyShipSortTypes.name, Alignment.centerLeft, 200),
-      _renderTableHeader("Date", EasyShipSortTypes.date, Alignment.center, 140),
-      _renderTableHeader("Time", EasyShipSortTypes.time, Alignment.center, 140),
+          "name".tr, EasyShipSortTypes.name, Alignment.centerLeft, 200),
+      _renderTableHeader("date".tr, EasyShipSortTypes.date, Alignment.center, 140),
+      _renderTableHeader("time".tr, EasyShipSortTypes.time, Alignment.center, 140),
       _renderTableHeader(
-          "RMA", EasyShipSortTypes.orderId, Alignment.center, 140),
+          "rma".tr, EasyShipSortTypes.orderId, Alignment.center, 140),
       _renderTableHeader(
-          "Original", EasyShipSortTypes.orderId, Alignment.center, 140),
-      _renderTableHeader("Total ${controller.totalAmount}",
+          "original".tr, EasyShipSortTypes.orderId, Alignment.center, 140),
+      _renderTableHeader("${"total".tr} ${controller.totalAmount}",
           EasyShipSortTypes.total, Alignment.centerRight, 150),
-      _renderTableHeader("Total PV ${controller.totalVolume}",
+      _renderTableHeader("${"total_pv".tr} ${controller.totalVolume}",
           EasyShipSortTypes.totalPV, Alignment.centerRight, 150),
     ];
   }
@@ -277,7 +277,7 @@ class Body extends StatelessWidget {
                     });
                   },
                   decoration:
-                      _renderInputDecoration("Select start date", "From"),
+                      _renderInputDecoration("Select start date", "from".tr), //! hardcoded
                 )),
           ),
           Flexible(
@@ -292,7 +292,7 @@ class Body extends StatelessWidget {
                           DateFormat('yyyy-MM-dd').format(date).toString();
                     }, currentTime: DateTime.now());
                   },
-                  decoration: _renderInputDecoration("Select end date", "To"),
+                  decoration: _renderInputDecoration("Select end date", "to".tr),
                 )),
           ),
           SizedBox(
@@ -307,7 +307,7 @@ class Body extends StatelessWidget {
                     Icons.arrow_forward_outlined,
                     color: Colors.white,
                   ),
-                  tooltip: 'Find easy ship',
+                  tooltip: 'find_easy_ship'.tr,
                   onPressed: () => controller.loadSalesReports(context),
                 ),
               ),

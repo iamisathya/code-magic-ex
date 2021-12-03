@@ -42,7 +42,7 @@ class SalesReportOrderDetials extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Text("Scan Barcode",
+                          child: Text("scan_barcode".tr,
                               style: Theme.of(context).textTheme.subtitle2),
                         ),
                         Padding(
@@ -81,14 +81,14 @@ class SalesReportOrderDetials extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20.0),
-                                  child: Text("Scan: 0",
+                                  child: Text("${"scan".tr}: 0",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText2),
                                 )
                               ],
                             ),
-                            Text("Qty: 1",
+                            Text("${"qty".tr}: 1",
                                 style: Theme.of(context).textTheme.bodyText2)
                           ],
                         ),
@@ -102,9 +102,9 @@ class SalesReportOrderDetials extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Code: 19236",
+                            Text("${"code".tr}: 19236",  //! Hardcoded
                                 style: Theme.of(context).textTheme.bodyText2),
-                            Text("Remains: 1",
+                            Text("${"remains".tr}: 1",
                                 style: Theme.of(context).textTheme.bodyText2)
                           ],
                         ),
@@ -141,7 +141,7 @@ class SalesReportOrderDetials extends StatelessWidget {
                     Flexible(
                       child: PlainButton(
                         buttonColor: AppColor.sunglow,
-                        title: 'Cancel',
+                        title: 'cancel'.tr,
                         titleColor: AppColor.kBlackColor,
                         onTap: () => null,
                       ),
@@ -149,7 +149,7 @@ class SalesReportOrderDetials extends StatelessWidget {
                     const SizedBox(width: 10),
                     Flexible(
                       child: PlainButton(
-                        title: 'Save',
+                        title: 'save'.tr,
                         onTap: () => null,
                       ),
                     ),

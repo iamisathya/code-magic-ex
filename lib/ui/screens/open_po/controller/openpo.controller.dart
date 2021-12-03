@@ -26,7 +26,7 @@ import '../order_details/orderdetails.screen.dart';
 
 class OpenPoController extends GetxController {
   final RxInt _currentTab = 0.obs;
-  RxList<String> availableMonthSlots = ["All", "6 Month", "12 Month"].obs;
+  RxList<String> availableMonthSlots = ["all".tr, "6month".tr, "12month".tr].obs;
   TextEditingController commentController = TextEditingController();
 
   RxString filterMethod = "6".obs;

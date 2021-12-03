@@ -17,7 +17,7 @@ class NoRecordFound extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(25.0),
             child: Text(
-              "No Matching Records Found",
+              "No Matching Records Found", //! hardcoded
               style: Theme.of(context)
                   .textTheme
                   .headline6!

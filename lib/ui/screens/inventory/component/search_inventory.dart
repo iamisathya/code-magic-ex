@@ -35,7 +35,7 @@ class _SearchAppBarState extends State<SearchProducts> {
                   appBarTitle = SearchBarField(
                     // onTap: (String value) => controller.addSearchItem(value),
                     searchTextController: controller.searchTextController,
-                    placeHolder: "Item number...",
+                    placeHolder: "${"item_number".tr}...",
                   );
                   controller
                       .addSearchItem(controller.searchTextController.text);
@@ -59,17 +59,17 @@ class _SearchAppBarState extends State<SearchProducts> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      "Search History",
-                      style:
-                          TextStyle(fontSize: 14, color: AppColor.kBlackColor),
+                    Text(
+                      "search_history".tr,
+                      style: const TextStyle(
+                          fontSize: 14, color: AppColor.kBlackColor),
                     ),
                     GestureDetector(
                       onTap: () => controller.clearHistory(),
-                      child: const Text(
-                        "Clear all",
-                        style:
-                            TextStyle(fontSize: 14, color: AppColor.brinkPink),
+                      child: Text(
+                        "clear_all".tr,
+                        style: const TextStyle(
+                            fontSize: 14, color: AppColor.brinkPink),
                       ),
                     )
                   ],

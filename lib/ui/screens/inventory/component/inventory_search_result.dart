@@ -25,7 +25,7 @@ class InventorySearchResult extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const PageTitle(title: "Inventory"),
+            PageTitle(title: "inventory".tr),
             InventoryToolBar(
                 onTapExport: () => null,
                 onTapPrint: () => null,

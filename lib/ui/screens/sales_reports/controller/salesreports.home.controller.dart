@@ -41,9 +41,9 @@ class SalesReportHomeController extends GetxController {
   RxBool isDataFetched = false.obs;
 
   RxList<NameValueType> sortOptions = [
-    NameValueType(name: "By Order", value: "order"),
-    NameValueType(name: "By Item", value: "item"),
-    NameValueType(name: "RMAs", value: "rma")
+    NameValueType(name: "by_order".tr, value: "order"),
+    NameValueType(name: "by_item".tr, value: "item"),
+    NameValueType(name: "rmas".tr, value: "rma")
   ].obs;
   Rx<OrdersAndRmas> allOrdersAndRmas = const OrdersAndRmas().obs;
   RxList<SalesReportOrderItem> allSalesReports = <SalesReportOrderItem>[].obs;
@@ -53,7 +53,7 @@ class SalesReportHomeController extends GetxController {
   RxInt totalVolume = 0.obs;
 
   Rx<NameValueType> activeStockType =
-      NameValueType(name: "By Order", value: "order").obs;
+      NameValueType(name: "by_order".tr, value: "order").obs;   //!hardcoded
 
   RxBool isLoading = false.obs;
   RxBool isPrinting = false.obs;
@@ -82,7 +82,7 @@ class SalesReportHomeController extends GetxController {
     if (startDate == null || endDate == null) return;
     if (startDate!.value.isAfter(endDate!.value)) {
       SnackbarUtil.showError(
-          message: "Start date should be lower than end date!");
+          message: "Start date should be lower than end date!"); //! hardcoded
       return;
     }
     final String actionType = activeStockType.value.value == "order"
@@ -129,7 +129,7 @@ class SalesReportHomeController extends GetxController {
       isDataFetched.toggle();
       final String message = getErrorMessage(e.response!.data);
       renderErrorSnackBar(
-          title: "${e.response!.statusCode} Error!", subTitle: message);
+          title: "${e.response!.statusCode} ${"error!".tr}", subTitle: message);
       returnResponse(e.response!);
     } catch (err) {
       isLoading.toggle();
@@ -195,15 +195,15 @@ class SalesReportHomeController extends GetxController {
   Future<void> proceedToPrint(BuildContext context,
       {required String orderHref}) async {
     if (activeListLength == 0) {
-      SnackbarUtil.showWarning(message: "No data found in table.");
+      SnackbarUtil.showWarning(message: "No data found in table."); //! hardcoded
       return;
     }
     final List<SalesReportGeneric> printList = [];
     printList.add(SalesReportGeneric(
-        orderNumber: "Order ID",
-        userId: "Ba Number",
-        totalPv: "Total PV",
-        totalPrice: "Total Price"));
+        orderNumber: "order_id".tr,
+        userId: "ba_number".tr,
+        totalPv: "total_pv".tr,
+        totalPrice: "total_price".tr));
     for (int x = 0; x < activeListLength; x++) {
       late SalesReportGeneric item;
       if (activeTab == "order") {
@@ -247,7 +247,7 @@ class SalesReportHomeController extends GetxController {
   Future<File?> createExcellSheet() async {
     File? createdFile;
     if (activeListLength == 0) {
-      SnackbarUtil.showWarning(message: "No data found in table.");
+      SnackbarUtil.showWarning(message: "No data found in table."); //! hardcoded
       return createdFile;
     }
     if (await Permission.storage.request().isGranted) {
@@ -316,11 +316,11 @@ class SalesReportHomeController extends GetxController {
           // i.cellStyle = headerCellStyle;
         }
         if (x == 0) {
-          emptyA.value = "SL No.";
-          b.value = "Order ID";
-          c.value = "BA Number";
-          d.value = "Total PV";
-          e.value = "Total Price";
+          emptyA.value = "slno".tr;
+          b.value = "order_id".tr;
+          c.value = "ba_number".tr;
+          d.value = "total_pv".tr;
+          e.value = "total_price".tr;
           // f.value = "Date";
           // g.value = "Time";
           // h.value = "Total Price";

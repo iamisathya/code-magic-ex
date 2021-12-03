@@ -21,29 +21,30 @@ class SignForm extends StatelessWidget {
         children: [
           _renderTextField(
               ctlr: controller.userIdController,
-              label: "User ID",
-              hintText: "Enter your user id"),
+              label: "user_id".tr,
+              hintText: "enter_user_id".tr),
           // buildUserIdFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           _renderTextField(
               ctlr: controller.passwordController,
-              label: "Password",
+              label: "password".tr,
               isPassword: true,
-              hintText: "Enter your password"),
+              hintText: "enter_password".tr),
           // buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(20)),
           Container(
               alignment: Alignment.centerRight,
               child: GestureDetector(
                 onTap: () => controller.openMailConfirmationDialog(context),
-                child: const Text(
-                  "Forgot Password",
-                  style: TextStyle(decoration: TextDecoration.underline),
+                child: Text(
+                  "forgot_password".tr,
+                  style: const TextStyle(decoration: TextDecoration.underline),
                 ),
               )),
           SizedBox(height: getProportionateScreenHeight(20)),
           PlainButton(
-              title: 'Login', onTap: () => controller.onPressContinue(context)),
+              title: 'login'.tr,
+              onTap: () => controller.onPressContinue(context)),
         ],
       ),
     );

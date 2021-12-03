@@ -23,16 +23,16 @@ class OpenPoCreateOrder extends StatelessWidget {
         child: Scaffold(
           backgroundColor: AppColor.kWhiteSmokeColor,
           appBar: AppBar(
-              title: const Text(
-            "New PO",
-            style: TextStyle(fontSize: 24, color: AppColor.kBlackColor),
+              title: Text(
+            "new_po".tr,
+            style: const TextStyle(fontSize: 24, color: AppColor.kBlackColor),
           )),
           body: Body(),
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
             onTapCancelButton: () => controller.showBottomModal(context),
-            negetiveText: "+ Add",
-            positiveText: "Place Order",
+            negetiveText: "plus_add".tr,
+            positiveText: "place_order".tr,
             onTapPositiveButton: () => controller.validateOrder(context),
           ),
         ),

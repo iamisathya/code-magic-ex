@@ -47,7 +47,7 @@ class EnrollHomeController extends GetxController {
         isLoading.toggle();
       } else {
         isLoading.toggle();
-        SnackbarUtil.showError(message: "No warehouses found");
+        SnackbarUtil.showError(message: "No warehouses found"); //! hardcoded
       }
     } on DioError catch (e) {
       isLoading.toggle();
@@ -68,7 +68,7 @@ class EnrollHomeController extends GetxController {
       searchResult.value.items = List.from(inventoryRecords.value.items);
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
-      SnackbarUtil.showError(message: "Error! $message");
+      SnackbarUtil.showError(message: "${"error!".tr} $message");
       returnResponse(e.response!);
     } catch (err) {
       LoggerService.instance.e(err.toString());
@@ -124,7 +124,7 @@ class EnrollHomeController extends GetxController {
     addStarterKit();
     if (cartProducts.isEmpty) {
       SnackbarUtil.showWarning(
-          message: "Please add some products to cart before proceed!");
+          message: "Please add some products to cart before proceed!"); //! hardcoded
       return;
     }
     Get.to(() => EnrollmentDetailsHomeScreen());
@@ -152,7 +152,7 @@ class EnrollHomeController extends GetxController {
                       controller: searchProductTextController,
                       onChanged: (val) => onSearchTextChange(val),
                       onPress: () {},
-                      hintText: "Search Products",
+                      hintText: "search_products".tr,
                       isFetching: false.obs),
                 ),
                 const SizedBox(height: 5),
@@ -199,13 +199,13 @@ class EnrollHomeController extends GetxController {
                                                 .copyWith(
                                                     color: AppColor.charcoal)),
                                         AppText(
-                                          text: "Code: ${item.item.id.unicity}",
+                                          text: "${"code".tr}: ${item.item.id.unicity}",
                                           style: TextTypes.caption,
                                           color: AppColor.metallicSilver,
                                         ),
                                         AppText(
                                           text:
-                                              "${item.terms.pvEach} PV | ${item.terms.priceEach} ${Globals.currency}",
+                                              "${item.terms.pvEach} ${"pv".tr} | ${item.terms.priceEach} ${Globals.currency}",
                                           style: TextTypes.subtitle2,
                                           color: AppColor.charcoal,
                                         ),

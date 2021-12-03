@@ -36,16 +36,16 @@ class OrderEntryCheckoutController extends GetxController {
   RxList<RadioButtonModel> paymentOptions = [
     RadioButtonModel(
       index: 0,
-      name: "DSC",
+      name: "dsc".tr, 
     ),
     RadioButtonModel(
       index: 1,
-      name: "Voucher",
+      name: "voucher".tr,
     ),
   ].obs;
   Rx<RadioButtonModel> seletedOption = RadioButtonModel(
     index: 0,
-    name: "DSC",
+    name: "dsc".tr,
   ).obs;
 
   late RxList<CartProductsItem> checkoutProducts;
@@ -104,10 +104,10 @@ class OrderEntryCheckoutController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "Server Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "server_error!".tr, subTitle: e.error.toString());
       return false;
     } catch (err) {
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
       return false;
     }
   }
@@ -194,7 +194,7 @@ class OrderEntryCheckoutController extends GetxController {
       final payload = prepareRequestPaylod();
       if (payload == null) {
         throw Exception(
-            'Somthing went wrong while preparing PurchaseLogRequestData');
+            'Something went wrong while preparing PurchaseLogRequestData');
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
@@ -225,11 +225,11 @@ class OrderEntryCheckoutController extends GetxController {
       return response;
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
       return response;
     } catch (err) {
       LoggerService.instance.e(err.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
       return response;
     }
   }
@@ -247,10 +247,10 @@ class OrderEntryCheckoutController extends GetxController {
     try {
       await MemberCallsService.init().verifyOrder(requestData);
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
     } catch (err) {
       LoggerService.instance.e(err.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
     }
   }
 
@@ -293,7 +293,7 @@ class OrderEntryCheckoutController extends GetxController {
 
   void _onDioError(DioError e) {
     _sendingMsgProgressBar.hide();
-    renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+    renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
     returnResponse(e.response!);
   }
 

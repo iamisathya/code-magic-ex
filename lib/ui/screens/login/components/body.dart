@@ -21,21 +21,21 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(height: SizeConfig.screenHeight * 0.04),
                 Text(
-                  "Welcome Back",
+                  "welcome_message".tr,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: getProportionateScreenWidth(28),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Text(
-                  "Sign in with your user id and password",
+                Text(
+                  "singin_message".tr,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.04),
                 Obx(() => controller.isSessionExpired.value
                     ? const Text(
-                        "Session Expired, please login again",
+                        "Session Expired, please login again", //!hardcoded
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.red),
                       )

@@ -19,8 +19,8 @@ class OrderEntryUserListController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();
   RxInt currentTab = 0.obs;
   RxList<NameValueType> searchOptions = [
-    NameValueType(name: "With BA Number", value: "baId"),
-    NameValueType(name: "with Govt ID, Name", value: "govtIdOrName"),
+    NameValueType(name: "With BA Number", value: "baId"),  //! hardcoded
+    NameValueType(name: "with Govt ID, Name", value: "govtIdOrName"),  //! hardcoded
   ].obs;
   RxString filterMethod = "baId".obs;
   RxBool isLoading = false.obs;
@@ -40,7 +40,7 @@ class OrderEntryUserListController extends GetxController {
 
   Future<void> searchUserBySearchQuery() async {
     if (searchUserTextController.text.isEmpty) {
-      SnackbarUtil.showWarning(message: "User id shouldn't be empty.");
+      SnackbarUtil.showWarning(message: "User id shouldn't be empty."); //! hardcoded
       return;
     }
     if (filterMethod.value == "baId") {
@@ -124,7 +124,7 @@ class OrderEntryUserListController extends GetxController {
 
   void _onCatchError(Object err, StackTrace s) {
     debugPrint(err.toString());
-    SnackbarUtil.showError(message: "Error while getting user details!");
+    SnackbarUtil.showError(message: "Error while getting user details!"); //! hardcoded
     LoggerService.instance.e(s);
     isLoading.toggle();
   }
@@ -163,6 +163,6 @@ class OrderEntryUserListController extends GetxController {
       searchUserBySearchQuery();
       return;
     }
-    SnackbarUtil.showWarning(message: "Please enter/select user id first!");
+    SnackbarUtil.showWarning(message: "Please enter/select user id first!"); //! hardcoded
   }
 }

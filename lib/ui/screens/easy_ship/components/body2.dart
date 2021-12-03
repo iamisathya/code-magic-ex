@@ -17,11 +17,11 @@ class Body extends StatelessWidget {
         () => Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const PageTitle(title: "Easyship Report"),
+            PageTitle(title: "easyship_report".tr),
             SearchTextfield(
                 icon: kSearchIcon,
                 isLoading: controller.isLoading.value,
-                labelText: "BA Number",
+                labelText: "ba_number",
                 bgColor: AppColor.sunglow,
                 onSubmit: () => controller.onSearchEasyShipReport(),
                 onScan: () => controller.onSearchEasyShipReport(),

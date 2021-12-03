@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 16.0, bottom: 8.0, left: 24.0),
-            child: Text("Search with",
+            child: Text("search_with",
                 style: Theme.of(context).textTheme.productTitle),
           ),
           SearchRadioOptions(),

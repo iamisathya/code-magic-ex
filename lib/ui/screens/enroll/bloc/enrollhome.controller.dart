@@ -60,29 +60,29 @@ class EnrollController extends GetxController {
   RxList<String> errorMessages = <String>[].obs;
   RxBool isEnrollerSponsorVerified = false.obs;
   RxBool isGovtIdVerified = false.obs;
-  RxString enrollerSponsorVerifyButton = "Verify Enroller".obs;
-  RxString govtIdVerifyButton = "Verify ID".obs;
+  RxString enrollerSponsorVerifyButton = "Verify Enroller".obs; //!hardcoded
+  RxString govtIdVerifyButton = "Verify ID".obs; //!hardcoded
   String enrollerName = "";
   String sponsorName = "";
 
   List<DropdownMenuItem<String>> genderDropdownItems = [
-    const DropdownMenuItem(value: "", child: Text("Select Gender")),
-    const DropdownMenuItem(value: "male", child: Text("Male")),
-    const DropdownMenuItem(value: "female", child: Text("Female")),
+    const DropdownMenuItem(value: "", child: Text("Select Gender")), //!hardcoded
+    const DropdownMenuItem(value: "male", child: Text("Male")), //!hardcoded
+    const DropdownMenuItem(value: "female", child: Text("Female")), //!hardcoded
   ];
 
   List<DropdownMenuItem<String>> statusDropdownItems = [
-    const DropdownMenuItem(value: "", child: Text("Select Status")),
-    const DropdownMenuItem(value: "Single", child: Text("Single")),
-    const DropdownMenuItem(value: "Married", child: Text("Married")),
+    const DropdownMenuItem(value: "", child: Text("Select Status")), //!hardcoded
+    const DropdownMenuItem(value: "Single", child: Text("Single")), //!hardcoded
+    const DropdownMenuItem(value: "Married", child: Text("Married")), //!hardcoded
   ];
 
   RxList<DropdownMenuItem<String>> provinceDropdownItems = [
-    const DropdownMenuItem(value: "", child: Text("Select Province")),
+    const DropdownMenuItem(value: "", child: Text("Select Province")), //!hardcoded
   ].obs;
 
   RxList<DropdownMenuItem<String>> areaDropdownItems = [
-    const DropdownMenuItem(value: "", child: Text("Select Area")),
+    const DropdownMenuItem(value: "", child: Text("Select Province")), //!hardcoded
   ].obs;
 
   RxList<DropdownMenuItem<String>> subAreaDropdownItems = [
@@ -107,11 +107,11 @@ class EnrollController extends GetxController {
     sponsorIdController.text = "108357166";
     firstNameThController.text = "ทดสอบ";
     lastNameThController.text = "สาธยา";
-    firstNameEnController.text = "Test";
-    lastNameEnController.text = "Account";
+    firstNameEnController.text = "Test"; //!hardcoded
+    lastNameEnController.text = "Account"; //!hardcoded
     // userGender.value = "Male";
     // maritalStatus.value = "Married";
-    mainAddressController.text = "Main Address";
+    mainAddressController.text = "Main Address"; //!hardcoded
     zipCodeController.text = "14000";
     emailAddressController.text = "nomail@unicity.com";
     phoneNumberController.text = "990099009";
@@ -174,20 +174,20 @@ class EnrollController extends GetxController {
             Parsing.intFrom(sponsorIdController.text)!, "customer");
         sponsorName = enrollerProfile.items[0].humanName.fullName;
       }
-      enrollerSponsorVerifyButton.value = "Verified";
+      enrollerSponsorVerifyButton.value = "Verified"; //!hardcoded
       isEnrollerIdSuccess.value = true;
       _sendingMsgProgressBar.hide();
       isSubmitting(false);
       update();
     } on DioError catch (e) {
       _sendingMsgProgressBar.hide();
-      enrollerSponsorVerifyButton.value = "Verify Enroller";
+      enrollerSponsorVerifyButton.value = "Verify Enroller"; //!hardcoded
       isSubmitting(false);
-      _renderErrorSnackBar("Error!", e.error.toString());
+      _renderErrorSnackBar("error!", e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
       _sendingMsgProgressBar.hide();
-      enrollerSponsorVerifyButton.value = "Verify Enroller";
+      enrollerSponsorVerifyButton.value = "Verify Enroller"; //!hardcoded
       isSubmitting(false);
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
@@ -221,10 +221,10 @@ class EnrollController extends GetxController {
 
   Future<void> verifyGovtIdNumber(BuildContext context) async {
     if (idCardNumberController.text.isEmpty) {
-      _renderErrorSnackBar("Empty!", "Please enter valid governament ID!");
+      _renderErrorSnackBar("Empty!", "Please enter valid governament ID!"); //!hardcoded
       return;
     }
-    govtIdVerifyButton.value = "Verifying";
+    govtIdVerifyButton.value = "Verifying"; //!hardcoded
     isSubmitting(true);
     update();
     try {
@@ -238,7 +238,7 @@ class EnrollController extends GetxController {
             value: province.provienceId,
             child: Text(province.provienceNameEn)));
       }
-      govtIdVerifyButton.value = "Verified";
+      govtIdVerifyButton.value = "Verified"; //!hardcoded
       isGovtIdSuccess.value = true;
       isSubmitting(false);
       Timer(const Duration(milliseconds: 20), () {
@@ -252,7 +252,7 @@ class EnrollController extends GetxController {
       update();
     } catch (err) {
       _sendingMsgProgressBar.hide();
-      govtIdVerifyButton.value = "Verified ID";
+      govtIdVerifyButton.value = "Verified ID"; //!hardcoded
       isSubmitting(false);
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
@@ -263,7 +263,7 @@ class EnrollController extends GetxController {
   Future<void> getAmphuresByProvince() async {
     if (provience.isEmpty) {
       _renderErrorSnackBar(
-          "Select province", "Please select your province to proceed!");
+          "Select province", "Please select your province to proceed!"); //!hardcoded
       return;
     }
     try {
@@ -271,7 +271,7 @@ class EnrollController extends GetxController {
           .getAmphuresByProvince("getAmphuresByProvince", provience.value);
       areaDropdownItems.clear();
       areaDropdownItems
-          .add(const DropdownMenuItem(value: "", child: Text("Select Area")));
+          .add(const DropdownMenuItem(value: "", child: Text("Select Area"))); //!hardcoded
       for (final amphure in allAmphures) {
         areaDropdownItems.add(DropdownMenuItem(
             value: amphure.amphurId, child: Text(amphure.amphurNameEn)));
@@ -286,7 +286,7 @@ class EnrollController extends GetxController {
   Future<void> getDistrictsByAmphur() async {
     if (area.value.isEmpty) {
       _renderErrorSnackBar(
-          "Select amphur", "Please select your amphur to proceed!");
+          "Select amphur", "Please select your amphur to proceed!"); //!hardcoded
       return;
     }
     try {
@@ -294,7 +294,7 @@ class EnrollController extends GetxController {
           .getDistrictsByAmphur("getDistrictsByAmphur", area.value);
       subAreaDropdownItems.clear();
       subAreaDropdownItems.add(
-          const DropdownMenuItem(value: "", child: Text("Select Sub-Area")));
+          const DropdownMenuItem(value: "", child: Text("Select Sub-Area"))); //!hardcoded
       for (final district in allDistricts) {
         subAreaDropdownItems.add(DropdownMenuItem(
             value: district.districtCode,
@@ -310,7 +310,7 @@ class EnrollController extends GetxController {
   Future<void> getZipcodeByDistricts() async {
     if (subArea.value.isEmpty) {
       _renderErrorSnackBar(
-          "Select disctrict", "Please select your disctrict to proceed!");
+          "Select disctrict", "Please select your disctrict to proceed!"); //!hardcoded
       return;
     }
     try {

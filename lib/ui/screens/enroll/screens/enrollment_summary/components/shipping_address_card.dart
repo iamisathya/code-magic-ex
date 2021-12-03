@@ -19,11 +19,11 @@ class ShippingAddressCard extends StatelessWidget {
         child: Column(
           children: [
             EeachUserinfoItem(
-                title: "Name",
+                title: "name".tr,
                 value:
                     "${controller.enrolleeUserData.firstName} ${controller.enrolleeUserData.lastName}\n ${controller.enrolleeUserData.firstNameTh} ${controller.enrolleeUserData.lastNameTh}"),
             EeachUserinfoItem(
-                title: "Address",
+                title: "address".tr,
                 value:
                     "${controller.enrolleeUserData.mainAddress1} \n ${controller.enrolleeUserData.mainAddress2} \n ${controller.enrolleeUserData.city} \n ${controller.enrolleeUserData.zipCode} "),
             EeachUserinfoItem(

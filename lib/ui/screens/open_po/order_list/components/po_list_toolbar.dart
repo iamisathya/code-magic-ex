@@ -8,8 +8,8 @@ import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
-import '../controller/openpo.list.controller.dart';
 import '../../order_search/components/search_products.dart';
+import '../controller/openpo.list.controller.dart';
 
 class PoListToolBar extends StatelessWidget {
   const PoListToolBar({
@@ -53,13 +53,13 @@ class PoListToolBar extends StatelessWidget {
                   GestureDetector(
                     onTap: () => controller.showPicker(context),
                     child: SvgPicture.asset(kOpenPoFilterIcon,
-                        height: 20, semanticsLabel: "Filter PO list"),
+                        height: 20, semanticsLabel: "filter_po_list"),
                   ),
                   const SizedBox(width: 25),
                   GestureDetector(
                     onTap: () => Get.to(() => SearchProducts()),
                     child: SvgPicture.asset(kSearchIcon,
-                        height: 20, semanticsLabel: "Search PO list"),
+                        height: 20, semanticsLabel: "search_po_list"),
                   ),
                 ],
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../constants/colors.dart';
 
@@ -57,7 +58,7 @@ class _ShareButtonState extends State<ShareButton> {
               padding: const EdgeInsets.only(right: 25),
               child: GestureDetector(
                 onTap: () => widget.onPress(),
-                child: Text("Add New PO",
+                child: Text("add_new_po".tr,
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1!

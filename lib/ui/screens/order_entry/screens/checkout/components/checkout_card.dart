@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../utilities/constants.dart';
@@ -47,7 +48,7 @@ class CheckoutCard extends StatelessWidget {
                   child: SvgPicture.asset("assets/icons/receipt.svg"),
                 ),
                 const Spacer(),
-                const Text("Add voucher code"),
+                const Text("add_voucher_code"), //!hardcoded
                 const SizedBox(width: 10),
                 const Icon(
                   Icons.arrow_forward_ios,
@@ -60,10 +61,10 @@ class CheckoutCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text.rich(
+                Text.rich(
                   TextSpan(
-                    text: "Total:\n",
-                    children: [
+                    text: "${"total".tr}:\n",
+                    children: const [
                       TextSpan(
                         text: "\$337.15",
                         style: TextStyle(fontSize: 16, color: Colors.black),
@@ -74,7 +75,7 @@ class CheckoutCard extends StatelessWidget {
                 SizedBox(
                   width: getProportionateScreenWidth(190),
                   child: DefaultButton(
-                    text: "Check Out",
+                    text: "check_out".tr,
                     press: () {},
                   ),
                 ),

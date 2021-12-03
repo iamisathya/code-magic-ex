@@ -30,7 +30,7 @@ class FilterTabs extends StatelessWidget {
                     onTap: () =>
                         controller.onTabChange(OrderEntrySummaryFilters.myCart),
                     child: AppText(
-                        text: "My Cart",
+                        text: "my_cart".tr,
                         style: controller.filterMethod.value == "myCart"
                             ? TextTypes.subtitle1
                             : TextTypes.bodyText1,
@@ -40,7 +40,7 @@ class FilterTabs extends StatelessWidget {
                     onTap: () => controller
                         .onTabChange(OrderEntrySummaryFilters.paymentType),
                     child: AppText(
-                        text: "Payment Type",
+                        text: "payment_type".tr,
                         style: controller.filterMethod.value == "paymentType"
                             ? TextTypes.subtitle1
                             : TextTypes.bodyText1,

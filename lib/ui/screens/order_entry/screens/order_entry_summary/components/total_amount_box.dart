@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,7 @@ class TotalAmountBox extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const AppText(text: "Total PV:", style: TextTypes.bodyText2),
+                AppText(text: "${"total_pv".tr}:", style: TextTypes.bodyText2),
                 Obx(() => AppText(
                     text: "${listController.totalCartPv} PV",
                     style: TextTypes.bodyText2))
@@ -37,7 +38,7 @@ class TotalAmountBox extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const AppText(text: "Total Price:", style: TextTypes.bodyText2),
+                AppText(text: "${"total_price".tr}:", style: TextTypes.bodyText2),
                 Obx(() => AppText(
                     text: "${listController.totalCartPrice} THB",
                     style: TextTypes.bodyText2))
@@ -51,9 +52,9 @@ class TotalAmountBox extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const AppText(text: "Payment Amount", style: TextTypes.subtitle1),
+              AppText(text: "payment_amount".tr, style: TextTypes.subtitle1),
               Obx(() => AppText(
-                  text: "${listController.totalCartPrice} THB",
+                  text: "${listController.totalCartPrice} ${Globals.currency}",
                   style: TextTypes.subtitle1))
             ],
           ),

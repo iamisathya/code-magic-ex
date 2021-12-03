@@ -30,8 +30,8 @@ class OpenPoOrderDetails extends StatelessWidget {
             showNeutral: false,
             bgColor: AppColor.brightGray,
             onTapCancelButton: Get.back,
-            negetiveText: "back",
-            positiveText: "Print PO List",
+            negetiveText: "back".tr,
+            positiveText: "print_po_list".tr,
             onTapPositiveButton: () {
               controller.proceedToPrint(context,
                   orderId: controller.openPlaceOrderId.orderId);

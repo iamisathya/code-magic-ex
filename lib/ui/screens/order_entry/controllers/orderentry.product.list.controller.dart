@@ -19,8 +19,8 @@ class OrderEntryProductListController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();
   RxInt currentTab = 0.obs;
   RxList<NameValueType> filterOptions = [
-    NameValueType(name: "All Product", value: "all"),
-    NameValueType(name: "Easyship Set", value: "easyShip"),
+    NameValueType(name: "All Product", value: "all"), //!hardcoded
+    NameValueType(name: "Easyship Set", value: "easyShip"), //!hardcoded
   ].obs;
   RxString filterMethod = "all".obs;
 
@@ -93,7 +93,7 @@ class OrderEntryProductListController extends GetxController {
 
   void _onCatchError(Object err, StackTrace s) {
     debugPrint(err.toString());
-    SnackbarUtil.showError(message: "Error while getting user details!");
+    SnackbarUtil.showError(message: "Error while getting user details!"); //!hardcoded
     LoggerService.instance.e(s);
     isLoading.toggle();
   }
@@ -204,7 +204,7 @@ class OrderEntryProductListController extends GetxController {
 
   void onClickNuetralButton() {
     SnackbarUtil.showWarning(
-        message: "Please add items to cart before proceed!");
+        message: "Please add items to cart before proceed!"); //!hardcoded
   }
 
   void onClickPositiveButton() {

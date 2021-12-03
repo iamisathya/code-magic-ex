@@ -86,7 +86,7 @@ dynamic returnResponse(dio.Response response) {
       throw DefaultException(message: response.data.toString());
     case 401:
       final String errorMsg = getErrorMessage(response.data);
-      if (errorMsg == "Invalid Bearer Token.") {
+      if (errorMsg == "Invalid Bearer Token.") { //!Hardcoded
         UserSessionManager.shared.removeUserInfoFromDB();
         return Get.offAll(() => LoginScreen(),
             arguments: true, transition: Transition.cupertino);
@@ -96,10 +96,10 @@ dynamic returnResponse(dio.Response response) {
       throw UnauthorisedException(message: response.data.toString());
     case 404:
       String errorMsg = getErrorMessageWithKey(response.data, "message");
-      if (errorMsg == "Unauthorized") {
-        errorMsg = "Invalid credentials";
+      if (errorMsg == "Unauthorized") { //!Hardcoded
+        errorMsg = "Invalid credentials"; //!Hardcoded
       }
-      if (errorMsg == "Not Found") {
+      if (errorMsg == "Not Found") { //!Hardcoded
         errorMsg = getErrorMessage(response.data);
       }
       throw UnauthorisedException(message: errorMsg);
@@ -107,21 +107,21 @@ dynamic returnResponse(dio.Response response) {
       throw TimeOutException(message: response.data.toString());
     case 500:
       throw InternetFailedException(
-          message: 'Internal Server Error: ${response.statusCode}');
+          message: '${"internal_server_error".tr}: ${response.statusCode}'); //!Hardcoded
     case 503:
       throw InternetFailedException(
-          message: 'Service Unavailable: ${response.statusCode}');
+          message: '${"service_unavailable".tr}: ${response.statusCode}'); //!Hardcoded
     default:
       throw InternetFailedException(
-          message: 'Internal Server Error: ${response.statusCode}');
+          message: '${"internal_server_error".tr}: ${response.statusCode}'); //!Hardcoded
   }
 }
 
 void showAlertDialog(BuildContext context,
-    {String cancel = "Cancel",
-    String ok = "Continue",
-    String title = "AlertDialog",
-    String subtitle = "Would you like to continue?",
+    {String cancel = "Cancel", //!Hardcoded
+    String ok = "Continue", //!Hardcoded
+    String title = "AlertDialog", //!Hardcoded
+    String subtitle = "Would you like to continue?", //!Hardcoded
     required Function onOk,
     required Function onCancel}) {
   // set up the buttons
@@ -185,14 +185,14 @@ void onDioError(DioError e, ProgressBar progressBar, RxString error) {
   error(e.error.toString());
   final String message = getErrorMessage(e.response!.data);
   renderErrorSnackBar(
-      title: "${e.response!.statusCode} Error!", subTitle: message);
+      title: "${e.response!.statusCode} ${"error!".tr}", subTitle: message); //!Hardcoded
   returnResponse(e.response!);
 }
 
 void onCatchError(Object err, ProgressBar progressBar, RxString error) {
   error(err.toString());
   renderErrorSnackBar(
-      title: "Error!", subTitle: "Error while getting user details!");
+      title: "error!".tr, subTitle: "Error while getting user details!"); //!Hardcoded
   LoggerService.instance.e(err.toString());
   progressBar.hide();
 }
@@ -205,15 +205,15 @@ String getUniqueId(String href) {
 }
 
 void renderGetSnackbar(
-    {String title = "Error!",
-    String message = "Unexpcted error occured. Please try later!",
+    {String title = "", //!Hardcoded
+    String message = "Unexpcted error occured. Please try later!", //!Hardcoded
     SnackBarType type = SnackBarType.success}) {
   final Color color = type == SnackBarType.success
       ? Theme.of(Get.context!).accentColor
       : type == SnackBarType.error
           ? Colors.red
           : Colors.yellow;
-  Get.snackbar("Empty table!", "No data found in table.",
+  Get.snackbar("Empty table!", "No data found in table.", //!Hardcoded
       snackPosition: SnackPosition.BOTTOM,
       overlayColor: color,
       backgroundColor: Colors.white,
@@ -233,8 +233,8 @@ Future<String?> readFileByte(String filePath) async {
     base64Image = base64Encode(imageBytes);
   } catch (e) {
     FirebaseCrashlytics.instance
-        .log("Error while reading base64 from file path:$e");
-    debugPrint('Error while reading base64 from file path:$e');
+        .log("Error while reading base64 from file path:$e"); //!Hardcoded
+    debugPrint('Error while reading base64 from file path:$e'); //!Hardcoded
   }
   return base64Image;
 }
@@ -260,7 +260,7 @@ Future<void> launchURL(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
   } else {
-    throw "Could not launch $url";
+    throw "Could not launch $url"; //!Hardcoded
   }
 }
 

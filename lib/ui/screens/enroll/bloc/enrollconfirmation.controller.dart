@@ -42,8 +42,8 @@ class EnrollConfirmationController extends GetxController {
       final bool isServerRuning = await checkOrderEntryServerStatus();
       if (!isServerRuning) {
         renderErrorSnackBar(
-            title: "Server error!",
-            subTitle: "Server was down, please try again later!");
+            title: "Server error!", //!hardcoded
+            subTitle: "Server was down, please try again later!"); //!hardcoded
         _sendingMsgProgressBar.hide();
         return;
       }
@@ -74,10 +74,10 @@ class EnrollConfirmationController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "Server Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "server_error!".tr, subTitle: e.error.toString()); //!hardcoded
       return false;
     } catch (err) {
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString()); //!hardcoded
       return false;
     }
   }
@@ -165,7 +165,7 @@ class EnrollConfirmationController extends GetxController {
       if (payload == null) {
         _sendingMsgProgressBar.hide();
         throw Exception(
-            'Somthing went wrong while preparing PurchaseLogRequestData');
+            'Something went wrong while preparing PurchaseLogRequestData'); //!hardcoded
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       await MemberCallsService.init().logEnrollerData(
@@ -189,11 +189,11 @@ class EnrollConfirmationController extends GetxController {
       return null;
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
       return null;
     } catch (err) {
       LoggerService.instance.e(err.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
       return null;
     }
   }
@@ -203,10 +203,10 @@ class EnrollConfirmationController extends GetxController {
     try {
       await MemberCallsService.init().verifyEnrollOrder(placeOrde);
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
     } catch (err) {
       LoggerService.instance.e(err.toString());
-      renderErrorSnackBar(title: "Error!", subTitle: err.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
     }
   }
 
@@ -217,7 +217,7 @@ class EnrollConfirmationController extends GetxController {
         "257461866",
       );
       if (validationResponse.affectedRows == 1) {
-        debugPrint("Password reset success");
+        debugPrint("Password reset success"); //!hardcoded
       }
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());

@@ -119,7 +119,7 @@ class OrderEntryBody extends StatelessWidget {
           ? CommonButton(
               c: Colors.red,
               value: itemCode,
-              label: 'Remove',
+              label: 'remove'.tr,
               onPressed: controller.onPressRemove)
           : const SizedBox(),
     );
@@ -131,7 +131,7 @@ class OrderEntryBody extends StatelessWidget {
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(
                 Theme.of(Get.context!).colorScheme.primary)),
-        child: const Text("Clear"));
+        child: Text("clear".tr));  //! Hardcoded
   }
 
   Autocomplete renderAutoComplete(int idx) {

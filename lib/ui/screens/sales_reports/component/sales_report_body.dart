@@ -26,7 +26,7 @@ class SaleReportBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppText(
-                  text: "Order ID: ${controller.orderId}", //! hardcoded
+                  text: "${"order_id"}: ${controller.orderId}", //! hardcoded
                   style: TextTypes.bodyText1,
                   color: AppColor.charcoal),
               Padding(

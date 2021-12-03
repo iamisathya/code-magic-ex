@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utilities/constants.dart';
 import '../../../utilities/size_config.dart';
@@ -16,7 +17,7 @@ class BackIconButton extends StatelessWidget {
       child: TextButton.icon(
         icon: const Icon(Icons.arrow_back_outlined,
             size: 18, color: Colors.black),
-        label: Text("Back",
+        label: Text("back".tr,
             style: TextStyle(
               color: Colors.black,
               fontSize: getProportionateScreenWidth(16),

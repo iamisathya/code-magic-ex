@@ -30,7 +30,7 @@ class BrosweAttachment extends StatelessWidget {
             () => Text(
                 controller.selectedFileName.value.isNotEmpty
                     ? controller.selectedFileName.value
-                    : "Attach File",
+                    : "attach_file".tr, //!hardcoded
                 overflow: TextOverflow.ellipsis),
           )),
           TextButton.icon(
@@ -38,8 +38,8 @@ class BrosweAttachment extends StatelessWidget {
                   padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
               onPressed: controller.selectSource,
               icon: SvgPicture.asset(kFileIcon, color: AppColor.dodgerBlue),
-              label: const AppText(
-                text: "Browse",
+              label: AppText(
+                text: "browse".tr, //!hardcoded
                 style: TextTypes.subtitle2,
                 color: AppColor.dodgerBlue,
               ))

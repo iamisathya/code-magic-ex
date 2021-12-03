@@ -28,7 +28,7 @@ class DiscardAlert extends StatelessWidget {
           children: <Widget>[
             SvgPicture.asset(kTrashImage, height: 198, width: 234),
             const AppText(
-              text: "“Your current changes will not be saved”",
+              text: "“Your current changes will not be saved”", //! hardcoded
               style: TextTypes.headline6,
               color: AppColor.charcoal,
             ),

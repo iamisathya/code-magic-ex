@@ -1,5 +1,7 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../models/cart_products.dart';
@@ -47,12 +49,12 @@ class CheckoutItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AppText(
-                                text: "CODE: ${item.itemCode}",
+                                text: "${"code".tr}: ${item.itemCode}",
                                 style: TextTypes.caption,
                                 color: AppColor.metallicSilver),
                             AppText(
                                 text:
-                                    "${item.totalPv} PV | ${item.totalPrice} THB",
+                                    "${item.totalPv} ${"pv".tr} | ${item.totalPrice} ${Globals.currency}",
                                 style: TextTypes.bodyText2,
                                 color: AppColor.charcoal),
                           ],

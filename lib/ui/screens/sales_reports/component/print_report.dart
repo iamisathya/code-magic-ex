@@ -16,14 +16,14 @@ class PrintSalesReport extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Sales Report",
+          title: Text("sales_report".tr,
               style: Theme.of(context).textTheme.headline4),
           actions: [
             IconButton(
               icon: const Icon(
                 Icons.print_outlined,
               ),
-              tooltip: 'Print',
+              tooltip: 'print'.tr,
               onPressed: () => controller.proceedToPrint(context,
                   orderHref: controller.orderHref.value),
             ),

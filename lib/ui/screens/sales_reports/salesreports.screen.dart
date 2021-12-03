@@ -31,7 +31,7 @@ class SalesReportsHomeScreen extends StatelessWidget {
                   showNeutral: false,
                   onTapCancelButton: Get.back,
                   negetiveText: "cancel".tr,
-                  positiveText: "find report".tr,
+                  positiveText: "find_report".tr,
                   onTapPositiveButton: () => controller.getAllSalesReports(),
                 )
               : const SizedBox(),

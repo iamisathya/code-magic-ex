@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide StringTranslateExtension;
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -150,17 +150,17 @@ class SalesReportController extends GetxController {
   Future<void> loadSalesReports(BuildContext context) async {
     if (startDate.text.isEmpty || endDate.text.isEmpty) {
       renderErrorSnackBar(
-          title: "Select ${startDate.text.isEmpty ? 'start' : 'end'} date",
+          title: "Select ${startDate.text.isEmpty ? 'start' : 'end'} date", //!hardcoded
           subTitle:
-              "Please select ${startDate.text.isEmpty ? 'start' : 'end'} date from Calender");
+              "Please select ${startDate.text.isEmpty ? 'start' : 'end'} date from Calender"); //!hardcoded
       return;
     } else {
       final DateTime _start = DateTime.parse(startDate.text);
       final DateTime _end = DateTime.parse(endDate.text);
       if (_start.isAfter(_end)) {
         renderErrorSnackBar(
-            title: "Invalid date range!",
-            subTitle: "Start date should be lower than end date!");
+            title: "Invalid date range!", //!hardcoded
+            subTitle: "Start date should be lower than end date!"); //!hardcoded
         return;
       }
     }
@@ -217,7 +217,7 @@ class SalesReportController extends GetxController {
             shape: kRoundedBorder(),
             selected: filterMethod.value == "order",
             selectedTileColor: Theme.of(context).colorScheme.primary,
-            title: Text("By Order",
+            title: Text("by_order".tr,
                 style: TextStyle(
                     color: filterMethod.value == "order"
                         ? Colors.white
@@ -236,7 +236,7 @@ class SalesReportController extends GetxController {
             },
             shape: kRoundedBorder(),
             selectedTileColor: Theme.of(context).colorScheme.primary,
-            title: Text("By Item",
+            title: Text("by_item".tr,
                 style: TextStyle(
                     color: filterMethod.value == "item"
                         ? Colors.white
@@ -255,7 +255,7 @@ class SalesReportController extends GetxController {
             },
             shape: kRoundedBorder(),
             selectedTileColor: Theme.of(context).colorScheme.primary,
-            title: Text("RMAs",
+            title: Text("rmas".tr,
                 style: TextStyle(
                     color: filterMethod.value == "rma"
                         ? Colors.white
@@ -294,8 +294,8 @@ class SalesReportController extends GetxController {
     File? createdFile;
     if (allOrdersAndRmas.orders[0].items.isEmpty) {
       renderGetSnackbar(
-          title: "Empty table!",
-          message: "No data found in table.",
+          title: "empty_table".tr,
+          message: "No data found in table.", //! hardcoded
           type: SnackBarType.error);
       return createdFile;
     }
@@ -348,15 +348,15 @@ class SalesReportController extends GetxController {
           i.cellStyle = headerCellStyle;
         }
         if (x == 0) {
-          emptyA.value = "SL No.";
-          b.value = "Record";
-          c.value = "BA Number";
-          d.value = "Name";
-          e.value = "Order ID";
-          f.value = "Date";
-          g.value = "Time";
-          h.value = "Total Price";
-          i.value = "Total PV";
+          emptyA.value = "slno".tr;
+          b.value = "record".tr;
+          c.value = "ba_number".tr;
+          d.value = "name".tr;
+          e.value = "order_id".tr;
+          f.value = "date".tr;
+          g.value = "time".tr;
+          h.value = "total_price".tr;
+          i.value = "total_pv".tr;
           emptyA.cellStyle = headerCellStyle;
           b.cellStyle = headerCellStyle;
           c.cellStyle = headerCellStyle;

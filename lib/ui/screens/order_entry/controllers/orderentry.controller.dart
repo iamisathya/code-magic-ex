@@ -33,16 +33,16 @@ class OrderEntryTableController extends GetxController {
   RxList<RadioButtonModel> paymentOptions = [
     RadioButtonModel(
       index: 0,
-      name: "DSC",
+      name: "dsc".tr,
     ),
     RadioButtonModel(
       index: 1,
-      name: "Voucher",
+      name: "voucher".tr,
     ),
   ].obs;
   Rx<RadioButtonModel> seletedOption = RadioButtonModel(
     index: 0,
-    name: "DSC",
+    name: "dsc".tr,
   ).obs;
 
   final ProgressBar _sendingMsgProgressBar = ProgressBar();
@@ -90,8 +90,8 @@ class OrderEntryTableController extends GetxController {
         cartProducts.where((el) => el.itemCode != "").toList();
     if (checkoutProducts.isEmpty) {
       renderErrorSnackBar(
-          title: "Empty cart!",
-          subTitle: "Please add products to proceed with checkout!");
+          title: "empty_cart".tr,
+          subTitle: "Please add products to proceed with checkout!"); //!hardcoded
       return;
     }
     _sendingMsgProgressBar.show(context);
@@ -281,7 +281,7 @@ class OrderEntryTableController extends GetxController {
   void _onDioError(DioError e) {
     _sendingMsgProgressBar.hide();
     errorMessage(e.error.toString());
-    renderErrorSnackBar(title: "Error!", subTitle: e.error.toString());
+    renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
     returnResponse(e.response!);
   }
 

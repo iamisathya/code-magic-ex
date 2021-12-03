@@ -32,7 +32,7 @@ class EasyShipOrdersList extends StatelessWidget {
                 () => Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const PageTitle(title: "Easyship Report"),
+                    PageTitle(title: "easyship_report".tr),
                     PageToolBox(controller: controller),
                     SingleChildScrollView(
                       child: Screenshot(
