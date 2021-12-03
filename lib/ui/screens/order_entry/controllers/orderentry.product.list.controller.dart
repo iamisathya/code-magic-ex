@@ -178,6 +178,7 @@ class OrderEntryProductListController extends GetxController {
 
   void clearCart() {
     cartProducts.clear();
+    Navigator.pop(Get.context!);
     calculateTotal();
   }
 
