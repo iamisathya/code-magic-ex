@@ -44,4 +44,6 @@ class Globals {
       : Platform.isAndroid
           ? "Android"
           : "Others";
+
+  static String firebaseToken = "";
 }

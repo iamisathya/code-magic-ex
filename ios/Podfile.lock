@@ -12,6 +12,12 @@ PODS:
   - Firebase/Crashlytics (8.9.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 8.9.0)
+  - Firebase/InAppMessaging (8.9.0):
+    - Firebase/CoreOnly
+    - FirebaseInAppMessaging (~> 8.9.0-beta)
+  - Firebase/Messaging (8.9.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 8.9.0)
   - Firebase/RemoteConfig (8.9.0):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 8.9.0)
@@ -24,6 +30,14 @@ PODS:
     - Flutter
   - firebase_crashlytics (2.3.0):
     - Firebase/Crashlytics (= 8.9.0)
+    - firebase_core
+    - Flutter
+  - firebase_in_app_messaging (0.5.0-14):
+    - Firebase/InAppMessaging (= 8.9.0)
+    - firebase_core
+    - Flutter
+  - firebase_messaging (9.1.4):
+    - Firebase/Messaging (= 8.9.0)
     - firebase_core
     - Flutter
   - firebase_remote_config (0.11.0-2):
@@ -66,11 +80,26 @@ PODS:
     - GoogleUtilities/Environment (~> 7.6)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseInAppMessaging (8.9.0-beta):
+    - FirebaseABTesting (~> 8.0)
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.6)
+    - nanopb (~> 2.30908.0)
   - FirebaseInstallations (8.9.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/UserDefaults (~> 7.6)
     - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseMessaging (8.9.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.6)
+    - GoogleUtilities/Environment (~> 7.6)
+    - GoogleUtilities/Reachability (~> 7.6)
+    - GoogleUtilities/UserDefaults (~> 7.6)
+    - nanopb (~> 2.30908.0)
   - FirebaseRemoteConfig (8.9.0):
     - FirebaseABTesting (~> 8.0)
     - FirebaseCore (~> 8.0)
@@ -168,6 +197,8 @@ DEPENDENCIES:
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
+  - firebase_in_app_messaging (from `.symlinks/plugins/firebase_in_app_messaging/ios`)
+  - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - firebase_remote_config (from `.symlinks/plugins/firebase_remote_config/ios`)
   - Flutter (from `Flutter`)
   - flutter_barcode_scanner (from `.symlinks/plugins/flutter_barcode_scanner/ios`)
@@ -194,7 +225,9 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCrashlytics
+    - FirebaseInAppMessaging
     - FirebaseInstallations
+    - FirebaseMessaging
     - FirebaseRemoteConfig
     - FMDB
     - GoogleAppMeasurement
@@ -213,6 +246,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_crashlytics:
     :path: ".symlinks/plugins/firebase_crashlytics/ios"
+  firebase_in_app_messaging:
+    :path: ".symlinks/plugins/firebase_in_app_messaging/ios"
+  firebase_messaging:
+    :path: ".symlinks/plugins/firebase_messaging/ios"
   firebase_remote_config:
     :path: ".symlinks/plugins/firebase_remote_config/ios"
   Flutter:
@@ -254,13 +291,17 @@ SPEC CHECKSUMS:
   firebase_analytics: 7a7528bb2abf4ca22cff7a57bbf909dcab73e13d
   firebase_core: f770e033e790657b3505f04be4cb24c482912f11
   firebase_crashlytics: ed8c1d66dc407d617cbed798f05a5d9115da7494
+  firebase_in_app_messaging: f81d838e861b61e5e1a89965bdc76de5cecfc4c5
+  firebase_messaging: fc5f05068c268490a479677133152b27e76ae91e
   firebase_remote_config: 64af2ad097186f4831a7095b2b03599276eb8a64
   FirebaseABTesting: 9de50b34bf9eb4a07d4edb7af82c14152fd905aa
   FirebaseAnalytics: 4ab446ce08a3fe52e8a4303dd997cf26276bf968
   FirebaseCore: 599ee609343eaf4941bd188f85e3aa077ffe325b
   FirebaseCoreDiagnostics: 5daa63f1c1409d981a2d5007daa100b36eac6a34
   FirebaseCrashlytics: 40efbd81157dae307ec95612fa1328347284d2c2
+  FirebaseInAppMessaging: 2fc3754e9e63dd44daff52930f075525cc9a518c
   FirebaseInstallations: caa7c8e0d3e2345b8829d2fa9ca1b4dfbf2fcc85
+  FirebaseMessaging: 82c4a48638f53f7b184f3cc9f6cd2cbe533ab316
   FirebaseRemoteConfig: a75c1bd44ebd3ed4ad3fa1ff09414a8b133be405
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_barcode_scanner: 7a1144744c28dc0c57a8de7218ffe5ec59a9e4bf
