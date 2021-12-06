@@ -146,7 +146,7 @@ const kSettingsIcon = 'assets/icons/dashboard/settings.svg';
 const kSignOutIcon = 'assets/icons/dashboard/sign_out.svg';
 const kUnicityLogoIcon = 'assets/icons/dashboard/unicity_logo.svg';
 const kDscLogoIcon = 'assets/icons/dashboard/dsc_logo.svg';
-const kOrderEntryErrorImage = 'assets/icons/order_entyry_error.svg';
+const kOrderEntryErrorImage = 'assets/images/order_entyry_error.svg';
 
 // * splash
 const kSplashImage = 'assets/images/splash.jpg';

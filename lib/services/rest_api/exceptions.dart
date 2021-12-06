@@ -65,4 +65,3 @@ class UnexpectedException extends AppException {
     this.errStatus = 0,
   }) : super(errMessage, errStatus);
 }
-

@@ -25,6 +25,7 @@ class OrderEntryUserListController extends GetxController {
   RxString filterMethod = "baId".obs;
   RxBool isLoading = false.obs;
   RxBool isFetching = false.obs;
+  RxBool showErrorImage = false.obs;
   RxList<String> searchedUsers = <String>["Hi", "Sathya"].obs;
   final selecteduserIndex = Rxn<int>();
   SearchCustomer searchedResultsOfHref = SearchCustomer(items: []);
@@ -41,8 +42,11 @@ class OrderEntryUserListController extends GetxController {
   Future<void> searchUserBySearchQuery() async {
     if (searchUserTextController.text.isEmpty) {
       SnackbarUtil.showWarning(message: "User id shouldn't be empty."); //! hardcoded
+      showErrorImage.value = true;
+      print("here");
       return;
     }
+    showErrorImage.value = false;
     if (filterMethod.value == "baId") {
       searchUserById();
       searchResultsOfUserInfo.clear();
@@ -69,8 +73,10 @@ class OrderEntryUserListController extends GetxController {
       }
       isLoading.toggle();
     } on DioError catch (e) {
+      showErrorImage.value = true;
       _onDioError(e);
     } catch (err, s) {
+      showErrorImage.value = true;
       _onCatchError(err, s);
     }
   }
@@ -129,7 +135,8 @@ class OrderEntryUserListController extends GetxController {
     isLoading.toggle();
   }
 
-  void onChangeMonthType(int index) {
+  void onChangeTab(int index) {
+    showErrorImage.value = false;
     currentTab.value = index;
     searchUserTextController.text = "";
     filterMethod.value = searchOptions[index].value;
@@ -137,6 +144,7 @@ class OrderEntryUserListController extends GetxController {
   }
 
   void onSelectUser(int idx) {
+    showErrorImage.value = false;
     searchUserTextController.text =
         searchResultsOfUserInfo[idx].humanName.fullName;
     selecteduserIndex.value = idx;
@@ -154,6 +162,10 @@ class OrderEntryUserListController extends GetxController {
     });
   }
 
+  void onTextChange(String val) {
+    showErrorImage.value = false;
+  }
+
   void onCancel() {
     Get.back();
   }
@@ -163,6 +175,7 @@ class OrderEntryUserListController extends GetxController {
       searchUserBySearchQuery();
       return;
     }
+    showErrorImage.value = false;
     SnackbarUtil.showWarning(message: "Please enter/select user id first!"); //! hardcoded
   }
 }

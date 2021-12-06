@@ -1,4 +1,6 @@
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
@@ -46,7 +48,7 @@ class Body extends StatelessWidget {
                               (NameValueType type, int index) =>
                                   GestureDetector(
                                 onTap: () =>
-                                    controller.onChangeMonthType(index),
+                                    controller.onChangeTab(index),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: index != 0 ? 8.0 : 0),
@@ -63,13 +65,15 @@ class Body extends StatelessWidget {
                     WhiteSearchField(
                         controller: controller.searchUserTextController,
                         onPress: controller.searchUserBySearchQuery,
+                        onChanged: controller.onTextChange,
                         hintText: "BA Number or Govt ID or Name", //! hardcoded
                         isFetching: controller.isFetching)
                   ],
                 ),
               ),
             ),
-            if (controller.filterMethod.value != "baId")
+            if (controller.filterMethod.value != "baId" &&
+                controller.searchResultsOfUserInfo.isNotEmpty)
               Expanded(
                 child: SingleChildScrollView(
                     child: Padding(
@@ -110,7 +114,10 @@ class Body extends StatelessWidget {
                 )),
               )
             else
-              const SizedBox()
+              Obx(() => Expanded(
+                  child: controller.showErrorImage.value
+                      ? SvgPicture.asset(kOrderEntryErrorImage)
+                      : const SizedBox()))
           ],
         ),
       ),

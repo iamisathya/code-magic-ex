@@ -48,7 +48,7 @@ class BottomButtonBar extends StatelessWidget {
                   ),
                   Flexible(
                     child: PositiveButton(
-                        title: "next".tr, onTap: controller.onProceedNext),
+                        title: "next".tr, onTap: controller.searchUserBySearchQuery),
                   ),
                 ],
               ),
