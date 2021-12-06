@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/models/barcode_response_dsc.dart';
+import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -117,7 +118,7 @@ class BarcodeScannResultController extends getx.GetxController {
     try {
       final String orderCode = orderUrl.value.retrieveOrderCodeFromLightUrl();
       final String orderNumber = orderUrl.value.retrieveLastString();
-      barcodeDetails = await DscCallService.init().getBarcodeDetails(          
+      barcodeDetails = await DscCallService.init().getBarcodeDetails(
           orderNumber,
           UserSessionManager.shared.customerToken.token,
           orderCode);
@@ -251,18 +252,27 @@ class BarcodeScannResultController extends getx.GetxController {
           .getBarcodeItems(gTokenBarcodeNew, FormData.fromMap(map));
       final jsonDecodedData =
           jsonDecode(response as String) as Map<String, dynamic>;
-      final List<dynamic> list = jsonDecodedData["items"] as List<dynamic>;
-      final List<BarcodeItem> modified = [];
-      for (final item in list) {
-        item["isExpanded"] = false;
-        item["barcodes"] = [];
-        final currentItem = BarcodeItem.fromJson(item as Map<String, dynamic>);
-        modified.add(currentItem);
+      if (jsonDecodedData["user"] == null) {
+        final List<dynamic> list = jsonDecodedData["items"] as List<dynamic>;
+        final List<BarcodeItem> modified = [];
+        for (final item in list) {
+          item["isExpanded"] = false;
+          item["barcodes"] = [];
+          final currentItem =
+              BarcodeItem.fromJson(item as Map<String, dynamic>);
+          modified.add(currentItem);
+        }
+        barcodeItems = BarCodeItemsResponse.fromJson(jsonDecodedData);
+        barcodeItems!.items = modified;
+      } else {
+        throw const UnexpectedException();
       }
-      barcodeItems = BarCodeItemsResponse.fromJson(jsonDecodedData);
-      barcodeItems!.items = modified;
       isLoading.toggle();
       update();
+    } on AppException catch (exception) {
+      debugPrint(exception.message);
+      isLoading.toggle();
+      getx.Get.back();
     } catch (err, s) {
       isLoading.toggle();
       LoggerService.instance.e(s);
@@ -297,7 +307,7 @@ class BarcodeScannResultController extends getx.GetxController {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                  width: getx.Get.width, 
+                  width: getx.Get.width,
                   height: 50,
                   child: TextButton(
                       onPressed: () => getx.Get.back(),
@@ -398,7 +408,8 @@ class BarcodeScannResultController extends getx.GetxController {
         hasAnyChangesMade.value = false;
         closeAllItems();
         SnackbarUtil.showSuccess(
-            message: "Barcode scan successfull for ${expandedItem.code}"); //!hardcoded
+            message:
+                "Barcode scan successfull for ${expandedItem.code}"); //!hardcoded
         getBarcodePath();
       } else if (barCodeSaveResponse!.errorMessages!.isNotEmpty) {
         final errors = StringBuffer();

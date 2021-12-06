@@ -53,3 +53,16 @@ class GeneralException extends AppException {
       ? 'Something went wrong. Please try again or contact administrator'
       : message;
 }
+
+
+/// Api - TimedOut
+class UnexpectedException extends AppException {
+  final String errMessage;
+  final int errStatus;
+
+  const UnexpectedException({
+    this.errMessage = 'Something went wrong. Please try again.',
+    this.errStatus = 0,
+  }) : super(errMessage, errStatus);
+}
+
