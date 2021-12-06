@@ -19,8 +19,8 @@ class OrderEntryProductListController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();
   RxInt currentTab = 0.obs;
   RxList<NameValueType> filterOptions = [
-    NameValueType(name: "All Product", value: "all"), //!hardcoded
-    NameValueType(name: "Easyship Set", value: "easyShip"), //!hardcoded
+    NameValueType(name: "all_product".tr, value: "all"),
+    NameValueType(name: "easyship_set".tr, value: "easyShip"),
   ].obs;
   RxString filterMethod = "all".obs;
 
@@ -113,7 +113,9 @@ class OrderEntryProductListController extends GetxController {
 
   void onSearchPressed() {}
 
-  void onCancel() {}
+  void onCancel() {
+    Get.back();
+  }
 
   void onProceedNext() {}
 
