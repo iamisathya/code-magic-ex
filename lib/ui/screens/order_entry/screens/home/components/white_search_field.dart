@@ -12,6 +12,7 @@ class WhiteSearchField extends StatelessWidget {
     required this.isFetching,
     required this.onPress,
     required this.hintText,
+    this.kType = TextInputType.text,
     this.onChanged,
   }) : super(key: key);
 
@@ -19,6 +20,7 @@ class WhiteSearchField extends StatelessWidget {
   final VoidCallback onPress;
   final String hintText;
   final RxBool isFetching;
+  final TextInputType kType;
   final Function(String)? onChanged;
 
   @override
@@ -29,6 +31,7 @@ class WhiteSearchField extends StatelessWidget {
       child: TextField(
         onChanged: onChanged,
         controller: controller,
+        keyboardType: kType,
         decoration: InputDecoration(
           filled: true,
           border: InputBorder.none,

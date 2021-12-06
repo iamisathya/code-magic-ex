@@ -47,8 +47,7 @@ class Body extends StatelessWidget {
                             .mapIndexed(
                               (NameValueType type, int index) =>
                                   GestureDetector(
-                                onTap: () =>
-                                    controller.onChangeTab(index),
+                                onTap: () => controller.onChangeTab(index),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: index != 0 ? 8.0 : 0),
@@ -66,6 +65,9 @@ class Body extends StatelessWidget {
                         controller: controller.searchUserTextController,
                         onPress: controller.searchUserBySearchQuery,
                         onChanged: controller.onTextChange,
+                        kType: controller.currentTab.value == 0
+                            ? TextInputType.number
+                            : TextInputType.text,
                         hintText: "BA Number or Govt ID or Name", //! hardcoded
                         isFetching: controller.isFetching)
                   ],

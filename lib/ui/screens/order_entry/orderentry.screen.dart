@@ -17,7 +17,9 @@ class OrderEntryHomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteSmokeColor,
       appBar: OpenPoAppBar(),
-      body: Body(),
+      body: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Body()),
       bottomNavigationBar: BottomButtonBar(controller: controller),
     );
   }
@@ -48,7 +50,8 @@ class BottomButtonBar extends StatelessWidget {
                   ),
                   Flexible(
                     child: PositiveButton(
-                        title: "next".tr, onTap: controller.searchUserBySearchQuery),
+                        title: "next".tr,
+                        onTap: controller.searchUserBySearchQuery),
                   ),
                 ],
               ),
