@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:dsc_tools/services/firebase/messaging.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,7 +32,8 @@ Future<void> main() async {
   AppBindings().dependencies();
   CreateOpenPoOrderBindings().dependencies();
   OpenPoOrderListBindings().dependencies();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
+  await Messaging.instanceId();
   await dotenv.load();
   await GetStorage.init();
   Get.put<ThemeController>(ThemeController());
