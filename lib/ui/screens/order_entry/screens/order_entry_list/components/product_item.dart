@@ -26,7 +26,7 @@ class ProductItem extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.0),
-          side: BorderSide(color: AppColor.sunglow, width: inCart ? 1 : 0),
+          side: BorderSide(color: AppColor.sunglow, style: inCart ? BorderStyle.solid : BorderStyle.none),
         ),
         child: Stack(children: [
           Align(
