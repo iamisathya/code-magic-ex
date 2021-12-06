@@ -252,7 +252,7 @@ class BarcodeScannResultController extends getx.GetxController {
           .getBarcodeItems(gTokenBarcodeNew, FormData.fromMap(map));
       final jsonDecodedData =
           jsonDecode(response as String) as Map<String, dynamic>;
-      if (jsonDecodedData["user"] == null) {
+      if (jsonDecodedData["user"] != null) {
         final List<dynamic> list = jsonDecodedData["items"] as List<dynamic>;
         final List<BarcodeItem> modified = [];
         for (final item in list) {
