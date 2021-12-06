@@ -43,7 +43,6 @@ class OrderEntryUserListController extends GetxController {
     if (searchUserTextController.text.isEmpty) {
       SnackbarUtil.showWarning(message: "User id shouldn't be empty."); //! hardcoded
       showErrorImage.value = true;
-      print("here");
       return;
     }
     showErrorImage.value = false;

@@ -111,6 +111,8 @@ dynamic returnResponse(dio.Response response) {
     case 503:
       throw InternetFailedException(
           message: '${"service_unavailable".tr}: ${response.statusCode}'); //!Hardcoded
+    case 524:
+      throw TimeOutException(message: '${"server_timeout".tr}: ${response.statusCode}'); //!Hardcoded
     default:
       throw InternetFailedException(
           message: '${"internal_server_error".tr}: ${response.statusCode}'); //!Hardcoded

@@ -21,39 +21,41 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          children: [
-            Headline(title: "order_entry_summary".tr),
-            UserInfoBox(),
-            FilterTabs(),
-            Obx(
-              () => ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                padding: const EdgeInsets.only(
-                    left: 12.0, right: 12.0, top: 20, bottom: 20),
-                itemCount: controller.filterMethod.value == "myCart"
-                    ? listController.cartProducts.length
-                    : PaymentTypes.values.length,
-                itemBuilder: (BuildContext ctxt, int index) {
-                  if (controller.filterMethod.value == "myCart") {
-                    final CartProductsItem item =
-                        listController.cartProducts[index];
-                    return CheckoutItem(item: item);
-                  } else {
-                    return PaymentItem(controller: controller, index: index);
-                  }
-                },
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              Headline(title: "order_entry_summary".tr),
+              UserInfoBox(),
+              FilterTabs(),
+              Obx(
+                () => ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(
+                      left: 12.0, right: 12.0, top: 20, bottom: 20),
+                  itemCount: controller.filterMethod.value == "myCart"
+                      ? listController.cartProducts.length
+                      : PaymentTypes.values.length,
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    if (controller.filterMethod.value == "myCart") {
+                      final CartProductsItem item =
+                          listController.cartProducts[index];
+                      return CheckoutItem(item: item);
+                    } else {
+                      return PaymentItem(controller: controller, index: index);
+                    }
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
-        TotalAmountBox(),
-      ],
+            ],
+          ),
+          TotalAmountBox(),
+        ],
+      ),
     );
   }
 }

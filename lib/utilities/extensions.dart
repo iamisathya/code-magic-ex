@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'enums.dart';
@@ -21,6 +22,12 @@ extension WidgetOp on Widget {
   }
 }
 
+
+extension DoubleParsing on RxDouble {
+  String numberFormat() {
+    return NumberFormat("#,###").format(value);
+  }
+}
 extension NumberParsing on String {
   double toDouble() {
     return double.tryParse(this) ?? 0.0;

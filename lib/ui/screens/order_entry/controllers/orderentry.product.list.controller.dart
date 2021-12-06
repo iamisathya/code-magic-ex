@@ -178,9 +178,11 @@ class OrderEntryProductListController extends GetxController {
     // update();
   }
 
-  void clearCart() {
+  void clearCart({bool clearOnly = false}) {
     cartProducts.clear();
-    Navigator.pop(Get.context!);
+    if(!clearOnly) {
+      Navigator.pop(Get.context!);
+    }
     calculateTotal();
   }
 

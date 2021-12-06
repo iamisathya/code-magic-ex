@@ -43,7 +43,7 @@ class DiscardAlert extends StatelessWidget {
                   ),
                   Flexible(
                     child: PositiveButton(
-                        title: "next".tr, onTap: controller.clearCart),
+                        title: "ok_got_it".tr, onTap: controller.clearCart),
                   ),
                 ],
               ),

@@ -22,7 +22,7 @@ class UserInfoBox extends StatelessWidget {
         children: [
           TitleBox(title: listController.userData.userId),
           const SizedBox(width: 10),
-          Expanded(child: TitleBox(title: listController.userData.fullName)),
+          Flexible(child: TitleBox(title: listController.userData.fullName)),
         ],
       ),
     );

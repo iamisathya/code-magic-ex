@@ -1,11 +1,13 @@
 import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../global/theme/text_view.dart';
 import '../../../controllers/orderentry.product.list.controller.dart';
+import '../../../../../../utilities/extensions.dart';
 
 class TotalAmountBox extends StatelessWidget {
   final OrderEntryProductListController listController =
@@ -40,7 +42,7 @@ class TotalAmountBox extends StatelessWidget {
               children: [
                 AppText(text: "${"total_price".tr}:", style: TextTypes.bodyText2),
                 Obx(() => AppText(
-                    text: "${listController.totalCartPrice} THB",
+                    text: "${listController.totalCartPrice.numberFormat()} ${Globals.currency}",
                     style: TextTypes.bodyText2))
               ],
             ),
@@ -54,7 +56,7 @@ class TotalAmountBox extends StatelessWidget {
             children: [
               AppText(text: "payment_amount".tr, style: TextTypes.subtitle1),
               Obx(() => AppText(
-                  text: "${listController.totalCartPrice} ${Globals.currency}",
+                  text: "${listController.totalCartPrice.numberFormat()} ${Globals.currency}",
                   style: TextTypes.subtitle1))
             ],
           ),

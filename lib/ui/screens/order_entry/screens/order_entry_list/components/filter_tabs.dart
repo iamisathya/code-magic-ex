@@ -38,7 +38,7 @@ class FilterTabs extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: controller.clearCart,
+            onTap: () => controller.clearCart(clearOnly: true),
             child: SvgPicture.asset(
               kTrashIcon,
               width: 20,
