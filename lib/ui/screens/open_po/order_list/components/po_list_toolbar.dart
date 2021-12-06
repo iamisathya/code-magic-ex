@@ -41,7 +41,7 @@ class PoListToolBar extends StatelessWidget {
                                 child: AppText(
                                     text: type.name,
                                     style: controller.currentTab.value == index
-                                        ? TextTypes.bodyText1
+                                        ? TextTypes.subtitle1
                                         : TextTypes.bodyText2)))
                         .toList()),
               ),
