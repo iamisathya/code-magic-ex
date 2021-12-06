@@ -7,7 +7,7 @@ class BarCodeItemsResponse {
   @JsonKey(name: "items")
   List<BarcodeItem> items;
   @JsonKey(name: "user")
-  String user;
+  String? user;
 
   BarCodeItemsResponse({required this.items, required this.user});
 

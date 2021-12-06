@@ -11,7 +11,7 @@ BarCodeItemsResponse _$BarCodeItemsResponseFromJson(Map<String, dynamic> json) {
     items: (json['items'] as List<dynamic>)
         .map((e) => BarcodeItem.fromJson(e as Map<String, dynamic>))
         .toList(),
-    user: json['user'] as String,
+    user: json['user'] as String?,
   );
 }
 
