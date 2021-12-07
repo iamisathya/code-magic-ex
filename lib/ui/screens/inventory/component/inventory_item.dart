@@ -1,3 +1,5 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -23,23 +25,21 @@ class InventoryItem extends StatelessWidget {
     final int totalPv =
         Parsing.intFrom(item.quantityOnHand)! * item.terms.pvEach;
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       width: double.infinity,
       height: 340,
       decoration: BoxDecoration(
           color: controller.activeStockType.value.value == "onHand"
-              ? AppColor.cultured
+              ? AppColor.bubbles
               : AppColor.isabelline,
           borderRadius: const BorderRadius.all(Radius.circular(3.0))),
       child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(20),
-            child: Text(item.catalogSlideContent.content.description,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6!
-                    .copyWith(color: AppColor.kBlackColor)),
+            child: AppText(
+                text: item.catalogSlideContent.content.description,
+                style: TextTypes.headline6),
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -59,29 +59,23 @@ class InventoryItem extends StatelessWidget {
                   height: 105,
                   width: 100,
                   decoration: BoxDecoration(
-                      border: Border.all(color: AppColor.kWhiteColor),
+                      border: Border.all(color: AppColor.sunglow),
                       borderRadius: BorderRadius.circular(2)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "quantiity_on_hand".tr,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2!
-                              .copyWith(color: AppColor.metallicSilver),
-                        ),
+                        child: AppText(
+                            text: "quantiity_on_hand".tr,
+                            align: TextAlign.center,
+                            style: TextTypes.bodyText2,
+                            color: AppColor.metallicSilver),
                       ),
-                      Text(
-                        item.quantityOnHand,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4!
-                            .copyWith(color: AppColor.mediumAquamarine),
-                      ),
+                      AppText(
+                          text: item.quantityOnHand,
+                          style: TextTypes.headline4,
+                          color: AppColor.vividMalachite),
                     ],
                   ),
                 ),
@@ -97,17 +91,13 @@ class InventoryItem extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                          "${item.terms.pvEach} ${"pv".tr} | ${NumberFormat().format(item.terms.priceEach.toInt())} ${Globals.currency}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle2!
-                              .copyWith(color: AppColor.kBlackColor)),
-                      Text("${"item_code".tr}: ${item.item.id.unicity}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle2!
-                              .copyWith(color: AppColor.kBlackColor)),
+                      AppText(
+                          text:
+                              "${item.terms.pvEach} ${"pv".tr} | ${NumberFormat().format(item.terms.priceEach.toInt())} ${Globals.currency}",
+                          style: TextTypes.subtitle2),
+                      AppText(
+                          text: "${"item_code".tr}: ${item.item.id.unicity}",
+                          style: TextTypes.subtitle2),
                     ],
                   ),
                 ),
@@ -121,31 +111,27 @@ class InventoryItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("${"total_price".tr}:",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(color: AppColor.cadet)),
-                    Text("$totalPriceString  ${Globals.currency}",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(color: AppColor.cadet)),
+                    AppText(
+                        text: "${"total_price".tr}:",
+                        style: TextTypes.bodyText2,
+                        color: AppColor.darkLiver),
+                    AppText(
+                        text: "$totalPriceString  ${Globals.currency}",
+                        style: TextTypes.bodyText2,
+                        color: AppColor.darkLiver),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("${"total_pv".tr}:",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(color: AppColor.cadet)),
-                    Text("$totalPv ${"pv".tr}",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2!
-                            .copyWith(color: AppColor.cadet)),
+                    AppText(
+                        text: "${"total_pv".tr}:",
+                        style: TextTypes.bodyText2,
+                        color: AppColor.darkLiver),
+                    AppText(
+                        text: "$totalPv ${"pv".tr}",
+                        style: TextTypes.bodyText2,
+                        color: AppColor.darkLiver),
                   ],
                 )
               ],

@@ -65,6 +65,7 @@ class AppColor {
   static const chineseSilver = Color(0xFFCBCBCD);
   static const maximumYellowRed = Color(0xFFE7BB4A);
   static const lightCrimson = Color(0xFFF9748E);
+  static const vividMalachite = Color(0xFF03C302);
 
   /// Swatch
   static const MaterialColor primarySwatch = MaterialColor(0xff5D4377, {
