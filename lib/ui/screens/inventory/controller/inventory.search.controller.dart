@@ -13,6 +13,8 @@ class InventorySearchController extends GetxController {
 
   TextEditingController searchTextController = TextEditingController();
   RxList<String> searchHistory = <String>[].obs;
+  final selectedSearchIndex = Rxn<int>();
+  RxBool searchingProduct = false.obs;
   final store = GetStorage();
 
   @override
@@ -22,17 +24,26 @@ class InventorySearchController extends GetxController {
   }
 
   void searchOrder(String searchKey) {
-    final InventoryRecordItems? inventoryItem =
-        controller.inventoryRecords.value.items.firstWhereOrNull((order) =>
-            order.item.id.unicity == searchKey ||
-            order.catalogSlideContent.content.description == searchKey);
-    if (inventoryItem != null && inventoryItem.item.id.unicity.isNotEmpty) {
-      Get.to(() => InventorySearchResult(), arguments: inventoryItem);
-      return;
-    }
-    SnackbarUtil.showWarning(
-        message:
-            "Sorry no items found in inventory with search key: $searchKey"); //! hardcoded
+    selectedSearchIndex.value =
+        searchHistory.indexWhere((element) => element == searchKey);
+    searchingProduct.toggle();
+    Future.delayed(const Duration(milliseconds: 1200), () {
+      searchingProduct.toggle();
+      final InventoryRecordItems? inventoryItem =
+          controller.inventoryRecords.value.items.firstWhereOrNull((order) =>
+              order.item.id.unicity.contains(searchKey) ||
+              order.catalogSlideContent.content.description
+                  .contains(searchKey));
+      if (inventoryItem != null && inventoryItem.item.id.unicity.isNotEmpty) {
+        selectedSearchIndex.value = null;
+        Get.to(() => InventorySearchResult(), arguments: inventoryItem);
+        return;
+      }
+
+      SnackbarUtil.showWarning(
+          message:
+              "Sorry no items found in inventory with search key: $searchKey"); //! hardcoded
+    });
   }
 
   // Retrieves and Sets language based on device settings

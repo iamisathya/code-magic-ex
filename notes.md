@@ -8,3 +8,5 @@ Navigator.pushAndRemoveUntil(context, D.routeName, (route) => false)(
        settings: RouteSettings(name: "/a"),
        builder: (BuildContext context) => D()),
     );
+
+final selectedSearchIndex = Rxn<int>();

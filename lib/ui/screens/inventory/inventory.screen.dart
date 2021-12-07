@@ -14,12 +14,12 @@ class InventoryHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: kWhiteSmokeColor,
-        appBar: OpenPoAppBar(),
-        body: Obx(() => LoadingOverlay(
-            isLoading: controller.isLoading.value,
-            progressIndicator: const Loader(),
-            child: Body2())));
+    return Obx(() => LoadingOverlay(
+        isLoading: controller.isLoading.value,
+        progressIndicator: const Loader(),
+        child: Scaffold(
+            backgroundColor: kWhiteSmokeColor,
+            appBar: OpenPoAppBar(),
+            body: Body2())));
   }
 }

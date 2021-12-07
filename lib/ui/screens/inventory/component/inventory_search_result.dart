@@ -30,7 +30,6 @@ class InventorySearchResult extends StatelessWidget {
                 onTapExport: () => null,
                 onTapPrint: () => null,
                 hideSearch: true),
-            Container(height: 10, color: AppColor.chineseSilver),
             Column(
               children: [
                 Column(

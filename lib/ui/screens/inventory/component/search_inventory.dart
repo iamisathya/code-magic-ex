@@ -1,3 +1,6 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -19,6 +22,8 @@ class _SearchAppBarState extends State<SearchProducts> {
   Widget appBarTitle = const Text("");
   SvgPicture actionIcon = SvgPicture.asset(kSearchIcon,
       height: 20, key: const ObjectKey("seachIcon"));
+  Image loadingIcon =
+      Image.asset(kAnimatedSpin, width: 30, key: const ObjectKey("seachIcon"));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +33,8 @@ class _SearchAppBarState extends State<SearchProducts> {
         title: appBarTitle,
         actions: <Widget>[
           IconButton(
-            icon: actionIcon,
+            icon: Obx(() =>
+                controller.searchingProduct.value ? loadingIcon : actionIcon),
             onPressed: () {
               setState(() {
                 if (actionIcon.key == const ObjectKey("seachIcon")) {
@@ -89,11 +95,14 @@ class _SearchAppBarState extends State<SearchProducts> {
                     child: GestureDetector(
                       onTap: () => controller
                           .searchOrder(controller.searchHistory[index]),
-                      child: Text(controller.searchHistory[index],
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle2!
-                              .copyWith(color: AppColor.cadet)),
+                      child: Obx(
+                        () => AppText(
+                            text: controller.searchHistory[index],
+                            style: controller.selectedSearchIndex.value == index
+                                ? TextTypes.headline6
+                                : TextTypes.subtitle2,
+                            color: AppColor.cadet),
+                      ),
                     ),
                   );
                 },
