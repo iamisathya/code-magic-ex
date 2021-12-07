@@ -1,5 +1,8 @@
 import 'package:collection/collection.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_search/components/search_bar_field.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -15,17 +18,42 @@ class InventorySearchController extends GetxController {
   RxList<String> searchHistory = <String>[].obs;
   final selectedSearchIndex = Rxn<int>();
   RxBool searchingProduct = false.obs;
+  Rx<Key> currentSearchBariconKey = const ObjectKey("seachIcon").obs;
   final store = GetStorage();
+
+  // App bars
+  Widget appBarTitle = const Text("");
+  final SvgPicture actionIcon = SvgPicture.asset(kSearchIcon,
+      height: 20, key: const ObjectKey("seachIcon"));
+  final Image loadingIcon =
+      Image.asset(kAnimatedSpin, width: 30, key: const ObjectKey("seachIcon"));
 
   @override
   void onInit() {
     getSearchHistory();
+    onPressAppBar();
     super.onInit();
+  }
+
+  void onPressAppBar() {
+    if (actionIcon.key == currentSearchBariconKey.value) {
+      appBarTitle = SearchBarField(
+        autofocus: true,
+        searchTextController: searchTextController,
+        placeHolder: "${"item_number".tr}...",
+      );
+      addSearchItem(searchTextController.text);
+    } else {
+      appBarTitle = const Text("");
+    }
+    update();
   }
 
   void searchOrder(String searchKey) {
     selectedSearchIndex.value =
         searchHistory.indexWhere((element) => element == searchKey);
+    searchTextController.text = searchHistory[selectedSearchIndex.value!];
+    searchTextController.selection = TextSelection.fromPosition(TextPosition(offset: searchTextController.text.length));
     searchingProduct.toggle();
     Future.delayed(const Duration(milliseconds: 1200), () {
       searchingProduct.toggle();
@@ -36,6 +64,7 @@ class InventorySearchController extends GetxController {
                   .contains(searchKey));
       if (inventoryItem != null && inventoryItem.item.id.unicity.isNotEmpty) {
         selectedSearchIndex.value = null;
+        searchTextController.text = "";
         Get.to(() => InventorySearchResult(), arguments: inventoryItem);
         return;
       }
