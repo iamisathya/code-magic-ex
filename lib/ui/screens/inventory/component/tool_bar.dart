@@ -22,7 +22,7 @@ class InventoryToolBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColor.brightGray,
+      color: AppColor.sunglow,
       height: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,16 +30,18 @@ class InventoryToolBar extends StatelessWidget {
           Obx(() => Flexible(
               flex: 3,
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: controller.stockOptions
                       .map((element) => GestureDetector(
                           onTap: () =>
                               controller.onChangeStockType(element.value),
-                          child: Text(element.name,
-                              style: controller.activeStockType.value.name ==
-                                      element.name
-                                  ? Theme.of(context).textTheme.subtitle1
-                                  : Theme.of(context).textTheme.bodyText2)))
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Text(element.name,
+                                style: controller.activeStockType.value.name ==
+                                        element.name
+                                    ? Theme.of(context).textTheme.subtitle1
+                                    : Theme.of(context).textTheme.bodyText2),
+                          )))
                       .toList()))),
           Flexible(
               flex: 2,

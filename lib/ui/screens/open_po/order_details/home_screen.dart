@@ -28,7 +28,6 @@ class OpenPoOrderDetails extends StatelessWidget {
           body: Body(),
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
-            bgColor: AppColor.brightGray,
             onTapCancelButton: Get.back,
             negetiveText: "back".tr,
             positiveText: "print_po_list".tr,

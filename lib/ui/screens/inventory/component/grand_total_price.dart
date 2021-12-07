@@ -1,3 +1,5 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,77 +16,39 @@ class GrandTotal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColor.cadetBlue,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(children: [
-          Container(
-            decoration: const BoxDecoration(
-                color: AppColor.kWhiteColor,
-                borderRadius: BorderRadius.all(Radius.circular(3.0))),
-            height: 40,
-            child: Row(
+      padding: const EdgeInsets.all(20.0),
+      color: AppColor.crayola,
+      child: Container(
+        padding: const EdgeInsets.all(15.0),
+        decoration: BoxDecoration(
+            color: AppColor.bubbles, borderRadius: BorderRadius.circular(10)),
+        height: 70,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
-                  child: Text(
-                    "${"grand_total_price".tr}:",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText2!
-                        .copyWith(color: AppColor.kBlackColor),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
-                  child: Text(
-                    "${totalPrice.format()} ${Globals.currency}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText2!
-                        .copyWith(color: AppColor.kBlackColor),
-                  ),
-                ),
+                AppText(
+                    text: "${"grand_total_price".tr}:",
+                    style: TextTypes.bodyText1),
+                AppText(
+                    text: "${totalPrice.format()} ${Globals.currency}",
+                    style: TextTypes.bodyText1),
               ],
             ),
-          ),
-          const SizedBox(height: 10),
-          Container(
-              decoration: const BoxDecoration(
-                  color: AppColor.kWhiteColor,
-                  borderRadius: BorderRadius.all(Radius.circular(3.0))),
-              height: 40,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 13),
-                    child: Text(
-                      "${"grand_total_pv".tr}:",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(color: AppColor.kBlackColor),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 13),
-                    child: Text(
-                      "$totalPv ${"pv".tr}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(color: AppColor.kBlackColor),
-                    ),
-                  ),
-                ],
-              )),
-        ]),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppText(
+                    text: "${"grand_total_pv".tr}:",
+                    style: TextTypes.bodyText1),
+                AppText(
+                    text: "$totalPv ${"pv".tr}", style: TextTypes.bodyText1),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

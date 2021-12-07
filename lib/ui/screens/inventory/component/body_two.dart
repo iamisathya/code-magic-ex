@@ -25,7 +25,6 @@ class Body2 extends StatelessWidget {
               onTapExport: () => controller.onTapExportExcellSheet(),
               onTapPrint: () => controller.onTapPrint()),
           UserAddress(),
-          Container(height: 10, color: AppColor.chineseSilver),
           Obx(() => Column(
                 children: [
                   if (controller.currentViewType.value.value == "card")
