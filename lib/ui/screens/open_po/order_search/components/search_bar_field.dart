@@ -6,9 +6,10 @@ import '../../../../../constants/colors.dart';
 class SearchBarField extends StatelessWidget {
   final TextEditingController searchTextController;
   final String placeHolder;
+  final bool autofocus;
 
   const SearchBarField(
-      {required this.searchTextController, this.placeHolder = "Search ..."});
+      {required this.searchTextController, this.placeHolder = "Search ...", this.autofocus = false});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class SearchBarField extends StatelessWidget {
           controller: searchTextController,
           style: const TextStyle(fontSize: 14),
           keyboardType: TextInputType.number,
+          autofocus: autofocus,
           decoration: InputDecoration(
               border: InputBorder.none,
               focusedBorder: const UnderlineInputBorder(

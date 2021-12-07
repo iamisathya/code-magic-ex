@@ -1,55 +1,32 @@
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
-import '../../../../utilities/images.dart';
-import '../../open_po/order_search/components/search_bar_field.dart';
 import '../controller/inventory.search.controller.dart';
 
-class SearchProducts extends StatefulWidget {
-  @override
-  _SearchAppBarState createState() => _SearchAppBarState();
-}
-
-class _SearchAppBarState extends State<SearchProducts> {
+class SearchProducts extends StatelessWidget {
   final InventorySearchController controller =
       Get.put(InventorySearchController());
 
-  Widget appBarTitle = const Text("");
-  SvgPicture actionIcon = SvgPicture.asset(kSearchIcon,
-      height: 20, key: const ObjectKey("seachIcon"));
-  Image loadingIcon =
-      Image.asset(kAnimatedSpin, width: 30, key: const ObjectKey("seachIcon"));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
         centerTitle: false,
-        title: appBarTitle,
+        title: GetBuilder<InventorySearchController>(builder: (_) {
+          return controller.appBarTitle;
+        }),
         actions: <Widget>[
-          IconButton(
-            icon: Obx(() =>
-                controller.searchingProduct.value ? loadingIcon : actionIcon),
-            onPressed: () {
-              setState(() {
-                if (actionIcon.key == const ObjectKey("seachIcon")) {
-                  appBarTitle = SearchBarField(
-                    // onTap: (String value) => controller.addSearchItem(value),
-                    searchTextController: controller.searchTextController,
-                    placeHolder: "${"item_number".tr}...",
-                  );
-                  controller
-                      .addSearchItem(controller.searchTextController.text);
-                } else {
-                  appBarTitle = const Text("");
-                }
-              });
-            },
+          Obx(
+            () => IconButton(
+              icon: controller.searchingProduct.value
+                  ? controller.loadingIcon
+                  : controller.actionIcon,
+              onPressed: controller.onPressAppBar,
+            ),
           )
         ],
       ),
