@@ -6,6 +6,7 @@ import 'package:dsc_tools/ui/screens/open_po/order_create/component/total_price_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../utilities/extensions.dart';
 import 'browse_attachment.dart';
 import 'user_information.dart';
 
@@ -40,8 +41,8 @@ class Body extends StatelessWidget {
             Column(
               children: [
                 Obx(() => TotalPrice(
-                      totalPrice: controller.totalCartPrice.value.toString(),
-                      totalPv: controller.totalCartPv.value.toString(),
+                      totalPrice: controller.totalCartPrice.numberFormat(),
+                      totalPv: controller.totalCartPv.numberFormat(),
                       bgColor: AppColor.kWhiteSmokeColor,
                     )),
                 BrosweAttachment(controller: controller)

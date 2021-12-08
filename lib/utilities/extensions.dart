@@ -28,6 +28,13 @@ extension DoubleParsing on RxDouble {
     return NumberFormat("#,###").format(value);
   }
 }
+
+extension IntParsing on RxInt {
+  String numberFormat() {
+    return NumberFormat("#,###").format(value);
+  }
+}
+
 extension NumberParsing on String {
   double toDouble() {
     return double.tryParse(this) ?? 0.0;
