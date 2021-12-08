@@ -19,14 +19,15 @@ class PrintSalesReport extends StatelessWidget {
           title: Text("sales_report".tr,
               style: Theme.of(context).textTheme.headline4),
           actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.print_outlined,
+            if (controller.showPrintIcon.value)
+              IconButton(
+                icon: const Icon(
+                  Icons.print_outlined,
+                ),
+                tooltip: 'print'.tr,
+                onPressed: () => controller.proceedToPrint(context,
+                    orderHref: controller.orderHref.value),
               ),
-              tooltip: 'print'.tr,
-              onPressed: () => controller.proceedToPrint(context,
-                  orderHref: controller.orderHref.value),
-            ),
           ],
         ),
         body: Obx(() => LoadingOverlay(

@@ -38,22 +38,25 @@ class SalesReportToolBar extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  if (controller.activeListLength != 0) 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: GestureDetector(
-                      onTap: () => controller.proceedToPrint(context, orderHref: ""),
-                      child: SvgPicture.asset(kPrintIcon,
-                          width: 20, semanticsLabel: 'print icon'),
+                  if (controller.activeListLength != 0)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: GestureDetector(
+                        onTap: () =>
+                            controller.proceedToPrint(context, orderHref: ""),
+                        child: SvgPicture.asset(kPrintIcon,
+                            width: 20, semanticsLabel: 'print icon'),
+                      ),
                     ),
-                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: GestureDetector(
-                      onTap: () => Get.to(() => SearchSalesReport()),
-                      child: SvgPicture.asset(kSearchIcon,
-                          width: 20, semanticsLabel: 'search icon'),
-                    ),
+                    child: (controller.isLoading.value)
+                        ? Image.asset(kAnimatedSpin, width: 20)
+                        : GestureDetector(
+                            onTap: () => Get.to(() => SearchSalesReport()),
+                            child: SvgPicture.asset(kSearchIcon,
+                                width: 20, semanticsLabel: 'search icon'),
+                          ),
                   ),
                 ],
               )),

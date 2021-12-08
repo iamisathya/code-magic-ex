@@ -10,6 +10,7 @@ import '../../../../utilities/user_session.dart';
 
 class PrintSalesReportController extends GetxController {
   RxBool isLoading = false.obs;
+  RxBool showPrintIcon = true.obs;
 
   RxString orderHref = "".obs;
   RxString orderId = "".obs;
@@ -23,7 +24,9 @@ class PrintSalesReportController extends GetxController {
     if (data != null) {
       final Map<String, dynamic> args = data as Map<String, dynamic>;
       isLoading.toggle();
-      print(args["href"]);
+      if (args['showPrintIcon'] != null) {
+        showPrintIcon.value = args['showPrintIcon'] as bool;
+      }
       orderHref.value = "$printUrl&link=${args["href"]}";
       if (args["readyUrl"] == true) {
         orderHref.value = args["href"] as String;

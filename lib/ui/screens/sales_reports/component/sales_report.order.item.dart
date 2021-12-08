@@ -79,7 +79,8 @@ class SalesReportEachOrderItem extends StatelessWidget {
     final Map<String, dynamic> args = {
       "orderId": value1,
       "href": href,
-      "readyUrl": true
+      "readyUrl": true,
+      'showPrintIcon': false,
     };
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
