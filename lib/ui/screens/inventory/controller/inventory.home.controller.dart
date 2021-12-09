@@ -68,7 +68,7 @@ class InventoryHomeController extends GetxController {
             warehouses.items[0].href.getAfterLastSlash());
       } else {
         isLoading.toggle();
-        SnackbarUtil.showError(message: "No warehouses found");
+        SnackbarUtil.showError(message: "no_warehouses_found".tr);
       }
     } on DioError catch (e) {
       isLoading.toggle();

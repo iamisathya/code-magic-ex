@@ -46,9 +46,9 @@ class Body extends StatelessWidget {
         svgIcon: kImageServerDown,
       );
     } else if (controller.isEasyShipReportsEmpty) {
-      return const CustomEmptyWidget(
+      return CustomEmptyWidget(
         svgIcon: kImageEmptyBox,
-        message: "No matching records found",
+        message: "no_matching_record_found".tr,
       );
     } else {
       return _getBodyWidget();

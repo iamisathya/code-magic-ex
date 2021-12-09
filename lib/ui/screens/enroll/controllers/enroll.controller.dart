@@ -47,7 +47,7 @@ class EnrollHomeController extends GetxController {
         isLoading.toggle();
       } else {
         isLoading.toggle();
-        SnackbarUtil.showError(message: "No warehouses found"); //! hardcoded
+        SnackbarUtil.showError(message: "no_warehouses_found".tr);
       }
     } on DioError catch (e) {
       isLoading.toggle();
@@ -124,7 +124,7 @@ class EnrollHomeController extends GetxController {
     addStarterKit();
     if (cartProducts.isEmpty) {
       SnackbarUtil.showWarning(
-          message: "Please add some products to cart before proceed!"); //! hardcoded
+          message: "Please add some products to cart before proceed!");
       return;
     }
     Get.to(() => EnrollmentDetailsHomeScreen());

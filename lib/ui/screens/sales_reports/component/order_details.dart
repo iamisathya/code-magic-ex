@@ -18,7 +18,7 @@ class SalesReportOrderDetials extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Obx(() => Text("Order Number: ${controller.orderNumber.value}",
+          title: Obx(() => Text("${"order_number".tr}: ${controller.orderNumber.value}",
               style: Theme.of(context)
                   .textTheme
                   .headline6!
@@ -102,7 +102,7 @@ class SalesReportOrderDetials extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("${"code".tr}: 19236",  //! Hardcoded
+                            Text("${"code".tr}: 19236",
                                 style: Theme.of(context).textTheme.bodyText2),
                             Text("${"remains".tr}: 1",
                                 style: Theme.of(context).textTheme.bodyText2)

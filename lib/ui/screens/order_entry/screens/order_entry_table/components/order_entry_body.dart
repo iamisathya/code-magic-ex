@@ -131,7 +131,7 @@ class OrderEntryBody extends StatelessWidget {
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(
                 Theme.of(Get.context!).colorScheme.primary)),
-        child: Text("clear".tr));  //! Hardcoded
+        child: Text("clear".tr));
   }
 
   Autocomplete renderAutoComplete(int idx) {

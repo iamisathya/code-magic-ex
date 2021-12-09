@@ -53,7 +53,7 @@ class SalesReportHomeController extends GetxController {
   RxInt totalVolume = 0.obs;
 
   Rx<NameValueType> activeStockType =
-      NameValueType(name: "by_order".tr, value: "order").obs;   //!hardcoded
+      NameValueType(name: "by_order".tr, value: "order").obs;
 
   RxBool isLoading = false.obs;
   RxBool isPrinting = false.obs;
@@ -82,7 +82,7 @@ class SalesReportHomeController extends GetxController {
     if (startDate == null || endDate == null) return;
     if (startDate!.value.isAfter(endDate!.value)) {
       SnackbarUtil.showError(
-          message: "Start date should be lower than end date!"); //! hardcoded
+          message: "start_date_should_lower_msg".tr);
       return;
     }
     final String actionType = activeStockType.value.value == "order"
@@ -195,7 +195,7 @@ class SalesReportHomeController extends GetxController {
   Future<void> proceedToPrint(BuildContext context,
       {required String orderHref}) async {
     if (activeListLength == 0) {
-      SnackbarUtil.showWarning(message: "No data found in table."); //! hardcoded
+      SnackbarUtil.showWarning(message: "no_data_found_in_table".tr);
       return;
     }
     final List<SalesReportGeneric> printList = [];
@@ -247,7 +247,7 @@ class SalesReportHomeController extends GetxController {
   Future<File?> createExcellSheet() async {
     File? createdFile;
     if (activeListLength == 0) {
-      SnackbarUtil.showWarning(message: "No data found in table."); //! hardcoded
+      SnackbarUtil.showWarning(message: "no_data_found_in_table".tr);
       return createdFile;
     }
     if (await Permission.storage.request().isGranted) {

@@ -53,7 +53,8 @@ class InventorySearchController extends GetxController {
     selectedSearchIndex.value =
         searchHistory.indexWhere((element) => element == searchKey);
     searchTextController.text = searchHistory[selectedSearchIndex.value!];
-    searchTextController.selection = TextSelection.fromPosition(TextPosition(offset: searchTextController.text.length));
+    searchTextController.selection = TextSelection.fromPosition(
+        TextPosition(offset: searchTextController.text.length));
     searchingProduct.toggle();
     Future.delayed(const Duration(milliseconds: 1200), () {
       searchingProduct.toggle();
@@ -71,7 +72,7 @@ class InventorySearchController extends GetxController {
 
       SnackbarUtil.showWarning(
           message:
-              "Sorry no items found in inventory with search key: $searchKey"); //! hardcoded
+              "${"no_inventory_item_with_search".tr}: $searchKey");
     });
   }
 

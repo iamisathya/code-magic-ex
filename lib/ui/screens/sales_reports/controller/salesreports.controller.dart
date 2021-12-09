@@ -159,8 +159,8 @@ class SalesReportController extends GetxController {
       final DateTime _end = DateTime.parse(endDate.text);
       if (_start.isAfter(_end)) {
         renderErrorSnackBar(
-            title: "Invalid date range!", //!hardcoded
-            subTitle: "Start date should be lower than end date!"); //!hardcoded
+            title: "invalid_date_range".tr,
+            subTitle: "start_date_should_lower_msg".tr);
         return;
       }
     }
@@ -295,7 +295,7 @@ class SalesReportController extends GetxController {
     if (allOrdersAndRmas.orders[0].items.isEmpty) {
       renderGetSnackbar(
           title: "empty_table".tr,
-          message: "No data found in table.", //! hardcoded
+          message: "no_data_found_table".tr,
           type: SnackBarType.error);
       return createdFile;
     }

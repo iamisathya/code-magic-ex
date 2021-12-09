@@ -209,7 +209,7 @@ class OrderEntryCheckoutSummaryController extends GetxController {
       final payload = prepareRequestPaylod();
       if (payload == null) {
         throw Exception(
-            'Something went wrong while preparing PurchaseLogRequestData'); //! hardcoded
+            'something_wrong_in_purchase_log'.tr);
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
@@ -308,7 +308,7 @@ class OrderEntryCheckoutSummaryController extends GetxController {
 
   void onClickNuetralButton() {
     SnackbarUtil.showWarning(
-        message: "Please add items to cart before proceed!"); //! hardcoded
+        message: "please_add_item_to_cart_msg".tr);
   }
 
   void onNegetiveButtonClick() {

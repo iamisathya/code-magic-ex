@@ -38,7 +38,7 @@ class SalesReportSearchController extends GetxController {
           Get.to(() => SalesReportSearchResult(), arguments: args);
         } else {
           SnackbarUtil.showWarning(
-              message: "Sorry no report found with sales report id: $orderId"); //! hardcoded
+              message: "${"sorry_no_report_found_with_report_id".tr}: $orderId");
         }
         break;
       case "rma":
@@ -51,7 +51,7 @@ class SalesReportSearchController extends GetxController {
           Get.to(() => SalesReportSearchResult(), arguments: args);
         } else {
           SnackbarUtil.showWarning(
-              message: "Sorry no report found with sales report id: $orderId"); //! hardcoded
+              message: "${"sorry_no_report_found_with_report_id".tr}: $orderId");
         }
         break;
       case "item":
@@ -62,7 +62,7 @@ class SalesReportSearchController extends GetxController {
           Get.to(() => SalesReportSearchResult(), arguments: args);
         } else {
           SnackbarUtil.showWarning(
-              message: "Sorry no report found with sales report id: $orderId"); //! hardcoded
+              message: "${"sorry_no_report_found_with_report_id".tr}: $orderId");
         }
         break;
     }

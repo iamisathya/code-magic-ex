@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide StringTranslateExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -145,7 +145,7 @@ class EnrollController extends GetxController {
 
   Future<void> verifyEnrollerSponsor(BuildContext context) async {
     if (enrollIdController.text.isEmpty) {
-      _renderErrorSnackBar("Enroller ID empty", "Please enter valid enroller");
+      _renderErrorSnackBar("enroller_id_empty".tr, "enter_valid_enroller".tr);
       return;
     }
     enrollerSponsorVerifyButton.value = "Verifying";

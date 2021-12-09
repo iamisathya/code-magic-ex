@@ -30,8 +30,8 @@ class SettingsPage extends StatelessWidget {
               title: Text(
                 "dark_mode".tr,
               ),
-              subtitle: const Text(
-                "Enable/Disable dark mode",  //! hardcoded
+              subtitle: Text(
+                "enable_or_disable_dark_mode".tr,
               ),
               trailing: CupertinoSwitch(
                 value: themeController.currentTheme == "dark",
@@ -46,8 +46,8 @@ class SettingsPage extends StatelessWidget {
               title: Text(
                 "language".tr,
               ),
-              subtitle: const Text(
-                "Change app language", //! hardcoded
+              subtitle: Text(
+                "change_app_language".tr,
               ),
               trailing: DropdownButton<Languages>(
                 value: languageController.currentOption,

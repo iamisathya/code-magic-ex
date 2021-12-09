@@ -35,7 +35,7 @@ class _SearchAppBarState extends State<SearchSalesReport> {
                   if (actionIcon.key == const ObjectKey("seachIcon")) {
                     appBarTitle = SearchBarField(
                         searchTextController: controller.searchTextController,
-                        placeHolder: "order_search".tr); //! Hardcoded
+                        placeHolder: "order_search".tr);
                     controller
                         .addSearchItem(controller.searchTextController.text);
                   } else {
@@ -58,13 +58,13 @@ class _SearchAppBarState extends State<SearchSalesReport> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "search_history", //! Hardcoded
+                      "search_history",
                       style: TextStyle(fontSize: 14, color: AppColor.kBlackColor),
                     ),
                     GestureDetector(
                       onTap: () => controller.clearHistory(),
                       child: const Text(
-                        "clear_all", //! Hardcoded
+                        "clear_all",
                         style:
                             TextStyle(fontSize: 14, color: AppColor.brinkPink),
                       ),

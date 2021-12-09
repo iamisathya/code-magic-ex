@@ -71,7 +71,7 @@ class CreateOpenPoOrderController extends GetxController
         isLoading.toggle();
       } else {
         isLoading.toggle();
-        SnackbarUtil.showError(message: "No warehouses found");
+        SnackbarUtil.showError(message: "no_warehouses_found".tr);
       }
     } on DioError catch (e) {
       isLoading.toggle();
@@ -188,9 +188,9 @@ class CreateOpenPoOrderController extends GetxController
           textAlign: TextAlign.center,
           style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w800),
         ),
-        content: const Text(
-          "Take/Select an image you wish to upload",  //! hardcoded
-          style: TextStyle(color: Colors.black),
+        content: Text(
+          "take_select_photo_msg".tr,
+          style: const TextStyle(color: Colors.black),
         ),
         actions: <Widget>[
           cameraButton,

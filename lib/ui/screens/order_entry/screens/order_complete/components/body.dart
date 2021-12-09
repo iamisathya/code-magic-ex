@@ -40,10 +40,10 @@ class Body extends StatelessWidget {
                   ),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "We are recived order from your, we are processing it. We'll send it to you shortly", //! hardcoded
+                  "processing_order_msg".tr,
                   textAlign: TextAlign.center,
                 ),
               ),

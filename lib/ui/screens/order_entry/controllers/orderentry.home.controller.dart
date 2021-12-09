@@ -41,7 +41,7 @@ class OrderEntryUserListController extends GetxController {
 
   Future<void> searchUserBySearchQuery() async {
     if (searchUserTextController.text.isEmpty) {
-      SnackbarUtil.showWarning(message: "User id shouldn't be empty."); //! hardcoded
+      SnackbarUtil.showWarning(message: "user_id_should_not_be_empty".tr);
       showErrorImage.value = true;
       return;
     }
@@ -129,7 +129,7 @@ class OrderEntryUserListController extends GetxController {
 
   void _onCatchError(Object err, StackTrace s) {
     debugPrint(err.toString());
-    SnackbarUtil.showError(message: "Error while getting user details!"); //! hardcoded
+    SnackbarUtil.showError(message: "error_getting_user_details".tr);
     LoggerService.instance.e(s);
     isLoading.toggle();
   }
@@ -175,6 +175,6 @@ class OrderEntryUserListController extends GetxController {
       return;
     }
     showErrorImage.value = false;
-    SnackbarUtil.showWarning(message: "Please enter/select user id first!"); //! hardcoded
+    SnackbarUtil.showWarning(message: "enter_select_user_id_first".tr);
   }
 }
