@@ -45,7 +45,7 @@ class POItem extends StatelessWidget {
                           children: [
                             AppText(
                                 text:
-                                    "${"total_pv"}.tr: ${openPo.orderTotalPv}",
+                                    "${"total_pv".tr}: ${openPo.orderTotalPv}",
                                 style: TextTypes.caption),
                             AppText(
                                 text: "${"date".tr}: ${openPo.orderDate}",

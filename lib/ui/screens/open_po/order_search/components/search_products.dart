@@ -35,7 +35,7 @@ class _SearchAppBarState extends State<SearchProducts> {
                   if (actionIcon.key == const ObjectKey("seachIcon")) {
                     appBarTitle = SearchBarField(
                       searchTextController: controller.searchTextController,
-                      placeHolder: "Search text here...",
+                      placeHolder: "search_text_here".tr,
                     );
                     controller
                         .addSearchItem(controller.searchTextController.text);
