@@ -56,7 +56,7 @@ class EasyShipListController extends GetxController {
       return;
     }
     Get.rawSnackbar(
-        message: "Capturing Screenshot..",
+        message: "Capturing Screenshot..", //! hardcoded
         snackStyle: SnackStyle.GROUNDED,
         icon: const Icon(Icons.screenshot, color: Colors.white),
         backgroundColor: Colors.black,
@@ -85,10 +85,10 @@ class EasyShipListController extends GetxController {
         quality: 60, name: "easyship_${DateTime.now().millisecondsSinceEpoch}");
     if (result["isSuccess"] == true) {
       Navigator.of(context).pop();
-      SnackbarUtil.showSuccess(message: "Image saved successfully!");
+      SnackbarUtil.showSuccess(message: "Image saved successfully!"); //! hardcoded
     } else {
       Navigator.of(context).pop();
-      SnackbarUtil.showError(message: "Error while saving image!");
+      SnackbarUtil.showError(message: "Error while saving image!"); //! hardcoded
     }
   }
 }

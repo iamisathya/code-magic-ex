@@ -40,7 +40,7 @@ class BarcodeListItem extends StatelessWidget {
                       children: [
                         Text(item.desc,
                             style: Theme.of(context).textTheme.bodyText1),
-                        Text("Scanned: ${item.scan}",  //!hardcoded
+                        Text("${"scanned".tr}: ${item.scan}",
                             style: Theme.of(context).textTheme.bodyText2)
                       ],
                     ),
@@ -65,9 +65,9 @@ class BarcodeListItem extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          BarcodeItemChip(text: "Code: ${item.code}"), //!hardcoded
-                          BarcodeItemChip(text: "Qty: ${item.qty}"), //!hardcoded
-                          BarcodeItemChip(text: "Remains: ${item.remain}"), //!hardcoded
+                          BarcodeItemChip(text: "${"code".tr}: ${item.code}"),
+                          BarcodeItemChip(text: "${"qty".tr}: ${item.qty}"),
+                          BarcodeItemChip(text: "${"remains".tr}: ${item.remain}"),
                         ],
                       ),
                     ),

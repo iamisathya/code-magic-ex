@@ -22,19 +22,19 @@ class EnrolmentErrorScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: AppText(
-                    text: "Enrollment Error", style: TextTypes.headline4),
+                    text: "enrollment_error", style: TextTypes.headline4)
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: AppText(
-                    text: "This Page has been Error!",
+                    text: "This Page has been some error!", //! hardcoded
                     style: TextTypes.bodyText1,
                     color: AppColor.darkLiver),
               ),
             ],
           ),
           SvgPicture.asset(kEnrolmentErrorImage,
-              height: 232, semanticsLabel: "Enrolment error!"),
+              height: 232, semanticsLabel: "enrolment_error".tr),
           GestureDetector(
             onTap: controller.onClickTryAgain,
             child: Container(
@@ -45,8 +45,8 @@ class EnrolmentErrorScreen extends StatelessWidget {
                       colors: [AppColor.dodgerBlue, AppColor.skyBlue],
                       begin: Alignment.bottomLeft,
                       end: Alignment.topRight)),
-              child: const AppText(
-                text: "Try Again!",
+              child: AppText(
+                text: "try_again".tr,
                 style: TextTypes.headline6,
                 color: AppColor.kWhiteColor,
               ),

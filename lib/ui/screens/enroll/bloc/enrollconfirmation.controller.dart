@@ -42,8 +42,8 @@ class EnrollConfirmationController extends GetxController {
       final bool isServerRuning = await checkOrderEntryServerStatus();
       if (!isServerRuning) {
         renderErrorSnackBar(
-            title: "Server error!", //!hardcoded
-            subTitle: "Server was down, please try again later!"); //!hardcoded
+            title: "server_error".tr,
+            subTitle: "server_down_msg".tr);
         _sendingMsgProgressBar.hide();
         return;
       }
@@ -165,7 +165,7 @@ class EnrollConfirmationController extends GetxController {
       if (payload == null) {
         _sendingMsgProgressBar.hide();
         throw Exception(
-            'Something went wrong while preparing PurchaseLogRequestData'); //!hardcoded
+            'something_wrong_in_purchase_log'.tr);
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       await MemberCallsService.init().logEnrollerData(
@@ -214,10 +214,10 @@ class EnrollConfirmationController extends GetxController {
     try {
       final PasswordResetResponse validationResponse =
           await MemberCalls2Service.init().forceResetPassword(
-        "257461866",
+        "257461866", //!hardcoded
       );
       if (validationResponse.affectedRows == 1) {
-        debugPrint("Password reset success"); //!hardcoded
+        debugPrint("password_reset_success".tr);
       }
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());

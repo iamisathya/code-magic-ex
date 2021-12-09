@@ -28,8 +28,8 @@ class EnrollmentDetailsHomeScreen extends StatelessWidget {
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
             onTapCancelButton: () => Get.back(),
-            negetiveText: "Back",
-            positiveText: "Verify",
+            negetiveText: "back".tr,
+            positiveText: "verify".tr,
             onTapPositiveButton: controller.verifyUserInfo,
           ),
         ),

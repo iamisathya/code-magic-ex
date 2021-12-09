@@ -10,8 +10,8 @@ import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
 import '../../../../global/widgets/bottom_button_bar.dart';
-import '../controller/openpo.details.controller.dart';
 import '../../order_create/component/loader.dart';
+import '../controller/openpo.details.controller.dart';
 import 'po_ordered_item.dart';
 
 class OpenPODetailsPage extends StatelessWidget {

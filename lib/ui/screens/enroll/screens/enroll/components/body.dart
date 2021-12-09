@@ -55,14 +55,14 @@ class Body extends StatelessWidget {
                         ctlr: controller.lastNameEnController,
                         label: "last_name_en".tr),
                     Obx(() => _renderDropdownButton(
-                        label: "Gender",
+                        label: "gender".tr,
                         top: 10,
                         selectedValue: controller.userGender.value,
                         items: controller.genderDropdownItems,
                         onChanged: (String val) =>
                             controller.userGender.value = val)),
                     Obx(() => _renderDropdownButton(
-                        label: "Marital Status",
+                        label: "marital_status".tr,
                         top: 10,
                         selectedValue: controller.maritalStatus.value,
                         items: controller.statusDropdownItems,
@@ -150,7 +150,7 @@ class Body extends StatelessWidget {
         children: [
           Icon(Icons.person_outline_outlined,
               size: 30, color: Theme.of(Get.context!).colorScheme.primary),
-          Text("Information",
+          Text("information".tr,
               style:
                   TextStyle(color: Theme.of(Get.context!).colorScheme.primary))
         ],
@@ -229,7 +229,7 @@ class Body extends StatelessWidget {
               controller: controller.birthDateController,
               readOnly: true,
               onTap: () => controller.renderDatePicker(context),
-              decoration: kTextInputDecoration(hintText: "D.O.B"),
+              decoration: kTextInputDecoration(hintText: "dob".tr),
             )),
       ]),
     );

@@ -44,13 +44,13 @@ class BarcodeSearchController extends GetxController {
       if (barcodeScanRes == "-1") return; // Barcode scanning cancelled by user
       if (barcodeScanRes.isEmpty && !barcodeScanRes.isNumberOnly()) {
         SnackbarUtil.showError(
-            message: "Order number should only contains numarics.");
+            message: "order_number_should_numarics_msg".tr);
         return;
       }
       if (barcodeList.contains(barcodeScanRes)) {
         SnackbarUtil.showWarning(
             message:
-                "Barcode number $barcodeScanRes already exists in current product.");
+                "${"barcode_already_exist_msg".tr}: $barcodeScanRes");
         return;
       }
       addBarcodeNumber(barcodeScanRes);
@@ -62,13 +62,13 @@ class BarcodeSearchController extends GetxController {
   void addBarcodeNumber(String barcode) {
     if (barcode.isEmpty && !barcode.isNumberOnly()) {
       SnackbarUtil.showError(
-          message: "Order number should only contains numarics.");
+          message: "order_number_should_numarics_msg".tr);
       return;
     }
     if (barcodeList.contains(barcode)) {
       SnackbarUtil.showWarning(
           message:
-              "Barcode number $barcode already exists in current product.");
+              "${"barcode_already_exist_msg".tr}: $barcode");
       return;
     }
     barcodeList.add(barcode);
@@ -126,13 +126,13 @@ class BarcodeSearchController extends GetxController {
         builder: (BuildContext context) {
           return BottomModalAlert(
               negetiveTitle: "cancel".tr,
-              positiveTitle: "OK, Got it".tr,
+              positiveTitle: "ok_got_it".tr,
               onPositiveTap: () => Navigator.pop(context),
               onNegetiveTap: () => Navigator.pop(context),
-              title: "``Scan Error``",
+              title: "``${"scan_error".tr}``",
               showTitle: true,
               subTitle:
-                  "You have already scanned this order number 2999000054163.",
+                  "You have already scanned this order number 2999000054163.", //! hardcoded
               assetPath: kScanErrorImage);
         });
   }

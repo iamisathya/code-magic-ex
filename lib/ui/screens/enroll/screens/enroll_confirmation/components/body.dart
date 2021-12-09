@@ -29,13 +29,13 @@ class Body extends StatelessWidget {
               _renderCardHeader("dsc_info".tr),
               Column(
                 children: [
-                  renderUserCard("Enroller", controller.enroleeData.enrollerId,
+                  renderUserCard("enroller".tr, controller.enroleeData.enrollerId,
                       controller.enroleeData.enrollerName),
                   const Divider(
                     thickness: 1,
                   ),
                   SizedBox(height: SizeConfig.screenHeight * 0.01),
-                  renderUserCard("Sponsor", controller.enroleeData.sponsorId,
+                  renderUserCard("sponsor".tr, controller.enroleeData.sponsorId,
                       controller.enroleeData.sponsorName),
                   const Divider(
                     thickness: 1,
@@ -67,11 +67,11 @@ class Body extends StatelessWidget {
             children: [
               PrimaryButton(
                   press: () => controller.onCancel(),
-                  text: "Cancel",
+                  text: "cancel".tr,
                   color: Colors.red),
               PrimaryButton(
                   press: () => controller.proceedOrderPlace(context),
-                  text: "Confirm"),
+                  text: "confirm".tr),
             ],
           ),
           SizedBox(height: SizeConfig.screenHeight * 0.04),
@@ -168,7 +168,7 @@ class Body extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _renderCardCell("$title ID", TextAlign.left),
+              _renderCardCell("$title ${"id".tr}", TextAlign.left),
               const SizedBox(width: 10, child: Text(" : ")),
               _renderCardCell(id, TextAlign.right),
             ],
@@ -179,7 +179,7 @@ class Body extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _renderCardCell("$title Name", TextAlign.left),
+              _renderCardCell("$title ${"name".tr}", TextAlign.left),
               const SizedBox(width: 10, child: Text(" : ")),
               _renderCardCell(name, TextAlign.right),
             ],

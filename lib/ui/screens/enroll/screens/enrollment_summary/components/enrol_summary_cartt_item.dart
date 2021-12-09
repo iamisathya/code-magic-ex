@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../constants/globals.dart';
@@ -44,12 +45,12 @@ class EnrollSummaryCartItem extends StatelessWidget {
                           style: TextTypes.subtitle1,
                         ),
                         AppText(
-                          text: "Code: ${item.itemCode}",
+                          text: "${"code".tr}: ${item.itemCode}",
                           style: TextTypes.caption,
                           color: AppColor.metallicSilver,
                         ),
                         AppText(
-                          text: "${item.itemPv} PV | ${item.itemPrice} THB",
+                          text: "${item.itemPv} ${"pv".tr} | ${item.itemPrice} ${Globals.currency}",
                           style: TextTypes.subtitle1,
                           color: AppColor.charcoal,
                         ),

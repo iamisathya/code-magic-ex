@@ -28,8 +28,8 @@ class EnrollmentUserInfoScreen extends StatelessWidget {
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
             onTapCancelButton: Get.back,
-            negetiveText: "Back",
-            positiveText: "Continue",
+            negetiveText: "back".tr,
+            positiveText: "continue".tr,
             onTapPositiveButton: controller.verifyEnrollForm,
           ),
           floatingActionButton: AnimatedOpacity(

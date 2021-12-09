@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../../constants/colors.dart';
 import '../../../../../../../utilities/images.dart';
@@ -48,7 +49,7 @@ class UserNameTextField extends StatelessWidget {
         ],
         keyboardType: TextInputType.text,
         validator: (String? value) =>
-            value!.isEmpty ? "This field is required" : null,
+            value!.isEmpty ? "field_required_msg".tr : null,
         decoration: InputDecoration(
             fillColor: AppColor.kWhiteColor,
             filled: true,

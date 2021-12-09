@@ -53,7 +53,7 @@ class BarCodeDetails extends StatelessWidget {
                       isShown: !controller.isLoading.value &&
                           controller.hasAnyChangesMade.value,
                       negetiveText: "cancel".tr,
-                      positiveText: "Save",
+                      positiveText: "save".tr,
                       onTapCancelButton: controller.showWarningMessage,
                       onTapPositiveButton: controller.saveBarcodeDetails,
                       showNeutral: false,
@@ -162,13 +162,13 @@ class CompleteBarcodeScanSuccess extends StatelessWidget {
           SvgPicture.asset(kBarcodeCheckSuccessIcon,
               height: 45, width: 45, semanticsLabel: 'barcode check icon'),
           const SizedBox(height: 15),
-          Text("Check Successfully",
+          Text("check_successfully".tr,
               style: Theme.of(context)
                   .textTheme
                   .headline6!
                   .copyWith(color: AppColor.kWhiteColor)),
           const SizedBox(height: 7),
-          Text("Order Number: ${controller.orderNumber.value}",
+          Text("${"order_number".tr}: ${controller.orderNumber.value}",
               style: Theme.of(context)
                   .textTheme
                   .bodyText2!
@@ -203,7 +203,7 @@ class BarcodeScanner extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Text("Scan Barcode",
+                child: Text("scan_barcode".tr,
                     style: Theme.of(context).textTheme.subtitle2),
               ),
               Padding(
@@ -264,7 +264,7 @@ class CustomAppBar extends StatelessWidget {
           ),
           Align(
             child: Text(
-              "Order Number: ${controller.orderNumber.value}",
+              "${"order_number".tr}: ${controller.orderNumber.value}",
               style: Theme.of(context).textTheme.headline6!.copyWith(
                     color: AppColor.kBlackColor,
                   ),

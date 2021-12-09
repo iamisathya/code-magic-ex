@@ -17,7 +17,7 @@ class BarcodeCheckResult extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Obx(() => Text("Order Number: ",
+          title: Obx(() => Text("${"order_number".tr}: ",
               style: Theme.of(context)
                   .textTheme
                   .headline6!
@@ -39,10 +39,10 @@ class BarcodeCheckResult extends StatelessWidget {
                       width: 45,
                       semanticsLabel: 'barcode check icon'),
                   const SizedBox(height: 15),
-                  Text("Check Successfully",
+                  Text("check_successfully".tr,
                       style: Theme.of(context).textTheme.headline6),
                   const SizedBox(height: 7),
-                  Text("Order Number: 423154182",
+                  Text("${"order_number".tr}: 423154182",
                       style: Theme.of(context).textTheme.bodyText2)
                 ],
               ),

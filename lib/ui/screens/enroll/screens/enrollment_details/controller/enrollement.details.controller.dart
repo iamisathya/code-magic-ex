@@ -42,11 +42,11 @@ class EnrollmentDetailsHomeController extends GetxController {
     var isEnrolerIdVerified = false;
     var isSponsorIdVerified = false;
     if (idNumberTextController.text.isEmpty) {
-      SnackbarUtil.showError(message: "Please enter valid governament ID!");
+      SnackbarUtil.showError(message: "enter_valid_govt_id".tr);
     } else if (enrollerIdTextController.text.isEmpty) {
-      SnackbarUtil.showError(message: "Enroller ID shouldn't be empty");
+      SnackbarUtil.showError(message: "Enroller ID shouldn't be empty"); //! hardcoded
     } else if (sponsorIdTextController.text.isEmpty) {
-      SnackbarUtil.showError(message: "Sponsor ID shouldn't be empty");
+      SnackbarUtil.showError(message: "Sponsor ID shouldn't be empty"); //! hardcoded
     } else {
       isLoading.toggle();
       final isGovtIdVerified = await verifyGovtIdNumber();
@@ -100,7 +100,7 @@ class EnrollmentDetailsHomeController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: "Error! ${e.response}");
+      SnackbarUtil.showError(message: "${"error".tr}! ${e.response}");
       isValidSponsorId.value = 2;
       return false;
     } catch (err, e) {
@@ -123,7 +123,7 @@ class EnrollmentDetailsHomeController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: "Error! ${e.response}");
+      SnackbarUtil.showError(message: "${"error".tr}! ${e.response}");
       isValidEnrolerId.value = 2;
       return false;
     } catch (err, e) {
@@ -149,7 +149,7 @@ class EnrollmentDetailsHomeController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: "Error! ${e.response}");
+      SnackbarUtil.showError(message: "${"error".tr}! ${e.response}");
       return false;
     } catch (err, e) {
       debugPrint(e.toString());

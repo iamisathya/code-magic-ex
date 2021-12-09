@@ -293,16 +293,16 @@ class BarcodeScannResultController extends getx.GetxController {
             children: [
               SvgPicture.asset(kNotificationBellImage, height: 193, width: 200),
               const SizedBox(height: 30),
-              const SizedBox(
+              SizedBox(
                 width: 230,
                 child: Text(
-                  "“Your current changes will not be saved”", //!hardcoded
+                  "current_changes_will_not_saved".tr,
                   textAlign: TextAlign.center,
                 ),
               ),
               const SizedBox(height: 40),
               PlainButton(
-                title: 'OK, Got it', //!hardcoded
+                title: 'ok_got_it'.tr,
                 onTap: () => navigateToBarcodeHome(),
               ),
               const SizedBox(height: 10),
@@ -311,7 +311,7 @@ class BarcodeScannResultController extends getx.GetxController {
                   height: 50,
                   child: TextButton(
                       onPressed: () => getx.Get.back(),
-                      child: Text("cancel".tr, //!hardcoded
+                      child: Text("cancel".tr,
                           style: Theme.of(getx.Get.context!)
                               .textTheme
                               .bodyText2!
@@ -496,13 +496,13 @@ class BarcodeScannResultController extends getx.GetxController {
     debugPrint(barcodeScanRes);
     if (barcodeScanRes.isEmpty && !barcodeScanRes.isNumberOnly()) {
       SnackbarUtil.showError(
-          message: "Order number should only contains numarics."); //!hardcoded
+          message: "order_number_should_numarics_msg".tr);
       return;
     }
     if (barcodeItems!.items[expndedIdx].barcodes.contains(barcodeScanRes)) {
       SnackbarUtil.showWarning(
           message:
-              "Barcode number $barcodeScanRes already exists in current product."); //!hardcoded
+              "${"barcode_already_exist_msg".tr}: $barcodeScanRes");
       return;
     }
     addBarcodeNumber(expndedIdx, barcodeScanRes);

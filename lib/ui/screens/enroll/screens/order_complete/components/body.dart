@@ -37,10 +37,10 @@ class Body extends StatelessWidget {
                 ),
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                "We are recived order from your, we are processing it. We'll send it to you shortly",
+                "processing_order_msg".tr,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -53,7 +53,7 @@ class Body extends StatelessWidget {
                         value: controller.orderNumber.value,
                       )),
                   Obx(() => ColumnItem(
-                        title: "User ID",
+                        title: "user_id".tr,
                         value: controller.userId.value,
                       )),
                 ],

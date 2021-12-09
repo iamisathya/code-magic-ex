@@ -20,22 +20,23 @@ class EnrollerInfoCard extends StatelessWidget {
         child: Column(
           children: [
             EeachUserinfoItem(
-                title: "Enroller",
+                title: "enroller".tr,
                 value:
                     "${ctrl.enrolerProfile.id.unicity.toString()} ${ctrl.enrolerProfile.humanName.fullName}, ${ctrl.enrolerProfile.humanName.fullNameTh}"),
             EeachUserinfoItem(
-                title: "Sponsor",
+                title: "sponsor".tr,
                 value:
                     "${ctrl.sponsorProfile.id.unicity.toString()} ${ctrl.sponsorProfile.humanName.fullName}, ${ctrl.sponsorProfile.humanName.fullNameTh}"),
-            EeachUserinfoItem(title: "PV Month", value: getCurrentPeriod()),
-            EeachUserinfoItem(title: "Government ID", value: ctrl.govtId.value),
+            EeachUserinfoItem(title: "pv_month".tr, value: getCurrentPeriod()),
             EeachUserinfoItem(
-                title: "Gender", value: ctrl.genderController.text),
+                title: "government_id".tr, value: ctrl.govtId.value),
             EeachUserinfoItem(
-                title: "Marital Status",
+                title: "gender".tr, value: ctrl.genderController.text),
+            EeachUserinfoItem(
+                title: "marital_status".tr,
                 value: ctrl.maritalStatusController.text),
             EeachUserinfoItem(
-                title: "Birthday", value: ctrl.birthdayController.text),
+                title: "birthday".tr, value: ctrl.birthdayController.text),
           ],
         ),
       ),

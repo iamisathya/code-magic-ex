@@ -22,7 +22,7 @@ class AddressSearchModal extends StatelessWidget {
         clearButton: const Icon(Icons.clear),
         showClearButton: true,
         emptyBuilder: (BuildContext ctx, String? emprty) {
-          return const Center(child: Text("Sorry no results foun!"));
+          return const Center(child: Text("Sorry no results found!")); //! hardcoded
         },
         loadingBuilder: (BuildContext ctx, String? emprty) {
           return const Loader();

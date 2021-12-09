@@ -25,22 +25,22 @@ class Body extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
+                SizedBox(
                   width: 118,
                   child: AppText(
-                      text: "Enrollment Details", style: TextTypes.headline4),
+                      text: "enrollment_details".tr, style: TextTypes.headline4),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: RichText(
                     text: TextSpan(
-                      text: 'Terms & ',
+                      text: '${"terms".tr} & ',
                       style: DefaultTextStyle.of(context)
                           .style
                           .copyWith(fontSize: 14, color: AppColor.cadet),
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Conditions Apply',
+                          text: 'conditions_apply'.tr,
                           style: DefaultTextStyle.of(context).style.copyWith(
                                 fontSize: 16,
                                 color: AppColor.dodgerBlue,
@@ -62,7 +62,7 @@ class Body extends StatelessWidget {
               children: [
                 Obx(() => EnrollTextField(
                       controller: controller.idNumberTextController,
-                      label: "ID Card Number", //! Harcoded
+                      label: "id_card".tr,
                       textInputAction: TextInputAction.next,
                       isLoading: controller.isLoading.value,
                       fillColor: controller.isValidGovtId.value == 0
@@ -81,7 +81,7 @@ class Body extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Obx(() => EnrollTextField(
                         controller: controller.enrollerIdTextController,
-                        label: "Enroller ID", //! Harcoded
+                        label: "enroller".tr,
                         textInputAction: TextInputAction.next,
                         isLoading: controller.isLoading.value,
                         fillColor: controller.isValidEnrolerId.value == 0
@@ -99,7 +99,7 @@ class Body extends StatelessWidget {
                 ),
                 Obx(() => EnrollTextField(
                       controller: controller.sponsorIdTextController,
-                      label: "Sponsor ID", //! Harcoded
+                      label: "sponsor".tr,
                       textInputAction: TextInputAction.done,
                       isLoading: controller.isLoading.value,
                       fillColor: controller.isValidSponsorId.value == 0
@@ -122,17 +122,17 @@ class Body extends StatelessWidget {
             flex: 2,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 AppText(
-                  text: "Please Contact Unicity",
+                  text: "please_contact_unicity".tr,
                   style: TextTypes.headline4,
                   color: AppColor.darkLiver,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: AppText(
                     text:
-                        "If you experience any problems with this application or if you have any questions.",
+                        "If you experience any problems with this application or if you have any questions.", //! hardcoded
                     style: TextTypes.subtitle1,
                     color: AppColor.darkLiver,
                     align: TextAlign.center,

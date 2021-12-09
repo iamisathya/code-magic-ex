@@ -54,7 +54,7 @@ class SalesReportSearchResultController extends GetxController {
 
   Future<void> proceedToPrint() async {
     if (activeListLength == 0) {
-      SnackbarUtil.showWarning(message: "No data found in table.");
+      SnackbarUtil.showWarning(message: "no_data_found_table".tr);
       return;
     }
     final List<SalesReportGeneric> printList = [];
@@ -106,7 +106,7 @@ class SalesReportSearchResultController extends GetxController {
   Future<File?> createExcellSheet() async {
     File? createdFile;
     if (activeListLength == 0) {
-      SnackbarUtil.showWarning(message: "Empty table!");
+      SnackbarUtil.showWarning(message: "empty_table".tr);
       return createdFile;
     }
     if (await Permission.storage.request().isGranted) {

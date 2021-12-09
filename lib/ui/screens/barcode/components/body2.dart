@@ -25,7 +25,7 @@ class Body extends StatelessWidget {
                     PageTitle(title: "barcode_tracker".tr),
                     SearchTextfield(
                         icon: kBarcodeScanIcon,
-                        labelText: "Order Number",
+                        labelText: "order_number".tr,
                         onSubmit: () => controller.getBarcodePath(
                             context, controller.bardcodeTextField.text),
                         onScan: () => controller.scanBarcode(context),

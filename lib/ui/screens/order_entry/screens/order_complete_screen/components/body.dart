@@ -18,11 +18,11 @@ class Body extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Column(
-            children: const [
-              AppText(text: "Thank You", style: TextTypes.headline4), //!hardcoded
-              SizedBox(height: 10),
+            children: [
+              AppText(text: "thank_you".tr, style: TextTypes.headline4),
+              const SizedBox(height: 10),
               AppText(
-                  text: "Your order has been placed successfully!", //!hardcoded
+                  text: "order_place_success_msg".tr, //!hardcoded
                   style: TextTypes.subtitle2,
                   color: AppColor.cadet),
             ],

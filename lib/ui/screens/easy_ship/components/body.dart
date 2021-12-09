@@ -69,11 +69,11 @@ class Body extends StatelessWidget {
                     controller.getAllOrderlines(userId: searchConntroller.text);
                   } else {
                     renderErrorSnackBar(
-                        title: "Search field empty!",
-                        subTitle: "Please enter user id to search.");
+                        title: "Search field empty!", //! hardcoded
+                        subTitle: "Please enter user id to search."); //! hardcoded
                   }
                 },
-                text: "Search",
+                text: "search".tr,
               ))
         ],
       ),
@@ -145,7 +145,7 @@ class Body extends StatelessWidget {
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     final currentItem = controller.getEasyShipReports[index];
     final color =
-        currentItem.itemName == "Total" ? kWhiteSmokeColor : Colors.white;
+        currentItem.itemName == "total".tr ? kWhiteSmokeColor : Colors.white;
     return Container(
       width: 180,
       height: 65,
@@ -159,7 +159,7 @@ class Body extends StatelessWidget {
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
     final currentItem = controller.getEasyShipReports[index];
     final color =
-        currentItem.itemName == "Total" ? kWhiteSmokeColor : Colors.white;
+        currentItem.itemName == "total".tr ? kWhiteSmokeColor : Colors.white;
     return Row(
       children: <Widget>[
         _renderDataCell(150, color, currentItem.pvDate),

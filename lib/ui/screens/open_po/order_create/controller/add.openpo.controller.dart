@@ -92,7 +92,7 @@ class CreateOpenPoOrderController extends GetxController
       searchResult.value.items = List.from(inventoryRecords.value.items);
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
-      SnackbarUtil.showError(message: "Error! $message");
+      SnackbarUtil.showError(message: "${"error".tr}! $message");
       returnResponse(e.response!);
     } catch (err) {
       LoggerService.instance.e(err.toString());
@@ -155,9 +155,9 @@ class CreateOpenPoOrderController extends GetxController
         browseImage(ImageSource.camera);
         Get.back();
       },
-      child: const Text(
-        "Open Camera",
-        style: TextStyle(color: Colors.black),
+      child: Text(
+        "ppen_camera".tr,
+        style: const TextStyle(color: Colors.black),
       ),
     );
     final Widget photosButton = TextButton(
@@ -219,7 +219,7 @@ class CreateOpenPoOrderController extends GetxController
   Future<void> validateOrder(BuildContext context) async {
     if (cartProducts.isEmpty) {
       SnackbarUtil.showError(
-          message: "Please add products to proceed with checkout!"); //! hardcoced
+          message: "add_products_to_cart_to_checkout".tr);
       return;
     }
     confirmOrder(context);
@@ -388,7 +388,7 @@ class CreateOpenPoOrderController extends GetxController
                                         ),
                                         AppText(
                                           text:
-                                              "${item.terms.pvEach} PV | ${item.terms.priceEach} ${Globals.currency}",
+                                              "${item.terms.pvEach} ${"pv".tr} | ${item.terms.priceEach} ${Globals.currency}",
                                           style: TextTypes.subtitle2,
                                           color: AppColor.charcoal,
                                         ),

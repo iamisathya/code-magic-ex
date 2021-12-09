@@ -93,7 +93,7 @@ class OrderEntryProductListController extends GetxController {
 
   void _onCatchError(Object err, StackTrace s) {
     debugPrint(err.toString());
-    SnackbarUtil.showError(message: "Error while getting user details!"); //!hardcoded
+    SnackbarUtil.showError(message: "error_getting_user_details".tr);
     LoggerService.instance.e(s);
     isLoading.toggle();
   }
@@ -209,7 +209,7 @@ class OrderEntryProductListController extends GetxController {
 
   void onClickNuetralButton() {
     SnackbarUtil.showWarning(
-        message: "Please add items to cart before proceed!"); //!hardcoded
+        message: "please_add_item_to_cart_msg".tr);
   }
 
   void onClickPositiveButton() {

@@ -27,20 +27,20 @@ class Body extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (!(value!.isNotEmpty && value.length > 3)) {
-                    return "Barcode number should not be empty!";
+                    return "Barcode number should not be empty!"; //! hardcoded
                   }
                   return null;
                 },
-                decoration: const InputDecoration(
-                  labelText: "Search",
-                  prefixIcon: Icon(Icons.search),
+                decoration: InputDecoration(
+                  labelText: "search".tr,
+                  prefixIcon: const Icon(Icons.search),
                 ),
               ),
             ),
             const SizedBox(height: 30),
             PrimaryButton(
               press: () => controller.getBarcodePath(context),
-              text: "Search",
+              text: "search".tr,
             ),
           ],
         ));

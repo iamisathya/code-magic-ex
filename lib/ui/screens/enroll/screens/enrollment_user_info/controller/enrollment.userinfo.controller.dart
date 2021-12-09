@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' hide StringTranslateExtension;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -48,8 +48,8 @@ class EnrollmentUserInfoController extends GetxController {
   RxList<CompleteAddress> searchedAddresses = <CompleteAddress>[].obs;
   Rx<String> countryCode = "".obs;
 
-  List<String> genderOptions = ["Male", "Female"];
-  List<String> maritalStatusOptions = ["Single", "Married"];
+  List<String> genderOptions = ["male".tr, "female".tr];
+  List<String> maritalStatusOptions = ["single".tr, "married".tr];
   List<String> addresses = ["Bangalore", "Mysore"];
   List<String> provienceOptions = [];
 
@@ -119,7 +119,7 @@ class EnrollmentUserInfoController extends GetxController {
 
   Future<void> getAddresByZipcode() async {
     if (addressSearchController.text.isEmpty) {
-      SnackbarUtil.showWarning(message: "Search field shouldn't be empty");
+      SnackbarUtil.showWarning(message: "Search field shouldn't be empty"); //! hardcoded
       return;
     }
     try {
@@ -134,7 +134,7 @@ class EnrollmentUserInfoController extends GetxController {
       update();
     } on DioError catch (e) {
       isSearchingAddres.toggle();
-      SnackbarUtil.showError(message: "Error! ${e.response}");
+      SnackbarUtil.showError(message: "${"error".tr} ${e.response}");
     } catch (err, e) {
       isSearchingAddres.toggle();
       debugPrint(e.toString());
@@ -221,7 +221,7 @@ class EnrollmentUserInfoController extends GetxController {
                   child: WhiteSearchField(
                       controller: addressSearchController,
                       onPress: getAddresByZipcode,
-                      hintText: "Search Address",
+                      hintText: "search_address".tr,
                       isFetching: isSearchingAddres),
                 ),
                 const SizedBox(height: 5),
@@ -229,7 +229,7 @@ class EnrollmentUserInfoController extends GetxController {
                   Obx(() => Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
-                            'Found ${searchedAddresses.length} item(s) matched with "${addressSearchController.text}".'),
+                            'Found ${searchedAddresses.length} item(s) matched with "${addressSearchController.text}".'), //! hardcoded
                       )),
                 Expanded(
                   child: Obx(
@@ -241,7 +241,7 @@ class EnrollmentUserInfoController extends GetxController {
                         if (searchedAddresses.isEmpty) {
                           return const Center(
                               child: AppText(
-                                  text: "Sorry no addres found!",
+                                  text: "Sorry no addres found!", //! hardcoded
                                   style: TextTypes.bodyText2));
                         }
                         return GestureDetector(

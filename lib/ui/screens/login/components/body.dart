@@ -34,10 +34,10 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.04),
                 Obx(() => controller.isSessionExpired.value
-                    ? const Text(
-                        "Session Expired, please login again", //!hardcoded
+                    ? Text(
+                        "session_expired_login_again".tr,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.red),
+                        style: const TextStyle(color: Colors.red),
                       )
                     : const SizedBox()),
                 SizedBox(height: SizeConfig.screenHeight * 0.04),

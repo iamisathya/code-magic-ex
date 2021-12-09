@@ -24,7 +24,7 @@ class SalesReportSearchResult extends StatelessWidget {
           Container(
             height: 70,
             alignment: Alignment.center,
-            child: Text("World of Wellness co., Ltd.",
+            child: Text("World of Wellness co., Ltd.", //! hardcoded
                 style: Theme.of(context).textTheme.headline6),
           ),
           OptionBar(

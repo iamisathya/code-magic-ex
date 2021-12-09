@@ -19,7 +19,7 @@ class PromptPaymentOption extends StatelessWidget {
         children: [
           SvgPicture.asset(kPromptPayImage),
           const AppText(
-              text: "Scan The QR Code to Pay",
+              text: "Scan The QR Code to Pay",  //! hardcoded
               style: TextTypes.bodyText1,
               color: AppColor.ateneoBlue),
           SvgPicture.asset(kBarcodeExampleImage),

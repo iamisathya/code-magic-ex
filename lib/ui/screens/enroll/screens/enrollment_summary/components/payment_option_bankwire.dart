@@ -10,24 +10,24 @@ class BankWirePaymentOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        PaymentInfoRow(title: "Mizuho Bank Aoyama Branch:", value: "2583367"),
+        PaymentInfoRow(title: "Mizuho Bank Aoyama Branch:", value: "2583367"), //! hardcoded
         SizedBox(
           height: 10,
         ),
         PaymentInfoRow(
-            title: "Sumitomo Mitsui Banking Corporation Marunouchi Branch:",
+            title: "Sumitomo Mitsui Banking Corporation Marunouchi Branch:", //! hardcoded
             value: "1166789"),
         SizedBox(
           height: 10,
         ),
         PaymentInfoRow(
-            title: "Bank of Tokyo-Mitsubishi UFJ Aoyama Branch:",
+            title: "Bank of Tokyo-Mitsubishi UFJ Aoyama Branch:", //! hardcoded
             value: "4592289"),
         SizedBox(
           height: 10,
         ),
         PaymentInfoRow(
-            title: "Yucho Bank Transfer Gaienmae Post Office:",
+            title: "Yucho Bank Transfer Gaienmae Post Office:", //! hardcoded
             value: "00100 9 126835"),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 20),
@@ -35,7 +35,7 @@ class BankWirePaymentOption extends StatelessWidget {
         ),
         AppText(
             text:
-                "Please be sure to fill in or enter your member number before the name of the transferee.",
+                "Please be sure to fill in or enter your member number before the name of the transferee.", //! hardcoded
             style: TextTypes.caption,
             align: TextAlign.center),
       ],

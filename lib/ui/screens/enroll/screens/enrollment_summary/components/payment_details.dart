@@ -28,15 +28,15 @@ class PaymentDetails extends StatelessWidget {
       case PaymentOptions.cashOnDelivery:
         return const CashOnDeliveryDetails(
             message:
-                "Pay in cash using the exact change once your items are delivered!",
+                "Pay in cash using the exact change once your items are delivered!", //! hardcoded
             image: kCashOnDeliveryImage);
       case PaymentOptions.cashCounterPay:
         return const CashOnDeliveryDetails(
-            message: "Pay in cash to the staff when you receive the Products",
+            message: "Pay in cash to the staff when you receive the Products", //! hardcoded
             image: kSalesCashCounterImage);
       case PaymentOptions.ecPay:
         return const CashOnDeliveryDetails(
-            message: "The page will redirect you to ECPay", image: kECPayImage);
+            message: "The page will redirect you to ECPay", image: kECPayImage); //! hardcoded
       case PaymentOptions.promptPay:
         return const PromptPaymentOption();
       case PaymentOptions.bankWire:

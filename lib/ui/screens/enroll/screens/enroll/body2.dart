@@ -33,7 +33,7 @@ class Body extends StatelessWidget {
                           actionExtentRatio: 0.5,
                           secondaryActions: <Widget>[
                             IconSlideAction(
-                              caption: 'Delete',
+                              caption: 'delete'.tr,
                               color: AppColor.ultraRed,
                               icon: Icons.delete,
                               foregroundColor: Colors.white,

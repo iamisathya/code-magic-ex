@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../utilities/enums.dart';
@@ -19,29 +20,29 @@ class EnrolmentSuccessScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Column(
-            children: const [
+            children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: AppText(text: "Thank You", style: TextTypes.headline4),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: AppText(text: "thank_you".tr, style: TextTypes.headline4),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: AppText(
-                    text: "Your order has been placed successfully!",
+                    text: "order_place_success".tr,
                     style: TextTypes.bodyText1,
                     color: AppColor.darkLiver),
               ),
             ],
           ),
           SvgPicture.asset(kEnrolmentSuccessImage,
-              height: 232, semanticsLabel: "Enrolment success!"),
+              height: 232, semanticsLabel: "Enrolment success!"), //! hardcoded
           Column(
             children: [
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: AppText(
-                  text: "Distributor ID : $distributorId",
+                  text: "${"distributor_id".tr} : $distributorId",
                   style: TextTypes.bodyText1,
                   color: AppColor.charcoal,
                 ),
@@ -50,16 +51,16 @@ class EnrolmentSuccessScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: AppText(
-                  text: "PO Number: $poNumber",
+                  text: "${"po_number".tr}: $poNumber",
                   style: TextTypes.bodyText1,
                   color: AppColor.charcoal,
                 ),
               ),
               const SizedBox(height: 30),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
                 child: AppText(
-                  text: "Scan Barcode",
+                  text: "scan_barcode".tr,
                   style: TextTypes.bodyText1,
                   color: AppColor.charcoal,
                 ),

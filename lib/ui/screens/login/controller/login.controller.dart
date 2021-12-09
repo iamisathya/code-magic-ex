@@ -70,10 +70,10 @@ class LoginController extends GetxController {
   Future<void> openMailConfirmationDialog(BuildContext context) async {
     final isConfirmed = await ConfirmationDialog.show(
         context: context,
-        title: "Reset password",
-        message: 'Are you sure you want reset your password?',
-        okText: 'Proceed',
-        cancelText: 'No! Thanks.');
+        title: "reset_password".tr,
+        message: 'Are you sure you want reset your password?', //! hardcoded
+        okText: 'proceed'.tr,
+        cancelText: 'no_thanks'.tr);
     if (isConfirmed == false) return;
     _composeMail();
   }
@@ -114,7 +114,7 @@ class LoginController extends GetxController {
       final Markets? currentMarket = await getMarketConfig(
           responseUserInfo.mainAddress.country.toLowerCase());
 
-      if (currentMarket == null) throw "Your market is not supported";
+      if (currentMarket == null) throw "Your market is not supported"; //! hardcoded
 
       //*  getCustomerData from api
       final ProfilePicture profilePicture = await ApiService.shared()
@@ -148,7 +148,7 @@ class LoginController extends GetxController {
       returnResponse(e.response!);
     } catch (err) {
       loading.toggle();
-      SnackbarUtil.showError(message: "Error while getting user details!");
+      SnackbarUtil.showError(message: "error_getting_user_details".tr);
       LoggerService.instance.e(err.toString());
     }
   }

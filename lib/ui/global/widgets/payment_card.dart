@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utilities/enums.dart';
 
@@ -15,25 +16,25 @@ class PaymentCard {
 
   @override
   String toString() {
-    return '[Type: $type, Number: $number, Name: $name, Month: $month, Year: $year, CVV: $cvv]';
+    return '[${"type".tr}: $type, ${"number".tr}: $number, ${"name".tr}: $name, ${"month".tr}: $month, ${"year".tr}: $year, ${"cvv".tr}: $cvv]';
   }
 }
 
 class CardUtils {
   static String? validateCVV(String? value) {
     if (value == null || value.isEmpty) {
-      return "This field is required";
+      return "This field is required"; //! hardcoded
     }
 
     if (value.length < 3 || value.length > 4) {
-      return "CVV is invalid";
+      return "CVV is invalid"; //! hardcoded
     }
     return null;
   }
 
   static String? validateDate(String? value) {
     if (value == null || value.isEmpty) {
-      return "This field is required";
+      return "This field is required"; //! hardcoded
     }
 
     int year;
@@ -54,18 +55,18 @@ class CardUtils {
 
     if ((month < 1) || (month > 12)) {
       // A valid month is between 1 (January) and 12 (December)
-      return 'Expiry month is invalid';
+      return 'Expiry month is invalid'; //! hardcoded
     }
 
     final fourDigitsYear = convertYearTo4Digits(year);
     if ((fourDigitsYear < 1) || (fourDigitsYear > 2099)) {
       // We are assuming a valid should be between 1 and 2099.
       // Note that, it's valid doesn't mean that it has not expired.
-      return 'Expiry year is invalid';
+      return 'Expiry year is invalid'; //! hardcoded
     }
 
     if (!hasDateExpired(month, year)) {
-      return "Card has expired";
+      return "Card has expired"; //! hardcoded
     }
     return null;
   }
@@ -175,14 +176,14 @@ class CardUtils {
   /// https://en.wikipedia.org/wiki/Luhn_algorithm
   static String? validateCardNum(String? input) {
     if (input == null || input.isEmpty) {
-      return "This field is required";
+      return "This field is required"; //! hardcoded
     }
 
     // input = getCleanedNumber(input);
     final String cleanedNumber = getCleanedNumber(input);
 
     if (input.length < 8) {
-      return "Card is invalid";
+      return "Card is invalid"; //! hardcoded
     }
 
     int sum = 0;
@@ -202,7 +203,7 @@ class CardUtils {
       return null;
     }
 
-    return "Card is invalid";
+    return "Card is invalid"; //! hardcoded
   }
 
   static CardType getCardTypeFrmNumber(String input) {

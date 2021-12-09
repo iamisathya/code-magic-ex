@@ -27,8 +27,8 @@ class EnrollmentTermsScreen extends StatelessWidget {
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
             onTapCancelButton: Get.back,
-            negetiveText: "Back",
-            positiveText: "OK, Got it",
+            negetiveText: "back".tr,
+            positiveText: "ok_got_it".tr,
             onTapPositiveButton: Get.back,
           ),
         ),

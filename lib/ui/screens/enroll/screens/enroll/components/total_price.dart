@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../constants/globals.dart';
@@ -26,7 +27,7 @@ class TotalPrice extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const AppText(text: "Total PV:", style: TextTypes.subtitle2),
+                AppText(text: "${"total_pv".tr}:", style: TextTypes.subtitle2),
                 AppText(text: "$totalPv PV", style: TextTypes.subtitle2),
               ],
             ),
@@ -40,7 +41,7 @@ class TotalPrice extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const AppText(text: "Total Price:", style: TextTypes.subtitle2),
+                AppText(text: "${"total_price".tr}:", style: TextTypes.subtitle2),
                 AppText(
                     text: "$totalPrice ${Globals.currency}",
                     style: TextTypes.subtitle2),

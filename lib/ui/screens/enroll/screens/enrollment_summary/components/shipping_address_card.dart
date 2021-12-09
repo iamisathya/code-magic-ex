@@ -27,10 +27,10 @@ class ShippingAddressCard extends StatelessWidget {
                 value:
                     "${controller.enrolleeUserData.mainAddress1} \n ${controller.enrolleeUserData.mainAddress2} \n ${controller.enrolleeUserData.city} \n ${controller.enrolleeUserData.zipCode} "),
             EeachUserinfoItem(
-                title: "Mobile Number",
+                title: "mobile_number".tr,
                 value: controller.enrolleeUserData.mobileNumber),
             EeachUserinfoItem(
-                title: "Email", value: controller.enrolleeUserData.email),
+                title: "email".tr, value: controller.enrolleeUserData.email),
           ],
         ),
       ),

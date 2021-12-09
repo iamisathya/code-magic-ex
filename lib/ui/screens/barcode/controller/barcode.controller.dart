@@ -47,7 +47,7 @@ class BarcodeController extends GetxController {
   String? validateBarocde() {
     if (!(bardcodeTextField.text.length > 3) &&
         bardcodeTextField.text.isNotEmpty) {
-      return "Barcode should not be empty!";  //!hardcoded
+      return "barcode_not_empty_msg".tr;
     }
     return null;
   }

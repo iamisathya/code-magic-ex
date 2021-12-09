@@ -61,7 +61,7 @@ class Body extends StatelessWidget {
                 padding: EdgeInsets.all(getProportionateScreenWidth(10)),
                 child: Column(
                   children: [
-                    _renderUserInfo(context, "Payment with", ""),  // !hardcoded
+                    _renderUserInfo(context, "payment_with".tr, ""),
                     _renderPayementOptions(context),
                   ],
                 ),

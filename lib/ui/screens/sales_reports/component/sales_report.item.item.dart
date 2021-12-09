@@ -41,8 +41,8 @@ class SalesReportEachItemItem extends StatelessWidget {
                 const SizedBox()
               ],
             ),
-            _renderEachRow(context, "${"ba_number"}: ${item.itemCode}", ""),
-            _renderEachRow(context, "${"pv"}: ${item.pv}", "${"quatity"}: ${item.qty}"),
+            _renderEachRow(context, "${"ba_number".tr}: ${item.itemCode}", ""),
+            _renderEachRow(context, "${"pv".tr}: ${item.pv}", "${"quatity".tr}: ${item.qty}"),
             GrandTotal(totalPv: item.totalPv.toString()),
           ],
         ),
@@ -90,7 +90,7 @@ class GrandTotal extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${"total_pv"}:",
+                "${"total_pv".tr}:",
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!

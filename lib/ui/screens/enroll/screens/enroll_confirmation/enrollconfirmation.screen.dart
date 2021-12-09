@@ -14,7 +14,7 @@ class EnrollConfirmation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: TransAppBar(
-          title: "Enroll Confirmation",
+          title: "enrol_confirmation".tr,
           action: _renderActionBar(context),
         ),
         body: SingleChildScrollView(child: SafeArea(child: Body())));
@@ -24,7 +24,7 @@ class EnrollConfirmation extends StatelessWidget {
     return <Widget>[
       IconButton(
         icon: const Icon(Icons.mode_edit_outline_outlined),
-        tooltip: 'Edit',
+        tooltip: 'edit'.tr,
         onPressed: () => controller.onCancel(),
       ),
     ];

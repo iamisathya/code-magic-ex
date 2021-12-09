@@ -159,8 +159,8 @@ class EasyShipController extends GetxController {
   Future onTapExportExcellSheet() async {
     if (_tempEasyShipOrders.isEmpty) {
       renderGetSnackbar(
-          title: "Empty table!",
-          message: "No data found in table.",
+          title: "Empty table!", //! hardcoded
+          message: "no_data_found_in_table".tr,
           type: SnackBarType.error);
       return;
     }
@@ -209,12 +209,12 @@ class EasyShipController extends GetxController {
           }
           if (i == 0) {
             emptyA.value = "SL No.";
-            b.value = "Order Number";
-            c.value = "Period";
-            d.value = "Product Name";
-            e.value = "Item Code";
-            f.value = "PV";
-            g.value = "Price";
+            b.value = "order_number".tr;
+            c.value = "period".tr;
+            d.value = "product_name".tr;
+            e.value = "item_code".tr;
+            f.value = "pv".tr;
+            g.value = "price".tr;
             emptyA.cellStyle = headerCellStyle;
             b.cellStyle = headerCellStyle;
             c.cellStyle = headerCellStyle;

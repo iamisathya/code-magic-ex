@@ -8,10 +8,10 @@ class HomeController extends GetxController {
   final PageController pageController = PageController();
   List<Widget> tabPages = [
     Body(),
-    const Center(child: Text("Home")),
-    const Center(child: Text("Sales Report")),
-    const Center(child: Text("Order Entry")),
-    const Center(child: Text("Barcode")),
+    Center(child: Text("home".tr)),
+    Center(child: Text("sales_report".tr)),
+    Center(child: Text("order_entry".tr)),
+    Center(child: Text("barcode".tr)),
   ];
 
   void onTabTapped(

@@ -25,7 +25,7 @@ class BarcodeScannerController extends GetxController {
   Future<void> scanBarcode(BuildContext context) async {
     KeyboardUtil.hideKeyboard(context);
     final String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-        "#FFFFFF", "Cancel", false, ScanMode.BARCODE);
+        "#FFFFFF", "cancel".tr, false, ScanMode.BARCODE);
     if (barcodeScanRes == "-1") return;
     debugPrint(barcodeScanRes);
     getBarcodePath(context, barcodeScanRes);
@@ -34,7 +34,7 @@ class BarcodeScannerController extends GetxController {
   Future<void> getBarcodePath(BuildContext context, String orderNumber) async {
     if (orderNumber.isEmpty && !orderNumber.isNumberOnly()) {
       SnackbarUtil.showError(
-          message: "Order number should only contains numarics.");
+          message: "Order number should only contains numarics."); //! hardcoded
       return;
     }
     Get.to(() => BarCodeDetails(), arguments: bardcodeTextField.text);

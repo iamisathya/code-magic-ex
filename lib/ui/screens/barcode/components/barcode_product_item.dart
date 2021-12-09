@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../models/barcode_item_response.dart';
@@ -34,12 +35,12 @@ class BarcodeProductItem extends StatelessWidget {
                         height: 25, width: 25, semanticsLabel: 'warning icon'),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Text("Scan: ${item.scan}",
+                      child: Text("${"scan".tr}: ${item.scan}",
                           style: Theme.of(context).textTheme.subtitle2),
                     )
                   ],
                 ),
-                Text("Qty: ${item.qty}",
+                Text("${"qty".tr}: ${item.qty}",
                     style: Theme.of(context).textTheme.subtitle2)
               ],
             ),
@@ -53,9 +54,9 @@ class BarcodeProductItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Code: ${item.code}",
+                Text("${"code".tr}: ${item.code}",
                     style: Theme.of(context).textTheme.bodyText2),
-                Text("Remains: ${item.remain}",
+                Text("${"remains".tr}: ${item.remain}",
                     style: Theme.of(context).textTheme.subtitle2)
               ],
             ),

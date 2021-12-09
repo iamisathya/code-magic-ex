@@ -77,13 +77,13 @@ class EnrollmentSummaryController extends GetxController {
     if (activePayType.value == PaymentOptions.none) {
       SnackbarUtil.showWarning(
           title: "Payment mode error!", //!hardcoded
-          message: "Please select payment method before proceed!"); //!hardcoded
+          message: "please_select_payment_msg".tr);
       return;
     } else if (activePayType.value != PaymentOptions.cashOnDelivery) {
       SnackbarUtil.showWarning(
           title: "Payment mode isn't available!", //!hardcoded
           message:
-              "We're sorry! Your selected payment mode isn't available for now. Please choose other payment option.");  //!hardcoded
+              "payment_not_available_msg".tr);
       return;
     }
     try {
@@ -91,7 +91,7 @@ class EnrollmentSummaryController extends GetxController {
       final bool isServerRuning = await checkOrderEntryServerStatus();
       if (!isServerRuning) {
         SnackbarUtil.showError(
-            message: "Server error! please try again later!"); //!hardcoded
+            message: "server_error_msg".tr);
         isLoading.toggle();
         return;
       }
@@ -131,7 +131,7 @@ class EnrollmentSummaryController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: "Server Error! ${e.error.toString()}"); //!hardcoded
+      SnackbarUtil.showError(message: "${"server_error".tr}! ${e.error.toString()}");
       return false;
     } catch (err) {
       SnackbarUtil.showError(message: "${"error!".tr} ${err.toString()}");
@@ -230,7 +230,7 @@ class EnrollmentSummaryController extends GetxController {
       if (payload == null) {
         isLoading.toggle();
         throw Exception(
-            'Somthing went wrong while preparing PurchaseLogRequestData');  //!hardcoded
+            'something_wrong_in_purchase_log'.tr);
       }
       final String jsonUser = jsonEncode(payload);
       await MemberCallsService.init().logEnrollerData(
@@ -282,7 +282,7 @@ class EnrollmentSummaryController extends GetxController {
         password,
       );
       if (validationResponse.affectedRows == 1) {
-        debugPrint("Password reset success"); //!hardcoded
+        debugPrint("password_reset_success".tr);
       }
     } on DioError catch (e) {
       LoggerService.instance.e(e.toString());

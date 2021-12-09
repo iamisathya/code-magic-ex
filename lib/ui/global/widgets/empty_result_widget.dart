@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EmptyWidget extends StatelessWidget {
   const EmptyWidget({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class EmptyWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 16.0),
             child: Text(
-              'No results',
+              'no_results'.tr,
               style: TextStyle(color: Colors.yellow[100]),
             ),
           )

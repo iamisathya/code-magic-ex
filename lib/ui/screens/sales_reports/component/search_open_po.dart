@@ -57,16 +57,17 @@ class _SearchAppBarState extends State<SearchSalesReport> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      "search_history",
-                      style: TextStyle(fontSize: 14, color: AppColor.kBlackColor),
+                    Text(
+                      "search_history".tr,
+                      style: const TextStyle(
+                          fontSize: 14, color: AppColor.kBlackColor),
                     ),
                     GestureDetector(
                       onTap: () => controller.clearHistory(),
-                      child: const Text(
-                        "clear_all",
-                        style:
-                            TextStyle(fontSize: 14, color: AppColor.brinkPink),
+                      child: Text(
+                        "clear_all".tr,
+                        style: const TextStyle(
+                            fontSize: 14, color: AppColor.brinkPink),
                       ),
                     )
                   ],

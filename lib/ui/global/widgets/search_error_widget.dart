@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SearchErrorWidget extends StatelessWidget {
   const SearchErrorWidget({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class SearchErrorWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 16.0),
             child: Text(
-              'Rate limit exceeded',
+              'rate_limit_exceeded'.tr,
               style: TextStyle(
                 color: Colors.red[300],
               ),

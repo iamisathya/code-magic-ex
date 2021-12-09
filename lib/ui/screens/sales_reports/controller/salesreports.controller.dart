@@ -150,9 +150,9 @@ class SalesReportController extends GetxController {
   Future<void> loadSalesReports(BuildContext context) async {
     if (startDate.text.isEmpty || endDate.text.isEmpty) {
       renderErrorSnackBar(
-          title: "Select ${startDate.text.isEmpty ? 'start' : 'end'} date", //!hardcoded
+          title: "${"select".tr} ${startDate.text.isEmpty ? 'start' : 'end'} ${"date".tr}",
           subTitle:
-              "Please select ${startDate.text.isEmpty ? 'start' : 'end'} date from Calender"); //!hardcoded
+              "${"please_select".tr} ${startDate.text.isEmpty ? 'start' : 'end'} ${"date_from_calender".tr}");
       return;
     } else {
       final DateTime _start = DateTime.parse(startDate.text);

@@ -17,7 +17,7 @@ class Body extends StatelessWidget {
       child: SafeArea(
           child: Column(
         children: [
-          const PageTitle(title: "Terms & conditions"),
+          const PageTitle(title: "Terms & conditions"),  //! hardcoded
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(

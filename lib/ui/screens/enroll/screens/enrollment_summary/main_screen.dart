@@ -27,8 +27,8 @@ class EnrollmentSummaryScreen extends StatelessWidget {
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
             onTapCancelButton: Get.back,
-            negetiveText: "Back",
-            positiveText: "Proceed Payment",
+            negetiveText: "back".tr,
+            positiveText: "Proceed Payment", //! hardcoded
             onTapPositiveButton: controller.proceedOrderPlace,
           ),
         ),

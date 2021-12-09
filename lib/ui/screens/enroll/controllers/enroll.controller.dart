@@ -124,7 +124,7 @@ class EnrollHomeController extends GetxController {
     addStarterKit();
     if (cartProducts.isEmpty) {
       SnackbarUtil.showWarning(
-          message: "Please add some products to cart before proceed!");
+          message: "add_products_to_cart_to_checkout".tr);
       return;
     }
     Get.to(() => EnrollmentDetailsHomeScreen());

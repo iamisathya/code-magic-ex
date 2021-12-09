@@ -21,7 +21,7 @@ class BarCodeSearchScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
               title: Obx(() => Text(
-                  "Order Number: ${controller.orderNumber.value}",
+                  "${"order_number".tr}: ${controller.orderNumber.value}",
                   style: Theme.of(context)
                       .textTheme
                       .headline6!
@@ -32,7 +32,7 @@ class BarCodeSearchScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SearchTextfield(
-                      labelText: "Barcode Number",
+                      labelText: "barcode_number".tr,
                       onScan: () => controller.scanBarcodeNumber(context),
                       onSubmit: () => controller
                           .addBarcodeNumber(controller.bardcodeTextField.text),
@@ -62,7 +62,7 @@ class BarCodeSearchScreen extends StatelessWidget {
             isShown: !controller.isLoading.value &&
                 controller.barcodeList.isNotEmpty,
             negetiveText: "cancel".tr,
-            positiveText: "continue",
+            positiveText: "continue".tr,
             onTapCancelButton: Get.back,
             onTapPositiveButton: controller.verifyBarcodeDetails,
             showNeutral: false,

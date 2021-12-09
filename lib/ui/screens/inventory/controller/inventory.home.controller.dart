@@ -179,13 +179,13 @@ class InventoryHomeController extends GetxController {
           }
           if (i == 0) {
             emptyA.value = "SL No.";
-            b.value = "Item Code";
-            c.value = "Item Name";
-            d.value = "PV";
-            e.value = "Price";
-            f.value = "Quantity on hand";
-            g.value = "Total Accumulated Price";
-            h.value = "Total PV";
+            b.value = "itemcode".tr;
+            c.value = "itemname".tr;
+            d.value = "pv".tr;
+            e.value = "price".tr;
+            f.value = "quantiity_on_hand".tr;
+            g.value = "total_accumulated_price".tr;
+            h.value = "total_pv".tr;
             emptyA.cellStyle = headerCellStyle;
             b.cellStyle = headerCellStyle;
             c.cellStyle = headerCellStyle;

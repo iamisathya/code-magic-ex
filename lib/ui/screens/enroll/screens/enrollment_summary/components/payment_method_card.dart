@@ -21,7 +21,7 @@ class PaymentMethodCard extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.all(20.0),
-            child: AppText(text: "Payment Method", style: TextTypes.headline6),
+            child: AppText(text: "Payment Method", style: TextTypes.headline6), //! hardcoded
           ),
           Obx(
             () => Container(
@@ -30,42 +30,42 @@ class PaymentMethodCard extends StatelessWidget {
               child: Column(
                 children: [
                   PaymentOptionItem(
-                      title: "Credit Card / Debit Card",
+                      title: "Credit Card / Debit Card", //! hardcoded
                       icon: kCreditCardIcon,
                       onPress: () => controller.currentPaymentType =
                           PaymentOptions.creditCard,
                       isActive: controller.currentPaymentType ==
                           PaymentOptions.creditCard),
                   PaymentOptionItem(
-                      title: "Cash On Delivery",
+                      title: "cash_on_delivery",
                       icon: kCashOnDeliveryIcon,
                       onPress: () => controller.currentPaymentType =
                           PaymentOptions.cashOnDelivery,
                       isActive: controller.currentPaymentType ==
                           PaymentOptions.cashOnDelivery),
                   PaymentOptionItem(
-                      title: "Cash",
+                      title: "cash",
                       icon: kCashPayIcon,
                       onPress: () => controller.currentPaymentType =
                           PaymentOptions.cashCounterPay,
                       isActive: controller.currentPaymentType ==
                           PaymentOptions.cashCounterPay),
                   PaymentOptionItem(
-                      title: "ECPay",
+                      title: "ec_pay",
                       icon: kECPayIcon,
                       onPress: () =>
                           controller.currentPaymentType = PaymentOptions.ecPay,
                       isActive: controller.currentPaymentType ==
                           PaymentOptions.ecPay),
                   PaymentOptionItem(
-                      title: "Prompt Pay",
+                      title: "prompt_pay",
                       icon: kPromptPayIcon,
                       onPress: () => controller.currentPaymentType =
                           PaymentOptions.promptPay,
                       isActive: controller.currentPaymentType ==
                           PaymentOptions.promptPay),
                   PaymentOptionItem(
-                      title: "Bank Wire",
+                      title: "bank_wire",
                       icon: kBankWireIcon,
                       onPress: () => controller.currentPaymentType =
                           PaymentOptions.bankWire,

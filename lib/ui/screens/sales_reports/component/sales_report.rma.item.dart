@@ -60,18 +60,18 @@ class SalesReportEachRmaItem extends StatelessWidget {
             ),
             _renderBarcodeRow(
                 context,
-                "${"ba_number"}: ${item.customer}",
-                "${"rma"}: ",
+                "${"ba_number".tr}: ${item.customer}",
+                "${"rma".tr}: ",
                 item.rmaOrderNumber.retrieveBarcode(),
                 item.rmaOrderNumber.retrieveHrefCode()),
             _renderOrderIdRow(
                 context,
-                "${"order_id"}: ",
+                "${"order_id".tr}: ",
                 item.orderNumber.retrieveBarcode(),
-                "${"date"}: ${item.date}",
+                "${"date".tr}: ${item.date}",
                 item.orderNumber.retrieveHrefCode()),
             _renderEachRow(
-                context, "Record: ${item.inputData}", "Time: ${item.time}"),
+                context, "${"record".tr}: ${item.inputData}", "${"time".tr}: ${item.time}"),
             GrandTotal(
                 status: item.rmaOrderNumber.contains("glyphicon-ok-circle")
                     ? "Unknown"

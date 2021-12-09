@@ -60,29 +60,29 @@ class EnrollController extends GetxController {
   RxList<String> errorMessages = <String>[].obs;
   RxBool isEnrollerSponsorVerified = false.obs;
   RxBool isGovtIdVerified = false.obs;
-  RxString enrollerSponsorVerifyButton = "Verify Enroller".obs; //!hardcoded
-  RxString govtIdVerifyButton = "Verify ID".obs; //!hardcoded
+  RxString enrollerSponsorVerifyButton = "verify_enroller".tr.obs;
+  RxString govtIdVerifyButton = "verify_id".tr.obs;
   String enrollerName = "";
   String sponsorName = "";
 
   List<DropdownMenuItem<String>> genderDropdownItems = [
-    const DropdownMenuItem(value: "", child: Text("Select Gender")), //!hardcoded
-    const DropdownMenuItem(value: "male", child: Text("Male")), //!hardcoded
-    const DropdownMenuItem(value: "female", child: Text("Female")), //!hardcoded
+    DropdownMenuItem(value: "", child: Text("select_gender".tr)),
+    DropdownMenuItem(value: "male", child: Text("male".tr)),
+    DropdownMenuItem(value: "female", child: Text("female".tr)),
   ];
 
   List<DropdownMenuItem<String>> statusDropdownItems = [
-    const DropdownMenuItem(value: "", child: Text("Select Status")), //!hardcoded
-    const DropdownMenuItem(value: "Single", child: Text("Single")), //!hardcoded
-    const DropdownMenuItem(value: "Married", child: Text("Married")), //!hardcoded
+    DropdownMenuItem(value: "", child: Text("select_status".tr)),
+    DropdownMenuItem(value: "Single", child: Text("single".tr)),
+    DropdownMenuItem(value: "Married", child: Text("married".tr)),
   ];
 
   RxList<DropdownMenuItem<String>> provinceDropdownItems = [
-    const DropdownMenuItem(value: "", child: Text("Select Province")), //!hardcoded
+    DropdownMenuItem(value: "", child: Text("select_province".tr)),
   ].obs;
 
   RxList<DropdownMenuItem<String>> areaDropdownItems = [
-    const DropdownMenuItem(value: "", child: Text("Select Province")), //!hardcoded
+    DropdownMenuItem(value: "", child: Text("select_province".tr)),
   ].obs;
 
   RxList<DropdownMenuItem<String>> subAreaDropdownItems = [
@@ -107,11 +107,11 @@ class EnrollController extends GetxController {
     sponsorIdController.text = "108357166";
     firstNameThController.text = "ทดสอบ";
     lastNameThController.text = "สาธยา";
-    firstNameEnController.text = "Test"; //!hardcoded
-    lastNameEnController.text = "Account"; //!hardcoded
+    firstNameEnController.text = "test".tr;
+    lastNameEnController.text = "account".tr;
     // userGender.value = "Male";
     // maritalStatus.value = "Married";
-    mainAddressController.text = "Main Address"; //!hardcoded
+    mainAddressController.text = "main_address".tr;
     zipCodeController.text = "14000";
     emailAddressController.text = "nomail@unicity.com";
     phoneNumberController.text = "990099009";
@@ -148,7 +148,7 @@ class EnrollController extends GetxController {
       _renderErrorSnackBar("enroller_id_empty".tr, "enter_valid_enroller".tr);
       return;
     }
-    enrollerSponsorVerifyButton.value = "Verifying";
+    enrollerSponsorVerifyButton.value = "verifying".tr;
     isSubmitting(true);
     errorMessages.clear();
     isGovtIdSuccess.value = false;
@@ -174,20 +174,20 @@ class EnrollController extends GetxController {
             Parsing.intFrom(sponsorIdController.text)!, "customer");
         sponsorName = enrollerProfile.items[0].humanName.fullName;
       }
-      enrollerSponsorVerifyButton.value = "Verified"; //!hardcoded
+      enrollerSponsorVerifyButton.value = "verified".tr;
       isEnrollerIdSuccess.value = true;
       _sendingMsgProgressBar.hide();
       isSubmitting(false);
       update();
     } on DioError catch (e) {
       _sendingMsgProgressBar.hide();
-      enrollerSponsorVerifyButton.value = "Verify Enroller"; //!hardcoded
+      enrollerSponsorVerifyButton.value = "verify_enroller".tr;
       isSubmitting(false);
       _renderErrorSnackBar("error!", e.error.toString());
       returnResponse(e.response!);
     } catch (err) {
       _sendingMsgProgressBar.hide();
-      enrollerSponsorVerifyButton.value = "Verify Enroller"; //!hardcoded
+      enrollerSponsorVerifyButton.value = "verify_enroller".tr;
       isSubmitting(false);
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
@@ -221,10 +221,10 @@ class EnrollController extends GetxController {
 
   Future<void> verifyGovtIdNumber(BuildContext context) async {
     if (idCardNumberController.text.isEmpty) {
-      _renderErrorSnackBar("Empty!", "Please enter valid governament ID!"); //!hardcoded
+      _renderErrorSnackBar("empty".tr, "enter_valid_govt_id".tr);
       return;
     }
-    govtIdVerifyButton.value = "Verifying"; //!hardcoded
+    govtIdVerifyButton.value = "verifying".tr;
     isSubmitting(true);
     update();
     try {
@@ -238,7 +238,7 @@ class EnrollController extends GetxController {
             value: province.provienceId,
             child: Text(province.provienceNameEn)));
       }
-      govtIdVerifyButton.value = "Verified"; //!hardcoded
+      govtIdVerifyButton.value = "verified".tr;
       isGovtIdSuccess.value = true;
       isSubmitting(false);
       Timer(const Duration(milliseconds: 20), () {
@@ -252,7 +252,7 @@ class EnrollController extends GetxController {
       update();
     } catch (err) {
       _sendingMsgProgressBar.hide();
-      govtIdVerifyButton.value = "Verified ID"; //!hardcoded
+      govtIdVerifyButton.value = "verified_id".tr; //!hardcoded
       isSubmitting(false);
       errorMessage(err.toString());
       LoggerService.instance.e(err.toString());
@@ -263,7 +263,7 @@ class EnrollController extends GetxController {
   Future<void> getAmphuresByProvince() async {
     if (provience.isEmpty) {
       _renderErrorSnackBar(
-          "Select province", "Please select your province to proceed!"); //!hardcoded
+          "select_province".tr, "select_province_msg".tr);
       return;
     }
     try {
@@ -310,7 +310,7 @@ class EnrollController extends GetxController {
   Future<void> getZipcodeByDistricts() async {
     if (subArea.value.isEmpty) {
       _renderErrorSnackBar(
-          "Select disctrict", "Please select your disctrict to proceed!"); //!hardcoded
+          "select_disctrict".tr, "select_disctrict_msg".tr);
       return;
     }
     try {

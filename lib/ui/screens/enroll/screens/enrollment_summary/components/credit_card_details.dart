@@ -18,12 +18,12 @@ class CreditCardDetails extends StatelessWidget {
       CardNumberTextField(
           controller: controller.cardNumberController,
           isLoading: controller.isLoading.value,
-          label: 'Card Number',
+          label: 'card_number'.tr,
           textInputAction: TextInputAction.next),
       EnrollTextField(
           controller: controller.cardHolderNameController,
           isLoading: controller.isLoading.value,
-          label: 'Card Holder Name',
+          label: 'card_holder_name'.tr,
           textInputAction: TextInputAction.next),
       Row(
         children: [
@@ -32,7 +32,7 @@ class CreditCardDetails extends StatelessWidget {
               child: ExpireDateTextField(
                   controller: controller.expireDayController,
                   isLoading: controller.isLoading.value,
-                  label: 'Expiration Date',
+                  label: 'expiration_date'.tr,
                   textInputAction: TextInputAction.next),
             ),
           ),
@@ -41,7 +41,7 @@ class CreditCardDetails extends StatelessWidget {
             child: CVVFormTextField(
                 controller: controller.cvvController,
                 isLoading: controller.isLoading.value,
-                label: 'CVV',
+                label: 'cvv'.tr,
                 textInputAction: TextInputAction.done),
           ),
         ],

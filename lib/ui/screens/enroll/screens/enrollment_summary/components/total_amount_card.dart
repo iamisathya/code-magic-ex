@@ -23,12 +23,12 @@ class TotalAmountCard extends StatelessWidget {
         child: Column(
           children: [
             EeachUserinfoItem(
-                title: "Product Price",
+                title: "product_price",
                 value: "${ctrl.totalCartPrice} ${Globals.currency}"),
             EeachUserinfoItem(
-                title: "Delivery Fee", value: "0 ${Globals.currency}"),
-            const EeachUserinfoItem(
-                title: "Shipping Method", value: "Delivery"),
+                title: "delivery_fee", value: "0 ${Globals.currency}"),
+            EeachUserinfoItem(
+                title: "ship_method".tr, value: "Delivery"),
             Padding(
                 padding: const EdgeInsets.only(top: 20, bottom: 12.5),
                 child: Container(decoration: DottedDecoration())),
@@ -37,7 +37,7 @@ class TotalAmountCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(child: Text("Total PV", style: boldFont)),
+                  Flexible(child: Text("total_pv".tr, style: boldFont)),
                   Flexible(
                     flex: 2,
                     child: Text("${ctrl.totalCartPv} PV", style: boldFont),
@@ -50,7 +50,7 @@ class TotalAmountCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(child: Text("Total Price", style: boldFont)),
+                  Flexible(child: Text("total_price".tr, style: boldFont)),
                   Flexible(
                     flex: 2,
                     child: Text("${ctrl.totalCartPrice} ${Globals.currency}",

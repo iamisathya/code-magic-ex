@@ -194,7 +194,7 @@ class OrderEntryCheckoutController extends GetxController {
       final payload = prepareRequestPaylod();
       if (payload == null) {
         throw Exception(
-            'Something went wrong while preparing PurchaseLogRequestData');
+            'something_wrong_in_purchase_log'.tr);
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
