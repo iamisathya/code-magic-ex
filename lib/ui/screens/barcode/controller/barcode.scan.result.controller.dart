@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/models/barcode_response_dsc.dart';
 import 'package:dsc_tools/services/rest_api/exceptions.dart';
+import 'package:dsc_tools/ui/global/widgets/bottom_modal_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -118,18 +119,41 @@ class BarcodeScannResultController extends getx.GetxController {
     try {
       final String orderCode = orderUrl.value.retrieveOrderCodeFromLightUrl();
       final String orderNumber = orderUrl.value.retrieveLastString();
-      barcodeDetails = await DscCallService.init().getBarcodeDetails(
+      final dynamic details = await DscCallService.init().getBarcodeDetails(
           orderNumber,
           UserSessionManager.shared.customerToken.token,
           orderCode);
-      getOpenPlaceOrderDetails();
-      isLoading.toggle();
+      if (details["items"]["terms"] != null) {
+        barcodeDetails = BarcodeResponseDsc.fromJson(details  as Map<String, dynamic>);
+        getOpenPlaceOrderDetails();
+        isLoading.toggle();
+      } else {
+        throw FormatException(
+            "${details["items"]["error"]["error_message"]}${": $orderCode"}");
+      }
     } catch (err, s) {
+      showErrorDialoge(err.toString());
       isLoading.toggle();
       debugPrint(err.toString());
       LoggerService.instance.e(s);
-      getx.Get.back();
     }
+  }
+
+  void showErrorDialoge(String errorMsg) {
+    showModalBottomSheet<void>(
+        context: getx.Get.context!,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext context) {
+          return BottomModalAlert(
+              negetiveTitle: "cancel".tr,
+              positiveTitle: "ok_got_it".tr,
+              onPositiveTap: () => {getx.Get.back(), getx.Get.back()},
+              onNegetiveTap: () => {getx.Get.back(), getx.Get.back()},
+              title: "error".tr,
+              showTitle: true,
+              subTitle: errorMsg,
+              assetPath: kScanErrorImage);
+        });
   }
 
   Future<void> getOpenPlaceOrderDetails() async {
@@ -495,14 +519,12 @@ class BarcodeScannResultController extends getx.GetxController {
         "#FFFFFF", "cancel".tr, false, ScanMode.BARCODE);
     debugPrint(barcodeScanRes);
     if (barcodeScanRes.isEmpty && !barcodeScanRes.isNumberOnly()) {
-      SnackbarUtil.showError(
-          message: "order_number_should_numarics_msg".tr);
+      SnackbarUtil.showError(message: "order_number_should_numarics_msg".tr);
       return;
     }
     if (barcodeItems!.items[expndedIdx].barcodes.contains(barcodeScanRes)) {
       SnackbarUtil.showWarning(
-          message:
-              "${"barcode_already_exist_msg".tr}: $barcodeScanRes");
+          message: "${"barcode_already_exist_msg".tr}: $barcodeScanRes");
       return;
     }
     addBarcodeNumber(expndedIdx, barcodeScanRes);

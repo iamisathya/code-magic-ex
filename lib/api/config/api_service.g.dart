@@ -1267,7 +1267,7 @@ class _DscCallService implements DscCallService {
   }
 
   @override
-  Future<BarcodeResponseDsc> getBarcodeDetails(order, token, href) async {
+  Future<dynamic> getBarcodeDetails(order, token, href) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'order': order,
@@ -1275,13 +1275,12 @@ class _DscCallService implements DscCallService {
       r'href': href
     };
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<BarcodeResponseDsc>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, 'barcode/redirect_api.php',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = BarcodeResponseDsc.fromJson(_result.data!);
+    final _result = await _dio.fetch(_setStreamType<dynamic>(
+        Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, 'barcode/redirect_api.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
     return value;
   }
 
