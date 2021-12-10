@@ -34,7 +34,7 @@ class Address {
   static const String addressList = "unishop-fn-misc/city/search";
   static const String barcodeItems =
       "ALL/DSC/THA/barcode/check/library/get_items.php";
-  static const String dscBarcodeItems = "barcode/check/library/get_items.php";
+  static const String dscBarcodeItems = "barcode/check/library/get_items_api.php";
   static const String getBarcodeNumbers =
       "ALL/DSC/THA/barcode/check/library/edit.php";
   static const String verifyEachBarcodeNumber =

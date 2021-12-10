@@ -1180,15 +1180,14 @@ class _MemberCalls2Service implements MemberCalls2Service {
   }
 
   @override
-  Future<CashCouponResponse> getCashCoupon(pv) async {
+  Future<CashCouponResponse> getCashCoupon(pv, id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'pv': pv};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<CashCouponResponse>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(
-                    _dio.options, 'unishop-fn-misc/cashcoupon_quota//2970466',
+                .compose(_dio.options, 'unishop-fn-misc/cashcoupon_quota//$id',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CashCouponResponse.fromJson(_result.data!);
@@ -1252,17 +1251,16 @@ class _DscCallService implements DscCallService {
   String? baseUrl;
 
   @override
-  Future<PasswordResetResponse> getBarcodeItems(token) async {
+  Future<dynamic> getBarcodeItems(token, request) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<PasswordResetResponse>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, 'barcode/check/library/get_items.php',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = PasswordResetResponse.fromJson(_result.data!);
+    final queryParameters = <String, dynamic>{r'token': token};
+    final _data = request;
+    final _result = await _dio.fetch(_setStreamType<dynamic>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, 'barcode/check/library/get_items_api.php',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
     return value;
   }
 

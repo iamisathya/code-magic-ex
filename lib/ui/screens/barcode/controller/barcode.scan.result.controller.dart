@@ -272,10 +272,9 @@ class BarcodeScannResultController extends getx.GetxController {
       map["data[shipToPhone]"] = barcodeDetails!.userProfile.shipToPhone;
       map["data[href]"] = barcodeDetails!.userProfile.href;
 
-      final dynamic response = await MemberCallsService.init()
-          .getBarcodeItems(gTokenBarcodeNew, FormData.fromMap(map));
-      final jsonDecodedData =
-          jsonDecode(response as String) as Map<String, dynamic>;
+      final dynamic response = await DscCallService.init()
+          .getBarcodeItems(UserSessionManager.shared.customerToken.token, FormData.fromMap(map));
+      final jsonDecodedData = response as Map<String, dynamic>;
       if (jsonDecodedData["user"] != null) {
         final List<dynamic> list = jsonDecodedData["items"] as List<dynamic>;
         final List<BarcodeItem> modified = [];
@@ -298,6 +297,7 @@ class BarcodeScannResultController extends getx.GetxController {
       isLoading.toggle();
       getx.Get.back();
     } catch (err, s) {
+      debugPrint(err.toString());
       isLoading.toggle();
       LoggerService.instance.e(s);
       getx.Get.back();

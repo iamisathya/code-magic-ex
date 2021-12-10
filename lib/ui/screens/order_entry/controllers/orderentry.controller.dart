@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -178,7 +179,7 @@ class OrderEntryTableController extends GetxController {
   Future<void> getCashCoupon(BuildContext context) async {
     try {
       final CashCouponResponse cashCoupon = await MemberCalls2Service.init()
-          .getCashCoupon(totalCartPv.value.toString());
+          .getCashCoupon(totalCartPv.value.toString(), Globals.userId);
       if (cashCoupon.success != false) {
         // continue with order place
         availableCreditAmount.value = cashCoupon.availableCreditAmount;

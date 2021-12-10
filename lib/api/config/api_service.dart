@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/barcode_response_dsc.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -499,8 +498,8 @@ abstract class MemberCalls2Service {
   Future<PasswordResetResponse> forceResetPassword(@Path("id") String id);
 
   //? Example: https://member-calls2.unicity.com/unishop-fn-misc/cashcoupon_quota/2970466?pv=25
-  @GET("${Address.cashCoupon}/2970466")
-  Future<CashCouponResponse> getCashCoupon(@Query('pv') String pv);
+  @GET("${Address.cashCoupon}/{id}")
+  Future<CashCouponResponse> getCashCoupon(@Query('pv') String pv, @Path("id") String id);
 
   //? Example: https://member-calls2.unicity.com/etlV2/cache/clearAll?baId=2970466
   @DELETE(Address.clearOrderCache)
@@ -524,7 +523,7 @@ abstract class DscCallService {
 
   //? Example: https://dsc-th.unicity.com/barcode/check/library/get_items_api.php?token=9a36619e-2e99-4d15-92a8-ed77bd816208
   @POST(Address.dscBarcodeItems)
-  Future<PasswordResetResponse> getBarcodeItems(@Path("token") String token);
+  Future<dynamic> getBarcodeItems(@Query("token") String token, @Body() FormData request);
 
 
   //? Example: https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?order=423182123&token=b5eb37c5-5644-492d-b703-817cf58bfa9e&href=31512d2a1d4a2a5860bc785d27d1f7522ad2ddc6de4667f07aa6ac036f67662c
