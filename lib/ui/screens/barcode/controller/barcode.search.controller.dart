@@ -43,14 +43,12 @@ class BarcodeSearchController extends GetxController {
           "#FFFFFF", "Cancel", false, ScanMode.BARCODE);
       if (barcodeScanRes == "-1") return; // Barcode scanning cancelled by user
       if (barcodeScanRes.isEmpty && !barcodeScanRes.isNumberOnly()) {
-        SnackbarUtil.showError(
-            message: "order_number_should_numarics_msg".tr);
+        SnackbarUtil.showError(message: "order_number_should_numarics_msg".tr);
         return;
       }
       if (barcodeList.contains(barcodeScanRes)) {
         SnackbarUtil.showWarning(
-            message:
-                "${"barcode_already_exist_msg".tr}: $barcodeScanRes");
+            message: "${"barcode_already_exist_msg".tr}: $barcodeScanRes");
         return;
       }
       addBarcodeNumber(barcodeScanRes);
@@ -61,14 +59,12 @@ class BarcodeSearchController extends GetxController {
 
   void addBarcodeNumber(String barcode) {
     if (barcode.isEmpty && !barcode.isNumberOnly()) {
-      SnackbarUtil.showError(
-          message: "order_number_should_numarics_msg".tr);
+      SnackbarUtil.showError(message: "order_number_should_numarics_msg".tr);
       return;
     }
     if (barcodeList.contains(barcode)) {
       SnackbarUtil.showWarning(
-          message:
-              "${"barcode_already_exist_msg".tr}: $barcode");
+          message: "${"barcode_already_exist_msg".tr}: $barcode");
       return;
     }
     barcodeList.add(barcode);
@@ -106,7 +102,7 @@ class BarcodeSearchController extends GetxController {
           errors.write("\n ${err.msg}");
         }
         isLoading.toggle();
-        showErrorDialoge();
+        showErrorDialoge(errors.toString());
         // SnackbarUtil.showError(message: errors.toString(), duration: 10);
       } else {
         // * Success, save barcode numbers
@@ -119,7 +115,7 @@ class BarcodeSearchController extends GetxController {
     }
   }
 
-  void showErrorDialoge() {
+  void showErrorDialoge(String error) {
     showModalBottomSheet<void>(
         context: Get.context!,
         backgroundColor: Colors.transparent,
@@ -131,8 +127,7 @@ class BarcodeSearchController extends GetxController {
               onNegetiveTap: () => Navigator.pop(context),
               title: "``${"scan_error".tr}``",
               showTitle: true,
-              subTitle:
-                  "You have already scanned this order number 2999000054163.", //! hardcoded
+              subTitle: error,
               assetPath: kScanErrorImage);
         });
   }
