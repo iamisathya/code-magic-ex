@@ -17,7 +17,7 @@ class SignOutButton extends StatelessWidget {
       {this.fontSize = 14,
       this.title = "",
       this.height = 40,
-      this.bgColor = AppColor.kWhiteColor,
+      this.bgColor = AppColor.sunglow,
       this.fgColor = AppColor.kBlackColor,
       this.iconColor = AppColor.kBlackColor,
       this.icon = kSignOutIcon,
