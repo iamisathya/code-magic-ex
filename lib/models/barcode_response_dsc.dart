@@ -459,15 +459,15 @@ class Discount {
 
 @JsonSerializable()
 class BillToAddress {
-  String address1;
-  String address2;
+  String? address1;
+  String? address2;
   String? city;
   String? zip;
   String country;
 
   BillToAddress(
-      {required this.address1,
-      required this.address2,
+      {this.address1,
+      this.address2,
       this.city,
       this.zip,
       required this.country});

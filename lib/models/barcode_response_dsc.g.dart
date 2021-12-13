@@ -384,8 +384,8 @@ Map<String, dynamic> _$DiscountToJson(Discount instance) => <String, dynamic>{
 
 BillToAddress _$BillToAddressFromJson(Map<String, dynamic> json) {
   return BillToAddress(
-    address1: json['address1'] as String,
-    address2: json['address2'] as String,
+    address1: json['address1'] as String?,
+    address2: json['address2'] as String?,
     city: json['city'] as String?,
     zip: json['zip'] as String?,
     country: json['country'] as String,
