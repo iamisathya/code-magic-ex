@@ -70,6 +70,7 @@ class OpenPoListController extends GetxController
           final String url = "${Address.resource}$attchmentName";
           return Dialog(
             child: PhotoView(
+              loadingBuilder: (context, event) => loadingIndicator(event),
               tightMode: true,
               imageProvider: NetworkImage(url),
               heroAttributes: PhotoViewHeroAttributes(tag: url),
@@ -77,6 +78,20 @@ class OpenPoListController extends GetxController
           );
         },
       );
+
+  Center loadingIndicator(ImageChunkEvent? event) {
+    return Center(
+      child: SizedBox(
+        width: 20.0,
+        height: 20.0,
+        child: CircularProgressIndicator(
+          value: event == null
+              ? 0
+              : event.cumulativeBytesLoaded / event.expectedTotalBytes!,
+        ),
+      ),
+    );
+  }
 
   void onFilterChange(int index) {
     switch (index) {
@@ -118,7 +133,8 @@ class OpenPoListController extends GetxController
     switch (orderStatus) {
       case "0":
         return OrderStatusItem(
-            title: "waiting_for_approval".tr.toUpperCase(), color: AppColor.sunglow);
+            title: "waiting_for_approval".tr.toUpperCase(),
+            color: AppColor.sunglow);
       case "1":
         return OrderStatusItem(
           title: "deleted".tr.toUpperCase(),
@@ -126,16 +142,20 @@ class OpenPoListController extends GetxController
         );
       case "2":
         return OrderStatusItem(
-            title: "inventory_transferred".tr.toUpperCase(), color: AppColor.paleViolet);
+            title: "inventory_transferred".tr.toUpperCase(),
+            color: AppColor.paleViolet);
       case "3":
         return OrderStatusItem(
-            title: "waiting_for_approval".tr.toUpperCase(), color: AppColor.sunglow);
+            title: "waiting_for_approval".tr.toUpperCase(),
+            color: AppColor.sunglow);
       case "4":
         return OrderStatusItem(
-            title: "approved".tr.toUpperCase(), color: AppColor.mediumAquamarine);
+            title: "approved".tr.toUpperCase(),
+            color: AppColor.mediumAquamarine);
       default:
         return OrderStatusItem(
-            title: "waiting_for_approval".tr.toUpperCase(), color: AppColor.sunglow);
+            title: "waiting_for_approval".tr.toUpperCase(),
+            color: AppColor.sunglow);
     }
   }
 
