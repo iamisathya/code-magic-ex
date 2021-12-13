@@ -86,7 +86,8 @@ dynamic returnResponse(dio.Response response) {
       throw DefaultException(message: response.data.toString());
     case 401:
       final String errorMsg = getErrorMessage(response.data);
-      if (errorMsg == "Invalid Bearer Token.") { //!Hardcoded
+      if (errorMsg == "Invalid Bearer Token.") {
+        //!Hardcoded
         UserSessionManager.shared.removeUserInfoFromDB();
         return Get.offAll(() => LoginScreen(),
             arguments: true, transition: Transition.cupertino);
@@ -96,10 +97,12 @@ dynamic returnResponse(dio.Response response) {
       throw UnauthorisedException(message: response.data.toString());
     case 404:
       String errorMsg = getErrorMessageWithKey(response.data, "message");
-      if (errorMsg == "Unauthorized") { //!Hardcoded
+      if (errorMsg == "Unauthorized") {
+        //!Hardcoded
         errorMsg = "Invalid credentials"; //!Hardcoded
       }
-      if (errorMsg == "Not Found") { //!Hardcoded
+      if (errorMsg == "Not Found") {
+        //!Hardcoded
         errorMsg = getErrorMessage(response.data);
       }
       throw UnauthorisedException(message: errorMsg);
@@ -107,15 +110,20 @@ dynamic returnResponse(dio.Response response) {
       throw TimeOutException(message: response.data.toString());
     case 500:
       throw InternetFailedException(
-          message: '${"internal_server_error".tr}: ${response.statusCode}'); //!Hardcoded
+          message:
+              '${"internal_server_error".tr}: ${response.statusCode}'); //!Hardcoded
     case 503:
       throw InternetFailedException(
-          message: '${"service_unavailable".tr}: ${response.statusCode}'); //!Hardcoded
+          message:
+              '${"service_unavailable".tr}: ${response.statusCode}'); //!Hardcoded
     case 524:
-      throw TimeOutException(message: '${"server_timeout".tr}: ${response.statusCode}'); //!Hardcoded
+      throw TimeOutException(
+          message:
+              '${"server_timeout".tr}: ${response.statusCode}'); //!Hardcoded
     default:
       throw InternetFailedException(
-          message: '${"internal_server_error".tr}: ${response.statusCode}'); //!Hardcoded
+          message:
+              '${"internal_server_error".tr}: ${response.statusCode}'); //!Hardcoded
   }
 }
 
@@ -156,15 +164,20 @@ void showAlertDialog(BuildContext context,
 }
 
 Future<CountryDetails> getCountryCode(String countryCode) async {
-  final String countries =
-      await rootBundle.loadString('assets/json/country_state.json');
-  final List<dynamic> parsedListJson = jsonDecode(countries) as List<dynamic>;
-  final List<CountryDetails> itemsList = List<CountryDetails>.from(
-      parsedListJson
-          .map((i) => CountryDetails.fromJson(i as Map<String, dynamic>)));
-  final CountryDetails item = itemsList
-      .firstWhere((element) => element.alpha3Code == countryCode);
-  return item;
+  try {
+    final String countries =
+        await rootBundle.loadString('assets/json/country_state.json');
+    final List<dynamic> parsedListJson = jsonDecode(countries) as List<dynamic>;
+    final List<CountryDetails> itemsList = List<CountryDetails>.from(
+        parsedListJson
+            .map((i) => CountryDetails.fromJson(i as Map<String, dynamic>)));
+    final CountryDetails item =
+        itemsList.firstWhere((element) => element.code == countryCode);
+    return item;
+  } catch (e) {
+    debugPrint(e.toString());
+    return CountryDetails(alpha3Code: "THA", code: "TH");
+  }
 }
 
 String getErrorMessage(dynamic error) {
@@ -187,14 +200,16 @@ void onDioError(DioError e, ProgressBar progressBar, RxString error) {
   error(e.error.toString());
   final String message = getErrorMessage(e.response!.data);
   renderErrorSnackBar(
-      title: "${e.response!.statusCode} ${"error!".tr}", subTitle: message); //!Hardcoded
+      title: "${e.response!.statusCode} ${"error!".tr}",
+      subTitle: message); //!Hardcoded
   returnResponse(e.response!);
 }
 
 void onCatchError(Object err, ProgressBar progressBar, RxString error) {
   error(err.toString());
   renderErrorSnackBar(
-      title: "error!".tr, subTitle: "Error while getting user details!"); //!Hardcoded
+      title: "error!".tr,
+      subTitle: "Error while getting user details!"); //!Hardcoded
   LoggerService.instance.e(err.toString());
   progressBar.hide();
 }
