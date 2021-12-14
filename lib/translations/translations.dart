@@ -423,7 +423,17 @@ class AppTranslations extends Translations {
           "with_govt_id_name": "with Govt ID, Name",
           "writer": "Record",
           "years20": "Applicant must be 18 years or older. (DD/MM/YYYY)",
-          "zip": "Zip"
+          "zip": "Zip",
+          "order_contains_numaric_only": "Order number should only contains numarics.",
+          "barcode_scan_success_for":"Barcode scan successfull for",
+          "already_scanned_this_number":"You have already scanned this order number",
+          "search_field_empty":"Search field empty!",
+          "enter_user_id_to_search.":"Please enter user id to search.",
+          "error_saving_image":"Error while saving image!",
+          "image_saved_success":"Image saved successfully!",
+          "please_enter_user_id":"Please enter user id!",
+          "enrollment_error":"Enrollment Error",
+          "show_all":"Show All"
         },
         'km': {
           "add_po": "បន្ថែមការបញ្ជាទិញ P/O",
@@ -1111,6 +1121,16 @@ class AppTranslations extends Translations {
           "zip": "စာပို့သင်္ကေတ"
         },
         'th': {
+          "order_contains_numaric_only": "หมายเลขคำสั่งซื้อควรประกอบด้วยตัวเลขเท่านั้น",
+          "barcode_scan_success_for":"สแกนบาร์โค้ดสำเร็จ",
+          "already_scanned_this_number":"คุณได้สแกนหมายเลขคำสั่งซื้อนี้แล้ว",
+          "search_field_empty":"ช่องค้นหาว่างเปล่า",
+          "enter_user_id_to_search.":"กรุณาป้อนรหัสผู้ใช้เพื่อค้นหา",
+          "error_saving_image":"เกิดข้อผิดพลาดขณะบันทึกภาพ",
+          "image_saved_success":"บันทึกรูปภาพเรียบร้อยแล้ว!",
+          "please_enter_user_id":"กรุุณาใส่รหัสผู้ใช้",
+          "enrollment_error":"เกิดข้อผิดพลาดในการลงทะเบียน",
+          "show_all":"แสดงทั้งหมด",
           "12month": "12 เดือน",
           "6month": "6 เดือน",
           "account": "บัญชีผู้ใช้",

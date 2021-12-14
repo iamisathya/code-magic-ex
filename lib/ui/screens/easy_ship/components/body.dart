@@ -69,8 +69,8 @@ class Body extends StatelessWidget {
                     controller.getAllOrderlines(userId: searchConntroller.text);
                   } else {
                     renderErrorSnackBar(
-                        title: "Search field empty!", //! hardcoded
-                        subTitle: "Please enter user id to search."); //! hardcoded
+                        title: "search_field_empty".tr,
+                        subTitle: "enter_user_id_to_search".tr);
                   }
                 },
                 text: "search".tr,

@@ -29,7 +29,7 @@ class EasyShipHomeController extends GetxController {
 
   Future<void> onSearchEasyShipReport() async {
     if (baNumberTextField.text.isEmpty) {
-      SnackbarUtil.showWarning(message: "Please enter user id!"); //! hardcoded
+      SnackbarUtil.showWarning(message: "please_enter_user_id".tr);
       return;
     }
     Get.to(() => EasyShipOrdersList(), arguments: baNumberTextField.text);

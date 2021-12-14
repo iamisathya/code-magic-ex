@@ -34,7 +34,7 @@ class BarcodeScannerController extends GetxController {
   Future<void> getBarcodePath(BuildContext context, String orderNumber) async {
     if (orderNumber.isEmpty && !orderNumber.isNumberOnly()) {
       SnackbarUtil.showError(
-          message: "Order number should only contains numarics."); //! hardcoded
+          message: "order_contains_numaric_only".tr);
       return;
     }
     Get.to(() => BarCodeDetails(), arguments: bardcodeTextField.text);

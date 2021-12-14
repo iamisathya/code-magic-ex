@@ -85,10 +85,10 @@ class EasyShipListController extends GetxController {
         quality: 60, name: "easyship_${DateTime.now().millisecondsSinceEpoch}");
     if (result["isSuccess"] == true) {
       Navigator.of(context).pop();
-      SnackbarUtil.showSuccess(message: "Image saved successfully!"); //! hardcoded
+      SnackbarUtil.showSuccess(message: "image_saved_success".tr);
     } else {
       Navigator.of(context).pop();
-      SnackbarUtil.showError(message: "Error while saving image!"); //! hardcoded
+      SnackbarUtil.showError(message: "error_saving_image".tr);
     }
   }
 }

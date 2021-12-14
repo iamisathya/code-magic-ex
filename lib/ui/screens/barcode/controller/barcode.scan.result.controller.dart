@@ -433,7 +433,7 @@ class BarcodeScannResultController extends getx.GetxController {
         closeAllItems();
         SnackbarUtil.showSuccess(
             message:
-                "Barcode scan successfull for ${expandedItem.code}"); //!hardcoded
+                "${"barcode_scan_success_for".tr} ${expandedItem.code}");
         getBarcodePath();
       } else if (barCodeSaveResponse!.errorMessages!.isNotEmpty) {
         final errors = StringBuffer();

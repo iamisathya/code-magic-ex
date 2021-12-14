@@ -1,12 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dsc_tools/ui/screens/dashboard/controller/dashboard.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 import '../../../../utilities/user_session.dart';
 
 class ProfileImage extends StatelessWidget {
+  final DashboardController controller = Get.put(DashboardController());
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -42,10 +46,13 @@ class ProfileImage extends StatelessWidget {
                           ),
               )),
           Positioned(
-              bottom: -5,
-              left: -5,
-              child: SvgPicture.asset(kCameraIcon,
-                  height: 20, semanticsLabel: "camera icon")),
+            bottom: -5,
+            left: -5,
+            child: GestureDetector(
+                onTap: () => controller.changeProfilePicture(context),
+                child: SvgPicture.asset(kCameraIcon,
+                    height: 20, semanticsLabel: "camera icon")),
+          ),
         ],
       ),
     );
