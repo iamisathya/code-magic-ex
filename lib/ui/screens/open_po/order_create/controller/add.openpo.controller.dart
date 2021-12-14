@@ -149,60 +149,32 @@ class CreateOpenPoOrderController extends GetxController
         cartProducts.fold(0, (i, element) => i + element.totalPv);
   }
 
-  void selectSource() {
-    final Widget cameraButton = TextButton(
-      onPressed: () {
-        browseImage(ImageSource.camera);
-        Get.back();
-      },
-      child: Text(
-        "ppen_camera".tr,
-        style: const TextStyle(color: Colors.black),
-      ),
-    );
-    final Widget photosButton = TextButton(
-      onPressed: () {
-        browseImage(ImageSource.gallery);
-        Get.back();
-      },
-      child: Text(
-        "browse_photos".tr,
-        style: const TextStyle(color: Colors.black),
-      ),
-    );
-    final Widget canncelButton = TextButton(
-      onPressed: () {
-        Get.back();
-      },
-      child: Text(
-        "cancel".tr,
-        style: const TextStyle(color: Colors.red),
-      ),
-    );
-
-    Get.dialog(
-      AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Text(
-          "upload_image".tr,
-          textAlign: TextAlign.center,
-          style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w800),
-        ),
-        content: Text(
-          "take_select_photo_msg".tr,
-          style: const TextStyle(color: Colors.black),
-        ),
+  void brosweAttachment(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoActionSheet(
+        message: Text("take_select_photo_msg".tr),
         actions: <Widget>[
-          cameraButton,
-          photosButton,
-          canncelButton,
+          CupertinoActionSheetAction(
+            onPressed: () => onImageOptionSelect(ImageSource.camera),
+            child: Text("open_camera".tr),
+          ),
+          CupertinoActionSheetAction(
+            onPressed: () => onImageOptionSelect(ImageSource.gallery),
+            child: Text("browse_photos".tr),
+          )
         ],
+        cancelButton: CupertinoActionSheetAction(
+          isDestructiveAction: true,
+          isDefaultAction: true,
+          onPressed: Navigator.of(context).pop,
+          child: Text("cancel".tr),
+        ),
       ),
-      barrierDismissible: false,
     );
   }
 
-  Future<void> browseImage(ImageSource source) async {
+  Future<void> onImageOptionSelect(ImageSource source) async {
     try {
       final _pickedImage = (await _picker.pickImage(
         source: source,
@@ -211,7 +183,9 @@ class CreateOpenPoOrderController extends GetxController
       uploadFile = _pickedImage;
       debugPrint(_pickedImage.path.split('/').last);
       selectedFileName.value = _pickedImage.path.split('/').last;
+      Navigator.of(Get.context!).pop();
     } catch (e) {
+      Navigator.of(Get.context!).pop();
       debugPrint(e.toString());
     }
   }

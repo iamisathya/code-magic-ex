@@ -36,7 +36,7 @@ class BrosweAttachment extends StatelessWidget {
           TextButton.icon(
               style: ButtonStyle(
                   padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
-              onPressed: controller.selectSource,
+              onPressed: () => controller.brosweAttachment(context),
               icon: SvgPicture.asset(kFileIcon, color: AppColor.dodgerBlue),
               label: AppText(
                 text: "browse".tr,
