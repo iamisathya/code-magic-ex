@@ -1,3 +1,5 @@
+import 'package:dsc_tools/ui/screens/inventory/component/page_title.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +8,6 @@ import '../../../constants/globals.dart';
 import '../../../controllers/global_controllers.dart';
 import '../../../controllers/theme_controller.dart';
 import '../../../models/country_info.dart';
-import '../../global/widgets/transparent_app_bar.dart';
 
 class SettingsPage extends StatelessWidget {
   static const String routeName = '/settings';
@@ -17,13 +18,12 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TransAppBar(
-        title: "settings".tr,
-      ),
+      appBar: OpenPoAppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
+            PageTitle(title: "settings".tr),
             ListTile(
               contentPadding: const EdgeInsets.all(8),
               minVerticalPadding: 10,

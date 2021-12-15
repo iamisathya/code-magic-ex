@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/settings/settings.screen.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
@@ -66,5 +67,9 @@ class DashboardController extends GetxController {
         ),
       ),
     );
+  }
+
+  void openSettingsPage() {
+    Get.to(() => SettingsPage());
   }
 }

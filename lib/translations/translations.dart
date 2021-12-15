@@ -434,7 +434,7 @@ class AppTranslations extends Translations {
           "please_enter_user_id":"Please enter user id!",
           "enrollment_error":"Enrollment Error",
           "show_all":"Show All",
-          "plus_add": "+ Add"
+          "plus_add": "+ Add",
         },
         'km': {
           "add_po": "បន្ថែមការបញ្ជាទិញ P/O",

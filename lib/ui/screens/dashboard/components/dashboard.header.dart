@@ -1,10 +1,14 @@
+import 'package:dsc_tools/ui/screens/dashboard/controller/dashboard.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 
 class DashboardHeader extends StatelessWidget {
+  final DashboardController controller = Get.put(DashboardController());
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,10 +16,13 @@ class DashboardHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgPicture.asset(kSettingsIcon,
-              color: AppColor.kBlackColor,
-              height: 20,
-              semanticsLabel: "settings"),
+          GestureDetector(
+            onTap: controller.openSettingsPage,
+            child: SvgPicture.asset(kSettingsIcon,
+                color: AppColor.kBlackColor,
+                height: 20,
+                semanticsLabel: "settings"),
+          ),
           Image.asset(
             kUnicityGradientImage,
             width: 190,
