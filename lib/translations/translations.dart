@@ -433,7 +433,8 @@ class AppTranslations extends Translations {
           "image_saved_success":"Image saved successfully!",
           "please_enter_user_id":"Please enter user id!",
           "enrollment_error":"Enrollment Error",
-          "show_all":"Show All"
+          "show_all":"Show All",
+          "plus_add": "+ Add"
         },
         'km': {
           "add_po": "បន្ថែមការបញ្ជាទិញ P/O",
@@ -1121,6 +1122,7 @@ class AppTranslations extends Translations {
           "zip": "စာပို့သင်္ကေတ"
         },
         'th': {
+          "plus_add": "+ เพิ่ม",
           "order_contains_numaric_only": "หมายเลขคำสั่งซื้อควรประกอบด้วยตัวเลขเท่านั้น",
           "barcode_scan_success_for":"สแกนบาร์โค้ดสำเร็จ",
           "already_scanned_this_number":"คุณได้สแกนหมายเลขคำสั่งซื้อนี้แล้ว",

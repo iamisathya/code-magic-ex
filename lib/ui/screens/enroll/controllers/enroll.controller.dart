@@ -45,6 +45,7 @@ class EnrollHomeController extends GetxController {
         await loadInventoryProducts(
             warehouses.items[0].href.getAfterLastSlash());
         isLoading.toggle();
+        addStarterKit();
       } else {
         isLoading.toggle();
         SnackbarUtil.showError(message: "no_warehouses_found".tr);
@@ -121,7 +122,6 @@ class EnrollHomeController extends GetxController {
   }
 
   void onContinue() {
-    addStarterKit();
     if (cartProducts.isEmpty) {
       SnackbarUtil.showWarning(
           message: "add_products_to_cart_to_checkout".tr);
