@@ -18,14 +18,14 @@ class EasyShipOrdersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kWhiteSmokeColor,
-      appBar: OpenPoAppBar(),
-      body: Obx(
-        () => LoadingOverlay(
-          isLoading: controller.isLoading.value,
-          progressIndicator: const Loader(),
-          child: GestureDetector(
+    return Obx(
+      () => LoadingOverlay(
+        isLoading: controller.isLoading.value,
+        progressIndicator: const Loader(),
+        child: Scaffold(
+          backgroundColor: kWhiteSmokeColor,
+          appBar: OpenPoAppBar(),
+          body: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: SingleChildScrollView(
               child: Obx(
@@ -37,25 +37,31 @@ class EasyShipOrdersList extends StatelessWidget {
                     SingleChildScrollView(
                       child: Screenshot(
                         controller: controller.screenshotController,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                            image: AssetImage(kEasyShipBgImage),
-                            fit: BoxFit.cover,
-                          )),
-                          child: ListView.builder(
-                            padding: const EdgeInsets.all(0),
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: controller.orderedEasyShipOrders.length,
-                            itemBuilder: (BuildContext ctxt, int index) {
-                              final key = controller.orderedEasyShipOrders.keys
-                                  .toList()[index];
-                              return EasyShipItem(
-                                  item: controller.orderedEasyShipOrders[key]!,
-                                  index: index,
-                                  date: key);
-                            },
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(minHeight: Get.height),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage(kEasyShipBgImage),
+                              fit: BoxFit.cover,
+                            )),
+                            child: ListView.builder(
+                              padding: const EdgeInsets.all(0),
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount:
+                                  controller.orderedEasyShipOrders.length,
+                              itemBuilder: (BuildContext ctxt, int index) {
+                                final key = controller
+                                    .orderedEasyShipOrders.keys
+                                    .toList()[index];
+                                return EasyShipItem(
+                                    item:
+                                        controller.orderedEasyShipOrders[key]!,
+                                    index: index,
+                                    date: key);
+                              },
+                            ),
                           ),
                         ),
                       ),
