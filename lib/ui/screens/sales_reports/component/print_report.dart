@@ -14,25 +14,29 @@ class PrintSalesReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("sales_report".tr,
-              style: Theme.of(context).textTheme.headline4),
-          actions: [
-            if (controller.showPrintIcon.value)
-              IconButton(
-                icon: const Icon(
-                  Icons.print_outlined,
+    return Obx(
+      () => LoadingOverlay(
+        isLoading: controller.isLoading.value,
+        progressIndicator: const Loader(),
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("sales_report".tr,
+                style: Theme.of(context).textTheme.headline4),
+            actions: [
+              if (controller.showPrintIcon.value)
+                IconButton(
+                  icon: const Icon(
+                    Icons.print_outlined,
+                  ),
+                  tooltip: 'print'.tr,
+                  onPressed: () => controller.proceedToPrint(context,
+                      orderHref: controller.orderHref.value),
                 ),
-                tooltip: 'print'.tr,
-                onPressed: () => controller.proceedToPrint(context,
-                    orderHref: controller.orderHref.value),
-              ),
-          ],
+            ],
+          ),
+          body: SaleReportBody(),
         ),
-        body: Obx(() => LoadingOverlay(
-            isLoading: controller.isLoading.value,
-            progressIndicator: const Loader(),
-            child: SaleReportBody())));
+      ),
+    );
   }
 }
