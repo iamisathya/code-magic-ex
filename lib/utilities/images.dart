@@ -114,6 +114,16 @@ const kInputClearIcon = 'assets/icons/input_clear_icon.svg';
 const kLocationIcon = 'assets/icons/location_icon.svg';
 const kUserIcon = 'assets/icons/user_icon.svg';
 
+// dashboard menu
+const kBarcodeDashboardIcon = 'assets/icons/menu/barcode_dashboard_icon.svg';
+const kEasyshipReportDashboardIcon = 'assets/icons/menu/easyship_report_dashboard_icon.svg';
+const kEnrollDashboardIcon = 'assets/icons/menu/enroll_dashboard_icon.svg';
+const kInventoryDashboardIcon = 'assets/icons/menu/inventory_dashboard_icon.svg';
+const kOpenPoDashboardIcon = 'assets/icons/menu/open_po_dashboard_icon.svg';
+const kOrderEntryDashboardIcon = 'assets/icons/menu/order_entry_dashboard_icon.svg';
+const kSalesReportDashboardIcon = 'assets/icons/menu/sales_report_dashboard_icon.svg';
+const kSignOutDashboardIcon = 'assets/icons/menu/sign_out_dashboard_icon.svg';
+
 //gradient
 
 // * Bottom tab bar

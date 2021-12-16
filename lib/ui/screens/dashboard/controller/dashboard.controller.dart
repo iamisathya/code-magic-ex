@@ -1,5 +1,15 @@
+import 'package:dsc_tools/constants/colors.dart';
+import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
+import 'package:dsc_tools/ui/screens/dashboard/components/dashboard_menu_item.dart';
+import 'package:dsc_tools/ui/screens/easy_ship/easyship.screen.dart';
+import 'package:dsc_tools/ui/screens/enroll/enrollhome.screen.dart';
+import 'package:dsc_tools/ui/screens/inventory/inventory.screen.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
+import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
 import 'package:dsc_tools/ui/screens/settings/settings.screen.dart';
 import 'package:dsc_tools/utilities/function.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +23,69 @@ class DashboardController extends GetxController {
   RxBool isReportOptionShown = false.obs;
   final ImagePicker _picker = ImagePicker();
   RxString selectedFileName = "".obs;
+  RxInt currentActiveImage = 0.obs;
   String? selectedImageBaes64 = "";
   XFile uploadFile = XFile("");
+
+  List<DashboardMenuItem> items = [
+    DashboardMenuItem(
+      color: AppColor.juneBud,
+      title: "open_po".tr,
+      icon: kOpenPoDashboardIcon,
+      page: "OpenPoHomeScreen",
+    ),
+    DashboardMenuItem(
+      color: AppColor.darkTangerine,
+      title: "enroll".tr,
+      icon: kEnrollDashboardIcon,
+      page: "EnrollHomeScreen",
+    ),
+    DashboardMenuItem(
+      color: AppColor.maximumBluePurple,
+      title: "order_entry".tr,
+      icon: kOrderEntryDashboardIcon,
+      page: "OrderEntryHomeScreen",
+    ),
+    DashboardMenuItem(
+      color: AppColor.pictonBlue,
+      title: "inventory".tr,
+      icon: kInventoryDashboardIcon,
+      page: "InventoryHomeScreen",
+    ),
+    DashboardMenuItem(
+      color: AppColor.rosePink,
+      title: "sales_report".tr,
+      icon: kSalesReportDashboardIcon,
+      page: "SalesReportsHomeScreen",
+    ),
+    DashboardMenuItem(
+      color: AppColor.paleCyan,
+      title: "easyship_report".tr,
+      icon: kEasyshipReportDashboardIcon,
+      page: EasyShipHomeScreen(),
+    ),
+    DashboardMenuItem(
+      color: AppColor.middleBlueGreen,
+      title: "barcode".tr,
+      icon: kBarcodeDashboardIcon,
+      page: "BarcodeHomeScreen",
+    ),
+    DashboardMenuItem(
+        color: AppColor.pastelBlue,
+        title: "sign_out".tr,
+        icon: kSignOutDashboardIcon,
+        page: "onLogout"
+        ),
+  ];
+
+
+  void onPresssMenuItem(String param) {
+    if(param != "onLogout") {
+      onLogout(Get.context!);
+    } else {
+      Get.to(() => BarcodeHomeScreen());
+    }
+  }
 
   set showReportOptions(bool value) =>
       isReportOptionShown.value = !!isReportOptionShown.value;
@@ -37,7 +108,7 @@ class DashboardController extends GetxController {
       uploadFile = _pickedImage;
       debugPrint(_pickedImage.path.split('/').last);
       selectedFileName.value = _pickedImage.path.split('/').last;
-       Navigator.of(Get.context!).pop();
+      Navigator.of(Get.context!).pop();
     } catch (e) {
       debugPrint(e.toString());
       Navigator.of(Get.context!).pop();
