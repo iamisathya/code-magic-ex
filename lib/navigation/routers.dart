@@ -1,5 +1,6 @@
 import 'package:dsc_tools/ui/screens/open_po/order_create/home_screen.dart';
 import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
+import 'package:dsc_tools/ui/screens/profile/profile.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -73,5 +74,8 @@ class AppRoutes {
     GetPage(
         name: WebivewHomeScreen.routeName,
         page: () => const WebivewHomeScreen()),
+    GetPage(
+        name: UserProfileScreen.routeName,
+        page: () => const UserProfileScreen()),
   ];
 }
