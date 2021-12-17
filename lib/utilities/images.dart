@@ -113,6 +113,7 @@ const kScanBarCodeImage = 'assets/images/scan_barcode_gradient_image.svg';
 const kInputClearIcon = 'assets/icons/input_clear_icon.svg';
 const kLocationIcon = 'assets/icons/location_icon.svg';
 const kUserIcon = 'assets/icons/user_icon.svg';
+const kUserProfileIcon = 'assets/icons/user_profile_icon.svg';
 
 // dashboard menu
 const kBarcodeDashboardIcon = 'assets/icons/menu/barcode_dashboard_icon.svg';
