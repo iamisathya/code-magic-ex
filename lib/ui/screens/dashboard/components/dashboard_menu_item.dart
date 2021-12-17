@@ -1,29 +1,38 @@
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/login/login.screen.dart';
 import 'package:dsc_tools/utilities/enums.dart';
+import 'package:dsc_tools/utilities/user_session.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class DashboardMenuItem extends StatelessWidget {
+  // final DashboardController controller = Get.put(DashboardController());
   const DashboardMenuItem(
       {Key? key,
       required this.title,
-      // required this.onPress,
       required this.color,
       required this.page,
       required this.icon})
       : super(key: key);
 
   final String title;
-  // final VoidCallback onPress;
   final Color color;
   final String icon;
-  final dynamic page;
+  final String page;
+
+  void onLogout() {
+    FirebaseAnalytics()
+        .logEvent(name: 'log_out', parameters: {'type': "normal_signout"});
+    UserSessionManager.shared.removeUserInfoFromDB();
+    Get.offAll(() => LoginScreen());
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(() => page()),
+      onTap: () => page == "onLogout" ? onLogout() : Get.toNamed(page),
       child: Container(
         height: 80,
         decoration: BoxDecoration(

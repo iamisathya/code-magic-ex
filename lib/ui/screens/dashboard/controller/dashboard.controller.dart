@@ -32,55 +32,54 @@ class DashboardController extends GetxController {
       color: AppColor.juneBud,
       title: "open_po".tr,
       icon: kOpenPoDashboardIcon,
-      page: "OpenPoHomeScreen",
+      page: OpenPoHomeScreen.routeName,
     ),
     DashboardMenuItem(
       color: AppColor.darkTangerine,
       title: "enroll".tr,
       icon: kEnrollDashboardIcon,
-      page: "EnrollHomeScreen",
+      page: EnrollHomeScreen.routeName,
     ),
     DashboardMenuItem(
       color: AppColor.maximumBluePurple,
       title: "order_entry".tr,
       icon: kOrderEntryDashboardIcon,
-      page: "OrderEntryHomeScreen",
+      page: OrderEntryHomeScreen.routeName,
     ),
     DashboardMenuItem(
       color: AppColor.pictonBlue,
       title: "inventory".tr,
       icon: kInventoryDashboardIcon,
-      page: "InventoryHomeScreen",
+      page: InventoryHomeScreen.routeName,
     ),
     DashboardMenuItem(
       color: AppColor.rosePink,
       title: "sales_report".tr,
       icon: kSalesReportDashboardIcon,
-      page: "SalesReportsHomeScreen",
+      page: SalesReportsHomeScreen.routeName,
     ),
     DashboardMenuItem(
       color: AppColor.paleCyan,
       title: "easyship_report".tr,
       icon: kEasyshipReportDashboardIcon,
-      page: EasyShipHomeScreen(),
+      page: EasyShipHomeScreen.routeName,
     ),
     DashboardMenuItem(
       color: AppColor.middleBlueGreen,
       title: "barcode".tr,
       icon: kBarcodeDashboardIcon,
-      page: "BarcodeHomeScreen",
+      page: BarcodeHomeScreen.routeName,
     ),
     DashboardMenuItem(
-        color: AppColor.pastelBlue,
-        title: "sign_out".tr,
-        icon: kSignOutDashboardIcon,
-        page: "onLogout"
-        ),
+      color: AppColor.pastelBlue,
+      title: "sign_out".tr,
+      icon: kSignOutDashboardIcon,
+      page: "onLogout",
+    ),
   ];
 
-
   void onPresssMenuItem(String param) {
-    if(param != "onLogout") {
+    if (param != "onLogout") {
       onLogout(Get.context!);
     } else {
       Get.to(() => BarcodeHomeScreen());
