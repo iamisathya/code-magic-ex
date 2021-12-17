@@ -40,7 +40,7 @@ class DashboardMenuItem extends StatelessWidget {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.only(left: 20, right: 15),
               child: Container(
                 height: 45,
                 width: 45,
@@ -50,8 +50,10 @@ class DashboardMenuItem extends StatelessWidget {
                         height: 10, width: 10, fit: BoxFit.scaleDown)),
               ),
             ),
-            AppText(
-                text: title, style: TextTypes.bodyText1, align: TextAlign.end)
+            Expanded(
+              child: AppText(
+                  text: title, style: TextTypes.bodyText1, maxLines: 2),
+            )
           ],
         ),
       ),
