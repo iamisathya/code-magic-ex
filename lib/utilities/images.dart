@@ -136,6 +136,7 @@ const kBottomTabSalesReportActiveIcon =
 const kBottomTabBarcodeIcon = 'assets/icons/navigation/tab_barcode_icon.svg';
 const kBottomTabAddIcon = 'assets/icons/navigation/tab_addnew_icon.svg';
 const kBottomTabHomeIcon = 'assets/icons/navigation/tab_home_icon.svg';
+const kBottomTabHomeActiveIcon = 'assets/icons/navigation/tab_home_icon_active.svg';
 const kBottomTabOrderEntryIcon =
     'assets/icons/navigation/tab_orderentry_icon.svg';
 const kBottomTabSalesReportIcon =
