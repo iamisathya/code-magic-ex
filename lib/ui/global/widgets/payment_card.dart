@@ -23,18 +23,18 @@ class PaymentCard {
 class CardUtils {
   static String? validateCVV(String? value) {
     if (value == null || value.isEmpty) {
-      return "This field is required"; //! hardcoded
+      return "this_field_is_required".tr;
     }
 
     if (value.length < 3 || value.length > 4) {
-      return "CVV is invalid"; //! hardcoded
+      return "cvv_is_invalid".tr;
     }
     return null;
   }
 
   static String? validateDate(String? value) {
     if (value == null || value.isEmpty) {
-      return "This field is required"; //! hardcoded
+      return "this_field_is_required".tr;
     }
 
     int year;
@@ -55,18 +55,18 @@ class CardUtils {
 
     if ((month < 1) || (month > 12)) {
       // A valid month is between 1 (January) and 12 (December)
-      return 'Expiry month is invalid'; //! hardcoded
+      return 'expiry_month_is_invalid'.tr;
     }
 
     final fourDigitsYear = convertYearTo4Digits(year);
     if ((fourDigitsYear < 1) || (fourDigitsYear > 2099)) {
       // We are assuming a valid should be between 1 and 2099.
       // Note that, it's valid doesn't mean that it has not expired.
-      return 'Expiry year is invalid'; //! hardcoded
+      return 'expiry_year_is_invalid'.tr;
     }
 
     if (!hasDateExpired(month, year)) {
-      return "Card has expired"; //! hardcoded
+      return "card_has_expired".tr;
     }
     return null;
   }
@@ -176,14 +176,14 @@ class CardUtils {
   /// https://en.wikipedia.org/wiki/Luhn_algorithm
   static String? validateCardNum(String? input) {
     if (input == null || input.isEmpty) {
-      return "This field is required"; //! hardcoded
+      return "this_field_is_required".tr;
     }
 
     // input = getCleanedNumber(input);
     final String cleanedNumber = getCleanedNumber(input);
 
     if (input.length < 8) {
-      return "Card is invalid"; //! hardcoded
+      return "card_is_invalid".tr;
     }
 
     int sum = 0;
@@ -203,7 +203,7 @@ class CardUtils {
       return null;
     }
 
-    return "Card is invalid"; //! hardcoded
+    return "card_is_invalid".tr;
   }
 
   static CardType getCardTypeFrmNumber(String input) {

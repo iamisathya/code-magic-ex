@@ -30,14 +30,14 @@ class PaymentMethodCard extends StatelessWidget {
               child: Column(
                 children: [
                   PaymentOptionItem(
-                      title: "Credit Card / Debit Card", //! hardcoded
+                      title: "credit_card_or_debit_card".tr,
                       icon: kCreditCardIcon,
                       onPress: () => controller.currentPaymentType =
                           PaymentOptions.creditCard,
                       isActive: controller.currentPaymentType ==
                           PaymentOptions.creditCard),
                   PaymentOptionItem(
-                      title: "cash_on_delivery",
+                      title: "cash_on_delivery".tr,
                       icon: kCashOnDeliveryIcon,
                       onPress: () => controller.currentPaymentType =
                           PaymentOptions.cashOnDelivery,

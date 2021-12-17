@@ -71,7 +71,7 @@ class LoginController extends GetxController {
     final isConfirmed = await ConfirmationDialog.show(
         context: context,
         title: "reset_password".tr,
-        message: 'Are you sure you want reset your password?', //! hardcoded
+        message: 'want_to_reset_password'.tr,
         okText: 'proceed'.tr,
         cancelText: 'no_thanks'.tr);
     if (isConfirmed == false) return;

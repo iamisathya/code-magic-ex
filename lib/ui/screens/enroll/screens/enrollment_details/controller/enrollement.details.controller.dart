@@ -44,9 +44,9 @@ class EnrollmentDetailsHomeController extends GetxController {
     if (idNumberTextController.text.isEmpty) {
       SnackbarUtil.showError(message: "enter_valid_govt_id".tr);
     } else if (enrollerIdTextController.text.isEmpty) {
-      SnackbarUtil.showError(message: "Enroller ID shouldn't be empty"); //! hardcoded
+      SnackbarUtil.showError(message: "enroller_idshould_not_empty".tr);
     } else if (sponsorIdTextController.text.isEmpty) {
-      SnackbarUtil.showError(message: "Sponsor ID shouldn't be empty"); //! hardcoded
+      SnackbarUtil.showError(message: "sponsor_idshould_not_empty".tr);
     } else {
       isLoading.toggle();
       final isGovtIdVerified = await verifyGovtIdNumber();

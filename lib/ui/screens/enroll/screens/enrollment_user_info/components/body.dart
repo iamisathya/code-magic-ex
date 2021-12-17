@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            const PageTitle(title: "Enrollment Details"), //! hardcoded
+            PageTitle(title: "enrollment_details".tr),
             Container(
               color: AppColor.crayola,
               padding: const EdgeInsets.all(20),

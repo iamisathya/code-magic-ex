@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../constants/globals.dart';
@@ -18,8 +19,8 @@ class PromptPaymentOption extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           SvgPicture.asset(kPromptPayImage),
-          const AppText(
-              text: "Scan The QR Code to Pay",  //! hardcoded
+          AppText(
+              text: "scan_qr_code_to_pay".tr,
               style: TextTypes.bodyText1,
               color: AppColor.ateneoBlue),
           SvgPicture.asset(kBarcodeExampleImage),

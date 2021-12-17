@@ -19,8 +19,8 @@ class OrderEntryUserListController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();
   RxInt currentTab = 0.obs;
   RxList<NameValueType> searchOptions = [
-    NameValueType(name: "With BA Number", value: "baId"),  //! hardcoded
-    NameValueType(name: "with Govt ID, Name", value: "govtIdOrName"),  //! hardcoded
+    NameValueType(name: "with_ba_number".tr, value: "baId"),  //! hardcoded
+    NameValueType(name: "with_govt_id_name".tr, value: "govtIdOrName"),  //! hardcoded
   ].obs;
   RxString filterMethod = "baId".obs;
   RxBool isLoading = false.obs;

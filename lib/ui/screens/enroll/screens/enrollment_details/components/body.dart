@@ -128,11 +128,11 @@ class Body extends StatelessWidget {
                   style: TextTypes.headline4,
                   color: AppColor.darkLiver,
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: AppText(
                     text:
-                        "If you experience any problems with this application or if you have any questions.", //! hardcoded
+                        "contact_unicity_if_problem".tr,
                     style: TextTypes.subtitle1,
                     color: AppColor.darkLiver,
                     align: TextAlign.center,

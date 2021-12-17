@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../utilities/size_config.dart';
 
@@ -26,9 +27,9 @@ class CustomErrorWidget extends StatelessWidget {
             height: 20,
           ),
           if (showMessage == true)
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text("Sorry! something went wrong."), //! hardcoded
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text("sorry_something_went_wrong".tr),
             )
           else
             const SizedBox(),

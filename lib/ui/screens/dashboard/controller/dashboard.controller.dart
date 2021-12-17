@@ -118,7 +118,7 @@ class DashboardController extends GetxController {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => CupertinoActionSheet(
-        message: const Text("Select/Take photo"), //! hardcoded
+        message: Text("select_or_take_photo".tr),
         actions: <Widget>[
           CupertinoActionSheetAction(
             onPressed: () => onImageOptionSelect(ImageSource.camera),

@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart' hide StringTranslateExtension;
+import 'package:easy_localization/easy_localization.dart'
+    hide StringTranslateExtension;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -119,7 +120,7 @@ class EnrollmentUserInfoController extends GetxController {
 
   Future<void> getAddresByZipcode() async {
     if (addressSearchController.text.isEmpty) {
-      SnackbarUtil.showWarning(message: "Search field shouldn't be empty"); //! hardcoded
+      SnackbarUtil.showWarning(message: "search_field_should_not_be_empty".tr);
       return;
     }
     try {
@@ -229,7 +230,7 @@ class EnrollmentUserInfoController extends GetxController {
                   Obx(() => Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
-                            'Found ${searchedAddresses.length} item(s) matched with "${addressSearchController.text}".'), //! hardcoded
+                            'Found ${searchedAddresses.length} ${"items_matched_with".tr} "${addressSearchController.text}".'), //! hardcoded
                       )),
                 Expanded(
                   child: Obx(
@@ -239,9 +240,9 @@ class EnrollmentUserInfoController extends GetxController {
                       itemBuilder: (BuildContext ctxt, int index) {
                         final CompleteAddress item = searchedAddresses[index];
                         if (searchedAddresses.isEmpty) {
-                          return const Center(
+                          return Center(
                               child: AppText(
-                                  text: "Sorry no addres found!", //! hardcoded
+                                  text: "sorry_no_address_found".tr,
                                   style: TextTypes.bodyText2));
                         }
                         return GestureDetector(

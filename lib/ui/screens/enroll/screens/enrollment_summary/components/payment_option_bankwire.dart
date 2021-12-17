@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../utilities/enums.dart';
 import '../../../../../global/theme/text_view.dart';
@@ -9,33 +10,33 @@ class BankWirePaymentOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        PaymentInfoRow(title: "Mizuho Bank Aoyama Branch:", value: "2583367"), //! hardcoded
-        SizedBox(
+      children: [
+        const PaymentInfoRow(title: "Mizuho Bank Aoyama Branch:", value: "2583367"), //! hardcoded
+        const SizedBox(
           height: 10,
         ),
-        PaymentInfoRow(
+        const PaymentInfoRow(
             title: "Sumitomo Mitsui Banking Corporation Marunouchi Branch:", //! hardcoded
             value: "1166789"),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        PaymentInfoRow(
+        const PaymentInfoRow(
             title: "Bank of Tokyo-Mitsubishi UFJ Aoyama Branch:", //! hardcoded
             value: "4592289"),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        PaymentInfoRow(
+        const PaymentInfoRow(
             title: "Yucho Bank Transfer Gaienmae Post Office:", //! hardcoded
             value: "00100 9 126835"),
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(vertical: 20),
           child: Divider(height: 1),
         ),
         AppText(
             text:
-                "Please be sure to fill in or enter your member number before the name of the transferee.", //! hardcoded
+                "fill_or_enter_your_membe_before_name_of_transferee.".tr, //! hardcoded
             style: TextTypes.caption,
             align: TextAlign.center),
       ],
