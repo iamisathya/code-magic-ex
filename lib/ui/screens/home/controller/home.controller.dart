@@ -1,4 +1,5 @@
 import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/home_screen.dart';
 import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
 import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class HomeController extends GetxController {
   List<Widget> tabPages = [
     Body(),
     SalesReportsHomeScreen(),
-    Center(child: Text("sales_report".tr)),
+    OpenPoCreateOrder(),
     OrderEntryHomeScreen(),
     BarcodeHomeScreen()
   ];
@@ -31,8 +32,6 @@ class HomeController extends GetxController {
       } else {
         Get.to(() => tabPages[index]);
       }
-      // pageController.animateToPage(index,
-      //     duration: const Duration(milliseconds: 100), curve: Curves.easeInOut);
     }
   }
 
