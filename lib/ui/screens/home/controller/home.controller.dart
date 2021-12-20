@@ -1,3 +1,6 @@
+import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
+import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,10 +11,10 @@ class HomeController extends GetxController {
   final PageController pageController = PageController();
   List<Widget> tabPages = [
     Body(),
-    Center(child: Text("home".tr)),
+    SalesReportsHomeScreen(),
     Center(child: Text("sales_report".tr)),
-    Center(child: Text("order_entry".tr)),
-    Center(child: Text("barcode".tr)),
+    OrderEntryHomeScreen(),
+    BarcodeHomeScreen()
   ];
 
   void onTabTapped(
@@ -22,8 +25,14 @@ class HomeController extends GetxController {
     if (isExternal && index == 2) {
       Get.toNamed(currentPage);
     } else {
-      pageController.animateToPage(index,
+      if(index == 0) {
+        pageController.animateToPage(index,
           duration: const Duration(milliseconds: 100), curve: Curves.easeInOut);
+      } else {
+        Get.to(() => tabPages[index]);
+      }
+      // pageController.animateToPage(index,
+      //     duration: const Duration(milliseconds: 100), curve: Curves.easeInOut);
     }
   }
 

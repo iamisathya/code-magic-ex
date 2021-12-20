@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: OpenPoAppBar(),
+      appBar: OpenPoAppBar(profileIcon: true),
       body: Container(
         decoration: const BoxDecoration(gradient: radialGradient),
         child: SafeArea(
@@ -24,7 +24,6 @@ class Body extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
                 CarouselSliderWithCustomIndicator(),
                 Container(
                   padding:
@@ -38,7 +37,9 @@ class Body extends StatelessWidget {
                         child: const Padding(
                           padding: EdgeInsets.only(bottom: 10.0),
                           child: AppText(
-                              text: "Primary Menu", style: TextTypes.headline6, align: TextAlign.left),
+                              text: "Primary Menu",
+                              style: TextTypes.headline6,
+                              align: TextAlign.left),
                         ),
                       ),
                       DashboardMenu(),

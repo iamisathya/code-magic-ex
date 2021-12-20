@@ -1,4 +1,6 @@
+import 'package:dsc_tools/ui/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../controllers/language_controller.dart';
@@ -9,9 +11,21 @@ class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBarController controller = Get.put(AppBarController());
   final LanguageController languageController = Get.put(LanguageController());
 
+  OpenPoAppBar({this.profileIcon = false});
+
+  final bool profileIcon;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: profileIcon
+          ? GestureDetector(
+              onTap: () => Get.toNamed(UserProfileScreen.routeName),
+              child: SvgPicture.asset(kUserProfileIcon,
+                  width: 20, fit: BoxFit.scaleDown))
+          : IconButton(
+              onPressed: () => Get.back(),
+              icon: const Icon(Icons.arrow_back_ios_new_outlined)),
       centerTitle: false,
       titleSpacing: 0.0,
       title: Image.asset(kUnicityGradientImage, fit: BoxFit.cover),
