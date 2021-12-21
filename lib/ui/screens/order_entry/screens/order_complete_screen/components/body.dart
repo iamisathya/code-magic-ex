@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/open_po/order_list/components/app_button.dart';
 import 'package:dsc_tools/ui/screens/order_entry/controllers/ordercomplete.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,7 +11,8 @@ import '../../../../../../utilities/images.dart';
 import '../../../../../global/theme/text_view.dart';
 
 class Body extends StatelessWidget {
-  final OrderCompleteController _controller = Get.put(OrderCompleteController());
+  final OrderCompleteController _controller =
+      Get.put(OrderCompleteController());
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -50,18 +52,8 @@ class Body extends StatelessWidget {
               SvgPicture.asset(kOrderEntryBarcodeImage, height: 60, width: 100),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20.0),
-                      child: Text("go_to_home".tr),
-                    ),
-                    GestureDetector(
-                        onTap: _controller.gotoHome,
-                        child: SvgPicture.asset(kBottomTabHomeIcon, width: 36)),
-                  ],
-                ),
+                child: AppButton(
+                    title: "go_to_home".tr, onTap: _controller.gotoHome),
               )
             ],
           ),

@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../../utilities/constants.dart';
-import '../../home/components/bottom_navigation_bar.dart';
 import '../../home/controller/home.controller.dart';
 import '../order_list/components/open_po_order_list.dart';
 import 'controller/openpo.list.controller.dart';
@@ -28,19 +27,19 @@ class OpenPoHomeScreen extends StatelessWidget {
           backgroundColor: kWhiteSmokeColor,
           appBar: OpenPoAppBar(),
           body: OpenPoOrderList(),
-          bottomNavigationBar: NavigationBottomBar(
-              controller: tabController,
-              isExternal: true,
-              currentPage: "/openPoCreateOrder"),
-          // floatingActionButton: FloatingActionButton(
-          //   backgroundColor: AppColor.sunglow,
-          //   onPressed: () => Get.to(() => OpenPoCreateOrder()),
-          //   tooltip: 'scroll to top',
-          //   child: const Icon(
-          //     Icons.add,
-          //     color: AppColor.kBlackColor,
-          //   ),
-          // ),
+          // bottomNavigationBar: NavigationBottomBar(
+          //     controller: tabController,
+          //     isExternal: true,
+          //     currentPage: "/openPoCreateOrder"),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: AppColor.crayola,
+            onPressed: () => Get.to(() => OpenPoCreateOrder()),
+            tooltip: 'scroll to top',
+            child: const Icon(
+              Icons.add,
+              color: AppColor.kBlackColor,
+            ),
+          ),
         ),
       ),
     );

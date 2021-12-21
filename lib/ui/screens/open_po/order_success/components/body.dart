@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/open_po/order_list/components/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -59,18 +60,8 @@ class Body extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 30.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 20.0),
-                  child: Text("go_to_home".tr),
-                ),
-                GestureDetector(
-                    onTap: _controller.gotoHome,
-                    child: SvgPicture.asset(kBottomTabHomeIcon, width: 36)),
-              ],
-            ),
+            child:
+                AppButton(title: "go_to_home".tr, onTap: _controller.gotoHome),
           )
         ],
       ),
