@@ -1,6 +1,8 @@
+import 'package:dsc_tools/ui/screens/enroll/controllers/enroll.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../constants/globals.dart';
@@ -9,7 +11,8 @@ import '../../../../../../utilities/images.dart';
 import '../../../../../global/theme/text_view.dart';
 
 class PromptPaymentOption extends StatelessWidget {
-  const PromptPaymentOption({Key? key}) : super(key: key);
+  final EnrollHomeController ctrl = Get.put(EnrollHomeController());
+  PromptPaymentOption({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class PromptPaymentOption extends StatelessWidget {
               color: AppColor.ateneoBlue),
           SvgPicture.asset(kBarcodeExampleImage),
           Text(
-            "${Globals.currency} 8,040",
+            "${Globals.currency} ${ctrl.totalCartPrice}",
             style: const TextStyle(
                 fontWeight: FontWeight.w800,
                 color: AppColor.kBlackColor,
@@ -33,16 +36,16 @@ class PromptPaymentOption extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(Icons.access_time),
+            children: [
+              const Icon(Icons.access_time),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: AppText(
-                    text: "03 Nov 2021 -",
+                    text: "${DateFormat('dd MMM yyyy').format(DateTime.now())} -",
                     style: TextTypes.bodyText1,
                     color: AppColor.charcoal),
               ),
-              AppText(
+              const AppText(
                   text: "01:55",
                   style: TextTypes.bodyText1,
                   color: AppColor.mediumAquamarine),

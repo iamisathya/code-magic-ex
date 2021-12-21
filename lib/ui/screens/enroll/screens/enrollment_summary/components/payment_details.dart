@@ -38,7 +38,7 @@ class PaymentDetails extends StatelessWidget {
         return CashOnDeliveryDetails(
             message: "page_will_redirect_to_ecpay".tr, image: kECPayImage);
       case PaymentOptions.promptPay:
-        return const PromptPaymentOption();
+        return PromptPaymentOption();
       case PaymentOptions.bankWire:
         return const BankWirePaymentOption();
       default:

@@ -114,7 +114,6 @@ class Body extends StatelessWidget {
                       enabled: controller.isValidSponsorId.value == 0 ||
                           controller.isValidSponsorId.value == 2,
                     )),
-                Obx(() => Text(controller.isValidEnrolerId.value.toString()))
               ],
             ),
           ),
