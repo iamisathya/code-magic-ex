@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../constants/colors.dart';
 import 'size_config.dart';
 
 const kPageBackground = Color(0xFFF2F3F7);
@@ -17,13 +17,10 @@ const kPrimaryGradientColor = LinearGradient(
   colors: [Color(0xFF1D3557), Color(0xFF457B9D)],
 );
 
-  const RadialGradient radialGradient = RadialGradient(
-    radius: 0.7,
-    colors: <Color>[
-      AppColor.dodgerBlue,
-      AppColor.brightGraySecond
-    ],
-  );
+const RadialGradient radialGradient = RadialGradient(
+  radius: 0.7,
+  colors: <Color>[AppColor.dodgerBlue, AppColor.brightGraySecond],
+);
 
 const kSecondaryColor = Color(0xFFA8DADC);
 const kSecondaryLightColor = Color(0xFFF1FAEE);

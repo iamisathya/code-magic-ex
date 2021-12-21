@@ -1,23 +1,23 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
-import 'package:dsc_tools/ui/screens/dashboard/components/dashboard_menu_item.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/easyship.screen.dart';
-import 'package:dsc_tools/ui/screens/enroll/enrollhome.screen.dart';
-import 'package:dsc_tools/ui/screens/inventory/inventory.screen.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
-import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
-import 'package:dsc_tools/ui/screens/settings/settings.screen.dart';
-import 'package:dsc_tools/utilities/function.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../constants/colors.dart';
+import '../../../../utilities/function.dart';
+import '../../../../utilities/images.dart';
 import '../../../../utilities/user_session.dart';
+import '../../barcode/barcode.screen.dart';
+import '../../easy_ship/easyship.screen.dart';
+import '../../enroll/enrollhome.screen.dart';
+import '../../inventory/inventory.screen.dart';
 import '../../login/login.screen.dart';
+import '../../open_po/order_list/home_screen.dart';
+import '../../order_entry/orderentry.screen.dart';
+import '../../sales_reports/salesreports.screen.dart';
+import '../../settings/settings.screen.dart';
+import '../components/dashboard_menu_item.dart';
 
 class DashboardController extends GetxController {
   RxBool isReportOptionShown = false.obs;

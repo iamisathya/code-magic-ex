@@ -1,11 +1,12 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/controller/add.openpo.controller.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../../constants/colors.dart';
+import '../../../../../utilities/enums.dart';
+import '../../../../../utilities/images.dart';
+import '../../../../global/theme/text_view.dart';
+import '../controller/add.openpo.controller.dart';
 
 class BrosweAttachment extends StatelessWidget {
   const BrosweAttachment({

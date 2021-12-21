@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart' hide StringTranslateExtension;
+import 'package:easy_localization/easy_localization.dart'
+    hide StringTranslateExtension;
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -150,7 +151,8 @@ class SalesReportController extends GetxController {
   Future<void> loadSalesReports(BuildContext context) async {
     if (startDate.text.isEmpty || endDate.text.isEmpty) {
       renderErrorSnackBar(
-          title: "${"select".tr} ${startDate.text.isEmpty ? 'start' : 'end'} ${"date".tr}",
+          title:
+              "${"select".tr} ${startDate.text.isEmpty ? 'start' : 'end'} ${"date".tr}",
           subTitle:
               "${"please_select".tr} ${startDate.text.isEmpty ? 'start' : 'end'} ${"date_from_calender".tr}");
       return;

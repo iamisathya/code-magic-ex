@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/barcode_response_dsc.dart';
-import 'package:dsc_tools/services/rest_api/exceptions.dart';
-import 'package:dsc_tools/ui/global/widgets/bottom_modal_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -17,14 +14,17 @@ import '../../../../constants/globals.dart';
 import '../../../../models/barcode_item_response.dart';
 import '../../../../models/barcode_number_response.dart';
 import '../../../../models/barcode_number_update_request.dart';
+import '../../../../models/barcode_response_dsc.dart';
 import '../../../../models/barcode_save_response.dart';
 import '../../../../models/verify_each_barcode_response.dart';
+import '../../../../services/rest_api/exceptions.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/images.dart';
 import '../../../../utilities/keyboard.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
 import '../../../../utilities/user_session.dart';
+import '../../../global/widgets/bottom_modal_alert.dart';
 import '../../../global/widgets/plain_button.dart';
 import '../../home/home.dart';
 import '../barcode.screen.dart';
@@ -124,7 +124,8 @@ class BarcodeScannResultController extends getx.GetxController {
           UserSessionManager.shared.customerToken.token,
           orderCode);
       if (details["items"]["terms"] != null) {
-        barcodeDetails = BarcodeResponseDsc.fromJson(details  as Map<String, dynamic>);
+        barcodeDetails =
+            BarcodeResponseDsc.fromJson(details as Map<String, dynamic>);
         getOpenPlaceOrderDetails();
         isLoading.toggle();
       } else {
@@ -272,8 +273,8 @@ class BarcodeScannResultController extends getx.GetxController {
       map["data[shipToPhone]"] = barcodeDetails!.userProfile.shipToPhone;
       map["data[href]"] = barcodeDetails!.userProfile.href;
 
-      final dynamic response = await DscCallService.init()
-          .getBarcodeItems(UserSessionManager.shared.customerToken.token, FormData.fromMap(map));
+      final dynamic response = await DscCallService.init().getBarcodeItems(
+          UserSessionManager.shared.customerToken.token, FormData.fromMap(map));
       final jsonDecodedData = response as Map<String, dynamic>;
       if (jsonDecodedData["user"] != null) {
         final List<dynamic> list = jsonDecodedData["items"] as List<dynamic>;
@@ -432,8 +433,7 @@ class BarcodeScannResultController extends getx.GetxController {
         hasAnyChangesMade.value = false;
         closeAllItems();
         SnackbarUtil.showSuccess(
-            message:
-                "${"barcode_scan_success_for".tr} ${expandedItem.code}");
+            message: "${"barcode_scan_success_for".tr} ${expandedItem.code}");
         getBarcodePath();
       } else if (barCodeSaveResponse!.errorMessages!.isNotEmpty) {
         final errors = StringBuffer();

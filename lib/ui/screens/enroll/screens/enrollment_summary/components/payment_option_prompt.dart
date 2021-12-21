@@ -1,4 +1,3 @@
-import 'package:dsc_tools/ui/screens/enroll/controllers/enroll.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -9,6 +8,7 @@ import '../../../../../../constants/globals.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../global/theme/text_view.dart';
+import '../../../controllers/enroll.controller.dart';
 
 class PromptPaymentOption extends StatelessWidget {
   final EnrollHomeController ctrl = Get.put(EnrollHomeController());
@@ -41,7 +41,8 @@ class PromptPaymentOption extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: AppText(
-                    text: "${DateFormat('dd MMM yyyy').format(DateTime.now())} -",
+                    text:
+                        "${DateFormat('dd MMM yyyy').format(DateTime.now())} -",
                     style: TextTypes.bodyText1,
                     color: AppColor.charcoal),
               ),

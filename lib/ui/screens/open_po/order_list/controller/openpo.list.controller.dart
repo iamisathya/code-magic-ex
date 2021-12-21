@@ -1,5 +1,3 @@
-import 'package:dsc_tools/ui/screens/open_po/order_list/components/openpo_list_filter_dropdown.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_list/components/order_status_item.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +13,8 @@ import '../../../../../models/general_models.dart';
 import '../../../../../models/open_po.dart';
 import '../../../../../utilities/logger.dart';
 import '../../../../global/widgets/unordered_list.dart';
+import '../components/openpo_list_filter_dropdown.dart';
+import '../components/order_status_item.dart';
 
 class OpenPoListController extends GetxController
     with StateMixin<List<OpenPO>> {

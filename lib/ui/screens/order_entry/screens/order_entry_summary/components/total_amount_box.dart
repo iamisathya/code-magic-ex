@@ -1,8 +1,8 @@
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
+import '../../../../../../constants/globals.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/extensions.dart';
 import '../../../../../global/theme/text_view.dart';
@@ -39,9 +39,11 @@ class TotalAmountBox extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppText(text: "${"total_price".tr}:", style: TextTypes.bodyText2),
+                AppText(
+                    text: "${"total_price".tr}:", style: TextTypes.bodyText2),
                 Obx(() => AppText(
-                    text: "${listController.totalCartPrice.numberFormat()} ${Globals.currency}",
+                    text:
+                        "${listController.totalCartPrice.numberFormat()} ${Globals.currency}",
                     style: TextTypes.bodyText2))
               ],
             ),
@@ -55,7 +57,8 @@ class TotalAmountBox extends StatelessWidget {
             children: [
               AppText(text: "payment_amount".tr, style: TextTypes.subtitle1),
               Obx(() => AppText(
-                  text: "${listController.totalCartPrice.numberFormat()} ${Globals.currency}",
+                  text:
+                      "${listController.totalCartPrice.numberFormat()} ${Globals.currency}",
                   style: TextTypes.subtitle1))
             ],
           ),

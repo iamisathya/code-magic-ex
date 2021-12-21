@@ -1,4 +1,3 @@
-import 'package:dsc_tools/ui/screens/open_po/order_search/controller/openpo.search.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -6,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../../../utilities/images.dart';
 import 'components/body.dart';
 import 'components/search_bar_field.dart';
+import 'controller/openpo.search.controller.dart';
 
 class SearchProducts extends StatefulWidget {
   @override

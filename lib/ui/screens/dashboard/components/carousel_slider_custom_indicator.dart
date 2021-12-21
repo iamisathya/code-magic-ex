@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/dashboard/controller/dashboard.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../../constants/colors.dart';
+import '../controller/dashboard.controller.dart';
 
 class CarouselSliderWithCustomIndicator extends StatelessWidget {
   final DashboardController controller = Get.put(DashboardController());
@@ -30,8 +31,10 @@ class CarouselSliderWithCustomIndicator extends StatelessWidget {
                             Colors.black.withOpacity(1.0),
                             Colors.black.withOpacity(1.0),
                             Colors.black.withOpacity(0.5),
-                            Colors.black.withOpacity(0.3), // <-- change this opacity
-                            Colors.black.withOpacity(0.1), // <-- change this opacity
+                            Colors.black
+                                .withOpacity(0.3), // <-- change this opacity
+                            Colors.black
+                                .withOpacity(0.1), // <-- change this opacity
                             // Colors.transparent // <-- you might need this if you want full transparency at the edge
                           ],
                           stops: const [

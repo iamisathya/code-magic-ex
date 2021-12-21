@@ -1,9 +1,10 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_search/controller/openpo.search.controller.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../constants/colors.dart';
+import '../../../../../utilities/enums.dart';
+import '../../../../global/theme/text_view.dart';
+import '../controller/openpo.search.controller.dart';
 
 class Body extends StatelessWidget {
   final OpenPoSearchController controller = Get.put(OpenPoSearchController());
@@ -23,13 +24,13 @@ class Body extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppText(
-                      text: "search_history".tr,
-                      style: TextTypes.subtitle1),
+                      text: "search_history".tr, style: TextTypes.subtitle1),
                   GestureDetector(
                     onTap: () => controller.clearHistory(),
                     child: AppText(
                       text: "clear_all".tr,
-                      style: TextTypes.subtitle1, color: AppColor.brinkPink,
+                      style: TextTypes.subtitle1,
+                      color: AppColor.brinkPink,
                     ),
                   )
                 ],

@@ -119,10 +119,12 @@ class OrderEntryCheckoutSummaryController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: "${"server_error!".tr} ${e.error.toString()}");
+      SnackbarUtil.showError(
+          message: "${"server_error!".tr} ${e.error.toString()}");
       return false;
     } catch (err) {
-      SnackbarUtil.showError(message: "${"server_error!".tr} ${err.toString()}");
+      SnackbarUtil.showError(
+          message: "${"server_error!".tr} ${err.toString()}");
       return false;
     }
   }
@@ -208,8 +210,7 @@ class OrderEntryCheckoutSummaryController extends GetxController {
     try {
       final payload = prepareRequestPaylod();
       if (payload == null) {
-        throw Exception(
-            'something_wrong_in_purchase_log'.tr);
+        throw Exception('something_wrong_in_purchase_log'.tr);
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;
@@ -307,8 +308,7 @@ class OrderEntryCheckoutSummaryController extends GetxController {
   }
 
   void onClickNuetralButton() {
-    SnackbarUtil.showWarning(
-        message: "please_add_item_to_cart_msg".tr);
+    SnackbarUtil.showWarning(message: "please_add_item_to_cart_msg".tr);
   }
 
   void onNegetiveButtonClick() {

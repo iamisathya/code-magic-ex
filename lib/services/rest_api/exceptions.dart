@@ -54,7 +54,6 @@ class GeneralException extends AppException {
       : message;
 }
 
-
 /// Api - TimedOut
 class UnexpectedException extends AppException {
   final String errMessage;

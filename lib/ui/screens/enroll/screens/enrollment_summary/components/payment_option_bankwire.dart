@@ -11,12 +11,15 @@ class BankWirePaymentOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const PaymentInfoRow(title: "Mizuho Bank Aoyama Branch:", value: "2583367"), //! hardcoded
+        const PaymentInfoRow(
+            title: "Mizuho Bank Aoyama Branch:",
+            value: "2583367"), //! hardcoded
         const SizedBox(
           height: 10,
         ),
         const PaymentInfoRow(
-            title: "Sumitomo Mitsui Banking Corporation Marunouchi Branch:", //! hardcoded
+            title:
+                "Sumitomo Mitsui Banking Corporation Marunouchi Branch:", //! hardcoded
             value: "1166789"),
         const SizedBox(
           height: 10,
@@ -35,8 +38,8 @@ class BankWirePaymentOption extends StatelessWidget {
           child: Divider(height: 1),
         ),
         AppText(
-            text:
-                "fill_or_enter_your_membe_before_name_of_transferee.".tr, //! hardcoded
+            text: "fill_or_enter_your_membe_before_name_of_transferee."
+                .tr, //! hardcoded
             style: TextTypes.caption,
             align: TextAlign.center),
       ],

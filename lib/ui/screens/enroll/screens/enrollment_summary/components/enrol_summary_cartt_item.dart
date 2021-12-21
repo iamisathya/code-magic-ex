@@ -50,7 +50,8 @@ class EnrollSummaryCartItem extends StatelessWidget {
                           color: AppColor.metallicSilver,
                         ),
                         AppText(
-                          text: "${item.itemPv} ${"pv".tr} | ${item.itemPrice} ${Globals.currency}",
+                          text:
+                              "${item.itemPv} ${"pv".tr} | ${item.itemPrice} ${Globals.currency}",
                           style: TextTypes.subtitle1,
                           color: AppColor.charcoal,
                         ),

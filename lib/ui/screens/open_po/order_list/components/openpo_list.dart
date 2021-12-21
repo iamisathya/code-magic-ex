@@ -1,9 +1,8 @@
-
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_list/controller/openpo.list.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
+import '../controller/openpo.list.controller.dart';
 import 'po_item.dart';
 
 class OpenPoList extends StatelessWidget {

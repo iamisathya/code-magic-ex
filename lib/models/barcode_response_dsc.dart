@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'barcode_response_dsc.g.dart';
 
 @JsonSerializable()
-class BarcodeResponseDsc {  
+class BarcodeResponseDsc {
   @JsonKey(name: "items")
   UserProfile userProfile;
   @JsonKey(name: "token")

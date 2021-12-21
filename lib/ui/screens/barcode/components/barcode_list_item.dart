@@ -67,7 +67,8 @@ class BarcodeListItem extends StatelessWidget {
                         children: [
                           BarcodeItemChip(text: "${"code".tr}: ${item.code}"),
                           BarcodeItemChip(text: "${"qty".tr}: ${item.qty}"),
-                          BarcodeItemChip(text: "${"remains".tr}: ${item.remain}"),
+                          BarcodeItemChip(
+                              text: "${"remains".tr}: ${item.remain}"),
                         ],
                       ),
                     ),

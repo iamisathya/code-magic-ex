@@ -1,5 +1,3 @@
-import 'package:dsc_tools/ui/screens/open_po/order_list/components/app_button.dart';
-import 'package:dsc_tools/ui/screens/order_entry/controllers/ordercomplete.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -9,6 +7,8 @@ import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/extensions.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../global/theme/text_view.dart';
+import '../../../../open_po/order_list/components/app_button.dart';
+import '../../../controllers/ordercomplete.controller.dart';
 
 class Body extends StatelessWidget {
   final OrderCompleteController _controller =

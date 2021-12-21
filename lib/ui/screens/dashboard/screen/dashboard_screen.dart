@@ -1,12 +1,12 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/dashboard/components/carousel_slider_custom_indicator.dart';
-import 'package:dsc_tools/ui/screens/dashboard/components/dashboard_menu.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
-import 'package:dsc_tools/utilities/constants.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../utilities/constants.dart';
+import '../../../../utilities/enums.dart';
+import '../../../global/theme/text_view.dart';
+import '../../open_po/order_create/component/app_bar.dart';
+import '../components/carousel_slider_custom_indicator.dart';
+import '../components/dashboard_menu.dart';
 import '../controller/dashboard.controller.dart';
 
 class Body extends StatelessWidget {

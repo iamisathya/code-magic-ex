@@ -28,7 +28,8 @@ class Body extends StatelessWidget {
                 SizedBox(
                   width: 118,
                   child: AppText(
-                      text: "enrollment_details".tr, style: TextTypes.headline4),
+                      text: "enrollment_details".tr,
+                      style: TextTypes.headline4),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
@@ -130,8 +131,7 @@ class Body extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: AppText(
-                    text:
-                        "contact_unicity_if_problem".tr,
+                    text: "contact_unicity_if_problem".tr,
                     style: TextTypes.subtitle1,
                     color: AppColor.darkLiver,
                     align: TextAlign.center,

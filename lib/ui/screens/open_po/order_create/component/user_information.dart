@@ -1,7 +1,8 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../../constants/colors.dart';
+import '../../../../../constants/globals.dart';
 
 class UserInformation extends StatelessWidget {
   const UserInformation({

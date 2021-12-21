@@ -180,7 +180,7 @@ class OrderEntryProductListController extends GetxController {
 
   void clearCart({bool clearOnly = false}) {
     cartProducts.clear();
-    if(!clearOnly) {
+    if (!clearOnly) {
       Navigator.pop(Get.context!);
     }
     calculateTotal();
@@ -208,8 +208,7 @@ class OrderEntryProductListController extends GetxController {
   }
 
   void onClickNuetralButton() {
-    SnackbarUtil.showWarning(
-        message: "please_add_item_to_cart_msg".tr);
+    SnackbarUtil.showWarning(message: "please_add_item_to_cart_msg".tr);
   }
 
   void onClickPositiveButton() {

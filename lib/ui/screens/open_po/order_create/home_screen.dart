@@ -1,13 +1,12 @@
-import 'package:dsc_tools/ui/global/widgets/bottom_button_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import 'package:dsc_tools/ui/screens/open_po/order_create/controller/add.openpo.controller.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
-
 import '../../../../../constants/colors.dart';
+import '../../../global/widgets/bottom_button_bar.dart';
 import 'component/body.dart';
+import 'component/loader.dart';
+import 'controller/add.openpo.controller.dart';
 
 class OpenPoCreateOrder extends StatelessWidget {
   static const String routeName = '/openPoCreateOrder';

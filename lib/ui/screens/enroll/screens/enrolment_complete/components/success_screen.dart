@@ -22,11 +22,14 @@ class EnrolmentSuccessScreen extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: AppText(text: "thank_you".tr, style: TextTypes.headline4),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child:
+                    AppText(text: "thank_you".tr, style: TextTypes.headline4),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: AppText(
                     text: "order_place_success".tr,
                     style: TextTypes.bodyText1,

@@ -1,6 +1,3 @@
-import 'package:dsc_tools/ui/screens/open_po/order_create/home_screen.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
-import 'package:dsc_tools/ui/screens/profile/profile.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -11,10 +8,13 @@ import '../ui/screens/enroll/screens/enroll_confirmation/enrollconfirmation.scre
 import '../ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
 import '../ui/screens/home/home.dart';
 import '../ui/screens/login/login.screen.dart';
+import '../ui/screens/open_po/order_create/home_screen.dart';
 import '../ui/screens/open_po/order_details/home_screen.dart';
+import '../ui/screens/open_po/order_list/home_screen.dart';
 import '../ui/screens/open_po/order_success/main_screen.dart';
 import '../ui/screens/order_entry/orderentry.screen.dart';
 import '../ui/screens/order_entry/screens/checkout/checkout.screen.dart';
+import '../ui/screens/profile/profile.dart';
 import '../ui/screens/sales_reports/component/print_report.dart';
 import '../ui/screens/sales_reports/salesreports.screen.dart';
 import '../ui/screens/settings/settings.screen.dart';

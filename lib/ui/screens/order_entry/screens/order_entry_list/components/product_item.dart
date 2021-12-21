@@ -1,10 +1,10 @@
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
+import '../../../../../../constants/globals.dart';
 import '../../../../../../models/inventory_records.dart';
+import '../../../../../../styles/border.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../global/theme/text_view.dart';
 import '../../../controllers/orderentry.product.list.controller.dart';
@@ -26,7 +26,9 @@ class ProductItem extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.0),
-          side: BorderSide(color: AppColor.sunglow, style: inCart ? BorderStyle.solid : BorderStyle.none),
+          side: BorderSide(
+              color: AppColor.sunglow,
+              style: inCart ? BorderStyle.solid : BorderStyle.none),
         ),
         child: Stack(children: [
           Align(
@@ -44,7 +46,8 @@ class ProductItem extends StatelessWidget {
                 ),
                 AppText(
                   align: TextAlign.center,
-                  text: "${item.terms.pvEach} ${"pv".tr} | ${item.terms.priceEach} ${Globals.currency}",
+                  text:
+                      "${item.terms.pvEach} ${"pv".tr} | ${item.terms.priceEach} ${Globals.currency}",
                   style: TextTypes.caption,
                   color: AppColor.charcoal,
                 ),

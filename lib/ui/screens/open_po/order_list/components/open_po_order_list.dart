@@ -1,9 +1,9 @@
-import 'package:dsc_tools/ui/screens/open_po/order_list/components/header_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_list/components/openpo_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/openpo.list.controller.dart';
+import 'header_bar.dart';
+import 'openpo_list.dart';
 import 'po_list_toolbar.dart';
 
 class OpenPoOrderList extends StatelessWidget {

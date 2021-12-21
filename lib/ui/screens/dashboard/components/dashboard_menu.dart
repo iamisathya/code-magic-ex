@@ -1,7 +1,7 @@
-import 'package:dsc_tools/ui/screens/dashboard/controller/dashboard.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controller/dashboard.controller.dart';
 import 'sliver_grid_delegate_with_fixed_cross_axis_count_and_fixed_height.dart';
 
 class DashboardMenu extends StatelessWidget {

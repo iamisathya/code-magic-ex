@@ -89,7 +89,8 @@ class DateSelector extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AppText(
-                                  text: "${"end_date".tr}: ", color: AppColor.charcoal),
+                                  text: "${"end_date".tr}: ",
+                                  color: AppColor.charcoal),
                               SvgPicture.asset(kPlusIcon,
                                   color: AppColor.charcoal,
                                   width: 14,

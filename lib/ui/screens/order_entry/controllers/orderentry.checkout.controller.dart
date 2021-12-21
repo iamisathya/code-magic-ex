@@ -36,7 +36,7 @@ class OrderEntryCheckoutController extends GetxController {
   RxList<RadioButtonModel> paymentOptions = [
     RadioButtonModel(
       index: 0,
-      name: "dsc".tr, 
+      name: "dsc".tr,
     ),
     RadioButtonModel(
       index: 1,
@@ -104,7 +104,8 @@ class OrderEntryCheckoutController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "server_error!".tr, subTitle: e.error.toString());
+      renderErrorSnackBar(
+          title: "server_error!".tr, subTitle: e.error.toString());
       return false;
     } catch (err) {
       renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
@@ -193,8 +194,7 @@ class OrderEntryCheckoutController extends GetxController {
     try {
       final payload = prepareRequestPaylod();
       if (payload == null) {
-        throw Exception(
-            'something_wrong_in_purchase_log'.tr);
+        throw Exception('something_wrong_in_purchase_log'.tr);
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       final UserInfo usedInfo = UserSessionManager.shared.userInfo!;

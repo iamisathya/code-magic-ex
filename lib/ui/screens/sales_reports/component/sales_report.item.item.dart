@@ -1,9 +1,9 @@
-import 'package:dsc_tools/styles/border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../models/sales_report_item_item.dart';
+import '../../../../styles/border.dart';
 import '../controller/salesreports.home.controller.dart';
 
 class SalesReportEachItemItem extends StatelessWidget {
@@ -42,7 +42,8 @@ class SalesReportEachItemItem extends StatelessWidget {
               ],
             ),
             _renderEachRow(context, "${"ba_number".tr}: ${item.itemCode}", ""),
-            _renderEachRow(context, "${"pv".tr}: ${item.pv}", "${"quatity".tr}: ${item.qty}"),
+            _renderEachRow(context, "${"pv".tr}: ${item.pv}",
+                "${"quatity".tr}: ${item.qty}"),
             GrandTotal(totalPv: item.totalPv.toString()),
           ],
         ),

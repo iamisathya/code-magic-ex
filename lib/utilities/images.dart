@@ -117,12 +117,16 @@ const kUserProfileIcon = 'assets/icons/user_profile_icon.svg';
 
 // dashboard menu
 const kBarcodeDashboardIcon = 'assets/icons/menu/barcode_dashboard_icon.svg';
-const kEasyshipReportDashboardIcon = 'assets/icons/menu/easyship_report_dashboard_icon.svg';
+const kEasyshipReportDashboardIcon =
+    'assets/icons/menu/easyship_report_dashboard_icon.svg';
 const kEnrollDashboardIcon = 'assets/icons/menu/enroll_dashboard_icon.svg';
-const kInventoryDashboardIcon = 'assets/icons/menu/inventory_dashboard_icon.svg';
+const kInventoryDashboardIcon =
+    'assets/icons/menu/inventory_dashboard_icon.svg';
 const kOpenPoDashboardIcon = 'assets/icons/menu/open_po_dashboard_icon.svg';
-const kOrderEntryDashboardIcon = 'assets/icons/menu/order_entry_dashboard_icon.svg';
-const kSalesReportDashboardIcon = 'assets/icons/menu/sales_report_dashboard_icon.svg';
+const kOrderEntryDashboardIcon =
+    'assets/icons/menu/order_entry_dashboard_icon.svg';
+const kSalesReportDashboardIcon =
+    'assets/icons/menu/sales_report_dashboard_icon.svg';
 const kSignOutDashboardIcon = 'assets/icons/menu/sign_out_dashboard_icon.svg';
 
 //gradient
@@ -137,7 +141,8 @@ const kBottomTabSalesReportActiveIcon =
 const kBottomTabBarcodeIcon = 'assets/icons/navigation/tab_barcode_icon.svg';
 const kBottomTabAddIcon = 'assets/icons/navigation/tab_addnew_icon.svg';
 const kBottomTabHomeIcon = 'assets/icons/navigation/tab_home_icon.svg';
-const kBottomTabHomeActiveIcon = 'assets/icons/navigation/tab_home_icon_active.svg';
+const kBottomTabHomeActiveIcon =
+    'assets/icons/navigation/tab_home_icon_active.svg';
 const kBottomTabOrderEntryIcon =
     'assets/icons/navigation/tab_orderentry_icon.svg';
 const kBottomTabSalesReportIcon =

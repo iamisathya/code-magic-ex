@@ -21,7 +21,8 @@ class BarcodeController extends GetxController {
   OrderLines allEasyShipOrders = OrderLines(items: []);
 
   Future<void> getBarcodePath(BuildContext context,
-      {String userId = "2970466"}) async { //!hardcoded
+      {String userId = "2970466"}) async {
+    //!hardcoded
     if (!formKey.currentState!.validate()) {
       return;
     }

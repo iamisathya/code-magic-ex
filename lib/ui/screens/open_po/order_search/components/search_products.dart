@@ -58,13 +58,13 @@ class _SearchAppBarState extends State<SearchProducts> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppText(
-                        text: "search_history".tr,
-                        style: TextTypes.subtitle1),
+                        text: "search_history".tr, style: TextTypes.subtitle1),
                     GestureDetector(
                       onTap: () => controller.clearHistory(),
                       child: AppText(
                         text: "clear_all".tr,
-                        style: TextTypes.subtitle1, color: AppColor.brinkPink,
+                        style: TextTypes.subtitle1,
+                        color: AppColor.brinkPink,
                       ),
                     )
                   ],

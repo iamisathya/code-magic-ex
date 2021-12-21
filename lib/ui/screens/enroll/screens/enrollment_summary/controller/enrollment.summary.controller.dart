@@ -82,16 +82,14 @@ class EnrollmentSummaryController extends GetxController {
     } else if (activePayType.value != PaymentOptions.cashOnDelivery) {
       SnackbarUtil.showWarning(
           title: "Payment mode isn't available!", //!hardcoded
-          message:
-              "payment_not_available_msg".tr);
+          message: "payment_not_available_msg".tr);
       return;
     }
     try {
       isLoading.toggle();
       final bool isServerRuning = await checkOrderEntryServerStatus();
       if (!isServerRuning) {
-        SnackbarUtil.showError(
-            message: "server_error_msg".tr);
+        SnackbarUtil.showError(message: "server_error_msg".tr);
         isLoading.toggle();
         return;
       }
@@ -131,7 +129,8 @@ class EnrollmentSummaryController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      SnackbarUtil.showError(message: "${"server_error".tr}! ${e.error.toString()}");
+      SnackbarUtil.showError(
+          message: "${"server_error".tr}! ${e.error.toString()}");
       return false;
     } catch (err) {
       SnackbarUtil.showError(message: "${"error!".tr} ${err.toString()}");
@@ -229,8 +228,7 @@ class EnrollmentSummaryController extends GetxController {
       final EnrollLogRequestData? payload = await prepareRequestPaylod();
       if (payload == null) {
         isLoading.toggle();
-        throw Exception(
-            'something_wrong_in_purchase_log'.tr);
+        throw Exception('something_wrong_in_purchase_log'.tr);
       }
       final String jsonUser = jsonEncode(payload);
       await MemberCallsService.init().logEnrollerData(

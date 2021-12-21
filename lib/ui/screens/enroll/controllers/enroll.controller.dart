@@ -123,8 +123,7 @@ class EnrollHomeController extends GetxController {
 
   void onContinue() {
     if (cartProducts.isEmpty) {
-      SnackbarUtil.showWarning(
-          message: "add_products_to_cart_to_checkout".tr);
+      SnackbarUtil.showWarning(message: "add_products_to_cart_to_checkout".tr);
       return;
     }
     Get.to(() => EnrollmentDetailsHomeScreen());
@@ -199,7 +198,8 @@ class EnrollHomeController extends GetxController {
                                                 .copyWith(
                                                     color: AppColor.charcoal)),
                                         AppText(
-                                          text: "${"code".tr}: ${item.item.id.unicity}",
+                                          text:
+                                              "${"code".tr}: ${item.item.id.unicity}",
                                           style: TextTypes.caption,
                                           color: AppColor.metallicSilver,
                                         ),

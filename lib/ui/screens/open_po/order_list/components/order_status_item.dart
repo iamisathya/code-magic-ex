@@ -1,6 +1,7 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../utilities/enums.dart';
+import '../../../../global/theme/text_view.dart';
 
 class OrderStatusItem extends StatelessWidget {
   const OrderStatusItem({

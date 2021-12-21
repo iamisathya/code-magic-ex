@@ -1,11 +1,11 @@
-import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/home_screen.dart';
-import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../barcode/barcode.screen.dart';
 import '../../dashboard/screen/dashboard_screen.dart';
+import '../../open_po/order_create/home_screen.dart';
+import '../../order_entry/orderentry.screen.dart';
+import '../../sales_reports/salesreports.screen.dart';
 
 class HomeController extends GetxController {
   final RxInt currentTabIndex = 0.obs;
@@ -26,9 +26,10 @@ class HomeController extends GetxController {
     if (isExternal && index == 2) {
       Get.toNamed(currentPage);
     } else {
-      if(index == 0) {
+      if (index == 0) {
         pageController.animateToPage(index,
-          duration: const Duration(milliseconds: 100), curve: Curves.easeInOut);
+            duration: const Duration(milliseconds: 100),
+            curve: Curves.easeInOut);
       } else {
         Get.to(() => tabPages[index]);
       }

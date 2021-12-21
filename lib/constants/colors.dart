@@ -66,7 +66,7 @@ class AppColor {
   static const maximumYellowRed = Color(0xFFE7BB4A);
   static const lightCrimson = Color(0xFFF9748E);
   static const vividMalachite = Color(0xFF03C302);
-  
+
   static const juneBud = Color(0xFFB7E250);
   static const darkTangerine = Color(0xFFFEAA0D);
   static const maximumBluePurple = Color(0xFFA797FF);

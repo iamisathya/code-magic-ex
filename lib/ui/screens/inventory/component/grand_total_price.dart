@@ -1,11 +1,11 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
+import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
+import '../../../global/theme/text_view.dart';
 
 class GrandTotal extends StatelessWidget {
   final String totalPrice;

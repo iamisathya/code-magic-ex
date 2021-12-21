@@ -58,8 +58,8 @@ class SalesReportEachOrderItem extends StatelessWidget {
                 ),
               ],
             ),
-            _renderEachRow(
-                context, "${"ba_number".tr}: ${item.customer}", "${"date".tr}: ${item.date}"),
+            _renderEachRow(context, "${"ba_number".tr}: ${item.customer}",
+                "${"date".tr}: ${item.date}"),
             _renderOrderIdRow(context, "${"order_id".tr}: ", item.orderNumber,
                 "${"time".tr}: ${item.time}", item.orderHref),
             GrandTotal(

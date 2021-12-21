@@ -27,9 +27,7 @@ class PaymentDetails extends StatelessWidget {
         return CreditCardDetails();
       case PaymentOptions.cashOnDelivery:
         return CashOnDeliveryDetails(
-            message:
-                "pay_in_cash_payment_msg".tr,
-            image: kCashOnDeliveryImage);
+            message: "pay_in_cash_payment_msg".tr, image: kCashOnDeliveryImage);
       case PaymentOptions.cashCounterPay:
         return CashOnDeliveryDetails(
             message: "pay_in_cash_to_staff_payment_msg".tr,

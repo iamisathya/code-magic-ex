@@ -1,13 +1,13 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../constants/colors.dart';
 import '../../../../utilities/constants.dart';
 import '../../home/controller/home.controller.dart';
+import '../order_create/component/app_bar.dart';
+import '../order_create/component/loader.dart';
+import '../order_create/home_screen.dart';
 import '../order_list/components/open_po_order_list.dart';
 import 'controller/openpo.list.controller.dart';
 

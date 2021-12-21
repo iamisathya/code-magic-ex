@@ -192,8 +192,7 @@ class CreateOpenPoOrderController extends GetxController
 
   Future<void> validateOrder(BuildContext context) async {
     if (cartProducts.isEmpty) {
-      SnackbarUtil.showError(
-          message: "add_products_to_cart_to_checkout".tr);
+      SnackbarUtil.showError(message: "add_products_to_cart_to_checkout".tr);
       return;
     }
     confirmOrder(context);
@@ -356,7 +355,8 @@ class CreateOpenPoOrderController extends GetxController
                                                 .copyWith(
                                                     color: AppColor.charcoal)),
                                         AppText(
-                                          text: "${"code".tr}: ${item.item.id.unicity}",
+                                          text:
+                                              "${"code".tr}: ${item.item.id.unicity}",
                                           style: TextTypes.caption,
                                           color: AppColor.metallicSilver,
                                         ),

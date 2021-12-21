@@ -22,7 +22,6 @@ extension WidgetOp on Widget {
   }
 }
 
-
 extension DoubleParsing on RxDouble {
   String numberFormat() {
     return NumberFormat("#,###").format(value);

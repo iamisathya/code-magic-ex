@@ -42,8 +42,7 @@ class EnrollConfirmationController extends GetxController {
       final bool isServerRuning = await checkOrderEntryServerStatus();
       if (!isServerRuning) {
         renderErrorSnackBar(
-            title: "server_error".tr,
-            subTitle: "server_down_msg".tr);
+            title: "server_error".tr, subTitle: "server_down_msg".tr);
         _sendingMsgProgressBar.hide();
         return;
       }
@@ -74,10 +73,12 @@ class EnrollConfirmationController extends GetxController {
       }
       return false;
     } on DioError catch (e) {
-      renderErrorSnackBar(title: "server_error!".tr, subTitle: e.error.toString()); //!hardcoded
+      renderErrorSnackBar(
+          title: "server_error!".tr, subTitle: e.error.toString()); //!hardcoded
       return false;
     } catch (err) {
-      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString()); //!hardcoded
+      renderErrorSnackBar(
+          title: "error!".tr, subTitle: err.toString()); //!hardcoded
       return false;
     }
   }
@@ -164,8 +165,7 @@ class EnrollConfirmationController extends GetxController {
       final payload = prepareRequestPaylod();
       if (payload == null) {
         _sendingMsgProgressBar.hide();
-        throw Exception(
-            'something_wrong_in_purchase_log'.tr);
+        throw Exception('something_wrong_in_purchase_log'.tr);
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
       await MemberCallsService.init().logEnrollerData(

@@ -27,8 +27,7 @@ class TotalAmountCard extends StatelessWidget {
                 value: "${ctrl.totalCartPrice} ${Globals.currency}"),
             EeachUserinfoItem(
                 title: "delivery_fee", value: "0 ${Globals.currency}"),
-            EeachUserinfoItem(
-                title: "ship_method".tr, value: "Delivery"),
+            EeachUserinfoItem(title: "ship_method".tr, value: "Delivery"),
             Padding(
                 padding: const EdgeInsets.only(top: 20, bottom: 12.5),
                 child: Container(decoration: DottedDecoration())),

@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart' hide StringTranslateExtension;
+import 'package:easy_localization/easy_localization.dart'
+    hide StringTranslateExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -262,16 +263,15 @@ class EnrollController extends GetxController {
 
   Future<void> getAmphuresByProvince() async {
     if (provience.isEmpty) {
-      _renderErrorSnackBar(
-          "select_province".tr, "select_province_msg".tr);
+      _renderErrorSnackBar("select_province".tr, "select_province_msg".tr);
       return;
     }
     try {
       final List<AmphurItem> allAmphures = await MemberCallsService.init()
           .getAmphuresByProvince("getAmphuresByProvince", provience.value);
       areaDropdownItems.clear();
-      areaDropdownItems
-          .add(const DropdownMenuItem(value: "", child: Text("Select Area"))); //!hardcoded
+      areaDropdownItems.add(const DropdownMenuItem(
+          value: "", child: Text("Select Area"))); //!hardcoded
       for (final amphure in allAmphures) {
         areaDropdownItems.add(DropdownMenuItem(
             value: amphure.amphurId, child: Text(amphure.amphurNameEn)));
@@ -285,16 +285,16 @@ class EnrollController extends GetxController {
 
   Future<void> getDistrictsByAmphur() async {
     if (area.value.isEmpty) {
-      _renderErrorSnackBar(
-          "Select amphur", "Please select your amphur to proceed!"); //!hardcoded
+      _renderErrorSnackBar("Select amphur",
+          "Please select your amphur to proceed!"); //!hardcoded
       return;
     }
     try {
       final List<DisctrictItem> allDistricts = await MemberCallsService.init()
           .getDistrictsByAmphur("getDistrictsByAmphur", area.value);
       subAreaDropdownItems.clear();
-      subAreaDropdownItems.add(
-          const DropdownMenuItem(value: "", child: Text("Select Sub-Area"))); //!hardcoded
+      subAreaDropdownItems.add(const DropdownMenuItem(
+          value: "", child: Text("Select Sub-Area"))); //!hardcoded
       for (final district in allDistricts) {
         subAreaDropdownItems.add(DropdownMenuItem(
             value: district.districtCode,
@@ -309,8 +309,7 @@ class EnrollController extends GetxController {
 
   Future<void> getZipcodeByDistricts() async {
     if (subArea.value.isEmpty) {
-      _renderErrorSnackBar(
-          "select_disctrict".tr, "select_disctrict_msg".tr);
+      _renderErrorSnackBar("select_disctrict".tr, "select_disctrict_msg".tr);
       return;
     }
     try {

@@ -29,7 +29,9 @@ class Body extends StatelessWidget {
               _renderCardHeader("dsc_info".tr),
               Column(
                 children: [
-                  renderUserCard("enroller".tr, controller.enroleeData.enrollerId,
+                  renderUserCard(
+                      "enroller".tr,
+                      controller.enroleeData.enrollerId,
                       controller.enroleeData.enrollerName),
                   const Divider(
                     thickness: 1,

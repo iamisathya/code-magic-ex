@@ -1,13 +1,13 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/models/cart_products.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/controller/add.openpo.controller.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/po_cart_item.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/total_price_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
+import '../../../../../models/cart_products.dart';
 import '../../../../../utilities/extensions.dart';
+import '../controller/add.openpo.controller.dart';
 import 'browse_attachment.dart';
+import 'po_cart_item.dart';
+import 'total_price_container.dart';
 import 'user_information.dart';
 
 class Body extends StatelessWidget {

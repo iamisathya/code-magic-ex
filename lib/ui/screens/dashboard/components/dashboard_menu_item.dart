@@ -1,11 +1,12 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/login/login.screen.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/user_session.dart';
+import '../../../global/theme/text_view.dart';
+import '../../login/login.screen.dart';
 
 class DashboardMenuItem extends StatelessWidget {
   // final DashboardController controller = Get.put(DashboardController());
@@ -51,8 +52,8 @@ class DashboardMenuItem extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: AppText(
-                  text: title, style: TextTypes.bodyText1, maxLines: 2),
+              child:
+                  AppText(text: title, style: TextTypes.bodyText1, maxLines: 2),
             )
           ],
         ),

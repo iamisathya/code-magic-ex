@@ -1,9 +1,9 @@
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
+import '../../../../../../constants/globals.dart';
 import '../../../../../../models/cart_products.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/images.dart';
@@ -50,7 +50,8 @@ class EnrollCartItem extends StatelessWidget {
                   color: AppColor.metallicSilver,
                 ),
                 AppText(
-                  text: "${item.itemPv} ${"pv".tr} | ${item.itemPrice} ${Globals.currency}",
+                  text:
+                      "${item.itemPv} ${"pv".tr} | ${item.itemPrice} ${Globals.currency}",
                   style: TextTypes.subtitle1,
                   color: AppColor.charcoal,
                 ),

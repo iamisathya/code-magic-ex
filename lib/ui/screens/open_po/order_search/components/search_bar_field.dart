@@ -9,7 +9,9 @@ class SearchBarField extends StatelessWidget {
   final bool autofocus;
 
   const SearchBarField(
-      {required this.searchTextController, this.placeHolder = "Search ...", this.autofocus = false});
+      {required this.searchTextController,
+      this.placeHolder = "Search ...",
+      this.autofocus = false});
 
   @override
   Widget build(BuildContext context) {

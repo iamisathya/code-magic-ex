@@ -17,7 +17,8 @@ class CheckoutPage extends StatelessWidget {
       backgroundColor: kBackground,
       appBar: TransAppBar(
         title: "checkout".tr,
-        subTitle: "${controller.checkoutProducts.length.toString()} ${"items".tr}",
+        subTitle:
+            "${controller.checkoutProducts.length.toString()} ${"items".tr}",
       ),
       body: SafeArea(child: Body()),
     );

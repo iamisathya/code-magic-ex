@@ -41,7 +41,8 @@ class TotalPrice extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppText(text: "${"total_price".tr}:", style: TextTypes.subtitle2),
+                AppText(
+                    text: "${"total_price".tr}:", style: TextTypes.subtitle2),
                 AppText(
                     text: "$totalPrice ${Globals.currency}",
                     style: TextTypes.subtitle2),

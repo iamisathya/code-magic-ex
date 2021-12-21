@@ -113,7 +113,8 @@ class Body extends StatelessWidget {
             children: [
               _renderUserInfo(
                   context, "ba_number".tr, controller.passedUser.userId),
-              _renderUserInfo(context, "name".tr, controller.passedUser.fullName),
+              _renderUserInfo(
+                  context, "name".tr, controller.passedUser.fullName),
               _renderUserInfo(context, "email".tr, controller.passedUser.email),
             ],
           ),

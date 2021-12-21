@@ -200,8 +200,7 @@ void onDioError(DioError e, ProgressBar progressBar, RxString error) {
 void onCatchError(Object err, ProgressBar progressBar, RxString error) {
   error(err.toString());
   renderErrorSnackBar(
-      title: "error!".tr,
-      subTitle: "error_getting_user_details".tr);
+      title: "error!".tr, subTitle: "error_getting_user_details".tr);
   LoggerService.instance.e(err.toString());
   progressBar.hide();
 }

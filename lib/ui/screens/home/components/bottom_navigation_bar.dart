@@ -43,7 +43,8 @@ class NavigationBottomBar extends StatelessWidget {
             items: [
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(kBottomTabHomeIcon, height: 20),
-                  activeIcon: SvgPicture.asset(kBottomTabHomeActiveIcon, height: 20),
+                  activeIcon:
+                      SvgPicture.asset(kBottomTabHomeActiveIcon, height: 20),
                   label: 'home'.tr),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(kBottomTabSalesReportIcon, height: 20),

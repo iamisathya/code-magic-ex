@@ -1,8 +1,9 @@
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/globals.dart';
 
 class Messaging {
   Messaging._();

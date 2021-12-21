@@ -20,10 +20,9 @@ class EnrolmentErrorScreen extends StatelessWidget {
           Column(
             children: const [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: AppText(
-                    text: "enrollment_error", style: TextTypes.headline4)
-              ),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  child: AppText(
+                      text: "enrollment_error", style: TextTypes.headline4)),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: AppText(

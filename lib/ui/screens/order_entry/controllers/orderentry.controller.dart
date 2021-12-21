@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/config/api_service.dart';
 import '../../../../api/request/request_order_calculation.dart';
+import '../../../../constants/globals.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/cash_coupon_response.dart';
 import '../../../../models/enroll_response.dart';

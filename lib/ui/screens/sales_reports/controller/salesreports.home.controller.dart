@@ -81,8 +81,7 @@ class SalesReportHomeController extends GetxController {
   Future<void> getAllSalesReports() async {
     if (startDate == null || endDate == null) return;
     if (startDate!.value.isAfter(endDate!.value)) {
-      SnackbarUtil.showError(
-          message: "start_date_should_lower_msg".tr);
+      SnackbarUtil.showError(message: "start_date_should_lower_msg".tr);
       return;
     }
     final String actionType = activeStockType.value.value == "order"

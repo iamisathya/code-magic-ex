@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:isolate';
 
-import 'package:dsc_tools/services/firebase/messaging.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -14,6 +13,7 @@ import 'controllers/global_controllers.dart';
 import 'controllers/theme_controller.dart';
 import 'navigation/routers.dart';
 import 'navigation/routes.dart';
+import 'services/firebase/messaging.dart';
 import 'translations/translations.dart';
 import 'ui/global/theme/app_themes.dart';
 import 'ui/screens/splash/splash.screen.dart';

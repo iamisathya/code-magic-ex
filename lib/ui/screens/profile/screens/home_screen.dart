@@ -1,7 +1,7 @@
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
-import 'package:dsc_tools/ui/screens/profile/components/body.dart';
-
 import 'package:flutter/material.dart';
+
+import '../../open_po/order_create/component/app_bar.dart';
+import '../components/body.dart';
 
 class UserProfileScreen extends StatelessWidget {
   static const String routeName = "/userProfileScreen";

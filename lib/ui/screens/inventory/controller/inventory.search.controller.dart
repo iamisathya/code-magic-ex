@@ -1,13 +1,13 @@
 import 'package:collection/collection.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_search/components/search_bar_field.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../../models/inventory_records.dart';
+import '../../../../utilities/images.dart';
 import '../../../../utilities/snackbar.dart';
+import '../../open_po/order_search/components/search_bar_field.dart';
 import '../component/inventory_search_result.dart';
 import 'inventory.home.controller.dart';
 
@@ -71,8 +71,7 @@ class InventorySearchController extends GetxController {
       }
 
       SnackbarUtil.showWarning(
-          message:
-              "${"no_inventory_item_with_search".tr}: $searchKey");
+          message: "${"no_inventory_item_with_search".tr}: $searchKey");
     });
   }
 

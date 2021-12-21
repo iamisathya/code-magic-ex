@@ -1,10 +1,10 @@
-import 'package:dsc_tools/ui/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../controllers/language_controller.dart';
 import '../../../../../utilities/images.dart';
+import '../../../profile/profile.dart';
 import '../controller/app_bar_controller.dart';
 
 class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {

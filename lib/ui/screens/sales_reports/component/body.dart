@@ -83,8 +83,10 @@ class Body extends StatelessWidget {
           "name".tr, EasyShipSortTypes.name, Alignment.centerLeft, 200),
       _renderTableHeader(
           "order_id".tr, EasyShipSortTypes.orderId, Alignment.center, 140),
-      _renderTableHeader("date".tr, EasyShipSortTypes.date, Alignment.center, 140),
-      _renderTableHeader("time".tr, EasyShipSortTypes.time, Alignment.center, 140),
+      _renderTableHeader(
+          "date".tr, EasyShipSortTypes.date, Alignment.center, 140),
+      _renderTableHeader(
+          "time".tr, EasyShipSortTypes.time, Alignment.center, 140),
       _renderTableHeader("${"total".tr} ${controller.totalAmount}",
           EasyShipSortTypes.total, Alignment.centerRight, 150),
       _renderTableHeader("${"total_pv".tr} ${controller.totalVolume}",
@@ -101,8 +103,10 @@ class Body extends StatelessWidget {
           "ba_number".tr, EasyShipSortTypes.baNumber, Alignment.center, 140),
       _renderTableHeader(
           "name".tr, EasyShipSortTypes.name, Alignment.centerLeft, 200),
-      _renderTableHeader("date".tr, EasyShipSortTypes.date, Alignment.center, 140),
-      _renderTableHeader("time".tr, EasyShipSortTypes.time, Alignment.center, 140),
+      _renderTableHeader(
+          "date".tr, EasyShipSortTypes.date, Alignment.center, 140),
+      _renderTableHeader(
+          "time".tr, EasyShipSortTypes.time, Alignment.center, 140),
       _renderTableHeader(
           "rma".tr, EasyShipSortTypes.orderId, Alignment.center, 140),
       _renderTableHeader(
@@ -276,8 +280,8 @@ class Body extends StatelessWidget {
                           DateFormat('yyyy-MM-dd').format(date).toString();
                     });
                   },
-                  decoration:
-                      _renderInputDecoration("select_start_date".tr, "from".tr), //! hardcoded
+                  decoration: _renderInputDecoration(
+                      "select_start_date".tr, "from".tr), //! hardcoded
                 )),
           ),
           Flexible(
@@ -292,7 +296,8 @@ class Body extends StatelessWidget {
                           DateFormat('yyyy-MM-dd').format(date).toString();
                     }, currentTime: DateTime.now());
                   },
-                  decoration: _renderInputDecoration("select_end_date".tr, "to".tr),
+                  decoration:
+                      _renderInputDecoration("select_end_date".tr, "to".tr),
                 )),
           ),
           SizedBox(

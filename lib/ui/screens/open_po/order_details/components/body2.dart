@@ -67,7 +67,8 @@ class Body extends StatelessWidget {
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
                               child: AppText(
                                 text: "view".tr,
                                 style: TextTypes.bodyText1,

@@ -82,7 +82,8 @@ class EasyShipItem extends StatelessWidget {
         children: [
           AppText(text: element.name, style: TextTypes.headline6),
           AppText(
-              text: "${"code".tr}: ${element.itemName}", style: TextTypes.bodyText2),
+              text: "${"code".tr}: ${element.itemName}",
+              style: TextTypes.bodyText2),
         ],
       ),
       Padding(
@@ -112,7 +113,8 @@ class EasyShipItem extends StatelessWidget {
               color: AppColor.darkLiver,
             ),
             AppText(
-              text: "${"total_price".tr}: ${element.totalPrice} ${Globals.currency}",
+              text:
+                  "${"total_price".tr}: ${element.totalPrice} ${Globals.currency}",
               style: TextTypes.caption,
               color: AppColor.darkLiver,
             ),

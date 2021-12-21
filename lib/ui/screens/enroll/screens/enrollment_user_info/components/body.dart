@@ -49,7 +49,8 @@ class Body extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30.0),
-              child: AppText(text: "information".tr, style: TextTypes.headline6),
+              child:
+                  AppText(text: "information".tr, style: TextTypes.headline6),
             ),
             Container(
               padding: const EdgeInsets.all(20),
