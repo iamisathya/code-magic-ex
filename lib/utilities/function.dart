@@ -87,7 +87,6 @@ dynamic returnResponse(dio.Response response) {
     case 401:
       final String errorMsg = getErrorMessage(response.data);
       if (errorMsg == "Invalid Bearer Token.") {
-        //!Hardcoded
         UserSessionManager.shared.removeUserInfoFromDB();
         return Get.offAll(() => LoginScreen(),
             arguments: true, transition: Transition.cupertino);
@@ -98,11 +97,9 @@ dynamic returnResponse(dio.Response response) {
     case 404:
       String errorMsg = getErrorMessageWithKey(response.data, "message");
       if (errorMsg == "Unauthorized") {
-        //!Hardcoded
-        errorMsg = "Invalid credentials"; //!Hardcoded
+        errorMsg = "invalid_credentials".tr;
       }
       if (errorMsg == "Not Found") {
-        //!Hardcoded
         errorMsg = getErrorMessage(response.data);
       }
       throw UnauthorisedException(message: errorMsg);
@@ -110,28 +107,24 @@ dynamic returnResponse(dio.Response response) {
       throw TimeOutException(message: response.data.toString());
     case 500:
       throw InternetFailedException(
-          message:
-              '${"internal_server_error".tr}: ${response.statusCode}'); //!Hardcoded
+          message: '${"internal_server_error".tr}: ${response.statusCode}');
     case 503:
       throw InternetFailedException(
-          message:
-              '${"service_unavailable".tr}: ${response.statusCode}'); //!Hardcoded
+          message: '${"service_unavailable".tr}: ${response.statusCode}');
     case 524:
       throw TimeOutException(
-          message:
-              '${"server_timeout".tr}: ${response.statusCode}'); //!Hardcoded
+          message: '${"server_timeout".tr}: ${response.statusCode}');
     default:
       throw InternetFailedException(
-          message:
-              '${"internal_server_error".tr}: ${response.statusCode}'); //!Hardcoded
+          message: '${"internal_server_error".tr}: ${response.statusCode}');
   }
 }
 
 void showAlertDialog(BuildContext context,
-    {String cancel = "Cancel", //!Hardcoded
-    String ok = "Continue", //!Hardcoded
-    String title = "AlertDialog", //!Hardcoded
-    String subtitle = "Would you like to continue?", //!Hardcoded
+    {String cancel = "",
+    String ok = "",
+    String title = "",
+    String subtitle = "",
     required Function onOk,
     required Function onCancel}) {
   // set up the buttons
@@ -200,8 +193,7 @@ void onDioError(DioError e, ProgressBar progressBar, RxString error) {
   error(e.error.toString());
   final String message = getErrorMessage(e.response!.data);
   renderErrorSnackBar(
-      title: "${e.response!.statusCode} ${"error!".tr}",
-      subTitle: message); //!Hardcoded
+      title: "${e.response!.statusCode} ${"error!".tr}", subTitle: message);
   returnResponse(e.response!);
 }
 
@@ -209,7 +201,7 @@ void onCatchError(Object err, ProgressBar progressBar, RxString error) {
   error(err.toString());
   renderErrorSnackBar(
       title: "error!".tr,
-      subTitle: "Error while getting user details!"); //!Hardcoded
+      subTitle: "error_getting_user_details".tr);
   LoggerService.instance.e(err.toString());
   progressBar.hide();
 }
@@ -222,15 +214,15 @@ String getUniqueId(String href) {
 }
 
 void renderGetSnackbar(
-    {String title = "", //!Hardcoded
-    String message = "Unexpcted error occured. Please try later!", //!Hardcoded
+    {String title = "",
+    String message = "",
     SnackBarType type = SnackBarType.success}) {
   final Color color = type == SnackBarType.success
       ? Theme.of(Get.context!).accentColor
       : type == SnackBarType.error
           ? Colors.red
           : Colors.yellow;
-  Get.snackbar("Empty table!", "No data found in table.", //!Hardcoded
+  Get.snackbar("", "no_data_found_in_table".tr,
       snackPosition: SnackPosition.BOTTOM,
       overlayColor: color,
       backgroundColor: Colors.white,
@@ -250,8 +242,8 @@ Future<String?> readFileByte(String filePath) async {
     base64Image = base64Encode(imageBytes);
   } catch (e) {
     FirebaseCrashlytics.instance
-        .log("Error while reading base64 from file path:$e"); //!Hardcoded
-    debugPrint('Error while reading base64 from file path:$e'); //!Hardcoded
+        .log("${"error_reading_base64_msg".tr}$e"); //!Error
+    debugPrint('${"error_reading_base64_msg".tr}$e'); //!Error
   }
   return base64Image;
 }

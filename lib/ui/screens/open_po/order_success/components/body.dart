@@ -64,7 +64,7 @@ class Body extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(right: 20.0),
-                  child: Text("go_to_home".tr), //!hardcoded
+                  child: Text("go_to_home".tr),
                 ),
                 GestureDetector(
                     onTap: _controller.gotoHome,

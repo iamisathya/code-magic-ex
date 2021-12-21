@@ -23,7 +23,7 @@ class OrderEntryController extends GetxController {
     ),
     OrderEntryRadioButton(
       index: 1,
-      name: "Govt ID, Name..", //! hardcoded
+      name: "govt_id_name".tr,
     ),
   ].obs;
 

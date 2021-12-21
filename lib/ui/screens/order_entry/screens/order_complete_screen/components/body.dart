@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
               AppText(text: "thank_you".tr, style: TextTypes.headline4),
               const SizedBox(height: 10),
               AppText(
-                  text: "order_place_success_msg".tr, //!hardcoded
+                  text: "order_place_success_msg".tr,
                   style: TextTypes.subtitle2,
                   color: AppColor.cadet),
             ],
