@@ -36,7 +36,7 @@ PODS:
     - Firebase/InAppMessaging (= 8.9.0)
     - firebase_core
     - Flutter
-  - firebase_messaging (9.1.4):
+  - firebase_messaging (11.2.4):
     - Firebase/Messaging (= 8.9.0)
     - firebase_core
     - Flutter
@@ -292,7 +292,7 @@ SPEC CHECKSUMS:
   firebase_core: f770e033e790657b3505f04be4cb24c482912f11
   firebase_crashlytics: ed8c1d66dc407d617cbed798f05a5d9115da7494
   firebase_in_app_messaging: f81d838e861b61e5e1a89965bdc76de5cecfc4c5
-  firebase_messaging: fc5f05068c268490a479677133152b27e76ae91e
+  firebase_messaging: dff5cd08781ee1de988565a83c977e435405cd7e
   firebase_remote_config: 64af2ad097186f4831a7095b2b03599276eb8a64
   FirebaseABTesting: 9de50b34bf9eb4a07d4edb7af82c14152fd905aa
   FirebaseAnalytics: 4ab446ce08a3fe52e8a4303dd997cf26276bf968
