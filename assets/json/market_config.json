@@ -120,7 +120,7 @@
     {
       "name": "Thailand",
       "languages": [
-        { "value": "th", "title": "Thai", "transText": "ภาษาไทย", "countryName": "ประเทศไทย", "icon": "th.svg"},
+        { "value": "th", "title": "ภาาษาไทย", "transText": "ภาษาไทย", "countryName": "ประเทศไทย", "icon": "th.svg"},
         { "value": "en", "title": "English", "transText": "English", "countryName": "Thailand", "icon": "en.svg" }
       ],
       "languageISO": ["eng"],
