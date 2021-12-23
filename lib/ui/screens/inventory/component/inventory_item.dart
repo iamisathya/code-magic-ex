@@ -38,6 +38,8 @@ class InventoryItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20),
             child: AppText(
+                maxLines: 1,
+                align: TextAlign.center,
                 text: item.catalogSlideContent.content.description,
                 style: TextTypes.headline6),
           ),
