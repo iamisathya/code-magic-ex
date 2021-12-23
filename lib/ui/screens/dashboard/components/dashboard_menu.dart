@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/dashboard.controller.dart';
+import 'dashboard_menu_item.dart';
 import 'sliver_grid_delegate_with_fixed_cross_axis_count_and_fixed_height.dart';
 
 class DashboardMenu extends StatelessWidget {
   final DashboardController controller = Get.put(DashboardController());
-  DashboardMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +16,10 @@ class DashboardMenu extends StatelessWidget {
           const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
               crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 8,
+      itemCount: controller.dashboardMenuItems.length,
       itemBuilder: (context, index) {
-        return controller.items[index];
+        final DashboardMenuItemModel item = controller.dashboardMenuItems[index];
+        return DashboardMenuItem(item: item);
       },
     );
   }

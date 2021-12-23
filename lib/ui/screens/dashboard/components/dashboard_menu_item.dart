@@ -10,18 +10,9 @@ import '../../login/login.screen.dart';
 
 class DashboardMenuItem extends StatelessWidget {
   // final DashboardController controller = Get.put(DashboardController());
-  const DashboardMenuItem(
-      {Key? key,
-      required this.title,
-      required this.color,
-      required this.page,
-      required this.icon})
-      : super(key: key);
+  const DashboardMenuItem({Key? key, required this.item}) : super(key: key);
 
-  final String title;
-  final Color color;
-  final String icon;
-  final String page;
+  final DashboardMenuItemModel item;
 
   void onLogout() {
     FirebaseAnalytics()
@@ -33,7 +24,8 @@ class DashboardMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => page == "onLogout" ? onLogout() : Get.toNamed(page),
+      onTap: () =>
+          item.page == "onLogout" ? onLogout() : Get.toNamed(item.page),
       child: Container(
         height: 80,
         decoration: BoxDecoration(
@@ -45,19 +37,34 @@ class DashboardMenuItem extends StatelessWidget {
               child: Container(
                 height: 45,
                 width: 45,
-                decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: item.color),
                 child: SizedBox(
-                    child: SvgPicture.asset(icon,
+                    child: SvgPicture.asset(item.icon,
                         height: 10, width: 10, fit: BoxFit.scaleDown)),
               ),
             ),
             Expanded(
-              child:
-                  AppText(text: title, style: TextTypes.bodyText1, maxLines: 2),
+              child: Obx(() => AppText(
+                  text: item.title.tr, style: TextTypes.bodyText1, maxLines: 2)),
             )
           ],
         ),
       ),
     );
   }
+}
+
+class DashboardMenuItemModel {
+  // final DashboardController controller = Get.put(DashboardController());
+  const DashboardMenuItemModel(
+      {required this.title,
+      required this.color,
+      required this.page,
+      required this.icon});
+
+  final String title;
+  final Color color;
+  final String icon;
+  final String page;
 }

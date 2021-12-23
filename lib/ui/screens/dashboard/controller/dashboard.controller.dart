@@ -39,56 +39,56 @@ class DashboardController extends GetxController {
     "https://firebasestorage.googleapis.com/v0/b/dsc-tools.appspot.com/o/promo_9.jpeg?alt=media&token=c541d99e-8257-43bf-8b97-9b98e3cbe2af"
   ];
 
-  List<DashboardMenuItem> items = [
-    DashboardMenuItem(
+  RxList<DashboardMenuItemModel> dashboardMenuItems = [
+    const DashboardMenuItemModel(
       color: AppColor.juneBud,
-      title: "open_po".tr,
+      title: "open_po",
       icon: kOpenPoDashboardIcon,
       page: OpenPoHomeScreen.routeName,
     ),
-    DashboardMenuItem(
+    const DashboardMenuItemModel(
       color: AppColor.darkTangerine,
-      title: "enroll".tr,
+      title: "enroll",
       icon: kEnrollDashboardIcon,
       page: EnrollHomeScreen.routeName,
     ),
-    DashboardMenuItem(
+    const DashboardMenuItemModel(
       color: AppColor.maximumBluePurple,
-      title: "order_entry".tr,
+      title: "order_entry",
       icon: kOrderEntryDashboardIcon,
       page: OrderEntryHomeScreen.routeName,
     ),
-    DashboardMenuItem(
+    const DashboardMenuItemModel(
       color: AppColor.pictonBlue,
-      title: "inventory".tr,
+      title: "inventory",
       icon: kInventoryDashboardIcon,
       page: InventoryHomeScreen.routeName,
     ),
-    DashboardMenuItem(
+    const DashboardMenuItemModel(
       color: AppColor.rosePink,
-      title: "sales_report".tr,
+      title: "sales_report",
       icon: kSalesReportDashboardIcon,
       page: SalesReportsHomeScreen.routeName,
     ),
-    DashboardMenuItem(
+    const DashboardMenuItemModel(
       color: AppColor.paleCyan,
-      title: "easyship_report".tr,
+      title: "easyship_report",
       icon: kEasyshipReportDashboardIcon,
       page: EasyShipHomeScreen.routeName,
     ),
-    DashboardMenuItem(
+    const DashboardMenuItemModel(
       color: AppColor.middleBlueGreen,
-      title: "barcode".tr,
+      title: "barcode",
       icon: kBarcodeDashboardIcon,
       page: BarcodeHomeScreen.routeName,
     ),
-    DashboardMenuItem(
+    const DashboardMenuItemModel(
       color: AppColor.pastelBlue,
-      title: "sign_out".tr,
+      title: "sign_out",
       icon: kSignOutDashboardIcon,
       page: "onLogout",
     ),
-  ];
+  ].obs;
 
   void onPresssMenuItem(String param) {
     if (param != "onLogout") {
