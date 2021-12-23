@@ -22,7 +22,7 @@ class SearchBarField extends StatelessWidget {
         child: TextField(
           controller: searchTextController,
           style: const TextStyle(fontSize: 14),
-          keyboardType: TextInputType.number,
+          keyboardType: keyboardType,
           autofocus: autofocus,
           decoration: InputDecoration(
               border: InputBorder.none,
