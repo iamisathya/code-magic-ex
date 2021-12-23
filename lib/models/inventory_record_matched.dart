@@ -5,7 +5,7 @@ part 'inventory_record_matched.g.dart';
 
 
 @JsonSerializable()
-class InventoryRecordsMatchedItems {
+class InventoryRecordsMatchedItem {
   @JsonKey(name: "pro_code")
   String itemCode;
   @JsonKey(name: "pro_id")
@@ -21,7 +21,7 @@ class InventoryRecordsMatchedItems {
   @JsonKey(name: "pro_pv")
   String itemPv;
 
-  InventoryRecordsMatchedItems({
+  InventoryRecordsMatchedItem({
     required this.itemCode,
     required this.itemId,
     required this.itemName,
@@ -31,8 +31,8 @@ class InventoryRecordsMatchedItems {
     required this.itemPv,
   });
 
-  factory InventoryRecordsMatchedItems.fromJson(Map<String, dynamic> json) =>
-      _$InventoryRecordsMatchedItemsFromJson(json);
+  factory InventoryRecordsMatchedItem.fromJson(Map<String, dynamic> json) =>
+      _$InventoryRecordsMatchedItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$InventoryRecordsMatchedItemsToJson(this);
+  Map<String, dynamic> toJson() => _$InventoryRecordsMatchedItemToJson(this);
 }

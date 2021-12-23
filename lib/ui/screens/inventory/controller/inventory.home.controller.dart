@@ -1,6 +1,10 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/models/common_methods.dart';
+import 'package:dsc_tools/models/inventory_record_matched.dart';
+import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,6 +52,8 @@ class InventoryHomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
+  RxList<InventoryRecordsMatchedItem> inventoryRecordsOutOfStock =
+      <InventoryRecordsMatchedItem>[].obs;
   Rx<InventoryRecords> searchedProducts = InventoryRecords(items: []).obs;
   ManagedWarehouses warehouses = ManagedWarehouses(items: []);
   InventorySortTypes currentType = InventorySortTypes.itemCode;
@@ -66,6 +72,7 @@ class InventoryHomeController extends GetxController {
       if (warehouses.items.isNotEmpty) {
         await loadInventoryProducts(
             warehouses.items[0].href.getAfterLastSlash());
+        await loadOutOfStockInventoryProducts();
       } else {
         isLoading.toggle();
         SnackbarUtil.showError(message: "no_warehouses_found".tr);
@@ -102,6 +109,42 @@ class InventoryHomeController extends GetxController {
     }
   }
 
+  Future<void> loadOutOfStockInventoryProducts() async {
+    isLoading.toggle();
+    try {
+      inventoryRecordsOutOfStock.value = await MemberCallsService.init()
+          .getOutOfStockInventoryRecords(
+              "1_11", UserSessionManager.shared.customerToken.token);
+      final Rx<InventoryRecords> records = InventoryRecords(items: []).obs;
+      for (final InventoryRecordsMatchedItem item
+          in inventoryRecordsOutOfStock) {
+        final InventoryRecordItems outOfStockItem = InventoryRecordItems(
+            catalogSlideContent: CatalogSlideContent(
+                content: ContentDescription(description: item.itemNameEn)),
+            item: CustomerData(
+                href: item.itemCode,
+                id: CommonIdTypeString(unicity: item.itemId)),
+            quantityOnHand: "0",
+            terms: Terms(
+                priceEach: double.parse(item.itemPrice),
+                pvEach: int.parse(item.itemPv)));
+        records.value.items.add(outOfStockItem);
+      }
+      inventoryRecords.value.items.addAll(records.value.items);
+      inventoryRecords.refresh();
+      isLoading.toggle();
+    } on DioError catch (e) {
+      isLoading.toggle();
+      final String message = getErrorMessage(e.response!.data);
+      SnackbarUtil.showError(message: message);
+      returnResponse(e.response!);
+    } catch (err, s) {
+      isLoading.toggle();
+      Get.printError(info: s.toString());
+      LoggerService.instance.e(s.toString());
+    }
+  }
+
   void calculateTotal() {
     final String totalPrice =
         calculateTotalPrice(tempInventoryRecords.value, 'price');
@@ -115,9 +158,11 @@ class InventoryHomeController extends GetxController {
     activeStockType.value =
         stockOptions.firstWhere((element) => element.value == value);
     if (value == "outOfStock") {
-      tempInventoryRecords.value.items = tempInventoryRecords.value.items
+      tempInventoryRecords.value.items = inventoryRecords.value.items
           .where((item) => item.quantityOnHand == "0")
           .toList();
+          print(inventoryRecords.value.items.length);
+          tempInventoryRecords.refresh();
     } else {
       tempInventoryRecords.value.items =
           List.from(inventoryRecords.value.items);

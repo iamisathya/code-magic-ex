@@ -6,9 +6,9 @@ part of 'inventory_record_matched.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-InventoryRecordsMatchedItems _$InventoryRecordsMatchedItemsFromJson(
+InventoryRecordsMatchedItem _$InventoryRecordsMatchedItemFromJson(
     Map<String, dynamic> json) {
-  return InventoryRecordsMatchedItems(
+  return InventoryRecordsMatchedItem(
     itemCode: json['pro_code'] as String,
     itemId: json['pro_id'] as String,
     itemName: json['pro_name'] as String,
@@ -19,8 +19,8 @@ InventoryRecordsMatchedItems _$InventoryRecordsMatchedItemsFromJson(
   );
 }
 
-Map<String, dynamic> _$InventoryRecordsMatchedItemsToJson(
-        InventoryRecordsMatchedItems instance) =>
+Map<String, dynamic> _$InventoryRecordsMatchedItemToJson(
+        InventoryRecordsMatchedItem instance) =>
     <String, dynamic>{
       'pro_code': instance.itemCode,
       'pro_id': instance.itemId,

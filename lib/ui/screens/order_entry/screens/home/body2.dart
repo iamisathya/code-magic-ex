@@ -68,7 +68,7 @@ class Body extends StatelessWidget {
                         kType: controller.currentTab.value == 0
                             ? TextInputType.number
                             : TextInputType.text,
-                        hintText: "ba_number_or_govt_id".tr,
+                        hintText: "",
                         isFetching: controller.isFetching)
                   ],
                 ),

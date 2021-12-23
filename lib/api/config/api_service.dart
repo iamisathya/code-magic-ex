@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/inventory_record_matched.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -215,6 +216,10 @@ abstract class MemberCallsService {
   @POST("/period_DSC_PO.asp")
   @FormUrlEncoded()
   Future<dynamic> valiadateOrder(@Field() String country, @Field() String dsc);
+
+  //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=1_11&token=66c1ade0-b78f-4c2c-9c4d-e42d09fc043b
+  @GET(Address.validOrders)
+  Future<List<InventoryRecordsMatchedItem>> getOutOfStockInventoryRecords(@Query("type") String type, @Query("token") String token);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?lang=en&order=423135644&token=2096fb4a-783d-4b60-baec-f5880bab1e7a&user=2970466
   @POST("${Address.allDscPath}/THA/getdata.php")
