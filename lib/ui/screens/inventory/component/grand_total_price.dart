@@ -30,7 +30,7 @@ class GrandTotal extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppText(
-                    text: "${"grand_total_price".tr}:",
+                    text: "${"total_price".tr}:",
                     style: TextTypes.bodyText1),
                 AppText(
                     text: "${totalPrice.format()} ${Globals.currency}",
@@ -41,10 +41,10 @@ class GrandTotal extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppText(
-                    text: "${"grand_total_pv".tr}:",
+                    text: "${"total_pv".tr}:",
                     style: TextTypes.bodyText1),
                 AppText(
-                    text: "$totalPv ${"pv".tr}", style: TextTypes.bodyText1),
+                    text: "${totalPv.format()} ${"pv".tr}", style: TextTypes.bodyText1),
               ],
             )
           ],

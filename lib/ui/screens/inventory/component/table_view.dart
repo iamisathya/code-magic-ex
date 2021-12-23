@@ -44,18 +44,20 @@ class TableView extends StatelessWidget {
       _renderTableHeader("itemname".tr, InventorySortTypes.itemName,
           Alignment.center, 250, context),
       _renderTableHeader("QTY", InventorySortTypes.quantityOnHand,
-          Alignment.centerRight, 96, context),
+          Alignment.center, 96, context),
       _renderTableHeader(
-          "pv".tr, InventorySortTypes.pv, Alignment.centerRight, 100, context),
+          "pv".tr, InventorySortTypes.pv, Alignment.center, 100, context),
       _renderTableHeader("price".tr, InventorySortTypes.price,
-          Alignment.centerRight, 100, context),
-      _renderTotalContainer(
-          "total_price_title".tr,
-          "($totalPrice ${Globals.currency})",
-          context,
-          InventorySortTypes.totalAccumulatedPrice),
-      _renderTotalContainer("totalpv".tr, "($totalPv ${Globals.currency})",
-          context, InventorySortTypes.totalPV)
+          Alignment.center, 100, context),
+      _renderTableHeader(
+        "total_price_title".tr,
+        InventorySortTypes.totalAccumulatedPrice,
+        Alignment.center,
+        180,
+        context,
+      ),
+      _renderTableHeader("totalpv".tr, InventorySortTypes.totalPV,
+          Alignment.center, 180, context)
     ];
   }
 
@@ -175,18 +177,24 @@ class TableView extends StatelessWidget {
             : AppColor.brownYellow,
         height: 56,
         width: width,
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Text(title,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                  color: AppColor.kWhiteColor,
-                  fontWeight: type == controller.currentType
-                      ? FontWeight.w600
-                      : FontWeight.w400)),
-          SvgPicture.asset(kSortIcon,
-              width: 8,
-              height: 10,
-              semanticsLabel: 'sort icon',
-              color: AppColor.kWhiteColor)
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(title,
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: AppColor.kWhiteColor,
+                    fontWeight: type == controller.currentType
+                        ? FontWeight.w600
+                        : FontWeight.w400)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SvgPicture.asset(kSortIcon,
+                width: 8,
+                height: 10,
+                semanticsLabel: 'sort icon',
+                color: AppColor.kWhiteColor),
+          )
         ]),
       ),
     );

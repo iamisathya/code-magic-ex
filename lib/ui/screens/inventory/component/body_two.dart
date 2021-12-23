@@ -27,12 +27,13 @@ class Body2 extends StatelessWidget {
           UserAddress(),
           Obx(() => Column(
                 children: [
+                  if (controller.tempInventoryRecords.value.items.isNotEmpty)
+                  GrandTotal(
+                      totalPrice: controller.grandTotalPrice.value,
+                      totalPv: controller.grandTotalPv.value),
                   if (controller.currentViewType.value.value == "card")
                     Column(
                       children: [
-                        GrandTotal(
-                            totalPrice: controller.grandTotalPrice.value,
-                            totalPv: controller.grandTotalPv.value),
                         Container(
                             color: AppColor.kWhiteColor,
                             child: controller
