@@ -45,8 +45,8 @@ class DashboardMenuItem extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Obx(() => AppText(
-                  text: item.title.tr, style: TextTypes.bodyText1, maxLines: 2)),
+              child: AppText(
+                  text: item.title, style: TextTypes.bodyText1, maxLines: 2),
             )
           ],
         ),

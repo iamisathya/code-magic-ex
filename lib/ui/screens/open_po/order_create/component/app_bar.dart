@@ -28,7 +28,7 @@ class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
               icon: const Icon(Icons.arrow_back_ios_new_outlined)),
       centerTitle: false,
       titleSpacing: 0.0,
-      title: Image.asset(kUnicityGradientImage, fit: BoxFit.cover),
+      title: SvgPicture.asset(kUnicityLogoGradientImage, fit: BoxFit.cover),
       actions: [
         GestureDetector(
           onTap: () => controller.showPopupMenu(context),

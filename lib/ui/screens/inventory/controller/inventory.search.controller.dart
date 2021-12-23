@@ -39,6 +39,7 @@ class InventorySearchController extends GetxController {
     if (actionIcon.key == currentSearchBariconKey.value) {
       appBarTitle = SearchBarField(
         autofocus: true,
+        keyboardType: TextInputType.text,
         searchTextController: searchTextController,
         placeHolder: "${"item_number".tr}...",
       );

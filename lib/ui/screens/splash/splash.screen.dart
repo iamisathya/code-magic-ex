@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../utilities/images.dart';
@@ -25,10 +26,9 @@ class SplashScreen extends StatelessWidget {
             children: [
               AnimatedShowUp(
                 delay: 300,
-                child: Image.asset(
-                  kUnicityGradient3xImage,
+                child: SvgPicture.asset(
+                  kUnicityLogoGradientImage,
                   width: getProportionateScreenWidth(250),
-                  semanticLabel: "unicity logo",
                 ),
               ),
             ],

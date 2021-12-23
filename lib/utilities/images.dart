@@ -40,6 +40,7 @@ const kSalesCashCounterImage = 'assets/images/sales_cash_counter_image.svg';
 const kBarcodeExampleImage = 'assets/images/example_barcode_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
+const kUnicityLogoGradientImage = 'assets/images/unicity_logo_image.svg';
 const kUnicityGradient3xImage = 'assets/icons/unicity_logo_3x.png';
 
 //* Icons
