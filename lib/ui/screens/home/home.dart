@@ -1,7 +1,7 @@
+import 'package:dsc_tools/ui/screens/dashboard/screen/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'components/bottom_navigation_bar.dart';
 import 'controller/home.controller.dart';
 
 class MainHomeScreen extends StatelessWidget {
@@ -11,14 +11,10 @@ class MainHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
+      // extendBody: true,
       backgroundColor: Colors.white,
-      body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: controller.pageController,
-        children: controller.tabPages,
-      ),
-      bottomNavigationBar: NavigationBottomBar(controller: controller),
+      body: Body(),
+      // bottomNavigationBar: NavigationBottomBar(controller: controller),
     );
   }
 }
