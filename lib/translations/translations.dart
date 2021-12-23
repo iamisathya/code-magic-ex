@@ -224,7 +224,7 @@ class AppTranslations extends Translations {
           "no_data_found_table": "No data found in table.",
           "no_inventory_item_with_search":
               "Sorry no items found in inventory with search key",
-          "no_items_found": "No items found",
+          "no_items_found": "No items found!",
           "no_matching_record_found": "No Matching Records Found",
           "no_warehouses_found": "No warehouses found",
           "not_found": "Not Found",

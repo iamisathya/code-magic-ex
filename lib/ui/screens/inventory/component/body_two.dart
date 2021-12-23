@@ -41,7 +41,7 @@ class Body2 extends StatelessWidget {
                                 ? Container(
                                     height: displaySize,
                                     alignment: Alignment.center,
-                                    child: Text("no_items_found!".tr),
+                                    child: Text("no_items_found".tr),
                                   )
                                 : Obx(() => ListView.builder(
                                     physics:
