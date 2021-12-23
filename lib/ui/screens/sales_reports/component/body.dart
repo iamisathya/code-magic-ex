@@ -281,7 +281,7 @@ class Body extends StatelessWidget {
                     });
                   },
                   decoration: _renderInputDecoration(
-                      "select_start_date".tr, "from".tr), //! hardcoded
+                      "", "from".tr), //! hardcoded
                 )),
           ),
           Flexible(
@@ -297,7 +297,7 @@ class Body extends StatelessWidget {
                     }, currentTime: DateTime.now());
                   },
                   decoration:
-                      _renderInputDecoration("select_end_date".tr, "to".tr),
+                      _renderInputDecoration("", "to".tr),
                 )),
           ),
           SizedBox(

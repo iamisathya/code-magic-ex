@@ -12,7 +12,7 @@ class SearchWithButton extends StatelessWidget {
       {required this.searchController,
       required this.onPressClear,
       required this.onTextChange,
-      this.hintText = "Search",
+      this.hintText = "",
       this.clearText = "Clear"});
 
   @override
@@ -25,9 +25,8 @@ class SearchWithButton extends StatelessWidget {
             child: TextField(
               onChanged: (val) => onTextChange(val),
               controller: searchController,
-              decoration: InputDecoration(
-                hintText: hintText,
-                prefixIcon: const Icon(Icons.search),
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.search),
               ),
             ),
           ),

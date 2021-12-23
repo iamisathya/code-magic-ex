@@ -151,7 +151,7 @@ class EnrollHomeController extends GetxController {
                       controller: searchProductTextController,
                       onChanged: (val) => onSearchTextChange(val),
                       onPress: () {},
-                      hintText: "search_products".tr,
+                      hintText: "",
                       isFetching: false.obs),
                 ),
                 const SizedBox(height: 5),

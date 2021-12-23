@@ -11,7 +11,7 @@ class WhiteSearchField extends StatelessWidget {
     required this.controller,
     required this.isFetching,
     required this.onPress,
-    required this.hintText,
+    this.hintText = "",
     this.kType = TextInputType.text,
     this.onChanged,
   }) : super(key: key);

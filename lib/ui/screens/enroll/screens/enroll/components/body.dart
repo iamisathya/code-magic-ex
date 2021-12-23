@@ -229,7 +229,7 @@ class Body extends StatelessWidget {
               controller: controller.birthDateController,
               readOnly: true,
               onTap: () => controller.renderDatePicker(context),
-              decoration: kTextInputDecoration(hintText: "dob".tr),
+              decoration: kTextInputDecoration(),
             )),
       ]),
     );

@@ -21,15 +21,13 @@ class SignForm extends StatelessWidget {
         children: [
           _renderTextField(
               ctlr: controller.userIdController,
-              label: "user_id".tr,
-              hintText: "enter_user_id".tr),
+              label: "user_id".tr),
           // buildUserIdFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           _renderTextField(
               ctlr: controller.passwordController,
               label: "password".tr,
-              isPassword: true,
-              hintText: "enter_password".tr),
+              isPassword: true),
           // buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(20)),
           Container(

@@ -222,7 +222,7 @@ class EnrollmentUserInfoController extends GetxController {
                   child: WhiteSearchField(
                       controller: addressSearchController,
                       onPress: getAddresByZipcode,
-                      hintText: "search_address".tr,
+                      hintText: "",
                       isFetching: isSearchingAddres),
                 ),
                 const SizedBox(height: 5),

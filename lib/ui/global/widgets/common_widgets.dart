@@ -24,9 +24,9 @@ Container renderTextField(
             style: const TextStyle(fontSize: 16),
             decoration: enabled == false
                 ? kDisabledTextInputDecoration(
-                    helperText: helperText, hintText: hintText)
+                    helperText: helperText)
                 : kActiveTextInputDecoration(
-                    helperText: helperText, hintText: hintText))
+                    helperText: helperText))
       ],
     ),
   );

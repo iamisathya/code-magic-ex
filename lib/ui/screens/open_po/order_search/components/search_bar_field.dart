@@ -11,7 +11,7 @@ class SearchBarField extends StatelessWidget {
 
   const SearchBarField(
       {required this.searchTextController,
-      this.placeHolder = "Search ...",
+      this.placeHolder = "",
       this.keyboardType = TextInputType.number,
       this.autofocus = false});
 
