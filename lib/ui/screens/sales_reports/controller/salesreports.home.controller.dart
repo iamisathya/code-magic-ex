@@ -33,10 +33,10 @@ import '../component/order_details.dart';
 import 'salesreport.search.result.controller.dart';
 
 class SalesReportHomeController extends GetxController {
+  late Rx<DateTime> startDate = DateTime.now().obs;
+  late Rx<DateTime> endDate = DateTime.now().obs;
   Rx<String> startDateString = "".obs;
   Rx<String> endDateString = "".obs;
-  late Rx<DateTime>? startDate;
-  late Rx<DateTime>? endDate;
   RxBool isDateSelected = false.obs;
   RxBool isDataFetched = false.obs;
 
@@ -60,8 +60,8 @@ class SalesReportHomeController extends GetxController {
 
   @override
   void onInit() {
-    startDate = Rx<DateTime>(DateTime.fromMicrosecondsSinceEpoch(100));
-    endDate = Rx<DateTime>(DateTime.fromMicrosecondsSinceEpoch(100));
+    startDateString.value = startDate.value.yyyyMMdd();
+    endDateString.value = endDate.value.yyyyMMdd();
     super.onInit();
   }
 
@@ -79,8 +79,7 @@ class SalesReportHomeController extends GetxController {
           : allSalesItemReports;
 
   Future<void> getAllSalesReports() async {
-    if (startDate == null || endDate == null) return;
-    if (startDate!.value.isAfter(endDate!.value)) {
+    if (startDate.value.isAfter(endDate.value)) {
       SnackbarUtil.showError(message: "start_date_should_lower_msg".tr);
       return;
     }
@@ -91,9 +90,9 @@ class SalesReportHomeController extends GetxController {
             : "3";
     isLoading.toggle();
     final String startingFrom =
-        DateFormat('yyyy-MM-dd').format(startDate!.value).toString();
+        DateFormat('yyyy-MM-dd').format(startDate.value).toString();
     final String endingTill =
-        DateFormat('yyyy-MM-dd').format(endDate!.value).toString();
+        DateFormat('yyyy-MM-dd').format(endDate.value).toString();
 
     try {
       if (activeStockType.value.value == "order") {
@@ -161,32 +160,32 @@ class SalesReportHomeController extends GetxController {
       DatePicker.showDatePicker(context,
           maxTime: DateTime.now().subtract(const Duration(days: 1)),
           minTime: DateTime.now().subtract(const Duration(days: 365)),
-          currentTime: startDate!.value
+          currentTime: startDate.value
                   .isAtSameMomentAs(DateTime.fromMicrosecondsSinceEpoch(100))
               ? DateTime.now()
-              : startDate!.value, onConfirm: (date) {
-        startDate!.value = date;
-        startDateString.value = startDate!.value.yyyyMMdd();
+              : startDate.value, onConfirm: (date) {
+        startDate.value = date;
+        startDateString.value = startDate.value.yyyyMMdd();
         enableFindButton();
       });
     } else {
       DatePicker.showDatePicker(context,
           minTime: DateTime.now().subtract(const Duration(days: 364)),
           maxTime: DateTime.now(),
-          currentTime: endDate!.value
+          currentTime: endDate.value
                   .isAtSameMomentAs(DateTime.fromMicrosecondsSinceEpoch(100))
               ? DateTime.now()
-              : endDate!.value, onConfirm: (date) {
-        endDate!.value = date;
-        endDateString.value = endDate!.value.yyyyMMdd();
+              : endDate.value, onConfirm: (date) {
+        endDate.value = date;
+        endDateString.value = endDate.value.yyyyMMdd();
         enableFindButton();
       });
     }
   }
 
   void enableFindButton() {
-    if (startDate?.value.microsecondsSinceEpoch != 100 &&
-        endDate?.value.microsecondsSinceEpoch != 100) {
+    if (startDate.value.microsecondsSinceEpoch != 100 &&
+        endDate.value.microsecondsSinceEpoch != 100) {
       isDateSelected.value = true;
     }
   }
