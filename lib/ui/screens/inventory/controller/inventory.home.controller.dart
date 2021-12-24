@@ -279,7 +279,7 @@ class InventoryHomeController extends GetxController {
     try {
       isLoading.toggle();
       final Dio dio = Dio();
-      final response = await dio.get("${Address.inventoryPrint}=2970466");
+      final response = await dio.get("${Address.inventoryPrint}=${Globals.userId}");
       final removedBackground =
           response.toString().replaceAll('background: rgb(204,204,204);', '');
       isLoading.toggle();
