@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,7 +22,7 @@ class BarcodeController extends GetxController {
   OrderLines allEasyShipOrders = OrderLines(items: []);
 
   Future<void> getBarcodePath(BuildContext context,
-      {String userId = "2970466"}) async {
+      {String userId = ""}) async {
     //!hardcoded
     if (!formKey.currentState!.validate()) {
       return;

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/foundation.dart';
@@ -337,7 +338,7 @@ class InventoryController extends GetxController {
     try {
       _sendingMsgProgressBar.show(context);
       final Dio dio = Dio();
-      final response = await dio.get("${Address.inventoryPrint}=2970466");
+      final response = await dio.get("${Address.inventoryPrint}=${Globals.userId}");
       final removedBackground =
           response.toString().replaceAll('background: rgb(204,204,204);', '');
       _sendingMsgProgressBar.hide();
