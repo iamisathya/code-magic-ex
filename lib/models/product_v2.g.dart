@@ -77,9 +77,10 @@ ProductItem _$ProductItemFromJson(Map<String, dynamic> json) {
         .toList(),
     status: json['status'],
     systemTags: json['system_tags'] as List<dynamic>,
-    tooltip: json['tooltip'],
-    partsCount:
-        PartsCount.fromJson(json['parts_count'] as Map<String, dynamic>),
+    tooltip: json['tooltip'] == null
+        ? null
+        : Tooltip.fromJson(json['tooltip'] as Map<String, dynamic>),
+    partsCount: PartsCount.fromJson(json['partsCount'] as Map<String, dynamic>),
   );
 }
 
@@ -112,13 +113,13 @@ Map<String, dynamic> _$ProductItemToJson(ProductItem instance) =>
       'status': instance.status,
       'system_tags': instance.systemTags,
       'tooltip': instance.tooltip,
-      'parts_count': instance.partsCount,
+      'partsCount': instance.partsCount,
     };
 
 ItemName _$ItemNameFromJson(Map<String, dynamic> json) {
   return ItemName(
-    english: json['english'] as String,
-    native: json['native'] as String,
+    english: json['english'] as String?,
+    native: json['native'] as String?,
   );
 }
 
@@ -150,7 +151,7 @@ Categories _$CategoriesFromJson(Map<String, dynamic> json) {
     countryCode: json['country_code'] as String,
     name: ItemName.fromJson(json['name'] as Map<String, dynamic>),
     sorting: json['sorting'],
-    isSystem: json['is_system'] as bool,
+    isSystem: json['isSystem'] as bool,
   );
 }
 
@@ -164,7 +165,7 @@ Map<String, dynamic> _$CategoriesToJson(Categories instance) =>
       'country_code': instance.countryCode,
       'name': instance.name,
       'sorting': instance.sorting,
-      'is_system': instance.isSystem,
+      'isSystem': instance.isSystem,
     };
 
 Tags _$TagsFromJson(Map<String, dynamic> json) {
@@ -210,7 +211,7 @@ Map<String, dynamic> _$StyleToJson(Style instance) => <String, dynamic>{
 PartsCount _$PartsCountFromJson(Map<String, dynamic> json) {
   return PartsCount(
     unit: ItemName.fromJson(json['unit'] as Map<String, dynamic>),
-    value: json['value'] as int,
+    value: json['value'],
   );
 }
 
@@ -218,4 +219,16 @@ Map<String, dynamic> _$PartsCountToJson(PartsCount instance) =>
     <String, dynamic>{
       'unit': instance.unit,
       'value': instance.value,
+    };
+
+Tooltip _$TooltipFromJson(Map<String, dynamic> json) {
+  return Tooltip(
+    enable: json['enable'] as bool,
+    content: ItemName.fromJson(json['content'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$TooltipToJson(Tooltip instance) => <String, dynamic>{
+      'enable': instance.enable,
+      'content': instance.content,
     };

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -54,8 +55,10 @@ class InventoryItem extends StatelessWidget {
                 Container(
                   height: 165,
                   padding: const EdgeInsets.all(20.0),
-                  child: SvgPicture.asset(kProductPlaceholderImage,
-                      height: 165, semanticsLabel: 'no records found'),
+                  child: item.imageUrl != null
+                      ? CachedNetworkImage(imageUrl: item.imageUrl!, width: 165)
+                      : SvgPicture.asset(kProductPlaceholderImage,
+                          height: 165, semanticsLabel: 'no records found'),
                 ),
                 Container(
                   height: 105,

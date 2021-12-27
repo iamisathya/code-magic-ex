@@ -29,18 +29,41 @@ class InventoryRecordItems {
   String quantityOnHand;
   @JsonKey(name: "terms")
   Terms terms;
+  // ItemName? itemName;
+  // ItemName? itemInfoLinkUrl;
+  String? imageUrl;
+  // Tooltip? tooltip;
 
   InventoryRecordItems({
     required this.catalogSlideContent,
     required this.item,
     required this.quantityOnHand,
     required this.terms,
+    // this.itemName,
+    // this.itemInfoLinkUrl,
+    this.imageUrl = "",
+    // this.tooltip,
   });
 
   factory InventoryRecordItems.fromJson(Map<String, dynamic> json) =>
       _$InventoryRecordItemsFromJson(json);
 
   Map<String, dynamic> toJson() => _$InventoryRecordItemsToJson(this);
+}
+
+@JsonSerializable()
+class ItemName {
+  @JsonKey(name: "english")
+  String? english;
+  @JsonKey(name: "native")
+  String? native;
+
+  ItemName({this.english = "", this.native = ""});
+
+  factory ItemName.fromJson(Map<String, dynamic> json) =>
+      _$ItemNameFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ItemNameToJson(this);
 }
 
 @JsonSerializable()
@@ -104,4 +127,19 @@ class Terms {
   factory Terms.fromJson(Map<String, dynamic> json) => _$TermsFromJson(json);
 
   Map<String, dynamic> toJson() => _$TermsToJson(this);
+}
+
+@JsonSerializable()
+class Tooltip {
+  @JsonKey(name: "enable")
+  bool? enable;
+  @JsonKey(name: "content")
+  ItemName? content;
+
+  Tooltip({this.enable, this.content});
+
+  factory Tooltip.fromJson(Map<String, dynamic> json) =>
+      _$TooltipFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TooltipToJson(this);
 }

@@ -16,6 +16,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:printing/printing.dart';
+import 'package:collection/collection.dart';
 
 import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
@@ -67,15 +68,15 @@ class InventoryHomeController extends GetxController {
     super.onInit();
   }
 
-  void loadInventory() {
+  Future<void> loadInventory() async {
     try {
       isLoading.toggle();
-      getManagedWarehouses();
-      getHydraProducts();
+      await getManagedWarehouses();
+      isLoading.toggle();
     } catch (err, s) {
       isLoading.toggle();
       Get.printError(info: s.toString());
-      LoggerService.instance.e(s.toString());
+      Get.printError(info: err.toString(), logFunction: () => GetUtils.printFunction("loadInventiry", "value", err.toString()));
     }
   }
 
@@ -120,12 +121,26 @@ class InventoryHomeController extends GetxController {
     try {
       hydraProducts =
           await MemberCalls2Service.init().getHydraProducts("THA", "A", "shop");
+      for (var i = 0; i < inventoryRecords.value.items.length; i++) {
+        final InventoryRecordItems currentItem =
+            inventoryRecords.value.items[i];
+        final ProductItem? foundItem = hydraProducts.items.firstWhereOrNull(
+            (hydraItem) => currentItem.item.id.unicity == hydraItem.itemCode);
+        if (foundItem != null) {
+          // currentItem.itemName = foundItem.itemName;
+          // currentItem.itemInfoLinkUrl = foundItem.itemInfoLinkUrl;
+          currentItem.imageUrl = foundItem.imageUrl;
+          // currentItem.tooltip = foundItem.tooltip;
+        }
+      }
+      inventoryRecords.refresh();
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
-    } catch (err) {
-      LoggerService.instance.e(err.toString());
+    } catch (err, s) {
+      Get.printError(info: err.toString());
+      Get.printError(info: s.toString());
     }
   }
 
@@ -151,6 +166,7 @@ class InventoryHomeController extends GetxController {
       }
       inventoryRecords.value.items.addAll(records.value.items);
       inventoryRecords.refresh();
+      await getHydraProducts();
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);

@@ -26,6 +26,7 @@ InventoryRecordItems _$InventoryRecordItemsFromJson(Map<String, dynamic> json) {
     item: CustomerData.fromJson(json['item'] as Map<String, dynamic>),
     quantityOnHand: json['quantityOnHand'] as String,
     terms: Terms.fromJson(json['terms'] as Map<String, dynamic>),
+    imageUrl: json['imageUrl'] as String?,
   );
 }
 
@@ -36,6 +37,19 @@ Map<String, dynamic> _$InventoryRecordItemsToJson(
       'item': instance.item,
       'quantityOnHand': instance.quantityOnHand,
       'terms': instance.terms,
+      'imageUrl': instance.imageUrl,
+    };
+
+ItemName _$ItemNameFromJson(Map<String, dynamic> json) {
+  return ItemName(
+    english: json['english'] as String?,
+    native: json['native'] as String?,
+  );
+}
+
+Map<String, dynamic> _$ItemNameToJson(ItemName instance) => <String, dynamic>{
+      'english': instance.english,
+      'native': instance.native,
     };
 
 CustomerData _$CustomerDataFromJson(Map<String, dynamic> json) {
@@ -85,4 +99,18 @@ Terms _$TermsFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$TermsToJson(Terms instance) => <String, dynamic>{
       'priceEach': instance.priceEach,
       'pvEach': instance.pvEach,
+    };
+
+Tooltip _$TooltipFromJson(Map<String, dynamic> json) {
+  return Tooltip(
+    enable: json['enable'] as bool?,
+    content: json['content'] == null
+        ? null
+        : ItemName.fromJson(json['content'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$TooltipToJson(Tooltip instance) => <String, dynamic>{
+      'enable': instance.enable,
+      'content': instance.content,
     };

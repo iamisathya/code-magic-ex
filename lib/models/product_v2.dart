@@ -95,8 +95,8 @@ class ProductItem {
   @JsonKey(name: "system_tags")
   List<dynamic> systemTags;
   @JsonKey(name: "tooltip")
-  dynamic tooltip;
-  @JsonKey(name: "parts_count")
+  Tooltip? tooltip;
+  @JsonKey(name: "partsCount")
   PartsCount partsCount;
 
   ProductItem(
@@ -138,9 +138,9 @@ class ProductItem {
 @JsonSerializable()
 class ItemName {
   @JsonKey(name: "english")
-  String english;
+  String? english;
   @JsonKey(name: "native")
-  String native;
+  String? native;
 
   ItemName({required this.english, required this.native});
 
@@ -183,7 +183,7 @@ class Categories {
   ItemName name;
   @JsonKey(name: "sorting")
   dynamic sorting;
-  @JsonKey(name: "is_system")
+  @JsonKey(name: "isSystem")
   bool isSystem;
 
   Categories(
@@ -262,7 +262,7 @@ class PartsCount {
   @JsonKey(name: "unit")
   ItemName unit;
   @JsonKey(name: "value")
-  int value;
+  dynamic value;
 
   PartsCount({required this.unit, required this.value});
 
@@ -270,4 +270,19 @@ class PartsCount {
       _$PartsCountFromJson(json);
 
   Map<String, dynamic> toJson() => _$PartsCountToJson(this);
+}
+
+@JsonSerializable()
+class Tooltip {
+  @JsonKey(name: "enable")
+  bool enable;
+  @JsonKey(name: "content")
+  ItemName content;
+
+  Tooltip({required this.enable, required this.content});
+
+  factory Tooltip.fromJson(Map<String, dynamic> json) =>
+      _$TooltipFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TooltipToJson(this);
 }
