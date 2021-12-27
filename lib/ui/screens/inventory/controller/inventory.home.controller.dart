@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/common_methods.dart';
 import 'package:dsc_tools/models/inventory_record_matched.dart';
+import 'package:dsc_tools/models/product_v2.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
@@ -51,6 +52,7 @@ class InventoryHomeController extends GetxController {
 
   TextEditingController searchController = TextEditingController();
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
+  late HydraProducts hydraProducts;
   Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
   RxList<InventoryRecordsMatchedItem> inventoryRecordsOutOfStock =
       <InventoryRecordsMatchedItem>[].obs;
@@ -61,12 +63,23 @@ class InventoryHomeController extends GetxController {
 
   @override
   void onInit() {
-    getManagedWarehouses();
+    loadInventory();
     super.onInit();
   }
 
+  void loadInventory() {
+    try {
+      isLoading.toggle();
+      getManagedWarehouses();
+      getHydraProducts();
+    } catch (err, s) {
+      isLoading.toggle();
+      Get.printError(info: s.toString());
+      LoggerService.instance.e(s.toString());
+    }
+  }
+
   Future<void> getManagedWarehouses() async {
-    isLoading.toggle();
     try {
       warehouses = await ApiService.shared().getManagedWarehouses();
       if (warehouses.items.isNotEmpty) {
@@ -74,16 +87,13 @@ class InventoryHomeController extends GetxController {
             warehouses.items[0].href.getAfterLastSlash());
         await loadOutOfStockInventoryProducts();
       } else {
-        isLoading.toggle();
         SnackbarUtil.showError(message: "no_warehouses_found".tr);
       }
     } on DioError catch (e) {
-      isLoading.toggle();
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
     } catch (err) {
-      isLoading.toggle();
       LoggerService.instance.e(err.toString());
     }
   }
@@ -97,20 +107,29 @@ class InventoryHomeController extends GetxController {
           List.from(inventoryRecords.value.items);
       calculateTotal();
       tempInventoryRecords.refresh();
-      isLoading.toggle();
     } on DioError catch (e) {
-      isLoading.toggle();
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
     } catch (err) {
-      isLoading.toggle();
+      LoggerService.instance.e(err.toString());
+    }
+  }
+
+  Future<void> getHydraProducts() async {
+    try {
+      hydraProducts =
+          await MemberCalls2Service.init().getHydraProducts("THA", "A", "shop");
+    } on DioError catch (e) {
+      final String message = getErrorMessage(e.response!.data);
+      SnackbarUtil.showError(message: message);
+      returnResponse(e.response!);
+    } catch (err) {
       LoggerService.instance.e(err.toString());
     }
   }
 
   Future<void> loadOutOfStockInventoryProducts() async {
-    isLoading.toggle();
     try {
       inventoryRecordsOutOfStock.value = await MemberCallsService.init()
           .getOutOfStockInventoryRecords(
@@ -132,14 +151,11 @@ class InventoryHomeController extends GetxController {
       }
       inventoryRecords.value.items.addAll(records.value.items);
       inventoryRecords.refresh();
-      isLoading.toggle();
     } on DioError catch (e) {
-      isLoading.toggle();
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
     } catch (err, s) {
-      isLoading.toggle();
       Get.printError(info: s.toString());
       LoggerService.instance.e(s.toString());
     }
@@ -161,8 +177,7 @@ class InventoryHomeController extends GetxController {
       tempInventoryRecords.value.items = inventoryRecords.value.items
           .where((item) => item.quantityOnHand == "0")
           .toList();
-          print(inventoryRecords.value.items.length);
-          tempInventoryRecords.refresh();
+      tempInventoryRecords.refresh();
     } else {
       tempInventoryRecords.value.items =
           List.from(inventoryRecords.value.items);
@@ -279,7 +294,8 @@ class InventoryHomeController extends GetxController {
     try {
       isLoading.toggle();
       final Dio dio = Dio();
-      final response = await dio.get("${Address.inventoryPrint}=${Globals.userId}");
+      final response =
+          await dio.get("${Address.inventoryPrint}=${Globals.userId}");
       final removedBackground =
           response.toString().replaceAll('background: rgb(204,204,204);', '');
       isLoading.toggle();

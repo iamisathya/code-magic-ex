@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/models/inventory_record_matched.dart';
+import 'package:dsc_tools/models/product_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -515,6 +516,11 @@ abstract class MemberCalls2Service {
   @GET(Address.addressList)
   Future<CompleteAddressResponse> getAddressByZipcode(
       @Query("country_code") String type, @Query("keyword") String keyword);
+
+  //? url=https://member-calls2.unicity.com/products-v2/publish/THA?status=A&allow=shop
+  @GET("${Address.hydraProducts}/{countryId}")
+  Future<HydraProducts> getHydraProducts(
+      @Path('countryId') String countryId, @Query("status") String status, @Query("allow") String allow);
 }
 
 @RestApi(baseUrl: Address.dscBase)
