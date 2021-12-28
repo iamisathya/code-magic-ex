@@ -20,7 +20,7 @@ import '../ui/screens/sales_reports/salesreports.screen.dart';
 import '../ui/screens/settings/settings.screen.dart';
 import '../ui/screens/splash/splash.screen.dart';
 import '../ui/screens/webview/webview.screen.dart';
-import '../utilities/bindings.dart';
+// import '../utilities/bindings.dart';
 
 class AppRoutes {
   AppRoutes._(); //this is to prevent anyone from instantiating this object
@@ -49,16 +49,13 @@ class AppRoutes {
     // Open PO
     GetPage(
         name: OpenPoHomeScreen.routeName,
-        page: () => OpenPoHomeScreen(),
-        binding: OpenPoOrderListBindings()),
+        page: () => OpenPoHomeScreen()),
     GetPage(
         name: OpenPoOrderDetails.routeName,
-        page: () => OpenPoOrderDetails(),
-        binding: AppBindings()),
+        page: () => OpenPoOrderDetails()),
     GetPage(
         name: OpenPoCreateOrder.routeName,
-        page: () => OpenPoCreateOrder(),
-        binding: CreateOpenPoOrderBindings()),
+        page: () => OpenPoCreateOrder()),
     GetPage(
         name: CreateOpenPoOrderResult.routeName,
         page: () => CreateOpenPoOrderResult()),
