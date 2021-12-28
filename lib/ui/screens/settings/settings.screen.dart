@@ -58,7 +58,7 @@ class SettingsPage extends StatelessWidget {
                   height: 0,
                 ),
                 onChanged: (option) async {
-                  await languageController.updateLanguage(option!.value);
+                  await languageController.updateLanguage(option!.iso);
                   Get.forceAppUpdate();
                 },
                 items: Globals.currentMarket!.languages

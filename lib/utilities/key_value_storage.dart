@@ -91,6 +91,6 @@ class KeyValueStorageKeys {
   static const String customerIdInfo = "customer_id_info";
   static const String rememberMeThings = "user_remember_me_things";
   static const String currentTheme = "light";
-  static const String currentLanguage = "en";
+  static const String currentLanguage = "en_US";
   static const String appLanguage = "language";
 }

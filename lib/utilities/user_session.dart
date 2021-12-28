@@ -29,7 +29,7 @@ class UserSessionManager {
       customer: CustomerHref(href: ""));
   static ThemeTypes resetThemeData() => ThemeTypes.light;
   ThemeTypes currentTheme = resetThemeData();
-  String currentLanguage = "en";
+  String currentLanguage = "en_US";
   LocaleModel currentLocale = _defaultLocale();
 
   int? selectedId;
@@ -178,7 +178,7 @@ class UserSessionManager {
       LoggerService.instance
           .e('Session - Get current locale - Error : ${error.toString()}');
       currentLocale = _defaultLocale();
-      currentLanguage = "en";
+      currentLanguage = "en_US";
     }
   }
 

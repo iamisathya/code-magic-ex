@@ -51,6 +51,8 @@ class Markets {
 class Languages {
   @JsonKey(name: "value")
   String value;
+  @JsonKey(name: "iso")
+  String iso;
   @JsonKey(name: "title")
   String title;
   @JsonKey(name: "transText")
@@ -65,6 +67,7 @@ class Languages {
       required this.title,
       required this.transText,
       required this.countryName,
+      required this.iso,
       required this.icon});
 
   factory Languages.fromJson(Map<String, dynamic> json) =>

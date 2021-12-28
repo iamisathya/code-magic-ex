@@ -18,7 +18,7 @@ class LanguageController extends GetxController {
   String get currentLanguage => language.value;
 
   Languages get currentOption => Globals.currentMarket!.languages
-      .firstWhere((element) => element.value == language.value);
+      .firstWhere((element) => element.iso == language.value);
 
   @override
   void onReady() {

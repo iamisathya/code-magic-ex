@@ -31,7 +31,7 @@ class AppBarController extends GetxController {
   }
 
   Future<void> onSelectLanguage(Languages option, BuildContext context) async {
-    await languageController.updateLanguage(option.value);
+    await languageController.updateLanguage(option.iso);
     Navigator.of(context).pop();
     Get.forceAppUpdate();
   }

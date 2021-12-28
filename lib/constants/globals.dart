@@ -9,7 +9,7 @@ import '../utilities/user_session.dart';
 
 class Globals {
   Globals._();
-  static String defaultLanguage = 'en';
+  static String defaultLanguage = 'en_US';
 //List of languages that are supported.  Used in selector.
 //Follow this plugin for translating a google sheet to languages
 //https://github.com/aloisdeniel/flutter_sheet_localization
@@ -17,8 +17,8 @@ class Globals {
 //https://docs.google.com/spreadsheets/d/1oS7iJ6ocrZBA53SxRfKF0CG9HAaXeKtzvsTBhgG4Zzk/edit?usp=sharing
 
   static final List<MenuOptionsModel> languageOptions = [
-    MenuOptionsModel(title: "English", value: "en"), //English
-    MenuOptionsModel(title: "Thai", value: "th"), //Thai
+    MenuOptionsModel(title: "English", value: "en_US"), //English
+    MenuOptionsModel(title: "Thai", value: "th_TH"), //Thai
   ];
 
   static final RxList<MenuOptionsModel> openPoMonths = [
