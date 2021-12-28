@@ -43,7 +43,7 @@ class CVVFormTextField extends StatelessWidget {
         enabled: enabled,
         inputFormatters: [
           // ignore: deprecated_member_use
-          WhitelistingTextInputFormatter.digitsOnly,
+          // WhitelistingTextInputFormatter.digitsOnly,
           LengthLimitingTextInputFormatter(4),
         ],
         obscureText: true,
