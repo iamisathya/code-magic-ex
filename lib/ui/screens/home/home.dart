@@ -1,12 +1,9 @@
 import 'package:dsc_tools/ui/screens/dashboard/screen/dashboard_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'controller/home.controller.dart';
 
 class MainHomeScreen extends StatelessWidget {
   static const String routeName = '/mainHomePage';
-  final HomeController controller = Get.put(HomeController());
+  // final HomeController controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
