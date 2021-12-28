@@ -54,7 +54,8 @@ dependencies:
     sdk: flutter 
   flutter_slidable: ^0.6.0
   flutter_svg: ^0.22.0
-  flutter_webview_plugin: ^0.4.0
+  flutter_webview_plugin:
+    git: https://github.com/kiratheone/flutter_webview_plugin.git # Change this in near
   freezed_annotation: ^0.14.2
   get: ^4.1.4
   get_storage: ^2.0.3
