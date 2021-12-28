@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class AppException implements Exception {
   final String message;
   final int status;
@@ -6,6 +8,11 @@ class AppException implements Exception {
 
   @override
   String toString() => message;
+
+  void logError(Object err, StackTrace stack) {
+    Get.printError(info: stack.toString());
+    Get.printError(info: err.toString());
+  }
 }
 
 /// Internet Connectivity

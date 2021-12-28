@@ -5,6 +5,7 @@ import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/common_methods.dart';
 import 'package:dsc_tools/models/inventory_record_matched.dart';
 import 'package:dsc_tools/models/product_v2.dart';
+import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
@@ -71,22 +72,48 @@ class InventoryHomeController extends GetxController {
   Future<void> loadInventory() async {
     try {
       isLoading.toggle();
-      await getManagedWarehouses();
+      await Future.wait<void>([
+        getManagedWarehouses().then((value) =>
+            value != null ? inventoryRecords.value.items = value.items : {}),
+        loadOutOfStockInventoryProducts().then((value) => value != null
+            ? inventoryRecords.value.items.addAll(value.items)
+            : {}),
+        getHydraProducts().then((value) => value != null
+            ? hydraProducts = value
+            : {}), // Get hydra products to get image urls
+      ]).then((value) => mapInventoryItems());
+    } on AppException catch (exception, stack) {
       isLoading.toggle();
-    } catch (err, s) {
-      isLoading.toggle();
-      Get.printError(info: s.toString());
-      Get.printError(info: err.toString(), logFunction: () => GetUtils.printFunction("loadInventiry", "value", err.toString()));
+      exception.logError(exception, stack);
     }
   }
 
-  Future<void> getManagedWarehouses() async {
+  void mapInventoryItems() {
+    isLoading.toggle();
+    for (var i = 0; i < hydraProducts.items.length; i++) {
+      final InventoryRecordItems currentItem = inventoryRecords.value.items[i];
+      final ProductItem? foundItem = hydraProducts.items.firstWhereOrNull(
+          (hydraItem) => currentItem.item.id.unicity == hydraItem.itemCode);
+      if (foundItem != null) {
+        // currentItem.itemName = foundItem.itemName;
+        // currentItem.itemInfoLinkUrl = foundItem.itemInfoLinkUrl;
+        currentItem.imageUrl = foundItem.imageUrl;
+        // currentItem.tooltip = foundItem.tooltip;
+      }
+    }
+    inventoryRecords.refresh();
+    tempInventoryRecords.value.items = List.from(inventoryRecords.value.items);
+    calculateTotal();
+    tempInventoryRecords.refresh();
+  }
+
+  Future<InventoryRecords?> getManagedWarehouses() async {
     try {
       warehouses = await ApiService.shared().getManagedWarehouses();
       if (warehouses.items.isNotEmpty) {
-        await loadInventoryProducts(
+        final InventoryRecords? inventoryRecords = await loadInventoryProducts(
             warehouses.items[0].href.getAfterLastSlash());
-        await loadOutOfStockInventoryProducts();
+        return inventoryRecords;
       } else {
         SnackbarUtil.showError(message: "no_warehouses_found".tr);
       }
@@ -94,46 +121,32 @@ class InventoryHomeController extends GetxController {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
-    } catch (err) {
-      LoggerService.instance.e(err.toString());
+    } on AppException catch (exception, stack) {
+      exception.logError(exception, stack);
     }
   }
 
-  Future<void> loadInventoryProducts(String warehouseId) async {
+  Future<InventoryRecords?> loadInventoryProducts(String warehouseId) async {
     const String type = "item";
     try {
-      inventoryRecords.value =
+      final InventoryRecords inventoryRecords =
           await ApiService.shared().getInventoryRecords(warehouseId, type);
-      tempInventoryRecords.value.items =
-          List.from(inventoryRecords.value.items);
-      calculateTotal();
-      tempInventoryRecords.refresh();
+      return inventoryRecords;
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
-    } catch (err) {
-      LoggerService.instance.e(err.toString());
+    } catch (err, stack) {
+      Get.printError(info: stack.toString());
+      Get.printError(info: err.toString());
     }
   }
 
-  Future<void> getHydraProducts() async {
+  Future<HydraProducts?> getHydraProducts() async {
     try {
-      hydraProducts =
+      final HydraProducts hydraProducts =
           await MemberCalls2Service.init().getHydraProducts("THA", "A", "shop");
-      for (var i = 0; i < inventoryRecords.value.items.length; i++) {
-        final InventoryRecordItems currentItem =
-            inventoryRecords.value.items[i];
-        final ProductItem? foundItem = hydraProducts.items.firstWhereOrNull(
-            (hydraItem) => currentItem.item.id.unicity == hydraItem.itemCode);
-        if (foundItem != null) {
-          // currentItem.itemName = foundItem.itemName;
-          // currentItem.itemInfoLinkUrl = foundItem.itemInfoLinkUrl;
-          currentItem.imageUrl = foundItem.imageUrl;
-          // currentItem.tooltip = foundItem.tooltip;
-        }
-      }
-      inventoryRecords.refresh();
+      return hydraProducts;
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
@@ -144,12 +157,12 @@ class InventoryHomeController extends GetxController {
     }
   }
 
-  Future<void> loadOutOfStockInventoryProducts() async {
+  Future<InventoryRecords?> loadOutOfStockInventoryProducts() async {
     try {
-      inventoryRecordsOutOfStock.value = await MemberCallsService.init()
-          .getOutOfStockInventoryRecords(
+      final List<InventoryRecordsMatchedItem> inventoryRecordsOutOfStock =
+          await MemberCallsService.init().getOutOfStockInventoryRecords(
               "1_11", UserSessionManager.shared.customerToken.token);
-      final Rx<InventoryRecords> records = InventoryRecords(items: []).obs;
+      final InventoryRecords records = InventoryRecords(items: []);
       for (final InventoryRecordsMatchedItem item
           in inventoryRecordsOutOfStock) {
         final InventoryRecordItems outOfStockItem = InventoryRecordItems(
@@ -162,11 +175,9 @@ class InventoryHomeController extends GetxController {
             terms: Terms(
                 priceEach: double.parse(item.itemPrice),
                 pvEach: int.parse(item.itemPv)));
-        records.value.items.add(outOfStockItem);
+        records.items.add(outOfStockItem);
       }
-      inventoryRecords.value.items.addAll(records.value.items);
-      inventoryRecords.refresh();
-      await getHydraProducts();
+      return records;
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
@@ -193,7 +204,6 @@ class InventoryHomeController extends GetxController {
       tempInventoryRecords.value.items = inventoryRecords.value.items
           .where((item) => item.quantityOnHand == "0")
           .toList();
-      tempInventoryRecords.refresh();
     } else {
       tempInventoryRecords.value.items =
           List.from(inventoryRecords.value.items);

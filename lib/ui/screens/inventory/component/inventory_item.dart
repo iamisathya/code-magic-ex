@@ -55,10 +55,11 @@ class InventoryItem extends StatelessWidget {
                 Container(
                   height: 165,
                   padding: const EdgeInsets.all(20.0),
-                  child: item.imageUrl != null
+                  child:  (item.imageUrl != null && item.imageUrl!.isNotEmpty)
                       ? CachedNetworkImage(imageUrl: item.imageUrl!, width: 165)
                       : SvgPicture.asset(kProductPlaceholderImage,
                           height: 165, semanticsLabel: 'no records found'),
+                      
                 ),
                 Container(
                   height: 105,
