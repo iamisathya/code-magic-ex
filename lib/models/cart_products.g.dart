@@ -15,6 +15,7 @@ CartProductsItem _$CartProductsItemFromJson(Map<String, dynamic> json) {
     itemPrice: (json['itemPrice'] as num).toDouble(),
     totalPv: json['totalPv'] as int,
     totalPrice: (json['totalPrice'] as num).toDouble(),
+    imageUrl: json['imageUrl'] as String,
   );
 }
 
@@ -27,4 +28,5 @@ Map<String, dynamic> _$CartProductsItemToJson(CartProductsItem instance) =>
       'itemPrice': instance.itemPrice,
       'totalPv': instance.totalPv,
       'totalPrice': instance.totalPrice,
+      'imageUrl': instance.imageUrl,
     };

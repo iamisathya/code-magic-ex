@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart' show DioError;
+import 'package:dsc_tools/models/product_v2.dart';
+import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -37,6 +40,7 @@ class CreateOpenPoOrderController extends GetxController
   TextEditingController searchProductTextController = TextEditingController();
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
   ManagedWarehouses warehouses = ManagedWarehouses(items: []);
+  late HydraProducts hydraProducts;
 
   RxInt totalCartPv = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
@@ -48,8 +52,59 @@ class CreateOpenPoOrderController extends GetxController
 
   @override
   void onInit() {
-    getManagedWarehouses();
+    loadInventory();
     super.onInit();
+  }
+
+  Future<void> loadInventory() async {
+    try {
+      isLoading.toggle();
+      await Future.wait<void>([
+        getManagedWarehouses().then((value) =>
+            value != null ? inventoryRecords.value.items = value.items : {}),
+        getHydraProducts().then((value) => value != null
+            ? hydraProducts = value
+            : {}), // Get hydra products to get image urls
+      ]).then((value) => mapInventoryItems());
+    } on AppException catch (exception, stack) {
+      isLoading.toggle();
+      exception.logError(exception, stack);
+    }
+  }
+
+  Future<HydraProducts?> getHydraProducts() async {
+    try {
+      final HydraProducts hydraProducts =
+          await MemberCalls2Service.init().getHydraProducts("THA", "A", "shop");
+      return hydraProducts;
+    } on DioError catch (e) {
+      final String message = getErrorMessage(e.response!.data);
+      SnackbarUtil.showError(message: message);
+      returnResponse(e.response!);
+    } catch (err, s) {
+      Get.printError(info: err.toString());
+      Get.printError(info: s.toString());
+    }
+  }
+
+  void mapInventoryItems() {
+    try {
+      for (var i = 0; i < hydraProducts.items.length; i++) {
+        final ProductItem currentItem = hydraProducts.items[i];
+        final int index = inventoryRecords.value.items.indexWhere(
+            (hydraItem) => currentItem.itemCode == hydraItem.item.id.unicity);
+        if (index != -1) {
+          inventoryRecords.value.items[index].imageUrl = currentItem.imageUrl;
+        }
+      }
+      searchResult.value.items = List.from(inventoryRecords.value.items);
+      inventoryRecords.refresh();
+      calculateTotal();
+      isLoading.toggle();
+    } on AppException catch (exception, stack) {
+      isLoading.toggle();
+      exception.logError(exception, stack);
+    }
   }
 
   int get inventorySize => searchProductTextController.text.isNotEmpty
@@ -61,16 +116,13 @@ class CreateOpenPoOrderController extends GetxController
           ? searchResult.value
           : inventoryRecords.value;
 
-  Future<void> getManagedWarehouses() async {
-    isLoading.toggle();
+  Future<InventoryRecords?> getManagedWarehouses() async {
     try {
       warehouses = await ApiService.shared().getManagedWarehouses();
       if (warehouses.items.isNotEmpty) {
-        await loadInventoryProducts(
+        return await loadInventoryProducts(
             warehouses.items[0].href.getAfterLastSlash());
-        isLoading.toggle();
       } else {
-        isLoading.toggle();
         SnackbarUtil.showError(message: "no_warehouses_found".tr);
       }
     } on DioError catch (e) {
@@ -84,12 +136,10 @@ class CreateOpenPoOrderController extends GetxController
     }
   }
 
-  Future<void> loadInventoryProducts(String warehouseId) async {
+  Future<InventoryRecords?> loadInventoryProducts(String warehouseId) async {
     const String type = "item";
     try {
-      inventoryRecords.value =
-          await ApiService.shared().getInventoryRecords(warehouseId, type);
-      searchResult.value.items = List.from(inventoryRecords.value.items);
+      return await ApiService.shared().getInventoryRecords(warehouseId, type);
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: "${"error".tr}! $message");
@@ -332,11 +382,18 @@ class CreateOpenPoOrderController extends GetxController
                               padding: const EdgeInsets.all(10),
                               child: Row(
                                 children: [
-                                  SizedBox(
-                                    width: 155,
-                                    child: SvgPicture.asset(
-                                        kProductPlaceholderImage,
-                                        width: 80),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    child: (item.imageUrl != null &&
+                                            item.imageUrl!.isNotEmpty)
+                                        ? CachedNetworkImage(
+                                            imageUrl: item.imageUrl!,
+                                            height: 55,
+                                            width: 70)
+                                        : SvgPicture.asset(
+                                            kProductPlaceholderImage,
+                                            width: 80),
                                   ),
                                   Expanded(
                                     child: Column(

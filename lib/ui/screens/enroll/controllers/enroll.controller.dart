@@ -1,4 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/product_v2.dart';
+import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -26,28 +29,78 @@ class EnrollHomeController extends GetxController {
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   final Rx<InventoryRecords> searchResult = InventoryRecords(items: []).obs;
   ManagedWarehouses warehouses = ManagedWarehouses(items: []);
+  late HydraProducts hydraProducts;
   RxInt totalCartPv = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
 
   @override
   void onInit() {
-    getManagedWarehouses();
+    loadInventory();
     // cartProducts
     //     .listen((c) => {cartProducts.refresh(), calculateTotal()});
     super.onInit();
   }
 
-  Future<void> getManagedWarehouses() async {
-    isLoading.toggle();
+  Future<void> loadInventory() async {
+    try {
+      isLoading.toggle();
+      await Future.wait<void>([
+        getManagedWarehouses().then((value) =>
+            value != null ? inventoryRecords.value.items = value.items : {}),
+        getHydraProducts().then((value) => value != null
+            ? hydraProducts = value
+            : {}), // Get hydra products to get image urls
+      ]).then((value) => mapInventoryItems());
+    } on AppException catch (exception, stack) {
+      isLoading.toggle();
+      exception.logError(exception, stack);
+    }
+  }
+
+  Future<HydraProducts?> getHydraProducts() async {
+    try {
+      final HydraProducts hydraProducts =
+          await MemberCalls2Service.init().getHydraProducts("THA", "A", "shop");
+      return hydraProducts;
+    } on DioError catch (e) {
+      final String message = getErrorMessage(e.response!.data);
+      SnackbarUtil.showError(message: message);
+      returnResponse(e.response!);
+    } catch (err, s) {
+      Get.printError(info: err.toString());
+      Get.printError(info: s.toString());
+    }
+  }
+
+  void mapInventoryItems() {
+    try {
+      for (var i = 0; i < hydraProducts.items.length; i++) {
+        final ProductItem currentItem = hydraProducts.items[i];
+        final int index = inventoryRecords.value.items.indexWhere(
+            (hydraItem) => currentItem.itemCode == hydraItem.item.id.unicity);
+        if (index != -1) {
+          inventoryRecords.value.items[index].imageUrl = currentItem.imageUrl;
+        }
+      }
+      searchResult.value.items = List.from(inventoryRecords.value.items);
+      inventoryRecords.refresh();
+      addStarterKit();
+      calculateTotal();
+      isLoading.toggle();
+    } on AppException catch (exception, stack) {
+      isLoading.toggle();
+      exception.logError(exception, stack);
+    }
+  }
+
+  Future<InventoryRecords?> getManagedWarehouses() async {
+    // InventoryRecords? records = InventoryRecords(items: []);
     try {
       warehouses = await ApiService.shared().getManagedWarehouses();
       if (warehouses.items.isNotEmpty) {
-        await loadInventoryProducts(
+        return await loadInventoryProducts(
             warehouses.items[0].href.getAfterLastSlash());
-        isLoading.toggle();
-        addStarterKit();
       } else {
-        isLoading.toggle();
         SnackbarUtil.showError(message: "no_warehouses_found".tr);
       }
     } on DioError catch (e) {
@@ -55,18 +108,16 @@ class EnrollHomeController extends GetxController {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
-    } catch (err) {
+    } on AppException catch (err, stack) {
       isLoading.toggle();
-      LoggerService.instance.e(err.toString());
+      err.logError(err, stack);
     }
   }
 
-  Future<void> loadInventoryProducts(String warehouseId) async {
+  Future<InventoryRecords?> loadInventoryProducts(String warehouseId) async {
     const String type = "item";
     try {
-      inventoryRecords.value =
-          await ApiService.shared().getInventoryRecords(warehouseId, type);
-      searchResult.value.items = List.from(inventoryRecords.value.items);
+      return await ApiService.shared().getInventoryRecords(warehouseId, type);
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: "${"error!".tr} $message");
@@ -151,7 +202,6 @@ class EnrollHomeController extends GetxController {
                       controller: searchProductTextController,
                       onChanged: (val) => onSearchTextChange(val),
                       onPress: () {},
-                      hintText: "",
                       isFetching: false.obs),
                 ),
                 const SizedBox(height: 5),
@@ -177,9 +227,15 @@ class EnrollHomeController extends GetxController {
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20),
-                                    child: SvgPicture.asset(
-                                        kProductPlaceholderImage,
-                                        width: 80),
+                                    child: (item.imageUrl != null &&
+                                            item.imageUrl!.isNotEmpty)
+                                        ? CachedNetworkImage(
+                                            imageUrl: item.imageUrl!,
+                                            height: 55,
+                                            width: 70)
+                                        : SvgPicture.asset(
+                                            kProductPlaceholderImage,
+                                            width: 80),
                                   ),
                                   Expanded(
                                     child: Column(
@@ -243,6 +299,7 @@ class EnrollHomeController extends GetxController {
           itemPrice: cartItem.terms.priceEach,
           itemPv: cartItem.terms.pvEach,
           totalPrice: 1 * cartItem.terms.priceEach,
+          imageUrl: cartItem.imageUrl ?? "",
           totalPv: 1 * cartItem.terms.pvEach);
       cartProducts.insert(0, i);
       calculateTotal();

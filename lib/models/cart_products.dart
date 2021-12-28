@@ -18,6 +18,8 @@ class CartProductsItem {
   int totalPv;
   @JsonKey(name: "totalPrice")
   double totalPrice;
+  @JsonKey(name: "imageUrl")
+  String imageUrl;
 
   CartProductsItem({
     this.itemCode = "",
@@ -27,6 +29,7 @@ class CartProductsItem {
     this.itemPrice = 0,
     this.totalPv = 0,
     this.totalPrice = 0,
+    this.imageUrl = "",
   });
 
   factory CartProductsItem.fromJson(Map<String, dynamic> json) =>
