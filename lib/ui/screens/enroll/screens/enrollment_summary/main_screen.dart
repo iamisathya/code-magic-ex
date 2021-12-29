@@ -23,7 +23,9 @@ class EnrollmentSummaryScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kWhiteSmokeColor,
           appBar: OpenPoAppBar(),
-          body: Body(),
+          body: GestureDetector(
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: Body()),
           bottomNavigationBar: BottomButtonBar(
             showNeutral: false,
             onTapCancelButton: Get.back,
