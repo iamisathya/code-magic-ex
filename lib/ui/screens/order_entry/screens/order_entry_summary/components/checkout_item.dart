@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +29,9 @@ class CheckoutItem extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               width: 80,
               height: 65,
-              child: const FlutterLogo(size: 61),
+              child: item.imageUrl.isNotEmpty
+                  ? CachedNetworkImage(imageUrl: item.imageUrl)
+                  : const FlutterLogo(size: 61),
             ),
             Expanded(
               child: Column(

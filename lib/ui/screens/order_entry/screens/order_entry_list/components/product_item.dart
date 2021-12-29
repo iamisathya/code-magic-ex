@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,9 +41,11 @@ class ProductItem extends StatelessWidget {
                   style: TextTypes.caption,
                   color: AppColor.metallicSilver,
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 60,
-                  child: FlutterLogo(size: 60),
+                  child: (item.imageUrl != null && item.imageUrl!.isNotEmpty)
+                      ? CachedNetworkImage(imageUrl: item.imageUrl!)
+                      : const FlutterLogo(size: 60),
                 ),
                 AppText(
                   align: TextAlign.center,

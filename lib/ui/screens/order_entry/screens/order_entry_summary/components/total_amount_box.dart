@@ -19,7 +19,7 @@ class TotalAmountBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      height: 120,
+      height: 140,
       child: Column(
         children: [
           Padding(
