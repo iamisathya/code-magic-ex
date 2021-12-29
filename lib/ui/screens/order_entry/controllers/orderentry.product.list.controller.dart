@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../api/config/api_service.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/general_models.dart';
 import '../../../../models/inventory_records.dart';
@@ -17,10 +17,11 @@ import '../screens/order_entry_summary/home.dart';
 
 class OrderEntryProductListController extends GetxController {
   TextEditingController searchUserTextController = TextEditingController();
+  HomeController homeController = HomeController();
   RxInt currentTab = 0.obs;
   RxList<NameValueType> filterOptions = [
-    NameValueType(name: "all_product".tr, value: "all"),
-    NameValueType(name: "easyship_set".tr, value: "easyShip"),
+    NameValueType(name: "all_product", value: "all"),
+    NameValueType(name: "easyship_set", value: "easyShip"),
   ].obs;
   RxString filterMethod = "all".obs;
 
@@ -63,12 +64,15 @@ class OrderEntryProductListController extends GetxController {
   String get currentFilteredMethod => filterMethod.value;
 
   Future<void> loadInventoryRecords() async {
-    const String userId =
-        "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
+    // const String userId =
+    //     "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
       isLoading.toggle();
-      inventoryRecords =
-          Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
+      // inventoryRecords =
+      //     Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
+      final InventoryRecords invRecords = await homeController.loadInventory();
+      inventoryRecords.value = invRecords;
+      tempInventoryRecords.value = invRecords;
       isLoading.toggle();
     } on DioError catch (e) {
       _onDioError(e);
@@ -134,6 +138,7 @@ class OrderEntryProductListController extends GetxController {
         quantity: 1,
         itemPrice: itemFound.terms.priceEach,
         itemPv: itemFound.terms.pvEach,
+        imageUrl: itemFound.imageUrl ?? "",
         totalPrice: 1 * itemFound.terms.priceEach,
         totalPv: 1 * itemFound.terms.pvEach);
     cartProducts.insert(0, item);

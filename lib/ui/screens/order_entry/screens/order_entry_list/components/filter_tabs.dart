@@ -27,7 +27,7 @@ class FilterTabs extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () => controller.currentFilteredMethod = i.value,
                         child: AppText(
-                            text: i.name,
+                            text: i.name.tr,
                             style: controller.filterMethod.value == i.value
                                 ? TextTypes.subtitle1
                                 : TextTypes.bodyText1),

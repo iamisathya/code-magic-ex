@@ -27,7 +27,7 @@ class SalesReportToolBar extends StatelessWidget {
                       .map((element) => GestureDetector(
                           onTap: () =>
                               controller.onChangeViewType(element.value),
-                          child: Text(element.name,
+                          child: Text(element.name.tr,
                               style: controller.activeStockType.value.name ==
                                       element.name
                                   ? Theme.of(context).textTheme.subtitle1

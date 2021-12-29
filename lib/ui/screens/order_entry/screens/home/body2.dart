@@ -52,7 +52,7 @@ class Body extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: index != 0 ? 8.0 : 0),
                                   child: Text(
-                                    type.name,
+                                    type.name.tr,
                                     style: controller.currentTab.value == index
                                         ? Theme.of(context).textTheme.subtitle1
                                         : Theme.of(context).textTheme.bodyText2,

@@ -315,7 +315,7 @@ const Map<String, String> th_TH = {
   "open_po_attachment": "เปิดเอกสารแนบใบสั่งซื้อ",
   "order_date": "วันที่สั่งซื้อสินค้า",
   "order_entry": "รายการสั่งซื้อ",
-  "order_entry_summary": "Order Entry Summary",
+  "order_entry_summary": "สรุปรายการสั่งซื้อ",
   "order_id": "ลำดับ",
   "order_number": "เลขที่ใบเสร็จ",
   "order_number_should_numarics_msg":
@@ -532,4 +532,8 @@ const Map<String, String> th_TH = {
   "capturing_screenshot": "กำลังจับภาพหน้าจอ...",
   "barcode_number_should_not_empty": "บาร์โค้ดต้องไม่เว้นว่างไว้!",
   "enter_search_term_to_begin": "ป้อนคำค้นหาเพื่อเริ่มต้น",
+  "next": "ถัดไป",
+  "my_cart": "รถเข็นของฉัน",
+  "payment_amount": "จำนวนเงินที่ชำระ",
+  "find_report": "ค้นหารายงาน",
 };

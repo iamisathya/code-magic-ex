@@ -41,9 +41,9 @@ class SalesReportHomeController extends GetxController {
   RxBool isDataFetched = false.obs;
 
   RxList<NameValueType> sortOptions = [
-    NameValueType(name: "by_order".tr, value: "order"),
-    NameValueType(name: "by_item".tr, value: "item"),
-    NameValueType(name: "rmas".tr, value: "rma")
+    NameValueType(name: "by_order", value: "order"),
+    NameValueType(name: "by_item", value: "item"),
+    NameValueType(name: "rmas", value: "rma")
   ].obs;
   Rx<OrdersAndRmas> allOrdersAndRmas = const OrdersAndRmas().obs;
   RxList<SalesReportOrderItem> allSalesReports = <SalesReportOrderItem>[].obs;

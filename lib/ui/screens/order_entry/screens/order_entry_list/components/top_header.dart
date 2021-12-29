@@ -60,7 +60,7 @@ class TopHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Obx(() => AppText(
-                  text: "${controller.totalCartPv.toString()} PV",
+                  text: "${controller.totalCartPv.toString()} ${"pv".tr}",
                   style: TextTypes.caption)),
               Obx(() => AppText(
                   text:

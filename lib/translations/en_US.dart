@@ -236,7 +236,7 @@ const Map<String, String> en_US = {
   "order_date": "Order Date",
   "order_entry": "Order Entry",
   "order_entry_summary": "Order Entry Summary",
-  "order_id": "order_id",
+  "order_id": "Order ID",
   "order_number": "Order Number",
   "order_number_should_numarics_msg":
       "Order number should only contains numarics",
@@ -534,4 +534,8 @@ const Map<String, String> en_US = {
   "capturing_screenshot": "Capturing Screenshot...",
   "barcode_number_should_not_empty": "The Barcode number should not be empty!",
   "enter_search_term_to_begin": "Enter a search term to begin",
+  "next": "Next",
+  "my_cart": "My Cart",
+  "payment_amount": "Payment Amount",
+  "find_report": "Find Report",
 };

@@ -23,7 +23,7 @@ class OpenPoCreateOrder extends StatelessWidget {
           backgroundColor: AppColor.kWhiteSmokeColor,
           appBar: AppBar(
               title: Text(
-            "new_po".tr,
+            "add_new_po".tr,
             style: const TextStyle(fontSize: 24, color: AppColor.kBlackColor),
           )),
           body: Body(),
