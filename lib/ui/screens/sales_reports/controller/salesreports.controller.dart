@@ -280,7 +280,6 @@ class SalesReportController extends GetxController {
       final response = await dio.get(imgUrl);
       _sendingMsgProgressBar.hide();
       await Printing.layoutPdf(
-          dynamicLayout: false,
           onLayout: (PdfPageFormat format) async => Printing.convertHtml(
                 format: format,
                 html: response.data.toString(),
@@ -478,7 +477,6 @@ class SalesReportController extends GetxController {
         </html>
       """;
       await Printing.layoutPdf(
-          dynamicLayout: false,
           onLayout: (PdfPageFormat format) async => Printing.convertHtml(
                 format: format,
                 html: tableData,

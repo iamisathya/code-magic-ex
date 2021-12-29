@@ -45,7 +45,6 @@ class PrintSalesReportController extends GetxController {
       final response = await dio.get(orderHref);
       isLoading.toggle();
       await Printing.layoutPdf(
-          dynamicLayout: false,
           onLayout: (PdfPageFormat format) async => Printing.convertHtml(
                 format: format,
                 html: response.data.toString(),

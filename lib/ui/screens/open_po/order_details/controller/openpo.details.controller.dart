@@ -71,7 +71,6 @@ class OpenPoDetailsController extends GetxController {
         response.toString().replaceAll('background: rgb(204,204,204);', '');
     isLoading.toggle();
     await Printing.layoutPdf(
-        dynamicLayout: false,
         onLayout: (PdfPageFormat format) async => Printing.convertHtml(
               format: format,
               html: removedBackground,

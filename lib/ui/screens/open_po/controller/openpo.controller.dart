@@ -316,7 +316,6 @@ class OpenPoController extends GetxController {
         response.toString().replaceAll('background: rgb(204,204,204);', '');
     _sendingMsgProgressBar.hide();
     await Printing.layoutPdf(
-        dynamicLayout: false,
         onLayout: (PdfPageFormat format) async => Printing.convertHtml(
               format: format,
               html: removedBackground,
