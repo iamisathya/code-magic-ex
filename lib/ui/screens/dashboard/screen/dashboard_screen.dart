@@ -20,6 +20,7 @@ class Body extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(gradient: radialGradient),
         child: SafeArea(
+          bottom: false,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
