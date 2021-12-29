@@ -24,16 +24,15 @@ class SalesReportsHomeScreen extends StatelessWidget {
           backgroundColor: kWhiteSmokeColor,
           appBar: OpenPoAppBar(),
           body: Body2(),
-          bottomNavigationBar:  !controller.isLoading.value &&
-                  controller.activeListLength == 0
-              ? BottomButtonBar(
-                  showNeutral: false,
-                  onTapCancelButton: Get.back,
-                  negetiveText: "cancel".tr,
-                  positiveText: "find_report".tr,
-                  onTapPositiveButton: () => controller.getAllSalesReports(),
-                )
-              : const SizedBox(),
+          bottomNavigationBar: BottomButtonBar(
+            isShown:
+                !controller.isLoading.value && controller.activeListLength == 0,
+            showNeutral: false,
+            onTapCancelButton: Get.back,
+            negetiveText: "cancel".tr,
+            positiveText: "find_report".tr,
+            onTapPositiveButton: () => controller.getAllSalesReports(),
+          ),
         ),
       ),
     );
