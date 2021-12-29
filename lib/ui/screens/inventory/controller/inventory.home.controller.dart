@@ -335,7 +335,7 @@ class InventoryHomeController extends GetxController {
     }
   }
 
-  Future<void> onTapPrint(BuildContext context) async {
+  Future<void> onTapPrint() async {
     try {
       isLoading.toggle();
       await proceedPrinting();
