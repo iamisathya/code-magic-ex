@@ -337,19 +337,10 @@ class InventoryController extends GetxController {
   Future<void> onTapPrint(BuildContext context) async {
     try {
       _sendingMsgProgressBar.show(context);
-      final Dio dio = Dio();
-      final response = await dio.get("${Address.inventoryPrint}=${Globals.userId}");
-      final removedBackground =
-          response.toString().replaceAll('background: rgb(204,204,204);', '');
+      await proceedPrinting();
       _sendingMsgProgressBar.hide();
-      await Printing.layoutPdf(
-          dynamicLayout: false,
-          onLayout: (PdfPageFormat format) async => Printing.convertHtml(
-                format: format,
-                html: removedBackground,
-              ));
     } catch (err) {
-      onCatchError(err, _sendingMsgProgressBar, errorMessage);
+      _sendingMsgProgressBar.show(context);
     }
   }
 }

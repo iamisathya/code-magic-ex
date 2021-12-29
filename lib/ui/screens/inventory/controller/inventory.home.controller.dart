@@ -74,10 +74,11 @@ class InventoryHomeController extends GetxController {
       isLoading.toggle();
       await Future.wait<void>([
         getManagedWarehouses()
-          .then((inStcoks) => onFetchInStocks(inStcoks))
-          .then((_) => loadOutOfStockInventoryProducts()
-          .then((outOfStcoks) => onFetchpOutOfStocks(outOfStcoks))),
-        getHydraProducts().then((hydraProducts) => onFetchHydraProducts(hydraProducts)), // Get hydra products to get image urls
+            .then((inStcoks) => onFetchInStocks(inStcoks))
+            .then((_) => loadOutOfStockInventoryProducts()
+                .then((outOfStcoks) => onFetchpOutOfStocks(outOfStcoks))),
+        getHydraProducts().then((hydraProducts) => onFetchHydraProducts(
+            hydraProducts)), // Get hydra products to get image urls
       ]).then((_) => mapInventoryItems());
     } on AppException catch (exception, stack) {
       isLoading.toggle();
@@ -105,18 +106,19 @@ class InventoryHomeController extends GetxController {
   }
 
   void onFetchInStocks(InventoryRecords? value) {
-    if(value != null) {
+    if (value != null) {
       inventoryRecords.value.items = List.from(value.items);
     }
   }
 
   void onFetchpOutOfStocks(InventoryRecords? value) {
-    if(value != null) {
+    if (value != null) {
       inventoryRecords.value.items.addAll(value.items);
     }
   }
+
   void onFetchHydraProducts(HydraProducts? value) {
-    if(value != null) {
+    if (value != null) {
       hydraProducts = value;
     }
   }
@@ -333,24 +335,13 @@ class InventoryHomeController extends GetxController {
     }
   }
 
-  Future<void> onTapPrint() async {
+  Future<void> onTapPrint(BuildContext context) async {
     try {
       isLoading.toggle();
-      final Dio dio = Dio();
-      final response =
-          await dio.get("${Address.inventoryPrint}=${Globals.userId}");
-      final removedBackground =
-          response.toString().replaceAll('background: rgb(204,204,204);', '');
+      await proceedPrinting();
       isLoading.toggle();
-      await Printing.layoutPdf(
-          dynamicLayout: false,
-          onLayout: (PdfPageFormat format) async => Printing.convertHtml(
-                format: format,
-                html: removedBackground,
-              ));
     } catch (err) {
       isLoading.toggle();
-      LoggerService.instance.e(err.toString());
     }
   }
 

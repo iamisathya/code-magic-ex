@@ -4,12 +4,17 @@ import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/api/api_address.dart';
+import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:pdf/pdf.dart';
+import 'package:printing/printing.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../constants/colors.dart';
@@ -298,3 +303,27 @@ LocaleModel getLocale(LocaleTypes type) {
 final Shader linearGradient = const LinearGradient(
   colors: <Color>[AppColor.blueYonder, AppColor.tuftsBlue, AppColor.buttonBlue],
 ).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 54.0));
+
+
+
+  Future<void> proceedPrinting() async {
+    const String logoPath = '../../img/header-logo.png';
+    const String logoUrl = 'https://dsc-th.unicity.com/img/header-logo.png';
+    const String backgroundColor = 'background: rgb(204,204,204);';
+    try {
+      final Dio dio = Dio();
+      final response =
+          await dio.get("${Address.inventoryPrint}=${Globals.userId}");
+      final removedBackground = response
+          .toString()
+          .replaceAll(backgroundColor, '')
+          .replaceAll(logoPath, logoUrl);
+      await Printing.layoutPdf(
+          onLayout: (PdfPageFormat format) async => Printing.convertHtml(
+                format: format,
+                html: removedBackground,
+              ));
+    } catch (err) {
+      SnackbarUtil.showError(message: "error".tr);
+    }
+  }
