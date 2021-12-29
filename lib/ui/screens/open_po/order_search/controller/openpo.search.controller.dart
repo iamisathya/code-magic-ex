@@ -1,4 +1,7 @@
+import 'package:dsc_tools/ui/screens/open_po/order_search/components/search_bar_field.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -11,13 +14,32 @@ class OpenPoSearchController extends GetxController {
   OpenPoListController controller = Get.put(OpenPoListController());
 
   TextEditingController searchTextController = TextEditingController();
+  Rx<Key> currentSearchBariconKey = const ObjectKey("seachIcon").obs;
   RxList<String> searchHistory = <String>[].obs;
   final store = GetStorage();
+  RxBool searchingProduct = false.obs;
+
+  // App bars
+  Widget appBarTitle = const Text("");
+  final SvgPicture actionIcon = SvgPicture.asset(kSearchIcon,
+      height: 20, key: const ObjectKey("seachIcon"));
+  final Image loadingIcon =
+      Image.asset(kAnimatedSpin, width: 30, key: const ObjectKey("seachIcon"));
 
   @override
   void onInit() {
     getSearchHistory();
     super.onInit();
+  }
+
+  void onPressAppBar() {
+    if (actionIcon.key == currentSearchBariconKey.value) {
+      appBarTitle = SearchBarField(searchTextController: searchTextController);
+      addSearchItem(searchTextController.text);
+    } else {
+      appBarTitle = const Text("");
+    }
+    update();
   }
 
   void searchOrder(String orderId) {

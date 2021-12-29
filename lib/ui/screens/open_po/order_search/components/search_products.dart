@@ -24,26 +24,43 @@ class _SearchAppBarState extends State<SearchProducts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          titleSpacing: 0,
-          centerTitle: false,
-          title: appBarTitle,
-          actions: <Widget>[
-            IconButton(
-              icon: actionIcon,
-              onPressed: () {
-                setState(() {
-                  if (actionIcon.key == const ObjectKey("seachIcon")) {
-                    appBarTitle = SearchBarField(
-                        searchTextController: controller.searchTextController);
-                    controller
-                        .addSearchItem(controller.searchTextController.text);
-                  } else {
-                    appBarTitle = const Text("");
-                  }
-                });
-              },
+        titleSpacing: 0,
+        centerTitle: false,
+        title: GetBuilder<OpenPoSearchController>(builder: (_) {
+          return controller.appBarTitle;
+        }),
+        actions: <Widget>[
+          Obx(
+            () => IconButton(
+              icon: controller.searchingProduct.value
+                  ? controller.loadingIcon
+                  : controller.actionIcon,
+              onPressed: controller.onPressAppBar,
             ),
-          ]),
+          )
+        ],
+      ),
+      // AppBar(
+      //     titleSpacing: 0,
+      //     centerTitle: false,
+      //     title: appBarTitle,
+      //     actions: <Widget>[
+      //       IconButton(
+      //         icon: actionIcon,
+      //         onPressed: () {
+      //           setState(() {
+      //             if (actionIcon.key == const ObjectKey("seachIcon")) {
+      //               appBarTitle = SearchBarField(
+      //                   searchTextController: controller.searchTextController);
+      //               controller
+      //                   .addSearchItem(controller.searchTextController.text);
+      //             } else {
+      //               appBarTitle = const Text("");
+      //             }
+      //           });
+      //         },
+      //       ),
+      //     ]),
       body: SingleChildScrollView(
         child: Column(
           children: [
