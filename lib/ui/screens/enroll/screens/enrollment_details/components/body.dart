@@ -28,6 +28,7 @@ class Body extends StatelessWidget {
                 SizedBox(
                   width: 118,
                   child: AppText(
+                      maxLines: 2,
                       text: "enrollment_details".tr,
                       style: TextTypes.headline4),
                 ),

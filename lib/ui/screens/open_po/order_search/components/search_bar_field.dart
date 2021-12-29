@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../../../constants/colors.dart';
 
@@ -12,8 +11,8 @@ class SearchBarField extends StatelessWidget {
   const SearchBarField(
       {required this.searchTextController,
       this.placeHolder = "",
-      this.keyboardType = TextInputType.number,
-      this.autofocus = false});
+      this.keyboardType = TextInputType.text,
+      this.autofocus = true});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +25,7 @@ class SearchBarField extends StatelessWidget {
           autofocus: autofocus,
           decoration: InputDecoration(
               border: InputBorder.none,
-              focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: AppColor.metallicSilver),
-              ),
+              focusedBorder: InputBorder.none,
               contentPadding: const EdgeInsets.symmetric(vertical: 20),
               enabledBorder: InputBorder.none,
               errorBorder: InputBorder.none,

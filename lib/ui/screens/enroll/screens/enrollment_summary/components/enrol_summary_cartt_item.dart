@@ -81,7 +81,7 @@ class EnrollSummaryCartItem extends StatelessWidget {
                     child: VerticalDivider(color: AppColor.americanSilver)),
                 Expanded(
                   child: AppText(
-                      text: "${item.totalPv} PV",
+                      text: "${item.totalPv} ${"pv".tr}",
                       style: TextTypes.subtitle1,
                       align: TextAlign.center),
                 ),
