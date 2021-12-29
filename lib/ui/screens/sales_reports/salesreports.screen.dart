@@ -24,8 +24,7 @@ class SalesReportsHomeScreen extends StatelessWidget {
           backgroundColor: kWhiteSmokeColor,
           appBar: OpenPoAppBar(),
           body: Body2(),
-          bottomNavigationBar: controller.isDateSelected.value &&
-                  !controller.isLoading.value &&
+          bottomNavigationBar:  !controller.isLoading.value &&
                   controller.activeListLength == 0
               ? BottomButtonBar(
                   showNeutral: false,

@@ -40,8 +40,7 @@ class InventorySearchController extends GetxController {
       appBarTitle = SearchBarField(
         autofocus: true,
         keyboardType: TextInputType.text,
-        searchTextController: searchTextController,
-        placeHolder: "${"item_number".tr}...",
+        searchTextController: searchTextController
       );
       addSearchItem(searchTextController.text);
     } else {
