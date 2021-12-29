@@ -22,8 +22,9 @@ class ScreenShotPreview extends StatelessWidget {
       backgroundColor: Colors.black.withOpacity(0.6),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(54),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+        child: Container(
+          margin: const EdgeInsets.only(top: 34),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
