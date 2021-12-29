@@ -62,6 +62,13 @@ class EasyShipListController extends GetxController {
         backgroundColor: Colors.black,
         showProgressIndicator: true,
         progressIndicatorBackgroundColor: AppColor.kWhiteColor);
+    Future.delayed(
+      const Duration(milliseconds: 2000),
+      () => captureScreenShot(context),
+    );
+  }
+
+  void captureScreenShot(BuildContext context) {
     screenshotController.capture().then((image) {
       debugPrint("Captured");
       ScaffoldMessenger.of(context).clearSnackBars();
