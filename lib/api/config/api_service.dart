@@ -185,6 +185,14 @@ abstract class MemberCallsService {
     return MemberCallsService(dio);
   }
 
+  factory MemberCallsService.clientNoLogger() {
+    final Dio dio = Dio();
+    dio.options.headers['authorization'] =
+        "Bearer ${UserSessionManager.shared.customerToken.token}";
+    dio.options.headers['Content-Type'] = "application/json;charset=utf-8 ";
+    return MemberCallsService(dio);
+  }
+
   //Common apis
   //? url=https://member-calls2.unicity.com/dictionary/publish?lang=TH%2CEN
   @GET(Address.dictionary)
@@ -480,6 +488,10 @@ abstract class MemberCalls2Service {
   factory MemberCalls2Service.init() {
     final Dio dio = Dio();
     dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    return MemberCalls2Service(dio);
+  }
+  factory MemberCalls2Service.clientNoLogger() {
+    final Dio dio = Dio();
     return MemberCalls2Service(dio);
   }
 
