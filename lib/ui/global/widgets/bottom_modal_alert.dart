@@ -53,6 +53,7 @@ class BottomModalAlert extends StatelessWidget {
             AppText(
               align: TextAlign.center,
               text: subTitle,
+              maxLines: 4,
               style: TextTypes.subtitle2,
               color: AppColor.charcoal,
             ),
