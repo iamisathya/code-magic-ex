@@ -51,7 +51,7 @@ class HomeController extends GetxController {
     pageController.dispose();
   }
 
-  Future<InventoryRecords?> loadInventory() async {
+  Future<InventoryRecords> loadInventory() async {
     InventoryRecords inventoryRecords = InventoryRecords(items: []);
     late HydraProducts hydraProducts;
     try {
@@ -67,6 +67,7 @@ class HomeController extends GetxController {
       return inventoryRecords;
     } on AppException catch (exception, stack) {
       exception.logError(exception, stack);
+      return inventoryRecords;
     }
   }
 
