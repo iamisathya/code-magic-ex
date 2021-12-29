@@ -38,7 +38,7 @@ class EnrolmentSuccessScreen extends StatelessWidget {
             ],
           ),
           SvgPicture.asset(kEnrolmentSuccessImage,
-              height: 232, semanticsLabel: "Enrolment success!"), //! hardcoded
+              height: 232, semanticsLabel: "Enrolment success!"),
           Column(
             children: [
               Padding(

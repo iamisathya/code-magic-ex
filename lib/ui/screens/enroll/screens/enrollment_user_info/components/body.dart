@@ -107,7 +107,7 @@ class Body extends StatelessWidget {
                           child: EnrollTextField(
                               controller: controller.maritalStatusController,
                               isLoading: false,
-                              label: 'Marital Status', //! hardcoded
+                              label: 'marital_status'.tr,
                               icon: Icons.add,
                               showIcon: true,
                               enabled: false,
@@ -133,8 +133,8 @@ class Body extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const AppText(
-                            text: "Contact Address", //! hardcoded
+                        AppText(
+                            text: "contact_address".tr,
                             style: TextTypes.headline6),
                         GestureDetector(
                             onTap: () =>
@@ -156,7 +156,7 @@ class Body extends StatelessWidget {
                   EnrollTextField(
                       controller: controller.districtController,
                       isLoading: controller.isLoading.value,
-                      label: 'District - Subdistrict', //! hardcoded
+                      label: 'district_subdistrict'.tr,
                       textInputAction: TextInputAction.next),
                   EnrollTextField(
                       controller: controller.streetController,
@@ -166,7 +166,7 @@ class Body extends StatelessWidget {
                   EnrollTextField(
                       controller: controller.mobileNumberController,
                       isLoading: controller.isLoading.value,
-                      label: 'Mobile Number', //! hardcoded
+                      label: 'mobile_number'.tr,
                       textInputAction: TextInputAction.next),
                   EnrollTextField(
                       controller: controller.emailController,

@@ -56,7 +56,7 @@ class EasyShipListController extends GetxController {
       return;
     }
     Get.rawSnackbar(
-        message: "Capturing Screenshot..", //! hardcoded
+        message: "capturing_screenshot".tr,
         snackStyle: SnackStyle.GROUNDED,
         icon: const Icon(Icons.screenshot, color: Colors.white),
         backgroundColor: Colors.black,

@@ -19,11 +19,11 @@ class PaymentMethodCard extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.all(20.0),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
             child: AppText(
-                text: "Payment Method",
-                style: TextTypes.headline6), //! hardcoded
+                text: "payment_method".tr,
+                style: TextTypes.headline6),
           ),
           Obx(
             () => Container(

@@ -230,7 +230,7 @@ class EnrollmentUserInfoController extends GetxController {
                   Obx(() => Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
-                            'Found ${searchedAddresses.length} ${"items_matched_with".tr} "${addressSearchController.text}".'), //! hardcoded
+                            'Found ${searchedAddresses.length} ${"items_matched_with".tr} "${addressSearchController.text}".'),
                       )),
                 Expanded(
                   child: Obx(

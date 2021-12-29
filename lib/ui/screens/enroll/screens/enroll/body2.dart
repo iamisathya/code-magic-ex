@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            const PageTitle(title: "Enrollment"), //! hardcoded
+            PageTitle(title: "enrollment".tr),
             ConstrainedBox(
               constraints: BoxConstraints(minHeight: Get.height - 365),
               child: Column(

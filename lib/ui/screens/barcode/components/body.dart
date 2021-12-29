@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
                   if (!(value!.isNotEmpty && value.length > 3)) {
-                    return "Barcode number should not be empty!"; //! hardcoded
+                    return "barcode_number_should_not_empty".tr;
                   }
                   return null;
                 },

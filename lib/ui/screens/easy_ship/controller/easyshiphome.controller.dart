@@ -38,7 +38,7 @@ class EasyShipHomeController extends GetxController {
   Future onTapExportExcellSheet() async {
     if (allEasyShipOrders.isEmpty) {
       renderGetSnackbar(
-          title: "Empty table!", //! hardcoded
+          title: "empty_table".tr,
           message: "no_data_found_in_table".tr,
           type: SnackBarType.error);
       return;
@@ -87,7 +87,7 @@ class EasyShipHomeController extends GetxController {
             g.cellStyle = headerCellStyle;
           }
           if (i == 0) {
-            emptyA.value = "SL No."; //! hardcoded
+            emptyA.value = "slno".tr;
             b.value = "order_number".tr;
             c.value = "period".tr;
             d.value = "product_name".tr;

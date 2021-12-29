@@ -159,7 +159,7 @@ class EasyShipController extends GetxController {
   Future onTapExportExcellSheet() async {
     if (_tempEasyShipOrders.isEmpty) {
       renderGetSnackbar(
-          title: "Empty table!", //! hardcoded
+          title: "empty_table".tr,
           message: "no_data_found_in_table".tr,
           type: SnackBarType.error);
       return;

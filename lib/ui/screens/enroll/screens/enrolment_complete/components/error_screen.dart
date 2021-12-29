@@ -18,15 +18,15 @@ class EnrolmentErrorScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Column(
-            children: const [
-              Padding(
+            children: [
+              const Padding(
                   padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                   child: AppText(
                       text: "enrollment_error", style: TextTypes.headline4)),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: AppText(
-                    text: "This Page has been some error!", //! hardcoded
+                    text: "page_has_some_error".tr,
                     style: TextTypes.bodyText1,
                     color: AppColor.darkLiver),
               ),

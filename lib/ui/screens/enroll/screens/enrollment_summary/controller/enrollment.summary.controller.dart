@@ -76,12 +76,12 @@ class EnrollmentSummaryController extends GetxController {
   Future<void> proceedOrderPlace() async {
     if (activePayType.value == PaymentOptions.none) {
       SnackbarUtil.showWarning(
-          title: "Payment mode error!", //!hardcoded
+          title: "payment_mode_error".tr,
           message: "please_select_payment_msg".tr);
       return;
     } else if (activePayType.value != PaymentOptions.cashOnDelivery) {
       SnackbarUtil.showWarning(
-          title: "Payment mode isn't available!", //!hardcoded
+          title: "payment_mode_available".tr,
           message: "payment_not_available_msg".tr);
       return;
     }

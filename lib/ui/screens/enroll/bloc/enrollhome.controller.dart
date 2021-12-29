@@ -270,8 +270,8 @@ class EnrollController extends GetxController {
       final List<AmphurItem> allAmphures = await MemberCallsService.init()
           .getAmphuresByProvince("getAmphuresByProvince", provience.value);
       areaDropdownItems.clear();
-      areaDropdownItems.add(const DropdownMenuItem(
-          value: "", child: Text("Select Area"))); //!hardcoded
+      areaDropdownItems.add(DropdownMenuItem(
+          value: "", child: Text("select_area".tr)));
       for (final amphure in allAmphures) {
         areaDropdownItems.add(DropdownMenuItem(
             value: amphure.amphurId, child: Text(amphure.amphurNameEn)));
@@ -285,8 +285,8 @@ class EnrollController extends GetxController {
 
   Future<void> getDistrictsByAmphur() async {
     if (area.value.isEmpty) {
-      _renderErrorSnackBar("Select amphur",
-          "Please select your amphur to proceed!"); //!hardcoded
+      _renderErrorSnackBar("select_amphur".tr,
+          "select_amphur_to_proceed".tr);
       return;
     }
     try {

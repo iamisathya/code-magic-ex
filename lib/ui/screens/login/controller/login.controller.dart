@@ -114,8 +114,9 @@ class LoginController extends GetxController {
       final Markets? currentMarket = await getMarketConfig(
           responseUserInfo.mainAddress.country.toLowerCase());
 
-      if (currentMarket == null)
-        throw "Your market is not supported"; //! hardcoded
+      if (currentMarket == null) {
+        throw "your_market_is_not_supported".tr;
+      }
 
       //*  getCustomerData from api
       final ProfilePicture profilePicture = await ApiService.shared()

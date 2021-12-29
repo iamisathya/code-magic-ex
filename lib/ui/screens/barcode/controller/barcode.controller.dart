@@ -58,7 +58,7 @@ class BarcodeController extends GetxController {
     if (await canLaunch(url)) {
       await launch(url, forceSafariVC: false);
     } else {
-      throw "Could not launch $url"; //!hardcoded
+      throw "${"could_not_launch".tr} $url";
     }
   }
 }

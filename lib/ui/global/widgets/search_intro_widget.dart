@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SearchIntro extends StatelessWidget {
   const SearchIntro({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class SearchIntro extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(top: 16.0),
             child: Text(
-              'Enter a search term to begin', //! hardcoded
+              'enter_search_term_to_begin'.tr,
               style: TextStyle(
                 color: Colors.green[100],
               ),
