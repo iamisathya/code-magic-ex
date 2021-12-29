@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/common_methods.dart';
@@ -17,7 +18,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:printing/printing.dart';
-import 'package:collection/collection.dart';
 
 import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
@@ -73,15 +73,12 @@ class InventoryHomeController extends GetxController {
     try {
       isLoading.toggle();
       await Future.wait<void>([
-        getManagedWarehouses().then((value) =>
-            value != null ? inventoryRecords.value.items = value.items : {}),
-        loadOutOfStockInventoryProducts().then((value) => value != null
-            ? inventoryRecords.value.items.addAll(value.items)
-            : {}),
-        getHydraProducts().then((value) => value != null
-            ? hydraProducts = value
-            : {}), // Get hydra products to get image urls
-      ]).then((value) => mapInventoryItems());
+        getManagedWarehouses()
+          .then((inStcoks) => onFetchInStocks(inStcoks))
+          .then((_) => loadOutOfStockInventoryProducts()
+          .then((outOfStcoks) => onFetchpOutOfStocks(outOfStcoks))),
+        getHydraProducts().then((hydraProducts) => onFetchHydraProducts(hydraProducts)), // Get hydra products to get image urls
+      ]).then((_) => mapInventoryItems());
     } on AppException catch (exception, stack) {
       isLoading.toggle();
       exception.logError(exception, stack);
@@ -107,6 +104,23 @@ class InventoryHomeController extends GetxController {
     tempInventoryRecords.refresh();
   }
 
+  void onFetchInStocks(InventoryRecords? value) {
+    if(value != null) {
+      inventoryRecords.value.items = List.from(value.items);
+    }
+  }
+
+  void onFetchpOutOfStocks(InventoryRecords? value) {
+    if(value != null) {
+      inventoryRecords.value.items.addAll(value.items);
+    }
+  }
+  void onFetchHydraProducts(HydraProducts? value) {
+    if(value != null) {
+      hydraProducts = value;
+    }
+  }
+
   Future<InventoryRecords?> getManagedWarehouses() async {
     try {
       warehouses = await ApiService.shared().getManagedWarehouses();
@@ -130,7 +144,8 @@ class InventoryHomeController extends GetxController {
     const String type = "item";
     try {
       final InventoryRecords inventoryRecords =
-          await ApiService.shared().getInventoryRecords(warehouseId, type);
+          await ApiService.clientNoLogger()
+              .getInventoryRecords(warehouseId, type);
       return inventoryRecords;
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
@@ -145,7 +160,8 @@ class InventoryHomeController extends GetxController {
   Future<HydraProducts?> getHydraProducts() async {
     try {
       final HydraProducts hydraProducts =
-          await MemberCalls2Service.init().getHydraProducts("THA", "A", "shop");
+          await MemberCalls2Service.clientNoLogger()
+              .getHydraProducts("THA", "A", "shop");
       return hydraProducts;
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
@@ -160,8 +176,9 @@ class InventoryHomeController extends GetxController {
   Future<InventoryRecords?> loadOutOfStockInventoryProducts() async {
     try {
       final List<InventoryRecordsMatchedItem> inventoryRecordsOutOfStock =
-          await MemberCallsService.init().getOutOfStockInventoryRecords(
-              "1_11", UserSessionManager.shared.customerToken.token);
+          await MemberCallsService.clientNoLogger()
+              .getOutOfStockInventoryRecords(
+                  "1_11", UserSessionManager.shared.customerToken.token);
       final InventoryRecords records = InventoryRecords(items: []);
       for (final InventoryRecordsMatchedItem item
           in inventoryRecordsOutOfStock) {
