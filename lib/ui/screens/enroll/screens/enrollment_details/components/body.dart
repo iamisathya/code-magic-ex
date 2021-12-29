@@ -183,7 +183,7 @@ class EnrollTextField extends StatelessWidget {
               labelText: label,
               floatingLabelBehavior: FloatingLabelBehavior.auto,
               contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
               disabledBorder: InputBorder.none,
