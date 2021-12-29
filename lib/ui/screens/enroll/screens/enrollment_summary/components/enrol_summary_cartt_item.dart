@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -31,8 +32,10 @@ class EnrollSummaryCartItem extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 32),
                     height: 100,
                     width: 134,
-                    child: SvgPicture.asset(kProductPlaceholderImage,
-                        height: 100, width: 134)),
+                    child: (item.imageUrl.isNotEmpty)
+                        ? CachedNetworkImage(imageUrl: item.imageUrl)
+                        : SvgPicture.asset(kProductPlaceholderImage,
+                            height: 100, width: 134)),
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 20),

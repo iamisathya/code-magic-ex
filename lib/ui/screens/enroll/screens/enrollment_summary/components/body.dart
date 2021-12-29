@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            const PageTitle(title: "enrollment_summary"),
+            PageTitle(title: "enrollment_summary".tr),
             Container(
               padding: const EdgeInsets.all(20),
               child: Obx(
