@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -37,9 +36,7 @@ class InventorySearchController extends GetxController {
 
   void onPressAppBar() {
     if (actionIcon.key == currentSearchBariconKey.value) {
-      appBarTitle = SearchBarField(
-        searchTextController: searchTextController
-      );
+      appBarTitle = SearchBarField(searchTextController: searchTextController);
       addSearchItem(searchTextController.text);
     } else {
       appBarTitle = const Text("");
@@ -49,19 +46,22 @@ class InventorySearchController extends GetxController {
 
   void searchOrder(String searchKey) {
     selectedSearchIndex.value =
-        searchHistory.indexWhere((element) => element == searchKey);
-    searchTextController.text = searchHistory[selectedSearchIndex.value!];
-    searchTextController.selection = TextSelection.fromPosition(
-        TextPosition(offset: searchTextController.text.length));
+        searchHistory.indexWhere((element) => element.toLowerCase() == searchKey.toLowerCase());
+    if (selectedSearchIndex.value != -1) {
+      searchTextController.text = searchHistory[selectedSearchIndex.value!];
+      searchTextController.selection = TextSelection.fromPosition(
+          TextPosition(offset: searchTextController.text.length));
+    }
     searchingProduct.toggle();
     Future.delayed(const Duration(milliseconds: 1200), () {
       searchingProduct.toggle();
-      final InventoryRecordItems? inventoryItem =
-          controller.inventoryRecords.value.items.firstWhereOrNull((order) =>
-              order.item.id.unicity.contains(searchKey) ||
-              order.catalogSlideContent.content.description
-                  .contains(searchKey));
-      if (inventoryItem != null && inventoryItem.item.id.unicity.isNotEmpty) {
+      final List<InventoryRecordItems> inventoryItem = controller
+          .inventoryRecords.value.items
+          .where((order) =>
+              order.item.id.unicity.toLowerCase().contains(searchKey.toLowerCase()) ||
+              order.catalogSlideContent.content.description.toLowerCase().contains(searchKey.toLowerCase()))
+          .toList();
+      if (inventoryItem.isNotEmpty) {
         selectedSearchIndex.value = null;
         searchTextController.text = "";
         Get.to(() => InventorySearchResult(), arguments: inventoryItem);
