@@ -57,10 +57,8 @@ class InventoryToolBar extends StatelessWidget {
                     onTap: () => onTapExport(),
                     child: SvgPicture.asset(kDownloadIcon,
                         width: 20, semanticsLabel: 'download icon'),
-                  ),
-                  if (hideSearch == true)
-                    const SizedBox(width: 0)
-                  else
+                  ),                  
+                  if (hideSearch == false)
                     GestureDetector(
                       onTap: () => Get.to(() => SearchProducts()),
                       child: SvgPicture.asset(kSearchIcon,
