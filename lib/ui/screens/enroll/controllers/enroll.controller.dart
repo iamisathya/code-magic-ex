@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/models/product_v2.dart';
 import 'package:dsc_tools/services/rest_api/exceptions.dart';
@@ -60,7 +61,8 @@ class EnrollHomeController extends GetxController {
   Future<HydraProducts?> getHydraProducts() async {
     try {
       final HydraProducts hydraProducts =
-          await MemberCalls2Service.init().getHydraProducts("THA", "A", "shop");
+          await MemberCalls2Service.clientNoLogger()
+              .getHydraProducts("THA", "A", "shop");
       return hydraProducts;
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
@@ -84,10 +86,13 @@ class EnrollHomeController extends GetxController {
       }
       searchResult.value.items = List.from(inventoryRecords.value.items);
       inventoryRecords.refresh();
+      searchResult.refresh();
+      print(searchResult.value.items.length);
       addStarterKit();
       calculateTotal();
       isLoading.toggle();
     } on AppException catch (exception, stack) {
+      print("object");
       isLoading.toggle();
       exception.logError(exception, stack);
     }
@@ -96,7 +101,7 @@ class EnrollHomeController extends GetxController {
   Future<InventoryRecords?> getManagedWarehouses() async {
     // InventoryRecords? records = InventoryRecords(items: []);
     try {
-      warehouses = await ApiService.shared().getManagedWarehouses();
+      warehouses = await ApiService.clientNoLogger().getManagedWarehouses();
       if (warehouses.items.isNotEmpty) {
         return await loadInventoryProducts(
             warehouses.items[0].href.getAfterLastSlash());
@@ -117,7 +122,8 @@ class EnrollHomeController extends GetxController {
   Future<InventoryRecords?> loadInventoryProducts(String warehouseId) async {
     const String type = "item";
     try {
-      return await ApiService.shared().getInventoryRecords(warehouseId, type);
+      return await ApiService.clientNoLogger()
+          .getInventoryRecords(warehouseId, type);
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: "${"error!".tr} $message");
@@ -148,27 +154,36 @@ class EnrollHomeController extends GetxController {
   }
 
   void addStarterKit() {
-    final InventoryRecordItems cartItem = searchResult.value.items.firstWhere(
-        (element) =>
-            element.catalogSlideContent.content.description ==
-                "Starter Kit TH" &&
-            element.item.id.unicity == "20817");
-    // check if item already exists
-    final CartProductsItem target = cartProducts.firstWhere(
-        (item) => item.itemCode == cartItem.item.id.unicity,
-        orElse: () => CartProductsItem());
-    if (target.itemCode == "") {
-      // if starter kit item not found in cart
-      final CartProductsItem i = CartProductsItem(
-          itemCode: cartItem.item.id.unicity,
-          productName: cartItem.catalogSlideContent.content.description,
-          quantity: 1,
-          itemPrice: cartItem.terms.priceEach,
-          itemPv: cartItem.terms.pvEach,
-          totalPrice: 1 * cartItem.terms.priceEach,
-          totalPv: 1 * cartItem.terms.pvEach);
-      cartProducts.insert(0, i);
-      calculateTotal();
+    try {
+      final InventoryRecordItems? cartItem = searchResult.value.items
+          .firstWhereOrNull((element) =>
+              element.catalogSlideContent.content.description ==
+              "Starter Kit TH");
+      if (cartItem == null) {
+        SnackbarUtil.showWarning(message: "No starter kit found!");
+      } else {
+        // check if item already exists
+        final CartProductsItem target = cartProducts.firstWhere(
+            (item) => item.itemCode == cartItem.item.id.unicity,
+            orElse: () => CartProductsItem());
+        if (target.itemCode == "") {
+          // if starter kit item not found in cart
+          final CartProductsItem i = CartProductsItem(
+              itemCode: cartItem.item.id.unicity,
+              productName: cartItem.catalogSlideContent.content.description,
+              quantity: 1,
+              itemPrice: cartItem.terms.priceEach,
+              itemPv: cartItem.terms.pvEach,
+              totalPrice: 1 * cartItem.terms.priceEach,
+              totalPv: 1 * cartItem.terms.pvEach);
+          cartProducts.insert(0, i);
+          calculateTotal();
+        }
+      }
+    } on AppException catch (exception, stack) {
+      print("object");
+      isLoading.toggle();
+      exception.logError(exception, stack);
     }
   }
 
