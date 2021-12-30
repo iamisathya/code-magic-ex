@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dsc_tools/utilities/extensions.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
@@ -45,12 +48,12 @@ class ProductItem extends StatelessWidget {
                   height: 60,
                   child: (item.imageUrl != null && item.imageUrl!.isNotEmpty)
                       ? CachedNetworkImage(imageUrl: item.imageUrl!)
-                      : const FlutterLogo(size: 60),
+                      : SvgPicture.asset(kProductPlaceholderImage, width: 60),
                 ),
                 AppText(
                   align: TextAlign.center,
                   text:
-                      "${item.terms.pvEach} ${"pv".tr} | ${item.terms.priceEach} ${Globals.currency}",
+                      "${item.terms.pvEach} ${"pv".tr} | ${item.terms.priceEach.precisionCheck} ${Globals.currency}",
                   style: TextTypes.caption,
                   color: AppColor.charcoal,
                 ),

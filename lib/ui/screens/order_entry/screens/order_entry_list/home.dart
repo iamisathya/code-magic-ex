@@ -15,20 +15,20 @@ class OrderEntryList extends StatelessWidget {
       Get.put(OrderEntryProductListController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColor.brightGray,
-        appBar: OpenPoAppBar(),
-        body: Obx(
-          () => LoadingOverlay(
-            isLoading: controller.isLoading.value,
-            progressIndicator: const Loader(),
-            child: GestureDetector(
+    return Obx(
+      () => LoadingOverlay(
+        isLoading: controller.isLoading.value,
+        progressIndicator: const Loader(),
+        child: Scaffold(
+            backgroundColor: AppColor.brightGray,
+            appBar: OpenPoAppBar(),
+            body: GestureDetector(
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
               child: Body(),
             ),
-          ),
-        ),
-        bottomNavigationBar: BottomButtonBar(controller: controller));
+            bottomNavigationBar: BottomButtonBar(controller: controller)),
+      ),
+    );
   }
 }
 
