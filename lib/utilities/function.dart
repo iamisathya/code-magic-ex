@@ -308,8 +308,10 @@ final Shader linearGradient = const LinearGradient(
 
   Future<void> proceedPrinting() async {
     const String logoPath = '../../img/header-logo.png';
-    const String logoUrl = 'https://dsc-th.unicity.com/img/header-logo.png';
+    const String logoUrl = 'https://firebasestorage.googleapis.com/v0/b/dsc-tools.appspot.com/o/header-logo.jpg?alt=media&token=aecd5af7-603c-4dc9-bf4a-2f6b837de0fe';
     const String backgroundColor = 'background: rgb(204,204,204);';
+    const String alternativeName = 'alt="Unicity Shopping"';
+    const String dimensionForImage = 'alt="Unicity Shopping" width="81" height="80"';
     try {
       final Dio dio = Dio();
       final response =
@@ -317,7 +319,8 @@ final Shader linearGradient = const LinearGradient(
       final removedBackground = response
           .toString()
           .replaceAll(backgroundColor, '')
-          .replaceAll(logoPath, logoUrl);
+          .replaceAll(logoPath, logoUrl)
+          .replaceAll(alternativeName, dimensionForImage);
       await Printing.layoutPdf(
           onLayout: (PdfPageFormat format) async => Printing.convertHtml(
                 format: format,
