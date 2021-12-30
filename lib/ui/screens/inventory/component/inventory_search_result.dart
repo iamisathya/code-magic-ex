@@ -1,8 +1,8 @@
+import 'package:dsc_tools/models/inventory_records.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
-import '../../../../utilities/extensions.dart';
 import '../../open_po/order_create/component/app_bar.dart';
 import '../controller/inventory.search.result.controller.dart';
 import 'grand_total_price.dart';
@@ -16,10 +16,6 @@ class InventorySearchResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final totalPrice = controller.itemFound.quantityOnHand.toInt() *
-        controller.itemFound.terms.priceEach.toInt();
-    final totalPv = controller.itemFound.quantityOnHand.toInt() *
-        controller.itemFound.terms.pvEach;
     return Scaffold(
       appBar: OpenPoAppBar(),
       body: SingleChildScrollView(
@@ -27,24 +23,25 @@ class InventorySearchResult extends StatelessWidget {
           children: [
             PageTitle(title: "inventory".tr),
             InventoryToolBar(
-                onTapExport: () => null,
-                onTapPrint: () => null,
+                onTapExport: () => (){},
+                onTapPrint: () => (){},
                 hideSearch: true),
             Column(
               children: [
                 Column(
                   children: [
                     GrandTotal(
-                        totalPrice: totalPrice.toString(),
-                        totalPv: totalPv.toString()),
+                        totalPrice: controller.totalCartPrice.value.toString(),
+                        totalPv: controller.totalCartPv.toString()),
                     Container(
                       color: AppColor.kWhiteColor,
                       child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: 1,
+                        itemCount: controller.itemsFound.length,
                         itemBuilder: (BuildContext ctxt, int index) {
-                          return InventoryItem(item: controller.itemFound);
+                          final InventoryRecordItems item = controller.itemsFound[index];
+                          return InventoryItem(item: item);
                         },
                       ),
                     ),
