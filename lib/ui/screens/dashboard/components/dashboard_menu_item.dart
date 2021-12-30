@@ -26,10 +26,11 @@ class DashboardMenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: () =>
           item.page == "onLogout" ? onLogout() : Get.toNamed(item.page),
-      child: Container(
-        height: 80,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25), color: Colors.white),
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
+        ),
         child: Row(
           children: [
             Padding(

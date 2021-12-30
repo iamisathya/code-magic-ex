@@ -22,45 +22,18 @@ class CarouselSliderWithCustomIndicator extends StatelessWidget {
                   return Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(color: Colors.white),
-                    child: ShaderMask(
-                      shaderCallback: (rect) {
-                        return LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: <Color>[
-                            Colors.black.withOpacity(1.0),
-                            Colors.black.withOpacity(1.0),
-                            Colors.black.withOpacity(0.5),
-                            Colors.black
-                                .withOpacity(0.3), // <-- change this opacity
-                            Colors.black
-                                .withOpacity(0.1), // <-- change this opacity
-                            // Colors.transparent // <-- you might need this if you want full transparency at the edge
-                          ],
-                          stops: const [
-                            0.0,
-                            0.5,
-                            0.75,
-                            0.85,
-                            1.0
-                          ], //<-- the gradient is interpolated, and these are where the colors above go into effect (that's why there are two colors repeated)
-                        ).createShader(
-                            Rect.fromLTRB(0, 0, rect.width, rect.height));
-                      },
-                      blendMode: BlendMode.dstIn,
-                      child: CachedNetworkImage(
-                        imageUrl: image,
-                        fit: BoxFit.fill,
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey,
-                          highlightColor: Colors.white,
-                          child: Container(
-                            color: Colors.white,
-                          ),
+                    child: CachedNetworkImage(
+                      imageUrl: image,
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey,
+                        highlightColor: Colors.white,
+                        child: Container(
+                          color: Colors.white,
                         ),
-                        errorWidget: (context, url, error) =>
-                            const Text('Image error!'),
                       ),
+                      errorWidget: (context, url, error) =>
+                          const Text('Image error!'),
                     ),
                   );
                 },
