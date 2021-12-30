@@ -31,6 +31,8 @@ class Markets {
   String defaultLanguage;
   @JsonKey(name: "currency")
   String currency;
+  @JsonKey(name: "currencyCode")
+  String currencyCode;
 
   Markets(
       {required this.name,
@@ -39,6 +41,7 @@ class Markets {
       required this.code,
       required this.isoCode,
       required this.defaultLanguage,
+      required this.currencyCode,
       required this.currency});
 
   factory Markets.fromJson(Map<String, dynamic> json) =>

@@ -129,7 +129,7 @@ class LoginController extends GetxController {
       //*  Storing user info to db
       await store.write('current_market', currentMarket);
       Globals.currentMarket = currentMarket;
-      Globals.currency = currentMarket.currency;
+      Globals.currency = currentMarket.currencyCode;
       Globals.customerCode = customerToken.customer.href.getAfterLastSlash();
 
       UserSessionManager.shared.customerId = userResponse.customerId;

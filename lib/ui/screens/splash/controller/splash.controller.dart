@@ -70,7 +70,7 @@ class SplashController extends GetxController {
       if (currentMarket != null) {
         Globals.currentMarket =
             Markets.fromJson(currentMarket as Map<String, dynamic>);
-        Globals.currency = Globals.currentMarket!.currency;
+        Globals.currency = Globals.currentMarket!.currencyCode;
       }
     } catch (err) {
       LoggerService.instance.e(err.toString());
