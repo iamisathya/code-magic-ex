@@ -104,11 +104,11 @@ class OpenPoListController extends GetxController
         break;
       case 2: // INVENTORY TRANSFERRED
         tempOpenPlaceOrders.value =
-            openPlaceOrders.where((item) => item.orderStatus == "4").toList();
+            openPlaceOrders.where((item) => item.orderStatus == "3").toList();
         break;
       case 3: //APPROVED
         tempOpenPlaceOrders.value =
-            openPlaceOrders.where((item) => item.orderStatus == "3").toList();
+            openPlaceOrders.where((item) => item.orderStatus == "4").toList();
         break;
       case 4: //DELETED
         tempOpenPlaceOrders.value =
