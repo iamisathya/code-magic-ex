@@ -54,7 +54,7 @@ class InventoryController extends GetxController {
         "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
     try {
       inventoryRecords.value =
-          await ApiService.shared().getInventoryRecords(userId, type);
+          await ApiService.clientNoLogger().getInventoryRecords(userId, type);
       tempInventoryRecords.value.items =
           List.from(inventoryRecords.value.items);
       update();

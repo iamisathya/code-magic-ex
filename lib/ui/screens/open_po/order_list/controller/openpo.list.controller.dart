@@ -20,9 +20,9 @@ class OpenPoListController extends GetxController
     with StateMixin<List<OpenPO>> {
   RxInt currentTab = 0.obs;
   RxList<NameValueType> availableMonthSlots = [
-    NameValueType(name: "all".tr, value: "all"),
-    NameValueType(name: "6month".tr, value: "6"),
-    NameValueType(name: "12month".tr, value: "12")
+    NameValueType(name: "all", value: "all"),
+    NameValueType(name: "6month", value: "6"),
+    NameValueType(name: "12month", value: "12")
   ].obs;
   RxString filterMethod = "all".obs;
   RxBool isLoading = false.obs;

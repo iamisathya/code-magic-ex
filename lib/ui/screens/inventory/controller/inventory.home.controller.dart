@@ -125,7 +125,7 @@ class InventoryHomeController extends GetxController {
 
   Future<InventoryRecords?> getManagedWarehouses() async {
     try {
-      warehouses = await ApiService.shared().getManagedWarehouses();
+      warehouses = await ApiService.clientNoLogger().getManagedWarehouses();
       if (warehouses.items.isNotEmpty) {
         final InventoryRecords? inventoryRecords = await loadInventoryProducts(
             warehouses.items[0].href.getAfterLastSlash());

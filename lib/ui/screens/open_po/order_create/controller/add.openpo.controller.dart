@@ -118,7 +118,7 @@ class CreateOpenPoOrderController extends GetxController
 
   Future<InventoryRecords?> getManagedWarehouses() async {
     try {
-      warehouses = await ApiService.shared().getManagedWarehouses();
+      warehouses = await ApiService.clientNoLogger().getManagedWarehouses();
       if (warehouses.items.isNotEmpty) {
         return await loadInventoryProducts(
             warehouses.items[0].href.getAfterLastSlash());
@@ -139,7 +139,7 @@ class CreateOpenPoOrderController extends GetxController
   Future<InventoryRecords?> loadInventoryProducts(String warehouseId) async {
     const String type = "item";
     try {
-      return await ApiService.shared().getInventoryRecords(warehouseId, type);
+      return await ApiService.clientNoLogger().getInventoryRecords(warehouseId, type);
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: "${"error".tr}! $message");

@@ -76,7 +76,6 @@ abstract class ApiService {
 
   factory ApiService.clientNoLogger() {
     final Dio dio = Dio();
-    debugPrint("token ${UserSessionManager.shared.customerToken.token}");
     dio.options.headers['authorization'] =
         "Bearer ${UserSessionManager.shared.customerToken.token}";
     return ApiService(dio);

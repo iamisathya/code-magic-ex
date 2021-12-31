@@ -39,7 +39,7 @@ class PoListToolBar extends StatelessWidget {
                                 onTap: () =>
                                     controller.onChangeMonthType(index),
                                 child: AppText(
-                                    text: type.name,
+                                    text: type.name.tr,
                                     style: controller.currentTab.value == index
                                         ? TextTypes.subtitle1
                                         : TextTypes.bodyText2)))

@@ -73,7 +73,7 @@ class OrderEntryTableController extends GetxController {
     try {
       _sendingMsgProgressBar.show(context);
       inventoryRecords =
-          Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
+          Rx(await ApiService.clientNoLogger().getInventoryRecords(userId, "item"));
       dropDownItems();
       _sendingMsgProgressBar.hide();
     } on DioError catch (e) {

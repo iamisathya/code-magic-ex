@@ -74,7 +74,7 @@ class HomeController extends GetxController {
   Future<InventoryRecords?> getManagedWarehouses() async {
     try {
       final ManagedWarehouses warehouses =
-          await ApiService.shared().getManagedWarehouses();
+          await ApiService.clientNoLogger().getManagedWarehouses();
       if (warehouses.items.isNotEmpty) {
         return await loadInventoryProducts(
             warehouses.items[0].href.getAfterLastSlash());
@@ -91,7 +91,7 @@ class HomeController extends GetxController {
   Future<InventoryRecords?> loadInventoryProducts(String warehouseId) async {
     const String type = "item";
     try {
-      return await ApiService.shared().getInventoryRecords(warehouseId, type);
+      return await ApiService.clientNoLogger().getInventoryRecords(warehouseId, type);
     } on DioError catch (e) {
       SnackbarUtil.showError(message: e.toString());
     } on AppException catch (err, stack) {
@@ -102,7 +102,7 @@ class HomeController extends GetxController {
   Future<HydraProducts?> getHydraProducts() async {
     try {
       final HydraProducts hydraProducts =
-          await MemberCalls2Service.init().getHydraProducts("THA", "A", "shop");
+          await MemberCalls2Service.clientNoLogger().getHydraProducts("THA", "A", "shop");
       return hydraProducts;
     } on DioError catch (e) {
       SnackbarUtil.showError(message: e.toString());
