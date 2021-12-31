@@ -15,6 +15,7 @@ class OpenPoSearchController extends GetxController {
 
   TextEditingController searchTextController = TextEditingController();
   Rx<Key> currentSearchBariconKey = const ObjectKey("seachIcon").obs;
+  final selectedSearchIndex = Rxn<int>();
   RxList<String> searchHistory = <String>[].obs;
   final store = GetStorage();
   RxBool searchingProduct = false.obs;
@@ -29,6 +30,7 @@ class OpenPoSearchController extends GetxController {
   @override
   void onInit() {
     getSearchHistory();
+    onPressAppBar();
     super.onInit();
   }
 
@@ -42,16 +44,27 @@ class OpenPoSearchController extends GetxController {
     update();
   }
 
-  void searchOrder(String orderId) {
-    final OpenPO order = controller.openPlaceOrders.firstWhere(
-        (order) => order.orderOpid == orderId,
-        orElse: () => OpenPO());
-    if (order.orderOpid.isNotEmpty) {
-      Get.to(() => OpenPoOrderDetails(), arguments: order.orderOpid);
-    } else {
-      SnackbarUtil.showWarning(
-          message: "${"sorry_no_orders_found".tr}: $orderId");
+  void searchOrder(String searchKey) {
+    selectedSearchIndex.value = searchHistory.indexWhere(
+        (element) => element.toLowerCase() == searchKey.toLowerCase());
+    if (selectedSearchIndex.value != -1) {
+      searchTextController.text = searchHistory[selectedSearchIndex.value!];
+      searchTextController.selection = TextSelection.fromPosition(
+          TextPosition(offset: searchTextController.text.length));
     }
+    searchingProduct.toggle();
+    Future.delayed(const Duration(milliseconds: 1200), () {
+      searchingProduct.toggle();
+      final OpenPO order = controller.openPlaceOrders.firstWhere(
+          (order) => order.orderOpid == searchKey,
+          orElse: () => OpenPO());
+      if (order.orderOpid.isNotEmpty) {
+        Get.to(() => OpenPoOrderDetails(), arguments: order.orderOpid);
+      } else {
+        SnackbarUtil.showWarning(
+            message: "${"sorry_no_orders_found".tr}: $searchKey");
+      }
+    });
   }
 
   // Retrieves and Sets language based on device settings
