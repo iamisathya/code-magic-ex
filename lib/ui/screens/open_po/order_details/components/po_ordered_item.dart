@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -29,8 +30,10 @@ class PoOrderedItem extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-                child: SvgPicture.asset(kProductPlaceholderImage,
-                    height: 100, width: 100)),
+                child: (item.imageUrl != null && item.imageUrl!.isNotEmpty)
+                    ? CachedNetworkImage(imageUrl: item.imageUrl!)
+                    : SvgPicture.asset(kProductPlaceholderImage,
+                        height: 100, width: 100)),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

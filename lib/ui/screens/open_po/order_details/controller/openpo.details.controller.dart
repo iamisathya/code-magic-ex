@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dsc_tools/models/product_v2.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/controller/add.openpo.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
@@ -24,6 +26,7 @@ class OpenPoDetailsController extends GetxController {
   OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
+  CreateOpenPoOrderController listController = Get.put(CreateOpenPoOrderController());
 
   RxBool isLoading = false.obs;
 
@@ -50,6 +53,16 @@ class OpenPoDetailsController extends GetxController {
       final List<OpenPlaceOrderDetails> detailsResponse =
           await MemberCallsService.init()
               .getOpenOrderDetails("204", openPlaceOrderId.orderId);
+      // Attching product images from hydra products
+      for (var i = 0; i < detailsResponse.length; i++) {
+        final OpenPlaceOrderDetails currentItem = detailsResponse[i];
+        final ProductItem? foundItem = listController.hydraProducts.items
+            .firstWhereOrNull(
+                (hydraItem) => currentItem.productId == hydraItem.itemCode);
+        if (foundItem != null) {
+          currentItem.imageUrl = foundItem.imageUrl;
+        }
+      }
       openPlaceOrderDetails = detailsResponse.obs;
       isLoading.toggle();
       // change(openPlaceOrderDetails, status: RxStatus.success());

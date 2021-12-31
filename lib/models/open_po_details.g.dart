@@ -10,6 +10,7 @@ OpenPlaceOrderDetails _$OpenPlaceOrderDetailsFromJson(
     Map<String, dynamic> json) {
   return OpenPlaceOrderDetails(
     comment: json['comment'],
+    imageUrl: json['imageUrl'] as String?,
     productId: json['pro_id'] as String,
     productName: json['pro_name'] as String,
     productPrice: json['pro_price'] as String,
@@ -26,6 +27,7 @@ Map<String, dynamic> _$OpenPlaceOrderDetailsToJson(
         OpenPlaceOrderDetails instance) =>
     <String, dynamic>{
       'comment': instance.comment,
+      'imageUrl': instance.imageUrl,
       'pro_id': instance.productId,
       'pro_name': instance.productName,
       'pro_price': instance.productPrice,

@@ -6,6 +6,8 @@ part 'open_po_details.g.dart';
 class OpenPlaceOrderDetails {
   @JsonKey(name: "comment")
   dynamic comment;
+  @JsonKey(name: "imageUrl")
+  String? imageUrl;
   @JsonKey(name: "pro_id")
   String productId;
   @JsonKey(name: "pro_name")
@@ -27,6 +29,7 @@ class OpenPlaceOrderDetails {
 
   OpenPlaceOrderDetails(
       {this.comment = "",
+      this.imageUrl = "",
       this.productId = "",
       this.productName = "",
       this.productPrice = "",
@@ -44,6 +47,7 @@ class OpenPlaceOrderDetails {
 
   Map<String, dynamic> toMap() => {
         'comment': comment,
+        'imageUrl': imageUrl,
         'productId': productId,
         'productName': productName,
         'productPrice': productPrice,
