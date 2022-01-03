@@ -108,7 +108,7 @@ class EasyShipItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AppText(
-              text: "${"total_pv".tr}: ${element.pv.toString()} PV",
+              text: "${"total_pv".tr}: ${element.pv.toString()} ${"pv".tr}",
               style: TextTypes.caption,
               color: AppColor.darkLiver,
             ),

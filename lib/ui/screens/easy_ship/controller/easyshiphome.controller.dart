@@ -1,6 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:collection/collection.dart';
+import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/utilities/constants.dart';
+import 'package:dsc_tools/utilities/logger.dart';
+import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,7 +37,29 @@ class EasyShipHomeController extends GetxController {
       SnackbarUtil.showWarning(message: "please_enter_user_id".tr);
       return;
     }
-    Get.to(() => EasyShipOrdersList(), arguments: baNumberTextField.text);
+    onSearchEasyShip(userId: baNumberTextField.text);
+  }
+
+  Future<void> onSearchEasyShip({required String userId}) async {
+    isLoading.toggle();
+    try {
+      allEasyShipOrders.value = await MemberCallsService.init()
+          .getEasyShipReports(kEasyShipReports, userId,
+              UserSessionManager.shared.customerToken.token);
+      orderedEasyShipOrders.value =
+          groupBy(allEasyShipOrders, (EasyShipReports obj) => obj.pvDate);
+      isLoading.toggle();
+      if (allEasyShipOrders.isEmpty) {
+        SnackbarUtil.showWarning(
+            message: "Easyship reports are empty!"); //! Hardcoded
+      } else {
+        final Map<String, dynamic> args = {"orders": orderedEasyShipOrders, "userId": userId};
+        Get.to(() => EasyShipOrdersList(), arguments: args);
+      }
+    } catch (err, s) {
+      LoggerService.instance.e(s.toString());
+      isLoading.toggle();
+    }
   }
 
   Future onTapExportExcellSheet() async {

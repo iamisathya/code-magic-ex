@@ -1,22 +1,17 @@
 import 'dart:typed_data';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:screenshot/screenshot.dart';
 
-import '../../../../api/config/api_service.dart';
 import '../../../../constants/colors.dart';
 import '../../../../models/easy_ship_reports.dart';
-import '../../../../utilities/constants.dart';
-import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
-import '../../../../utilities/user_session.dart';
 import '../components/image.preview.dart';
 
 class EasyShipListController extends GetxController {
-  String userId = "";
+  RxString userId = "".obs;
   RxBool isLoading = false.obs;
   Uint8List capturedImage = Uint8List(1000000);
   RxList<EasyShipReports> allEasyShipOrders = <EasyShipReports>[].obs;
@@ -28,28 +23,33 @@ class EasyShipListController extends GetxController {
   void onInit() {
     final dynamic data = Get.arguments;
     if (data != null) {
-      userId = data as String;
-      onSearchEasyShipReport();
+      final Map<String, dynamic> args = data as Map<String, dynamic>;
+      orderedEasyShipOrders.value = args["orders"] as RxMap<String, List<EasyShipReports>>;
+      userId.value = args["userId"] as String;
+      // onSearchEasyShipReport();
     } else {
       Get.back();
     }
     super.onInit();
   }
 
-  Future<void> onSearchEasyShipReport() async {
-    isLoading.toggle();
-    try {
-      allEasyShipOrders.value = await MemberCallsService.init()
-          .getEasyShipReports(kEasyShipReports, userId,
-              UserSessionManager.shared.customerToken.token);
-      orderedEasyShipOrders.value =
-          groupBy(allEasyShipOrders, (EasyShipReports obj) => obj.pvDate);
-      isLoading.toggle();
-    } catch (err, s) {
-      LoggerService.instance.e(s.toString());
-      isLoading.toggle();
-    }
-  }
+  // Future<void> onSearchEasyShipReport() async {
+  //   isLoading.toggle();
+  //   try {
+  //     allEasyShipOrders.value = await MemberCallsService.init()
+  //         .getEasyShipReports(kEasyShipReports, userId,
+  //             UserSessionManager.shared.customerToken.token);
+  //     if (allEasyShipOrders.isEmpty) {
+  //       SnackbarUtil.showWarning(message: "Easyship reports are empty!"); //! Hardcoded
+  //     }
+  //     orderedEasyShipOrders.value =
+  //         groupBy(allEasyShipOrders, (EasyShipReports obj) => obj.pvDate);
+  //     isLoading.toggle();
+  //   } catch (err, s) {
+  //     LoggerService.instance.e(s.toString());
+  //     isLoading.toggle();
+  //   }
+  // }
 
   void onCaptureScreenShot(BuildContext context) {
     if (orderedEasyShipOrders.isEmpty) {

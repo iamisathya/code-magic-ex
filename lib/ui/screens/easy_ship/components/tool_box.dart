@@ -26,7 +26,7 @@ class PageToolBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           AppText(
-              text: "${"ba_number".tr}: ${controller.userId}",
+              text: "${"ba_number".tr}: ${controller.userId.value}",
               style: TextTypes.subtitle1),
           GestureDetector(
             onTap: () => controller.onCaptureScreenShot(context),
