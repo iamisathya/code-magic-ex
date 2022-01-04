@@ -96,6 +96,7 @@ const kSuccessIcon = 'assets/icons/success_icon.svg';
 const kCrossArrowIcon = 'assets/icons/cross_arrow_icon.svg';
 const kBarcodeScanIcon = 'assets/icons/barcode_scan_icon.svg';
 const kCheckSuccessIcon = 'assets/icons/check_success_icon.svg';
+const kCheckErrorIcon = 'assets/icons/check_error_icon.svg';
 const kCheckSuccessIconPng = 'assets/icons/check_icon.png';
 const kBarcodeCheckSuccessIcon = 'assets/icons/barcode_check_success_icon.svg';
 const kTrashIcon = 'assets/icons/trash_icon.svg';
