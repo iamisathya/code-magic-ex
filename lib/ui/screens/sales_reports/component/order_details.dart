@@ -16,19 +16,19 @@ class SalesReportOrderDetials extends StatelessWidget {
       Get.put(SalesReportDetailsController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Obx(() => Text(
-              "${"order_number".tr}: ${controller.orderNumber.value}",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(color: AppColor.kBlackColor)))),
-      body: Obx(
-        () => LoadingOverlay(
-          isLoading: controller.isLoading.value,
-          progressIndicator: const Loader(),
-          child: SingleChildScrollView(
+    return Obx(
+      () => LoadingOverlay(
+        isLoading: controller.isLoading.value,
+        progressIndicator: const Loader(),
+        child: Scaffold(
+          appBar: AppBar(
+              title: Obx(() => Text(
+                  "${"order_number".tr}: ${controller.orderNumber.value}",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .copyWith(color: AppColor.kBlackColor)))),
+          body: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
@@ -128,35 +128,35 @@ class SalesReportOrderDetials extends StatelessWidget {
               ],
             ),
           ),
+          bottomNavigationBar: Obx(
+            () => controller.isLoading.value
+                ? const SizedBox()
+                : Container(
+                    height: 90,
+                    color: AppColor.brightGray,
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: <Widget>[
+                        Flexible(
+                          child: PlainButton(
+                            buttonColor: AppColor.sunglow,
+                            title: 'cancel'.tr,
+                            titleColor: AppColor.kBlackColor,
+                            onTap: () => null,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Flexible(
+                          child: PlainButton(
+                            title: 'save'.tr,
+                            onTap: () => null,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+          ),
         ),
-      ),
-      bottomNavigationBar: Obx(
-        () => controller.isLoading.value
-            ? const SizedBox()
-            : Container(
-                height: 90,
-                color: AppColor.brightGray,
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  children: <Widget>[
-                    Flexible(
-                      child: PlainButton(
-                        buttonColor: AppColor.sunglow,
-                        title: 'cancel'.tr,
-                        titleColor: AppColor.kBlackColor,
-                        onTap: () => null,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Flexible(
-                      child: PlainButton(
-                        title: 'save'.tr,
-                        onTap: () => null,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
       ),
     );
   }
