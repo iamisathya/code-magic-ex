@@ -62,6 +62,18 @@ class EasyShipHomeController extends GetxController {
     }
   }
 
+  List<DateTime> getDaysInBetween(DateTime startDate, DateTime endDate) {
+    final List<DateTime> list = [];
+    DateTime startDate1 = startDate;
+    //something on these lines 
+    while(startDate1.isBefore(endDate)) {
+      // pull out month and year
+      list.add(startDate1.add(const Duration(days: 30)));
+      startDate1 = startDate1.add(const Duration(days: 30));
+    }
+    return list;
+  }
+
   Future onTapExportExcellSheet() async {
     if (allEasyShipOrders.isEmpty) {
       renderGetSnackbar(
