@@ -50,16 +50,11 @@ class EasyShipOrdersList extends StatelessWidget {
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount:
-                                  controller.orderedEasyShipOrders.length,
+                                  controller.allFormattedEasyShipOrders.length,
                               itemBuilder: (BuildContext ctxt, int index) {
-                                final key = controller
-                                    .orderedEasyShipOrders.keys
-                                    .toList()[index];
-                                return EasyShipItem(
-                                    item:
-                                        controller.orderedEasyShipOrders[key]!,
-                                    index: index,
-                                    date: key);
+                                final item = controller
+                                    .allFormattedEasyShipOrders[index];
+                                return EasyShipItem(item: item, index: index);
                               },
                             ),
                           ),

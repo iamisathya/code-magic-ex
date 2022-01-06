@@ -3,12 +3,14 @@ import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/models/easy_ship_report_with_total.dart';
 import 'package:dsc_tools/utilities/constants.dart';
 import 'package:dsc_tools/utilities/logger.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -30,6 +32,8 @@ class EasyShipHomeController extends GetxController {
   RxList<EasyShipReports> allEasyShipOrders = <EasyShipReports>[].obs;
   RxMap<String, List<EasyShipReports>> orderedEasyShipOrders =
       RxMap<String, List<EasyShipReports>>();
+  RxList<EasyShipReportsWithTotal> formattedEasyShipList =
+      <EasyShipReportsWithTotal>[].obs;
   ScreenshotController screenshotController = ScreenshotController();
 
   Future<void> onSearchEasyShipReport() async {
@@ -43,30 +47,47 @@ class EasyShipHomeController extends GetxController {
   Future<void> onSearchEasyShip({required String userId}) async {
     isLoading.toggle();
     try {
+      formattedEasyShipList.value = <EasyShipReportsWithTotal>[];
       allEasyShipOrders.value = await MemberCallsService.init()
           .getEasyShipReports(kEasyShipReports, userId,
               UserSessionManager.shared.customerToken.token);
-      orderedEasyShipOrders.value =
+      final Map<String, List<EasyShipReports>> listWithMonths =
           groupBy(allEasyShipOrders, (EasyShipReports obj) => obj.pvDate);
+      orderedEasyShipOrders.value = Map.from(listWithMonths);
+      for (final k in listWithMonths.keys) {
+        final ls = listWithMonths[k] ?? <EasyShipReports>[];
+        final totalPrice =
+            ls.map((e) => NumberFormat().parse(e.totalPrice)).toList().sum;
+        final totalPv = ls.map((e) => e.pv).toList().sum;
+        formattedEasyShipList.add(EasyShipReportsWithTotal(
+            month: k,
+            reports: ls,
+            totalPv: totalPv,
+            totalPrice: totalPrice.toDouble()));
+      }
+      formattedEasyShipList.refresh();
       isLoading.toggle();
       if (allEasyShipOrders.isEmpty) {
         SnackbarUtil.showWarning(
             message: "Easyship reports are empty!"); //! Hardcoded
       } else {
-        final Map<String, dynamic> args = {"orders": orderedEasyShipOrders, "userId": userId};
+        final Map<String, dynamic> args = {
+          "orders": formattedEasyShipList,
+          "userId": userId
+        };
         Get.to(() => EasyShipOrdersList(), arguments: args);
       }
     } catch (err, s) {
-      LoggerService.instance.e(s.toString());
       isLoading.toggle();
+      LoggerService.instance.e(s.toString());
     }
   }
 
   List<DateTime> getDaysInBetween(DateTime startDate, DateTime endDate) {
     final List<DateTime> list = [];
     DateTime startDate1 = startDate;
-    //something on these lines 
-    while(startDate1.isBefore(endDate)) {
+    //something on these lines
+    while (startDate1.isBefore(endDate)) {
       // pull out month and year
       list.add(startDate1.add(const Duration(days: 30)));
       startDate1 = startDate1.add(const Duration(days: 30));

@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:dsc_tools/models/easy_ship_report_with_total.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -15,6 +16,7 @@ class EasyShipListController extends GetxController {
   RxBool isLoading = false.obs;
   Uint8List capturedImage = Uint8List(1000000);
   RxList<EasyShipReports> allEasyShipOrders = <EasyShipReports>[].obs;
+  RxList<EasyShipReportsWithTotal> allFormattedEasyShipOrders = <EasyShipReportsWithTotal>[].obs;
   RxMap<String, List<EasyShipReports>> orderedEasyShipOrders =
       RxMap<String, List<EasyShipReports>>();
   ScreenshotController screenshotController = ScreenshotController();
@@ -24,7 +26,8 @@ class EasyShipListController extends GetxController {
     final dynamic data = Get.arguments;
     if (data != null) {
       final Map<String, dynamic> args = data as Map<String, dynamic>;
-      orderedEasyShipOrders.value = args["orders"] as RxMap<String, List<EasyShipReports>>;
+      // orderedEasyShipOrders.value = args["orders"] as RxMap<String, List<EasyShipReports>>;
+      allFormattedEasyShipOrders.value = args["orders"] as RxList<EasyShipReportsWithTotal>;
       userId.value = args["userId"] as String;
       // onSearchEasyShipReport();
     } else {
@@ -32,24 +35,6 @@ class EasyShipListController extends GetxController {
     }
     super.onInit();
   }
-
-  // Future<void> onSearchEasyShipReport() async {
-  //   isLoading.toggle();
-  //   try {
-  //     allEasyShipOrders.value = await MemberCallsService.init()
-  //         .getEasyShipReports(kEasyShipReports, userId,
-  //             UserSessionManager.shared.customerToken.token);
-  //     if (allEasyShipOrders.isEmpty) {
-  //       SnackbarUtil.showWarning(message: "Easyship reports are empty!"); //! Hardcoded
-  //     }
-  //     orderedEasyShipOrders.value =
-  //         groupBy(allEasyShipOrders, (EasyShipReports obj) => obj.pvDate);
-  //     isLoading.toggle();
-  //   } catch (err, s) {
-  //     LoggerService.instance.e(s.toString());
-  //     isLoading.toggle();
-  //   }
-  // }
 
   void onCaptureScreenShot(BuildContext context) {
     if (orderedEasyShipOrders.isEmpty) {

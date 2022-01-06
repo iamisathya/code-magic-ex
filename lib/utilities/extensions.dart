@@ -50,6 +50,8 @@ extension NumberParsing on String {
     }
     return true;
   }
+
+  String get precisionCheck => split(".")[1] == "00" ? split(".")[0] : this;
 }
 
 extension FormatNumber on String {

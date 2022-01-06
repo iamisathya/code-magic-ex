@@ -1,4 +1,5 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
+import 'package:dsc_tools/models/easy_ship_report_with_total.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,11 +13,11 @@ import '../../../global/theme/text_view.dart';
 
 class EasyShipItem extends StatelessWidget {
   final int index;
-  final String date;
-  final List<EasyShipReports> item;
+  // final String date;
+  // final List<EasyShipReports> item;
+  final EasyShipReportsWithTotal item;
 
-  const EasyShipItem(
-      {required this.index, required this.item, required this.date});
+  const EasyShipItem({required this.index, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +44,13 @@ class EasyShipItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: AppText(
-                      text: date.asMMM,
+                      text: item.month!.asMMM,
                       style: TextTypes.headline4,
                       color: AppColor.sunglow,
                     ),
                   ),
                   AppText(
-                    text: date.asYYYY,
+                    text: item.month!.asYYYY,
                     style: TextTypes.caption,
                     color: AppColor.darkLiver,
                   ),
@@ -62,20 +63,49 @@ class EasyShipItem extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: Column(
-                  children: item
-                      .mapIndexed((elem, idx) => _renderDescrption(elem, idx))
-                      .toList(),
+                  children: [
+                    Column(
+                      children: item.reports!
+                          .mapIndexed((elem, idx) => _renderDescrption(
+                              elem, idx, idx != item.reports!.length - 1))
+                          .toList(),
+                    ),
+                    Container(
+                      height: 33,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        color: AppColor.brightGraySecond,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AppText(
+                            text:
+                                "${"total_pv".tr}: ${item.totalPv} ${"pv".tr}",
+                            style: TextTypes.caption,
+                            color: AppColor.darkLiver,
+                          ),
+                          AppText(
+                            text:
+                                "${"total_price".tr}: ${item.totalPrice?.precisionCheck} ${Globals.currency}",
+                            style: TextTypes.caption,
+                            color: AppColor.darkLiver,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            )
+            ),
           ]),
         ]),
       ),
     );
   }
 
-  Column _renderDescrption(EasyShipReports element, int idx) {
-    final bool isLast = idx != item.length - 1;
+  Column _renderDescrption(EasyShipReports element, int idx, bool isLast) {
     return Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,34 +121,10 @@ class EasyShipItem extends StatelessWidget {
         child: Align(
           alignment: Alignment.centerLeft,
           child: AppText(
-            text: "${"order_number".tr} ${element.pvDate.asMMM}",
+            text: "${"order_number".tr} ${element.orderNumber}",
             style: TextTypes.bodyText2,
             color: AppColor.darkLiver,
           ),
-        ),
-      ),
-      Container(
-        height: 33,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(3),
-          color: AppColor.brightGraySecond,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            AppText(
-              text: "${"total_pv".tr}: ${element.pv.toString()} ${"pv".tr}",
-              style: TextTypes.caption,
-              color: AppColor.darkLiver,
-            ),
-            AppText(
-              text:
-                  "${"total_price".tr}: ${element.totalPrice} ${Globals.currency}",
-              style: TextTypes.caption,
-              color: AppColor.darkLiver,
-            ),
-          ],
         ),
       ),
       if (isLast)
