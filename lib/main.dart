@@ -10,14 +10,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'controllers/global_controllers.dart';
-import 'controllers/theme_controller.dart';
 import 'navigation/routers.dart';
 import 'navigation/routes.dart';
 import 'services/firebase/messaging.dart';
 import 'translations/translations.dart';
 import 'ui/global/theme/app_themes.dart';
 import 'ui/screens/splash/splash.screen.dart';
-import 'utilities/bindings.dart';
 import 'utilities/connectivity.dart';
 import 'utilities/key_value_storage.dart';
 import 'utilities/user_session.dart';
@@ -94,6 +92,7 @@ class MyApp extends StatelessWidget {
               getPages: AppRoutes.routes,
               theme: AppThemes.lightTheme,
               darkTheme: AppThemes.darkTheme,
+              // initialBinding: InventoryBinding(),
               locale: languageController.getLocale,
               fallbackLocale: languageController.fallbackLocale,
               translations: AppTranslations(),

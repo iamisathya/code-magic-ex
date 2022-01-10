@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/inventory/inventory.screen.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -32,6 +33,7 @@ class AppRoutes {
     GetPage(
         name: EnrollConfirmation.routeName, page: () => EnrollConfirmation()),
     GetPage(name: EnrollComplete.routeName, page: () => EnrollComplete()),
+    GetPage(name: InventoryHomeScreen.routeName, page: () => InventoryHomeScreen()),
     // Easy ship
     GetPage(
         name: EasyShipHomeScreen.routeName, page: () => EasyShipHomeScreen()),

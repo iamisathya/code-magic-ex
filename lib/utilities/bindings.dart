@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/inventory/controller/inventory.home.controller.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/open_po/order_create/controller/add.openpo.controller.dart';
@@ -24,5 +25,13 @@ class OpenPoOrderListBindings extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => OpenPoListController(), fenix: true);
+  }
+}
+
+class InventoryBinding implements Bindings {
+  @override
+  void dependencies() {
+    // Get.lazyPut<InventoryHomeController>(() => InventoryHomeController());
+    Get.put<InventoryHomeController>(InventoryHomeController());
   }
 }
