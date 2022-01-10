@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -6,25 +7,18 @@ import 'package:intl/intl.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
-import '../../../../models/inventory_records.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/images.dart';
-import '../../../../utilities/parsing.dart';
 import '../../../global/theme/text_view.dart';
 import '../controller/inventory.home.controller.dart';
 
-class InventoryItem extends StatelessWidget {
+class InventoryItemClass extends StatelessWidget {
   final InventoryHomeController controller = Get.put(InventoryHomeController());
-  final InventoryRecordItems item;
-  InventoryItem({required this.item});
+  final InventoryItem item;
+  InventoryItemClass({required this.item});
 
   @override
   Widget build(BuildContext context) {
-    final double totalPrice =
-        Parsing.intFrom(item.quantityOnHand)! * item.terms.priceEach;
-    final String totalPriceString = NumberFormat().format(totalPrice.toInt());
-    final int totalPv =
-        Parsing.intFrom(item.quantityOnHand)! * item.terms.pvEach;
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       width: double.infinity,
@@ -41,7 +35,7 @@ class InventoryItem extends StatelessWidget {
             child: AppText(
                 maxLines: 1,
                 align: TextAlign.center,
-                text: item.catalogSlideContent.content.description,
+                text: item.catalogSlide!.content!.description!,
                 style: TextTypes.headline6),
           ),
           Container(
@@ -53,14 +47,17 @@ class InventoryItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  height: 165,
-                  padding: const EdgeInsets.all(20.0),
-                  child:  (item.imageUrl != null && item.imageUrl!.isNotEmpty)
-                      ? CachedNetworkImage(imageUrl: item.imageUrl!, width: 165)
-                      : SvgPicture.asset(kProductPlaceholderImage,
-                          height: 165, semanticsLabel: 'no records found'),
-                      
-                ),
+                    height: 165,
+                    padding: const EdgeInsets.all(20.0),
+                    child: CachedNetworkImage(
+                        imageUrl: item.itemInfo != null
+                            ? item.itemInfo!.imageUrl
+                            : "",
+                        width: 165,
+                        errorWidget: (context, url, error) => SvgPicture.asset(
+                            kProductPlaceholderImage,
+                            height: 165,
+                            semanticsLabel: 'Inventory image not found!'))),
                 Container(
                   height: 105,
                   width: 100,
@@ -79,7 +76,7 @@ class InventoryItem extends StatelessWidget {
                             color: AppColor.metallicSilver),
                       ),
                       AppText(
-                          text: item.quantityOnHand,
+                          text: item.quantityOnHand!,
                           style: TextTypes.headline4,
                           color: AppColor.vividMalachite),
                     ],
@@ -99,10 +96,10 @@ class InventoryItem extends StatelessWidget {
                     children: [
                       AppText(
                           text:
-                              "${item.terms.pvEach} ${"pv".tr} | ${NumberFormat().format(item.terms.priceEach.toInt())} ${Globals.currency}",
+                              "${item.terms!.pvEach} ${"pv".tr} | ${NumberFormat().format(item.terms!.priceEach!.toInt())} ${Globals.currency}",
                           style: TextTypes.subtitle2),
                       AppText(
-                          text: "${"item_code".tr}: ${item.item.id.unicity}",
+                          text: "${"item_code".tr}: ${item.item!.id!.unicity}",
                           style: TextTypes.subtitle2),
                     ],
                   ),
@@ -122,7 +119,7 @@ class InventoryItem extends StatelessWidget {
                         style: TextTypes.bodyText2,
                         color: AppColor.darkLiver),
                     AppText(
-                        text: "$totalPriceString  ${Globals.currency}",
+                        text: "${item.totalPrice}  ${Globals.currency}",
                         style: TextTypes.bodyText2,
                         color: AppColor.darkLiver),
                   ],
@@ -135,7 +132,7 @@ class InventoryItem extends StatelessWidget {
                         style: TextTypes.bodyText2,
                         color: AppColor.darkLiver),
                     AppText(
-                        text: "$totalPv ${"pv".tr}",
+                        text: "${item.totalPv} ${"pv".tr}",
                         style: TextTypes.bodyText2,
                         color: AppColor.darkLiver),
                   ],

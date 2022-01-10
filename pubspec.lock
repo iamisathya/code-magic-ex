@@ -322,7 +322,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   excel:
     dependency: "direct main"
     description:
@@ -690,6 +690,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
+  inventory_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/inventory_repository"
+      relative: true
+    source: path
+    version: "0.0.0"
   io:
     dependency: transitive
     description:

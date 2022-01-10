@@ -1,4 +1,4 @@
-import 'package:dsc_tools/models/inventory_records.dart';
+import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,8 +40,9 @@ class InventorySearchResult extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: controller.itemsFound.length,
                         itemBuilder: (BuildContext ctxt, int index) {
-                          final InventoryRecordItems item = controller.itemsFound[index];
-                          return InventoryItem(item: item);
+                          final InventoryItem item = controller.itemsFound[index];
+                          return InventoryItemClass(item: item);
+                          // return Center();
                         },
                       ),
                     ),

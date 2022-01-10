@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:dsc_tools/models/inventory_record_matched.dart';
 import 'package:dsc_tools/models/product_v2.dart';
 import 'package:flutter/material.dart';
@@ -495,6 +496,21 @@ abstract class MemberCalls2Service {
     return MemberCalls2Service(dio);
   }
 
+  factory MemberCalls2Service.auth() {
+    final Dio dio = Dio();
+    dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    dio.options.headers['authorization'] =
+        "Bearer ${UserSessionManager.shared.customerToken.token}";
+    return MemberCalls2Service(dio);
+  }
+
+    factory MemberCalls2Service.authNoLogger() {
+    final Dio dio = Dio();
+    dio.options.headers['authorization'] =
+        "Bearer ${UserSessionManager.shared.customerToken.token}";
+    return MemberCalls2Service(dio);
+  }
+
   //? Example: https://member-calls.unicity.com/ALL/DSC/getdata.php?type=barcode&datepicker1=2021-06-01&datepicker2=2021-06-18&token=85905f08-b320-4e20-a6d1-2d96ebec6481&lang=en&id=2970466&action=1
   @GET(Address.validOrders)
   Future<List<String>> getValidOrders(
@@ -533,6 +549,11 @@ abstract class MemberCalls2Service {
   @GET("${Address.hydraProducts}/{countryId}")
   Future<HydraProducts> getHydraProducts(
       @Path('countryId') String countryId, @Query("status") String status, @Query("allow") String allow);
+
+  //? url=https://member-calls2.unicity.com/products-v2/adapter/50b0517be73b8280e59d6f9d1c6a8f09418cd2304f9d29b9902ecfa5e0212899/inventoryRecords?expand=item&countryCode=THA
+  @GET("${Address.hydraProductsV2}/{warehouseId}/inventoryRecords")
+  Future<InventoryItemV2> loadInventoryProductsV2(
+      @Path('warehouseId') String warehouseId, @Query("expand") String expand, @Query("countryCode") String countryCode);
 }
 
 @RestApi(baseUrl: Address.dscBase)

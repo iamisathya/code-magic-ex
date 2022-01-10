@@ -6,6 +6,7 @@ import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/api/api_address.dart';
 import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
@@ -69,6 +70,16 @@ String calculateTotalPrice(InventoryRecords inventoryRecords, String type) {
   for (final item in inventoryRecords.items) {
     total += Parsing.intFrom(item.quantityOnHand)! *
         (type == "pv" ? item.terms.pvEach : item.terms.priceEach);
+  }
+  return total.toInt().toString();
+}
+
+  String calculateTotalPriceFromInventoryItemV2(InventoryItemV2 inventoryRecords, String type) {
+  double total = 0.0;
+  // looping over data array
+  for (final item in inventoryRecords.items!) {
+    total += Parsing.intFrom(item.quantityOnHand)! *
+        (type == "pv" ? item.terms!.pvEach! : item.terms!.priceEach!);
   }
   return total.toInt().toString();
 }

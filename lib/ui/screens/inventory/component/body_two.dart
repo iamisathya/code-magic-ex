@@ -1,3 +1,4 @@
+import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +28,7 @@ class Body2 extends StatelessWidget {
           UserAddress(),
           Obx(() => Column(
                 children: [
-                  if (controller.tempInventoryRecords.value.items.isNotEmpty)
+                  if (controller.tempinventoryRecordsV2.value.items!.isNotEmpty)
                   GrandTotal(
                       totalPrice: controller.grandTotalPrice.value,
                       totalPv: controller.grandTotalPv.value),
@@ -37,7 +38,7 @@ class Body2 extends StatelessWidget {
                         Container(
                             color: AppColor.kWhiteColor,
                             child: controller
-                                    .tempInventoryRecords.value.items.isEmpty
+                                    .tempinventoryRecordsV2.value.items!.isEmpty
                                 ? Container(
                                     height: displaySize,
                                     alignment: Alignment.center,
@@ -47,14 +48,14 @@ class Body2 extends StatelessWidget {
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
-                                    itemCount: controller.tempInventoryRecords
-                                        .value.items.length,
+                                    itemCount: controller.tempinventoryRecordsV2
+                                        .value.items!.length,
                                     itemBuilder:
                                         (BuildContext ctxt, int index) {
-                                      final InventoryRecordItems item =
-                                          controller.tempInventoryRecords.value
-                                              .items[index];
-                                      return InventoryItem(item: item);
+                                      final InventoryItem item =
+                                          controller.tempinventoryRecordsV2.value
+                                              .items![index];
+                                      return InventoryItemClass(item: item);
                                     }))),
                       ],
                     )

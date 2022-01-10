@@ -1,9 +1,9 @@
+import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../../models/inventory_records.dart';
 import '../../../../utilities/images.dart';
 import '../../../../utilities/snackbar.dart';
 import '../../open_po/order_search/components/search_bar_field.dart';
@@ -55,11 +55,11 @@ class InventorySearchController extends GetxController {
     searchingProduct.toggle();
     Future.delayed(const Duration(milliseconds: 1200), () {
       searchingProduct.toggle();
-      final List<InventoryRecordItems> inventoryItem = controller
-          .inventoryRecords.value.items
+      final List<InventoryItem> inventoryItem = controller
+          .tempinventoryRecordsV2.value.items!
           .where((order) =>
-              order.item.id.unicity.toLowerCase().contains(searchKey.toLowerCase()) ||
-              order.catalogSlideContent.content.description.toLowerCase().contains(searchKey.toLowerCase()))
+              order.item!.id!.unicity!.toLowerCase().contains(searchKey.toLowerCase()) ||
+              order.catalogSlide!.content!.description!.toLowerCase().contains(searchKey.toLowerCase()))
           .toList();
       if (inventoryItem.isNotEmpty) {
         selectedSearchIndex.value = null;

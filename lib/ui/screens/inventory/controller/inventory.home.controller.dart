@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/common_methods.dart';
+import 'package:dsc_tools/models/inventory_item_v2.dart' as InventoryItem2;
 import 'package:dsc_tools/models/inventory_record_matched.dart';
 import 'package:dsc_tools/models/product_v2.dart';
 import 'package:dsc_tools/services/rest_api/exceptions.dart';
@@ -15,11 +15,8 @@ import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pdf/pdf.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:printing/printing.dart';
 
-import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
 import '../../../../models/general_models.dart';
 import '../../../../models/inventory_records.dart';
@@ -56,8 +53,12 @@ class InventoryHomeController extends GetxController {
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   late HydraProducts hydraProducts;
   Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
+  Rx<InventoryItem2.InventoryItemV2> tempinventoryRecordsV2 =
+      InventoryItem2.InventoryItemV2(items: []).obs;
   RxList<InventoryRecordsMatchedItem> inventoryRecordsOutOfStock =
       <InventoryRecordsMatchedItem>[].obs;
+  Rx<InventoryItem2.InventoryItemV2> inventoryRecordsV2 =
+      InventoryItem2.InventoryItemV2(items: []).obs;
   Rx<InventoryRecords> searchedProducts = InventoryRecords(items: []).obs;
   ManagedWarehouses warehouses = ManagedWarehouses(items: []);
   InventorySortTypes currentType = InventorySortTypes.itemCode;
@@ -65,8 +66,83 @@ class InventoryHomeController extends GetxController {
 
   @override
   void onInit() {
-    loadInventory();
+    // loadInventory();
+    loadAllInventory();
     super.onInit();
+  }
+
+  Future<void> loadAllInventory() async {
+    try {
+      isLoading.toggle();
+      await Future.wait<void>([
+        loadInventory2(),
+        loadOutOfStockInventoryProducts2(), // Get hydra products to get image urls
+      ]).then((_) => onCompleteFetching());
+    } on AppException catch (exception, stack) {
+      isLoading.toggle();
+      exception.logError(exception, stack);
+    }
+  }
+
+  void onCompleteFetching() {
+    isLoading.toggle();
+    calculateTotal2();
+    onChangeStockType2("onHand");
+    tempinventoryRecordsV2.value.items =
+        List.from(inventoryRecordsV2.value.items!);
+    tempinventoryRecordsV2.refresh();
+  }
+
+  Future<void> loadInventory2() async {
+    try {
+      final InventoryItem2.InventoryItemV2 records = await MemberCalls2Service.authNoLogger()
+          .loadInventoryProductsV2(
+              "50b0517be73b8280e59d6f9d1c6a8f09418cd2304f9d29b9902ecfa5e0212899",
+              "item",
+              "THA");
+      inventoryRecordsV2.value.items!.addAll(List.from(records.items!));
+      if (records.items!.isEmpty) {
+        SnackbarUtil.showError(message: "no_warehouses_found".tr);
+      }
+    } on DioError catch (e, stack) {
+      const AppException().logError(e, stack);
+    } on AppException catch (exception, stack) {
+      exception.logError(exception, stack);
+    }
+  }
+
+  Future<void> loadOutOfStockInventoryProducts2() async {
+    try {
+      final List<InventoryRecordsMatchedItem> inventoryRecordsOutOfStock1 =
+          await MemberCallsService.clientNoLogger()
+              .getOutOfStockInventoryRecords(
+                  "1_11", UserSessionManager.shared.customerToken.token);
+      final InventoryItem2.InventoryItemV2 records =
+          InventoryItem2.InventoryItemV2(items: []);
+      for (final InventoryRecordsMatchedItem item
+          in inventoryRecordsOutOfStock1) {
+        final InventoryItem2.InventoryItem outOfStockItem =
+            InventoryItem2.InventoryItem(
+                catalogSlide: InventoryItem2.CatalogSlide(
+                    content:
+                        InventoryItem2.Content(description: item.itemNameEn)),
+                item: InventoryItem2.Item(
+                    href: item.itemCode,
+                    id: InventoryItem2.Id(unicity: item.itemId)),
+                quantityOnHand: "0",
+                terms: InventoryItem2.Terms(
+                    priceEach: double.parse(item.itemPrice).toInt(),
+                    pvEach: int.parse(item.itemPv)));
+        records.items!.add(outOfStockItem);
+      }
+      inventoryRecordsV2.value.items!.addAll(records.items!.toList());
+    } on DioError catch (e) {
+      final String message = getErrorMessage(e.response!.data);
+      SnackbarUtil.showError(message: message);
+      returnResponse(e.response!);
+    } on AppException catch (err, s) {
+      err.logError(err, s);
+    }
   }
 
   Future<void> loadInventory() async {
@@ -207,6 +283,17 @@ class InventoryHomeController extends GetxController {
     }
   }
 
+  void calculateTotal2() {
+    try {
+      grandTotalPrice.value = calculateTotalPriceFromInventoryItemV2(
+          tempinventoryRecordsV2.value, 'price');
+      grandTotalPv.value = calculateTotalPriceFromInventoryItemV2(
+          tempinventoryRecordsV2.value, 'pv');
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   void calculateTotal() {
     final String totalPrice =
         calculateTotalPrice(tempInventoryRecords.value, 'price');
@@ -214,6 +301,21 @@ class InventoryHomeController extends GetxController {
         calculateTotalPrice(tempInventoryRecords.value, 'pv');
     grandTotalPrice.value = totalPrice;
     grandTotalPv.value = totalPv;
+  }
+
+  void onChangeStockType2(String value) {
+    activeStockType.value =
+        stockOptions.firstWhere((element) => element.value == value);
+    if (value == "outOfStock") {
+      tempinventoryRecordsV2.value.items = inventoryRecordsV2.value.items!
+          .where((item) => item.quantityOnHand == "0")
+          .toList();
+    } else {
+      tempinventoryRecordsV2.value.items = inventoryRecordsV2.value.items!
+          .where((item) => item.quantityOnHand != "0")
+          .toList();
+    }
+    tempinventoryRecordsV2.refresh();
   }
 
   void onChangeStockType(String value) {
@@ -224,8 +326,9 @@ class InventoryHomeController extends GetxController {
           .where((item) => item.quantityOnHand == "0")
           .toList();
     } else {
-      tempInventoryRecords.value.items =
-          List.from(inventoryRecords.value.items);
+      tempInventoryRecords.value.items = inventoryRecords.value.items
+          .where((item) => item.quantityOnHand != "0")
+          .toList();
     }
     tempInventoryRecords.refresh();
   }
