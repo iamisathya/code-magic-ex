@@ -56,7 +56,7 @@ class InventorySearchController extends GetxController {
     Future.delayed(const Duration(milliseconds: 1200), () {
       searchingProduct.toggle();
       final List<InventoryItem> inventoryItem = controller
-          .tempinventoryRecordsV2.value.items!
+          .inventoryRecordsV2.value.items!
           .where((order) =>
               order.item!.id!.unicity!.toLowerCase().contains(searchKey.toLowerCase()) ||
               order.catalogSlide!.content!.description!.toLowerCase().contains(searchKey.toLowerCase()))

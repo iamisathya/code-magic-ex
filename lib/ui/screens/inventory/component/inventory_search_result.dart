@@ -21,11 +21,7 @@ class InventorySearchResult extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            PageTitle(title: "inventory".tr),
-            InventoryToolBar(
-                onTapExport: () => (){},
-                onTapPrint: () => (){},
-                hideSearch: true),
+            PageTitle(title: "Search results for: ${"inventory".tr}"),
             Column(
               children: [
                 Column(
@@ -40,9 +36,9 @@ class InventorySearchResult extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: controller.itemsFound.length,
                         itemBuilder: (BuildContext ctxt, int index) {
-                          final InventoryItem item = controller.itemsFound[index];
+                          final InventoryItem item =
+                              controller.itemsFound[index];
                           return InventoryItemClass(item: item);
-                          // return Center();
                         },
                       ),
                     ),
