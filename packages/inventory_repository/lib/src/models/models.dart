@@ -1,0 +1,1 @@
+export 'inventory_item_v2.dart';
