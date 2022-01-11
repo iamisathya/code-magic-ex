@@ -1,16 +1,15 @@
+import 'package:dsc_tools/constants/colors.dart';
+import 'package:dsc_tools/utilities/constants.dart';
+import 'package:dsc_tools/utilities/enums.dart';
+import 'package:dsc_tools/utilities/function.dart';
+import 'package:dsc_tools/utilities/images.dart';
+import 'package:dsc_tools/utilities/parsing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../constants/colors.dart';
-import '../../../../constants/globals.dart';
-import '../../../../utilities/constants.dart';
-import '../../../../utilities/enums.dart';
-import '../../../../utilities/function.dart';
-import '../../../../utilities/images.dart';
-import '../../../../utilities/parsing.dart';
 import '../controller/inventory.home.controller.dart';
 
 class TableView extends StatelessWidget {
@@ -25,17 +24,17 @@ class TableView extends StatelessWidget {
           headerWidgets: _getTitleWidget(context),
           leftSideItemBuilder: _generateFirstColumnRow,
           rightSideItemBuilder: _generateRightHandSideColumnRow,
-          itemCount: controller.tempInventoryRecords.value.items.length,
+          itemCount: controller.inventoryItems.length,
           rowSeparatorWidget: kDivider(c: AppColor.brightGraySecond),
         ));
   }
 
   List<Widget> _getTitleWidget(BuildContext context) {
     String totalPrice =
-        calculateTotalPrice(controller.tempInventoryRecords.value, 'price');
+        calculateInventoryTotal(controller.inventoryItems, 'price');
     totalPrice = NumberFormat().format(Parsing.intFrom(totalPrice));
     String totalPv =
-        calculateTotalPrice(controller.tempInventoryRecords.value, 'pv');
+        calculateInventoryTotal(controller.inventoryItems, 'pv');
     totalPv = NumberFormat().format(Parsing.intFrom(totalPv));
 
     return [
@@ -61,42 +60,11 @@ class TableView extends StatelessWidget {
     ];
   }
 
-  GestureDetector _renderTotalContainer(String label, String value,
-      BuildContext context, InventorySortTypes type) {
-    return GestureDetector(
-      onTap: () => controller.onSortCulumn(type),
-      child: Container(
-          color: controller.activeStockType.value.value == "onHand"
-              ? AppColor.cadetBlue
-              : AppColor.brownYellow,
-          height: 55,
-          width: 180,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _renderWhiteText(label, context, AppColor.kWhiteColor),
-                  if (controller.activeStockType.value.value == "onHand")
-                    _renderWhiteText(value, context, AppColor.maximumYellowRed),
-                ],
-              ),
-              SvgPicture.asset(kSortIcon,
-                  width: 8,
-                  height: 10,
-                  semanticsLabel: 'sort icon',
-                  color: AppColor.kWhiteColor)
-            ],
-          )),
-    );
-  }
-
   Widget _generateFirstColumnRow(BuildContext context, int index) {
-    final currentItem = controller.tempInventoryRecords.value.items[index];
+    final currentItem = controller.inventoryItems[index];
     final alternativeBgColor = index % 2 == 0
         ? AppColor.kWhiteColor
-        : (controller.activeStockType.value.value == "onHand")
+        : (controller.activeStockType == "onHand")
             ? AppColor.cultured
             : AppColor.isabelline;
     return Container(
@@ -109,7 +77,7 @@ class TableView extends StatelessWidget {
           border: const Border.symmetric(
               vertical:
                   BorderSide(width: 0.5, color: AppColor.brightGraySecond))),
-      child: Text(currentItem.item.id.unicity,
+      child: Text(currentItem.item!.id!.unicity!,
           style: Theme.of(context)
               .textTheme
               .bodyText2!
@@ -118,10 +86,10 @@ class TableView extends StatelessWidget {
   }
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
-    final currentItem = controller.tempInventoryRecords.value.items[index];
+    final currentItem = controller.inventoryItems[index];
     final alternativeBgColor = index % 2 == 0
         ? AppColor.kWhiteColor
-        : (controller.activeStockType.value.value == "onHand")
+        : (controller.activeStockType == "onHand")
             ? AppColor.cultured
             : AppColor.isabelline;
     return Row(
@@ -136,30 +104,30 @@ class TableView extends StatelessWidget {
                         width: 0.5, color: AppColor.brightGraySecond))),
             padding: const EdgeInsets.all(15),
             alignment: Alignment.centerLeft,
-            child: Text(currentItem.catalogSlideContent.content.description,
+            child: Text(currentItem.catalogSlide!.content!.description!,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText2!
                     .copyWith(color: AppColor.charcoal))),
-        _renderDataCell(96, currentItem.quantityOnHand, Alignment.center,
+        _renderDataCell(96, currentItem.quantityOnHand!, Alignment.center,
             context, alternativeBgColor),
-        _renderDataCell(100, NumberFormat().format(currentItem.terms.pvEach),
+        _renderDataCell(100, NumberFormat().format(currentItem.terms!.pvEach),
             Alignment.center, context, alternativeBgColor),
-        _renderDataCell(100, NumberFormat().format(currentItem.terms.priceEach),
+        _renderDataCell(100, NumberFormat().format(currentItem.terms!.priceEach),
             Alignment.center, context, alternativeBgColor),
         _renderDataCell(
             180,
             calculateTotalAmount(
-                quantity: currentItem.quantityOnHand,
-                price: currentItem.terms.priceEach),
+                quantity: currentItem.quantityOnHand!,
+                price: currentItem.terms!.priceEach!.toDouble()),
             Alignment.center,
             context,
             alternativeBgColor),
         _renderDataCell(
             180,
             calculateTotalAmount(
-                quantity: currentItem.quantityOnHand,
-                price: currentItem.terms.pvEach.toDouble()),
+                quantity: currentItem.quantityOnHand!,
+                price: currentItem.terms!.pvEach!.toDouble()),
             Alignment.center,
             context,
             alternativeBgColor),
@@ -172,7 +140,7 @@ class TableView extends StatelessWidget {
     return GestureDetector(
       onTap: () => controller.onSortCulumn(type),
       child: Container(
-        color: controller.activeStockType.value.value == "onHand"
+        color: controller.activeStockType == "onHand"
             ? AppColor.cadetBlue
             : AppColor.brownYellow,
         height: 56,
@@ -199,10 +167,6 @@ class TableView extends StatelessWidget {
       ),
     );
   }
-
-  Text _renderWhiteText(String title, BuildContext context, Color color) =>
-      Text(title,
-          style: Theme.of(context).textTheme.bodyText2!.copyWith(color: color));
 
   Container _renderDataCell(
     double width,

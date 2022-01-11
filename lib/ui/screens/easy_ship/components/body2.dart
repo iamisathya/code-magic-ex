@@ -1,10 +1,10 @@
+import 'package:dsc_tools/ui/global/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../utilities/images.dart';
 import '../../barcode/components/search_textfield.dart';
-import '../../inventory/component/page_title.dart';
 import '../controller/easyshiphome.controller.dart';
 
 class Body extends StatelessWidget {

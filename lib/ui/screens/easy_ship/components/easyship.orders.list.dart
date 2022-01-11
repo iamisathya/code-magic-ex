@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -5,7 +6,6 @@ import 'package:screenshot/screenshot.dart';
 
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/images.dart';
-import '../../inventory/component/page_title.dart';
 import '../../open_po/order_create/component/app_bar.dart';
 import '../../open_po/order_create/component/loader.dart';
 import '../controller/easyship.list.controller.dart';

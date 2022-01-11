@@ -1,18 +1,17 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/models/inventory_item_v2.dart';
+import 'package:dsc_tools/ui/global/widgets/page_title.dart';
+import 'package:dsc_tools/ui/screens/inventory/inventory_home/widgets/table_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../constants/colors.dart';
-import '../../../../models/inventory_records.dart';
 import '../controller/inventory.home.controller.dart';
 import 'grand_total_price.dart';
 import 'inventory_item.dart';
-import 'page_title.dart';
-import 'table_view.dart';
 import 'tool_bar.dart';
 import 'user_address.dart';
 
-class Body2 extends StatelessWidget {
+class Body extends StatelessWidget {
   final InventoryHomeController controller = Get.put(InventoryHomeController());
 
   @override
@@ -28,35 +27,36 @@ class Body2 extends StatelessWidget {
           UserAddress(),
           Obx(() => Column(
                 children: [
-                  if (controller.tempinventoryRecordsV2.value.items!.isNotEmpty)
-                  GrandTotal(
-                      totalPrice: controller.grandTotalPrice.value,
-                      totalPv: controller.grandTotalPv.value),
-                  if (controller.currentViewType.value.value == "card")
+                  if (controller.inventoryItems.isNotEmpty)
+                    GrandTotal(
+                        totalPrice: controller.grandTotalPrice.value,
+                        totalPv: controller.grandTotalPv.value),
+                  if (controller.activeViewType == "card")
                     Column(
                       children: [
                         Container(
-                            color: AppColor.kWhiteColor,
-                            child: controller
-                                    .tempinventoryRecordsV2.value.items!.isEmpty
-                                ? Container(
-                                    height: displaySize,
-                                    alignment: Alignment.center,
-                                    child: Text("no_items_found".tr),
-                                  )
-                                : Obx(() => ListView.builder(
+                          color: AppColor.kWhiteColor,
+                          child: controller.inventoryItems.isEmpty
+                              ? Container(
+                                  height: displaySize,
+                                  alignment: Alignment.center,
+                                  child: Text("no_items_found".tr),
+                                )
+                              : Obx(
+                                  () => ListView.builder(
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
-                                    itemCount: controller.tempinventoryRecordsV2
-                                        .value.items!.length,
+                                    itemCount: controller.inventoryItems.length,
                                     itemBuilder:
                                         (BuildContext ctxt, int index) {
                                       final InventoryItem item =
-                                          controller.tempinventoryRecordsV2.value
-                                              .items![index];
+                                          controller.inventoryItems[index];
                                       return InventoryItemClass(item: item);
-                                    }))),
+                                    },
+                                  ),
+                                ),
+                        ),
                       ],
                     )
                   else

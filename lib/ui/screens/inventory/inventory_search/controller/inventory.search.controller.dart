@@ -1,14 +1,13 @@
 import 'package:dsc_tools/models/inventory_item_v2.dart';
+import 'package:dsc_tools/ui/screens/inventory/inventory_home/controller/inventory.home.controller.dart';
+import 'package:dsc_tools/ui/screens/inventory/inventory_search_result/screens/inventory_search_result.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_search/components/search_bar_field.dart';
+import 'package:dsc_tools/utilities/images.dart';
+import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-import '../../../../utilities/images.dart';
-import '../../../../utilities/snackbar.dart';
-import '../../open_po/order_search/components/search_bar_field.dart';
-import '../component/inventory_search_result.dart';
-import 'inventory.home.controller.dart';
 
 class InventorySearchController extends GetxController {
   InventoryHomeController controller = Get.put(InventoryHomeController());
@@ -56,7 +55,7 @@ class InventorySearchController extends GetxController {
     Future.delayed(const Duration(milliseconds: 1200), () {
       searchingProduct.toggle();
       final List<InventoryItem> inventoryItem = controller
-          .inventoryRecordsV2.value.items!
+          .allInventoryItems
           .where((order) =>
               order.item!.id!.unicity!.toLowerCase().contains(searchKey.toLowerCase()) ||
               order.catalogSlide!.content!.description!.toLowerCase().contains(searchKey.toLowerCase()))

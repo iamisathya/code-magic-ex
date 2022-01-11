@@ -1,14 +1,13 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/models/inventory_item_v2.dart';
+import 'package:dsc_tools/ui/global/widgets/page_title.dart';
+import 'package:dsc_tools/ui/screens/inventory/inventory_home/widgets/grand_total_price.dart';
+import 'package:dsc_tools/ui/screens/inventory/inventory_home/widgets/inventory_item.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../constants/colors.dart';
-import '../../open_po/order_create/component/app_bar.dart';
 import '../controller/inventory.search.result.controller.dart';
-import 'grand_total_price.dart';
-import 'inventory_item.dart';
-import 'page_title.dart';
-import 'tool_bar.dart';
 
 class InventorySearchResult extends StatelessWidget {
   final InventorySearchResultController controller =

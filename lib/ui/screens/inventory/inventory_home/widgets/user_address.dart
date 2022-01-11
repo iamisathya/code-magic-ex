@@ -1,12 +1,12 @@
+import 'package:dsc_tools/constants/colors.dart';
+import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/utilities/images.dart';
 import 'package:easy_localization/easy_localization.dart'
     hide StringTranslateExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../../constants/colors.dart';
-import '../../../../constants/globals.dart';
-import '../../../../utilities/images.dart';
 import '../controller/inventory.home.controller.dart';
 
 class UserAddress extends StatelessWidget {
@@ -64,18 +64,16 @@ class UserAddress extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
-                      onTap: () => controller.onChangeViewType("card"),
+                      onTap: () => controller.activeViewType = "card",
                       child: Row(
                         children: [
                           Text("card_view".tr,
-                              style: controller.currentViewType.value.value ==
-                                      "card"
+                              style: controller.activeViewType == "card"
                                   ? Theme.of(context).textTheme.subtitle1
                                   : Theme.of(context).textTheme.bodyText2),
                           const SizedBox(width: 20),
                           SvgPicture.asset(kCardViewIcon,
-                              color: controller.currentViewType.value.value ==
-                                      "card"
+                              color: controller.activeViewType== "card"
                                   ? AppColor.kBlackColor
                                   : AppColor.cadet,
                               width: 20,
@@ -90,18 +88,16 @@ class UserAddress extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => controller.onChangeViewType("table"),
+                    onTap: () => controller.activeViewType = "table",
                     child: Row(
                       children: [
                         Text("table_view".tr,
-                            style: controller.currentViewType.value.value ==
-                                    "table"
+                            style: controller.activeViewType == "table"
                                 ? Theme.of(context).textTheme.subtitle1
                                 : Theme.of(context).textTheme.bodyText2),
                         const SizedBox(width: 20),
                         SvgPicture.asset(kTableViewIcon,
-                            color: controller.currentViewType.value.value ==
-                                    "table"
+                            color: controller.activeViewType == "table"
                                 ? AppColor.kBlackColor
                                 : AppColor.cadet,
                             width: 20,

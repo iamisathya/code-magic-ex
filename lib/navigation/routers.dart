@@ -1,4 +1,5 @@
-import 'package:dsc_tools/ui/screens/inventory/inventory.screen.dart';
+
+import 'package:dsc_tools/ui/screens/inventory/inventory.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';

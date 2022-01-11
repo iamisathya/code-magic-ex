@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -5,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../../../constants/colors.dart';
 import '../../../../../models/cart_products.dart';
 import '../../../../../utilities/extensions.dart';
-import '../../../inventory/component/page_title.dart';
 import '../../controllers/enroll.controller.dart';
 import 'components/enroll_cart_item.dart';
 import 'components/total_price.dart';

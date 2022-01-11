@@ -1,12 +1,12 @@
+import 'package:dsc_tools/ui/screens/inventory/inventory_home/controller/inventory.home.controller.dart';
+import 'package:dsc_tools/ui/screens/inventory/inventory_home/widgets/body.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
+import 'package:dsc_tools/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import '../../../utilities/constants.dart';
-import '../open_po/order_create/component/app_bar.dart';
-import '../open_po/order_create/component/loader.dart';
-import 'component/body_two.dart';
-import 'controller/inventory.home.controller.dart';
 
 class InventoryHomeScreen extends StatelessWidget {
   static const String routeName = '/inventoryHomePage';
@@ -20,6 +20,6 @@ class InventoryHomeScreen extends StatelessWidget {
         child: Scaffold(
             backgroundColor: kWhiteSmokeColor,
             appBar: OpenPoAppBar(),
-            body: Body2())));
+            body: Body())));
   }
 }

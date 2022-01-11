@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:dsc_tools/ui/global/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,6 @@ import '../../../../../../constants/colors.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/images.dart';
 import '../../../../../global/theme/text_view.dart';
-import '../../../../inventory/component/page_title.dart';
 import '../../enrollment_details/components/error_message.dart';
 import '../controller/enrollment.userinfo.controller.dart';
 import 'enroll_textfield.dart';

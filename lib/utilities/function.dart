@@ -84,6 +84,16 @@ String calculateTotalPrice(InventoryRecords inventoryRecords, String type) {
   return total.toInt().toString();
 }
 
+  String calculateInventoryTotal(List<InventoryItem> inventoryItems, String type) {
+  double total = 0.0;
+  // looping over data array
+  for (final item in inventoryItems) {
+    total += Parsing.intFrom(item.quantityOnHand)! *
+        (type == "pv" ? item.terms!.pvEach! : item.terms!.priceEach!);
+  }
+  return total.toInt().toString();
+}
+
 String generateRandomString(int length) {
   const _chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
   final Random _rnd = Random();
