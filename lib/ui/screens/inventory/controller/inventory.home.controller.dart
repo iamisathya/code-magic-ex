@@ -86,10 +86,10 @@ class InventoryHomeController extends GetxController {
 
   void onCompleteFetching() {
     isLoading.toggle();
-    calculateTotal2();
     onChangeStockType2("onHand");
     tempinventoryRecordsV2.value.items =
         List.from(inventoryRecordsV2.value.items!);
+    calculateTotal2();
     tempinventoryRecordsV2.refresh();
   }
 
@@ -316,6 +316,7 @@ class InventoryHomeController extends GetxController {
           .toList();
     }
     tempinventoryRecordsV2.refresh();
+    calculateTotal2();
   }
 
   void onChangeStockType(String value) {
