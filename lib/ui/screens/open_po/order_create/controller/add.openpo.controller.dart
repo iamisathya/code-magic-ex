@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart' show DioError;
+import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:dsc_tools/models/product_v2.dart';
 import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,6 +39,8 @@ class CreateOpenPoOrderController extends GetxController
   Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   final Rx<InventoryRecords> searchResult = InventoryRecords(items: []).obs;
   TextEditingController searchProductTextController = TextEditingController();
+  Rx<InventoryItemV2> inventoryRecordsV2 = InventoryItemV2(items: []).obs;
+  final Rx<InventoryItemV2> searchResult1 = InventoryItemV2(items: []).obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
   ManagedWarehouses warehouses = ManagedWarehouses(items: []);
   late HydraProducts hydraProducts;
@@ -52,8 +55,47 @@ class CreateOpenPoOrderController extends GetxController
 
   @override
   void onInit() {
-    loadInventory();
+    getManagedWarehouses1();
     super.onInit();
+  }
+
+  Future<void> loadInventory2(String warehouseId) async {
+    try {
+      final InventoryItemV2 records = await MemberCalls2Service.authNoLogger()
+          .loadInventoryProductsV2(
+              warehouseId, "item", Globals.currentMarket!.isoCode);
+      inventoryRecordsV2.value.items = List.from(records.items!);
+      searchResult1.value.items = List.from(records.items!);
+      calculateTotal();
+      if (records.items!.isEmpty) {
+        SnackbarUtil.showError(message: "no_warehouses_found".tr);
+      }
+    } on DioError catch (e, stack) {
+      const AppException().logError(e, stack);
+    } on AppException catch (exception, stack) {
+      exception.logError(exception, stack);
+    }
+  }
+
+  Future<void> getManagedWarehouses1() async {
+    isLoading.toggle();
+    try {
+      warehouses = await ApiService.clientNoLogger().getManagedWarehouses();
+      if (warehouses.items.isNotEmpty) {
+        await loadInventory2(warehouses.items[0].href.getAfterLastSlash());
+      } else {
+        SnackbarUtil.showError(message: "no_warehouses_found".tr);
+      }
+      isLoading.toggle();
+    } on DioError catch (e) {
+      isLoading.toggle();
+      final String message = getErrorMessage(e.response!.data);
+      SnackbarUtil.showError(message: message);
+      returnResponse(e.response!);
+    } on AppException catch (err, stack) {
+      isLoading.toggle();
+      err.logError(err, stack);
+    }
   }
 
   Future<void> loadInventory() async {
@@ -139,7 +181,8 @@ class CreateOpenPoOrderController extends GetxController
   Future<InventoryRecords?> loadInventoryProducts(String warehouseId) async {
     const String type = "item";
     try {
-      return await ApiService.clientNoLogger().getInventoryRecords(warehouseId, type);
+      return await ApiService.clientNoLogger()
+          .getInventoryRecords(warehouseId, type);
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: "${"error".tr}! $message");
@@ -149,22 +192,22 @@ class CreateOpenPoOrderController extends GetxController
     }
   }
 
-  Future<void> addItemToCart(InventoryRecordItems cartItem) async {
+  Future<void> addItemToCart(InventoryItem cartItem) async {
     final CartProductsItem target = cartProducts.firstWhere(
-        (item) => item.itemCode == cartItem.item.id.unicity,
+        (item) => item.itemCode == cartItem.item!.id!.unicity,
         orElse: () => CartProductsItem());
 
     if (target.itemCode != "") {
       onUpdateQuantity(CartUpdate.increament, target.itemCode);
     } else {
       final CartProductsItem i = CartProductsItem(
-          itemCode: cartItem.item.id.unicity,
-          productName: cartItem.catalogSlideContent.content.description,
+          itemCode: cartItem.item!.id!.unicity!,
+          productName: cartItem.catalogSlide!.content!.description!,
           quantity: 1,
-          itemPrice: cartItem.terms.priceEach,
-          itemPv: cartItem.terms.pvEach,
-          totalPrice: 1 * cartItem.terms.priceEach,
-          totalPv: 1 * cartItem.terms.pvEach);
+          itemPrice: cartItem.terms!.priceEach!.toDouble(),
+          itemPv: cartItem.terms!.pvEach!,
+          totalPrice: 1 * cartItem.terms!.priceEach!.toDouble(),
+          totalPv: 1 * cartItem.terms!.pvEach!);
       cartProducts.insert(0, i);
       calculateTotal();
     }
@@ -325,12 +368,12 @@ class CreateOpenPoOrderController extends GetxController
 
   void onSearchTextChange(String searchKey) {
     if (searchKey == "") {
-      searchResult.value.items = List.from(inventoryRecords.value.items);
+      searchResult1.value.items = List.from(inventoryRecordsV2.value.items!);
       return;
     }
-    searchResult.value.items.clear();
-    searchResult.value.items = inventoryRecords.value.items
-        .where((item) => item.catalogSlideContent.content.description
+    searchResult1.value.items!.clear();
+    searchResult1.value.items = inventoryRecordsV2.value.items!
+        .where((item) => item.catalogSlide!.content!.description!
             .toLowerCase()
             .contains(searchKey.toLowerCase()))
         .toList();
@@ -367,10 +410,10 @@ class CreateOpenPoOrderController extends GetxController
                   child: Obx(
                     () => ListView.builder(
                       controller: ctrl,
-                      itemCount: searchResult.value.items.length,
+                      itemCount: searchResult1.value.items!.length,
                       itemBuilder: (BuildContext ctxt, int index) {
-                        final InventoryRecordItems item =
-                            searchResult.value.items[index];
+                        final InventoryItem item =
+                            searchResult1.value.items![index];
                         return GestureDetector(
                           onTap: () {
                             addItemToCart(item);
@@ -385,15 +428,14 @@ class CreateOpenPoOrderController extends GetxController
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20),
-                                    child: (item.imageUrl != null &&
-                                            item.imageUrl!.isNotEmpty)
-                                        ? CachedNetworkImage(
-                                            imageUrl: item.imageUrl!,
-                                            height: 55,
-                                            width: 70)
-                                        : SvgPicture.asset(
-                                            kProductPlaceholderImage,
-                                            width: 80),
+                                    child: CachedNetworkImage(
+                                        imageUrl: item.itemInfo!.imageUrl,
+                                        height: 55,
+                                        width: 70,
+                                        errorWidget: (context, url, _) =>
+                                            SvgPicture.asset(
+                                                kProductPlaceholderImage,
+                                                width: 80)),
                                   ),
                                   Expanded(
                                     child: Column(
@@ -403,8 +445,7 @@ class CreateOpenPoOrderController extends GetxController
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Text(
-                                            item.catalogSlideContent.content
-                                                .description,
+                                            item.catalogSlide!.content!.description!,
                                             overflow: TextOverflow.ellipsis,
                                             style: Theme.of(context)
                                                 .textTheme
@@ -413,13 +454,13 @@ class CreateOpenPoOrderController extends GetxController
                                                     color: AppColor.charcoal)),
                                         AppText(
                                           text:
-                                              "${"code".tr}: ${item.item.id.unicity}",
+                                              "${"code".tr}: ${item.item!.id!.unicity}",
                                           style: TextTypes.caption,
                                           color: AppColor.metallicSilver,
                                         ),
                                         AppText(
                                           text:
-                                              "${item.terms.pvEach} ${"pv".tr} | ${item.terms.priceEach} ${Globals.currency}",
+                                              "${item.terms!.pvEach} ${"pv".tr} | ${item.terms!.priceEach} ${Globals.currency}",
                                           style: TextTypes.subtitle2,
                                           color: AppColor.charcoal,
                                         ),
