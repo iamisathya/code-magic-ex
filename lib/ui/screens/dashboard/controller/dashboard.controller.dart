@@ -1,7 +1,5 @@
-import 'package:dsc_tools/ui/screens/inventory/inventory.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -12,6 +10,7 @@ import '../../../../utilities/user_session.dart';
 import '../../barcode/barcode.screen.dart';
 import '../../easy_ship/easyship.screen.dart';
 import '../../enroll/enrollhome.screen.dart';
+import '../../inventory/inventory.dart';
 import '../../login/login.screen.dart';
 import '../../open_po/order_list/home_screen.dart';
 import '../../order_entry/orderentry.screen.dart';

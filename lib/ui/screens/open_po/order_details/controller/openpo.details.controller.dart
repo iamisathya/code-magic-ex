@@ -1,7 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/product_v2.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/controller/add.openpo.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
@@ -12,7 +10,9 @@ import '../../../../../api/api_address.dart';
 import '../../../../../api/config/api_service.dart';
 import '../../../../../models/open_order_id.dart';
 import '../../../../../models/open_po_details.dart';
+import '../../../../../models/product_v2.dart';
 import '../../../../../utilities/logger.dart';
+import '../../order_create/controller/add.openpo.controller.dart';
 
 class OpenPoDetailsController extends GetxController {
   // final MemberCallsService api;

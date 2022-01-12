@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/models/inventory_records.dart';
-import 'package:dsc_tools/models/managed_warehouse.dart';
-import 'package:dsc_tools/models/product_v2.dart';
-import 'package:dsc_tools/services/rest_api/exceptions.dart';
-import 'package:dsc_tools/utilities/extensions.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../api/config/api_service.dart';
+import '../../../../models/inventory_records.dart';
+import '../../../../models/managed_warehouse.dart';
+import '../../../../models/product_v2.dart';
+import '../../../../services/rest_api/exceptions.dart';
+import '../../../../utilities/extensions.dart';
+import '../../../../utilities/snackbar.dart';
 import '../../barcode/barcode.screen.dart';
 import '../../dashboard/screen/dashboard_screen.dart';
 import '../../open_po/order_create/home_screen.dart';

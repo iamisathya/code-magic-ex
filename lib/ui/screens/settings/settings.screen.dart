@@ -1,4 +1,3 @@
-import 'package:dsc_tools/ui/global/widgets/page_title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../constants/globals.dart';
 import '../../../controllers/global_controllers.dart';
 import '../../../models/country_info.dart';
+import '../../global/widgets/page_title.dart';
 import '../open_po/order_create/component/app_bar.dart';
 
 class SettingsPage extends StatelessWidget {

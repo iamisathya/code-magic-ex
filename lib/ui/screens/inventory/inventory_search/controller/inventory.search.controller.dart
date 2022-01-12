@@ -1,13 +1,14 @@
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/ui/screens/inventory/inventory_home/controller/inventory.home.controller.dart';
-import 'package:dsc_tools/ui/screens/inventory/inventory_search_result/screens/inventory_search_result.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_search/components/search_bar_field.dart';
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
+import '../../../../../models/inventory_item_v2.dart';
+import '../../../../../utilities/images.dart';
+import '../../../../../utilities/snackbar.dart';
+import '../../../open_po/order_search/components/search_bar_field.dart';
+import '../../inventory_home/controller/inventory.home.controller.dart';
+import '../../inventory_search_result/screens/inventory_search_result.dart';
 
 class InventorySearchController extends GetxController {
   InventoryHomeController controller = Get.put(InventoryHomeController());

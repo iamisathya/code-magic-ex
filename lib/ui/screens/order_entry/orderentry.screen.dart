@@ -1,4 +1,3 @@
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -6,6 +5,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 import '../../../constants/colors.dart';
 import '../../../utilities/constants.dart';
 import '../open_po/order_create/component/app_bar.dart';
+import '../open_po/order_create/component/loader.dart';
 import 'controllers/orderentry.home.controller.dart';
 import 'screens/home/body2.dart';
 

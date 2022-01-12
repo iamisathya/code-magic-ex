@@ -1,9 +1,9 @@
-import 'package:dsc_tools/ui/global/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../models/cart_products.dart';
+import '../../../../../global/widgets/page_title.dart';
 import '../../../controllers/enroll.controller.dart';
 import '../controller/enrollment.summary.controller.dart';
 import 'enrol_summary_cartt_item.dart';

@@ -142,14 +142,14 @@ class SalesReportOrderDetials extends StatelessWidget {
                             buttonColor: AppColor.sunglow,
                             title: 'cancel'.tr,
                             titleColor: AppColor.kBlackColor,
-                            onTap: () => null,
+                            onTap: () => {},
                           ),
                         ),
                         const SizedBox(width: 10),
                         Flexible(
                           child: PlainButton(
                             title: 'save'.tr,
-                            onTap: () => null,
+                            onTap: () => {},
                           ),
                         ),
                       ],

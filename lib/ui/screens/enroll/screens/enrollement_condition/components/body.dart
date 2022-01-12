@@ -1,10 +1,9 @@
-import 'package:dsc_tools/ui/global/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../utilities/enums.dart';
 import '../../../../../global/theme/text_view.dart';
-
+import '../../../../../global/widgets/page_title.dart';
 import '../controller/enrollment.terms.controller.dart';
 
 class Body extends StatelessWidget {

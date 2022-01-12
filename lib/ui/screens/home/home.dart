@@ -1,5 +1,6 @@
-import 'package:dsc_tools/ui/screens/dashboard/screen/dashboard_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../dashboard/screen/dashboard_screen.dart';
 
 class MainHomeScreen extends StatelessWidget {
   static const String routeName = '/mainHomePage';

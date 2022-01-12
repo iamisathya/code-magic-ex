@@ -1,15 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../constants/colors.dart';
+import '../../../../../constants/globals.dart';
+import '../../../../../models/inventory_item_v2.dart';
+import '../../../../../utilities/enums.dart';
+import '../../../../../utilities/images.dart';
+import '../../../../global/theme/text_view.dart';
 import '../controller/inventory.home.controller.dart';
 
 class InventoryItemClass extends StatelessWidget {

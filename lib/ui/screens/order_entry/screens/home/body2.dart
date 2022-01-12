@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../../../constants/colors.dart';
 import '../../../../../models/general_models.dart';
@@ -9,7 +8,6 @@ import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
-import '../../../open_po/order_create/component/loader.dart';
 import '../../controllers/orderentry.home.controller.dart';
 import 'components/white_search_field.dart';
 
@@ -63,7 +61,6 @@ class Body extends StatelessWidget {
                     kType: controller.currentTab.value == 0
                         ? TextInputType.number
                         : TextInputType.text,
-                    hintText: "",
                     isFetching: controller.isFetching)
               ],
             ),

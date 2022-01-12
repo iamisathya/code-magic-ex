@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/models/inventory_record_matched.dart';
-import 'package:dsc_tools/models/product_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:retrofit/retrofit.dart';
@@ -20,7 +17,9 @@ import '../../models/find_customer.dart';
 import '../../models/general_models.dart';
 import '../../models/govt_id_verify.dart';
 import '../../models/guest_user_info.dart';
+import '../../models/inventory_item_v2.dart';
 import '../../models/inventory_movement_records.dart';
+import '../../models/inventory_record_matched.dart';
 import '../../models/inventory_records.dart';
 import '../../models/managed_warehouse.dart';
 import '../../models/open_order_id.dart';
@@ -32,6 +31,7 @@ import '../../models/order_entry_product_item.dart';
 import '../../models/order_lines.dart';
 import '../../models/order_list_rmas.dart';
 import '../../models/place_order.dart';
+import '../../models/product_v2.dart';
 import '../../models/profile_picture.dart';
 import '../../models/provience_item.dart';
 import '../../models/sales_report_details.dart';

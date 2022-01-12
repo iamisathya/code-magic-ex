@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +12,7 @@ import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
+import '../../home/controller/home.controller.dart';
 import '../screens/order_entry_summary/home.dart';
 
 class OrderEntryProductListController extends GetxController {

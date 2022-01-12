@@ -1,5 +1,4 @@
 
-import 'package:dsc_tools/ui/screens/inventory/inventory.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -9,6 +8,7 @@ import '../ui/screens/enroll/enrollhome.screen.dart';
 import '../ui/screens/enroll/screens/enroll_confirmation/enrollconfirmation.screen.dart';
 import '../ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
 import '../ui/screens/home/home.dart';
+import '../ui/screens/inventory/inventory.dart';
 import '../ui/screens/login/login.screen.dart';
 import '../ui/screens/open_po/order_create/home_screen.dart';
 import '../ui/screens/open_po/order_details/home_screen.dart';

@@ -10,8 +10,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:get/state_manager.dart';
 
 import '../../../../../../api/config/api_service.dart';
 import '../../../../../../constants/colors.dart';
@@ -222,7 +220,6 @@ class EnrollmentUserInfoController extends GetxController {
                   child: WhiteSearchField(
                       controller: addressSearchController,
                       onPress: getAddresByZipcode,
-                      hintText: "",
                       isFetching: isSearchingAddres),
                 ),
                 const SizedBox(height: 5),

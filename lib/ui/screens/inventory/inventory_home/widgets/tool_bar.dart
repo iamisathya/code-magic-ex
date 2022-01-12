@@ -1,10 +1,10 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/screens/inventory/inventory_search/screens/search_inventory.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
+import '../../../../../utilities/images.dart';
+import '../../inventory_search/screens/search_inventory.dart';
 import '../controller/inventory.home.controller.dart';
 
 class InventoryToolBar extends StatelessWidget {

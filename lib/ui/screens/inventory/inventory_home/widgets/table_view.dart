@@ -1,15 +1,15 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/utilities/constants.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/function.dart';
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/parsing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../constants/colors.dart';
+import '../../../../../utilities/constants.dart';
+import '../../../../../utilities/enums.dart';
+import '../../../../../utilities/function.dart';
+import '../../../../../utilities/images.dart';
+import '../../../../../utilities/parsing.dart';
 import '../controller/inventory.home.controller.dart';
 
 class TableView extends StatelessWidget {

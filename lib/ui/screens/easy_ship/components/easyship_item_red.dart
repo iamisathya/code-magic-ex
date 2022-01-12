@@ -1,10 +1,11 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/extensions.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../../constants/colors.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/extensions.dart';
+import '../../../../utilities/images.dart';
+import '../../../global/theme/text_view.dart';
 
 class EasyshipItemColored extends StatelessWidget {
   const EasyshipItemColored({Key? key}) : super(key: key);

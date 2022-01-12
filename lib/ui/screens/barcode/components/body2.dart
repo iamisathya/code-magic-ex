@@ -1,9 +1,9 @@
-import 'package:dsc_tools/ui/global/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../utilities/images.dart';
+import '../../../global/widgets/page_title.dart';
 import '../controller/barcode.scan.controller.dart';
 import 'search_textfield.dart';
 

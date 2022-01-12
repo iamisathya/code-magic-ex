@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../utilities/constants.dart';
 import '../../../../utilities/enums.dart';
 import '../../../global/theme/text_view.dart';
 import '../../open_po/order_create/component/app_bar.dart';

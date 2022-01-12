@@ -1,13 +1,13 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/ui/global/widgets/page_title.dart';
-import 'package:dsc_tools/ui/screens/inventory/inventory_home/widgets/table_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../constants/colors.dart';
+import '../../../../../models/inventory_item_v2.dart';
+import '../../../../global/widgets/page_title.dart';
 import '../controller/inventory.home.controller.dart';
 import 'grand_total_price.dart';
 import 'inventory_item.dart';
+import 'table_view.dart';
 import 'tool_bar.dart';
 import 'user_address.dart';
 

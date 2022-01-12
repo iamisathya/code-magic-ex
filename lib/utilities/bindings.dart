@@ -1,6 +1,6 @@
-import 'package:dsc_tools/ui/screens/inventory/inventory_home/controller/inventory.home.controller.dart';
 import 'package:get/get.dart';
 
+import '../ui/screens/inventory/inventory_home/controller/inventory.home.controller.dart';
 import '../ui/screens/open_po/order_create/controller/add.openpo.controller.dart';
 import '../ui/screens/open_po/order_details/controller/openpo.details.controller.dart';
 import '../ui/screens/open_po/order_list/controller/openpo.list.controller.dart';

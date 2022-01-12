@@ -1,12 +1,12 @@
 import 'dart:typed_data';
 
-import 'package:dsc_tools/models/easy_ship_report_with_total.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:screenshot/screenshot.dart';
 
 import '../../../../constants/colors.dart';
+import '../../../../models/easy_ship_report_with_total.dart';
 import '../../../../models/easy_ship_reports.dart';
 import '../../../../utilities/snackbar.dart';
 import '../components/image.preview.dart';

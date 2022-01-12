@@ -1,18 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/general_models.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/models/inventory_record_matched.dart';
-import 'package:dsc_tools/models/managed_warehouse.dart';
-import 'package:dsc_tools/services/rest_api/exceptions.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/function.dart';
-import 'package:dsc_tools/utilities/parsing.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +9,19 @@ import 'package:open_file/open_file.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import '../../../../../api/config/api_service.dart';
+import '../../../../../constants/globals.dart';
+import '../../../../../models/general_models.dart';
+import '../../../../../models/inventory_item_v2.dart';
+import '../../../../../models/inventory_record_matched.dart';
+import '../../../../../models/managed_warehouse.dart';
+import '../../../../../services/rest_api/exceptions.dart';
+import '../../../../../utilities/enums.dart';
+import '../../../../../utilities/function.dart';
+import '../../../../../utilities/parsing.dart';
+import '../../../../../utilities/snackbar.dart';
+import '../../../../../utilities/user_session.dart';
 
 class InventoryHomeController extends GetxController {
   final RxList<NameValueType> _allViewTypes = [

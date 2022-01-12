@@ -162,7 +162,6 @@ class LoginController extends GetxController {
       final data = await json.decode(response);
       if (data != null) {
         final marketInfo = AllMarkets.fromJson(data as Map<String, dynamic>);
-        print(marketInfo);
         return marketInfo.markets
             .firstWhere((market) => market.code == country);
       }

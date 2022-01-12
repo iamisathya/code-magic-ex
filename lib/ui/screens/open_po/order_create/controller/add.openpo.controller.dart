@@ -3,9 +3,6 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart' show DioError;
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/models/product_v2.dart';
-import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,11 +14,14 @@ import '../../../../../api/request/request_place_open_po_order.dart';
 import '../../../../../constants/colors.dart';
 import '../../../../../constants/globals.dart';
 import '../../../../../models/cart_products.dart';
+import '../../../../../models/inventory_item_v2.dart';
 import '../../../../../models/inventory_records.dart';
 import '../../../../../models/managed_warehouse.dart';
 import '../../../../../models/open_po_create_order_response.dart';
 import '../../../../../models/openpo_create_order_result.dart';
+import '../../../../../models/product_v2.dart';
 import '../../../../../models/validate_order.dart';
+import '../../../../../services/rest_api/exceptions.dart';
 import '../../../../../utilities/constants.dart';
 import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/extensions.dart';
@@ -402,7 +402,6 @@ class CreateOpenPoOrderController extends GetxController
                       controller: searchProductTextController,
                       onChanged: (val) => onSearchTextChange(val),
                       onPress: () {},
-                      hintText: "",
                       isFetching: false.obs),
                 ),
                 const SizedBox(height: 5),

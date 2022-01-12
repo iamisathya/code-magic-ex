@@ -1,9 +1,9 @@
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/ui/screens/inventory/inventory_home/controller/inventory.home.controller.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../../../models/inventory_item_v2.dart';
 import '../../../../../utilities/extensions.dart';
+import '../../inventory_home/controller/inventory.home.controller.dart';
 
 class InventorySearchResultController extends GetxController {
   InventoryHomeController controller = Get.put(InventoryHomeController());

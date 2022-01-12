@@ -4,12 +4,7 @@ import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/api_address.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -18,12 +13,15 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../api/api_address.dart';
 import '../constants/colors.dart';
+import '../constants/globals.dart';
 import '../exceptions/default.exception.dart';
 import '../exceptions/internet_failed.exception.dart';
 import '../exceptions/time_out.exception.dart';
 import '../exceptions/unauthorised.exception.dart';
 import '../models/country_details.dart';
+import '../models/inventory_item_v2.dart';
 import '../models/inventory_records.dart';
 import '../models/locale.dart';
 import '../ui/global/widgets/overlay_progress.dart';
@@ -31,6 +29,7 @@ import '../ui/screens/login/login.screen.dart';
 import 'enums.dart';
 import 'logger.dart';
 import 'parsing.dart';
+import 'snackbar.dart';
 import 'user_session.dart';
 
 void renderErrorSnackBar(
@@ -243,7 +242,7 @@ void renderGetSnackbar(
     String message = "",
     SnackBarType type = SnackBarType.success}) {
   final Color color = type == SnackBarType.success
-      ? Theme.of(Get.context!).accentColor
+      ? Theme.of(Get.context!).colorScheme.secondary
       : type == SnackBarType.error
           ? Colors.red
           : Colors.yellow;

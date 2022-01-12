@@ -7,7 +7,6 @@ import '../../../../../utilities/enums.dart';
 import '../../../../../utilities/images.dart';
 import '../../../../global/theme/text_view.dart';
 import '../controller/openpo.search.controller.dart';
-import 'search_bar_field.dart';
 
 class SearchProducts extends StatefulWidget {
   @override

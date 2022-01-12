@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/models/product_v2.dart';
-import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -12,8 +9,11 @@ import '../../../../api/config/api_service.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/cart_products.dart';
+import '../../../../models/inventory_item_v2.dart';
 import '../../../../models/inventory_records.dart';
 import '../../../../models/managed_warehouse.dart';
+import '../../../../models/product_v2.dart';
+import '../../../../services/rest_api/exceptions.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
@@ -110,12 +110,10 @@ class EnrollHomeController extends GetxController {
       searchResult.value.items = List.from(inventoryRecords.value.items);
       inventoryRecords.refresh();
       searchResult.refresh();
-      print(searchResult.value.items.length);
       addStarterKit();
       calculateTotal();
       isLoading.toggle();
     } on AppException catch (exception, stack) {
-      print("object");
       isLoading.toggle();
       exception.logError(exception, stack);
     }

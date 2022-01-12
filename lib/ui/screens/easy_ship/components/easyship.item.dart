@@ -1,10 +1,10 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
-import 'package:dsc_tools/models/easy_ship_report_with_total.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
+import '../../../../models/easy_ship_report_with_total.dart';
 import '../../../../models/easy_ship_reports.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/extensions.dart';

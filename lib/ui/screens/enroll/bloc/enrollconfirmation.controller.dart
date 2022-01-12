@@ -1,14 +1,14 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:dsc_tools/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
 import 'package:dsc_tools/ui/global/widgets/overlay_progress.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
-import 'package:dsc_tools/utilities/logger.dart';
 import 'package:dsc_tools/utilities/constants.dart';
 import 'package:dsc_tools/utilities/function.dart';
+import 'package:dsc_tools/utilities/logger.dart';
 import 'package:dsc_tools/utilities/user_session.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
