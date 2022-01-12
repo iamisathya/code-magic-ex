@@ -179,7 +179,7 @@ abstract class MemberCallsService {
 
   factory MemberCallsService.init() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
     dio.options.headers['authorization'] =
         "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.options.headers['Content-Type'] = "application/json;charset=utf-8 ";
@@ -489,7 +489,7 @@ abstract class MemberCalls2Service {
 
   factory MemberCalls2Service.init() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
     return MemberCalls2Service(dio);
   }
   factory MemberCalls2Service.clientNoLogger() {
@@ -499,7 +499,7 @@ abstract class MemberCalls2Service {
 
   factory MemberCalls2Service.auth() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
     dio.options.headers['authorization'] =
         "Bearer ${UserSessionManager.shared.customerToken.token}";
     return MemberCalls2Service(dio);
@@ -565,7 +565,7 @@ abstract class DscCallService {
 
   factory DscCallService.init() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
     return DscCallService(dio);
   }
 

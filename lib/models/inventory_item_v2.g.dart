@@ -95,7 +95,7 @@ Map<String, dynamic> _$IdToJson(Id instance) => <String, dynamic>{
 
 Terms _$TermsFromJson(Map<String, dynamic> json) {
   return Terms(
-    priceEach: json['priceEach'] as int?,
+    priceEach: (json['priceEach'] as num?)?.toDouble(),
     pvEach: json['pvEach'] as int?,
   );
 }

@@ -101,7 +101,7 @@ class Id {
 @JsonSerializable()
 class Terms {
   @JsonKey(name: "priceEach")
-  int? priceEach;
+  double? priceEach;
   @JsonKey(name: "pvEach")
   int? pvEach;
 

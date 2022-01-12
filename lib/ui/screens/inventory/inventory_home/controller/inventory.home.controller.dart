@@ -134,7 +134,7 @@ class InventoryHomeController extends GetxController {
             item: Item(href: item.itemCode, id: Id(unicity: item.itemId)),
             quantityOnHand: "0",
             terms: Terms(
-                priceEach: double.parse(item.itemPrice).toInt(),
+                priceEach: double.parse(item.itemPrice),
                 pvEach: int.parse(item.itemPv)));
         records.items!.add(outOfStockItem);
       }
