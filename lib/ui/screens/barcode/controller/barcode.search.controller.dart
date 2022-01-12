@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/api/api_address.dart';
 import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,7 @@ class BarcodeSearchController extends GetxController {
         "orderNumber": controller.orderNumber.value
       };
       barCodeVerifyResponse = await MemberCallsService.init()
-          .verifyEachBarcodeNumber("", "", json.encode(verifyRequest));
+          .verifyEachBarcodeNumber(gTokenBarcodeNew, "", json.encode(verifyRequest));
       if (barCodeVerifyResponse!.error != null &&
           barCodeVerifyResponse!.error!.isNotEmpty) {
         final errors = StringBuffer();
