@@ -8,7 +8,6 @@ import '../../../open_po/order_create/component/loader.dart';
 import '../controller/inventory.home.controller.dart';
 import '../widgets/body.dart';
 
-
 class InventoryHomeScreen extends StatelessWidget {
   static const String routeName = '/inventoryHomePage';
   final InventoryHomeController controller = Get.put(InventoryHomeController());

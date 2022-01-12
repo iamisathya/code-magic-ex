@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../../../constants/colors.dart';
 import '../../../../../utilities/images.dart';
 
-
 class NoRecordFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

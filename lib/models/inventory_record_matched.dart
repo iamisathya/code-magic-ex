@@ -2,8 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'inventory_record_matched.g.dart';
 
-
-
 @JsonSerializable()
 class InventoryRecordsMatchedItem {
   @JsonKey(name: "pro_code")

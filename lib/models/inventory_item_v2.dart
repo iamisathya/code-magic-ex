@@ -36,7 +36,8 @@ class InventoryItem {
       this.terms,
       this.itemInfo});
 
-  String get totalPrice => NumberFormat().format(double.parse(quantityOnHand!) * terms!.priceEach!);
+  String get totalPrice =>
+      NumberFormat().format(double.parse(quantityOnHand!) * terms!.priceEach!);
   int get totalPv => int.parse(quantityOnHand!) * terms!.pvEach!;
 
   factory InventoryItem.fromJson(Map<String, dynamic> json) =>

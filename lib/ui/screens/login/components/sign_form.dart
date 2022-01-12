@@ -20,8 +20,7 @@ class SignForm extends StatelessWidget {
       child: Column(
         children: [
           _renderTextField(
-              ctlr: controller.userIdController,
-              label: "user_id".tr),
+              ctlr: controller.userIdController, label: "user_id".tr),
           // buildUserIdFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           _renderTextField(

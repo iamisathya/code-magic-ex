@@ -39,7 +39,8 @@ class TotalAmountCard extends StatelessWidget {
                   Flexible(child: Text("total_pv".tr, style: boldFont)),
                   Flexible(
                     flex: 2,
-                    child: Text("${ctrl.totalCartPv} ${"pv".tr}", style: boldFont),
+                    child:
+                        Text("${ctrl.totalCartPv} ${"pv".tr}", style: boldFont),
                   ),
                 ],
               ),

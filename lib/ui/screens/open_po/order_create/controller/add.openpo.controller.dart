@@ -444,7 +444,8 @@ class CreateOpenPoOrderController extends GetxController
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Text(
-                                            item.catalogSlide!.content!.description!,
+                                            item.catalogSlide!.content!
+                                                .description!,
                                             overflow: TextOverflow.ellipsis,
                                             style: Theme.of(context)
                                                 .textTheme

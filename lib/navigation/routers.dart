@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -34,7 +33,8 @@ class AppRoutes {
     GetPage(
         name: EnrollConfirmation.routeName, page: () => EnrollConfirmation()),
     GetPage(name: EnrollComplete.routeName, page: () => EnrollComplete()),
-    GetPage(name: InventoryHomeScreen.routeName, page: () => InventoryHomeScreen()),
+    GetPage(
+        name: InventoryHomeScreen.routeName, page: () => InventoryHomeScreen()),
     // Easy ship
     GetPage(
         name: EasyShipHomeScreen.routeName, page: () => EasyShipHomeScreen()),
@@ -50,15 +50,10 @@ class AppRoutes {
     // Settings
     GetPage(name: SettingsPage.routeName, page: () => SettingsPage()),
     // Open PO
+    GetPage(name: OpenPoHomeScreen.routeName, page: () => OpenPoHomeScreen()),
     GetPage(
-        name: OpenPoHomeScreen.routeName,
-        page: () => OpenPoHomeScreen()),
-    GetPage(
-        name: OpenPoOrderDetails.routeName,
-        page: () => OpenPoOrderDetails()),
-    GetPage(
-        name: OpenPoCreateOrder.routeName,
-        page: () => OpenPoCreateOrder()),
+        name: OpenPoOrderDetails.routeName, page: () => OpenPoOrderDetails()),
+    GetPage(name: OpenPoCreateOrder.routeName, page: () => OpenPoCreateOrder()),
     GetPage(
         name: CreateOpenPoOrderResult.routeName,
         page: () => CreateOpenPoOrderResult()),

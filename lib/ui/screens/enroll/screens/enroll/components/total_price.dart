@@ -28,7 +28,8 @@ class TotalPrice extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppText(text: "${"total_pv".tr}:", style: TextTypes.subtitle2),
-                AppText(text: "$totalPv ${"pv".tr}", style: TextTypes.subtitle2),
+                AppText(
+                    text: "$totalPv ${"pv".tr}", style: TextTypes.subtitle2),
               ],
             ),
             const Padding(

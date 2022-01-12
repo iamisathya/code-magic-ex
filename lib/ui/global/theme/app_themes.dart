@@ -440,7 +440,9 @@ class AppThemes {
           elevation: 8,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
-          )), colorScheme: ColorScheme.fromSwatch(primarySwatch: const MaterialColor(4280371421, {
+          )),
+      colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: const MaterialColor(4280371421, {
         50: Color(0xffe9edfc),
         100: Color(0xffd3daf8),
         200: Color(0xffa6b6f2),
@@ -757,7 +759,9 @@ class AppThemes {
       unselectedItemColor: const Color(0xFFE3E8ED),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-    ), colorScheme: ColorScheme.fromSwatch(primarySwatch: const MaterialColor(4280361249, {
+    ),
+    colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: const MaterialColor(4280361249, {
       50: Color(0xfff2f2f2),
       100: Color(0xffe6e6e6),
       200: Color(0xffcccccc),

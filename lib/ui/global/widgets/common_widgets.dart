@@ -23,10 +23,8 @@ Container renderTextField(
             minLines: minLines,
             style: const TextStyle(fontSize: 16),
             decoration: enabled == false
-                ? kDisabledTextInputDecoration(
-                    helperText: helperText)
-                : kActiveTextInputDecoration(
-                    helperText: helperText))
+                ? kDisabledTextInputDecoration(helperText: helperText)
+                : kActiveTextInputDecoration(helperText: helperText))
       ],
     ),
   );

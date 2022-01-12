@@ -280,8 +280,7 @@ class Body extends StatelessWidget {
                           DateFormat('yyyy-MM-dd').format(date).toString();
                     });
                   },
-                  decoration: _renderInputDecoration(
-                      "", "from".tr),
+                  decoration: _renderInputDecoration("", "from".tr),
                 )),
           ),
           Flexible(
@@ -296,8 +295,7 @@ class Body extends StatelessWidget {
                           DateFormat('yyyy-MM-dd').format(date).toString();
                     }, currentTime: DateTime.now());
                   },
-                  decoration:
-                      _renderInputDecoration("", "to".tr),
+                  decoration: _renderInputDecoration("", "to".tr),
                 )),
           ),
           SizedBox(

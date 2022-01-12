@@ -16,7 +16,8 @@ class EasyShipListController extends GetxController {
   RxBool isLoading = false.obs;
   Uint8List capturedImage = Uint8List(1000000);
   RxList<EasyShipReports> allEasyShipOrders = <EasyShipReports>[].obs;
-  RxList<EasyShipReportsWithTotal> allFormattedEasyShipOrders = <EasyShipReportsWithTotal>[].obs;
+  RxList<EasyShipReportsWithTotal> allFormattedEasyShipOrders =
+      <EasyShipReportsWithTotal>[].obs;
   RxMap<String, List<EasyShipReports>> orderedEasyShipOrders =
       RxMap<String, List<EasyShipReports>>();
   ScreenshotController screenshotController = ScreenshotController();
@@ -27,7 +28,8 @@ class EasyShipListController extends GetxController {
     if (data != null) {
       final Map<String, dynamic> args = data as Map<String, dynamic>;
       // orderedEasyShipOrders.value = args["orders"] as RxMap<String, List<EasyShipReports>>;
-      allFormattedEasyShipOrders.value = args["orders"] as RxList<EasyShipReportsWithTotal>;
+      allFormattedEasyShipOrders.value =
+          args["orders"] as RxList<EasyShipReportsWithTotal>;
       userId.value = args["userId"] as String;
       // onSearchEasyShipReport();
     } else {

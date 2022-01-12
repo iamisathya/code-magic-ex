@@ -33,8 +33,7 @@ class TableView extends StatelessWidget {
     String totalPrice =
         calculateInventoryTotal(controller.inventoryItems, 'price');
     totalPrice = NumberFormat().format(Parsing.intFrom(totalPrice));
-    String totalPv =
-        calculateInventoryTotal(controller.inventoryItems, 'pv');
+    String totalPv = calculateInventoryTotal(controller.inventoryItems, 'pv');
     totalPv = NumberFormat().format(Parsing.intFrom(totalPv));
 
     return [
@@ -46,8 +45,8 @@ class TableView extends StatelessWidget {
           Alignment.center, 96, context),
       _renderTableHeader(
           "pv".tr, InventorySortTypes.pv, Alignment.center, 100, context),
-      _renderTableHeader("price".tr, InventorySortTypes.price,
-          Alignment.center, 100, context),
+      _renderTableHeader(
+          "price".tr, InventorySortTypes.price, Alignment.center, 100, context),
       _renderTableHeader(
         "total_price_title".tr,
         InventorySortTypes.totalAccumulatedPrice,
@@ -113,8 +112,12 @@ class TableView extends StatelessWidget {
             context, alternativeBgColor),
         _renderDataCell(100, NumberFormat().format(currentItem.terms!.pvEach),
             Alignment.center, context, alternativeBgColor),
-        _renderDataCell(100, NumberFormat().format(currentItem.terms!.priceEach),
-            Alignment.center, context, alternativeBgColor),
+        _renderDataCell(
+            100,
+            NumberFormat().format(currentItem.terms!.priceEach),
+            Alignment.center,
+            context,
+            alternativeBgColor),
         _renderDataCell(
             180,
             calculateTotalAmount(

@@ -73,7 +73,7 @@ class UserAddress extends StatelessWidget {
                                   : Theme.of(context).textTheme.bodyText2),
                           const SizedBox(width: 20),
                           SvgPicture.asset(kCardViewIcon,
-                              color: controller.activeViewType== "card"
+                              color: controller.activeViewType == "card"
                                   ? AppColor.kBlackColor
                                   : AppColor.cadet,
                               width: 20,

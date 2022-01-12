@@ -33,9 +33,8 @@ class InventoryToolBar extends StatelessWidget {
               child: Row(
                 children: controller.allStockTypes
                     .map((element) => GestureDetector(
-                        onTap: () => 
-                              controller.onChangeStockType(element.value)
-                            ,
+                        onTap: () =>
+                            controller.onChangeStockType(element.value),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: Text(element.name,

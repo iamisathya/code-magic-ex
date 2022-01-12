@@ -26,7 +26,8 @@ class OpenPoDetailsController extends GetxController {
   OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
-  CreateOpenPoOrderController listController = Get.put(CreateOpenPoOrderController());
+  CreateOpenPoOrderController listController =
+      Get.put(CreateOpenPoOrderController());
 
   RxBool isLoading = false.obs;
 

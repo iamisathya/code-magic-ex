@@ -45,8 +45,8 @@ class InventorySearchController extends GetxController {
   }
 
   void searchOrder(String searchKey) {
-    selectedSearchIndex.value =
-        searchHistory.indexWhere((element) => element.toLowerCase() == searchKey.toLowerCase());
+    selectedSearchIndex.value = searchHistory.indexWhere(
+        (element) => element.toLowerCase() == searchKey.toLowerCase());
     if (selectedSearchIndex.value != -1) {
       searchTextController.text = searchHistory[selectedSearchIndex.value!];
       searchTextController.selection = TextSelection.fromPosition(
@@ -55,11 +55,14 @@ class InventorySearchController extends GetxController {
     searchingProduct.toggle();
     Future.delayed(const Duration(milliseconds: 1200), () {
       searchingProduct.toggle();
-      final List<InventoryItem> inventoryItem = controller
-          .allInventoryItems
+      final List<InventoryItem> inventoryItem = controller.allInventoryItems
           .where((order) =>
-              order.item!.id!.unicity!.toLowerCase().contains(searchKey.toLowerCase()) ||
-              order.catalogSlide!.content!.description!.toLowerCase().contains(searchKey.toLowerCase()))
+              order.item!.id!.unicity!
+                  .toLowerCase()
+                  .contains(searchKey.toLowerCase()) ||
+              order.catalogSlide!.content!.description!
+                  .toLowerCase()
+                  .contains(searchKey.toLowerCase()))
           .toList();
       if (inventoryItem.isNotEmpty) {
         selectedSearchIndex.value = null;

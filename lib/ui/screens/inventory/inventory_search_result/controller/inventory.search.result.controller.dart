@@ -24,10 +24,16 @@ class InventorySearchResultController extends GetxController {
     super.onInit();
   }
 
-    void calculateTotal() {
-    totalCartPrice.value =
-        itemsFound.fold(0, (i, element) => i + num.parse(element.quantityOnHand!) * element.terms!.priceEach!.toInt());
-    totalCartPv.value =
-        itemsFound.fold(0, (i, element) => i + (element.quantityOnHand?.toInt())! * element.terms!.pvEach!);
+  void calculateTotal() {
+    totalCartPrice.value = itemsFound.fold(
+        0,
+        (i, element) =>
+            i +
+            num.parse(element.quantityOnHand!) *
+                element.terms!.priceEach!.toInt());
+    totalCartPv.value = itemsFound.fold(
+        0,
+        (i, element) =>
+            i + (element.quantityOnHand?.toInt())! * element.terms!.pvEach!);
   }
 }

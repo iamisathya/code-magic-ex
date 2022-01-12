@@ -227,6 +227,7 @@ extension DateFormater on String {
 }
 
 RegExp regex = RegExp(r"([.]*0)(?!.*\d)");
+
 extension DoubleExtension on double {
   String get asReadableString => toInt().toString();
   String get precisionCheck => toString().replaceAll(regex, "");

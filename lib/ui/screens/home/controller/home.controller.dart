@@ -63,7 +63,8 @@ class HomeController extends GetxController {
             : {}), // Get hydra products to get image urls
       ])
           .then((value) => mapInventoryItems(inventoryRecords, hydraProducts))
-          .then((value) => value!= null ? inventoryRecords = value : inventoryRecords);
+          .then((value) =>
+              value != null ? inventoryRecords = value : inventoryRecords);
       return inventoryRecords;
     } on AppException catch (exception, stack) {
       exception.logError(exception, stack);
@@ -91,7 +92,8 @@ class HomeController extends GetxController {
   Future<InventoryRecords?> loadInventoryProducts(String warehouseId) async {
     const String type = "item";
     try {
-      return await ApiService.clientNoLogger().getInventoryRecords(warehouseId, type);
+      return await ApiService.clientNoLogger()
+          .getInventoryRecords(warehouseId, type);
     } on DioError catch (e) {
       SnackbarUtil.showError(message: e.toString());
     } on AppException catch (err, stack) {
@@ -102,7 +104,8 @@ class HomeController extends GetxController {
   Future<HydraProducts?> getHydraProducts() async {
     try {
       final HydraProducts hydraProducts =
-          await MemberCalls2Service.clientNoLogger().getHydraProducts("THA", "A", "shop");
+          await MemberCalls2Service.clientNoLogger()
+              .getHydraProducts("THA", "A", "shop");
       return hydraProducts;
     } on DioError catch (e) {
       SnackbarUtil.showError(message: e.toString());

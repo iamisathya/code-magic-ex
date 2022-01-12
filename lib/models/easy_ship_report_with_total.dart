@@ -27,9 +27,6 @@ class EasyShipReportsWithTotal {
 
   Map<String, dynamic> toJson() => _$EasyShipReportsWithTotalToJson(this);
 
-  Map<String, dynamic> toMap() => {
-        'totalPrice': totalPrice,
-        'totalPv': totalPv,
-        'reports': reports
-      };
+  Map<String, dynamic> toMap() =>
+      {'totalPrice': totalPrice, 'totalPv': totalPv, 'reports': reports};
 }

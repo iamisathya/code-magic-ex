@@ -18,7 +18,8 @@ class DashboardMenu extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: controller.dashboardMenuItems.length,
       itemBuilder: (context, index) {
-        final DashboardMenuItemModel item = controller.dashboardMenuItems[index];
+        final DashboardMenuItemModel item =
+            controller.dashboardMenuItems[index];
         return DashboardMenuItem(item: item);
       },
     );

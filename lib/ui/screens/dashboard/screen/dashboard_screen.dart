@@ -17,36 +17,36 @@ class Body extends StatelessWidget {
     return Scaffold(
       appBar: OpenPoAppBar(profileIcon: true),
       body: SafeArea(
-          bottom: false,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CarouselSliderWithCustomIndicator(),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 40,
-                        width: Get.width,
-                        child: const Padding(
-                          padding: EdgeInsets.only(bottom: 10.0),
-                          child: AppText(
-                              text: "Primary Menu",
-                              style: TextTypes.headline6,
-                              align: TextAlign.left),
-                        ),
+        bottom: false,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CarouselSliderWithCustomIndicator(),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 40,
+                      width: Get.width,
+                      child: const Padding(
+                        padding: EdgeInsets.only(bottom: 10.0),
+                        child: AppText(
+                            text: "Primary Menu",
+                            style: TextTypes.headline6,
+                            align: TextAlign.left),
                       ),
-                      DashboardMenu(),
-                    ],
-                  ),
+                    ),
+                    DashboardMenu(),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 }

@@ -229,7 +229,8 @@ abstract class MemberCallsService {
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/getdata.php?type=1_11&token=66c1ade0-b78f-4c2c-9c4d-e42d09fc043b
   @GET(Address.validOrders)
-  Future<List<InventoryRecordsMatchedItem>> getOutOfStockInventoryRecords(@Query("type") String type, @Query("token") String token);
+  Future<List<InventoryRecordsMatchedItem>> getOutOfStockInventoryRecords(
+      @Query("type") String type, @Query("token") String token);
 
   //? url=https://member-calls.unicity.com/ALL/DSC/THA/barcode/redirect.php?lang=en&order=423135644&token=2096fb4a-783d-4b60-baec-f5880bab1e7a&user=2970466
   @POST("${Address.allDscPath}/THA/getdata.php")
@@ -504,7 +505,7 @@ abstract class MemberCalls2Service {
     return MemberCalls2Service(dio);
   }
 
-    factory MemberCalls2Service.authNoLogger() {
+  factory MemberCalls2Service.authNoLogger() {
     final Dio dio = Dio();
     dio.options.headers['authorization'] =
         "Bearer ${UserSessionManager.shared.customerToken.token}";
@@ -547,13 +548,15 @@ abstract class MemberCalls2Service {
 
   //? url=https://member-calls2.unicity.com/products-v2/publish/THA?status=A&allow=shop
   @GET("${Address.hydraProducts}/{countryId}")
-  Future<HydraProducts> getHydraProducts(
-      @Path('countryId') String countryId, @Query("status") String status, @Query("allow") String allow);
+  Future<HydraProducts> getHydraProducts(@Path('countryId') String countryId,
+      @Query("status") String status, @Query("allow") String allow);
 
   //? url=https://member-calls2.unicity.com/products-v2/adapter/50b0517be73b8280e59d6f9d1c6a8f09418cd2304f9d29b9902ecfa5e0212899/inventoryRecords?expand=item&countryCode=THA
   @GET("${Address.hydraProductsV2}/{warehouseId}/inventoryRecords")
   Future<InventoryItemV2> loadInventoryProductsV2(
-      @Path('warehouseId') String warehouseId, @Query("expand") String expand, @Query("countryCode") String countryCode);
+      @Path('warehouseId') String warehouseId,
+      @Query("expand") String expand,
+      @Query("countryCode") String countryCode);
 }
 
 @RestApi(baseUrl: Address.dscBase)

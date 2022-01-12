@@ -38,8 +38,7 @@ class BankWirePaymentOption extends StatelessWidget {
           child: Divider(height: 1),
         ),
         AppText(
-            text: "fill_or_enter_your_membe_before_name_of_transferee."
-                .tr,
+            text: "fill_or_enter_your_membe_before_name_of_transferee.".tr,
             style: TextTypes.caption,
             align: TextAlign.center),
       ],

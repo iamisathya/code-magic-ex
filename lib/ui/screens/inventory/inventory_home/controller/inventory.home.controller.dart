@@ -161,23 +161,23 @@ class InventoryHomeController extends GetxController {
 
   void onChangeStockType(String value) {
     try {
-     _activeStockType.value =
-        _allStockOptions.firstWhere((element) => element.value == value);
-    if (value == "outOfStock") {
-      _tempInventoryRecords.value.items = _inventoryRecords.value.items!
-          .where((item) => item.quantityOnHand == "0")
-          .toList();
-    } else {
-      _tempInventoryRecords.value.items = _inventoryRecords.value.items!
-          .where((item) => item.quantityOnHand != "0")
-          .toList();
-    }
-    activeStockType = _activeStockType.value.value;
-    _tempInventoryRecords.refresh();
-    calculateTotal(); 
+      _activeStockType.value =
+          _allStockOptions.firstWhere((element) => element.value == value);
+      if (value == "outOfStock") {
+        _tempInventoryRecords.value.items = _inventoryRecords.value.items!
+            .where((item) => item.quantityOnHand == "0")
+            .toList();
+      } else {
+        _tempInventoryRecords.value.items = _inventoryRecords.value.items!
+            .where((item) => item.quantityOnHand != "0")
+            .toList();
+      }
+      activeStockType = _activeStockType.value.value;
+      _tempInventoryRecords.refresh();
+      calculateTotal();
     } on AppException catch (e, stack) {
       e.logError(e, stack);
-    }    
+    }
   }
 
   void onChangeViewType(String value) {

@@ -73,7 +73,8 @@ String calculateTotalPrice(InventoryRecords inventoryRecords, String type) {
   return total.toInt().toString();
 }
 
-  String calculateTotalPriceFromInventoryItemV2(InventoryItemV2 inventoryRecords, String type) {
+String calculateTotalPriceFromInventoryItemV2(
+    InventoryItemV2 inventoryRecords, String type) {
   double total = 0.0;
   // looping over data array
   for (final item in inventoryRecords.items!) {
@@ -83,7 +84,8 @@ String calculateTotalPrice(InventoryRecords inventoryRecords, String type) {
   return total.toInt().toString();
 }
 
-  String calculateInventoryTotal(List<InventoryItem> inventoryItems, String type) {
+String calculateInventoryTotal(
+    List<InventoryItem> inventoryItems, String type) {
   double total = 0.0;
   // looping over data array
   for (final item in inventoryItems) {
@@ -324,29 +326,29 @@ final Shader linearGradient = const LinearGradient(
   colors: <Color>[AppColor.blueYonder, AppColor.tuftsBlue, AppColor.buttonBlue],
 ).createShader(const Rect.fromLTWH(0.0, 0.0, 300.0, 54.0));
 
-
-
-  Future<void> proceedPrinting() async {
-    const String logoPath = '../../img/header-logo.png';
-    const String logoUrl = 'https://firebasestorage.googleapis.com/v0/b/dsc-tools.appspot.com/o/header-logo.jpg?alt=media&token=aecd5af7-603c-4dc9-bf4a-2f6b837de0fe';
-    const String backgroundColor = 'background: rgb(204,204,204);';
-    const String alternativeName = 'alt="Unicity Shopping"';
-    const String dimensionForImage = 'alt="Unicity Shopping" width="81" height="80"';
-    try {
-      final Dio dio = Dio();
-      final response =
-          await dio.get("${Address.inventoryPrint}=${Globals.userId}");
-      final removedBackground = response
-          .toString()
-          .replaceAll(backgroundColor, '')
-          .replaceAll(logoPath, logoUrl)
-          .replaceAll(alternativeName, dimensionForImage);
-      await Printing.layoutPdf(
-          onLayout: (PdfPageFormat format) async => Printing.convertHtml(
-                format: format,
-                html: removedBackground,
-              ));
-    } catch (err) {
-      SnackbarUtil.showError(message: "error".tr);
-    }
+Future<void> proceedPrinting() async {
+  const String logoPath = '../../img/header-logo.png';
+  const String logoUrl =
+      'https://firebasestorage.googleapis.com/v0/b/dsc-tools.appspot.com/o/header-logo.jpg?alt=media&token=aecd5af7-603c-4dc9-bf4a-2f6b837de0fe';
+  const String backgroundColor = 'background: rgb(204,204,204);';
+  const String alternativeName = 'alt="Unicity Shopping"';
+  const String dimensionForImage =
+      'alt="Unicity Shopping" width="81" height="80"';
+  try {
+    final Dio dio = Dio();
+    final response =
+        await dio.get("${Address.inventoryPrint}=${Globals.userId}");
+    final removedBackground = response
+        .toString()
+        .replaceAll(backgroundColor, '')
+        .replaceAll(logoPath, logoUrl)
+        .replaceAll(alternativeName, dimensionForImage);
+    await Printing.layoutPdf(
+        onLayout: (PdfPageFormat format) async => Printing.convertHtml(
+              format: format,
+              html: removedBackground,
+            ));
+  } catch (err) {
+    SnackbarUtil.showError(message: "error".tr);
   }
+}
