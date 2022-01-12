@@ -9,12 +9,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'constants/app_themes.dart';
 import 'controllers/global_controllers.dart';
 import 'navigation/routers.dart';
 import 'navigation/routes.dart';
 import 'services/firebase/messaging.dart';
 import 'translations/translations.dart';
-import 'ui/global/theme/app_themes.dart';
 import 'ui/screens/splash/splash.screen.dart';
 import 'utilities/connectivity.dart';
 import 'utilities/key_value_storage.dart';
