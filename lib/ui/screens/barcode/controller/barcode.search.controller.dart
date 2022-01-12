@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+import 'package:dsc_tools/services/rest_api/exceptions.dart';
+import 'package:dsc_tools/utilities/function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
 
-import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/barcode_save_response.dart';
@@ -93,8 +95,7 @@ class BarcodeSearchController extends GetxController {
         "orderNumber": controller.orderNumber.value
       };
       barCodeVerifyResponse = await MemberCallsService.init()
-          .verifyEachBarcodeNumber(
-              gTokenBarcodeNew, "", json.encode(verifyRequest));
+          .verifyEachBarcodeNumber("", "", json.encode(verifyRequest));
       if (barCodeVerifyResponse!.error != null &&
           barCodeVerifyResponse!.error!.isNotEmpty) {
         final errors = StringBuffer();
@@ -108,10 +109,13 @@ class BarcodeSearchController extends GetxController {
         // * Success, save barcode numbers
         saveBarcodeDetails();
       }
-    } catch (e, s) {
-      debugPrint(e.toString());
+    } on DioError catch (e) {
       isLoading.toggle();
-      LoggerService.instance.e(s);
+      SnackbarUtil.showError(message: e.error.toString());
+      returnResponse(e.response!);
+    } on AppException catch (e, s) {
+      isLoading.toggle();
+      e.logError(e, s);
     }
   }
 
