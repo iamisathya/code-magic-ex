@@ -30,7 +30,7 @@ class DashboardMenuItem extends StatelessWidget {
 
   void onPressMenu(String option) {
     switch (option) {
-      case "log_out":
+      case "sign_out":
         onLogout();
         break;
       case "open_po":
