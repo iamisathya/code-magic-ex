@@ -431,7 +431,6 @@ class CreateOpenPoOrderController extends GetxController
                                         imageUrl: item.itemInfo != null ? item.itemInfo!.imageUrl : "",
                                         height: 55,
                                         width: 70,
-                                        progressIndicatorBuilder: (context, url, _) => const CircularProgressIndicator(),
                                         errorWidget: (context, url, _) =>
                                             SvgPicture.asset(
                                                 kProductPlaceholderImage,
