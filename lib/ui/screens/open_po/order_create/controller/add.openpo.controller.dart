@@ -428,9 +428,10 @@ class CreateOpenPoOrderController extends GetxController
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 20),
                                     child: CachedNetworkImage(
-                                        imageUrl: item.itemInfo!.imageUrl,
+                                        imageUrl: item.itemInfo != null ? item.itemInfo!.imageUrl : "",
                                         height: 55,
                                         width: 70,
+                                        progressIndicatorBuilder: (context, url, _) => const CircularProgressIndicator(),
                                         errorWidget: (context, url, _) =>
                                             SvgPicture.asset(
                                                 kProductPlaceholderImage,
