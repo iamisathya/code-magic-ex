@@ -63,6 +63,8 @@ dependencies:
   image_gallery_saver: '^1.7.1'
   image_picker: ^0.8.2
   intl: ^0.17.0
+  inventory_repository:
+    path: packages/inventory_repository
   json_annotation: ^4.0.1
   keyboard_actions: ^3.4.4
   linked_scroll_controller: ^0.2.0

@@ -1,0 +1,19 @@
+name: inventory_repository
+description: Dart package which manages the authentication domain.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.12.0-0 <3.0.0"
+
+dependencies: 
+  dio: ^4.0.0
+  intl: ^0.17.0
+  json_annotation: ^4.0.1
+  inventory_api:
+    path: ../inventory_api
+
+dev_dependencies:
+  coverage: ^1.0.3
+  build_runner: ^2.0.4
+  json_serializable: ^4.0.2
