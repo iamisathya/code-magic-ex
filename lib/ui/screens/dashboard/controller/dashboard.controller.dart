@@ -1,4 +1,3 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,12 +5,10 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../constants/colors.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/images.dart';
-import '../../../../utilities/user_session.dart';
 import '../../barcode/barcode.screen.dart';
 import '../../easy_ship/easyship.screen.dart';
 import '../../enroll/enrollhome.screen.dart';
 import '../../inventory/inventory.dart';
-import '../../login/login.screen.dart';
 import '../../open_po/order_list/home_screen.dart';
 import '../../order_entry/orderentry.screen.dart';
 import '../../sales_reports/salesreports.screen.dart';
@@ -88,26 +85,6 @@ class DashboardController extends GetxController {
       page: "onLogout",
     ),
   ].obs;
-
-  void onPresssMenuItem(String param) {
-    if (param != "onLogout") {
-      onLogout(Get.context!);
-    } else {
-      Get.to(() => BarcodeHomeScreen());
-    }
-  }
-
-  set showReportOptions(bool value) =>
-      isReportOptionShown.value = !!isReportOptionShown.value;
-
-  bool get showReportOptions => isReportOptionShown.value;
-
-  void onLogout(BuildContext context) {
-    FirebaseAnalytics()
-        .logEvent(name: 'log_out', parameters: {'type': "normal_signout"});
-    UserSessionManager.shared.removeUserInfoFromDB();
-    Get.offAll(() => LoginScreen());
-  }
 
   Future<void> onImageOptionSelect(ImageSource source) async {
     try {

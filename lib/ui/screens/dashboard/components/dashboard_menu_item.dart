@@ -1,3 +1,10 @@
+import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
+import 'package:dsc_tools/ui/screens/easy_ship/easyship.screen.dart';
+import 'package:dsc_tools/ui/screens/enroll/enrollhome.screen.dart';
+import 'package:dsc_tools/ui/screens/inventory/inventory.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
+import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
+import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,11 +28,41 @@ class DashboardMenuItem extends StatelessWidget {
     Get.offAll(() => LoginScreen());
   }
 
+  void onPressMenu(String option) {
+    switch (option) {
+      case "log_out":
+        onLogout();
+        break;
+      case "open_po":
+        Get.to(() => OpenPoHomeScreen());
+        break;
+      case "enroll":
+        Get.to(() => EnrollHomeScreen());
+        break;
+      case "order_entry":
+        Get.to(() => OrderEntryHomeScreen());
+        break;
+      case "inventory":
+        Get.to(() => InventoryHomeScreen());
+        break;
+      case "sales_report":
+        Get.to(() => SalesReportsHomeScreen());
+        break;
+      case "easyship_report":
+        Get.to(() => EasyShipHomeScreen());
+        break;
+      case "barcode":
+        Get.to(() => BarcodeHomeScreen());
+        break;
+      default:
+        debugPrint("unknown path");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-          item.page == "onLogout" ? onLogout() : Get.toNamed(item.page),
+      onTap: () => onPressMenu(item.title),
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(
