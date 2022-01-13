@@ -27,8 +27,6 @@ Future<void> main() async {
   //* Ensure initialization of Widgets.
   WidgetsFlutterBinding.ensureInitialized();
   // AppBindings().dependencies();
-  // CreateOpenPoOrderBindings().dependencies();
-  // OpenPoOrderListBindings().dependencies();
   // await Firebase.initializeApp();
   await Messaging.instanceId();
   await dotenv.load();
