@@ -145,7 +145,7 @@ class LoginController extends GetxController {
     } on DioError catch (e) {
       loading.toggle();
       final String message =
-          getErrorMessageWithKey(e.response!.data, "message");
+          getErrorMessageWithKey(e.error, "message");
       SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
     } catch (err) {
