@@ -70,9 +70,9 @@ class OrderEntryProductListController extends GetxController {
       isLoading.toggle();
       // inventoryRecords =
       //     Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
-      final InventoryRecords invRecords = await homeController.loadInventory();
-      inventoryRecords.value = invRecords;
-      tempInventoryRecords.value = invRecords;
+      // final InventoryRecords invRecords = await homeController.loadInventory();
+      // inventoryRecords.value = invRecords;
+      // tempInventoryRecords.value = invRecords;
       isLoading.toggle();
     } on DioError catch (e) {
       _onDioError(e);

@@ -35,11 +35,7 @@ class NavigationBottomBar extends StatelessWidget {
             backgroundColor: Colors.white,
             elevation: 20,
             iconSize: 20,
-            onTap: (int index) => controller.onTabTapped(
-                index: index,
-                isExternal: isExternal,
-                currentPage: currentPage), // new
-            currentIndex: controller.currentTabIndex.value,
+            onTap: (int index) => {},
             items: [
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(kBottomTabHomeIcon, height: 20),

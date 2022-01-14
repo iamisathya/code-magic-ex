@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/models/inventory_item_v2.dart' hide Dialog;
+import 'package:dsc_tools/ui/screens/open_po/order_list/controller/openpo.list.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
@@ -12,7 +13,6 @@ import '../../../../../api/config/api_service.dart';
 import '../../../../../models/open_order_id.dart';
 import '../../../../../models/open_po_details.dart';
 import '../../../../../utilities/logger.dart';
-import '../../order_create/controller/add.openpo.controller.dart';
 
 class OpenPoDetailsController extends GetxController {
   // final MemberCallsService api;
@@ -26,8 +26,7 @@ class OpenPoDetailsController extends GetxController {
   OpenPlaceOrderId openPlaceOrderId = OpenPlaceOrderId();
   RxList<OpenPlaceOrderDetails> openPlaceOrderDetails =
       List<OpenPlaceOrderDetails>.filled(0, OpenPlaceOrderDetails()).obs;
-  CreateOpenPoOrderController listController =
-      Get.put(CreateOpenPoOrderController());
+  OpenPoListController poListController = Get.find();
 
   RxBool isLoading = false.obs;
 
@@ -57,9 +56,10 @@ class OpenPoDetailsController extends GetxController {
       // Attching product images from hydra products
       for (var i = 0; i < detailsResponse.length; i++) {
         final OpenPlaceOrderDetails currentItem = detailsResponse[i];
-        final InventoryItem? foundItem = listController.inventoryRecordsV2.value.items!
-            .firstWhereOrNull(
-                (hydraItem) => currentItem.productId == hydraItem.item!.id!.unicity);
+        final InventoryItem? foundItem = poListController
+            .inventoryRecordsV2.value.items!
+            .firstWhereOrNull((hydraItem) =>
+                currentItem.productId == hydraItem.item!.id!.unicity);
         if (foundItem != null) {
           currentItem.imageUrl = foundItem.itemInfo!.imageUrl;
         }

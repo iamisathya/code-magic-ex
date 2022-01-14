@@ -1,3 +1,7 @@
+import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/inventory_item_v2.dart' hide Dialog;
+import 'package:dsc_tools/services/rest_api/exceptions.dart';
+import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +15,13 @@ import '../../../../../constants/colors.dart';
 import '../../../../../constants/globals.dart';
 import '../../../../../models/general_models.dart';
 import '../../../../../models/open_po.dart';
-import '../../../../../utilities/logger.dart';
 import '../../../../global/widgets/unordered_list.dart';
 import '../components/openpo_list_filter_dropdown.dart';
 import '../components/order_status_item.dart';
 
 class OpenPoListController extends GetxController
     with StateMixin<List<OpenPO>> {
+  HomeController homeCtrl = Get.find();
   RxInt currentTab = 0.obs;
   RxList<NameValueType> availableMonthSlots = [
     NameValueType(name: "all", value: "all"),
@@ -29,22 +33,34 @@ class OpenPoListController extends GetxController
   List<OpenPO> openPlaceOrders = [];
   RxList<OpenPO> tempOpenPlaceOrders = <OpenPO>[].obs;
   RxInt selectedFilterIndex = 0.obs;
+  Rx<InventoryItemV2> inventoryRecordsV2 = InventoryItemV2(items: []).obs;
 
   @override
   void onInit() {
     FirebaseAnalytics().setCurrentScreen(screenName: "open_po");
-    getAllOpenPo();
+    initCalls();
     super.onInit();
   }
 
-  void onChangeMonthType(int index) {
-    currentTab.value = index;
-    filterMethod.value = availableMonthSlots[index].value;
-    getAllOpenPo();
+  Future<void> initCalls() async {
+    isLoading.toggle();
+    if(Globals.currentMarketWarehouseId.isEmpty) {
+      await homeCtrl.getManagedWarehouses();
+    }
+    try {
+      await Future.wait<void>([
+        getAllOpenPo(),
+        loadInventory(),
+      ]);
+      isLoading.toggle();
+    } on AppException catch (err, stack) {
+      isLoading.toggle();
+      change(null, status: RxStatus.error(err.toString()));
+      err.logError(err, stack);
+    }
   }
 
   Future<void> getAllOpenPo() async {
-    isLoading.toggle();
     try {
       final List<OpenPO> allOpenPlaceOrders = await MemberCallsService.init()
           .getAllOpenPo("106", filterMethod.value, Globals.userId);
@@ -55,12 +71,34 @@ class OpenPoListController extends GetxController
       } else {
         change([], status: RxStatus.empty());
       }
-      isLoading.toggle();
-    } catch (err) {
-      isLoading.toggle();
-      change(null, status: RxStatus.error(err.toString()));
-      LoggerService.instance.e(err.toString());
+    }on DioError catch (e) {
+      debugPrint(e.toString());
+      throw "Open PO fetch error: ${e.toString()}";
+    } on AppException catch (exception, stack) {
+      exception.logError(exception, stack);
+      throw "Open PO fetch error: ${exception.toString()}";
     }
+  }
+
+  Future<void> loadInventory() async {
+    try {
+      final InventoryItemV2 records = await MemberCalls2Service.auth()
+          .loadInventoryProductsV2(Globals.currentMarketWarehouseId, "item",
+              Globals.currentMarket!.isoCode);
+      inventoryRecordsV2.value.items = List.from(records.items!);
+    } on DioError catch (e) {
+      debugPrint(e.toString());
+      throw "Inventory error: ${e.toString()}";
+    } on AppException catch (exception, stack) {
+      exception.logError(exception, stack);
+      throw "Inventory error: ${exception.toString()}";
+    }
+  }
+
+  void onChangeMonthType(int index) {
+    currentTab.value = index;
+    filterMethod.value = availableMonthSlots[index].value;
+    getAllOpenPo();
   }
 
   void openDialog(BuildContext context, String attchmentName) => showDialog(

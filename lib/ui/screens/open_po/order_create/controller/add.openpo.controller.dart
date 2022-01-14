@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart' show DioError;
+import 'package:dsc_tools/ui/global/widgets/inventory_bottom_sheet.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_list/controller/openpo.list.controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -16,34 +16,24 @@ import '../../../../../constants/globals.dart';
 import '../../../../../models/cart_products.dart';
 import '../../../../../models/inventory_item_v2.dart';
 import '../../../../../models/inventory_records.dart';
-import '../../../../../models/managed_warehouse.dart';
 import '../../../../../models/open_po_create_order_response.dart';
 import '../../../../../models/openpo_create_order_result.dart';
-import '../../../../../models/product_v2.dart';
 import '../../../../../models/validate_order.dart';
-import '../../../../../services/rest_api/exceptions.dart';
 import '../../../../../utilities/constants.dart';
 import '../../../../../utilities/enums.dart';
-import '../../../../../utilities/extensions.dart';
 import '../../../../../utilities/function.dart';
-import '../../../../../utilities/images.dart';
 import '../../../../../utilities/logger.dart';
 import '../../../../../utilities/snackbar.dart';
 import '../../../../../utilities/user_session.dart';
-import '../../../../global/theme/text_view.dart' show AppText;
-import '../../../order_entry/screens/home/components/white_search_field.dart';
 import '../../order_success/main_screen.dart';
 
 class CreateOpenPoOrderController extends GetxController
     with StateMixin<List<InventoryRecords>> {
-  Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
-  final Rx<InventoryRecords> searchResult = InventoryRecords(items: []).obs;
-  TextEditingController searchProductTextController = TextEditingController();
-  Rx<InventoryItemV2> inventoryRecordsV2 = InventoryItemV2(items: []).obs;
+  final TextEditingController searchProductTextController = TextEditingController();
+  final Rx<InventoryItemV2> inventoryRecordsV2 = InventoryItemV2(items: []).obs;
   final Rx<InventoryItemV2> searchResult1 = InventoryItemV2(items: []).obs;
-  RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
-  ManagedWarehouses warehouses = ManagedWarehouses(items: []);
-  late HydraProducts hydraProducts;
+  final RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
+  final OpenPoListController poListController = Get.find();
 
   RxInt totalCartPv = 0.obs;
   RxDouble totalCartPrice = 0.0.obs;
@@ -55,141 +45,16 @@ class CreateOpenPoOrderController extends GetxController
 
   @override
   void onInit() {
-    getManagedWarehouses1();
+    initialiseCreate();
     super.onInit();
   }
 
-  Future<void> loadInventory2(String warehouseId) async {
-    try {
-      final InventoryItemV2 records = await MemberCalls2Service.authNoLogger()
-          .loadInventoryProductsV2(
-              warehouseId, "item", Globals.currentMarket!.isoCode);
-      inventoryRecordsV2.value.items = List.from(records.items!);
-      searchResult1.value.items = List.from(records.items!);
-      calculateTotal();
-      if (records.items!.isEmpty) {
-        SnackbarUtil.showError(message: "no_warehouses_found".tr);
-      }
-    } on DioError catch (e, stack) {
-      const AppException().logError(e, stack);
-    } on AppException catch (exception, stack) {
-      exception.logError(exception, stack);
-    }
-  }
-
-  Future<void> getManagedWarehouses1() async {
-    isLoading.toggle();
-    try {
-      warehouses = await ApiService.clientNoLogger().getManagedWarehouses();
-      if (warehouses.items.isNotEmpty) {
-        await loadInventory2(warehouses.items[0].href.getAfterLastSlash());
-      } else {
-        SnackbarUtil.showError(message: "no_warehouses_found".tr);
-      }
-      isLoading.toggle();
-    } on DioError catch (e) {
-      isLoading.toggle();
-      final String message = getErrorMessage(e.response!.data);
-      SnackbarUtil.showError(message: message);
-      returnResponse(e.response!);
-    } on AppException catch (err, stack) {
-      isLoading.toggle();
-      err.logError(err, stack);
-    }
-  }
-
-  Future<void> loadInventory() async {
-    try {
-      isLoading.toggle();
-      await Future.wait<void>([
-        getManagedWarehouses().then((value) =>
-            value != null ? inventoryRecords.value.items = value.items : {}),
-        getHydraProducts().then((value) => value != null
-            ? hydraProducts = value
-            : {}), // Get hydra products to get image urls
-      ]).then((value) => mapInventoryItems());
-    } on AppException catch (exception, stack) {
-      isLoading.toggle();
-      exception.logError(exception, stack);
-    }
-  }
-
-  Future<HydraProducts?> getHydraProducts() async {
-    try {
-      final HydraProducts hydraProducts =
-          await MemberCalls2Service.init().getHydraProducts("THA", "A", "shop");
-      return hydraProducts;
-    } on DioError catch (e) {
-      final String message = getErrorMessage(e.response!.data);
-      SnackbarUtil.showError(message: message);
-      returnResponse(e.response!);
-    } catch (err, s) {
-      Get.printError(info: err.toString());
-      Get.printError(info: s.toString());
-    }
-  }
-
-  void mapInventoryItems() {
-    try {
-      for (var i = 0; i < hydraProducts.items.length; i++) {
-        final ProductItem currentItem = hydraProducts.items[i];
-        final int index = inventoryRecords.value.items.indexWhere(
-            (hydraItem) => currentItem.itemCode == hydraItem.item.id.unicity);
-        if (index != -1) {
-          inventoryRecords.value.items[index].imageUrl = currentItem.imageUrl;
-        }
-      }
-      searchResult.value.items = List.from(inventoryRecords.value.items);
-      inventoryRecords.refresh();
-      calculateTotal();
-      isLoading.toggle();
-    } on AppException catch (exception, stack) {
-      isLoading.toggle();
-      exception.logError(exception, stack);
-    }
-  }
-
-  int get inventorySize => searchProductTextController.text.isNotEmpty
-      ? searchResult.value.items.length
-      : inventoryRecords.value.items.length;
-
-  InventoryRecords get inventoryItems =>
-      searchProductTextController.text.isNotEmpty
-          ? searchResult.value
-          : inventoryRecords.value;
-
-  Future<InventoryRecords?> getManagedWarehouses() async {
-    try {
-      warehouses = await ApiService.clientNoLogger().getManagedWarehouses();
-      if (warehouses.items.isNotEmpty) {
-        return await loadInventoryProducts(
-            warehouses.items[0].href.getAfterLastSlash());
-      } else {
-        SnackbarUtil.showError(message: "no_warehouses_found".tr);
-      }
-    } on DioError catch (e) {
-      isLoading.toggle();
-      final String message = getErrorMessage(e.response!.data);
-      SnackbarUtil.showError(message: message);
-      returnResponse(e.response!);
-    } catch (err) {
-      isLoading.toggle();
-      LoggerService.instance.e(err.toString());
-    }
-  }
-
-  Future<InventoryRecords?> loadInventoryProducts(String warehouseId) async {
-    const String type = "item";
-    try {
-      return await ApiService.clientNoLogger()
-          .getInventoryRecords(warehouseId, type);
-    } on DioError catch (e) {
-      final String message = getErrorMessage(e.response!.data);
-      SnackbarUtil.showError(message: "${"error".tr}! $message");
-      returnResponse(e.response!);
-    } catch (err) {
-      LoggerService.instance.e(err.toString());
-    }
+  void initialiseCreate() {
+    inventoryRecordsV2.value.items =
+        List.from(poListController.inventoryRecordsV2.value.items!);
+    searchResult1.value.items =
+        List.from(poListController.inventoryRecordsV2.value.items!);
+    calculateTotal();
   }
 
   Future<void> addItemToCart(InventoryItem cartItem) async {
@@ -377,7 +242,7 @@ class CreateOpenPoOrderController extends GetxController
             .toLowerCase()
             .contains(searchKey.toLowerCase()))
         .toList();
-    searchResult.refresh();
+    searchResult1.refresh();
   }
 
   void showBottomModal(BuildContext context) {
@@ -387,99 +252,11 @@ class CreateOpenPoOrderController extends GetxController
       context: context,
       isDismissible: true,
       builder: (context) {
-        return DraggableScrollableSheet(
-          minChildSize: 0.2,
-          maxChildSize: 0.75,
-          expand: false,
-          builder: (_, ctrl) => Container(
-            color: AppColor.brightGray,
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 4, right: 4, top: 4),
-                  child: WhiteSearchField(
-                      controller: searchProductTextController,
-                      onChanged: (val) => onSearchTextChange(val),
-                      onPress: () {},
-                      isFetching: false.obs),
-                ),
-                const SizedBox(height: 5),
-                Expanded(
-                  child: Obx(
-                    () => ListView.builder(
-                      controller: ctrl,
-                      itemCount: searchResult1.value.items!.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        final InventoryItem item =
-                            searchResult1.value.items![index];
-                        return GestureDetector(
-                          onTap: () {
-                            addItemToCart(item);
-                            Navigator.pop(context);
-                          },
-                          child: Card(
-                            child: Container(
-                              height: 75,
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: CachedNetworkImage(
-                                        imageUrl: item.itemInfo != null ? item.itemInfo!.imageUrl : "",
-                                        height: 55,
-                                        width: 70,
-                                        errorWidget: (context, url, _) =>
-                                            SvgPicture.asset(
-                                                kProductPlaceholderImage,
-                                                width: 80)),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                            item.catalogSlide!.content!
-                                                .description!,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .subtitle2!
-                                                .copyWith(
-                                                    color: AppColor.charcoal)),
-                                        AppText(
-                                          text:
-                                              "${"code".tr}: ${item.item!.id!.unicity}",
-                                          style: TextTypes.caption,
-                                          color: AppColor.metallicSilver,
-                                        ),
-                                        AppText(
-                                          text:
-                                              "${item.terms!.pvEach} ${"pv".tr} | ${item.terms!.priceEach} ${Globals.currency}",
-                                          style: TextTypes.subtitle2,
-                                          color: AppColor.charcoal,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
+        return InventoryBottomSheet(
+            onSearchTextChange: (val) => onSearchTextChange(val),
+            onTapItem: (item) => addItemToCart(item),
+            searchProductTextController: searchProductTextController,
+            searchResult: searchResult1);
       },
     ).whenComplete(() => searchProductTextController.text = "");
   }

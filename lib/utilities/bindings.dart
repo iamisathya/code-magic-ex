@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/inventory/inventory_home/controller/inventory.home.controller.dart';
@@ -11,6 +12,13 @@ class AppBindings extends Bindings {
     // Get.put(MemberCallsService(Dio()));
     // Get.put(OpenPoDetailsController(api: Get.find()));
     Get.lazyPut(() => OpenPoDetailsController(), fenix: true);
+  }
+}
+
+class HomeBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => HomeController(), fenix: true);
   }
 }
 

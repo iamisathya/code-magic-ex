@@ -202,3 +202,6 @@ class Page2Controller extends GetxController {
     super.onClose();
   }
 }
+
+inventory fetches in 
+orderentry.product.list.controller.dart

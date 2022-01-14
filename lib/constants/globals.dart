@@ -37,6 +37,7 @@ class Globals {
   static UserInfo userInfo = UserSessionManager.shared.userInfo!;
   static String customerCode = "";
   static String customerPoCode = "";
+  static String currentMarketWarehouseId = "";
 
   static String osVersion = Platform.operatingSystemVersion;
   static String deviceType = Platform.isIOS

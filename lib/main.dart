@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:dsc_tools/utilities/bindings.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -90,7 +91,7 @@ class MyApp extends StatelessWidget {
               getPages: AppRoutes.routes,
               theme: AppThemes.lightTheme,
               darkTheme: AppThemes.darkTheme,
-              // initialBinding: InventoryBinding(),
+              initialBinding: HomeBindings(),
               locale: languageController.getLocale,
               fallbackLocale: languageController.fallbackLocale,
               translations: AppTranslations(),
