@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/inventory_item_v2.dart' hide Dialog;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
@@ -10,7 +11,6 @@ import '../../../../../api/api_address.dart';
 import '../../../../../api/config/api_service.dart';
 import '../../../../../models/open_order_id.dart';
 import '../../../../../models/open_po_details.dart';
-import '../../../../../models/product_v2.dart';
 import '../../../../../utilities/logger.dart';
 import '../../order_create/controller/add.openpo.controller.dart';
 
@@ -57,11 +57,11 @@ class OpenPoDetailsController extends GetxController {
       // Attching product images from hydra products
       for (var i = 0; i < detailsResponse.length; i++) {
         final OpenPlaceOrderDetails currentItem = detailsResponse[i];
-        final ProductItem? foundItem = listController.hydraProducts.items
+        final InventoryItem? foundItem = listController.inventoryRecordsV2.value.items!
             .firstWhereOrNull(
-                (hydraItem) => currentItem.productId == hydraItem.itemCode);
+                (hydraItem) => currentItem.productId == hydraItem.item!.id!.unicity);
         if (foundItem != null) {
-          currentItem.imageUrl = foundItem.imageUrl;
+          currentItem.imageUrl = foundItem.itemInfo!.imageUrl;
         }
       }
       openPlaceOrderDetails = detailsResponse.obs;
