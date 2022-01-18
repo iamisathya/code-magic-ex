@@ -71,6 +71,7 @@ class OpenPoListController extends GetxController
       } else {
         change([], status: RxStatus.empty());
       }
+      onFilterChange(selectedFilterIndex.value);
     }on DioError catch (e) {
       debugPrint(e.toString());
       throw "Open PO fetch error: ${e.toString()}";

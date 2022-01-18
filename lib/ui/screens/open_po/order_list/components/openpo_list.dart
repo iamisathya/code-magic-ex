@@ -20,18 +20,24 @@ class OpenPoList extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Container(
+          alignment: Alignment.center,
           color: AppColor.kWhiteSmokeColor,
           child: Obx(
-            () => ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: controller.tempOpenPlaceOrders.length,
-              itemBuilder: (BuildContext ctxt, int index) {
-                return POItem(
-                    openPo: controller.tempOpenPlaceOrders[index],
-                    controller: controller);
-              },
-            ),
+            () => controller.tempOpenPlaceOrders.isEmpty
+                ? Container(
+                    height: 100,
+                    alignment: Alignment.center,
+                    child: const Text("Sorry no orders found"))
+                : ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: controller.tempOpenPlaceOrders.length,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      return POItem(
+                          openPo: controller.tempOpenPlaceOrders[index],
+                          controller: controller);
+                    },
+                  ),
           ),
         ),
       ),
