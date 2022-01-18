@@ -3,24 +3,24 @@ import 'package:json_annotation/json_annotation.dart';
 part 'guest_info_error.g.dart';
 
 @JsonSerializable()
-class GuestInfoError {
+class ErrorMap {
   @JsonKey(name: "error")
   ErrorObject error;
 
-  GuestInfoError({
+  ErrorMap({
     required this.error,
   });
 
-  factory GuestInfoError.fromJson(Map<String, dynamic> json) =>
-      _$GuestInfoErrorFromJson(json);
+  factory ErrorMap.fromJson(Map<String, dynamic> json) =>
+      _$ErrorMapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GuestInfoErrorToJson(this);
+  Map<String, dynamic> toJson() => _$ErrorMapToJson(this);
 }
 
 @JsonSerializable()
 class ErrorObject {
   @JsonKey(name: "code")
-  String code;
+  int code;
   @JsonKey(name: "message")
   String message;
   @JsonKey(name: "error_code")

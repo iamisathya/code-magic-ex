@@ -110,9 +110,9 @@ class OrderCompleteArguments {
   bool orderStatus;
 
   OrderCompleteArguments({
-    required this.orderId,
-    required this.userId,
-    required this.orderStatus,
+    this.orderId = "",
+    this.userId = "",
+    this.orderStatus = false,
   });
 
   factory OrderCompleteArguments.fromJson(Map<String, dynamic> json) =>

@@ -205,3 +205,9 @@ class Page2Controller extends GetxController {
 
 inventory fetches in 
 orderentry.product.list.controller.dart
+
+
+Completed
+Open PO
+Easyship report
+Inventory

@@ -6,20 +6,19 @@ part of 'guest_info_error.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GuestInfoError _$GuestInfoErrorFromJson(Map<String, dynamic> json) {
-  return GuestInfoError(
+ErrorMap _$ErrorMapFromJson(Map<String, dynamic> json) {
+  return ErrorMap(
     error: ErrorObject.fromJson(json['error'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$GuestInfoErrorToJson(GuestInfoError instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ErrorMapToJson(ErrorMap instance) => <String, dynamic>{
       'error': instance.error,
     };
 
 ErrorObject _$ErrorObjectFromJson(Map<String, dynamic> json) {
   return ErrorObject(
-    code: json['code'] as String,
+    code: json['code'] as int,
     message: json['message'] as String,
     errorCode: json['error_code'] as String,
     errorMessage: json['error_message'] as String,
