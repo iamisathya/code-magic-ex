@@ -11,21 +11,23 @@ class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBarController controller = Get.put(AppBarController());
   final LanguageController languageController = Get.put(LanguageController());
 
-  OpenPoAppBar({this.profileIcon = false});
+  OpenPoAppBar({this.leading = "back"});
 
-  final bool profileIcon;
+  final String leading;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: profileIcon
+      leading: leading == "profile"
           ? GestureDetector(
               onTap: () => Get.toNamed(UserProfileScreen.routeName),
               child: SvgPicture.asset(kUserProfileIcon,
                   width: 20, fit: BoxFit.scaleDown))
-          : IconButton(
-              onPressed: () => Get.back(),
-              icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+          : leading == "empty"
+              ? const SizedBox()
+              : IconButton(
+                  onPressed: () => Get.back(),
+                  icon: const Icon(Icons.arrow_back_ios_new_outlined)),
       centerTitle: false,
       titleSpacing: 0.0,
       title: SvgPicture.asset(kUnicityLogoGradientImage, fit: BoxFit.cover),
