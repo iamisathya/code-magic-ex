@@ -1,3 +1,6 @@
+import 'package:dsc_tools/ui/global/widgets/gradient_button.dart';
+import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
+import 'package:dsc_tools/ui/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -68,7 +71,16 @@ class EnrolmentSuccessScreen extends StatelessWidget {
                   color: AppColor.charcoal,
                 ),
               ),
-              SvgPicture.asset(kScanBarCodeImage),
+              GestureDetector(
+                  onTap: () {
+                    Get.offAll(() => MainHomeScreen());
+                    Get.to(() => BarcodeHomeScreen());
+                  },
+                  child: SvgPicture.asset(kScanBarCodeImage)),
+              const SizedBox(height: 30),
+              GradientButton(
+                  onClick: () => Get.offAll(() => MainHomeScreen()),
+                  buttonText: "goto_home")
             ],
           ),
         ],

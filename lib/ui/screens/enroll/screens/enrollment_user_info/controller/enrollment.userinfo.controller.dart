@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
 import 'package:easy_localization/easy_localization.dart'
     hide StringTranslateExtension;
 import 'package:flutter/cupertino.dart';
@@ -231,48 +232,60 @@ class EnrollmentUserInfoController extends GetxController {
                       )),
                 Expanded(
                   child: Obx(
-                    () => ListView.builder(
-                      controller: ctrl,
-                      itemCount: searchedAddresses.length,
-                      itemBuilder: (BuildContext ctxt, int index) {
-                        final CompleteAddress item = searchedAddresses[index];
-                        if (searchedAddresses.isEmpty) {
-                          return Center(
-                              child: AppText(
-                                  text: "sorry_no_address_found".tr,
-                                  style: TextTypes.bodyText2));
-                        }
-                        return GestureDetector(
-                          onTap: () => _onSelectAddress(item),
-                          child: Card(
-                            child: Container(
-                              height: 50,
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15),
-                                    child: SvgPicture.asset(kLocationIcon,
-                                        width: 20),
-                                  ),
-                                  Expanded(
-                                    child: Text(item.searchAddressRoman!,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle2!
-                                            .copyWith(
-                                                color: AppColor.charcoal)),
-                                  )
-                                ],
+                    () => isSearchingAddres.value
+                        ? const Center(child: CircularProgressIndicator())
+                        : searchedAddresses.isEmpty && !isSearchingAddres.value
+                            ? Container(
+                                alignment: Alignment.center,
+                                child: Text("not_found".tr))
+                            : ListView.builder(
+                                controller: ctrl,
+                                itemCount: searchedAddresses.length,
+                                itemBuilder: (BuildContext ctxt, int index) {
+                                  final CompleteAddress item =
+                                      searchedAddresses[index];
+                                  if (searchedAddresses.isEmpty) {
+                                    return Center(
+                                        child: AppText(
+                                            text: "sorry_no_address_found".tr,
+                                            style: TextTypes.bodyText2));
+                                  }
+                                  return GestureDetector(
+                                    onTap: () => _onSelectAddress(item),
+                                    child: Card(
+                                      child: Container(
+                                        height: 50,
+                                        padding: const EdgeInsets.all(10),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 15),
+                                              child: SvgPicture.asset(
+                                                  kLocationIcon,
+                                                  width: 20),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                  item.searchAddressRoman!,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 2,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .subtitle2!
+                                                      .copyWith(
+                                                          color: AppColor
+                                                              .charcoal)),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
                   ),
                 )
               ],

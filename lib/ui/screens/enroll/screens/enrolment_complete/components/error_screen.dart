@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -35,23 +36,7 @@ class EnrolmentErrorScreen extends StatelessWidget {
           ),
           SvgPicture.asset(kEnrolmentErrorImage,
               height: 232, semanticsLabel: "enrolment_error".tr),
-          GestureDetector(
-            onTap: controller.onClickTryAgain,
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 53),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  gradient: const LinearGradient(
-                      colors: [AppColor.dodgerBlue, AppColor.skyBlue],
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.topRight)),
-              child: AppText(
-                text: "try_again".tr,
-                style: TextTypes.headline6,
-                color: AppColor.kWhiteColor,
-              ),
-            ),
-          )
+          GradientButton(onClick: () => controller.onClickTryAgain())
         ],
       ),
     );

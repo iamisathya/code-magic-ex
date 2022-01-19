@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
+import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../models/general_models.dart';
-import '../../../../home/home.dart';
-import '../../../enrollhome.screen.dart';
 
 class EnrolmentCompleteController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isEnrolementSuccess = false.obs;
 
-  late OrderCompleteArguments orderDetails;
+  late OrderCompleteArguments orderDetails = OrderCompleteArguments();
+
+  bool get isSuccess => orderDetails.orderStatus;
 
   @override
   void onInit() {
@@ -21,15 +21,12 @@ class EnrolmentCompleteController extends GetxController {
       } else {
         Get.back();
       }
-    } catch (e) {
-      orderDetails =
-          OrderCompleteArguments(orderId: "", orderStatus: false, userId: "");
-      debugPrint(e.toString());
+    } on AppException catch (err, stack) {
+      err.logError(err, stack);
     }
   }
 
   void onClickTryAgain() {
-    Get.to(MainHomeScreen());
-    Get.to(EnrollHomeScreen());
+    Get.back();
   }
 }
