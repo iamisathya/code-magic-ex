@@ -66,7 +66,7 @@ class UserProfile {
   @JsonKey(name: "shipToName")
   ShipToName shipToName;
   @JsonKey(name: "shipToPhone")
-  String shipToPhone;
+  String? shipToPhone;
   @JsonKey(name: "shippingMethod")
   ShippingMethod shippingMethod;
   @JsonKey(name: "source")
@@ -424,7 +424,7 @@ class Transactions {
 class TransactionItem {
   BillToAddress billToAddress;
   BillToName billToName;
-  String billToPhone;
+  String? billToPhone;
   MethodDetails? methodDetails;
   int? amount;
   String? authorization;

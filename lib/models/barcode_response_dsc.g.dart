@@ -45,7 +45,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
     shippingMethod:
         ShippingMethod.fromJson(json['shippingMethod'] as Map<String, dynamic>),
     shipToName: ShipToName.fromJson(json['shipToName'] as Map<String, dynamic>),
-    shipToPhone: json['shipToPhone'] as String,
+    shipToPhone: json['shipToPhone'] as String?,
     source: json['source'],
     href: json['href'] as String,
   );
@@ -351,7 +351,7 @@ TransactionItem _$TransactionItemFromJson(Map<String, dynamic> json) {
     billToAddress:
         BillToAddress.fromJson(json['billToAddress'] as Map<String, dynamic>),
     billToName: BillToName.fromJson(json['billToName'] as Map<String, dynamic>),
-    billToPhone: json['billToPhone'] as String,
+    billToPhone: json['billToPhone'] as String?,
     methodDetails: json['methodDetails'] == null
         ? null
         : MethodDetails.fromJson(json['methodDetails'] as Map<String, dynamic>),
