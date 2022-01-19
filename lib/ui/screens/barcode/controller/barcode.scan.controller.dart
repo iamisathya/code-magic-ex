@@ -1,6 +1,9 @@
+import 'package:dsc_tools/utilities/logger.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import '../../../../models/barcode_item_response.dart';
 import '../../../../models/barcode_response.dart';
@@ -18,8 +21,26 @@ class BarcodeScannerController extends GetxController {
 
   @override
   void onInit() {
-    bardcodeTextField.text = "423198958";
+    setupInitState();
+    onRecieveArgs();
     super.onInit();
+  }
+
+  void onRecieveArgs() {
+    try {
+      final dynamic data = Get.arguments;
+      if (data != null) {
+        bardcodeTextField.text = data as String;
+      }
+    } catch (e, stack) {
+      LoggerService.instance.e(e, stack);
+    }
+  }
+
+  void setupInitState() {
+    if (!kReleaseMode) {
+      bardcodeTextField.text = "423198958";
+    }
   }
 
   Future<void> scanBarcode(BuildContext context) async {
