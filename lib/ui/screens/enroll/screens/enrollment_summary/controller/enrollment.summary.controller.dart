@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/guest_info_error.dart';
+import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
@@ -96,26 +98,27 @@ class EnrollmentSummaryController extends GetxController {
         await getPurchaseLog();
         final EnrollForm? resposne = await proceedPlaceOrder();
         if (resposne != null) {
-          verifyOrder(resposne);
-          await forceResetPassword(resposne.customer.id.unicity);
-          // Get.offNamedUntil(EnrollmentCompleteScreen.routeName,
-          //     ModalRoute.withName('/enrollmentCompleteHomePage'),
-          //     arguments: resposne);
-          final args = OrderCompleteArguments(
-              orderId: resposne.id.unicity.retrieveOrderId(),
-              orderStatus: true,
-              userId: resposne.customer.id.unicity);
-          Get.offAllNamed(EnrollmentCompleteScreen.routeName, arguments: args);
-        } else {
-          final args = OrderCompleteArguments(
-              orderId: "", orderStatus: false, userId: "");
-          Get.to(EnrollmentCompleteScreen(), arguments: args);
+          if (resposne.customer.id.unicity.isNotEmpty) {
+            verifyOrder(resposne);
+            await forceResetPassword(resposne.customer.id.unicity);
+            final args = OrderCompleteArguments(
+                orderId: resposne.id.unicity.retrieveOrderId(),
+                orderStatus: true,
+                userId: resposne.customer.id.unicity);
+            Get.offAll(() => EnrollmentCompleteScreen(), arguments: args);
+          } else {
+            final args = OrderCompleteArguments();
+            Get.to(() => EnrollmentCompleteScreen(), arguments: args);
+          }
         }
       }
       isLoading.toggle();
-    } catch (e) {
+    } on DioError catch (e) {
+      SnackbarUtil.showError(
+          message: "${"server_error".tr}! ${e.error.toString()}");
+    } on AppException catch (err, stack) {
       isLoading.toggle();
-      LoggerService.instance.e(e.toString());
+      err.logError(err, stack);
     }
   }
 
@@ -250,10 +253,13 @@ class EnrollmentSummaryController extends GetxController {
       }
       return null;
     } on DioError catch (e) {
-      LoggerService.instance.e(e.toString());
-      renderErrorSnackBar(title: "error!".tr, subTitle: e.error.toString());
+      final ErrorMap object =
+          ErrorMap.fromJson(e.response!.data as Map<String, dynamic>);
+      SnackbarUtil.showError(
+          message: object.error.errorMessage, title: "error!".tr);
       return null;
-    } catch (err) {
+    } on AppException catch (err) {
+      isLoading.toggle();
       LoggerService.instance.e(err.toString());
       renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
       return null;

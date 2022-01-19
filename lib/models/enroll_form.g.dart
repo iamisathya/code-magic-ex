@@ -323,10 +323,10 @@ Map<String, dynamic> _$TransactionsEnrollToJson(TransactionsEnroll instance) =>
 TransactionItems _$TransactionItemsFromJson(Map<String, dynamic> json) {
   return TransactionItems(
     amount: json['amount'] as int,
-    authorization: json['authorization'] as String,
+    authorization: json['authorization'] as String?,
     method: json['method'] as String,
     type: json['type'] as String,
-    index: json['index'] as int,
+    index: json['index'] as int?,
   );
 }
 
@@ -423,7 +423,7 @@ Map<String, dynamic> _$ProductLinesEnrollToJson(ProductLinesEnroll instance) =>
 ProductLineItems _$ProductLineItemsFromJson(Map<String, dynamic> json) {
   return ProductLineItems(
     item: ProductItemBaseInfo.fromJson(json['item'] as Map<String, dynamic>),
-    quantity: json['quantity'] as String,
+    quantity: json['quantity'] as int,
   );
 }
 

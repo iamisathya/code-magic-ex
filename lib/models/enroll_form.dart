@@ -403,13 +403,13 @@ class TransactionItems {
   @JsonKey(name: "amount")
   int amount;
   @JsonKey(name: "authorization")
-  String authorization;
+  String? authorization;
   @JsonKey(name: "method")
   String method;
   @JsonKey(name: "type")
   String type;
   @JsonKey(name: "index")
-  int index;
+  int? index;
 
   TransactionItems({
     required this.amount,
@@ -530,7 +530,7 @@ class ProductLineItems {
   @JsonKey(name: "item")
   ProductItemBaseInfo item;
   @JsonKey(name: "quantity")
-  String quantity;
+  int quantity;
 
   ProductLineItems({
     required this.item,

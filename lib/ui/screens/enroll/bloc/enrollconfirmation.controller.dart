@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
-import 'package:dsc_tools/ui/global/widgets/overlay_progress.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
 import 'package:dsc_tools/utilities/constants.dart';
 import 'package:dsc_tools/utilities/function.dart';
@@ -21,8 +21,6 @@ import '../../../../models/general_models.dart';
 class EnrollConfirmationController extends GetxController {
   late EnrolleeUserData enroleeData;
 
-  final ProgressBar _sendingMsgProgressBar = ProgressBar();
-
   @override
   void onInit() {
     super.onInit();
@@ -38,12 +36,10 @@ class EnrollConfirmationController extends GetxController {
 
   Future<void> proceedOrderPlace(BuildContext context) async {
     try {
-      _sendingMsgProgressBar.show(context);
       final bool isServerRuning = await checkOrderEntryServerStatus();
       if (!isServerRuning) {
         renderErrorSnackBar(
             title: "server_error".tr, subTitle: "server_down_msg".tr);
-        _sendingMsgProgressBar.hide();
         return;
       }
       if (isServerRuning) {
@@ -57,9 +53,7 @@ class EnrollConfirmationController extends GetxController {
               arguments: resposne);
         }
       }
-      _sendingMsgProgressBar.hide();
     } catch (e) {
-      _sendingMsgProgressBar.hide();
       LoggerService.instance.e(e.toString());
     }
   }
@@ -74,11 +68,11 @@ class EnrollConfirmationController extends GetxController {
       return false;
     } on DioError catch (e) {
       renderErrorSnackBar(
-          title: "server_error!".tr, subTitle: e.error.toString()); //!hardcoded
+          title: "server_error!".tr, subTitle: e.error.toString());
       return false;
     } catch (err) {
       renderErrorSnackBar(
-          title: "error!".tr, subTitle: err.toString()); //!hardcoded
+          title: "error!".tr, subTitle: err.toString());
       return false;
     }
   }
@@ -146,7 +140,7 @@ class EnrollConfirmationController extends GetxController {
               zip: usedInfo.mainAddress.zip),
           shippingMethod: CustomerHref(
               href:
-                  "https://hydra.unicity.net/v5a/warehouses/9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c/shippingmethods?type=WillCall"),
+                  "https://hydra.unicity.net/v5a/warehouses/${Globals.currentMarketWarehouseId}/shippingmethods?type=WillCall"),
           transactions: Transactions(items: [
             TransactionItem(
                 amount: "this.terms.total", method: "Cash", type: "record")
@@ -164,7 +158,6 @@ class EnrollConfirmationController extends GetxController {
     try {
       final payload = prepareRequestPaylod();
       if (payload == null) {
-        _sendingMsgProgressBar.hide();
         throw Exception('something_wrong_in_purchase_log'.tr);
       }
       final String jsonUser = jsonEncode(prepareRequestPaylod());
