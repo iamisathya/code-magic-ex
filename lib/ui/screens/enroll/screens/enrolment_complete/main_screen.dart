@@ -19,7 +19,8 @@ class EnrollmentCompleteScreen extends StatelessWidget {
         isLoading: controller.isLoading.value,
         progressIndicator: const Loader(),
         child: Scaffold(
-          appBar: OpenPoAppBar(),
+          appBar:
+              OpenPoAppBar(leading: controller.isSuccess ? "empty" : "back"),
           body: Body(),
         ),
       ),

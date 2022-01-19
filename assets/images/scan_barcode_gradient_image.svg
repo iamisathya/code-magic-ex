@@ -1,18 +1,1 @@
-<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="100" height="60" rx="3" transform="matrix(-1 0 0 1 100 0)" fill="url(#paint0_linear_107_2036)"/>
-<path d="M26 10H15V17.3333M74 10H85V17.3333M26 50H15V42.6667M74 50H85V42.6667" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="34" y="20" width="2" height="19.9995" rx="1" fill="white"/>
-<rect x="30" y="20" width="2" height="19.9995" rx="1" fill="white"/>
-<rect x="62.002" y="20" width="2" height="19.9995" rx="1" fill="white"/>
-<rect x="40" y="20" width="2" height="19.9995" rx="1" fill="white"/>
-<rect x="67.998" y="20" width="2" height="19.9995" rx="1" fill="white"/>
-<rect x="47.998" y="20" width="2" height="19.9995" rx="1" fill="white"/>
-<rect x="52.002" y="20" width="2" height="19.9995" rx="1" fill="white"/>
-<rect x="56" y="20" width="2" height="19.9995" rx="1" fill="white"/>
-<defs>
-<linearGradient id="paint0_linear_107_2036" x1="123.529" y1="46.2" x2="30.0028" y2="-21.3306" gradientUnits="userSpaceOnUse">
-<stop stop-color="#1C9CFC"/>
-<stop offset="1" stop-color="#4CDFFF"/>
-</linearGradient>
-</defs>
-</svg>
+<svg fill="none" height="60" viewBox="0 0 100 60" width="100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="123.529" x2="30.0028" y1="46.2" y2="-21.3306"><stop offset="0" stop-color="#1c9cfc"/><stop offset="1" stop-color="#4cdfff"/></linearGradient><rect fill="url(#a)" height="60" rx="3" transform="matrix(-1 0 0 1 100 0)" width="100"/><path d="m26 10h-11v7.3333m59-7.3333h11v7.3333m-59 32.6667h-11v-7.3333m59 7.3333h11v-7.3333" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><g fill="#fff"><rect height="19.9995" rx="1" width="2" x="34" y="20"/><rect height="19.9995" rx="1" width="2" x="30" y="20"/><rect height="19.9995" rx="1" width="2" x="62.002" y="20"/><rect height="19.9995" rx="1" width="2" x="40" y="20"/><rect height="19.9995" rx="1" width="2" x="67.998" y="20"/><rect height="19.9995" rx="1" width="2" x="47.998" y="20"/><rect height="19.9995" rx="1" width="2" x="52.002" y="20"/><rect height="19.9995" rx="1" width="2" x="56" y="20"/></g></svg>
