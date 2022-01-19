@@ -1,3 +1,5 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -155,24 +157,18 @@ class CompleteBarcodeScanSuccess extends StatelessWidget {
     return Container(
       height: 152,
       width: Get.width,
-      color: AppColor.cadetBlue,
+      color: AppColor.crayola,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(kBarcodeCheckSuccessIcon,
               height: 45, width: 45, semanticsLabel: 'barcode check icon'),
           const SizedBox(height: 15),
-          Text("check_successfully".tr,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(color: AppColor.kWhiteColor)),
+          AppText(text: "check_successfully".tr, style: TextTypes.headline6),
           const SizedBox(height: 7),
-          Text("${"order_number".tr}: ${controller.orderNumber.value}",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2!
-                  .copyWith(color: AppColor.kWhiteColor)),
+          AppText(
+              text: "${"order_number".tr}: ${controller.orderNumber.value}",
+              style: TextTypes.bodyText2),
         ],
       ),
     );
