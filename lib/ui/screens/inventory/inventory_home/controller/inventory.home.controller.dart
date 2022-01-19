@@ -46,20 +46,20 @@ class InventoryHomeController extends GetxController {
 
   TextEditingController searchController = TextEditingController();
 
-  final Rx<InventoryItemV2> _tempInventoryRecords =
-      InventoryItemV2(items: []).obs;
-  final Rx<InventoryItemV2> _inventoryRecords = InventoryItemV2(items: []).obs;
-  final RxList<InventoryRecordsMatchedItem> _inventoryRecordsOutOfStock =
-      <InventoryRecordsMatchedItem>[].obs;
+  final Rx<InventoryItemV2> _tempInventoryRecords = InventoryItemV2(items: []).obs;
+  final Rx<InventoryItemV2> _allInventoryRecords = InventoryItemV2(items: []).obs;
+  final Rx<InventoryItemV2> _onHandInventoryRecords = InventoryItemV2(items: []).obs;
+  final Rx<InventoryItemV2> _outOfStockInventoryRecords = InventoryItemV2(items: []).obs;
+      
   Rx<InventoryItemV2> searchedProducts = InventoryItemV2(items: []).obs;
   ManagedWarehouses warehouses = ManagedWarehouses(items: []);
   InventorySortTypes currentType = InventorySortTypes.itemCode;
   bool isAscending = true;
 
   List<InventoryItem> get inventoryItems => _tempInventoryRecords.value.items!;
-  List<InventoryItem> get allInventoryItems => _inventoryRecords.value.items!;
-  List<InventoryRecordsMatchedItem> get outOfStockItems =>
-      _inventoryRecordsOutOfStock;
+  List<InventoryItem> get allInventoryItems => _allInventoryRecords.value.items!;
+  List<InventoryItem> get onHandItems => _onHandInventoryRecords.value.items!;
+  List<InventoryItem> get outOfStockItems => _outOfStockInventoryRecords.value.items!;
 
   // card or table view
   String get activeViewType => _activeViewType.value.value;
@@ -83,32 +83,22 @@ class InventoryHomeController extends GetxController {
     try {
       isLoading.toggle();
       await Future.wait<void>([
-        loadInventory(),
-        loadOutOfStockInventory(), // Get hydra products to get image urls
-      ]).then((_) => onCompleteFetching());
+        _loadInventory(),
+        _loadOutOfStockInventory(), // Get hydra products to get image urls
+      ]).then((_) => _onCompleteFetching());
     } on AppException catch (exception, stack) {
       isLoading.toggle();
       exception.logError(exception, stack);
     }
   }
 
-  void onCompleteFetching() {
-    isLoading.toggle();
-    onChangeStockType("onHand");
-    _tempInventoryRecords.value.items =
-        List.from(_inventoryRecords.value.items!);
-    calculateTotal();
-    _tempInventoryRecords.refresh();
-  }
-
-  Future<void> loadInventory() async {
+  Future<void> _loadInventory() async {
     try {
-      final InventoryItemV2 records = await MemberCalls2Service.authNoLogger()
-          .loadInventoryProductsV2(
-              "50b0517be73b8280e59d6f9d1c6a8f09418cd2304f9d29b9902ecfa5e0212899",
-              "item",
+      final InventoryItemV2 records = await MemberCalls2Service.auth()
+          .loadInventoryProductsV2(Globals.currentMarketWarehouseId, "item",
               Globals.currentMarket!.isoCode);
-      _inventoryRecords.value.items!.addAll(List.from(records.items!));
+      _allInventoryRecords.value.items!.addAll(List.from(records.items!));
+      _onHandInventoryRecords.value.items = List.from(records.items!);
       if (records.items!.isEmpty) {
         SnackbarUtil.showError(message: "no_warehouses_found".tr);
       }
@@ -119,26 +109,30 @@ class InventoryHomeController extends GetxController {
     }
   }
 
-  Future<void> loadOutOfStockInventory() async {
+  Future<void> _loadOutOfStockInventory() async {
     try {
       final List<InventoryRecordsMatchedItem> inventoryRecordsOutOfStock1 =
-          await MemberCallsService.clientNoLogger()
-              .getOutOfStockInventoryRecords(
-                  "1_11", UserSessionManager.shared.customerToken.token);
+          await MemberCallsService.init().getOutOfStockInventoryRecords(
+              "1_11", UserSessionManager.shared.customerToken.token);
       final InventoryItemV2 records = InventoryItemV2(items: []);
       for (final InventoryRecordsMatchedItem item
           in inventoryRecordsOutOfStock1) {
         final InventoryItem outOfStockItem = InventoryItem(
             catalogSlide:
                 CatalogSlide(content: Content(description: item.itemNameEn)),
-            item: Item(href: item.itemCode, id: Id(unicity: item.itemId)),
+            item: Item(
+                href: item.itemCode,
+                id: Id(
+                  unicity: item.itemId,
+                )),
             quantityOnHand: "0",
             terms: Terms(
                 priceEach: double.parse(item.itemPrice),
                 pvEach: int.parse(item.itemPv)));
         records.items!.add(outOfStockItem);
       }
-      _inventoryRecords.value.items!.addAll(records.items!.toList());
+      _outOfStockInventoryRecords.value.items = records.items;
+      _allInventoryRecords.value.items!.addAll(records.items!.toList());
     } on DioError catch (e) {
       final String message = getErrorMessage(e.response!.data);
       SnackbarUtil.showError(message: message);
@@ -148,7 +142,34 @@ class InventoryHomeController extends GetxController {
     }
   }
 
-  void calculateTotal() {
+  void _onCompleteFetching() {
+    isLoading.toggle();
+    _collectImageUrl();
+    onChangeStockType("onHand");
+    _tempInventoryRecords.value.items =
+        List.from(_onHandInventoryRecords.value.items!);
+    _calculateTotal();
+    _tempInventoryRecords.refresh();
+  }
+
+  void _collectImageUrl() {
+    final Rx<InventoryItemV2> _tempOutOfStock = InventoryItemV2(items: []).obs;
+    print(_outOfStockInventoryRecords.value.items!.length);
+    print(_onHandInventoryRecords.value.items!.length);
+    for (final outOfStockItem in _outOfStockInventoryRecords.value.items!) {
+      for (final onHandItem in _onHandInventoryRecords.value.items!) {
+        if(onHandItem.item!.id!.unicity == outOfStockItem.item!.id!.unicity) {
+          outOfStockItem.itemInfo = onHandItem.itemInfo;
+        }
+      }
+      _tempOutOfStock.value.items!.add(outOfStockItem);
+    }
+    print(_tempOutOfStock.value.items!.length);
+    _outOfStockInventoryRecords.value.items = _tempOutOfStock.value.items;
+    _outOfStockInventoryRecords.refresh();
+  }
+
+  void _calculateTotal() {
     try {
       grandTotalPrice.value = calculateTotalPriceFromInventoryItemV2(
           _tempInventoryRecords.value, 'price');
@@ -164,17 +185,13 @@ class InventoryHomeController extends GetxController {
       _activeStockType.value =
           _allStockOptions.firstWhere((element) => element.value == value);
       if (value == "outOfStock") {
-        _tempInventoryRecords.value.items = _inventoryRecords.value.items!
-            .where((item) => item.quantityOnHand == "0")
-            .toList();
+        _tempInventoryRecords.value = _outOfStockInventoryRecords.value;
       } else {
-        _tempInventoryRecords.value.items = _inventoryRecords.value.items!
-            .where((item) => item.quantityOnHand != "0")
-            .toList();
+        _tempInventoryRecords.value = _onHandInventoryRecords.value;
       }
       activeStockType = _activeStockType.value.value;
       _tempInventoryRecords.refresh();
-      calculateTotal();
+      _calculateTotal();
     } on AppException catch (e, stack) {
       e.logError(e, stack);
     }
@@ -382,13 +399,13 @@ class InventoryHomeController extends GetxController {
   void onSearchTextChange(String searchText) {
     if (searchText.isNotEmpty) {
       searchedProducts.value.items!.clear();
-      searchedProducts.value.items!.addAll(_inventoryRecords.value.items!);
+      searchedProducts.value.items!.addAll(_allInventoryRecords.value.items!);
       searchedProducts.value.items!.removeWhere((game) => !game
           .catalogSlide!.content!.description!
           .toLowerCase()
           .contains(searchText.toLowerCase()));
     } else {
-      searchedProducts.value.items!.addAll(_inventoryRecords.value.items!);
+      searchedProducts.value.items!.addAll(_allInventoryRecords.value.items!);
     }
     searchedProducts.refresh();
   }
