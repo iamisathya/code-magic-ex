@@ -33,36 +33,38 @@ class Body extends StatelessWidget {
           height: 130,
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                    children: controller.searchOptions
-                        .mapIndexed(
-                          (NameValueType type, int index) => GestureDetector(
-                            onTap: () => controller.onChangeTab(index),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: index != 0 ? 8.0 : 0),
-                              child: Text(
-                                type.name.tr,
-                                style: controller.currentTab.value == index
-                                    ? Theme.of(context).textTheme.subtitle1
-                                    : Theme.of(context).textTheme.bodyText2,
+            child: Obx(
+              () => Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                      children: controller.searchOptions
+                          .mapIndexed(
+                            (NameValueType type, int index) => GestureDetector(
+                              onTap: () => controller.onChangeTab(index),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: index != 0 ? 8.0 : 0),
+                                child: Text(
+                                  type.name.tr,
+                                  style: controller.currentTab.value == index
+                                      ? Theme.of(context).textTheme.subtitle1
+                                      : Theme.of(context).textTheme.bodyText2,
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                        .toList()),
-                WhiteSearchField(
-                    controller: controller.searchUserTextController,
-                    onPress: controller.searchUserBySearchQuery,
-                    onChanged: controller.onTextChange,
-                    kType: controller.currentTab.value == 0
-                        ? TextInputType.number
-                        : TextInputType.text,
-                    isFetching: controller.isFetching)
-              ],
+                          )
+                          .toList()),
+                  WhiteSearchField(
+                      controller: controller.searchUserTextController,
+                      onPress: controller.searchUserBySearchQuery,
+                      onChanged: controller.onTextChange,
+                      kType: controller.currentTab.value == 0
+                          ? TextInputType.number
+                          : TextInputType.text,
+                      isFetching: controller.isFetching)
+                ],
+              ),
             ),
           ),
         ),

@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../constants/globals.dart';
-import '../../../../../../models/inventory_records.dart';
 import '../../../../../../styles/border.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/extensions.dart';
@@ -16,7 +16,7 @@ import '../../../controllers/orderentry.product.list.controller.dart';
 class ProductItem extends StatelessWidget {
   final OrderEntryProductListController controller =
       Get.put(OrderEntryProductListController());
-  final InventoryRecordItems item;
+  final InventoryItem item;
   final bool inCart;
   final int cartItemIndex;
 
@@ -26,7 +26,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => controller.addItemToCart(itemCode: item.item.id.unicity),
+      onTap: () => controller.addItemToCart(itemCode: item.item!.id!.unicity!),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.0),
@@ -40,20 +40,20 @@ class ProductItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 AppText(
-                  text: "${"code".tr}: ${item.item.id.unicity}",
+                  text: "${"code".tr}: ${item.item!.id!.unicity}",
                   style: TextTypes.caption,
                   color: AppColor.metallicSilver,
                 ),
                 SizedBox(
                   height: 60,
-                  child: (item.imageUrl != null && item.imageUrl!.isNotEmpty)
-                      ? CachedNetworkImage(imageUrl: item.imageUrl!)
+                  child: item.itemInfo != null && (item.itemInfo!.imageUrl.isNotEmpty)
+                      ? CachedNetworkImage(imageUrl: item.itemInfo!.imageUrl)
                       : SvgPicture.asset(kProductPlaceholderImage, width: 60),
                 ),
                 AppText(
                   align: TextAlign.center,
                   text:
-                      "${item.terms.pvEach} ${"pv".tr} | ${item.terms.priceEach.precisionCheck} ${Globals.currency}",
+                      "${item.terms!.pvEach} ${"pv".tr} | ${item.terms!.priceEach!.precisionCheck} ${Globals.currency}",
                   style: TextTypes.caption,
                   color: AppColor.charcoal,
                 ),

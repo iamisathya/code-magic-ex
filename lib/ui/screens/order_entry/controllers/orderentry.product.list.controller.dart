@@ -1,12 +1,15 @@
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/models/inventory_item_v2.dart';
+import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../models/cart_products.dart';
 import '../../../../models/general_models.dart';
-import '../../../../models/inventory_records.dart';
 import '../../../../models/user_minimal_data.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
@@ -34,19 +37,20 @@ class OrderEntryProductListController extends GetxController {
 
   late UserMinimalData userData;
 
-  Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
-  Rx<InventoryRecords> inventoryEasyShipRecords =
-      InventoryRecords(items: []).obs;
-  Rx<InventoryRecords> tempInventoryEasyShipRecords =
-      InventoryRecords(items: []).obs;
-  Rx<InventoryRecords> tempInventoryRecords = InventoryRecords(items: []).obs;
+  // Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
+  Rx<InventoryItemV2> inventoryEasyShipRecords =
+      InventoryItemV2(items: []).obs;
+  Rx<InventoryItemV2> tempInventoryEasyShipRecords =
+      InventoryItemV2(items: []).obs;
+  Rx<InventoryItemV2> inventoryRecords = InventoryItemV2(items: []).obs;
+  Rx<InventoryItemV2> tempInventoryRecords = InventoryItemV2(items: []).obs;
 
   @override
   void onInit() {
     FirebaseAnalytics().setCurrentScreen(screenName: "order_entry");
     receiveIntentData();
-    loadInventoryRecords();
+    loadInventory();
     super.onInit();
   }
 
@@ -63,21 +67,23 @@ class OrderEntryProductListController extends GetxController {
 
   String get currentFilteredMethod => filterMethod.value;
 
-  Future<void> loadInventoryRecords() async {
-    // const String userId =
-    //     "9e41f330617aa2801b45620f8ffc5615306328fa0bd2255b0d42d7746560d24c";
+
+  Future<void> loadInventory() async {
     try {
       isLoading.toggle();
-      // inventoryRecords =
-      //     Rx(await ApiService.shared().getInventoryRecords(userId, "item"));
-      // final InventoryRecords invRecords = await homeController.loadInventory();
-      // inventoryRecords.value = invRecords;
-      // tempInventoryRecords.value = invRecords;
+      final InventoryItemV2 records = await MemberCalls2Service.auth()
+          .loadInventoryProductsV2(Globals.currentMarketWarehouseId, "item",
+              Globals.currentMarket!.isoCode);
+      inventoryRecords.value.items = List.from(records.items!);
+      tempInventoryRecords.value.items = List.from(records.items!);
       isLoading.toggle();
     } on DioError catch (e) {
-      _onDioError(e);
-    } catch (err, s) {
-      _onCatchError(err, s);
+      isLoading.toggle();
+      debugPrint(e.toString());
+    } on AppException catch (exception, stack) {
+      isLoading.toggle();
+      debugPrint(exception.toString());
+      debugPrintStack(stackTrace: stack);
     }
   }
 
@@ -130,17 +136,17 @@ class OrderEntryProductListController extends GetxController {
       onPressRemove(itemCode);
       return;
     }
-    final InventoryRecordItems itemFound = inventoryRecords.value.items
-        .firstWhere((item) => item.item.id.unicity == itemCode);
+    final InventoryItem itemFound = inventoryRecords.value.items!
+        .firstWhere((item) => item.item!.id!.unicity == itemCode);
     final CartProductsItem item = CartProductsItem(
-        itemCode: itemFound.item.id.unicity,
-        productName: itemFound.catalogSlideContent.content.description,
+        itemCode: itemFound.item!.id!.unicity!,
+        productName: itemFound.catalogSlide!.content!.description!,
         quantity: 1,
-        itemPrice: itemFound.terms.priceEach,
-        itemPv: itemFound.terms.pvEach,
-        imageUrl: itemFound.imageUrl ?? "",
-        totalPrice: 1 * itemFound.terms.priceEach,
-        totalPv: 1 * itemFound.terms.pvEach);
+        itemPrice: itemFound.terms!.priceEach!,
+        itemPv: itemFound.terms!.pvEach!,
+        imageUrl: itemFound.itemInfo!.imageUrl,
+        totalPrice: 1 * itemFound.terms!.priceEach!,
+        totalPv: 1 * itemFound.terms!.pvEach!);
     cartProducts.insert(0, item);
     calculateTotal();
   }
@@ -221,19 +227,19 @@ class OrderEntryProductListController extends GetxController {
   }
 
   void onTextChanged(String text) {
-    tempInventoryRecords.value.items.clear();
+    tempInventoryRecords.value.items!.clear();
     if (text.isEmpty) {
       tempInventoryRecords =
-          InventoryRecords(items: List.from(tempInventoryRecords.value.items))
+          InventoryItemV2(items: List.from(tempInventoryRecords.value.items!))
               .obs;
       tempInventoryRecords.refresh();
       return;
     }
 
-    for (final item in inventoryRecords.value.items) {
-      if (item.catalogSlideContent.content.description.contains(text) ||
-          item.item.id.unicity.contains(text)) {
-        tempInventoryRecords.value.items.add(item);
+    for (final item in inventoryRecords.value.items!) {
+      if (item.catalogSlide!.content!.description!.contains(text) ||
+          item.item!.id!.unicity!.contains(text)) {
+        tempInventoryRecords.value.items!.add(item);
       }
     }
     tempInventoryRecords.refresh();
