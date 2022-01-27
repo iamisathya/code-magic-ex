@@ -100,7 +100,7 @@ class NotificationSetting extends StatelessWidget {
               )
             ],
           ),
-          CupertinoSwitch(
+          Switch.adaptive(
             value: false,
             onChanged: (value) {},
           ),
@@ -146,8 +146,7 @@ class TermsConditionsSetting extends StatelessWidget {
   }
 }
 
-class AccountSetting extends StatelessWidget {
-  final ProfileController _controller = Get.put(ProfileController());
+class AccountSetting extends GetView<UserProfileController> {
   AccountSetting({
     Key? key,
   }) : super(key: key);
@@ -173,17 +172,17 @@ class AccountSetting extends StatelessWidget {
           ],
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: controller.pickImage,
             child: AppText(
                 text: "Edit profile Picture", style: TextTypes.subtitle1)),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: TextButton(
-              onPressed: _controller.onPressUpdatePassword,
+              onPressed: controller.onPressUpdatePassword,
               child: AppText(text: "Change Email", style: TextTypes.subtitle1)),
         ),
         TextButton(
-            onPressed: _controller.onPressUpdateEmail,
+            onPressed: controller.onPressUpdateEmail,
             child: AppText(text: "Change Password", style: TextTypes.subtitle1))
       ]),
     );

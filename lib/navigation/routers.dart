@@ -94,5 +94,9 @@ class AppRoutes {
         name: ScreenPaths.updatePassword,
         page: () => const UpdatePasswordScreen(),
         binding: UpdatePasswordBinding()),
+    GetPage(
+        name: ScreenPaths.userProfile,
+        page: () => const UserProfileScreen(),
+        binding: UserProfileBinding()),
   ];
 }
