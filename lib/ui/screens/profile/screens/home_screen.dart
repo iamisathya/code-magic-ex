@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../open_po/order_create/component/app_bar.dart';
-import '../components/body.dart';
+import '../widgets/body.dart';
 
 class UserProfileScreen extends StatelessWidget {
   static const String routeName = "/userProfileScreen";

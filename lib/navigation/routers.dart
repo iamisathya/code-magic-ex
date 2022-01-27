@@ -1,3 +1,8 @@
+import 'package:dsc_tools/navigation/router.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/change_password/update_password.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/terms_conditions.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/update_email/update_email.dart';
+import 'package:dsc_tools/utilities/bindings.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/barcode/barcode.screen.dart';
@@ -72,5 +77,22 @@ class AppRoutes {
     GetPage(
         name: UserProfileScreen.routeName,
         page: () => const UserProfileScreen()),
+    // profile pages
+    GetPage(
+        name: ScreenPaths.termsConditions,
+        page: () => const TermsConditionsScreen(),
+        binding: TermsConditionsBinding()),
+    GetPage(
+        name: ScreenPaths.updateEmail,
+        page: () => const UpdateEmailScreen(),
+        binding: UpdateEmailBinding()),
+    GetPage(
+        name: ScreenPaths.updateEmail,
+        page: () => const UpdateEmailScreen(),
+        binding: UpdateEmailBinding()),
+    GetPage(
+        name: ScreenPaths.updatePassword,
+        page: () => const UpdatePasswordScreen(),
+        binding: UpdatePasswordBinding()),
   ];
 }

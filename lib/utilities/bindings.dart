@@ -1,4 +1,7 @@
 import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/change_password/controller/update_password.controller.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/controller/terms_conditions.controller.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/update_email/controller/update_email.controller.dart';
 import 'package:get/get.dart';
 
 import '../ui/screens/inventory/inventory_home/controller/inventory.home.controller.dart';
@@ -41,5 +44,26 @@ class InventoryBinding implements Bindings {
   void dependencies() {
     // Get.lazyPut<InventoryHomeController>(() => InventoryHomeController());
     Get.put<InventoryHomeController>(InventoryHomeController());
+  }
+}
+
+class TermsConditionsBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put<TermsConditionsController>(TermsConditionsController());
+  }
+}
+
+class UpdateEmailBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put<UpdateEmailController>(UpdateEmailController());
+  }
+}
+
+class UpdatePasswordBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put<UpdatePasswordController>(UpdatePasswordController());
   }
 }

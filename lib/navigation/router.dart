@@ -1,3 +1,4 @@
+
 import '../ui/screens/barcode/barcode.screen.dart';
 import '../ui/screens/easy_ship/easyship.screen.dart';
 import '../ui/screens/enroll/enrollhome.screen.dart';
@@ -24,4 +25,7 @@ class ScreenPaths {
   static const String webview = WebivewHomeScreen.routeName;
   static const String checkout = CheckoutPage.routeName;
   static const String settings = SettingsPage.routeName;
+  static const String termsConditions = '/termsConditionsScreen';
+  static const String updateEmail = '/updateEmailScreen';
+  static const String updatePassword = '/updatePasswordScreen';
 }
