@@ -29,4 +29,5 @@ class ScreenPaths {
   static const String updateEmail = '/updateEmailScreen';
   static const String updatePassword = '/updatePasswordScreen';
   static const String userProfile = '/userProfileScreen';
+  static const String notifications = '/notificationsScreen';
 }

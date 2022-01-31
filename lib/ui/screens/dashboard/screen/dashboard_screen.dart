@@ -15,7 +15,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: OpenPoAppBar(leading: "profile"),
+      appBar: OpenPoAppBar(leading: "profile", showNotification: true),
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(

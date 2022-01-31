@@ -14,7 +14,7 @@ import 'constants/app_themes.dart';
 import 'controllers/global_controllers.dart';
 import 'navigation/routers.dart';
 import 'navigation/routes.dart';
-import 'services/firebase/messaging.dart';
+import 'services/firebase/notifications.dart';
 import 'translations/translations.dart';
 import 'ui/screens/splash/splash.screen.dart';
 import 'utilities/connectivity.dart';
@@ -29,7 +29,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // AppBindings().dependencies();
   // await Firebase.initializeApp();
-  await Messaging.instanceId();
+  // await FirebaseService.instanceId();
+  FirebaseService.initialiseFirebaseService();
   await dotenv.load();
   await GetStorage.init();
   Get.put<ThemeController>(ThemeController());

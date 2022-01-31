@@ -1,4 +1,5 @@
 import 'package:dsc_tools/navigation/router.dart';
+import 'package:dsc_tools/ui/screens/notifications/screens/home_screen.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/change_password/update_password.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/terms_conditions.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/update_email/update_email.dart';
@@ -98,5 +99,9 @@ class AppRoutes {
         name: ScreenPaths.userProfile,
         page: () => const UserProfileScreen(),
         binding: UserProfileBinding()),
+    GetPage(
+        name: ScreenPaths.notifications,
+        page: () => const NotificationsScreen(),
+        binding: NotificationsBinding()),
   ];
 }

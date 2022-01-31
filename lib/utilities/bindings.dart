@@ -1,4 +1,5 @@
 import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
+import 'package:dsc_tools/ui/screens/notifications/controller/notifications.controller.dart';
 import 'package:dsc_tools/ui/screens/profile/profile.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/change_password/controller/update_password.controller.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/controller/terms_conditions.controller.dart';
@@ -73,5 +74,12 @@ class UserProfileBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<UserProfileController>(UserProfileController());
+  }
+}
+
+class NotificationsBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put<NotificationsController>(NotificationsController());
   }
 }

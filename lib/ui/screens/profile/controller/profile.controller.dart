@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserProfileController extends GetxController {
+  RxBool notificationStatus = true.obs;
+
   void onPressUpdateEmail() {
     Get.toNamed(ScreenPaths.updateEmail);
   }
@@ -49,4 +51,6 @@ class UserProfileController extends GetxController {
     showCupertinoModalPopup(
         context: Get.context!, builder: (context) => action);
   }
+
+
 }

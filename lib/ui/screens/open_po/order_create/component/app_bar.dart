@@ -11,9 +11,10 @@ class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBarController controller = Get.put(AppBarController());
   final LanguageController languageController = Get.put(LanguageController());
 
-  OpenPoAppBar({this.leading = "back"});
+  OpenPoAppBar({this.leading = "back", this.showNotification = false});
 
   final String leading;
+  final bool showNotification;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,9 @@ class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
-        )
+        ),
+        if(showNotification)
+        IconButton(onPressed: controller.onPressNotification, icon: const Icon(Icons.notifications_none_outlined)),
       ],
     );
   }

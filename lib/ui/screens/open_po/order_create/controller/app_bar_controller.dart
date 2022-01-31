@@ -1,3 +1,4 @@
+import 'package:dsc_tools/navigation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,5 +35,9 @@ class AppBarController extends GetxController {
     await languageController.updateLanguage(option.iso);
     Navigator.of(context).pop();
     Get.forceAppUpdate();
+  }
+
+  void onPressNotification() {
+    Get.toNamed(ScreenPaths.notifications);
   }
 }

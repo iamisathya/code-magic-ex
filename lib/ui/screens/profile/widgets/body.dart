@@ -2,10 +2,9 @@ import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/navigation/router.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/screens/profile/profile.dart';
-import 'package:dsc_tools/utilities/constants.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -74,7 +73,8 @@ class Body extends StatelessWidget {
 }
 
 class NotificationSetting extends StatelessWidget {
-  const NotificationSetting({
+  final UserProfileController controller = Get.put(UserProfileController());
+  NotificationSetting({
     Key? key,
   }) : super(key: key);
 
@@ -100,9 +100,19 @@ class NotificationSetting extends StatelessWidget {
               )
             ],
           ),
-          Switch.adaptive(
-            value: false,
-            onChanged: (value) {},
+          Obx(
+            () => Switch.adaptive(
+              value: controller.notificationStatus.value,
+              onChanged: (value) async {
+                controller.notificationStatus.value = value;
+                if (value) {
+                  await FirebaseMessaging.instance.subscribeToTopic("topup");
+                } else {
+                  await FirebaseMessaging.instance
+                      .unsubscribeFromTopic("topup");
+                }
+              },
+            ),
           ),
         ],
       ),
@@ -146,8 +156,8 @@ class TermsConditionsSetting extends StatelessWidget {
   }
 }
 
-class AccountSetting extends GetView<UserProfileController> {
-  AccountSetting({
+class AccountSetting extends StatelessWidget {
+  const AccountSetting({
     Key? key,
   }) : super(key: key);
 
@@ -172,17 +182,17 @@ class AccountSetting extends GetView<UserProfileController> {
           ],
         ),
         TextButton(
-            onPressed: controller.pickImage,
+            onPressed: () {},
             child: AppText(
                 text: "Edit profile Picture", style: TextTypes.subtitle1)),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: TextButton(
-              onPressed: controller.onPressUpdatePassword,
+              onPressed: () {},
               child: AppText(text: "Change Email", style: TextTypes.subtitle1)),
         ),
         TextButton(
-            onPressed: controller.onPressUpdateEmail,
+            onPressed: () {},
             child: AppText(text: "Change Password", style: TextTypes.subtitle1))
       ]),
     );

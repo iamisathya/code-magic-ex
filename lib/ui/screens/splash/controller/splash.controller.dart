@@ -1,8 +1,11 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/navigation/router.dart';
+import 'package:dsc_tools/services/firebase/notifications.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -36,8 +39,24 @@ class SplashController extends GetxController {
     _timer = Timer(const Duration(seconds: 2), () {
       logoStyle.value = FlutterLogoStyle.horizontal;
       // Get.offAll(() => MainHomeScreen());
+      // initFirebaseNotification();
       fetchCustomerData();
       remoteConfigService.onInit();
+    });
+  }
+
+  void initFirebaseNotification() {
+    final firebaseMessaging = FirebaseService();
+    firebaseMessaging.setNotifications();
+
+    firebaseMessaging.streamCtlr.stream.listen((_changeData) {
+      debugPrint(_changeData);
+    });
+    firebaseMessaging.bodyCtlr.stream.listen((_changeBody) {
+      debugPrint(_changeBody);
+    });
+    firebaseMessaging.titleCtlr.stream.listen((_changeTitle) {
+      debugPrint(_changeTitle);
     });
   }
 
@@ -93,7 +112,21 @@ class SplashController extends GetxController {
       Globals.customerPoCode =
           UserSessionManager.shared.customerIdInfo!.customerPoCode;
       await _setAppAnalytics();
-      Get.offAll(() => MainHomeScreen());
+      // when app is closed and it will be called only once
+      FirebaseMessaging.instance
+          .getInitialMessage()
+          .then((RemoteMessage? message) {
+        try {
+          if (message != null) {
+            Get.offAllNamed(MainHomeScreen.routeName);
+            Get.toNamed(ScreenPaths.notifications);
+          } else {
+            Get.offAll(() => MainHomeScreen());
+          }
+        } catch (e) {
+          debugPrint(e.toString());
+        }
+      });
     } else {
       Get.offAll(() => LoginScreen());
     }
