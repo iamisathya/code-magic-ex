@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dsc_tools/navigation/router.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ConnectivityManager {
@@ -41,6 +43,9 @@ class ConnectivityManager {
   /// Helper Method - [_setConnectivityStatus]
   void _setConnectivityStatus(ConnectivityResult result) {
     final status = _getStatusFromResult(result);
+    if(status == ConnectivityStatus.offline) {
+      Get.toNamed(ScreenPaths.noConnection);
+    }
     debugPrint("Connectivity Status : ${status.toString()}");
     _streamController.sink.add(status);
   }
