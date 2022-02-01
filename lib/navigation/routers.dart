@@ -1,4 +1,5 @@
 import 'package:dsc_tools/navigation/router.dart';
+import 'package:dsc_tools/ui/global/no_connection.dart';
 import 'package:dsc_tools/ui/screens/notifications/screens/home_screen.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/change_password/update_password.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/terms_conditions.dart';
@@ -103,5 +104,8 @@ class AppRoutes {
         name: ScreenPaths.notifications,
         page: () => const NotificationsScreen(),
         binding: NotificationsBinding()),
+    GetPage(
+        name: ScreenPaths.noConnection,
+        page: () => const NoConnectionScreen()),
   ];
 }

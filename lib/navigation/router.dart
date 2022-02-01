@@ -30,4 +30,5 @@ class ScreenPaths {
   static const String updatePassword = '/updatePasswordScreen';
   static const String userProfile = '/userProfileScreen';
   static const String notifications = '/notificationsScreen';
+  static const String noConnection = '/noConnectionScreen';
 }
