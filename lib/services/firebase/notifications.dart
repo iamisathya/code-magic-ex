@@ -20,11 +20,11 @@ Future<void> onBackgroundMessage(RemoteMessage message) async {
   //     ScreenPaths.notifications,
   //   );
   //   final dynamic path = message.data["status"];
-  //   // if (path != null) {
-  //   //   Get.toNamed(
-  //   //     ScreenPaths.notifications,
-  //   //   );
-  //   // }
+  // if (path != null) {
+  //   Get.toNamed(
+  //     ScreenPaths.notifications,
+  //   );
+  // }
   // } catch (e) {
   //   debugPrint(e.toString());
   // }
@@ -59,9 +59,20 @@ class FirebaseService {
     },
   );
 
-  final streamCtlr = StreamController<String>.broadcast();
-  final titleCtlr = StreamController<String>.broadcast();
-  final bodyCtlr = StreamController<String>.broadcast();
+  //* Initialiding firebase
+  static Future<void> initialiseFirebaseService() async {
+    await Firebase.initializeApp();
+    await instanceId();
+    FirebaseService().setNotifications();
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+    await FirebaseMessaging.instance.subscribeToTopic("topup");
+    await FirebaseService().initialisePlugin();
+  }
 
   Future<void> selectNotification(String? payload) async {
     if (payload != null) {
@@ -90,7 +101,6 @@ class FirebaseService {
           "channel.id",
           "channel.name",
           channelDescription: "channel.description",
-          // TODO add a proper drawable resource to android, for now using
           //      one that already exists in example app.
           icon: 'launch_background',
         ),
@@ -128,22 +138,6 @@ class FirebaseService {
         debugPrint(e.toString());
       }
     });
-
-    
-  }
-
-  static Future<void> initialiseFirebaseService() async {
-    await Firebase.initializeApp();
-    await instanceId();
-    FirebaseService().setNotifications();
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-    await FirebaseMessaging.instance.subscribeToTopic("topup");
-    await FirebaseService().initialisePlugin();
   }
 
   static Future<void> instanceId() async {
@@ -160,6 +154,7 @@ class FirebaseService {
     FirebaseMessaging.instance.getInitialMessage();
   }
 
+  //* Analytics
   static Future<void> setUserId(String userId) async {
     await _analytics.setUserId(userId);
   }
@@ -168,9 +163,12 @@ class FirebaseService {
     await _analytics.setUserProperty(name: name, value: value);
   }
 
-  void dispose() {
-    streamCtlr.close();
-    bodyCtlr.close();
-    titleCtlr.close();
+  static Future<void> trackEvent(
+      {required String name, required Map<String, dynamic> params}) async {
+    await _analytics.logEvent(
+      name: name, //'test_event'
+      parameters:
+          params, // <String, dynamic>{'string': 'string','int': 42,'long': 12345678910,'double': 42.0,'bool': true,}
+    );
   }
 }

@@ -39,24 +39,8 @@ class SplashController extends GetxController {
     _timer = Timer(const Duration(seconds: 2), () {
       logoStyle.value = FlutterLogoStyle.horizontal;
       // Get.offAll(() => MainHomeScreen());
-      // initFirebaseNotification();
       fetchCustomerData();
       remoteConfigService.onInit();
-    });
-  }
-
-  void initFirebaseNotification() {
-    final firebaseMessaging = FirebaseService();
-    firebaseMessaging.setNotifications();
-
-    firebaseMessaging.streamCtlr.stream.listen((_changeData) {
-      debugPrint(_changeData);
-    });
-    firebaseMessaging.bodyCtlr.stream.listen((_changeBody) {
-      debugPrint(_changeBody);
-    });
-    firebaseMessaging.titleCtlr.stream.listen((_changeTitle) {
-      debugPrint(_changeTitle);
     });
   }
 

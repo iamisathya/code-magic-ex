@@ -1,9 +1,15 @@
 import 'package:dsc_tools/navigation/router.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserProfileController extends GetxController {
+
+    @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
+
   RxBool notificationStatus = true.obs;
 
   void onPressUpdateEmail() {

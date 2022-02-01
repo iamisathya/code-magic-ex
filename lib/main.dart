@@ -72,30 +72,27 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   //* init firebase analytics
-  static FirebaseAnalytics analytics = FirebaseAnalytics();
-  static FirebaseAnalyticsObserver observer =
-      FirebaseAnalyticsObserver(analytics: analytics);
-
   @override
   Widget build(BuildContext context) {
     ThemeController.to.getThemeModeFromStore();
     return GetBuilder<LanguageController>(
-        builder: (languageController) => GetMaterialApp(
-              title: 'DSC Tools',
-              routes: routes,
-              home: SplashScreen(),
-              navigatorObservers: [
-                FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
-              ],
-              defaultTransition: Transition.cupertino,
-              enableLog: true,
-              getPages: AppRoutes.routes,
-              theme: AppThemes.lightTheme,
-              darkTheme: AppThemes.darkTheme,
-              initialBinding: HomeBindings(),
-              locale: languageController.getLocale,
-              fallbackLocale: languageController.fallbackLocale,
-              translations: AppTranslations(),
-            ));
+      builder: (languageController) => GetMaterialApp(
+        title: 'DSC Tools',
+        routes: routes,
+        home: SplashScreen(),
+        navigatorObservers: [
+          FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+        ],
+        defaultTransition: Transition.cupertino,
+        enableLog: true,
+        getPages: AppRoutes.routes,
+        theme: AppThemes.lightTheme,
+        darkTheme: AppThemes.darkTheme,
+        initialBinding: HomeBindings(),
+        locale: languageController.getLocale,
+        fallbackLocale: languageController.fallbackLocale,
+        translations: AppTranslations(),
+      ),
+    );
   }
 }

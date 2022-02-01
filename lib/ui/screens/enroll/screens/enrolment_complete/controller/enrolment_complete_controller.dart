@@ -1,3 +1,4 @@
+import 'package:dsc_tools/services/firebase/notifications.dart';
 import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
 import 'package:dsc_tools/ui/screens/barcode/screens/barcode_details.dart';
@@ -21,12 +22,21 @@ class EnrolmentCompleteController extends GetxController {
       final dynamic data = Get.arguments;
       if (data != null) {
         orderDetails = data as OrderCompleteArguments;
+        _trackEvent();
       } else {
         Get.back();
       }
     } on AppException catch (err, stack) {
       err.logError(err, stack);
     }
+  }
+
+  void _trackEvent() {
+    FirebaseService.trackEvent(name: 'enroll_status', params: {
+      "user_id": orderDetails.userId,
+      "order_id": orderDetails.orderId,
+      "status": orderDetails.orderStatus
+    });
   }
 
   void onClickTryAgain() {
