@@ -12,6 +12,7 @@ dependencies:
   json_annotation: ^4.0.1
   inventory_api:
     path: ../inventory_api
+  lint: ^1.5.3
 
 dev_dependencies:
   coverage: ^1.0.3

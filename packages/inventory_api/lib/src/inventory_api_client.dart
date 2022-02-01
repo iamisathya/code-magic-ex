@@ -36,7 +36,7 @@ class InventoryApiClient {
     }
 
     final locationJson = jsonDecode(
-      locationResponse.data,
+      locationResponse.data as String,
     ) as List;
 
     if (locationJson.isEmpty) {
@@ -57,7 +57,8 @@ class InventoryApiClient {
         throw WarehouseRequestFailure();
       }
 
-      final warehousesList = WarehousesList.fromJson(weatherResponse.data);
+      final warehousesList =
+          WarehousesList.fromJson(weatherResponse.data as Map<String, dynamic>);
       if (warehousesList.items.isEmpty) {
         throw WarehouseNotFoundFailure();
       }

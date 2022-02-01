@@ -8,8 +8,4 @@ analyser:
   exclude:
     - "**/*.g.dart"
   errors:
-    missing_required_params: error
-    parameter_assignments: error
-    missing_return: error
-    sort_pub_dependencies: ignore
     type_annotate_public_apis: ignore
