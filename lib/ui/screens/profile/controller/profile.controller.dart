@@ -1,10 +1,10 @@
 import 'package:dsc_tools/navigation/router.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class UserProfileController extends GetxController {
-
-    @override
+  @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
@@ -58,5 +58,12 @@ class UserProfileController extends GetxController {
         context: Get.context!, builder: (context) => action);
   }
 
-
+  Future<void> onNotificationSwitchChange(bool value) async {
+    notificationStatus.value = value;
+    if (value) {
+      await FirebaseMessaging.instance.subscribeToTopic("topup");
+    } else {
+      await FirebaseMessaging.instance.unsubscribeFromTopic("topup");
+    }
+  }
 }
