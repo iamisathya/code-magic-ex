@@ -12,7 +12,6 @@ class InventoryRepository {
 
   Future<InventoryItemListModel> getInventory(String customerToken) async {
     final warehouseId = await _inventoryApiClient.getWarehouseId(customerToken);
-    print(warehouseId);
     final inventoryList =
         await _inventoryApiClient.getInventory(warehouseId, "", "");
     return inventoryList;

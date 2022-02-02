@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/models/error_error_message.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -112,22 +113,28 @@ dynamic returnResponse(dio.Response response) {
     case 400:
       throw DefaultException(message: response.data.toString());
     case 401:
-      final String errorMsg = getErrorMessage(response.data);
+      String errorMsg = getErrorMessage(response.data);
       if (errorMsg == "Invalid Bearer Token.") {
         UserSessionManager.shared.removeUserInfoFromDB();
+        SnackbarUtil.showError(title: 'Session expired!', message: errorMsg);
         return Get.offAll(() => LoginScreen(),
             arguments: true, transition: Transition.cupertino);
+      } else if (errorMsg == "Unauthorized") {
+        SnackbarUtil.showWarning(title: errorMsg, message: "invalid_credentials".tr);
+        errorMsg = "invalid_credentials".tr;
       }
-      throw UnauthorisedException(message: response.data.toString());
+      throw UnauthorisedException(message: errorMsg);
     case 403:
       throw UnauthorisedException(message: response.data.toString());
     case 404:
       String errorMsg = getErrorMessageWithKey(response.data, "message");
       if (errorMsg == "Unauthorized") {
         errorMsg = "invalid_credentials".tr;
+        SnackbarUtil.showWarning(title: 'Unauthorized', message: errorMsg);
       }
       if (errorMsg == "Not Found") {
         errorMsg = getErrorMessage(response.data);
+        SnackbarUtil.showWarning(title: 'Not Found', message: errorMsg);
       }
       throw UnauthorisedException(message: errorMsg);
     case 408:
@@ -201,8 +208,15 @@ Future<CountryDetails> getCountryCode(String countryCode) async {
 }
 
 String getErrorMessage(dynamic error) {
-  final mappedObj = error as Map<String, dynamic>;
-  return mappedObj["error"]["error_message"].toString();
+  try {
+    final mappedObj = error as Map<String, dynamic>;
+    final object = ErrorMessage.fromJson(mappedObj);
+    return object.error.error ?? object.error.errorMessage ?? object.error.message ?? "";
+  } catch (e) {
+    return "";
+  }
+  
+  // return mappedObj["error"]["error_message"].toString();
 }
 
 String getItemsErrorMessage(dynamic error) {

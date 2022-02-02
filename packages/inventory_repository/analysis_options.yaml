@@ -9,3 +9,4 @@ analyser:
     - "**/*.g.dart"
   errors:
     type_annotate_public_apis: ignore
+    sort_pub_dependencies: ignore

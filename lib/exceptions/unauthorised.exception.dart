@@ -4,7 +4,7 @@ class UnauthorisedException implements Exception {
   final String message;
   final StackTrace? stackTrace;
   UnauthorisedException({
-    this.message = 'Internet error!',
+    this.message = 'Unauthorized exceptions!',
     this.stackTrace,
   }) {
     LoggerService.instance.e(message);

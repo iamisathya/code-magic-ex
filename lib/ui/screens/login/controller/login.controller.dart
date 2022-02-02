@@ -144,9 +144,6 @@ class LoginController extends GetxController {
       Get.off(() => MainHomeScreen(), transition: Transition.cupertino);
     } on DioError catch (e) {
       loading.toggle();
-      final String message =
-          getErrorMessageWithKey(e.error, "message");
-      SnackbarUtil.showError(message: message);
       returnResponse(e.response!);
     } catch (err) {
       loading.toggle();
