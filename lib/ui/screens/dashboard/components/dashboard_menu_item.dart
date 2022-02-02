@@ -17,9 +17,11 @@ import '../../login/login.screen.dart';
 
 class DashboardMenuItem extends StatelessWidget {
   // final DashboardController controller = Get.put(DashboardController());
-  const DashboardMenuItem({Key? key, required this.item}) : super(key: key);
+  const DashboardMenuItem({Key? key, required this.item, required this.isLeft})
+      : super(key: key);
 
   final DashboardMenuItemModel item;
+  final bool isLeft;
 
   void onLogout() {
     FirebaseAnalytics()
@@ -66,7 +68,11 @@ class DashboardMenuItem extends StatelessWidget {
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(isLeft ? 25 : 5),
+              bottomLeft: Radius.circular(isLeft ? 25 : 5),
+              topRight: Radius.circular(isLeft ? 5 : 25),
+              bottomRight: Radius.circular(isLeft ? 5 : 25)),
         ),
         child: Row(
           children: [
