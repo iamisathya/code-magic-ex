@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/no_connection.dart';
 import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
 import 'package:dsc_tools/ui/screens/notifications/controller/notifications.controller.dart';
 import 'package:dsc_tools/ui/screens/profile/profile.dart';
@@ -81,5 +82,12 @@ class NotificationsBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<NotificationsController>(NotificationsController());
+  }
+}
+
+class NoConnectionBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put<NoConnectionController>(NoConnectionController());
   }
 }

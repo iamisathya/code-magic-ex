@@ -106,6 +106,7 @@ class AppRoutes {
         binding: NotificationsBinding()),
     GetPage(
         name: ScreenPaths.noConnection,
-        page: () => const NoConnectionScreen()),
+        page: () => NoConnectionScreen(),
+        binding: NoConnectionBinding()),
   ];
 }
