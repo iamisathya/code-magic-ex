@@ -1,3 +1,4 @@
+import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: AppColor.ateneoBlue,
       body: Stack(children: [
         const SizedBox(
           width: double.infinity,

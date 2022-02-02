@@ -41,6 +41,7 @@ const kEnrolmentSuccessImage = 'assets/images/enrolment_success_image.svg';
 const kPromptPayImage = 'assets/images/prompt_pay_image.svg';
 const kSalesCashCounterImage = 'assets/images/sales_cash_counter_image.svg';
 const kBarcodeExampleImage = 'assets/images/example_barcode_image.svg';
+const kLoginScreenImage = 'assets/images/login_screen_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityLogoGradientImage = 'assets/images/unicity_logo_image.svg';
@@ -181,3 +182,6 @@ const kEasyShipGradient = 'assets/gradient/gradient_background.svg';
 // * Illustration
 const kScanBarcodeIllustration =
     'assets/illustration/scan_barcode_illustration.svg';
+
+// * Gradient
+const kButtonBackgroundGradient = 'assets/gradient/button_background_gradient.svg';
