@@ -20,7 +20,7 @@ class DashboardMenu extends StatelessWidget {
       itemBuilder: (context, index) {
         final DashboardMenuItemModel item =
             controller.dashboardMenuItems[index];
-        return DashboardMenuItem(item: item);
+        return DashboardMenuItem(item: item, isLeft: index.isEven);
       },
     );
   }

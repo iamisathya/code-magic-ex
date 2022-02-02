@@ -123,6 +123,7 @@ flutter:
     - assets/icons/menu/
     - assets/icons/dashboard/
     - assets/icons/navigation/
+    - assets/icons/profile/
     - assets/json/
     - assets/images/
     - assets/illustration/
