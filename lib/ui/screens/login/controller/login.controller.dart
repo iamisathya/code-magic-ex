@@ -144,7 +144,11 @@ class LoginController extends GetxController {
       Get.off(() => MainHomeScreen(), transition: Transition.cupertino);
     } on DioError catch (e) {
       loading.toggle();
-      returnResponse(e.response!);
+      if (e.response != null) {
+        returnResponse(e.response!);
+      } else {
+        SnackbarUtil.showError(message: e.message);
+      }
     } catch (err) {
       loading.toggle();
       SnackbarUtil.showError(message: "error_getting_user_details".tr);
