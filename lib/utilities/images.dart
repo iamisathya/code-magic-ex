@@ -43,6 +43,7 @@ const kSalesCashCounterImage = 'assets/images/sales_cash_counter_image.svg';
 const kBarcodeExampleImage = 'assets/images/example_barcode_image.svg';
 const kLoginScreenImage = 'assets/images/login_screen_image.svg';
 const kProfileBacgroundImage = 'assets/images/profile_background_image.svg';
+const kProfileTermsConditionImage = 'assets/images/profile_terms_condition_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityLogoGradientImage = 'assets/images/unicity_logo_image.svg';
@@ -127,6 +128,7 @@ const kProfileNotificationIcon = 'assets/icons/profile/profile_notification_icon
 const kProfilePhoneIcon = 'assets/icons/profile/profile_phone_icon.svg';
 const kProfileTermsConditionIcon = 'assets/icons/profile/profile_termsconditions_icons.svg';
 const kProfileuserIcon = 'assets/icons/profile/profile_user_icon.svg';
+const kProfileUserEditPencilIcon = 'assets/icons/profile/user_edit_pencil_icon.svg';
 
 // dashboard menu
 const kBarcodeDashboardIcon = 'assets/icons/menu/barcode_dashboard_icon.svg';

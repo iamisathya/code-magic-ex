@@ -15,9 +15,9 @@ class TitleBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppColor.crayola,
-      height: 70,
+      height: 54,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

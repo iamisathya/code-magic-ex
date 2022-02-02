@@ -28,6 +28,7 @@ class AppColor {
   static const lightGrey = Color(0xFFD3D3D3);
   static const crayola = Color(0xFF76E5DE);
   static const yellowCrayola = Color(0xFFFCE38A);
+  static const brightGrayThird = Color(0xFFE5EBF1);
   static const manatee = Color(0xFF9999A4);
   static const blueYonder = Color(0xFF5468AD);
   static const tuftsBlue = Color(0xFF448ED7);
