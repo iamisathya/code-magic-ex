@@ -120,3 +120,20 @@ class OrderCompleteArguments {
 
   Map<String, dynamic> toJson() => _$OrderCompleteArgumentsToJson(this);
 }
+
+
+
+@JsonSerializable()
+class PasswordUpdateModel {
+  String value;
+
+  PasswordUpdateModel({
+    this.value = "",
+  });
+
+  factory PasswordUpdateModel.fromJson(Map<String, dynamic> json) =>
+      _$PasswordUpdateModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PasswordUpdateModelToJson(this);
+}
+

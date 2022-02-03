@@ -62,10 +62,13 @@ class Body extends StatelessWidget {
             ),
           ),
           Obx(() => controller.isSessionExpired.value
-              ? Text(
-                  "session_expired_login_again".tr,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.red),
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: AppText(
+                      text: "session_expired_login_again".tr,
+                      align: TextAlign.center,
+                      style: TextTypes.subtitle1,
+                      color: Colors.red),
                 )
               : const SizedBox()),
           Padding(

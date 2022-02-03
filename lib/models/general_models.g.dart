@@ -109,3 +109,15 @@ Map<String, dynamic> _$OrderCompleteArgumentsToJson(
       'userId': instance.userId,
       'orderStatus': instance.orderStatus,
     };
+
+PasswordUpdateModel _$PasswordUpdateModelFromJson(Map<String, dynamic> json) {
+  return PasswordUpdateModel(
+    value: json['value'] as String,
+  );
+}
+
+Map<String, dynamic> _$PasswordUpdateModelToJson(
+        PasswordUpdateModel instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+    };

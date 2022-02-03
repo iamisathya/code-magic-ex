@@ -96,6 +96,10 @@ abstract class ApiService {
   @GET(Address.customerData)
   Future<UserInfo> getCustomerData(@Path('id') String id);
 
+  //? Example: https://hydra.unicity.net/v5a/customers/me/password
+  @POST(Address.password)
+  Future<PasswordUpdateModel> updatePassword(@Body() PasswordUpdateModel data);
+
   //? Example: https://hydra.unicity.net/v5a/customers/3d9104cc2fa45dbd0bdd1a4261f6969e/profilePicture
   @GET(Address.profilePicture)
   Future<ProfilePicture> getProfilePicture(@Path('id') String id);

@@ -22,6 +22,7 @@ ErrorObject _$ErrorObjectFromJson(Map<String, dynamic> json) {
     errorMessage: json['error_message'] as String?,
     error: json['error'] as String?,
     message: json['message'] as String?,
+    code: json['code'] as int?,
   );
 }
 
@@ -30,4 +31,5 @@ Map<String, dynamic> _$ErrorObjectToJson(ErrorObject instance) =>
       'error_message': instance.errorMessage,
       'error': instance.error,
       'message': instance.message,
+      'code': instance.code,
     };

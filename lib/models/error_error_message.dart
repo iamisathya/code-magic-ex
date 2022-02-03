@@ -23,8 +23,10 @@ class ErrorObject {
   String? error;
   @JsonKey(name: "message")
   String? message;
+  @JsonKey(name: "code")
+  int? code;
 
-  ErrorObject({this.errorMessage = "", this.error = "", this.message = ""});
+  ErrorObject({this.errorMessage = "", this.error = "", this.message = "", this.code = 0});
 
 
 

@@ -9,6 +9,7 @@ class ProfileTextField extends StatelessWidget {
       this.isObscure = false,
       this.showSuffix = false,
       this.onPressSuffixIcon,
+      this.textInputAction = TextInputAction.next,
       this.enabled = true})
       : super(key: key);
 
@@ -17,6 +18,7 @@ class ProfileTextField extends StatelessWidget {
   final bool enabled;
   final bool isObscure;
   final bool showSuffix;
+  final TextInputAction textInputAction;
   final VoidCallback? onPressSuffixIcon;
 
   @override
@@ -28,6 +30,7 @@ class ProfileTextField extends StatelessWidget {
         color: AppColor.kWhiteColor,
         height: 54,
         child: TextField(
+          textInputAction: textInputAction,
           controller: controller,
           obscureText: isObscure,
           decoration: InputDecoration(
