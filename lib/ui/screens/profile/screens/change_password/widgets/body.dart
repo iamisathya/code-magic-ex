@@ -1,5 +1,4 @@
 import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/global/widgets/page_title.dart';
 import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_details/components/error_message.dart';
@@ -8,7 +7,6 @@ import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/widgets/ti
 import 'package:dsc_tools/ui/screens/profile/screens/update_email/widgets/text_input_field.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -21,8 +19,6 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(UserSessionManager.shared.customerToken.token);
-    print(Globals.userId);
     return SingleChildScrollView(
       child: Column(
         children: [
