@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TitleBar extends StatelessWidget {
-  const TitleBar({this.icon = kCameraIcon, this.title = ""});
+  const TitleBar({this.icon = kCameraIcon, this.title = "", this.color = AppColor.crayola});
 
   final String icon;
   final String title;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColor.crayola,
+      color: color,
       height: 54,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
