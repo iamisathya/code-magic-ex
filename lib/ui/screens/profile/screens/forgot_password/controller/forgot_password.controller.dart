@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dsc_tools/constants/globals.dart';
+import 'package:dsc_tools/navigation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,5 +30,6 @@ class ForgotPasswordController extends GetxController {
       isLoading.toggle();
       errorMessages.value = 'Invalid verification code!';
     });
+    Get.toNamed(ScreenPaths.verifyCode);
   }
 }

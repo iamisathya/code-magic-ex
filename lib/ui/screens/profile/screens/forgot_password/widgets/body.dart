@@ -15,7 +15,8 @@ import 'text_input_field.dart';
 class Body extends StatelessWidget {
   Body({Key? key}) : super(key: key);
 
-  final ForgotPasswordController controller = Get.put(ForgotPasswordController());
+  final ForgotPasswordController controller =
+      Get.put(ForgotPasswordController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +24,28 @@ class Body extends StatelessWidget {
       child: Column(
         children: [
           PageTitle(title: "forgot_password".tr),
-          TitleBar(title: 'change_password'.tr, icon: kProfileUserEditPencilIcon),
+          TitleBar(
+              title: 'change_password'.tr, icon: kProfileUserEditPencilIcon),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
-            child: SvgPicture.asset(kProfileNewEmailImage),
+            child: SvgPicture.asset(kProfileNewPasswordImage),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 30.0),
-            child: AppText(
-                text: "forgot_password".tr, style: TextTypes.headline4),
+            child:
+                AppText(text: "forgot_password".tr, style: TextTypes.headline4),
           ),
           Container(
             padding: const EdgeInsets.all(40),
             color: AppColor.brightGrayThird,
             child: Obx(
               () => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  AppText(
+                      text: "get_a_code_via_login".tr,
+                      style: TextTypes.headline6),
+                  const SizedBox(height: 20),
                   ProfileTextField(
                       controller: controller.userNameCtrl,
                       labelText: "full_name".tr,
