@@ -129,6 +129,8 @@ const kProfilePhoneIcon = 'assets/icons/profile/profile_phone_icon.svg';
 const kProfileTermsConditionIcon = 'assets/icons/profile/profile_termsconditions_icons.svg';
 const kProfileuserIcon = 'assets/icons/profile/profile_user_icon.svg';
 const kProfileUserEditPencilIcon = 'assets/icons/profile/user_edit_pencil_icon.svg';
+const kProfileNewEmailImage= 'assets/icons/profile/profile_new_email_image.svg';
+const kProfileNewPasswordImage = 'assets/icons/profile/profile_new_password_image.svg';
 
 // dashboard menu
 const kBarcodeDashboardIcon = 'assets/icons/menu/barcode_dashboard_icon.svg';

@@ -1,4 +1,5 @@
 import 'package:dsc_tools/constants/colors.dart';
+import 'package:dsc_tools/navigation/router.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
@@ -47,7 +48,7 @@ class AccountSetting extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.toNamed(ScreenPaths.forgotPassword),
                       child: AppText(
                           text: "edit_profile_picture".tr,
                           style: TextTypes.headline6,
@@ -55,14 +56,14 @@ class AccountSetting extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () => Get.toNamed(ScreenPaths.updateEmail),
                         child: AppText(
                             text: "change_email".tr,
                             style: TextTypes.headline6,
                             color: AppColor.dodgerBlue)),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.toNamed(ScreenPaths.updatePassword),
                       child: AppText(
                           text: "change_password".tr,
                           style: TextTypes.headline6,

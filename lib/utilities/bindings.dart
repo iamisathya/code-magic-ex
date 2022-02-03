@@ -3,6 +3,7 @@ import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
 import 'package:dsc_tools/ui/screens/notifications/controller/notifications.controller.dart';
 import 'package:dsc_tools/ui/screens/profile/profile.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/change_password/controller/update_password.controller.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/controller/forgot_password.controller.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/controller/terms_conditions.controller.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/update_email/controller/update_email.controller.dart';
 import 'package:get/get.dart';
@@ -89,5 +90,12 @@ class NoConnectionBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<NoConnectionController>(NoConnectionController());
+  }
+}
+
+class ForgotPasswordBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put<ForgotPasswordController>(ForgotPasswordController());
   }
 }
