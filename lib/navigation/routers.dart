@@ -82,7 +82,7 @@ class AppRoutes {
         page: () => const WebivewHomeScreen()),
     GetPage(
         name: UserProfileScreen.routeName,
-        page: () => const UserProfileScreen()),
+        page: () => UserProfileScreen()),
     // profile pages
     GetPage(
         name: ScreenPaths.termsConditions,
@@ -102,7 +102,7 @@ class AppRoutes {
         binding: UpdatePasswordBinding()),
     GetPage(
         name: ScreenPaths.userProfile,
-        page: () => const UserProfileScreen(),
+        page: () => UserProfileScreen(),
         binding: UserProfileBinding()),
     GetPage(
         name: ScreenPaths.notifications,

@@ -63,6 +63,25 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<ProfilePicture> updateProfilePicture(media) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = FormData();
+    _data.files.add(MapEntry(
+        'media',
+        MultipartFile.fromFileSync(media.path,
+            filename: media.path.split(Platform.pathSeparator).last)));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ProfilePicture>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/customers/me/profilePicture',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ProfilePicture.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<ProfilePicture> getProfilePicture(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

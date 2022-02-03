@@ -131,6 +131,7 @@ const kProfileuserIcon = 'assets/icons/profile/profile_user_icon.svg';
 const kProfileUserEditPencilIcon = 'assets/icons/profile/user_edit_pencil_icon.svg';
 const kProfileNewEmailImage= 'assets/icons/profile/profile_new_email_image.svg';
 const kProfileNewPasswordImage = 'assets/icons/profile/profile_new_password_image.svg';
+const kProfileCameraIcon = 'assets/icons/profile/profile_camera_icon.svg';
 
 // dashboard menu
 const kBarcodeDashboardIcon = 'assets/icons/menu/barcode_dashboard_icon.svg';

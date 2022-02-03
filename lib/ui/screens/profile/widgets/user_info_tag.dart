@@ -22,7 +22,7 @@ class UserInfoTag extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 5),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(6),
               color: AppColor.kWhiteColor),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

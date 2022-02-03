@@ -21,6 +21,7 @@ class Address {
   static const String ordersAndRmas = "/warehouses/{id}/ordersAndRmas";
   static const String customers = "/customers";
   static const String password = "/customers/me/password";
+  static const String changeProfilePicture = "/customers/me/profilePicture";
   static const String orderTerms = "/orderTerms";
   static const String orderLines = "/orderlines";
   static const String orders =

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -99,6 +100,11 @@ abstract class ApiService {
   //? Example: https://hydra.unicity.net/v5a/customers/me/password
   @POST(Address.password)
   Future<PasswordUpdateModel> updatePassword(@Body() PasswordUpdateModel data);
+
+  //? Example: https://hydra.unicity.net/v5a/customers/me/profilePicture
+  @POST(Address.changeProfilePicture)
+  @MultiPart()
+  Future<ProfilePicture> updateProfilePicture(@Part() File media);
 
   //? Example: https://hydra.unicity.net/v5a/customers/3d9104cc2fa45dbd0bdd1a4261f6969e/profilePicture
   @GET(Address.profilePicture)

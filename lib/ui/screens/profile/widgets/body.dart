@@ -13,7 +13,7 @@ class Body extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const UserDetailsSection(),
+          UserDetailsSection(),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
