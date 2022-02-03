@@ -2,6 +2,7 @@ import 'package:dsc_tools/navigation/router.dart';
 import 'package:dsc_tools/ui/global/no_connection.dart';
 import 'package:dsc_tools/ui/screens/notifications/screens/home_screen.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/change_password/update_password.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/forgot_password.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/terms_conditions.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/update_email/update_email.dart';
 import 'package:dsc_tools/utilities/bindings.dart';
@@ -86,15 +87,15 @@ class AppRoutes {
         binding: TermsConditionsBinding()),
     GetPage(
         name: ScreenPaths.updateEmail,
-        page: () => const UpdateEmailScreen(),
+        page: () => UpdateEmailScreen(),
         binding: UpdateEmailBinding()),
     GetPage(
         name: ScreenPaths.updateEmail,
-        page: () => const UpdateEmailScreen(),
+        page: () => UpdateEmailScreen(),
         binding: UpdateEmailBinding()),
     GetPage(
         name: ScreenPaths.updatePassword,
-        page: () => const UpdatePasswordScreen(),
+        page: () => UpdatePasswordScreen(),
         binding: UpdatePasswordBinding()),
     GetPage(
         name: ScreenPaths.userProfile,
@@ -108,5 +109,9 @@ class AppRoutes {
         name: ScreenPaths.noConnection,
         page: () => NoConnectionScreen(),
         binding: NoConnectionBinding()),
+    GetPage(
+        name: ScreenPaths.forgotPassword,
+        page: () => ForgotPasswordScreen(),
+        binding: ForgotPasswordBinding()),
   ];
 }
