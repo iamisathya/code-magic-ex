@@ -3,6 +3,8 @@ import 'package:dsc_tools/ui/global/no_connection.dart';
 import 'package:dsc_tools/ui/screens/notifications/screens/home_screen.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/change_password/update_password.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/forgot_password.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/screens/change_password/change_password.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/screens/verify_code/verify_code.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/terms_conditions.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/update_email/update_email.dart';
 import 'package:dsc_tools/utilities/bindings.dart';
@@ -113,5 +115,13 @@ class AppRoutes {
         name: ScreenPaths.forgotPassword,
         page: () => ForgotPasswordScreen(),
         binding: ForgotPasswordBinding()),
+    GetPage(
+        name: ScreenPaths.verifyCode,
+        page: () => VerifyCodeScreen(),
+        binding: VerifyCodeBinding()),
+    GetPage(
+        name: ScreenPaths.changePassword,
+        page: () => ChangePasswordScreen(),
+        binding: ChangePasswordBinding()),
   ];
 }

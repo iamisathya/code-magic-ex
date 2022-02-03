@@ -4,6 +4,8 @@ import 'package:dsc_tools/ui/screens/notifications/controller/notifications.cont
 import 'package:dsc_tools/ui/screens/profile/profile.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/change_password/controller/update_password.controller.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/controller/forgot_password.controller.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/screens/change_password/controller/change_password.controller.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/screens/verify_code/controller/verify_code.controller.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/controller/terms_conditions.controller.dart';
 import 'package:dsc_tools/ui/screens/profile/screens/update_email/controller/update_email.controller.dart';
 import 'package:get/get.dart';
@@ -97,5 +99,19 @@ class ForgotPasswordBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<ForgotPasswordController>(ForgotPasswordController());
+  }
+}
+
+class VerifyCodeBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put<VerifyCodeController>(VerifyCodeController());
+  }
+}
+
+class ChangePasswordBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.put<ChangePasswordController>(ChangePasswordController());
   }
 }
