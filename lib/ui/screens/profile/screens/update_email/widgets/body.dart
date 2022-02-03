@@ -1,85 +1,61 @@
 import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/global/widgets/page_title.dart';
+import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_details/components/error_message.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/widgets/title_bar.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/update_email/controller/update_email.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get/get.dart';
+
+import 'text_input_field.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  Body({Key? key}) : super(key: key);
+
+  final UpdateEmailController controller = Get.put(UpdateEmailController());
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        PageTitle(title: "account".tr),
-        Container(
-          color: AppColor.sunglow,
-          height: 54,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppText(text: 'change_email'.tr, style: TextTypes.button),
-                SvgPicture.asset(kCameraIcon),
-              ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          PageTitle(title: "account".tr),
+          TitleBar(title: 'change_email'.tr, icon: kProfileUserEditPencilIcon),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            child: SvgPicture.asset(kProfileNewEmailImage),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30.0),
+            child: AppText(
+                text: "new_email_address".tr, style: TextTypes.headline4),
+          ),
+          Container(
+            padding: const EdgeInsets.all(40),
+            color: AppColor.brightGrayThird,
+            child: Obx(
+              () => Column(
+                children: [
+                  ProfileTextField(
+                      controller: controller.userIdController,
+                      labelText: "user_id".tr,
+                      enabled: false),
+                  const SizedBox(height: 30),
+                  ProfileTextField(
+                      controller: controller.emailController,
+                      labelText: "email".tr),
+                  const SizedBox(height: 20),
+                  if (controller.errorMessages.isNotEmpty)
+                    ErrorMessage(errors: [controller.errorMessages.value]),
+                ],
+              ),
             ),
-          ),
-        ),
-        SvgPicture.asset(kEnrolmentSuccessImage),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0),
-          child:
-              AppText(text: 'new_email_address'.tr, style: TextTypes.headline3),
-        ),
-        Container(
-          color: AppColor.manatee,
-          child: Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(color: Colors.white),
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      labelText: "Email ID",
-                      labelStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                      border: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder()
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                decoration: const BoxDecoration(color: Colors.white),
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      labelText: "Email ID",
-                      labelStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                      border: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder()
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }
