@@ -58,7 +58,7 @@ class Body extends StatelessWidget {
                       style: TextTypes.headline4),
                   const SizedBox(height: 20),
                   ProfileTextField(
-                      controller: controller.userIdController,
+                      controller: controller.newPasswordController,
                       labelText: "new_password".tr),
                   const SizedBox(height: 30),
                   Row(crossAxisAlignment: CrossAxisAlignment.start, children: [

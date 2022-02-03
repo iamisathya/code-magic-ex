@@ -34,4 +34,5 @@ class ScreenPaths {
   static const String forgotPassword = '/forgotPasswordScreen';
   static const String verifyCode = '/verifyCodeScreen';
   static const String changePassword = '/changePasswordScreen';
+  static const String operationResult = '/operationResultScreen';
 }
