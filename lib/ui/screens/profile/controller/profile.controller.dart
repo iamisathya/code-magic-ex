@@ -2,14 +2,17 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/error_error_message.dart';
 import 'package:dsc_tools/models/profile_picture.dart';
 import 'package:dsc_tools/navigation/router.dart';
 import 'package:dsc_tools/utilities/function.dart';
 import 'package:dsc_tools/utilities/snackbar.dart';
+import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide FormData, MultipartFile;
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserProfileController extends GetxController {
@@ -67,18 +70,36 @@ class UserProfileController extends GetxController {
   Future<void> onImageOptionSelect(ImageSource source) async {
     try {
       Navigator.of(Get.context!).pop();
-      isLoading.toggle();
       final _pickedImage = await _picker.pickImage(
         source: source,
       );
       if (_pickedImage != null) {
-        final file = File(_pickedImage.path);
-        final ProfilePicture response =
-            await ApiService.shared().updateProfilePicture(file);
-        if (response.sizes.isNotEmpty) {
-          SnackbarUtil.showSuccess(
-              message: "Profile picture updated successfully"); //! hardcoded
-        }
+        cropImage(_pickedImage.path);
+      }
+    } catch (err, stack) {
+      debugPrint(err.toString());
+      debugPrint(stack.toString());
+    }
+  }
+
+  Future<void> cropImage(String filePath) async {
+    final File? croppedFile =
+        await ImageCropper.cropImage(sourcePath: filePath);
+    if (croppedFile != null) {
+      uploadImage(croppedFile);
+    }
+  }
+
+  Future<void> uploadImage(File file) async {
+    try {
+      isLoading.toggle();
+      final ProfilePicture response =
+          await ApiService.shared().updateProfilePicture(file);
+      if (response.sizes.isNotEmpty) {
+        Globals.profilePicture.value = response;
+        UserSessionManager.shared.setProfilePictureToDB(response);
+        SnackbarUtil.showSuccess(
+            message: "Profile picture updated successfully"); //! hardcoded
       }
       isLoading.toggle();
     } on DioError catch (e) {

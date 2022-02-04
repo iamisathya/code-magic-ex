@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dsc_tools/models/profile_picture.dart';
 import 'package:get/get.dart';
 
 import '../models/country_info.dart';
@@ -35,6 +36,7 @@ class Globals {
   static String userId =
       UserSessionManager.shared.userInfo!.id.unicity.toString();
   static UserInfo userInfo = UserSessionManager.shared.userInfo!;
+  static Rx<ProfilePicture> profilePicture = UserSessionManager.shared.profilePicture!.obs;
   static String customerCode = "";
   static String customerPoCode = "";
   static String currentMarketWarehouseId = "";

@@ -131,6 +131,7 @@ class LoginController extends GetxController {
       Globals.currentMarket = currentMarket;
       Globals.currency = currentMarket.currencyCode;
       Globals.customerCode = customerToken.customer.href.getAfterLastSlash();
+      Globals.profilePicture.value = profilePicture;
 
       UserSessionManager.shared.customerId = userResponse.customerId;
       UserSessionManager.shared.customerCode = userResponse.customerCode;

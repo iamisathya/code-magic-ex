@@ -54,23 +54,26 @@ class UserDetailsSection extends StatelessWidget {
                               borderRadius: BorderRadius.circular(25.0),
                               border:
                                   Border.all(width: 2, color: Colors.white)),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(25.0),
-                            child: UserSessionManager
-                                    .shared.profilePicture!.sizes.isNotEmpty
-                                ? CachedNetworkImage(
-                                    imageUrl: UserSessionManager
-                                        .shared.profilePicture!.sizes[0].media,
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
-                                    height: 100,
-                                    width: 100,
-                                  )
-                                : Image.asset(
-                                    kDefaultDistributorImage,
-                                    height: 100,
-                                    width: 100,
-                                  ),
+                          child: Obx(
+                            () => ClipRRect(
+                              borderRadius: BorderRadius.circular(25.0),
+                              child:
+                                  Globals.profilePicture.value.sizes.isNotEmpty
+                                      ? CachedNetworkImage(
+                                          imageUrl: Globals.profilePicture.value
+                                              .sizes[0].media,
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.error),
+                                          height: 100,
+                                          width: 100,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Image.asset(
+                                          kDefaultDistributorImage,
+                                          height: 100,
+                                          width: 100,
+                                        ),
+                            ),
                           ),
                         ),
                         Positioned(
