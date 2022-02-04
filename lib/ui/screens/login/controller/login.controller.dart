@@ -41,6 +41,8 @@ class LoginController extends GetxController {
   RxBool loading = false.obs;
   RxString errorMessage = "".obs;
   RxBool isSessionExpired = false.obs;
+  RxString errorMessages = ''.obs;
+  
   final FirebaseAnalytics analytics = FirebaseAnalytics();
 
   @override
@@ -54,11 +56,14 @@ class LoginController extends GetxController {
   }
 
   void onPressContinue(BuildContext context) {
-    if (formKey.currentState!.validate()) {
+    errorMessages.value = "";
+    if (userIdController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       isSessionExpired.value = false;
       formKey.currentState!.save();
       getLoginTokens(context);
       KeyboardUtil.hideKeyboard(context);
+    } else {
+      errorMessages.value = "Please enter valid user id & password";
     }
   }
 

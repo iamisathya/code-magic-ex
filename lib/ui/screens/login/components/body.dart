@@ -1,6 +1,7 @@
 import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:dsc_tools/ui/global/widgets/raised_gradient_button.dart';
+import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_details/components/error_message.dart';
 import 'package:dsc_tools/ui/screens/login/widgets/login_text_field.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
@@ -36,31 +37,37 @@ class Body extends StatelessWidget {
           const SizedBox(height: 40),
           Container(
             color: AppColor.ateneoBlue,
-            height: 272,
             padding: const EdgeInsets.all(40),
             width: double.infinity,
             child: Form(
               key: _controller.formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  LoginTextField(
-                      controller: _controller.userIdController,
-                      textInputAction: TextInputAction.next,
-                      hintText: "Username"),
-                  LoginTextField(
-                      controller: _controller.passwordController,
-                      secureText: true,
-                      textInputAction: TextInputAction.go,
-                      hintText: "Password"),
-                  RaisedGradientButton(
-                    gradient: const LinearGradient(
-                      colors: <Color>[Color(0xFF1C9CFC), Color(0xFF4CDFFF)],
+              child: Obx(
+                () => Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    LoginTextField(
+                        controller: _controller.userIdController,
+                        textInputAction: TextInputAction.next,
+                        hintText: "Username"),
+                    const SizedBox(height: 20),
+                    LoginTextField(
+                        controller: _controller.passwordController,
+                        secureText: true,
+                        textInputAction: TextInputAction.go,
+                        hintText: "Password"),
+                        const SizedBox(height: 20),
+                    RaisedGradientButton(
+                      gradient: const LinearGradient(
+                        colors: <Color>[Color(0xFF1C9CFC), Color(0xFF4CDFFF)],
+                      ),
+                      onPressed: () => _controller.onPressContinue(context),
+                      label: 'login_to_dsc',
                     ),
-                    onPressed: () => _controller.onPressContinue(context),
-                    label: 'login_to_dsc',
-                  ),
-                ],
+                    const SizedBox(height: 10),
+                    if (_controller.errorMessages.isNotEmpty)
+                      ErrorMessage(errors: [_controller.errorMessages.value]),
+                  ],
+                ),
               ),
             ),
           ),
