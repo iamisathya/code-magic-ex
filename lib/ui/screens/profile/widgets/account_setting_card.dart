@@ -1,6 +1,7 @@
 import 'package:dsc_tools/constants/colors.dart';
 import 'package:dsc_tools/navigation/router.dart';
 import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/profile/controller/profile.controller.dart';
 import 'package:dsc_tools/utilities/enums.dart';
 import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class AccountSetting extends StatelessWidget {
-  const AccountSetting({
+  final UserProfileController _controller = Get.put(UserProfileController());
+  AccountSetting({
     Key? key,
   }) : super(key: key);
 
@@ -48,7 +50,7 @@ class AccountSetting extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
-                      onPressed: () => Get.toNamed(ScreenPaths.forgotPassword),
+                      onPressed: _controller.changeProfilePicture,
                       child: AppText(
                           text: "edit_profile_picture".tr,
                           style: TextTypes.headline6,

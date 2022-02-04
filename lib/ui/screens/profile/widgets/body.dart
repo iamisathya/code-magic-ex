@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
-                const AccountSetting(),
+                AccountSetting(),
                 NotificationSetting(),
                 const TermsConditionsSetting(),
               ],
