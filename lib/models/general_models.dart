@@ -156,3 +156,18 @@ class EmailUpdateResponse {
   Map<String, dynamic> toJson() => _$EmailUpdateResponseToJson(this);
 }
 
+@JsonSerializable()
+class PasswordResetRequest {
+  @JsonKey(name: "customer")
+  CommonCustomerIdHref customer;
+  @JsonKey(name: "email")
+  String email;
+
+  PasswordResetRequest({required this.customer, required this.email});
+
+  factory PasswordResetRequest.fromJson(Map<String, dynamic> json) =>
+      _$PasswordResetRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PasswordResetRequestToJson(this);
+}
+

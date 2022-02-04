@@ -139,3 +139,18 @@ Map<String, dynamic> _$EmailUpdateResponseToJson(
       'email': instance.email,
       'href': instance.href,
     };
+
+PasswordResetRequest _$PasswordResetRequestFromJson(Map<String, dynamic> json) {
+  return PasswordResetRequest(
+    customer:
+        CommonCustomerIdHref.fromJson(json['customer'] as Map<String, dynamic>),
+    email: json['email'] as String,
+  );
+}
+
+Map<String, dynamic> _$PasswordResetRequestToJson(
+        PasswordResetRequest instance) =>
+    <String, dynamic>{
+      'customer': instance.customer,
+      'email': instance.email,
+    };

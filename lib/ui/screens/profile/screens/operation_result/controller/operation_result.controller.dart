@@ -31,6 +31,7 @@ class OperationrResultModel {
       this.subContent = '',
       this.buttonText = '',
       this.resultImage = kOrderSuccessImage,
+      this.secondaryButtonWidget,
       this.onPressDone});
 
   final String headerText;
@@ -40,4 +41,5 @@ class OperationrResultModel {
   final String buttonText;
   final String resultImage;
   final VoidCallback? onPressDone;
+  final Widget? secondaryButtonWidget;
 }

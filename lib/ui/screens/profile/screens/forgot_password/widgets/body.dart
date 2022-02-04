@@ -47,9 +47,8 @@ class Body extends StatelessWidget {
                       style: TextTypes.headline6),
                   const SizedBox(height: 20),
                   ProfileTextField(
-                      controller: controller.userNameCtrl,
-                      labelText: "full_name".tr,
-                      enabled: false),
+                      controller: controller.userIdCtrl,
+                      labelText: "user_id".tr),
                   const SizedBox(height: 30),
                   ProfileTextField(
                       controller: controller.emailAddressCodeCtrl,

@@ -62,7 +62,7 @@ abstract class ApiService {
 
   factory ApiService.init() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true));
+    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
     return ApiService(dio);
 
     // return _instance;
@@ -109,6 +109,10 @@ abstract class ApiService {
   //? Example: https://hydra.unicity.net/v5a/customers/me
   @POST(Address.profileUpdate)  
   Future<EmailUpdateResponse> emailUpdate(@Body() Map<String, dynamic> data);
+  
+  //? Example: https://hydra.unicity.net/v5a/passwordresettokens
+  @POST(Address.sendPasswordResetLink)  
+  Future<dynamic> sendPasswordResetLink(@Body() PasswordResetRequest data);
 
   //? Example: https://hydra.unicity.net/v5a/customers/3d9104cc2fa45dbd0bdd1a4261f6969e/profilePicture
   @GET(Address.profilePicture)

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dsc_tools/navigation/router.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,7 @@ class LoginController extends GetxController {
   void onInit() {
     super.onInit();
     final dynamic data = Get.arguments;
+    _setCurrentMarket();
     if (data != null) {
       isSessionExpired.value = data as bool;
     }
@@ -110,13 +112,8 @@ class LoginController extends GetxController {
       final UserInfo responseUserInfo = await ApiService.shared()
           .getCustomerData(UserSessionManager.shared.customerUniqueId);
 
-      //*  getCustomerData from api
-      final Markets? currentMarket = await getMarketConfig(
-          responseUserInfo.mainAddress.country.toLowerCase());
-
-      if (currentMarket == null) {
-        throw "your_market_is_not_supported".tr;
-      }
+      //* Get current market
+      _setCurrentMarket(country: responseUserInfo.mainAddress.country.toLowerCase());
 
       //*  getCustomerData from api
       final ProfilePicture profilePicture = await ApiService.shared()
@@ -126,10 +123,6 @@ class LoginController extends GetxController {
       final UserId userResponse = await MemberCallsService.init()
           .getUserId(kUserId, userIdController.text);
 
-      //*  Storing user info to db
-      await store.write('current_market', currentMarket);
-      Globals.currentMarket = currentMarket;
-      Globals.currency = currentMarket.currencyCode;
       Globals.customerCode = customerToken.customer.href.getAfterLastSlash();
       Globals.profilePicture.value = profilePicture;
       Globals.emailAddress = responseUserInfo.email.obs;
@@ -151,10 +144,11 @@ class LoginController extends GetxController {
       } else {
         SnackbarUtil.showError(message: e.message);
       }
-    } catch (err) {
+    } catch (err, stack) {
       loading.toggle();
       SnackbarUtil.showError(message: "error_getting_user_details".tr);
       LoggerService.instance.e(err.toString());
+      LoggerService.instance.e(stack.toString());
     }
   }
 
@@ -172,5 +166,22 @@ class LoginController extends GetxController {
       LoggerService.instance.e(err.toString());
       return null;
     }
+  }
+
+  Future<void> _setCurrentMarket({String country = 'th'}) async {
+    //*  get current market data from json file
+    final Markets? currentMarket = await getMarketConfig(country); //! hardcoded
+    if (currentMarket == null) {
+      throw "your_market_is_not_supported".tr;
+    }
+
+    //*  Storing user info to db
+    await store.write('current_market', currentMarket);
+    Globals.currentMarket = currentMarket;
+    Globals.currency = currentMarket.currencyCode;
+  }
+
+  void onClickForgotPassword() {
+    Get.toNamed(ScreenPaths.forgotPassword);
   }
 }

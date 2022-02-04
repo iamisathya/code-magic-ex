@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import '../controller/login.controller.dart';
 
 class Body extends StatelessWidget {
-  final LoginController controller = Get.put(LoginController());
+  final LoginController _controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +25,13 @@ class Body extends StatelessWidget {
           const SizedBox(height: 60),
           AppText(text: "make_life_better".tr, style: TextTypes.headline4),
           const SizedBox(height: 15),
-          AppText(
-              text: "forgot_password".tr,
-              style: TextTypes.bodyText1,
-              color: AppColor.dodgerBlue),
+          GestureDetector(
+            onTap: _controller.onClickForgotPassword,
+            child: AppText(
+                text: "forgot_password".tr,
+                style: TextTypes.bodyText1,
+                color: AppColor.dodgerBlue),
+          ),
           // SizedBox(height: SizeConfig.screenHeight * 0.04),
           const SizedBox(height: 40),
           Container(
@@ -37,16 +40,16 @@ class Body extends StatelessWidget {
             padding: const EdgeInsets.all(40),
             width: double.infinity,
             child: Form(
-              key: controller.formKey,
+              key: _controller.formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   LoginTextField(
-                      controller: controller.userIdController,
+                      controller: _controller.userIdController,
                       textInputAction: TextInputAction.next,
                       hintText: "Username"),
                   LoginTextField(
-                      controller: controller.passwordController,
+                      controller: _controller.passwordController,
                       secureText: true,
                       textInputAction: TextInputAction.go,
                       hintText: "Password"),
@@ -54,14 +57,14 @@ class Body extends StatelessWidget {
                     gradient: const LinearGradient(
                       colors: <Color>[Color(0xFF1C9CFC), Color(0xFF4CDFFF)],
                     ),
-                    onPressed: () => controller.onPressContinue(context),
+                    onPressed: () => _controller.onPressContinue(context),
                     label: 'login_to_dsc',
                   ),
                 ],
               ),
             ),
           ),
-          Obx(() => controller.isSessionExpired.value
+          Obx(() => _controller.isSessionExpired.value
               ? Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: AppText(

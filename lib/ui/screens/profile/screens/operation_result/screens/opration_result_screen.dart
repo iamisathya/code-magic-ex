@@ -52,6 +52,8 @@ class OperationResultScreen extends StatelessWidget {
                         style: TextTypes.headline6,
                         color: AppColor.dodgerBlue),
                   ),
+                  if (_controller.result.value.secondaryButtonWidget != null)
+                    _controller.result.value.secondaryButtonWidget!
                 ],
               ),
             ),

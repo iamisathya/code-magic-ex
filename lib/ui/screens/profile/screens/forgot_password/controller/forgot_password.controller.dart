@@ -1,35 +1,131 @@
 import 'dart:async';
+import 'dart:io';
 
-import 'package:dsc_tools/constants/globals.dart';
+import 'package:dio/dio.dart';
+import 'package:dsc_tools/api/config/api_service.dart';
+import 'package:dsc_tools/constants/colors.dart';
+import 'package:dsc_tools/models/common_methods.dart';
+import 'package:dsc_tools/models/error_error_message.dart';
+import 'package:dsc_tools/models/general_models.dart';
 import 'package:dsc_tools/navigation/router.dart';
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
+import 'package:dsc_tools/ui/screens/profile/screens/operation_result/controller/operation_result.controller.dart';
+import 'package:dsc_tools/utilities/enums.dart';
+import 'package:dsc_tools/utilities/function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ForgotPasswordController extends GetxController {
-  TextEditingController userNameCtrl = TextEditingController();
+  TextEditingController userIdCtrl = TextEditingController();
   TextEditingController emailAddressCodeCtrl = TextEditingController();
   TextEditingController verificationCodeCtrl = TextEditingController();
   RxString errorMessages = ''.obs;
 
   RxBool isLoading = false.obs;
 
-  @override
-  void onInit() {
-    userNameCtrl.text = Globals.userInfo.humanName.fullName;
-    super.onInit();
-  }
-
-  Future<void> onClickSave() async {
+  Future<void> sendResetLink() async {
+    userIdCtrl.text = '2970466';
+    emailAddressCodeCtrl.text = 'sathyanarayana@unicity.com';
     errorMessages.value = '';
-    if (emailAddressCodeCtrl.text.isEmpty) {
-      errorMessages.value = 'Empty verification code!';
+    if (userIdCtrl.text.isEmpty) {
+      errorMessages.value = "User ID field shouldn't be empty!";
       return;
     }
-    isLoading.toggle();
-    Timer(const Duration(seconds: 2), () {
+    if (emailAddressCodeCtrl.text.isEmpty) {
+      errorMessages.value = "Email address field shouldn't be empty!";
+      return;
+    }
+    _sendResetLinkNow();
+  }
+
+  Future<void> _sendResetLinkNow() async {
+    // 2970466
+    // sathyanarayana@unicity.com
+    try {
       isLoading.toggle();
-      errorMessages.value = 'Invalid verification code!';
+      final String href =
+          "https://hydra.unicity.net/v5a/customers?id.unicity=${userIdCtrl.text}";
+      final PasswordResetRequest data = PasswordResetRequest(
+          customer: CommonCustomerIdHref(href: href),
+          email: emailAddressCodeCtrl.text);
+      final dynamic _emailResponse =
+          await ApiService.init().sendPasswordResetLink(data);
+      isLoading.toggle();
+      if (_emailResponse != null) {
+        _onResetLinkSent();
+      }
+    } on DioError catch (e) {
+      isLoading.toggle();
+      if (e.response != null) {
+        final ErrorMessage error =
+            ErrorMessage.fromJson(e.response!.data as Map<String, dynamic>);
+        if (error.error.message!.isNotEmpty) {
+          errorMessages.value = error.error.message!;
+        }
+        returnResponse(e.response!);
+      }
+    } catch (err, stack) {
+      isLoading.toggle();
+      debugPrint(err.toString());
+      debugPrint(stack.toString());
+    }
+  }
+
+  void _onResetLinkSent() {
+    final Widget _openEmailBtn = Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: TextButton(
+        onPressed: () => openEmailApp(),
+        child: const AppText(
+            text: "open_mail",
+            style: TextTypes.headline6,
+            color: AppColor.dodgerBlue),
+      ),
+    );
+    Get.offAndToNamed(
+      ScreenPaths.operationResult,
+      arguments: OperationrResultModel(
+          buttonText: 'back_to_account'.tr,
+          headerText: 'account'.tr,
+          message: 'thank_you'.tr,
+          subContent: 'Your new email address has been successfully changed',
+          onPressDone: () => Get.back(),
+          title: 'change_email'.tr,
+          secondaryButtonWidget: _openEmailBtn),
+    );
+  }
+
+  void openEmailApp() {
+    launch("message://").catchError((e) {
+      debugPrint(e.toString());
     });
-    Get.toNamed(ScreenPaths.verifyCode);
+//     if (Platform.isAndroid) {
+//   AndroidIntent intent = AndroidIntent(
+//     action: 'android.intent.action.MAIN',
+//     category: 'android.intent.category.APP_EMAIL',
+//   );
+//   intent.launch().catchError((e) {
+// debugPrint(e.toString());
+//   });
+// } else if (Platform.isIOS) {
+//   launch("message://").catchError((e){
+//     debugPrint(e.toString());
+//   });
+// }
+// }
+//      try{
+//          AppAvailability.launchApp(Platform.isIOS ? "message://" : "com.google.android.gm").then((_) {
+//                  print("App Email launched!");
+//                }).catchError((err) {
+//                  Scaffold.of(context).showSnackBar(SnackBar(
+//                      content: Text("App Email not found!")
+//                  ));
+//                  print(err);
+//                });
+//      } catch(e) {
+//        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Email App not found!")));
+//      }
+//  }
   }
 }
