@@ -104,10 +104,12 @@ class UserDetailsSection extends StatelessWidget {
                           icon: kProfileuserIcon,
                           title: Globals.userInfo.humanName.fullName),
                     ),
-                    FittedBox(
-                      child: UserInfoTag(
-                          icon: kProfileEmailIcon,
-                          title: Globals.userInfo.email),
+                    Obx(
+                      () => FittedBox(
+                        child: UserInfoTag(
+                            icon: kProfileEmailIcon,
+                            title: Globals.emailAddress.value),
+                      ),
                     ),
                     FittedBox(
                       child: UserInfoTag(

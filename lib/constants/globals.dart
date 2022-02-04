@@ -37,6 +37,7 @@ class Globals {
       UserSessionManager.shared.userInfo!.id.unicity.toString();
   static UserInfo userInfo = UserSessionManager.shared.userInfo!;
   static Rx<ProfilePicture> profilePicture = UserSessionManager.shared.profilePicture!.obs;
+  static Rx<String> emailAddress = UserSessionManager.shared.userInfo!.email.obs;
   static String customerCode = "";
   static String customerPoCode = "";
   static String currentMarketWarehouseId = "";

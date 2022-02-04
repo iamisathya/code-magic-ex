@@ -1,4 +1,7 @@
+import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'common_methods.dart';
 
 part 'general_models.g.dart';
 
@@ -121,8 +124,6 @@ class OrderCompleteArguments {
   Map<String, dynamic> toJson() => _$OrderCompleteArgumentsToJson(this);
 }
 
-
-
 @JsonSerializable()
 class PasswordUpdateModel {
   String value;
@@ -135,5 +136,23 @@ class PasswordUpdateModel {
       _$PasswordUpdateModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$PasswordUpdateModelToJson(this);
+}
+
+
+@JsonSerializable()
+class EmailUpdateResponse {
+  @JsonKey(name: "id")
+  CommonIdTypeInt? id;
+  @JsonKey(name: "email")
+  String? email;
+  @JsonKey(name: "href")
+  String? href;
+
+  EmailUpdateResponse({this.id, this.email, this.href});
+
+  factory EmailUpdateResponse.fromJson(Map<String, dynamic> json) =>
+      _$EmailUpdateResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EmailUpdateResponseToJson(this);
 }
 

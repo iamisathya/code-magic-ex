@@ -203,6 +203,17 @@ class Page2Controller extends GetxController {
   }
 }
 
+ Get.offNamedUntil(
+      ScreenPaths.operationResult, (route) => route.settings.name == ScreenPaths.userProfile,      
+      arguments: OperationrResultModel(
+          buttonText: 'back_to_account'.tr,
+          headerText: 'account'.tr,
+          message: 'thank_you'.tr,
+          subContent: 'Your new password has been successfully changed',
+          onPressDone: () => Get.back(),
+          title: 'change_password'.tr),
+    );
+
 inventory fetches in 
 orderentry.product.list.controller.dart
 

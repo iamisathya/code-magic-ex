@@ -127,6 +127,4 @@ class UserProfileController extends GetxController {
       await FirebaseMessaging.instance.unsubscribeFromTopic("topup");
     }
   }
-
-  Future<void> uploadProfilePicture() async {}
 }

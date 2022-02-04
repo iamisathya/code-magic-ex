@@ -82,6 +82,22 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<EmailUpdateResponse> emailUpdate(data) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(data);
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<EmailUpdateResponse>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/customers/me',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = EmailUpdateResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<ProfilePicture> getProfilePicture(id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

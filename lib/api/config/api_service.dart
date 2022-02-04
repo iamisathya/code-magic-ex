@@ -105,6 +105,10 @@ abstract class ApiService {
   @POST(Address.changeProfilePicture)
   @MultiPart()
   Future<ProfilePicture> updateProfilePicture(@Part() File media);
+  
+  //? Example: https://hydra.unicity.net/v5a/customers/me
+  @POST(Address.profileUpdate)  
+  Future<EmailUpdateResponse> emailUpdate(@Body() Map<String, dynamic> data);
 
   //? Example: https://hydra.unicity.net/v5a/customers/3d9104cc2fa45dbd0bdd1a4261f6969e/profilePicture
   @GET(Address.profilePicture)

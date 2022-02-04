@@ -121,3 +121,21 @@ Map<String, dynamic> _$PasswordUpdateModelToJson(
     <String, dynamic>{
       'value': instance.value,
     };
+
+EmailUpdateResponse _$EmailUpdateResponseFromJson(Map<String, dynamic> json) {
+  return EmailUpdateResponse(
+    id: json['id'] == null
+        ? null
+        : CommonIdTypeInt.fromJson(json['id'] as Map<String, dynamic>),
+    email: json['email'] as String?,
+    href: json['href'] as String?,
+  );
+}
+
+Map<String, dynamic> _$EmailUpdateResponseToJson(
+        EmailUpdateResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'email': instance.email,
+      'href': instance.href,
+    };

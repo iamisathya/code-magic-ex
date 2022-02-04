@@ -61,8 +61,9 @@ class SplashController extends GetxController {
       }
     } on DioError catch (e) {
       returnResponse(e.response!);
-    } catch (err) {
+    } catch (err, stack) {
       LoggerService.instance.e(err.toString());
+      LoggerService.instance.e(stack.toString());
     }
   }
 
