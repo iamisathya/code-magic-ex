@@ -97,35 +97,19 @@ class ForgotPasswordController extends GetxController {
   }
 
   void openEmailApp() {
-    launch("message://").catchError((e) {
-      debugPrint(e.toString());
-    });
-//     if (Platform.isAndroid) {
-//   AndroidIntent intent = AndroidIntent(
-//     action: 'android.intent.action.MAIN',
-//     category: 'android.intent.category.APP_EMAIL',
-//   );
-//   intent.launch().catchError((e) {
-// debugPrint(e.toString());
-//   });
-// } else if (Platform.isIOS) {
-//   launch("message://").catchError((e){
-//     debugPrint(e.toString());
-//   });
-// }
-// }
-//      try{
-//          AppAvailability.launchApp(Platform.isIOS ? "message://" : "com.google.android.gm").then((_) {
-//                  print("App Email launched!");
-//                }).catchError((err) {
-//                  Scaffold.of(context).showSnackBar(SnackBar(
-//                      content: Text("App Email not found!")
-//                  ));
-//                  print(err);
-//                });
-//      } catch(e) {
-//        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Email App not found!")));
-//      }
-//  }
+    if (Platform.isAndroid) {
+      debugPrint("Need to be fix");
+      // AndroidIntent intent = AndroidIntent(
+      //   action: 'android.intent.action.MAIN',
+      //   category: 'android.intent.category.APP_EMAIL',
+      // );
+      // intent.launch().catchError((e) {
+      //   debugPrint(e.toString());
+      // });
+    } else if (Platform.isIOS) {
+      launch("message://").catchError((e) {
+        debugPrint(e.toString());
+      });
+    }
   }
 }
