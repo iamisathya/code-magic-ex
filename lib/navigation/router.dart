@@ -1,4 +1,3 @@
-
 import '../ui/screens/barcode/barcode.screen.dart';
 import '../ui/screens/easy_ship/easyship.screen.dart';
 import '../ui/screens/enroll/enrollhome.screen.dart';

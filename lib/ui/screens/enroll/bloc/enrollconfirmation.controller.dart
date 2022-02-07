@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:dsc_tools/models/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
 import 'package:dsc_tools/ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
@@ -13,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/config/api_service.dart';
+import '../../../../constants/globals.dart';
 import '../../../../models/enroll_form.dart';
 import '../../../../models/enroll_log_request_data.dart';
 import '../../../../models/enrollee_user_data.dart';
@@ -71,8 +71,7 @@ class EnrollConfirmationController extends GetxController {
           title: "server_error!".tr, subTitle: e.error.toString());
       return false;
     } catch (err) {
-      renderErrorSnackBar(
-          title: "error!".tr, subTitle: err.toString());
+      renderErrorSnackBar(title: "error!".tr, subTitle: err.toString());
       return false;
     }
   }

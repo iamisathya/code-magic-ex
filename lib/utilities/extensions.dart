@@ -67,6 +67,7 @@ extension DateParsing on DateTime {
     return DateFormat('yyyy-MM-dd').format(this).toString();
   }
 }
+
 extension EmailValidator on String {
   bool isValidEmail() {
     return RegExp(
@@ -74,7 +75,6 @@ extension EmailValidator on String {
         .hasMatch(this);
   }
 }
-
 
 extension OrderId on String {
   String retrieveOrderId() {

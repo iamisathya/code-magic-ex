@@ -1,14 +1,15 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/global/widgets/page_title.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/operation_result/controller/operation_result.controller.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/widgets/title_bar.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../constants/colors.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../../../global/widgets/page_title.dart';
+import '../../../../open_po/order_create/component/app_bar.dart';
+import '../../terms_conditions/widgets/title_bar.dart';
+import '../controller/operation_result.controller.dart';
 
 class OperationResultScreen extends StatelessWidget {
   final OperationResultController _controller =

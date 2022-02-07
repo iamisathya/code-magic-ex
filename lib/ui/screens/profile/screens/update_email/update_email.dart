@@ -1,12 +1,12 @@
-import 'package:dsc_tools/ui/global/widgets/bottom_button_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/update_email/widgets/body.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../global/widgets/bottom_button_bar.dart';
+import '../../../open_po/order_create/component/app_bar.dart';
+import '../../../open_po/order_create/component/loader.dart';
 import 'controller/update_email.controller.dart';
+import 'widgets/body.dart';
 
 class UpdateEmailScreen extends StatelessWidget {
   static const String routeName = "/updateEmailScreen";

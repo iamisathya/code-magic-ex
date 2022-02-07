@@ -1,7 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart' hide Dialog;
-import 'package:dsc_tools/services/rest_api/exceptions.dart';
-import 'package:dsc_tools/ui/screens/home/controller/home.controller.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +11,11 @@ import '../../../../../api/config/api_service.dart';
 import '../../../../../constants/colors.dart';
 import '../../../../../constants/globals.dart';
 import '../../../../../models/general_models.dart';
+import '../../../../../models/inventory_item_v2.dart' hide Dialog;
 import '../../../../../models/open_po.dart';
+import '../../../../../services/rest_api/exceptions.dart';
 import '../../../../global/widgets/unordered_list.dart';
+import '../../../home/controller/home.controller.dart';
 import '../components/openpo_list_filter_dropdown.dart';
 import '../components/order_status_item.dart';
 
@@ -44,7 +44,7 @@ class OpenPoListController extends GetxController
 
   Future<void> initCalls() async {
     isLoading.toggle();
-    if(Globals.currentMarketWarehouseId.isEmpty) {
+    if (Globals.currentMarketWarehouseId.isEmpty) {
       await homeCtrl.getManagedWarehouses();
     }
     try {
@@ -72,7 +72,7 @@ class OpenPoListController extends GetxController
         change([], status: RxStatus.empty());
       }
       onFilterChange(selectedFilterIndex.value);
-    }on DioError catch (e) {
+    } on DioError catch (e) {
       debugPrint(e.toString());
       throw "Open PO fetch error: ${e.toString()}";
     } on AppException catch (exception, stack) {

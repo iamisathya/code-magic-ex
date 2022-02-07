@@ -1,19 +1,20 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/error_error_message.dart';
-import 'package:dsc_tools/models/profile_picture.dart';
-import 'package:dsc_tools/navigation/router.dart';
-import 'package:dsc_tools/utilities/function.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide FormData, MultipartFile;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../../api/config/api_service.dart';
+import '../../../../constants/globals.dart';
+import '../../../../models/error_error_message.dart';
+import '../../../../models/profile_picture.dart';
+import '../../../../navigation/router.dart';
+import '../../../../utilities/function.dart';
+import '../../../../utilities/snackbar.dart';
+import '../../../../utilities/user_session.dart';
 
 class UserProfileController extends GetxController {
   final ImagePicker _picker = ImagePicker();

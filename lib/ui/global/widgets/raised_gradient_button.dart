@@ -1,9 +1,9 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
+
+import '../../../constants/colors.dart';
+import '../../../utilities/enums.dart';
+import '../../../utilities/images.dart';
+import '../theme/text_view.dart';
 
 class RaisedGradientButton extends StatelessWidget {
   final Gradient gradient;
@@ -43,19 +43,19 @@ class RaisedGradientButton extends StatelessWidget {
                     color: AppColor.kWhiteColor,
                   ),
                 ),
-                if(isLoading)
-                Align(
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    margin: const EdgeInsets.only(left: 150),
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(kAnimatedSpin),
+                if (isLoading)
+                  Align(
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      margin: const EdgeInsets.only(left: 150),
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(kAnimatedSpin),
+                        ),
                       ),
                     ),
                   ),
-                ),
               ],
             )),
       ),

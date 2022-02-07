@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/constants/globals.dart';
 import 'package:get/get.dart';
 
 import '../../../../api/config/api_service.dart';
+import '../../../../constants/globals.dart';
 import '../../../../models/inventory_records.dart';
 import '../../../../models/managed_warehouse.dart';
 import '../../../../services/rest_api/exceptions.dart';

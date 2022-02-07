@@ -1,11 +1,11 @@
-import 'package:dsc_tools/services/firebase/notifications.dart';
-import 'package:dsc_tools/services/rest_api/exceptions.dart';
-import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
-import 'package:dsc_tools/ui/screens/barcode/screens/barcode_details.dart';
-import 'package:dsc_tools/ui/screens/home/home.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../models/general_models.dart';
+import '../../../../../../services/firebase/notifications.dart';
+import '../../../../../../services/rest_api/exceptions.dart';
+import '../../../../barcode/barcode.screen.dart';
+import '../../../../barcode/screens/barcode_details.dart';
+import '../../../../home/home.dart';
 
 class EnrolmentCompleteController extends GetxController {
   RxBool isLoading = false.obs;

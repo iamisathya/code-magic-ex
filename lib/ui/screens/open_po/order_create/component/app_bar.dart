@@ -48,8 +48,10 @@ class OpenPoAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ),
-        if(showNotification)
-        IconButton(onPressed: controller.onPressNotification, icon: const Icon(Icons.notifications_none_outlined)),
+        if (showNotification)
+          IconButton(
+              onPressed: controller.onPressNotification,
+              icon: const Icon(Icons.notifications_none_outlined)),
       ],
     );
   }

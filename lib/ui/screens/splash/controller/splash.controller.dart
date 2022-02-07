@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/navigation/router.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -15,6 +14,7 @@ import '../../../../constants/globals.dart';
 import '../../../../models/country_info.dart';
 import '../../../../models/user_info.dart';
 import '../../../../models/user_token.dart';
+import '../../../../navigation/router.dart';
 import '../../../../services/firebase/analyitcs.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';

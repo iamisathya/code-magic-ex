@@ -1,18 +1,18 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/api_address.dart';
-import 'package:dsc_tools/services/rest_api/exceptions.dart';
-import 'package:dsc_tools/utilities/function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
 
+import '../../../../api/api_address.dart';
 import '../../../../api/config/api_service.dart';
 import '../../../../constants/globals.dart';
 import '../../../../models/barcode_save_response.dart';
 import '../../../../models/verify_each_barcode_response.dart';
+import '../../../../services/rest_api/exceptions.dart';
 import '../../../../utilities/extensions.dart';
+import '../../../../utilities/function.dart';
 import '../../../../utilities/images.dart';
 import '../../../../utilities/keyboard.dart';
 import '../../../../utilities/logger.dart';
@@ -96,7 +96,8 @@ class BarcodeSearchController extends GetxController {
         "orderNumber": controller.orderNumber.value
       };
       barCodeVerifyResponse = await MemberCallsService.init()
-          .verifyEachBarcodeNumber(gTokenBarcodeNew, "", json.encode(verifyRequest));
+          .verifyEachBarcodeNumber(
+              gTokenBarcodeNew, "", json.encode(verifyRequest));
       if (barCodeVerifyResponse!.error != null &&
           barCodeVerifyResponse!.error!.isNotEmpty) {
         final errors = StringBuffer();

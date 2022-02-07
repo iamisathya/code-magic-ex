@@ -1,16 +1,16 @@
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
-import 'package:dsc_tools/ui/screens/profile/controller/profile.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../open_po/order_create/component/app_bar.dart';
+import '../../open_po/order_create/component/loader.dart';
+import '../controller/profile.controller.dart';
 import '../widgets/body.dart';
 
 class UserProfileScreen extends StatelessWidget {
   static const String routeName = "/userProfileScreen";
   final UserProfileController _controller = Get.put(UserProfileController());
-  
+
   UserProfileScreen({Key? key}) : super(key: key);
 
   @override

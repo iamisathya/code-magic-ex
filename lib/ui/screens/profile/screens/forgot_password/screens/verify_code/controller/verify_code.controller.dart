@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:dsc_tools/navigation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../../../navigation/router.dart';
 
 class VerifyCodeController extends GetxController {
   TextEditingController verificationCodeCtrl = TextEditingController();

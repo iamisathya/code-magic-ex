@@ -1,10 +1,3 @@
-import 'package:dsc_tools/ui/screens/barcode/barcode.screen.dart';
-import 'package:dsc_tools/ui/screens/easy_ship/easyship.screen.dart';
-import 'package:dsc_tools/ui/screens/enroll/enrollhome.screen.dart';
-import 'package:dsc_tools/ui/screens/inventory/inventory.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_list/home_screen.dart';
-import 'package:dsc_tools/ui/screens/order_entry/orderentry.screen.dart';
-import 'package:dsc_tools/ui/screens/sales_reports/salesreports.screen.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,7 +6,14 @@ import 'package:get/get.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/user_session.dart';
 import '../../../global/theme/text_view.dart';
+import '../../barcode/barcode.screen.dart';
+import '../../easy_ship/easyship.screen.dart';
+import '../../enroll/enrollhome.screen.dart';
+import '../../inventory/inventory.dart';
 import '../../login/login.screen.dart';
+import '../../open_po/order_list/home_screen.dart';
+import '../../order_entry/orderentry.screen.dart';
+import '../../sales_reports/salesreports.screen.dart';
 
 class DashboardMenuItem extends StatelessWidget {
   // final DashboardController controller = Get.put(DashboardController());

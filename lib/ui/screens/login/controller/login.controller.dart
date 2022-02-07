@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/navigation/router.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +18,7 @@ import '../../../../models/profile_picture.dart';
 import '../../../../models/user_id.dart';
 import '../../../../models/user_info.dart';
 import '../../../../models/user_token.dart';
+import '../../../../navigation/router.dart';
 import '../../../../utilities/constants.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/function.dart';
@@ -42,7 +42,7 @@ class LoginController extends GetxController {
   RxString errorMessage = "".obs;
   RxBool isSessionExpired = false.obs;
   RxString errorMessages = ''.obs;
-  
+
   final FirebaseAnalytics analytics = FirebaseAnalytics();
 
   @override
@@ -57,7 +57,8 @@ class LoginController extends GetxController {
 
   void onPressContinue(BuildContext context) {
     errorMessages.value = "";
-    if (userIdController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+    if (userIdController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty) {
       isSessionExpired.value = false;
       formKey.currentState!.save();
       getLoginTokens(context);
@@ -118,7 +119,8 @@ class LoginController extends GetxController {
           .getCustomerData(UserSessionManager.shared.customerUniqueId);
 
       //* Get current market
-      _setCurrentMarket(country: responseUserInfo.mainAddress.country.toLowerCase());
+      _setCurrentMarket(
+          country: responseUserInfo.mainAddress.country.toLowerCase());
 
       //*  getCustomerData from api
       final ProfilePicture profilePicture = await ApiService.shared()

@@ -1,8 +1,9 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../constants/colors.dart';
+import '../../../utilities/enums.dart';
+import '../theme/text_view.dart';
 
 class GradientButton extends StatelessWidget {
   const GradientButton(

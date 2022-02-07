@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'request_get_user_info.g.dart';
 
 @JsonSerializable(explicitToJson: true)

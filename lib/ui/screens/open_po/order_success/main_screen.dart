@@ -1,5 +1,6 @@
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
 import 'package:flutter/material.dart';
+
+import '../order_create/component/app_bar.dart';
 import 'components/body.dart';
 
 class CreateOpenPoOrderResult extends StatelessWidget {

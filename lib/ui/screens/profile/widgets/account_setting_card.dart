@@ -1,12 +1,13 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/navigation/router.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/profile/controller/profile.controller.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../constants/colors.dart';
+import '../../../../navigation/router.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/images.dart';
+import '../../../global/theme/text_view.dart';
+import '../controller/profile.controller.dart';
 
 class AccountSetting extends StatelessWidget {
   final UserProfileController _controller = Get.put(UserProfileController());
@@ -24,7 +25,8 @@ class AccountSetting extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.only(top: 18, bottom: 10, left: 20, right: 20),
+            padding:
+                const EdgeInsets.only(top: 18, bottom: 10, left: 20, right: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

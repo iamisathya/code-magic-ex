@@ -1,7 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart' hide Dialog;
-import 'package:dsc_tools/ui/screens/open_po/order_list/controller/openpo.list.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
@@ -10,9 +8,11 @@ import 'package:printing/printing.dart';
 
 import '../../../../../api/api_address.dart';
 import '../../../../../api/config/api_service.dart';
+import '../../../../../models/inventory_item_v2.dart' hide Dialog;
 import '../../../../../models/open_order_id.dart';
 import '../../../../../models/open_po_details.dart';
 import '../../../../../utilities/logger.dart';
+import '../../order_list/controller/openpo.list.controller.dart';
 
 class OpenPoDetailsController extends GetxController {
   // final MemberCallsService api;

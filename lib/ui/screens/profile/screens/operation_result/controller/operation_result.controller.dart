@@ -1,7 +1,8 @@
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../utilities/images.dart';
+import '../../../../../../utilities/logger.dart';
 
 class OperationResultController extends GetxController {
   final Rx<OperationrResultModel> result = const OperationrResultModel().obs;

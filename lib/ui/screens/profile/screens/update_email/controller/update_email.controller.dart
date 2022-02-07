@@ -2,19 +2,20 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/error_error_message.dart';
-import 'package:dsc_tools/models/general_models.dart';
-import 'package:dsc_tools/models/user_info.dart';
-import 'package:dsc_tools/navigation/router.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/operation_result/controller/operation_result.controller.dart';
-import 'package:dsc_tools/utilities/extensions.dart';
-import 'package:dsc_tools/utilities/function.dart';
-import 'package:dsc_tools/utilities/snackbar.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../api/config/api_service.dart';
+import '../../../../../../constants/globals.dart';
+import '../../../../../../models/error_error_message.dart';
+import '../../../../../../models/general_models.dart';
+import '../../../../../../models/user_info.dart';
+import '../../../../../../navigation/router.dart';
+import '../../../../../../utilities/extensions.dart';
+import '../../../../../../utilities/function.dart';
+import '../../../../../../utilities/snackbar.dart';
+import '../../../../../../utilities/user_session.dart';
+import '../../operation_result/controller/operation_result.controller.dart';
 
 class UpdateEmailController extends GetxController {
   TextEditingController emailController = TextEditingController();

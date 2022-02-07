@@ -11,7 +11,7 @@ import '../order_list/components/open_po_order_list.dart';
 import 'controller/openpo.list.controller.dart';
 
 class OpenPoHomeScreen extends StatelessWidget {
-  static const String routeName = '/openPoHomePage';  
+  static const String routeName = '/openPoHomePage';
   final OpenPoListController listController = Get.put(OpenPoListController());
 
   @override

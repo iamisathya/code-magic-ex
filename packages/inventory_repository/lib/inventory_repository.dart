@@ -1,4 +1,3 @@
-
 library inventory_repository;
 
 export 'src/models/models.dart';

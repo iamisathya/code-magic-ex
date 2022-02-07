@@ -43,7 +43,8 @@ const kSalesCashCounterImage = 'assets/images/sales_cash_counter_image.svg';
 const kBarcodeExampleImage = 'assets/images/example_barcode_image.svg';
 const kLoginScreenImage = 'assets/images/login_screen_image.svg';
 const kProfileBacgroundImage = 'assets/images/profile_background_image.svg';
-const kProfileTermsConditionImage = 'assets/images/profile_terms_condition_image.svg';
+const kProfileTermsConditionImage =
+    'assets/images/profile_terms_condition_image.svg';
 // app_bar
 const kUnicityGradientImage = 'assets/images/unicity_logo.png';
 const kUnicityLogoGradientImage = 'assets/images/unicity_logo_image.svg';
@@ -122,15 +123,21 @@ const kInputClearIcon = 'assets/icons/input_clear_icon.svg';
 const kLocationIcon = 'assets/icons/location_icon.svg';
 const kUserIcon = 'assets/icons/user_icon.svg';
 const kUserProfileIcon = 'assets/icons/user_profile_icon.svg';
-const kProfileAccountSettingIcon = 'assets/icons/profile/profile_account_setting_icon.svg';
+const kProfileAccountSettingIcon =
+    'assets/icons/profile/profile_account_setting_icon.svg';
 const kProfileEmailIcon = 'assets/icons/profile/profile_email_icon.svg';
-const kProfileNotificationIcon = 'assets/icons/profile/profile_notification_icon.svg';
+const kProfileNotificationIcon =
+    'assets/icons/profile/profile_notification_icon.svg';
 const kProfilePhoneIcon = 'assets/icons/profile/profile_phone_icon.svg';
-const kProfileTermsConditionIcon = 'assets/icons/profile/profile_termsconditions_icons.svg';
+const kProfileTermsConditionIcon =
+    'assets/icons/profile/profile_termsconditions_icons.svg';
 const kProfileuserIcon = 'assets/icons/profile/profile_user_icon.svg';
-const kProfileUserEditPencilIcon = 'assets/icons/profile/user_edit_pencil_icon.svg';
-const kProfileNewEmailImage= 'assets/icons/profile/profile_new_email_image.svg';
-const kProfileNewPasswordImage = 'assets/icons/profile/profile_new_password_image.svg';
+const kProfileUserEditPencilIcon =
+    'assets/icons/profile/user_edit_pencil_icon.svg';
+const kProfileNewEmailImage =
+    'assets/icons/profile/profile_new_email_image.svg';
+const kProfileNewPasswordImage =
+    'assets/icons/profile/profile_new_password_image.svg';
 const kProfileCameraIcon = 'assets/icons/profile/profile_camera_icon.svg';
 
 // dashboard menu
@@ -196,4 +203,5 @@ const kScanBarcodeIllustration =
     'assets/illustration/scan_barcode_illustration.svg';
 
 // * Gradient
-const kButtonBackgroundGradient = 'assets/gradient/button_background_gradient.svg';
+const kButtonBackgroundGradient =
+    'assets/gradient/button_background_gradient.svg';

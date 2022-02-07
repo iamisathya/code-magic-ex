@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:dsc_tools/navigation/router.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/operation_result/controller/operation_result.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../../../navigation/router.dart';
+import '../../../../operation_result/controller/operation_result.controller.dart';
 
 class ChangePasswordController extends GetxController {
   TextEditingController newPasswordController = TextEditingController();
@@ -23,7 +24,8 @@ class ChangePasswordController extends GetxController {
       errorMessages.value = 'Invalid password entered!';
     });
     Get.offNamedUntil(
-      ScreenPaths.operationResult, (route) => route.settings.name == ScreenPaths.userProfile,      
+      ScreenPaths.operationResult,
+      (route) => route.settings.name == ScreenPaths.userProfile,
       arguments: OperationrResultModel(
           buttonText: 'back_to_account'.tr,
           headerText: 'account'.tr,

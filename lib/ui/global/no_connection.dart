@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/utilities/connectivity.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../constants/colors.dart';
+import '../../utilities/connectivity.dart';
+import '../../utilities/images.dart';
 import 'widgets/gradient_button.dart';
 
 class NoConnectionScreen extends StatelessWidget {

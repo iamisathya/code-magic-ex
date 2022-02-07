@@ -1,16 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/profile/controller/profile.controller.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
-import 'package:dsc_tools/utilities/user_session.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../constants/colors.dart';
+import '../../../../constants/globals.dart';
+import '../../../../utilities/enums.dart';
+import '../../../../utilities/images.dart';
+import '../../../global/theme/text_view.dart';
+import '../controller/profile.controller.dart';
 import 'user_info_tag.dart';
 
 class UserDetailsSection extends StatelessWidget {

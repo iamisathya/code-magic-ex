@@ -13,7 +13,6 @@ class Strings {
   static const String gTokenBarcodeNew =
       "_ga=GA1.2.1316239299.1632121654; PHPSESSID=dbpq6231h0pe0v9hc0oav8brm5; _gid=GA1.2.345590737.1635483132; __cf_bm=O9pALKttCinifHOnMj6BaomdmASyaRAyF4m30nTKL0g-1635503263-0-ARpiZJcq6l6XywoISx4twSeG7lpXAHTSPRaEFdb8THxdzj1Xfb9rlsmLa0wJB0QeRuunbJoK0H21+7vlQGNu0YL9j5JkjmsyhySS2byjC25Hng3RpLorYoQ1Jmi7Z46JSg==";
 
-
   // API constants
   static const String checkOrderEntryServerStatus = "000";
   static const String easyShipReports = "2";

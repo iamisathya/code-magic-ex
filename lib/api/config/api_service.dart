@@ -62,7 +62,8 @@ abstract class ApiService {
 
   factory ApiService.init() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
+    dio.interceptors
+        .add(PrettyDioLogger(requestBody: true, responseBody: false));
     return ApiService(dio);
 
     // return _instance;
@@ -72,7 +73,8 @@ abstract class ApiService {
     final Dio dio = Dio();
     dio.options.headers['authorization'] =
         "Bearer ${UserSessionManager.shared.customerToken.token}";
-    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
+    dio.interceptors
+        .add(PrettyDioLogger(requestBody: true, responseBody: false));
     debugPrint(UserSessionManager.shared.customerToken.token);
     return ApiService(dio);
   }
@@ -105,13 +107,13 @@ abstract class ApiService {
   @POST(Address.changeProfilePicture)
   @MultiPart()
   Future<ProfilePicture> updateProfilePicture(@Part() File media);
-  
+
   //? Example: https://hydra.unicity.net/v5a/customers/me
-  @POST(Address.profileUpdate)  
+  @POST(Address.profileUpdate)
   Future<EmailUpdateResponse> emailUpdate(@Body() Map<String, dynamic> data);
-  
+
   //? Example: https://hydra.unicity.net/v5a/passwordresettokens
-  @POST(Address.sendPasswordResetLink)  
+  @POST(Address.sendPasswordResetLink)
   Future<dynamic> sendPasswordResetLink(@Body() PasswordResetRequest data);
 
   //? Example: https://hydra.unicity.net/v5a/customers/3d9104cc2fa45dbd0bdd1a4261f6969e/profilePicture
@@ -197,7 +199,8 @@ abstract class MemberCallsService {
 
   factory MemberCallsService.init() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
+    dio.interceptors
+        .add(PrettyDioLogger(requestBody: true, responseBody: false));
     dio.options.headers['authorization'] =
         "Bearer ${UserSessionManager.shared.customerToken.token}";
     dio.options.headers['Content-Type'] = "application/json;charset=utf-8 ";
@@ -507,7 +510,8 @@ abstract class MemberCalls2Service {
 
   factory MemberCalls2Service.init() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
+    dio.interceptors
+        .add(PrettyDioLogger(requestBody: true, responseBody: false));
     return MemberCalls2Service(dio);
   }
   factory MemberCalls2Service.clientNoLogger() {
@@ -517,7 +521,8 @@ abstract class MemberCalls2Service {
 
   factory MemberCalls2Service.auth() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
+    dio.interceptors
+        .add(PrettyDioLogger(requestBody: true, responseBody: false));
     dio.options.headers['authorization'] =
         "Bearer ${UserSessionManager.shared.customerToken.token}";
     return MemberCalls2Service(dio);
@@ -583,7 +588,8 @@ abstract class DscCallService {
 
   factory DscCallService.init() {
     final Dio dio = Dio();
-    dio.interceptors.add(PrettyDioLogger(requestBody: true, responseBody: false));
+    dio.interceptors
+        .add(PrettyDioLogger(requestBody: true, responseBody: false));
     return DscCallService(dio);
   }
 

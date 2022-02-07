@@ -1,12 +1,10 @@
-import 'package:dsc_tools/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../../../../../constants/colors.dart';
+
 class VerifyTextField extends StatelessWidget {
-  const VerifyTextField(
-      {Key? key,
-      required this.controller})
-      : super(key: key);
+  const VerifyTextField({Key? key, required this.controller}) : super(key: key);
 
   final TextEditingController controller;
 

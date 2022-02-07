@@ -1,8 +1,9 @@
-import 'package:dsc_tools/ui/global/widgets/bottom_button_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/widgets/body.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../global/widgets/bottom_button_bar.dart';
+import '../../../open_po/order_create/component/app_bar.dart';
+import 'widgets/body.dart';
 
 class TermsConditionsScreen extends StatelessWidget {
   static const String routeName = "/termsConditionsScreen";

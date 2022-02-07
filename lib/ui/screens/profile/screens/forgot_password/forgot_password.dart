@@ -1,15 +1,16 @@
-import 'package:dsc_tools/ui/global/widgets/bottom_button_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/app_bar.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_create/component/loader.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/widgets/body.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../global/widgets/bottom_button_bar.dart';
+import '../../../open_po/order_create/component/app_bar.dart';
+import '../../../open_po/order_create/component/loader.dart';
 import 'controller/forgot_password.controller.dart';
+import 'widgets/body.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
-  final ForgotPasswordController controller = Get.put(ForgotPasswordController());
+  final ForgotPasswordController controller =
+      Get.put(ForgotPasswordController());
 
   ForgotPasswordScreen({Key? key}) : super(key: key);
 

@@ -1,18 +1,19 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/models/error_error_message.dart';
-import 'package:dsc_tools/models/general_models.dart';
-import 'package:dsc_tools/navigation/router.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/global/widgets/plain_button.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/function.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../../../../api/config/api_service.dart';
+import '../../../../../../models/error_error_message.dart';
+import '../../../../../../models/general_models.dart';
+import '../../../../../../navigation/router.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/function.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../../../global/widgets/plain_button.dart';
 
 class UpdatePasswordController extends GetxController {
   TextEditingController currentPasswordCtrl = TextEditingController();

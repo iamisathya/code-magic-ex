@@ -1,4 +1,3 @@
-import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'common_methods.dart';
@@ -138,7 +137,6 @@ class PasswordUpdateModel {
   Map<String, dynamic> toJson() => _$PasswordUpdateModelToJson(this);
 }
 
-
 @JsonSerializable()
 class EmailUpdateResponse {
   @JsonKey(name: "id")
@@ -170,4 +168,3 @@ class PasswordResetRequest {
 
   Map<String, dynamic> toJson() => _$PasswordResetRequestToJson(this);
 }
-

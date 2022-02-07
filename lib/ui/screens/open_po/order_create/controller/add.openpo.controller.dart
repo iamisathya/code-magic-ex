@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart' show DioError;
-import 'package:dsc_tools/ui/global/widgets/inventory_bottom_sheet.dart';
-import 'package:dsc_tools/ui/screens/open_po/order_list/controller/openpo.list.controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,11 +23,14 @@ import '../../../../../utilities/function.dart';
 import '../../../../../utilities/logger.dart';
 import '../../../../../utilities/snackbar.dart';
 import '../../../../../utilities/user_session.dart';
+import '../../../../global/widgets/inventory_bottom_sheet.dart';
+import '../../order_list/controller/openpo.list.controller.dart';
 import '../../order_success/main_screen.dart';
 
 class CreateOpenPoOrderController extends GetxController
     with StateMixin<List<InventoryRecords>> {
-  final TextEditingController searchProductTextController = TextEditingController();
+  final TextEditingController searchProductTextController =
+      TextEditingController();
   final Rx<InventoryItemV2> inventoryRecordsV2 = InventoryItemV2(items: []).obs;
   final Rx<InventoryItemV2> searchResult1 = InventoryItemV2(items: []).obs;
   final RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;

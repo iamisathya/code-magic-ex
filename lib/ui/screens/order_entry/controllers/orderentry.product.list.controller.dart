@@ -1,16 +1,16 @@
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/services/rest_api/exceptions.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../api/config/api_service.dart';
+import '../../../../constants/globals.dart';
 import '../../../../models/cart_products.dart';
 import '../../../../models/general_models.dart';
+import '../../../../models/inventory_item_v2.dart';
 import '../../../../models/user_minimal_data.dart';
+import '../../../../services/rest_api/exceptions.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/function.dart';
 import '../../../../utilities/logger.dart';
@@ -39,8 +39,7 @@ class OrderEntryProductListController extends GetxController {
 
   // Rx<InventoryRecords> inventoryRecords = InventoryRecords(items: []).obs;
   RxList<CartProductsItem> cartProducts = <CartProductsItem>[].obs;
-  Rx<InventoryItemV2> inventoryEasyShipRecords =
-      InventoryItemV2(items: []).obs;
+  Rx<InventoryItemV2> inventoryEasyShipRecords = InventoryItemV2(items: []).obs;
   Rx<InventoryItemV2> tempInventoryEasyShipRecords =
       InventoryItemV2(items: []).obs;
   Rx<InventoryItemV2> inventoryRecords = InventoryItemV2(items: []).obs;
@@ -66,7 +65,6 @@ class OrderEntryProductListController extends GetxController {
   set currentFilteredMethod(String type) => filterMethod.value = type;
 
   String get currentFilteredMethod => filterMethod.value;
-
 
   Future<void> loadInventory() async {
     try {

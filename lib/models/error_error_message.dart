@@ -26,9 +26,11 @@ class ErrorObject {
   @JsonKey(name: "code")
   int? code;
 
-  ErrorObject({this.errorMessage = "", this.error = "", this.message = "", this.code = 0});
-
-
+  ErrorObject(
+      {this.errorMessage = "",
+      this.error = "",
+      this.message = "",
+      this.code = 0});
 
   factory ErrorObject.fromJson(Map<String, dynamic> json) =>
       _$ErrorObjectFromJson(json);

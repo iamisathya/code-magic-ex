@@ -1,5 +1,3 @@
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/utilities/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,7 +5,9 @@ import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../models/barcode_item_response.dart';
+import '../../../../utilities/enums.dart';
 import '../../../../utilities/images.dart';
+import '../../../global/theme/text_view.dart';
 import '../../../global/widgets/bottom_button_bar.dart';
 import '../../open_po/order_create/component/loader.dart';
 import '../components/barcode_list_item.dart';

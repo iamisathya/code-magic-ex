@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/constants/globals.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/order_entry/screens/home/components/white_search_field.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../constants/colors.dart';
+import '../../../constants/globals.dart';
+import '../../../models/inventory_item_v2.dart';
+import '../../../utilities/enums.dart';
+import '../../../utilities/images.dart';
+import '../../screens/order_entry/screens/home/components/white_search_field.dart';
+import '../theme/text_view.dart';
 
 class InventoryBottomSheet extends StatelessWidget {
   final TextEditingController searchProductTextController;
@@ -49,8 +50,7 @@ class InventoryBottomSheet extends StatelessWidget {
                   controller: ctrl,
                   itemCount: searchResult.value.items!.length,
                   itemBuilder: (BuildContext ctxt, int index) {
-                    final InventoryItem item =
-                        searchResult.value.items![index];
+                    final InventoryItem item = searchResult.value.items![index];
                     return GestureDetector(
                       onTap: () {
                         onTapItem(item);

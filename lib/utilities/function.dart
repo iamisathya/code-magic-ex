@@ -4,7 +4,6 @@ import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/models/error_error_message.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +21,7 @@ import '../exceptions/internet_failed.exception.dart';
 import '../exceptions/time_out.exception.dart';
 import '../exceptions/unauthorised.exception.dart';
 import '../models/country_details.dart';
+import '../models/error_error_message.dart';
 import '../models/inventory_item_v2.dart';
 import '../models/inventory_records.dart';
 import '../models/locale.dart';
@@ -120,7 +120,8 @@ dynamic returnResponse(dio.Response response) {
         return Get.offAll(() => LoginScreen(),
             arguments: true, transition: Transition.cupertino);
       } else if (errorMsg == "Unauthorized") {
-        SnackbarUtil.showWarning(title: errorMsg, message: "invalid_credentials".tr);
+        SnackbarUtil.showWarning(
+            title: errorMsg, message: "invalid_credentials".tr);
         errorMsg = "invalid_credentials".tr;
       }
       throw UnauthorisedException(message: errorMsg);
@@ -211,11 +212,14 @@ String getErrorMessage(dynamic error) {
   try {
     final mappedObj = error as Map<String, dynamic>;
     final object = ErrorMessage.fromJson(mappedObj);
-    return object.error.error ?? object.error.errorMessage ?? object.error.message ?? "";
+    return object.error.error ??
+        object.error.errorMessage ??
+        object.error.message ??
+        "";
   } catch (e) {
     return "";
   }
-  
+
   // return mappedObj["error"]["error_message"].toString();
 }
 

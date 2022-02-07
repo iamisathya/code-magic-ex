@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../constants/colors.dart';
 import '../../../../../../constants/globals.dart';
+import '../../../../../../models/inventory_item_v2.dart';
 import '../../../../../../styles/border.dart';
 import '../../../../../../utilities/enums.dart';
 import '../../../../../../utilities/extensions.dart';
@@ -46,7 +46,8 @@ class ProductItem extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 60,
-                  child: item.itemInfo != null && (item.itemInfo!.imageUrl.isNotEmpty)
+                  child: item.itemInfo != null &&
+                          (item.itemInfo!.imageUrl.isNotEmpty)
                       ? CachedNetworkImage(imageUrl: item.itemInfo!.imageUrl)
                       : SvgPicture.asset(kProductPlaceholderImage, width: 60),
                 ),

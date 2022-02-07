@@ -1,14 +1,13 @@
-import 'package:dsc_tools/utilities/logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import '../../../../models/barcode_item_response.dart';
 import '../../../../models/barcode_response.dart';
 import '../../../../utilities/extensions.dart';
 import '../../../../utilities/keyboard.dart';
+import '../../../../utilities/logger.dart';
 import '../../../../utilities/snackbar.dart';
 import '../screens/barcode_details.dart';
 

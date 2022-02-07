@@ -1,15 +1,15 @@
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/global/widgets/page_title.dart';
-import 'package:dsc_tools/ui/screens/enroll/screens/enrollment_details/components/error_message.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/forgot_password/controller/forgot_password.controller.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/terms_conditions/widgets/title_bar.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../constants/colors.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/images.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../../../../global/widgets/page_title.dart';
+import '../../../../enroll/screens/enrollment_details/components/error_message.dart';
+import '../../terms_conditions/widgets/title_bar.dart';
+import '../controller/forgot_password.controller.dart';
 import 'text_input_field.dart';
 
 class Body extends StatelessWidget {

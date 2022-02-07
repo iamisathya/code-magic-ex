@@ -1,9 +1,9 @@
-import 'package:dsc_tools/ui/screens/profile/widgets/user_details.dart';
 import 'package:flutter/material.dart';
 
 import 'account_setting_card.dart';
 import 'notification_card.dart';
 import 'terms_condition_card.dart';
+import 'user_details.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);

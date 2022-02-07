@@ -1,7 +1,7 @@
-import 'package:dsc_tools/models/inventory_item_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../models/inventory_item_v2.dart';
 import '../../../controllers/orderentry.product.list.controller.dart';
 import 'filter_tabs.dart';
 import 'product_item.dart';
@@ -32,11 +32,10 @@ class Body extends StatelessWidget {
                         ? controller.inventoryRecords.value.items!.length
                         : controller.inventoryEasyShipRecords.value.items!
                             .length, (index) {
-                  final InventoryItem item =
-                      controller.currentFilteredMethod == "all"
-                          ? controller.inventoryRecords.value.items![index]
-                          : controller
-                              .inventoryEasyShipRecords.value.items![index];
+                  final InventoryItem item = controller.currentFilteredMethod ==
+                          "all"
+                      ? controller.inventoryRecords.value.items![index]
+                      : controller.inventoryEasyShipRecords.value.items![index];
                   int itemIndex =
                       controller.cartItemIndex(item.item!.id!.unicity!);
                   final bool inItemInCart =

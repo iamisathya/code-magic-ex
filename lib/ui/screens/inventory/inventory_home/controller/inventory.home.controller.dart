@@ -46,20 +46,26 @@ class InventoryHomeController extends GetxController {
 
   TextEditingController searchController = TextEditingController();
 
-  final Rx<InventoryItemV2> _tempInventoryRecords = InventoryItemV2(items: []).obs;
-  final Rx<InventoryItemV2> _allInventoryRecords = InventoryItemV2(items: []).obs;
-  final Rx<InventoryItemV2> _onHandInventoryRecords = InventoryItemV2(items: []).obs;
-  final Rx<InventoryItemV2> _outOfStockInventoryRecords = InventoryItemV2(items: []).obs;
-      
+  final Rx<InventoryItemV2> _tempInventoryRecords =
+      InventoryItemV2(items: []).obs;
+  final Rx<InventoryItemV2> _allInventoryRecords =
+      InventoryItemV2(items: []).obs;
+  final Rx<InventoryItemV2> _onHandInventoryRecords =
+      InventoryItemV2(items: []).obs;
+  final Rx<InventoryItemV2> _outOfStockInventoryRecords =
+      InventoryItemV2(items: []).obs;
+
   Rx<InventoryItemV2> searchedProducts = InventoryItemV2(items: []).obs;
   ManagedWarehouses warehouses = ManagedWarehouses(items: []);
   InventorySortTypes currentType = InventorySortTypes.itemCode;
   bool isAscending = true;
 
   List<InventoryItem> get inventoryItems => _tempInventoryRecords.value.items!;
-  List<InventoryItem> get allInventoryItems => _allInventoryRecords.value.items!;
+  List<InventoryItem> get allInventoryItems =>
+      _allInventoryRecords.value.items!;
   List<InventoryItem> get onHandItems => _onHandInventoryRecords.value.items!;
-  List<InventoryItem> get outOfStockItems => _outOfStockInventoryRecords.value.items!;
+  List<InventoryItem> get outOfStockItems =>
+      _outOfStockInventoryRecords.value.items!;
 
   // card or table view
   String get activeViewType => _activeViewType.value.value;
@@ -158,7 +164,7 @@ class InventoryHomeController extends GetxController {
     print(_onHandInventoryRecords.value.items!.length);
     for (final outOfStockItem in _outOfStockInventoryRecords.value.items!) {
       for (final onHandItem in _onHandInventoryRecords.value.items!) {
-        if(onHandItem.item!.id!.unicity == outOfStockItem.item!.id!.unicity) {
+        if (onHandItem.item!.id!.unicity == outOfStockItem.item!.id!.unicity) {
           outOfStockItem.itemInfo = onHandItem.itemInfo;
         }
       }

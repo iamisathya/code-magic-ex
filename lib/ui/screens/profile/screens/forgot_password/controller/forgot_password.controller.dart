@@ -2,19 +2,20 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/api/config/api_service.dart';
-import 'package:dsc_tools/constants/colors.dart';
-import 'package:dsc_tools/models/common_methods.dart';
-import 'package:dsc_tools/models/error_error_message.dart';
-import 'package:dsc_tools/models/general_models.dart';
-import 'package:dsc_tools/navigation/router.dart';
-import 'package:dsc_tools/ui/global/theme/text_view.dart';
-import 'package:dsc_tools/ui/screens/profile/screens/operation_result/controller/operation_result.controller.dart';
-import 'package:dsc_tools/utilities/enums.dart';
-import 'package:dsc_tools/utilities/function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../../../../api/config/api_service.dart';
+import '../../../../../../constants/colors.dart';
+import '../../../../../../models/common_methods.dart';
+import '../../../../../../models/error_error_message.dart';
+import '../../../../../../models/general_models.dart';
+import '../../../../../../navigation/router.dart';
+import '../../../../../../utilities/enums.dart';
+import '../../../../../../utilities/function.dart';
+import '../../../../../global/theme/text_view.dart';
+import '../../operation_result/controller/operation_result.controller.dart';
 
 class ForgotPasswordController extends GetxController {
   TextEditingController userIdCtrl = TextEditingController();
