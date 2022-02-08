@@ -26,8 +26,6 @@ class ForgotPasswordController extends GetxController {
   RxBool isLoading = false.obs;
 
   Future<void> sendResetLink() async {
-    userIdCtrl.text = '2970466';
-    emailAddressCodeCtrl.text = 'sathyanarayana@unicity.com';
     errorMessages.value = '';
     if (userIdCtrl.text.isEmpty) {
       errorMessages.value = "User ID field shouldn't be empty!";
