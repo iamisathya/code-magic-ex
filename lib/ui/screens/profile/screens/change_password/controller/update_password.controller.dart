@@ -47,8 +47,7 @@ class UpdatePasswordController extends GetxController {
       return;
     }
     if (enteNewPasswordCtrl.text.isEmpty ||
-        (enteNewPasswordCtrl.text.isEmpty !=
-            reEnterNewPasswordCtrl.text.isEmpty)) {
+        (enteNewPasswordCtrl.text != reEnterNewPasswordCtrl.text)) {
       errorMessages.value =
           "Password & confirm passowrd must be match"; //! hardcoced
       return;
