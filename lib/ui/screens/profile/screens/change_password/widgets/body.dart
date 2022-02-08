@@ -45,10 +45,11 @@ class Body extends StatelessWidget {
             child: Obx(
               () => Column(
                 children: [
-                  ProfileTextField(
-                      controller: _controller.currentPasswordCtrl,
-                      labelText: "current_password".tr),
-                  const SizedBox(height: 30),
+                  //? Hide temporarily
+                  // ProfileTextField(
+                  //     controller: _controller.currentPasswordCtrl,
+                  //     labelText: "current_password".tr),
+                  // const SizedBox(height: 30),
                   Obx(() => ProfileTextField(
                       controller: _controller.enteNewPasswordCtrl,
                       labelText: "new_password".tr,

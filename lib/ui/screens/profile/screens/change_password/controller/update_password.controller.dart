@@ -16,7 +16,7 @@ import '../../../../../global/theme/text_view.dart';
 import '../../../../../global/widgets/plain_button.dart';
 
 class UpdatePasswordController extends GetxController {
-  TextEditingController currentPasswordCtrl = TextEditingController();
+  // TextEditingController currentPasswordCtrl = TextEditingController();
   TextEditingController enteNewPasswordCtrl = TextEditingController();
   TextEditingController reEnterNewPasswordCtrl = TextEditingController();
   RxBool enterPasswordIsObscure = true.obs;
@@ -37,10 +37,10 @@ class UpdatePasswordController extends GetxController {
 
   Future<void> onClickSave() async {
     errorMessages.value = '';
-    if (currentPasswordCtrl.text.isEmpty) {
-      errorMessages.value = "Password field shouldn't be empty!"; //! hardcoced
-      return;
-    }
+    // if (currentPasswordCtrl.text.isEmpty) {
+    //   errorMessages.value = "Password field shouldn't be empty!"; //! hardcoced
+    //   return;
+    // }
     if (enteNewPasswordCtrl.text.length <= 3) {
       errorMessages.value =
           "The password field must be atleast 4 characters"; //! hardcoced
