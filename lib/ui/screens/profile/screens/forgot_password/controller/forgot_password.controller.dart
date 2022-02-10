@@ -22,6 +22,7 @@ class ForgotPasswordController extends GetxController {
   TextEditingController emailAddressCodeCtrl = TextEditingController();
   TextEditingController verificationCodeCtrl = TextEditingController();
   RxString errorMessages = ''.obs;
+  final GlobalKey widgetKey = GlobalKey();
 
   RxBool isLoading = false.obs;
 
@@ -29,10 +30,14 @@ class ForgotPasswordController extends GetxController {
     errorMessages.value = '';
     if (userIdCtrl.text.isEmpty) {
       errorMessages.value = "User ID field shouldn't be empty!";
+      Scrollable.ensureVisible(widgetKey.currentContext!,
+          duration: const Duration(milliseconds: 500));
       return;
     }
     if (emailAddressCodeCtrl.text.isEmpty) {
       errorMessages.value = "Email address field shouldn't be empty!";
+      Scrollable.ensureVisible(widgetKey.currentContext!,
+          duration: const Duration(milliseconds: 500));
       return;
     }
     _sendResetLinkNow();

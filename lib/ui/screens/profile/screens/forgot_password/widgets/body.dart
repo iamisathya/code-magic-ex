@@ -54,8 +54,12 @@ class Body extends StatelessWidget {
                       controller: controller.emailAddressCodeCtrl,
                       labelText: "send_code_via_email".tr),
                   const SizedBox(height: 20),
-                  if (controller.errorMessages.isNotEmpty)
-                    ErrorMessage(errors: [controller.errorMessages.value]),
+                  Container(
+                      key: controller.widgetKey,
+                      child: controller.errorMessages.isNotEmpty
+                          ? ErrorMessage(
+                              errors: [controller.errorMessages.value])
+                          : null)
                 ],
               ),
             ),

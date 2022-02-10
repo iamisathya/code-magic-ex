@@ -69,8 +69,12 @@ class Body extends StatelessWidget {
                           _controller.isReEnterPasswordIsObscure =
                               !_controller.isReEnterPasswordIsObscure)),
                   const SizedBox(height: 20),
-                  if (_controller.errorMessages.isNotEmpty)
-                    ErrorMessage(errors: [_controller.errorMessages.value]),
+                  Container(
+                    key: _controller.widgetKey,
+                      child: _controller.errorMessages.isNotEmpty
+                          ? ErrorMessage(
+                              errors: [_controller.errorMessages.value])
+                          : null),
                 ],
               ),
             ),

@@ -42,6 +42,7 @@ class LoginController extends GetxController {
   RxString errorMessage = "".obs;
   RxBool isSessionExpired = false.obs;
   RxString errorMessages = ''.obs;
+  final GlobalKey errorKey = GlobalKey();
 
   final FirebaseAnalytics analytics = FirebaseAnalytics();
 
@@ -65,6 +66,8 @@ class LoginController extends GetxController {
       KeyboardUtil.hideKeyboard(context);
     } else {
       errorMessages.value = "Please enter valid user id & password";
+      Scrollable.ensureVisible(errorKey.currentContext!,
+          duration: const Duration(milliseconds: 500));
     }
   }
 

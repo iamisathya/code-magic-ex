@@ -19,6 +19,7 @@ class UpdatePasswordController extends GetxController {
   // TextEditingController currentPasswordCtrl = TextEditingController();
   TextEditingController enteNewPasswordCtrl = TextEditingController();
   TextEditingController reEnterNewPasswordCtrl = TextEditingController();
+  GlobalKey widgetKey = GlobalKey();
   RxBool enterPasswordIsObscure = true.obs;
   RxBool reEnterPasswordIsObscure = true.obs;
   RxString errorMessages = ''.obs;
@@ -44,12 +45,16 @@ class UpdatePasswordController extends GetxController {
     if (enteNewPasswordCtrl.text.length <= 3) {
       errorMessages.value =
           "The password field must be atleast 4 characters"; //! hardcoced
+      Scrollable.ensureVisible(widgetKey.currentContext!,
+          duration: const Duration(milliseconds: 500));
       return;
     }
     if (enteNewPasswordCtrl.text.isEmpty ||
         (enteNewPasswordCtrl.text != reEnterNewPasswordCtrl.text)) {
       errorMessages.value =
           "Password & confirm passowrd must be match"; //! hardcoced
+      Scrollable.ensureVisible(widgetKey.currentContext!,
+          duration: const Duration(milliseconds: 500));
       return;
     }
     try {

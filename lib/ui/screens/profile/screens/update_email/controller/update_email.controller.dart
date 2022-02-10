@@ -21,6 +21,7 @@ class UpdateEmailController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController userIdController = TextEditingController();
   RxString errorMessages = ''.obs;
+  GlobalKey widgetKey = GlobalKey();
 
   RxBool isLoading = false.obs;
 
@@ -35,6 +36,8 @@ class UpdateEmailController extends GetxController {
     errorMessages.value = '';
     if (!emailController.text.isValidEmail()) {
       errorMessages.value = 'Invalid email address!';
+      Scrollable.ensureVisible(widgetKey.currentContext!,
+          duration: const Duration(milliseconds: 500));
       return;
     }
     _uploadEmailAddress();
