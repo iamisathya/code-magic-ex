@@ -1,9 +1,9 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../utilities/enums.dart';
-import '../../../global/theme/app_text.dart';
 import '../controller/salesreports.home.controller.dart';
 
 class RowDateSelector extends StatelessWidget {
@@ -42,8 +42,9 @@ class RowDateSelector extends StatelessWidget {
                               AppText(
                                   text: "${"start_date".tr}: ",
                                   color: AppColor.cadet,
-                                  fontSize: 10),
+                                  style: TextTypes.caption,),
                               AppText(
+                                style: TextTypes.bodyText1,
                                   text: controller.startDateString.value,
                                   color: AppColor.charcoal),
                             ],
@@ -77,9 +78,10 @@ class RowDateSelector extends StatelessWidget {
                             children: [
                               AppText(
                                   text: "${"end_date".tr}: ",
-                                  color: AppColor.charcoal,
-                                  fontSize: 10),
+                                  style: TextTypes.caption,
+                                  color: AppColor.charcoal),
                               AppText(
+                                  style: TextTypes.bodyText1,
                                   text: controller.endDateString.value,
                                   color: AppColor.charcoal),
                             ],

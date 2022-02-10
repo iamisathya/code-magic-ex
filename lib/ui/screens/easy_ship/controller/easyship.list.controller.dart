@@ -39,7 +39,7 @@ class EasyShipListController extends GetxController {
   }
 
   void onCaptureScreenShot(BuildContext context) {
-    if (orderedEasyShipOrders.isEmpty) {
+    if (allFormattedEasyShipOrders.isEmpty) {
       return;
     }
     Get.rawSnackbar(

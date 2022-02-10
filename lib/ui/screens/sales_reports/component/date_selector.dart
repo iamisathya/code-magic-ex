@@ -1,3 +1,4 @@
+import 'package:dsc_tools/ui/global/theme/text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -5,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../../constants/colors.dart';
 import '../../../../utilities/enums.dart';
 import '../../../../utilities/images.dart';
-import '../../../global/theme/app_text.dart';
 import '../controller/salesreports.home.controller.dart';
 
 class DateSelector extends StatelessWidget {
@@ -38,6 +38,7 @@ class DateSelector extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AppText(
+                                  style: TextTypes.bodyText1,
                                   text: "${"start_date".tr}: ",
                                   color: AppColor.charcoal),
                               SvgPicture.asset(kPlusIcon,
@@ -55,10 +56,12 @@ class DateSelector extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   AppText(
-                                      text: "${"start_date".tr}: ",
-                                      color: AppColor.cadet,
-                                      fontSize: 10),
+                                    text: "${"start_date".tr}: ",
+                                    color: AppColor.cadet,
+                                    style: TextTypes.caption,
+                                  ),
                                   AppText(
+                                      style: TextTypes.bodyText1,
                                       text: controller.startDateString.value,
                                       color: AppColor.charcoal),
                                 ],
@@ -89,6 +92,7 @@ class DateSelector extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AppText(
+                                  style: TextTypes.bodyText1,
                                   text: "${"end_date".tr}: ",
                                   color: AppColor.charcoal),
                               SvgPicture.asset(kPlusIcon,
@@ -106,10 +110,12 @@ class DateSelector extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   AppText(
-                                      text: "${"end_date".tr}: ",
-                                      color: AppColor.charcoal,
-                                      fontSize: 10),
+                                    text: "${"end_date".tr}: ",
+                                    color: AppColor.charcoal,
+                                    style: TextTypes.caption,
+                                  ),
                                   AppText(
+                                      style: TextTypes.bodyText1,
                                       text: controller.endDateString.value,
                                       color: AppColor.charcoal),
                                 ],
