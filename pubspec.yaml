@@ -53,6 +53,7 @@ dependencies:
   flutter_local_notifications: ^9.2.0
   flutter_localizations:
     sdk: flutter 
+  flutter_screenutil: ^5.1.1
   flutter_slidable: ^0.6.0
   flutter_svg: ^0.22.0
   flutter_webview_plugin:
