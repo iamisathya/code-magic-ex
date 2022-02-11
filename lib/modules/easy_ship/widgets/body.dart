@@ -1,5 +1,3 @@
-import 'package:dsc_tools/utils/function.dart';
-import 'package:dsc_tools/utils/images.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +6,8 @@ import 'package:horizontal_data_table/horizontal_data_table.dart';
 // import 'package:dsc_tools/utils/constants.dart';
 import '../../../../data/enums.dart';
 import '../../../utils/constants.dart';
+import '../../../utils/function.dart';
+import '../../../utils/images.dart';
 import '../../../widgets/custom_empty_widget.dart';
 import '../../../widgets/custom_error_widget.dart';
 import '../../../widgets/custom_loading_widget.dart';

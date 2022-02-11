@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:device_preview/device_preview.dart';
-import 'package:dsc_tools/di.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -11,6 +10,7 @@ import 'package:get/get.dart';
 import 'controllers/global_controllers.dart';
 import 'core/theme/app_themes.dart';
 import 'core/values/translations/translations.dart';
+import 'di.dart';
 import 'modules/splash/splash.screen.dart';
 import 'routes/app_pages.dart';
 import 'utils/bindings.dart';

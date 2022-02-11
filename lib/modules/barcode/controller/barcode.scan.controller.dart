@@ -1,6 +1,3 @@
-import 'package:dsc_tools/routes/app_pages.dart';
-import 'package:dsc_tools/utils/keyboard.dart';
-import 'package:dsc_tools/utils/logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -8,7 +5,10 @@ import 'package:get/get.dart';
 
 import '../../../data/model/barcode_item_response.dart';
 import '../../../data/model/barcode_response.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/extensions.dart';
+import '../../../utils/keyboard.dart';
+import '../../../utils/logger.dart';
 import '../../../utils/snackbar.dart';
 
 class BarcodeScannerController extends GetxController {

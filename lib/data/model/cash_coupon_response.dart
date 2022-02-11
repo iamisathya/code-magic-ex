@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'cash_coupon_response.g.dart';
 
 @JsonSerializable()

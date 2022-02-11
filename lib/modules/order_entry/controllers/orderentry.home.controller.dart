@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +9,7 @@ import '../../../data/model/search_customer.dart';
 import '../../../data/model/search_reponse_by_href.dart';
 import '../../../data/model/user_minimal_data.dart';
 import '../../../data/services/api_service.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/function.dart';
 import '../../../utils/logger.dart';
 import '../../../utils/parsing.dart';

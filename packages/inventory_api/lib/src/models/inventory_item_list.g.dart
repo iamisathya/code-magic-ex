@@ -7,7 +7,7 @@ part of 'inventory_item_list.dart';
 // **************************************************************************
 
 InventoryItemListModel _$InventoryItemListModelFromJson(
-    Map<String, dynamic> json) {
+    Map<String, dynamic> json,) {
   return InventoryItemListModel(
     items: (json['items'] as List<dynamic>?)
         ?.map((e) => InventoryItemListModel.fromJson(e as Map<String, dynamic>))
@@ -16,7 +16,7 @@ InventoryItemListModel _$InventoryItemListModelFromJson(
 }
 
 Map<String, dynamic> _$InventoryItemListModelToJson(
-        InventoryItemListModel instance) =>
+        InventoryItemListModel instance,) =>
     <String, dynamic>{
       'items': instance.items,
     };
@@ -134,7 +134,7 @@ ItemInfo _$ItemInfoFromJson(Map<String, dynamic> json) {
     onlyStatusAllow: json['only_status_allow'] == null
         ? null
         : OnlyStatusAllow.fromJson(
-            json['only_status_allow'] as Map<String, dynamic>),
+            json['only_status_allow'] as Map<String, dynamic>,),
     productSorting: json['product_sorting'] as int?,
     itemName: json['item_name'] == null
         ? null

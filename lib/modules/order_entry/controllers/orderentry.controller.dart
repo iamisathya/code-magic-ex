@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +15,7 @@ import '../../../data/model/radio_button_value.dart';
 import '../../../data/model/request_order_calculation.dart';
 import '../../../data/model/user_minimal_data.dart';
 import '../../../data/services/api_service.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/function.dart';
 import '../../../utils/logger.dart';

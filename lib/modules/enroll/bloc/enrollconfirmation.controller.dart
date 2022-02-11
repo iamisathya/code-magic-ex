@@ -1,10 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/data/model/enroll_form.dart';
-import 'package:dsc_tools/data/model/enroll_log_request_data.dart';
-import 'package:dsc_tools/data/model/enrollee_user_data.dart';
-import 'package:dsc_tools/data/model/general_models.dart';
 import 'package:dsc_tools/data/model/user_info.dart'
     hide HumanName, MainAddress, TaxTerms;
 import 'package:dsc_tools/data/services/api_service.dart';
@@ -22,6 +18,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/provider/globals.dart';
+import '../../../data/model/enroll_form.dart';
+import '../../../data/model/enroll_log_request_data.dart';
+import '../../../data/model/enrollee_user_data.dart';
+import '../../../data/model/general_models.dart';
 
 class EnrollConfirmationController extends GetxController {
   late EnrolleeUserData enroleeData;

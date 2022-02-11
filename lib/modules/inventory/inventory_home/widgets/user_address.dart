@@ -1,5 +1,3 @@
-import 'package:dsc_tools/core/values/colors.dart';
-import 'package:dsc_tools/utils/images.dart';
 import 'package:easy_localization/easy_localization.dart'
     hide StringTranslateExtension;
 import 'package:flutter/material.dart';
@@ -7,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../data/provider/globals.dart';
+import '../../../../core/values/colors.dart';
+import '../../../../utils/images.dart';
 import '../controller/inventory.home.controller.dart';
 
 class UserAddress extends StatelessWidget {

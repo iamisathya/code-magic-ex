@@ -1,4 +1,3 @@
-import 'package:dsc_tools/core/values/endpoints.dart';
 import 'package:dsc_tools/data/model/place_order.dart'
     hide
         Customer,
@@ -12,6 +11,8 @@ import 'package:dsc_tools/modules/home/home.dart';
 import 'package:dsc_tools/utils/function.dart';
 import 'package:dsc_tools/utils/user_session.dart';
 import 'package:get/get.dart';
+
+import '../../../core/values/endpoints.dart';
 
 class OrderCompleteController extends GetxController {
   late PlaceOrder orderResponse;

@@ -27,9 +27,9 @@ class InventoryApiClient {
 
   /// Fetches all [inventoryItemList] from a [warehouse].
   Future<InventoryItemListModel> getInventory(
-      String warehouseId, String expand, String countryCode) async {
+      String warehouseId, String expand, String countryCode,) async {
     final locationResponse = await _dioClient.get(
-        '$_baseUrl/$warehouseId/inventoryRecords?expand=$expand&countryCode=$countryCode');
+        '$_baseUrl/$warehouseId/inventoryRecords?expand=$expand&countryCode=$countryCode',);
 
     if (locationResponse.statusCode != 200) {
       throw InventoryRequestFailure();
@@ -44,7 +44,7 @@ class InventoryApiClient {
     }
 
     return InventoryItemListModel.fromJson(
-        locationJson as Map<String, dynamic>);
+        locationJson as Map<String, dynamic>,);
   }
 
   /// Fetches [Warehouses] for a given [country].
@@ -64,7 +64,7 @@ class InventoryApiClient {
       }
 
       return warehousesList.items.first.href;
-    } catch (e, s) {
+    } catch (e) {
       return "";
     }
   }

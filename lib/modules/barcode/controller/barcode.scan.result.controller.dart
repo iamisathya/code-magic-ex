@@ -1,13 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/core/values/colors.dart';
-import 'package:dsc_tools/data/model/barcode_item_response.dart';
-import 'package:dsc_tools/data/model/barcode_number_response.dart';
-import 'package:dsc_tools/data/model/barcode_number_update_request.dart';
-import 'package:dsc_tools/data/model/barcode_response_dsc.dart';
-import 'package:dsc_tools/data/model/barcode_save_response.dart';
-import 'package:dsc_tools/data/model/verify_each_barcode_response.dart';
 // import 'package:dsc_tools/core/values/endpoints.dart';
 import 'package:dsc_tools/data/services/api_service.dart';
 import 'package:dsc_tools/routes/app_pages.dart';
@@ -24,7 +17,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' as getx;
 
 import '../../../../data/provider/globals.dart';
+import '../../../core/values/colors.dart';
 import '../../../core/values/endpoints.dart';
+import '../../../data/model/barcode_item_response.dart';
+import '../../../data/model/barcode_number_response.dart';
+import '../../../data/model/barcode_number_update_request.dart';
+import '../../../data/model/barcode_response_dsc.dart';
+import '../../../data/model/barcode_save_response.dart';
+import '../../../data/model/verify_each_barcode_response.dart';
 import '../../../helpers/exceptions.dart';
 import '../../../widgets/bottom_modal_alert.dart';
 import '../../../widgets/plain_button.dart';

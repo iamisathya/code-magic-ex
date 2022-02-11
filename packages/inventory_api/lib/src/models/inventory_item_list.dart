@@ -29,12 +29,13 @@ class InventoryItem {
   @JsonKey(name: "itemInfo")
   ItemInfo? itemInfo;
 
-  InventoryItem(
-      {this.catalogSlide,
-      this.item,
-      this.quantityOnHand,
-      this.terms,
-      this.itemInfo});
+  InventoryItem({
+    this.catalogSlide,
+    this.item,
+    this.quantityOnHand,
+    this.terms,
+    this.itemInfo,
+  });
 
   String get totalPrice =>
       NumberFormat().format(double.parse(quantityOnHand!) * terms!.priceEach!);
@@ -195,47 +196,48 @@ class ItemInfo {
   @JsonKey(name: "list_of_inventory_id")
   List<int>? listOfInventoryId;
 
-  ItemInfo(
-      {this.id,
-      this.countryCode,
-      this.itemCode,
-      this.createdAt,
-      this.createdBy,
-      this.updatedAt,
-      this.updatedBy,
-      this.isArchive,
-      this.isServiceItem,
-      this.isLiquefy,
-      this.isMarketingItem,
-      this.isMarketingItemSellable,
-      this.isRenewal,
-      this.isRenewalSellable,
-      this.isStarterKit,
-      this.isStarterKitSellable,
-      this.isEasyship,
-      this.isEasyshipSellable,
-      this.allowPages,
-      this.allowBaIds,
-      this.onlyStatusAllow,
-      this.productSorting,
-      this.itemName,
-      this.moreInfoUsage,
-      this.itemInfoList,
-      this.itemInfoLinkTarget,
-      this.itemInfoLinkUrl,
-      this.itemInfoPath,
-      this.textInfo,
-      this.price,
-      this.pv,
-      this.imageUrl = "",
-      this.remarks,
-      this.tooltip,
-      this.partsCount,
-      this.publishDateStart,
-      this.publishDateEnd,
-      this.listOfCategoryId,
-      this.listOfTagId,
-      this.listOfInventoryId});
+  ItemInfo({
+    this.id,
+    this.countryCode,
+    this.itemCode,
+    this.createdAt,
+    this.createdBy,
+    this.updatedAt,
+    this.updatedBy,
+    this.isArchive,
+    this.isServiceItem,
+    this.isLiquefy,
+    this.isMarketingItem,
+    this.isMarketingItemSellable,
+    this.isRenewal,
+    this.isRenewalSellable,
+    this.isStarterKit,
+    this.isStarterKitSellable,
+    this.isEasyship,
+    this.isEasyshipSellable,
+    this.allowPages,
+    this.allowBaIds,
+    this.onlyStatusAllow,
+    this.productSorting,
+    this.itemName,
+    this.moreInfoUsage,
+    this.itemInfoList,
+    this.itemInfoLinkTarget,
+    this.itemInfoLinkUrl,
+    this.itemInfoPath,
+    this.textInfo,
+    this.price,
+    this.pv,
+    this.imageUrl = "",
+    this.remarks,
+    this.tooltip,
+    this.partsCount,
+    this.publishDateStart,
+    this.publishDateEnd,
+    this.listOfCategoryId,
+    this.listOfTagId,
+    this.listOfInventoryId,
+  });
 
   factory ItemInfo.fromJson(Map<String, dynamic> json) =>
       _$ItemInfoFromJson(json);

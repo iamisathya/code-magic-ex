@@ -1,10 +1,10 @@
-import 'package:dsc_tools/modules/open_po/order_create/component/app_bar.dart';
-import 'package:dsc_tools/modules/open_po/order_create/component/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
 import '../../../../../../widgets/bottom_button_bar.dart';
+import '../../../../open_po/order_create/component/app_bar.dart';
+import '../../../../open_po/order_create/component/loader.dart';
 import 'controller/change_password.controller.dart';
 import 'widgets/body.dart';
 

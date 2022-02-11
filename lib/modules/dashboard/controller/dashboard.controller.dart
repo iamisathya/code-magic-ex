@@ -1,9 +1,9 @@
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../core/values/colors.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/function.dart';
 import '../../../utils/images.dart';
 import '../widgets/dashboard_menu_item.dart';

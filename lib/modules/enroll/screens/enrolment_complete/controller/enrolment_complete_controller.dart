@@ -1,9 +1,9 @@
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 import '../../../../../data/model/general_models.dart';
 import '../../../../../data/services/notifications.dart';
 import '../../../../../helpers/exceptions.dart';
+import '../../../../../routes/app_pages.dart';
 import '../../../../home/home.dart';
 
 class EnrolmentCompleteController extends GetxController {

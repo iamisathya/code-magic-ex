@@ -1,9 +1,9 @@
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../../controllers/language_controller.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../../utils/images.dart';
 import '../controller/app_bar_controller.dart';
 

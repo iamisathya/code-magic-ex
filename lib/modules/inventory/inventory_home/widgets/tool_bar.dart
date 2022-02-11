@@ -1,9 +1,9 @@
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/values/colors.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../../utils/images.dart';
 import '../controller/inventory.home.controller.dart';
 

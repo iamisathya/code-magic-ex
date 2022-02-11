@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:easy_localization/easy_localization.dart'
     hide StringTranslateExtension;
 import 'package:flutter/cupertino.dart';
@@ -23,6 +22,7 @@ import '../../../../../data/model/enrollee_user_data.dart';
 import '../../../../../data/model/guest_user_info.dart';
 import '../../../../../data/model/provience_item.dart';
 import '../../../../../data/services/api_service.dart';
+import '../../../../../routes/app_pages.dart';
 import '../../../../../utils/extensions.dart';
 import '../../../../../utils/function.dart';
 import '../../../../../utils/images.dart';

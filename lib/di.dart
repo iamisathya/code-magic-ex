@@ -1,6 +1,5 @@
 import 'dart:isolate';
 
-import 'package:dsc_tools/controllers/global_controllers.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'controllers/global_controllers.dart';
 import 'data/services/notifications.dart';
 import 'utils/connectivity.dart';
 import 'utils/key_value_storage.dart';

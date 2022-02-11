@@ -1,4 +1,3 @@
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../../data/enums.dart';
 import '../../../../widgets/text_view.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/user_session.dart';
 import '../../login/login_home/login_home.dart';
 

@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -17,6 +16,7 @@ import '../../../data/model/managed_warehouse.dart';
 import '../../../data/model/product_v2.dart';
 import '../../../data/services/api_service.dart';
 import '../../../helpers/exceptions.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/extensions.dart';
 import '../../../utils/function.dart';
 import '../../../utils/images.dart';

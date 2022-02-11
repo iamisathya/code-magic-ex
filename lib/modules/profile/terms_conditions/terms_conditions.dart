@@ -1,8 +1,8 @@
-import 'package:dsc_tools/modules/open_po/order_create/component/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/bottom_button_bar.dart';
+import '../../open_po/order_create/component/app_bar.dart';
 import 'widgets/body.dart';
 
 class TermsConditionsScreen extends StatelessWidget {

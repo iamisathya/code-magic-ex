@@ -1,10 +1,10 @@
-import 'package:dsc_tools/widgets/payment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../../../core/values/colors.dart';
 import '../../../../../../utils/images.dart';
 import '../../../../../../widgets/input_formatters.dart';
+import '../../../../../../widgets/payment_card.dart';
 
 class CardNumberTextField extends StatelessWidget {
   const CardNumberTextField({

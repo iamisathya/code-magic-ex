@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:dsc_tools/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +6,7 @@ import '../../../../../core/values/colors.dart';
 import '../../../../../data/model/govt_id_verify.dart';
 import '../../../../../data/model/guest_user_info.dart';
 import '../../../../../data/services/api_service.dart';
+import '../../../../../routes/app_pages.dart';
 import '../../../../../utils/logger.dart';
 import '../../../../../utils/parsing.dart';
 import '../../../../../utils/snackbar.dart';

@@ -540,6 +540,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.1"
+  flutter_lints:
+    dependency: "direct main"
+    description:
+      name: flutter_lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   flutter_local_notifications:
     dependency: "direct main"
     description:
@@ -796,12 +803,19 @@ packages:
     source: hosted
     version: "0.2.0"
   lint:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: lint
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.3"
+  lints:
+    dependency: transitive
+    description:
+      name: lints
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   loading_overlay:
     dependency: "direct main"
     description:
@@ -820,13 +834,6 @@ packages:
     dependency: transitive
     description:
       name: logging
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
-  lottie:
-    dependency: "direct main"
-    description:
-      name: lottie
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
@@ -1125,7 +1132,7 @@ packages:
     source: hosted
     version: "4.0.1"
   rxdart:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rxdart
       url: "https://pub.dartlang.org"
@@ -1138,13 +1145,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.3"
-  share:
-    dependency: "direct main"
-    description:
-      name: share
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.4"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -1326,7 +1326,7 @@ packages:
     source: hosted
     version: "1.0.0"
   tuple:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: tuple
       url: "https://pub.dartlang.org"

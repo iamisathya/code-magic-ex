@@ -1,4 +1,3 @@
-import 'package:dsc_tools/modules/enroll/screens/enrollment_details/components/error_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +6,7 @@ import '../../../../../../../../widgets/text_view.dart';
 import '../../../../../../../core/values/colors.dart';
 import '../../../../../../../utils/images.dart';
 import '../../../../../../../widgets/page_title.dart';
+import '../../../../../enroll/screens/enrollment_details/components/error_message.dart';
 import '../../../../terms_conditions/widgets/title_bar.dart';
 import '../controller/verify_code.controller.dart';
 import 'verification_text_field.dart';

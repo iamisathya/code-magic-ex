@@ -1,4 +1,3 @@
-import 'package:dsc_tools/modules/open_po/order_create/component/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,7 @@ import '../../../../../../widgets/text_view.dart';
 import '../../../../../core/values/colors.dart';
 import '../../../../../utils/images.dart';
 import '../../../../../widgets/page_title.dart';
+import '../../../open_po/order_create/component/app_bar.dart';
 import '../../terms_conditions/widgets/title_bar.dart';
 import '../controller/operation_result.controller.dart';
 

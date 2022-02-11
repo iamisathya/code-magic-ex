@@ -13,3 +13,4 @@ analyser:
     missing_return: error
     sort_pub_dependencies: ignore
     type_annotate_public_apis: ignore
+    unnecessary_brace_in_string_interps: ignore
