@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../constants/globals.dart';
-import '../models/country_info.dart';
+import '../data/model/country_info.dart';
+import '../data/provider/globals.dart';
 
 class LanguageController extends GetxController {
   static LanguageController get to => Get.find();

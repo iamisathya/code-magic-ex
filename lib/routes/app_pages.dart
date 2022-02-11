@@ -1,36 +1,54 @@
+import 'package:dsc_tools/modules/barcode/binding.dart';
+import 'package:dsc_tools/modules/barcode/screens/barcode_search_screen.dart';
+import 'package:dsc_tools/modules/easy_ship/widgets/easyship.orders.list.dart';
+import 'package:dsc_tools/modules/enroll/screens/enrollement_condition/main_screen.dart';
+import 'package:dsc_tools/modules/enroll/screens/enrollment_details/home.dart';
+import 'package:dsc_tools/modules/enroll/screens/enrollment_summary/main_screen.dart';
+import 'package:dsc_tools/modules/enroll/screens/enrollment_user_info/main_screen.dart';
+import 'package:dsc_tools/modules/inventory/inventory_search/screens/search_inventory.dart';
+import 'package:dsc_tools/modules/inventory/inventory_search_result/screens/inventory_search_result.dart';
+import 'package:dsc_tools/modules/open_po/order_details/orderdetails.screen.dart';
+import 'package:dsc_tools/modules/open_po/order_search/components/search_products.dart';
+import 'package:dsc_tools/modules/order_entry/screens/order_entry_list/home.dart';
+import 'package:dsc_tools/modules/order_entry/screens/order_entry_summary/home.dart';
+import 'package:dsc_tools/modules/order_entry/screens/order_entry_table/orderentrytable.screen.dart';
+import 'package:dsc_tools/modules/profile/terms_conditions/terms_conditions.dart';
+import 'package:dsc_tools/modules/sales_reports/component/order_details.dart';
+import 'package:dsc_tools/modules/sales_reports/component/print_report.dart';
+import 'package:dsc_tools/modules/sales_reports/component/sales_report_search_result.dart';
+import 'package:dsc_tools/modules/sales_reports/component/search_open_po.dart';
 import 'package:get/get.dart';
 
-import '../ui/global/no_connection.dart';
-import '../ui/screens/barcode/barcode.screen.dart';
-import '../ui/screens/barcode/screens/barcode_details.dart';
-import '../ui/screens/easy_ship/easyship.screen.dart';
-import '../ui/screens/enroll/enrollhome.screen.dart';
-import '../ui/screens/enroll/screens/enroll_confirmation/enrollconfirmation.screen.dart';
-import '../ui/screens/enroll/screens/order_complete/enrollcomplete.screen.dart';
-import '../ui/screens/home/home.dart';
-import '../ui/screens/inventory/inventory.dart';
-import '../ui/screens/login/login.screen.dart';
-import '../ui/screens/notifications/screens/home_screen.dart';
-import '../ui/screens/open_po/order_create/home_screen.dart';
-import '../ui/screens/open_po/order_details/home_screen.dart';
-import '../ui/screens/open_po/order_list/home_screen.dart';
-import '../ui/screens/open_po/order_success/main_screen.dart';
-import '../ui/screens/order_entry/orderentry.screen.dart';
-import '../ui/screens/order_entry/screens/checkout/checkout.screen.dart';
-import '../ui/screens/profile/profile.dart';
-import '../ui/screens/profile/screens/change_password/update_password.dart';
-import '../ui/screens/profile/screens/forgot_password/forgot_password.dart';
-import '../ui/screens/profile/screens/forgot_password/screens/change_password/change_password.dart';
-import '../ui/screens/profile/screens/forgot_password/screens/verify_code/verify_code.dart';
-import '../ui/screens/profile/screens/operation_result/operation_result.dart';
-import '../ui/screens/profile/screens/terms_conditions/terms_conditions.dart';
-import '../ui/screens/profile/screens/update_email/update_email.dart';
-import '../ui/screens/sales_reports/component/print_report.dart';
-import '../ui/screens/sales_reports/salesreports.screen.dart';
-import '../ui/screens/settings/settings.screen.dart';
-import '../ui/screens/splash/splash.screen.dart';
-import '../ui/screens/webview/webview.screen.dart';
-import '../utilities/bindings.dart';
+import '../modules/barcode/barcode.screen.dart';
+import '../modules/barcode/screens/barcode_details.dart';
+import '../modules/easy_ship/easyship.screen.dart';
+import '../modules/enroll/enrollhome.screen.dart';
+import '../modules/enroll/screens/enroll_confirmation/enrollconfirmation.screen.dart';
+import '../modules/enroll/screens/order_complete/enrollcomplete.screen.dart';
+import '../modules/home/home.dart';
+import '../modules/inventory/inventory.dart';
+import '../modules/login/login_home/login_home.dart';
+import '../modules/notifications/notifications_home/screens/home_screen.dart';
+import '../modules/open_po/order_create/home_screen.dart';
+import '../modules/open_po/order_details/home_screen.dart';
+import '../modules/open_po/order_list/home_screen.dart';
+import '../modules/open_po/order_success/main_screen.dart';
+import '../modules/order_entry/orderentry.screen.dart';
+import '../modules/order_entry/screens/checkout/checkout.screen.dart';
+import '../modules/profile/change_password/update_password.dart';
+import '../modules/profile/forgot_password/forgot_password.dart';
+import '../modules/profile/forgot_password/screens/change_password/change_password.dart';
+import '../modules/profile/forgot_password/screens/verify_code/verify_code.dart';
+import '../modules/profile/operation_result/operation_result.dart';
+import '../modules/profile/profile.dart';
+import '../modules/profile/terms_conditions/terms_conditions.dart';
+import '../modules/profile/update_email/update_email.dart';
+import '../modules/sales_reports/salesreports.screen.dart';
+import '../modules/settings/settings.screen.dart';
+import '../modules/splash/splash.screen.dart';
+import '../modules/webview/webview.screen.dart';
+import '../utils/bindings.dart';
+import '../widgets/no_connection.dart';
 
 part './app_routes.dart';
 // import '../utilities/bindings.dart';
@@ -42,12 +60,23 @@ class AppRoutes {
     GetPage(name: Routes.ENROLL, page: () => EnrollHomeScreen()),
     GetPage(name: Routes.ENROLL_CONFIRMATION, page: () => EnrollConfirmation()),
     GetPage(name: Routes.ENROLL_COMPLETE, page: () => EnrollComplete()),
+    GetPage(name: Routes.ENROLL_TERMS, page: () => EnrollmentTermsScreen()),
+    GetPage(name: Routes.ENROLL_DETAILS_MAIN, page: () => EnrollmentDetailsHomeScreen()),
     GetPage(name: Routes.INVENTORY, page: () => InventoryHomeScreen()),
+    GetPage(name: Routes.INVENTORY_SEARCH, page: () => InventorySearchProducts()),
+    GetPage(name: Routes.INVENTORY_SEARCH_RESULT, page: () => InventorySearchResult()),
     GetPage(name: Routes.EASY_SHIP_REPORT, page: () => EasyShipHomeScreen()),
+    GetPage(name: Routes.EASY_SHIP_ORDER_LIST, page: () => EasyShipOrdersList()),
     GetPage(name: Routes.ORDER_ENTRY, page: () => OrderEntryHomeScreen()),
+    GetPage(name: Routes.ORDER_ENTRY_LIST, page: () => OrderEntryList()),
+    GetPage(name: Routes.ORDER_ENTRY_CHECKOUT, page: () => CheckoutPage()),
+    GetPage(name: Routes.ENROLL_USER_INFO, page: () => EnrollmentUserInfoScreen()),
+    GetPage(name: Routes.ENROLL_SUMMARY, page: () => EnrollmentSummaryScreen()),
+    GetPage(name: Routes.OPEN_PO_SEARCH_PRODUCTS, page: () => SearchProducts()),
+    GetPage(name: Routes.ORDER_ENTRY_TABLE, page: () => OrderEntryTable()),
+    GetPage(name: Routes.ORDER_ENTRY_SUMMARY, page: () => OrderEntrySummary()),
     GetPage(name: Routes.MAIN_HOME, page: () => MainHomeScreen()),
     GetPage(name: Routes.LOGIN_HOME, page: () => LoginScreen()),
-    GetPage(name: Routes.ORDER_ENTRY_CHECKOUT, page: () => CheckoutPage()),
     GetPage(name: Routes.SETTINGS, page: () => SettingsPage()),
     GetPage(name: Routes.OPEN_PO, page: () => OpenPoHomeScreen()),
     GetPage(
@@ -58,8 +87,16 @@ class AppRoutes {
         page: () => CreateOpenPoOrderResult()),
     GetPage(name: Routes.PRINT_SALES_REPORT, page: () => PrintSalesReport()),
     GetPage(name: Routes.SALES_REPORT, page: () => SalesReportsHomeScreen()),
+    GetPage(name: Routes.SALES_REPORT_SEARCH_RESULT, page: () => SalesReportSearchResult()),
+    GetPage(name: Routes.OPEN_PO_PURCHASE_ORDER_DETAILS, page: () => PurchaseOrderDetailsPage()),
+    GetPage(name: Routes.SALES_REPORT_ORDER_DETAILS, page: () => SalesReportOrderDetials()),
+    GetPage(name: Routes.SALES_REPORT_SEARCH, page: () => SearchSalesReport()),
     GetPage(name: Routes.BARCODE_DETAILS, page: () => BarCodeDetails()),
-    GetPage(name: Routes.BARCODE, page: () => BarcodeHomeScreen()),
+    GetPage(name: Routes.BARCODE_SEARCH, page: () => BarCodeSearchScreen()),
+    GetPage(
+        name: Routes.BARCODE,
+        page: () => BarcodeHomeScreen(),
+        binding: BarcodeBindings()),
     GetPage(name: Routes.WEBVIEW, page: () => const WebivewHomeScreen()),
     GetPage(name: Routes.USER_PROFILE, page: () => UserProfileScreen()),
     GetPage(

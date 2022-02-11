@@ -1,0 +1,19 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'user_id.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserId _$UserIdFromJson(Map<String, dynamic> json) => UserId(
+      customerId: json['cus_id'] as String,
+      customerCode: json['cus_code'] as String,
+      customerPoCode: json['cus_pocode'] as String,
+    );
+
+Map<String, dynamic> _$UserIdToJson(UserId instance) => <String, dynamic>{
+      'cus_id': instance.customerId,
+      'cus_code': instance.customerCode,
+      'cus_pocode': instance.customerPoCode,
+    };

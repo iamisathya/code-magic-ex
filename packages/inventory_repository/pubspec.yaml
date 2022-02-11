@@ -9,12 +9,12 @@ environment:
 dependencies: 
   dio: ^4.0.0
   intl: ^0.17.0
-  json_annotation: ^4.0.1
   inventory_api:
     path: ../inventory_api
+  json_annotation: ^4.0.1
   lint: ^1.5.3
 
 dev_dependencies:
-  coverage: ^1.0.3
   build_runner: ^2.0.4
+  coverage: ^1.0.3
   json_serializable: ^4.0.2

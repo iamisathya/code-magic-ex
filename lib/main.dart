@@ -1,65 +1,25 @@
 import 'dart:async';
-import 'dart:isolate';
 
+import 'package:device_preview/device_preview.dart';
+import 'package:dsc_tools/di.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-import 'constants/app_themes.dart';
 import 'controllers/global_controllers.dart';
-import 'navigation/routers.dart';
-import 'navigation/routes.dart';
-import 'services/firebase/notifications.dart';
-import 'translations/translations.dart';
-import 'ui/screens/splash/splash.screen.dart';
-import 'utilities/bindings.dart';
-import 'utilities/connectivity.dart';
-import 'utilities/key_value_storage.dart';
-import 'utilities/user_session.dart';
+import 'core/theme/app_themes.dart';
+import 'core/values/translations/translations.dart';
+import 'modules/splash/splash.screen.dart';
+import 'routes/app_pages.dart';
+import 'utils/bindings.dart';
 
-// github access tokne
-// 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
-// ignore: avoid_void_asyn
+//* github access tokne: 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
 Future<void> main() async {
   //* Ensure initialization of Widgets.
   WidgetsFlutterBinding.ensureInitialized();
-  // AppBindings().dependencies();
-  // await Firebase.initializeApp();
-  // await FirebaseService.instanceId();
-  FirebaseService.initialiseFirebaseService();
-  await dotenv.load();
-  await GetStorage.init();
-  Get.put<ThemeController>(ThemeController());
-  Get.put<LanguageController>(LanguageController());
-
-  await KeyValueStorageManager.setStorage();
-  UserSessionManager.shared.getLoginStatusFromDB();
-
-  //* Connectivity
-  ConnectivityManager.shared.doInitialCheck();
-
-  // //* disable collecting in debug mode
-  if (dotenv.env['DEBUG'] == 'True') {
-    await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
-  }
-
-  //* Pass all uncaught errors from the framework to Crashlytics.
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-
-  //* To catch errors that happen outside of the Flutter context, install an error listener on the current Isolate:
-  Isolate.current.addErrorListener(RawReceivePort((dynamic pair) async {
-    final List<dynamic> errorAndStacktrace = pair as List<dynamic>;
-    await FirebaseCrashlytics.instance.recordError(
-      errorAndStacktrace.first as StackTrace,
-      errorAndStacktrace.last as StackTrace,
-    );
-  }).sendPort);
-  UserSessionManager.shared.getCurrentLanguage();
+  await DenpendencyInjection().dependencies();
 
   //* If you want to catch errors that occur in zones, you can pass FirebaseCrashlytics.instance.recordError to the second parameter of runZonedGuarded
   runZonedGuarded(() {
@@ -76,22 +36,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeController.to.getThemeModeFromStore();
     return GetBuilder<LanguageController>(
-      builder: (languageController) => GetMaterialApp(
-        title: 'DSC Tools',
-        routes: routes,
-        home: SplashScreen(),
-        navigatorObservers: [
-          FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
-        ],
-        defaultTransition: Transition.cupertino,
-        enableLog: true,
-        getPages: AppRoutes.routes,
-        theme: AppThemes.lightTheme,
-        darkTheme: AppThemes.darkTheme,
-        initialBinding: HomeBindings(),
-        locale: languageController.getLocale,
-        fallbackLocale: languageController.fallbackLocale,
-        translations: AppTranslations(),
+      builder: (languageController) => DevicePreview(
+        enabled: false,
+        builder: (context) => GetMaterialApp(
+          title: 'DSC Tools',
+          home: SplashScreen(),
+          navigatorObservers: [
+            FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+          ],
+          defaultTransition: Transition.cupertino,
+          enableLog: true,
+          getPages: AppRoutes.routes,
+          theme: AppThemes.lightTheme,
+          darkTheme: AppThemes.darkTheme,
+          initialBinding: HomeBindings(),
+          locale: languageController.getLocale,
+          fallbackLocale: languageController.fallbackLocale,
+          translations: AppTranslations(),
+        ),
       ),
     );
   }

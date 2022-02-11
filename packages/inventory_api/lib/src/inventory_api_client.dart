@@ -65,8 +65,6 @@ class InventoryApiClient {
 
       return warehousesList.items.first.href;
     } catch (e, s) {
-      print(e);
-      print(s.toString());
       return "";
     }
   }
