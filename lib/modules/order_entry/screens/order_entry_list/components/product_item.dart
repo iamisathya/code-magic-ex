@@ -48,7 +48,11 @@ class ProductItem extends StatelessWidget {
                   height: 60,
                   child: item.itemInfo != null &&
                           (item.itemInfo!.imageUrl.isNotEmpty)
-                      ? CachedNetworkImage(imageUrl: item.itemInfo!.imageUrl)
+                      ? CachedNetworkImage(
+                          imageUrl: item.itemInfo!.imageUrl,
+                          errorWidget: (context, url, _) => SvgPicture.asset(
+                              kProductPlaceholderImage,
+                              width: 80))
                       : SvgPicture.asset(kProductPlaceholderImage, width: 60),
                 ),
                 AppText(

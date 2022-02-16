@@ -33,7 +33,10 @@ class CheckoutItem extends StatelessWidget {
               width: 80,
               height: 65,
               child: item.imageUrl.isNotEmpty
-                  ? CachedNetworkImage(imageUrl: item.imageUrl)
+                  ? CachedNetworkImage(
+                      imageUrl: item.imageUrl,
+                      errorWidget: (context, url, _) =>
+                          SvgPicture.asset(kProductPlaceholderImage, width: 80))
                   : SvgPicture.asset(kProductPlaceholderImage, width: 61),
             ),
             Expanded(

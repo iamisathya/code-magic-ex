@@ -52,6 +52,7 @@ class OrderEntryProductListController extends GetxController {
   }
 
   void receiveIntentData() {
+    print(Globals.userId);
     final dynamic data = Get.arguments;
     if (data != null) {
       userData = data as UserMinimalData;

@@ -36,7 +36,11 @@ class EnrollCartItem extends StatelessWidget {
               width: 128,
               child: (item.imageUrl.isNotEmpty)
                   ? CachedNetworkImage(
-                      imageUrl: item.imageUrl, height: 55, width: 70)
+                      imageUrl: item.imageUrl,
+                      height: 55,
+                      width: 70,
+                      errorWidget: (context, url, _) =>
+                          SvgPicture.asset(kProductPlaceholderImage, width: 80))
                   : SvgPicture.asset(kProductPlaceholderImage,
                       height: 158, width: 128)),
           Expanded(

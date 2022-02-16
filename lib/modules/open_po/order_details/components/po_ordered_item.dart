@@ -31,7 +31,11 @@ class PoOrderedItem extends StatelessWidget {
           children: [
             Expanded(
                 child: (item.imageUrl != null && item.imageUrl!.isNotEmpty)
-                    ? CachedNetworkImage(imageUrl: item.imageUrl!)
+                    ? CachedNetworkImage(
+                        imageUrl: item.imageUrl!,
+                        errorWidget: (context, url, _) => SvgPicture.asset(
+                            kProductPlaceholderImage,
+                            width: 80))
                     : SvgPicture.asset(kProductPlaceholderImage,
                         height: 100, width: 100)),
             Expanded(
