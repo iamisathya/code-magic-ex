@@ -96,10 +96,12 @@ class OpenPoListController extends GetxController
     }
   }
 
-  void onChangeMonthType(int index) {
+  Future<void> onChangeMonthType(int index) async {
     currentTab.value = index;
     filterMethod.value = availableMonthSlots[index].value;
-    getAllOpenPo();
+    isLoading.toggle();
+    await getAllOpenPo();
+    isLoading.toggle();
   }
 
   void openDialog(BuildContext context, String attchmentName) => showDialog(

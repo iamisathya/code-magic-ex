@@ -39,24 +39,24 @@ class UserProfileController extends GetxController {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: Text('Upload profile picture',
-                  style: TextStyle(fontSize: 18)),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Text('upload_profile_picture'.tr,
+                  style: const TextStyle(fontSize: 18)),
             ),
             ListTile(
               leading: const Icon(Icons.camera_alt_outlined),
-              title: const Text('Take photo'),
+              title: Text('take_photo'.tr),
               onTap: () => onImageOptionSelect(ImageSource.camera),
             ),
             ListTile(
               leading: const Icon(Icons.photo_album),
-              title: const Text('Choose image'),
+              title: Text('choose_image'.tr),
               onTap: () => onImageOptionSelect(ImageSource.gallery),
             ),
             ListTile(
               leading: const Icon(Icons.close),
-              title: const Text('Cancel'),
+              title: Text('cancel'.tr),
               onTap: () {
                 Navigator.pop(context);
               },
