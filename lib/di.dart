@@ -74,8 +74,8 @@ class DenpendencyInjection extends Bindings {
 
     // //* disable collecting in debug mode
     if (dotenv.env['DEBUG'] == 'True') {
-      await FirebaseAnalytics().setAnalyticsCollectionEnabled(false);
-      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+      await FirebaseAnalytics().setAnalyticsCollectionEnabled(true);
+      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
     }
 
     //* Pass all uncaught errors from the framework to Crashlytics.

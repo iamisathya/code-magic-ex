@@ -57,7 +57,7 @@ class PoListToolBar extends StatelessWidget {
                   ),
                   const SizedBox(width: 25),
                   GestureDetector(
-                    onTap: () => Get.toNamed(Routes.SALES_REPORT),
+                    onTap: () => Get.toNamed(Routes.OPEN_PO_SEARCH_PRODUCTS),
                     child: SvgPicture.asset(kSearchIcon,
                         height: 20, semanticsLabel: "search_po_list"),
                   ),
