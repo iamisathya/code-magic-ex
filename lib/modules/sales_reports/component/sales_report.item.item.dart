@@ -1,3 +1,5 @@
+import 'package:dsc_tools/data/enums.dart';
+import 'package:dsc_tools/widgets/text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,24 +28,11 @@ class SalesReportEachItemItem extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(item.description,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(color: AppColor.kBlackColor)),
-                ),
-                const SizedBox()
-              ],
-            ),
-            _renderEachRow(context, "${"ba_number".tr}: ${item.itemCode}", ""),
-            _renderEachRow(context, "${"pv".tr}: ${item.pv}",
-                "${"quatity".tr}: ${item.qty}"),
+            _renderEachRow(
+                context, item.description, "${"code".tr}: ${item.itemCode}",
+                type: TextTypes.headline6),
+            _renderEachRow(
+                context, "${"pv".tr}: ${item.pv}", "${"unit".tr}: ${item.qty}"),
             GrandTotal(totalPv: item.totalPv.toString()),
           ],
         ),
@@ -51,22 +40,18 @@ class SalesReportEachItemItem extends StatelessWidget {
     );
   }
 
-  Widget _renderEachRow(BuildContext context, String value1, String value2) {
+  Widget _renderEachRow(BuildContext context, String value1, String value2,
+      {TextTypes type = TextTypes.bodyText2}) {
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(value1,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2!
-                  .copyWith(color: AppColor.darkLiver)),
-          Text(value2,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2!
-                  .copyWith(color: AppColor.darkLiver)),
+          AppText(text: value1, style: type, color: AppColor.darkLiver),
+          AppText(
+              text: value2,
+              style: TextTypes.bodyText2,
+              color: AppColor.darkLiver)
         ],
       ),
     );
@@ -90,20 +75,8 @@ class GrandTotal extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "${"total_pv".tr}:",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: AppColor.kBlackColor),
-              ),
-              Text(
-                totalPv,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText2!
-                    .copyWith(color: AppColor.kBlackColor),
-              ),
+              AppText(text: "${"total_pv".tr}:", style: TextTypes.bodyText2),
+              AppText(text: totalPv, style: TextTypes.bodyText2),
             ],
           ),
         ),
