@@ -53,12 +53,23 @@ extension NumberParsing on String {
     return true;
   }
 
-  String get precisionCheck => split(".")[1] == "00" ? split(".")[0] : this;
+  String get precisionCheck {
+    if (contains(".")) {
+      return (split(".")[1] == "00" || split(".")[1] == "0")
+          ? split(".")[0]
+          : this;
+    }
+    return this;
+  }
 }
 
 extension FormatNumber on String {
   String format() {
     return NumberFormat().format(Parsing.intFrom(this));
+  }
+
+  double numberFormatDouble() {
+    return double.tryParse(replaceAll(",", "")) ?? 0.00;
   }
 }
 
@@ -239,6 +250,10 @@ RegExp regex = RegExp(r"([.]*0)(?!.*\d)");
 extension DoubleExtension on double {
   String get asReadableString => toInt().toString();
   String get precisionCheck => toString().replaceAll(regex, "");
+
+  String doubleNumberFormat() {
+    return NumberFormat("#,###.##").format(this);
+  }
 }
 
 extension AppStyles on TextTheme {

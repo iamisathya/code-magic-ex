@@ -49,7 +49,7 @@ class SalesReportHomeController extends GetxController {
   RxList<SalesReportOrderItem> allSalesReports = <SalesReportOrderItem>[].obs;
   RxList<SalesReportRmaItem> allSalesRmaReports = <SalesReportRmaItem>[].obs;
   RxList<SalesReportItemItem> allSalesItemReports = <SalesReportItemItem>[].obs;
-  RxInt totalAmount = 0.obs;
+  RxDouble totalAmount = RxDouble(0.0);
   RxInt totalVolume = 0.obs;
 
   Rx<NameValueType> activeStockType =
@@ -120,7 +120,7 @@ class SalesReportHomeController extends GetxController {
                 actionType);
       }
       isDataFetched.toggle();
-      // calulateValue();
+      calulateValue();
       isLoading.toggle();
     } on DioError catch (e) {
       isLoading.toggle();
@@ -140,13 +140,13 @@ class SalesReportHomeController extends GetxController {
     if (activeStockType.value.value == "order") {
       totalVolume =
           allSalesReports.fold(0.obs, (sum, item) => sum + item.totalPv);
-      totalAmount = allSalesReports.fold(
-          0.obs, (sum, item) => sum + Parsing.intFrom(item.totalPv)!);
+      totalAmount.value = allSalesReports.fold(
+          0.0, (sum, item) => sum + item.total.numberFormatDouble());
     } else {
       totalVolume = allOrdersAndRmas.value.rmas[0].items
           .fold(0.obs, (sum, item) => sum + item.terms.pv);
-      totalAmount = allOrdersAndRmas.value.rmas[0].items
-          .fold(0.obs, (sum, item) => sum + Parsing.intFrom(item.terms.total)!);
+      totalAmount.value = allOrdersAndRmas.value.rmas[0].items
+          .fold(0.0, (sum, item) => sum + Parsing.intFrom(item.terms.total)!);
     }
   }
 

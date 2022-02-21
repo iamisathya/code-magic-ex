@@ -1,3 +1,7 @@
+import 'package:dsc_tools/core/values/colors.dart';
+import 'package:dsc_tools/data/enums.dart';
+import 'package:dsc_tools/utils/extensions.dart';
+import 'package:dsc_tools/widgets/text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +13,7 @@ import '../../inventory/inventory_home/widgets/no_record_found.dart';
 import '../controller/salesreports.home.controller.dart';
 import 'date_selector.dart';
 import 'date_selector_row.dart';
-import 'sales_report.item.item.dart';
+import 'sales_report.item.item.dart' hide GrandTotal;
 import 'sales_report.order.item.dart';
 import 'sales_report.rma.item.dart';
 import 'tool_bar.dart';
@@ -34,6 +38,7 @@ class Body2 extends StatelessWidget {
             if (!controller.isLoading.value && controller.activeListLength != 0)
               Column(
                 children: [
+                  _renderTotalContainer(),
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -61,6 +66,42 @@ class Body2 extends StatelessWidget {
               NoRecordFound(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _renderTotalContainer() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: const BoxDecoration(
+          color: AppColor.kWhiteColor,
+          border: Border(bottom: BorderSide(width: 0.5))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Expanded(
+            child: Column(
+              children: [
+                AppText(text: 'grand_total_price'.tr, style: TextTypes.bodyText1),
+                const SizedBox(height: 5),
+                AppText(
+                    text: controller.totalAmount.value.doubleNumberFormat().precisionCheck,
+                    style: TextTypes.subtitle1)
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                AppText(text: 'grand_total_pv'.tr, style: TextTypes.bodyText1),
+                const SizedBox(height: 5),
+                AppText(
+                    text: controller.totalVolume.value.toString(),
+                    style: TextTypes.subtitle1)
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
