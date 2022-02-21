@@ -3,11 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../../core/values/colors.dart';
 import '../../../../data/enums.dart';
+import '../../../../utils/images.dart';
 import '../../../../widgets/text_view.dart';
-import '../../../core/values/colors.dart';
-import '../../../utils/images.dart';
-import '../controller/print.salesreport.controller.dart';
+import '../../print_sales_report/controller/print.salesreport.controller.dart';
 
 class SaleReportBody extends StatelessWidget {
   final PrintSalesReportController controller =

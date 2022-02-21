@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import '../../open_po/order_create/component/loader.dart';
-import '../controller/print.salesreport.controller.dart';
+import '../../../open_po/order_create/component/loader.dart';
+import '../../print_sales_report/controller/print.salesreport.controller.dart';
 import 'sales_report_body.dart';
 
 class PrintSalesReport extends StatelessWidget {

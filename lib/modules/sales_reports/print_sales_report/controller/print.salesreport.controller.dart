@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
-import '../../../core/values/endpoints.dart';
-import '../../../utils/logger.dart';
-import '../../../utils/user_session.dart';
+import '../../../../core/values/endpoints.dart';
+import '../../../../utils/logger.dart';
+import '../../../../utils/user_session.dart';
 
 class PrintSalesReportController extends GetxController {
   RxBool isLoading = false.obs;
