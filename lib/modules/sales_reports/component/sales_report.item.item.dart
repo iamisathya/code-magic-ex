@@ -70,13 +70,13 @@ class GrandTotal extends StatelessWidget {
       child: Column(children: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
-          decoration: borderRadiusWithColor(bgColor: AppColor.cultured),
+          decoration: borderRadiusWithColor(bgColor: AppColor.bubbles),
           height: 40,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppText(text: "${"total_pv".tr}:", style: TextTypes.bodyText2),
-              AppText(text: totalPv, style: TextTypes.bodyText2),
+              AppText(text: "$totalPv ${"pv".tr}", style: TextTypes.bodyText2),
             ],
           ),
         ),

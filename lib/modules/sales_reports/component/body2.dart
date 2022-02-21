@@ -38,6 +38,7 @@ class Body2 extends StatelessWidget {
             if (!controller.isLoading.value && controller.activeListLength != 0)
               Column(
                 children: [
+                  if(controller.activeTab != "item")
                   _renderTotalContainer(),
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
