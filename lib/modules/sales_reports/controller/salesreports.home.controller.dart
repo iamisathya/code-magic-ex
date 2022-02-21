@@ -157,7 +157,7 @@ class SalesReportHomeController extends GetxController {
 
   void onTapDateSelector(DateSelectorType type, BuildContext context) {
     if (type == DateSelectorType.startDate) {
-      DatePicker.showDatePicker(context,
+      DatePicker.showDatePicker(context, locale: getLocaleFromString(Get.locale!.languageCode.split("_")[0]),
           maxTime: DateTime.now().subtract(const Duration(days: 1)),
           minTime: DateTime.now().subtract(const Duration(days: 365)),
           currentTime: startDate.value
@@ -169,7 +169,7 @@ class SalesReportHomeController extends GetxController {
         enableFindButton();
       });
     } else {
-      DatePicker.showDatePicker(context,
+      DatePicker.showDatePicker(context,locale: getLocaleFromString(Get.locale!.languageCode.split("_")[0]),
           minTime: DateTime.now().subtract(const Duration(days: 364)),
           maxTime: DateTime.now(),
           currentTime: endDate.value

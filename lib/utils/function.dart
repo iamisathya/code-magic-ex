@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
@@ -337,6 +338,26 @@ LocaleModel getLocale(LocaleTypes type) {
       return LocaleModel(language: "ms", location: "MY");
     default:
       return LocaleModel(language: "en", location: "US");
+  }
+}
+
+
+LocaleType getLocaleFromString(String language) {
+  switch (language) {
+    case 'en':
+      return LocaleType.en;
+    case 'th':
+      return LocaleType.th;
+    case 'lo':
+      return LocaleType.en;
+    case 'kh':
+      return LocaleType.kh;
+    case 'km':
+      return LocaleType.en;
+    case 'ms':
+      return LocaleType.en;
+    default:
+      return LocaleType.en;
   }
 }
 
