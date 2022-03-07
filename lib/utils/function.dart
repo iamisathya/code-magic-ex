@@ -209,13 +209,15 @@ Future<CountryDetails> getCountryCode(String countryCode) async {
   }
 }
 
+String? returnNullOrValue(String? o) => o != null ? (o == "" ? null : o) : null;
+
 String getErrorMessage(dynamic error) {
   try {
     final mappedObj = error as Map<String, dynamic>;
     final object = ErrorMessage.fromJson(mappedObj);
-    return object.error.error ??
-        object.error.errorMessage ??
-        object.error.message ??
+    return returnNullOrValue(object.error.error) ??
+        returnNullOrValue(object.error.errorMessage) ??
+        returnNullOrValue(object.error.message) ??
         "";
   } catch (e) {
     return "";
