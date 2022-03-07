@@ -5,6 +5,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'controllers/global_controllers.dart';
@@ -34,6 +35,10 @@ class MyApp extends StatelessWidget {
   //* init firebase analytics
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     ThemeController.to.getThemeModeFromStore();
     return GetBuilder<LanguageController>(
       builder: (languageController) => DevicePreview(
