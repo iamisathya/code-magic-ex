@@ -5,25 +5,64 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:dsc_tools/main.dart';
+import 'package:dsc_tools/di.dart';
+import 'package:dsc_tools/modules/login/login_home/controller/login.controller.dart';
+import 'package:dsc_tools/modules/login/login_home/login_home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:mockito/mockito.dart';
+
+class MockBuildContext extends Mock implements BuildContext {}
+
+class MockGetStorage extends Mock implements GetStorage {}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+  TestWidgetsFlutterBinding.ensureInitialized();
+  late GetStorage g;
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  const channel = MethodChannel('plugins.flutter.io/path_provider');
+  void setUpMockChannels(MethodChannel channel) {
+    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+      if (methodCall.method == 'getApplicationDocumentsDirectory') {
+        return '.';
+      }
+    });
+  }
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  setUpAll(() async {
+    setUpMockChannels(channel);
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  setUp(() async {
+    await GetStorage.init();
+    g = GetStorage();
+    await g.erase();
+  });
+  
+  // await GetStorage.init();
+  Widget makeTestableWidget({required Widget child}) {
+    return GetMaterialApp(
+      home: child,
+    );
+  }
+
+  final LoginController _loginController = LoginController();
+  final MockBuildContext _mockContext = MockBuildContext();
+
+  testWidgets("email password is empty, don't signIn",
+      (WidgetTester tester) async {
+    // await DenpendencyInjection().dependencies();
+    const bool didSignIn = false;
+
+    final LoginScreen loginScreen = LoginScreen();
+
+    await tester.pumpWidget(makeTestableWidget(child: loginScreen));
+    await tester.tap(find.byKey(const Key("login_button_key")));
+
+    verifyNever(_loginController.onPressContinue(_mockContext));
+    expect(didSignIn, false);
   });
 }

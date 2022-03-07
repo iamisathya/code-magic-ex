@@ -102,6 +102,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^1.1.1
   json_serializable: ^6.1.4
+  mockito: ^5.1.0
 
 flutter_icons:
   image_path: "assets/images/icon.png"

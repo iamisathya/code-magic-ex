@@ -57,6 +57,7 @@ class Body extends StatelessWidget {
                         hintText: "Password"),
                     const SizedBox(height: 20),
                     RaisedGradientButton(
+                      key: const Key("login_button_key"),
                       gradient: const LinearGradient(
                         colors: <Color>[Color(0xFF1C9CFC), Color(0xFF4CDFFF)],
                       ),
