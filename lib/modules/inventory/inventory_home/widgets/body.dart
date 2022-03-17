@@ -1,3 +1,4 @@
+import 'package:dsc_tools/modules/home/controller/home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,9 +14,13 @@ import 'user_address.dart';
 
 class Body extends StatelessWidget {
   final InventoryHomeController controller = Get.put(InventoryHomeController());
+  final HomeController _homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
+    const double _crossAxisSpacing = 8;
+    final double _aspectRatio = _homeController.isMobileLayout ? 6 : 1.2;
+    final int _crossAxisCount = _homeController.isMobileLayout ? 1 : 2;
     final displaySize = Get.height - 420;
     return SingleChildScrollView(
       child: Column(
@@ -43,7 +48,13 @@ class Body extends StatelessWidget {
                                   child: Text("no_items_found".tr),
                                 )
                               : Obx(
-                                  () => ListView.builder(
+                                  () => GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: _crossAxisCount,
+                                      crossAxisSpacing: _crossAxisSpacing,
+                                      childAspectRatio: _aspectRatio,
+                                    ),
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,

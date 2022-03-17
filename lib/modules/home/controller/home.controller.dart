@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/provider/globals.dart';
@@ -11,6 +12,11 @@ import '../../../utils/snackbar.dart';
 
 class HomeController extends GetxController {
   String currentMarketWarehouseId = "";
+  // The equivalent of the "smallestWidth" qualifier on Android.
+
+  // Determine if we should use mobile layout or not, 600 here is
+  // a common breakpoint for a typical 7-inch tablet.
+  final bool isMobileLayout = MediaQuery.of(Get.context!).size.shortestSide < 600;
 
   @override
   void onInit() {

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:dio/dio.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -343,7 +344,6 @@ LocaleModel getLocale(LocaleTypes type) {
   }
 }
 
-
 LocaleType getLocaleFromString(String language) {
   switch (language) {
     case 'en':
@@ -392,4 +392,16 @@ Future<void> proceedPrinting() async {
   } catch (err) {
     SnackbarUtil.showError(message: "error".tr);
   }
+}
+
+Future<bool> isIpad() async {
+  final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  final IosDeviceInfo info = await deviceInfo.iosInfo;
+  if (info.model != null) {
+    if (info.model!.toLowerCase().contains("ipad")) {
+      return true;
+    }
+    return false;
+  }
+  return false;
 }

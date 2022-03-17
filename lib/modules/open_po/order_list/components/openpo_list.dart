@@ -1,3 +1,4 @@
+import 'package:dsc_tools/modules/home/controller/home.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +7,8 @@ import '../controller/openpo.list.controller.dart';
 import 'po_item.dart';
 
 class OpenPoList extends StatelessWidget {
-  const OpenPoList({
+  final HomeController _homeController = Get.put(HomeController());
+  OpenPoList({
     Key? key,
     required this.controller,
   }) : super(key: key);
@@ -15,6 +17,10 @@ class OpenPoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double _crossAxisSpacing = 8;
+    const double _mainAxisSpacing = 0;
+    final double _aspectRatio = _homeController.isMobileLayout ? 6 : 2.2;
+    final int _crossAxisCount = _homeController.isMobileLayout ? 1 : 2;
     return SingleChildScrollView(
       physics: const ScrollPhysics(),
       child: Padding(
@@ -28,7 +34,12 @@ class OpenPoList extends StatelessWidget {
                     height: 100,
                     alignment: Alignment.center,
                     child: const Text("Sorry no orders found"))
-                : ListView.builder(
+                : GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: _crossAxisCount,
+                      crossAxisSpacing: _crossAxisSpacing,
+                      childAspectRatio: _aspectRatio,
+                    ),
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: controller.tempOpenPlaceOrders.length,

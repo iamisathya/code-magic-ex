@@ -21,9 +21,9 @@ class ScreenShotPreview extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.6),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(54),
+        preferredSize: const Size.fromHeight(84),
         child: Container(
-          margin: const EdgeInsets.only(top: 34),
+          margin: const EdgeInsets.only(top: 14),
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

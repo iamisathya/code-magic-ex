@@ -1,3 +1,5 @@
+import 'package:dsc_tools/modules/home/controller/home.controller.dart';
+import 'package:dsc_tools/utils/function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -117,7 +119,8 @@ class BarCodeDetails extends StatelessWidget {
 // }
 
 class BarcodeItemList extends StatelessWidget {
-  const BarcodeItemList({
+  final HomeController _homeController = Get.put(HomeController());
+  BarcodeItemList({
     Key? key,
     required this.controller,
   }) : super(key: key);
@@ -126,9 +129,17 @@ class BarcodeItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double _crossAxisSpacing = 8;
+    final double _aspectRatio = _homeController.isMobileLayout ? 6 : 3;
+    final int _crossAxisCount = _homeController.isMobileLayout ? 1 : 2;
     return Container(
       margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-      child: ListView.builder(
+      child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: _crossAxisCount,
+            crossAxisSpacing: _crossAxisSpacing,
+            childAspectRatio: _aspectRatio,
+          ),
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: controller.barcodeItems?.items.length,
