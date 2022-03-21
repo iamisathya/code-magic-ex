@@ -33,7 +33,7 @@ class Body extends StatelessWidget {
                       style: TextTypes.headline4),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: RichText(
                     text: TextSpan(
                       text: '${"terms".tr} & ',
