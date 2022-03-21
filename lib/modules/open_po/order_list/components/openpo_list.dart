@@ -18,7 +18,7 @@ class OpenPoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double _crossAxisSpacing = 8;
-    final double _aspectRatio = _homeController.isMobileLayout ? 2.02 : 2.2;
+    final double _aspectRatio = _homeController.isMobileLayout ? 1.9 : 2.2;
     final int _crossAxisCount = _homeController.isMobileLayout ? 1 : 2;
     return SingleChildScrollView(
       physics: const ScrollPhysics(),
@@ -32,7 +32,7 @@ class OpenPoList extends StatelessWidget {
                 ? Container(
                     height: 100,
                     alignment: Alignment.center,
-                    child: const Text("Sorry no orders found"))
+                    child: Text("sorry_no_orders_found".tr))
                 : GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: _crossAxisCount,
