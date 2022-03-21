@@ -130,7 +130,7 @@ class BarcodeItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double _crossAxisSpacing = 8;
-    final double _aspectRatio = _homeController.isMobileLayout ? 6 : 3;
+    final double _aspectRatio = _homeController.isMobileLayout ? 2.75 : 3;
     final int _crossAxisCount = _homeController.isMobileLayout ? 1 : 2;
     return Container(
       margin: const EdgeInsets.only(left: 20.0, right: 20.0),

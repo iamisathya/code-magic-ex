@@ -18,8 +18,7 @@ class OpenPoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double _crossAxisSpacing = 8;
-    const double _mainAxisSpacing = 0;
-    final double _aspectRatio = _homeController.isMobileLayout ? 6 : 2.2;
+    final double _aspectRatio = _homeController.isMobileLayout ? 2.02 : 2.2;
     final int _crossAxisCount = _homeController.isMobileLayout ? 1 : 2;
     return SingleChildScrollView(
       physics: const ScrollPhysics(),

@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double _crossAxisSpacing = 8;
-    final double _aspectRatio = _homeController.isMobileLayout ? 6 : 1.2;
+    final double _aspectRatio = _homeController.isMobileLayout ? 1.12 : 1.2;
     final int _crossAxisCount = _homeController.isMobileLayout ? 1 : 2;
     final displaySize = Get.height - 420;
     return SingleChildScrollView(

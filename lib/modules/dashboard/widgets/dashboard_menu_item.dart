@@ -68,11 +68,11 @@ class DashboardMenuItem extends StatelessWidget {
               topRight: Radius.circular(isLeft ? 5 : 25),
               bottomRight: Radius.circular(isLeft ? 5 : 25)),
         ),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 15),
-              child: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            children: [
+              Container(
                 height: 45,
                 width: 45,
                 decoration:
@@ -81,12 +81,17 @@ class DashboardMenuItem extends StatelessWidget {
                     child: SvgPicture.asset(item.icon,
                         height: 10, width: 10, fit: BoxFit.scaleDown)),
               ),
-            ),
-            Expanded(
-              child: AppText(
-                  text: item.title.tr, style: TextTypes.bodyText1, maxLines: 2),
-            )
-          ],
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: AppText(
+                      text: item.title.tr,
+                      style: TextTypes.bodyText1,
+                      maxLines: 2),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
