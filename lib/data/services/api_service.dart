@@ -226,6 +226,11 @@ abstract class MemberCallsService {
   Future<List<OpenPO>> getAllOpenPo(@Query("type") String type,
       @Query("mode") String mode, @Query("dscid") String dscid);
 
+  //? url=https://member-calls.unicity.com/ALL/DSC/getdata.php?type=106&mode=12&dscid=2970466
+  @GET(Endpoints.validOrders)
+  Future<List<OpenPO>> getCompleteOpenPo(
+      @Query("type") String type, @Query("dscid") String dscid);
+
   //? url=https://member-calls.unicity.com/All/DSC/THA/getdata.php?type=203&ponumber=BKM%202021-06-W003
   @GET("${Endpoints.allDscPath}/THA/getdata.php")
   Future<OpenPlaceOrderId> getOpenOrderId(

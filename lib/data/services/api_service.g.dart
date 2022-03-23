@@ -461,6 +461,24 @@ class _MemberCallsService implements MemberCallsService {
   }
 
   @override
+  Future<List<OpenPO>> getCompleteOpenPo(type, dscid) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'type': type, r'dscid': dscid};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<OpenPO>>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'ALL/DSC/THA/getdata.php',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => OpenPO.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
   Future<OpenPlaceOrderId> getOpenOrderId(type, ponumber) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{

@@ -76,6 +76,18 @@ Map<String, dynamic> _$PasswordResetResponseToJson(
       'affectedRows': instance.affectedRows,
     };
 
+NameValueType _$NameValueTypeFromJson(Map<String, dynamic> json) =>
+    NameValueType(
+      name: json['name'] as String,
+      value: json['value'] as String,
+    );
+
+Map<String, dynamic> _$NameValueTypeToJson(NameValueType instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'value': instance.value,
+    };
+
 OrderCompleteArguments _$OrderCompleteArgumentsFromJson(
         Map<String, dynamic> json) =>
     OrderCompleteArguments(

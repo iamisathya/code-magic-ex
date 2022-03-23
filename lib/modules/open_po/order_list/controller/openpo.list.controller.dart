@@ -62,8 +62,14 @@ class OpenPoListController extends GetxController
 
   Future<void> getAllOpenPo() async {
     try {
-      final List<OpenPO> allOpenPlaceOrders = await MemberCallsService.init()
-          .getAllOpenPo("106", filterMethod.value, Globals.userId);
+      List<OpenPO> allOpenPlaceOrders = [];
+      if (filterMethod.value == "all") {
+        allOpenPlaceOrders = await MemberCallsService.init()
+            .getCompleteOpenPo("106", Globals.userId);
+      } else {
+        allOpenPlaceOrders = await MemberCallsService.init()
+            .getAllOpenPo("106", filterMethod.value, Globals.userId);
+      }
       openPlaceOrders = allOpenPlaceOrders;
       tempOpenPlaceOrders.value = RxList.from(allOpenPlaceOrders);
       if (allOpenPlaceOrders.isNotEmpty) {

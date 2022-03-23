@@ -210,8 +210,14 @@ class OpenPoController extends GetxController {
 
   Future<void> getAllOpenPo() async {
     try {
-      final List<OpenPO> allOpenPO = await MemberCallsService.init()
-          .getAllOpenPo("106", filterMethod.value, Globals.userId);
+      List<OpenPO> allOpenPO = [];
+      if (filterMethod.value == "all") {
+        allOpenPO = await MemberCallsService.init()
+            .getCompleteOpenPo("106", Globals.userId);
+      } else {
+        allOpenPO = await MemberCallsService.init()
+            .getAllOpenPo("106", filterMethod.value, Globals.userId);
+      }
       _tempOpenPlaceOrders = allOpenPO.obs;
     } catch (err) {
       LoggerService.instance.e(err.toString());
