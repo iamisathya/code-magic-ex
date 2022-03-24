@@ -56,7 +56,7 @@ class Body2 extends StatelessWidget {
 
   GridView _renderGridView() {
     const double _crossAxisSpacing = 8;
-    final double _aspectRatio = _homeController.isMobileLayout ? 1.67 : 1.72;
+    final double _aspectRatio = _homeController.isMobileLayout ? 1.47 : 1.72;
     final int _crossAxisCount = _homeController.isMobileLayout ? 1 : 2;
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
