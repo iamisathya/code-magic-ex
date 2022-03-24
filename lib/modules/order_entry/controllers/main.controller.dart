@@ -98,7 +98,8 @@ class OrderEntryController extends GetxController {
       if (searchedResultsOfHref.items.isNotEmpty) {
         final List<String> data =
             searchedResultsOfHref.items.map((e) => e.href).toList();
-        searchUsersByHref(data);
+        final firstSet = data.length > 10 ?  data.take(10).toList() : data;
+        searchUsersByHref(firstSet);
       }
     } on DioError catch (e) {
       _onDioError(e);
