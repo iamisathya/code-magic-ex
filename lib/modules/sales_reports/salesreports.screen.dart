@@ -24,8 +24,7 @@ class SalesReportsHomeScreen extends StatelessWidget {
           appBar: OpenPoAppBar(),
           body: Body2(),
           bottomNavigationBar: BottomButtonBar(
-            isShown:
-                !controller.isLoading.value && controller.activeListLength == 0,
+            isShown: !controller.isLoading.value,
             showNeutral: false,
             onTapCancelButton: Get.back,
             negetiveText: "cancel".tr,
