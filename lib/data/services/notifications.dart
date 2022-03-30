@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,7 @@ class FirebaseService {
       badge: true,
       sound: true,
     );
+    // FirebaseService().initDynamicLinks();
     await FirebaseMessaging.instance.subscribeToTopic("topup");
     await FirebaseService().initialisePlugin();
   }
@@ -172,4 +174,12 @@ class FirebaseService {
           params, // <String, dynamic>{'string': 'string','int': 42,'long': 12345678910,'double': 42.0,'bool': true,}
     );
   }
+
+  // Future<void> initDynamicLinks() async {
+  //   FirebaseDynamicLinks.instance.onLink.listen((event) {
+  //     Get.toNamed(event.link.path);
+  //   }).onError((handleError) {
+  //     debugPrint(handleError.toString());
+  //   });
+  // }
 }
