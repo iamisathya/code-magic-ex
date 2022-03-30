@@ -110,10 +110,14 @@ class EasyShipItem extends StatelessWidget {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          AppText(text: element.name, style: TextTypes.headline6),
-          AppText(
-              text: "${"code".tr}: ${element.itemName}",
-              style: TextTypes.bodyText2),
+          Flexible(
+              child: AppText(text: element.name, style: TextTypes.headline6)),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: AppText(
+                text: "${"code".tr}: ${element.itemName}",
+                style: TextTypes.bodyText2),
+          ),
         ],
       ),
       Padding(
