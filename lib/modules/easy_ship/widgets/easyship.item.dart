@@ -22,6 +22,9 @@ class EasyShipItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (item.totalPrice == 0) {
+      return _renderFreeShipItems(item);
+    }
     return ConstrainedBox(
       constraints: const BoxConstraints(minHeight: 122),
       child: Container(
@@ -35,12 +38,6 @@ class EasyShipItem extends StatelessWidget {
               left: 70,
               top: 54,
               child: Image.asset(kCheckSuccessIconPng, width: 20)),
-          if (item.totalPrice == 0)
-            Positioned(
-                left: 10,
-                bottom: 10,
-                child:
-                    SvgPicture.asset(kFreeGiftEasyshipPromoColored, width: 40)),
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             SizedBox(
               width: 80,
@@ -146,5 +143,42 @@ class EasyShipItem extends StatelessWidget {
           ),
         )
     ]);
+  }
+
+  Column _renderFreeShipItems(EasyShipReportsWithTotal element) {
+    return Column(
+      children: item.reports!
+          .mapIndexed((elem, idx) => _renderFreeShipItem(elem))
+          .toList(),
+    );
+  }
+
+  Container _renderFreeShipItem(EasyShipReports element) {
+    return Container(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 30),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 30),
+              child: SvgPicture.asset(kFreeGiftEasyshipPromoColored, width: 50),
+            ),
+            Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              AppText(text: element.name, style: TextTypes.headline6),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: AppText(
+                    text: "${"code".tr}: ${element.itemName}",
+                    style: TextTypes.bodyText2),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: AppText(
+                    text: "${"code".tr}: ${element.orderNumber}",
+                    style: TextTypes.bodyText2),
+              ),
+            ])
+          ],
+        ));
   }
 }
