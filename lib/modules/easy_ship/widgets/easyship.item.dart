@@ -1,5 +1,6 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/enums.dart';
@@ -34,6 +35,12 @@ class EasyShipItem extends StatelessWidget {
               left: 70,
               top: 54,
               child: Image.asset(kCheckSuccessIconPng, width: 20)),
+          if (item.totalPrice == 0)
+            Positioned(
+                left: 10,
+                bottom: 10,
+                child:
+                    SvgPicture.asset(kFreeGiftEasyshipPromoColored, width: 40)),
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             SizedBox(
               width: 80,

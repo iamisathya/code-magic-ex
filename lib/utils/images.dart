@@ -32,6 +32,8 @@ const kEasyShipBgImage = 'assets/images/easyship_background_image.png';
 const kUnicityDscImage = 'assets/images/unicity_dsc.svg';
 const kFreeGiftEasyshipPromoColored =
     'assets/images/free_gift_easyship_promo_colored.svg';
+const kFreeGiftEasyshipPromoColored1 =
+    'assets/images/get_free_image.svg';
 const kFreeGiftEasyshipPromo = 'assets/images/free_gift_easyship_promo.svg';
 
 const kCashOnDeliveryImage = 'assets/images/cash_on_delivery_image.svg';
