@@ -1,3 +1,4 @@
+import 'package:dsc_tools/widgets/bottom_button_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
@@ -65,7 +66,16 @@ class EasyShipOrdersList extends StatelessWidget {
               ),
             ),
           ),
+          bottomNavigationBar: BottomButtonBar(
+            isShown: !controller.isLoading.value,
+            negetiveText: "cancel".tr,
+            positiveText: "download".tr,
+            onTapCancelButton: Get.back,
+            onTapPositiveButton: () => controller.captureScreenShot(Get.context!),
+            showNeutral: false,
+          ),
         ),
+        
       ),
     );
   }
