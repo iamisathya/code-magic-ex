@@ -254,6 +254,10 @@ extension DoubleExtension on double {
   String doubleNumberFormat() {
     return NumberFormat("#,###.##").format(this);
   }
+
+  String numberFormat() {
+    return NumberFormat("#,###").format(this);
+  }
 }
 
 extension AppStyles on TextTheme {

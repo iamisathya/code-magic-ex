@@ -88,7 +88,7 @@ class EasyShipItem extends StatelessWidget {
                           ),
                           AppText(
                             text:
-                                "${"total_price".tr}: ${item.totalPrice?.precisionCheck} ${Globals.currency}",
+                                "${"total_price".tr}: ${item.totalPrice?.doubleNumberFormat()} ${Globals.currency}",
                             style: TextTypes.caption,
                             color: AppColor.darkLiver,
                           ),
